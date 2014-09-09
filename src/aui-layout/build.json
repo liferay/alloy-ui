@@ -1,0 +1,28 @@
+{
+    "name": "aui-layout",
+    "builds": {
+        "aui-layout": {
+            "jsfiles": [
+                "js/aui-layout.js"
+            ]
+        },
+
+        "aui-layout-builder": {
+            "jsfiles": [
+                "js/aui-layout-builder.js"
+            ]
+        },
+
+        "aui-layout-col": {
+            "jsfiles": [
+                "js/aui-layout-col.js"
+            ]
+        },
+
+        "aui-layout-row": {
+            "jsfiles": [
+                "js/aui-layout-row.js"
+            ]
+        }
+    }
+}

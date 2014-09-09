@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+        .col {
+            background-color: rgba(86,61,124,.15);
+            border: 1px solid rgba(86,61,124,.2);
+            height: 62px;
+        }
+        .container {
+            width: 80%;
+            margin-left: 10px;
+        }
+        .row {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <h1>Layout Demo</h1>
+
+    <div class="container"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    YUI({ filter:'raw' }).use('aui-layout-builder', function(Y) {
+
+        var layout = new Y.Layout({
+            container: '.container',
+            rows: [
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '1' },
+                            size: 1
+                        })
+                    ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            value: { content: '6' },
+                            size: 6
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '6' },
+                            size: 6
+                        })
+                    ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            value: { content: '8' },
+                            size: 8
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '4' },
+                            size: 4
+                        })
+                    ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            value: { content: '4' },
+                            size: 4
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '4' },
+                            size: 4
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: '4' },
+                            size: 4
+                        })
+                    ]
+                })
+            ]
+        }).draw('.container');
+    });
+</script>
+</body>
+</html>
