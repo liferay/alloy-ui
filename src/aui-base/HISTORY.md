@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1650](https://issues.liferay.com/browse/AUI-1650) Surface reloads infinitely on android's mobile browser
 * [AUI-1577](https://issues.liferay.com/browse/AUI-1577) Inconsistent string truncation in aui-base-lang
 * [AUI-1348](https://issues.liferay.com/browse/AUI-1348) Make aui-audio module accessible
 * [AUI-1558](https://issues.liferay.com/browse/AUI-1558) Create unit test for padNumber
