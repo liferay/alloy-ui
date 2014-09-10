@@ -29,7 +29,14 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-    YUI({ filter:'raw' }).use('aui-layout-builder', function(Y) {
+    YUI({ filter:'raw' }).use('aui-layout', function(Y) {
+        var Content = Y.Base.create('content', Y.Base, [], {}, {
+            ATTRS: {
+                content: {
+                    value: 'foo'
+                }
+            }
+        });
 
         var layout = new Y.Layout({
             container: '.container',
@@ -37,97 +44,98 @@
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '1' },
-                            size: 1
+                            size: 1,
+                            value: new Content({ content: '1' })
                         })
                     ]
                 }),
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            value: { content: '6' },
-                            size: 6
+                            size: 6,
+                            value: new Content({ content: '6' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '6' },
-                            size: 6
+                            size: 6,
+                            value: new Content({ content: '6' })
                         })
                     ]
                 }),
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            value: { content: '8' },
-                            size: 8
+                            size: 8,
+                            value: new Content({ content: '8' })
                         }),
                         new Y.LayoutCol({
-                            value: { content: '4' },
-                            size: 4
+                            size: 4,
+                            value: new Content({ content: '4' })
                         })
                     ]
                 }),
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            value: { content: '4' },
+                            value: new Content({ content: '4' }),
                             size: 4
                         }),
                         new Y.LayoutCol({
-                            value: { content: '4' },
+                            value: new Content({ content: '4' }),
                             size: 4
                         }),
                         new Y.LayoutCol({
-                            value: { content: '4' },
+                            value: new Content({ content: '4' }),
                             size: 4
                         })
                     ]
                 })
             ]
-        }).draw('.container');
+        });
+        layout.draw('.container');
     });
 </script>
 </body>

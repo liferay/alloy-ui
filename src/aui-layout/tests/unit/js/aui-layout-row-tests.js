@@ -7,23 +7,31 @@ YUI.add('aui-layout-row-tests', function(Y) {
         name: 'Layout Row Tests',
 
         setUp: function() {
+            var Content = Y.Base.create('content', Y.Base, [], {}, {
+                ATTRS: {
+                    content: {
+                        value: 'foo'
+                    }
+                }
+            });
+
             this.layoutRow = new Y.LayoutRow({
                 cols: [
                     new Y.LayoutCol({
-                        value: { value: 'foo' },
-                        size: 4
+                        size: 4,
+                        value: new Content()
                     }),
                     new Y.LayoutCol({
-                        value: { value: 'foo' },
-                        size: 2
+                        size: 2,
+                        value: new Content()
                     }),
                     new Y.LayoutCol({
-                        value: { value: 'foo' },
-                        size: 2
+                        size: 2,
+                        value: new Content()
                     }),
                     new Y.LayoutCol({
-                        value: { value: 'foo' },
-                        size: 4
+                        size: 4,
+                        value: new Content()
                     })
                 ]
             });

@@ -30,7 +30,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
             value = this.get('value');
 
         col.addClass(BOOTSTRAP_CLASS_PREFIX + size);
-        col.append(value.content);
+        col.append(value.get('content'));
 
         return col;
     }
@@ -47,7 +47,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
     ATTRS: {
 
         /**
-         * Object containing a `content` key, which will be used as the
+         * Object containing a `content` attribute, which will be used as the
          * column's content.
          *
          * @attribute value

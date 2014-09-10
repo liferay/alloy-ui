@@ -8,97 +8,105 @@ YUI.add('aui-layout-tests', function(Y) {
         name: 'Layout Tests',
 
         setUp: function() {
+            var Content = Y.Base.create('content', Y.Base, [], {}, {
+                ATTRS: {
+                    content: {
+                        value: 'foo'
+                    }
+                }
+            });
+
             this.layout = new Y.Layout({
                 rows: [
                     new Y.LayoutRow({
                         cols: [
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 1
+                                size: 1,
+                                value: new Content()
                             })
                         ]
                     }),
                     new Y.LayoutRow({
                         cols: [
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 6
+                                size: 6,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 6
+                                size: 6,
+                                value: new Content()
                             })
                         ]
                     }),
                     new Y.LayoutRow({
                         cols: [
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 8
+                                size: 8,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 4
+                                size: 4,
+                                value: new Content()
                             })
                         ]
                     }),
                     new Y.LayoutRow({
                         cols: [
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 4
+                                size: 4,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 4
+                                size: 4,
+                                value: new Content()
                             }),
                             new Y.LayoutCol({
-                                value: { value: 'foo' },
-                                size: 4
+                                size: 4,
+                                value: new Content()
                             })
                         ]
                     })

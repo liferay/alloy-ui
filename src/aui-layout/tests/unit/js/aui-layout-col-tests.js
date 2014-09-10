@@ -6,12 +6,18 @@ YUI.add('aui-layout-col-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Layout Col Tests',
 
-        setUp: function(arguments) {
+        setUp: function() {
+            var Content = Y.Base.create('content', Y.Base, [], {}, {
+                ATTRS: {
+                    content: {
+                        value: 'foo'
+                    }
+                }
+            });
+
             this.layoutCol = new Y.LayoutCol({
-                value: {
-                    content: 'foo'
-                },
-                size: 4
+                size: 4,
+                value: new Content()
             });
         },
 
