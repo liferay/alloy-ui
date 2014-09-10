@@ -174,17 +174,17 @@ A.mix(WidgetTrigger.prototype, {
 
             if (triggerHideEvent) {
                 eventHandles.push(
-                    val.on(instance.get('triggerHideEvent'), instance[triggerHideFn], instance));
+                    val.on(instance.get('triggerHideEvent'), A.bind(instance[triggerHideFn], instance)));
             }
 
             if (triggerShowEvent) {
                 eventHandles.push(
-                    val.on(instance.get('triggerShowEvent'), instance[triggerShowFn], instance));
+                    val.on(instance.get('triggerShowEvent'), A.bind(instance[triggerShowFn], instance)));
             }
 
             if (triggerToggleEvent) {
                 eventHandles.push(
-                    val.on(instance.get('triggerToggleEvent'), instance[triggerToggleFn], instance));
+                    val.on(instance.get('triggerToggleEvent'), A.bind(instance[triggerToggleFn], instance)));
             }
         }
     }
