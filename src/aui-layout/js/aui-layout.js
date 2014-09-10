@@ -4,7 +4,6 @@
  * @module aui-layout
  */
 
-
 /**
  * A base class for Layout.
  *
@@ -17,9 +16,10 @@
 A.Layout = A.Base.create('layout', A.Base, [], {
 
     /**
-     * Transforms config object in a DOM template and appends it into the container.
+     * Renders the layout rows and columns into the given container.
      *
      * @method draw
+     * @param {Node | String} container The container to draw the layout on.
      **/
     draw: function(container) {
         var rows = this.get('rows');
@@ -53,7 +53,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
          * @type {Array}
          */
         rows: {
-            validator: A.isArray
+            validator: A.Lang.isArray
         }
     }
 });

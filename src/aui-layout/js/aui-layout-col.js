@@ -27,10 +27,9 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
     getContent: function() {
         var col = A.Node.create(COL_TEMPLATE),
             size = this.get('size'),
-            bootstrapClass = BOOTSTRAP_CLASS_PREFIX + size,
             value = this.get('value');
 
-        col.addClass(bootstrapClass);
+        col.addClass(BOOTSTRAP_CLASS_PREFIX + size);
         col.append(value.content);
 
         return col;
@@ -39,7 +38,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
 
     /**
      * Static property used to define the default attribute
-     * configuration for the Layout.
+     * configuration for the Layout Col.
      *
      * @property ATTRS
      * @type Object
@@ -48,26 +47,27 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
     ATTRS: {
 
         /**
-         * Column field
+         * Object containing a `content` key, which will be used as the
+         * column's content.
          *
-         * @attribute field
+         * @attribute value
          * @type {Object}
          */
         value: {
-            validator: A.isObject,
-            value: {
-                content: 'foo'
-            }
+            validator: A.Lang.isObject
         },
 
         /**
-         * Columns's size
+         * Columns's size, ranging from 1 to 12.
          *
          * @attribute size
          * @type {Number}
          */
         size: {
-            setter: A.isNumber,
+            validator: function(val) {
+                return A.Lang.isNumber(val) && val >= 1 && val <= 12;
+            },
+            value: 12
         }
     }
 });

@@ -9,7 +9,6 @@ YUI.add('aui-layout-tests', function(Y) {
 
         setUp: function() {
             this.layout = new Y.Layout({
-                container: CONTAINER_CLASS,
                 rows: [
                     new Y.LayoutRow({
                         cols: [
@@ -116,7 +115,7 @@ YUI.add('aui-layout-tests', function(Y) {
 
             Assert.areEqual(0, container.get('children').size());
 
-            this.layout.draw();
+            this.layout.draw(container);
 
             Assert.areEqual(4, container.get('children').size());
         }
@@ -124,6 +123,6 @@ YUI.add('aui-layout-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-},'', {
-    requires: [ 'test', 'aui-layout', 'aui-layout-col', 'aui-layout-row' ]
+}, '', {
+    requires: ['test', 'aui-layout', 'aui-layout-col', 'aui-layout-row']
 });

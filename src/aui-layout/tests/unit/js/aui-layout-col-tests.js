@@ -9,7 +9,7 @@ YUI.add('aui-layout-col-tests', function(Y) {
         setUp: function(arguments) {
             this.layoutCol = new Y.LayoutCol({
                 value: {
-                    value: 'foo'
+                    content: 'foo'
                 },
                 size: 4
             });
@@ -19,16 +19,16 @@ YUI.add('aui-layout-col-tests', function(Y) {
             this.layoutCol.destroy();
         },
 
-        "should add bootstrap class according to it's size": function() {
+        'should add bootstrap class according to it\'s size': function() {
             var colTemplate = this.layoutCol.getContent(),
                 colSize = this.layoutCol.get('size');
 
             Assert.isTrue(colTemplate.hasClass('col-md-' + colSize));
+            Assert.areEqual('foo', colTemplate.text());
         }
     }));
 
     Y.Test.Runner.add(suite);
-
-},'', {
-    requires: [ 'test', 'aui-layout-col' ]
+}, '', {
+    requires: ['test', 'aui-layout-col']
 });

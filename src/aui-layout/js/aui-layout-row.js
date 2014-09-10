@@ -40,7 +40,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
 
     /**
      * Static property used to define the default attribute
-     * configuration for the Layout.
+     * configuration for the Layout Row.
      *
      * @property ATTRS
      * @type Object
@@ -49,13 +49,13 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     ATTRS: {
 
         /**
-         * Array containing column objects
+         * Array containing `A.LayoutCol` objects
          *
          * @attribute cols
          * @type {Array}
          */
         cols: {
-            validator: A.isArray
+            validator: A.Lang.isArray
         }
     }
 });

@@ -49,6 +49,6 @@ YUI.add('aui-layout-row-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-},'', {
-    requires: [ 'test', 'aui-layout-row', 'aui-layout-col' ]
+}, '', {
+    requires: ['test', 'aui-layout-row', 'aui-layout-col']
 });
