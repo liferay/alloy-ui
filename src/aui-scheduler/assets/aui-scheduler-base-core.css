@@ -175,10 +175,10 @@
 }
 
 .scheduler-today-hd {
-    border: 3px solid #009be6;
-    border-top: 0;
-    border-right: 0;
-    border-left: 0;
+    -moz-box-shadow: inset 0px -3px 0px 0px #009be6;
+    -webkit-box-shadow: inset 0px -3px 0px 0px #009be6;
+    border: 0;
+    box-shadow: inset 0px -3px 0px 0px #009be6;
     color: #333333;
     font-weight: bold;
 }

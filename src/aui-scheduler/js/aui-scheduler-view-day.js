@@ -138,8 +138,8 @@ var Lang = A.Lang,
 
     TPL_SCHEDULER_VIEW_DAY_HEADER_DAY = '<th class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY +
         '" data-colnumber="{colNumber}"><a href="#">&nbsp;</a></th>',
-    TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_CONTENT = '<span class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_NUMBER +
-        '">%d</span> <span class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_WEEKDAY + '">%a</span>',
+    TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_CONTENT = '<span class="' + CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_WEEKDAY + '">%a</span> <span class="' +
+        CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_NUMBER + '">%d</span>',
     TPL_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST = '<td class="' + [CSS_SCHEDULER_VIEW_DAY_HEADER_DAY,
         CSS_SCHEDULER_VIEW_DAY_HEADER_DAY_FIRST].join(' ') + '"></td>';
 
