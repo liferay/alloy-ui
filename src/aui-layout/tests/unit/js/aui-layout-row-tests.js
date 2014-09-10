@@ -52,6 +52,12 @@ YUI.add('aui-layout-row-tests', function(Y) {
                 childNumber = row.get('children').size();
 
             Assert.areEqual(4, childNumber);
+        },
+
+        'should calculate it\'s size based on col\'s size': function() {
+            var rowSize = this.layoutRow.getSize();
+
+            Assert.areEqual(12, rowSize);
         }
     }));
 

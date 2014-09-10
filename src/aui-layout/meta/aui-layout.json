@@ -1,4 +1,17 @@
 {
+    "aui-layout-builder": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-layout",
+            "aui-node-base",
+            "base-build",
+            "event-mouseenter",
+            "node-event-delegate",
+            "node-screen",
+            "node-style"
+        ],
+        "skinnable": true
+    },
     "aui-layout": {
         "requires": [
             "aui-layout-col",

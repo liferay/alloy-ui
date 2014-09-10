@@ -19,12 +19,10 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * Renders the layout rows and columns into the given container.
      *
      * @method draw
-     * @param {Node | String} container The container to draw the layout on.
+     * @param {Node} container The container to draw the layout on.
      **/
     draw: function(container) {
         var rows = this.get('rows');
-
-        container = A.one(container);
 
         container.empty();
 

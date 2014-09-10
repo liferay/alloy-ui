@@ -29,6 +29,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
             size = this.get('size'),
             value = this.get('value');
 
+        col.setData('layout-col', this);
         col.addClass(BOOTSTRAP_CLASS_PREFIX + size);
         col.append(value.get('content'));
 
@@ -47,17 +48,6 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
     ATTRS: {
 
         /**
-         * Object containing a `content` attribute, which will be used as the
-         * column's content.
-         *
-         * @attribute value
-         * @type {Object}
-         */
-        value: {
-            validator: A.Lang.isObject
-        },
-
-        /**
          * Columns's size, ranging from 1 to 12.
          *
          * @attribute size
@@ -68,6 +58,16 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
                 return A.Lang.isNumber(val) && val >= 1 && val <= 12;
             },
             value: 12
+        },
+        /**
+         * Object containing a `content` attribute, which will be used as the
+         * column's content.
+         *
+         * @attribute value
+         * @type {Object}
+         */
+        value: {
+            validator: A.Lang.isObject
         }
     }
 });

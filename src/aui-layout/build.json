@@ -7,6 +7,12 @@
             ]
         },
 
+        "aui-layout-builder": {
+            "jsfiles": [
+                "js/aui-layout-builder.js"
+            ]
+        },
+
         "aui-layout-col": {
             "jsfiles": [
                 "js/aui-layout-col.js"

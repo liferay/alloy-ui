@@ -27,14 +27,25 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
         var cols = this.get('cols'),
             row = A.Node.create(ROW_TEMPLATE);
 
-        A.each(
-            cols,
-            function(col) {
-                row.append(col.getContent());
-            }
-        );
+        row.setData('layout-row', this);
+
+        A.each(cols, function(col) {
+            row.append(col.getContent());
+        });
 
         return row;
+    },
+
+    getSize: function() {
+        var cols = this.get('cols'),
+            size;
+
+        size = A.Array.reduce(cols, 0, function(prev, current) {
+            prev = prev + current.get('size');
+            return prev;
+        });
+
+        return size;
     }
 }, {
 

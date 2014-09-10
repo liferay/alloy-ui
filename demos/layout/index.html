@@ -29,7 +29,7 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-    YUI({ filter:'raw' }).use('aui-layout', function(Y) {
+    YUI({ filter:'raw' }).use('aui-layout-builder', function(Y) {
         var Content = Y.Base.create('content', Y.Base, [], {}, {
             ATTRS: {
                 content: {
@@ -39,7 +39,6 @@
         });
 
         var layout = new Y.Layout({
-            container: '.container',
             rows: [
                 new Y.LayoutRow({
                     cols: [
@@ -110,10 +109,6 @@
                         new Y.LayoutCol({
                             size: 8,
                             value: new Content({ content: '8' })
-                        }),
-                        new Y.LayoutCol({
-                            size: 4,
-                            value: new Content({ content: '4' })
                         })
                     ]
                 }),
@@ -135,7 +130,11 @@
                 })
             ]
         });
-        layout.draw('.container');
+
+        new Y.LayoutBuilder({
+            container: '.container',
+            layout: layout
+        });
     });
 </script>
 </body>
