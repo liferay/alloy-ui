@@ -1,20 +1,13 @@
 YUI.add('aui-base-tests', function(Y) {
 
-    var caseStrings = ['liferay', 'Liferay', 'cAPITAL', 'Capital', 'word-dash', 'Word-dash'],
-        caseStringsUpper = [
-            'YIELDING GREAT GIVEN',
-            'WATERS WHEREIN CREATURE OVER',
-            'DARKNESS BEHOLD FOWL LIKENESS UPON',
-            'GREEN. THE BEHOLD LIKENESS FISH',
-            'MOVED RULE HEAVEN'
+    var camelizedStrings = [
+            'loremIpsumDolorSitAmet',
+            'LorEmIpsumDolorSitAMET',
+            'LoremIpsumDoLOR. sitAmet +1',
+            'loremIpsumDolorSitAmet, LOREMIpsumD&OLOR',
+            'LoremIpsumDolorSitAmet. loremIpsumDolorSitAmet, loremIpsumDolorSitAmet'
         ],
-        caseStringsLower = [
-            'yielding great given',
-            'waters wherein creature over',
-            'darkness behold fowl likeness upon',
-            'green. the behold likeness fish',
-            'moved rule heaven'
-        ],
+        caseStrings = ['liferay', 'Liferay', 'cAPITAL', 'Capital', 'word-dash', 'Word-dash'],
         containStrings = ['alongstring', 'a-different-string', 'anotherstring123'],
         definedStrings = [
             '',
@@ -194,13 +187,6 @@ YUI.add('aui-base-tests', function(Y) {
             'Lorem-Ipsum-doLOR. sit-amet +1',
             'lorem-ipsum-dolor-sit-amet, LOREM-ipsum-D&OLOR',
             'Lorem-ipsum-dolor-sit-amet. lorem-ipsum-dolor-sit-amet, lorem-Ipsum-Dolor-Sit-Amet'
-        ],
-        camelizedStrings = [
-            'loremIpsumDolorSitAmet',
-            'LorEmIpsumDolorSitAMET',
-            'LoremIpsumDoLOR. sitAmet +1',
-            'loremIpsumDolorSitAmet, LOREMIpsumD&OLOR',
-            'LoremIpsumDolorSitAmet. loremIpsumDolorSitAmet, loremIpsumDolorSitAmet',
         ];
 
     var Assert = Y.Assert,
@@ -249,7 +235,6 @@ YUI.add('aui-base-tests', function(Y) {
                     character = null,
                     dashCount = 0;
 
-                //find the dash and capitalized indicies
                 for (var j = 0; j < toBeCamelized.length; j++) {
                     character = toBeCamelized[j];
 
@@ -263,7 +248,6 @@ YUI.add('aui-base-tests', function(Y) {
                     }
                 }
 
-                //ensure the result is camelized
                 for (var k = 0; k < camelized.length; k++) {
                     character = camelized[k];
 
