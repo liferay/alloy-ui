@@ -3,15 +3,10 @@
 }
 
 .scheduler-view-agenda-info-container {
-    border: 1px solid #e4e4e4;
+    background: #FFF;
+    border-bottom: 1px solid #e4e4e4;
     color: #6a6a6a;
     font-size: 1.1em;
-    margin: 10px 20px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
 }
 
 .scheduler-view-agenda-info-container .scheduler-view-agenda-info {
@@ -27,17 +22,16 @@
 }
 
 .scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-biggie {
-    background: #f6f6f6;
     border-right: 1px solid #E4E4E4;
     font-size: 4em;
-    padding: 25px 0;
     text-align: center;
     width: 100px;
-    -webkit-border-radius: 4px 0 0 4px;
-    -moz-border-radius: 4px 0 0 4px;
-    -ms-border-radius: 4px 0 0 4px;
-    -o-border-radius: 4px 0 0 4px;
-    border-radius: 4px 0 0 4px;
+}
+
+@media (max-width: 767px) {
+    .scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-biggie {
+        width: 75px;
+    }
 }
 
 .scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-label-biggie {
@@ -51,19 +45,17 @@
 }
 
 .scheduler-view-agenda-container {
-    border: 1px solid #e4e4e4;
     color: #6a6a6a;
     font-size: 1.1em;
-    margin: 0 20px 40px 20px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
 }
 
 .scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-no-events {
+    background: #F6F6F6;
+    border-bottom: 1px solid #E4E4E4;
+    border-style: solid;
+    border-width: 0 0 1px 0;
     padding: 10px;
+    text-align: center;
 }
 
 .scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event {
@@ -74,7 +66,7 @@
 
 .scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event .scheduler-view-agenda-event-content {
     float: left;
-    padding-left: 16px;
+    padding-left: 20px;
 }
 
 .scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event .scheduler-view-agenda-event-dates {
@@ -101,9 +93,9 @@
 .scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event-color {
     border: 3px solid #fff;
     height: 10px;
-    left: 6px;
+    left: 12px;
     position: absolute;
-    top: 14px;
+    top: 17px;
     width: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -115,9 +107,7 @@
 
 .scheduler-view-agenda-container .scheduler-view-agenda-header {
     background: #f6f6f6;
-    border-color: #e4e4e4;
-    border-style: solid;
-    border-width: 1px 0 2px 0;
+    border-bottom: 1px solid #E4E4E4;
     padding: 10px;
 }
 
