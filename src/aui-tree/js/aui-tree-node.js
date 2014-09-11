@@ -1635,8 +1635,7 @@ var TreeNodeTask = A.Component.create({
                                 parentHasUncheckedDescendants = true;
                             }
                             else {
-                                var childHasUncheckedChild = child.get(CONTENT_BOX).hasClass(
-                                    CSS_TREE_NODE_CHILD_UNCHECKED);
+                                var childHasUncheckedChild = child.get(CONTENT_BOX).hasClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
                                 if (childHasUncheckedChild) {
                                     parentHasUncheckedDescendants = true;
