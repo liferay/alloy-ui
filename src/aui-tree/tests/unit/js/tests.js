@@ -556,8 +556,7 @@ YUI.add('aui-tree-tests', function(Y) {
             test.wait();
         },
 
-        // Tests: AUI-1633
-        'TreeNodeTask should not remove the class `tree-node-child-unchecked` from Parents, if that Parent has Children with `tree-node-child-unchecked` as well.': function() {
+        'TreeNodeTask should not remove the class \'tree-node-child-unchecked\' from Parents, if that Parent has Children with \'tree-node-child-unchecked\' as well.': function() {
             var children,
                 lazyRenderTimeout,
                 test = this,
@@ -600,7 +599,7 @@ YUI.add('aui-tree-tests', function(Y) {
 
             children = treeView.getChildren(true);
 
-            lazyRenderTimeout = children.length * 300;
+            lazyRenderTimeout = (children.length * 300);
 
             setTimeout(function() {
                 test.resume(function() {
