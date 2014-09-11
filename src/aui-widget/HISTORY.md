@@ -4,7 +4,24 @@
 
 ## @VERSION@
 
+* [AUI-1655](https://issues.liferay.com/browse/AUI-1655) WidgetTrigger doesn't work with `tap` event
 * [AUI-1526](https://issues.liferay.com/browse/AUI-1526) Create a menu module
+
+## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
+
+* [AUI-1305](https://issues.liferay.com/browse/AUI-1305) Make aui-image-gallery responsive
+
+## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+
+* [AUI-1310](https://issues.liferay.com/browse/AUI-1310) Make aui-tooltip responsive
+* [AUI-1318](https://issues.liferay.com/browse/AUI-1318) Make aui-image-viewer responsive
+* [AUI-1299](https://issues.liferay.com/browse/AUI-1299) Make aui-carousel responsive
+* [AUI-1341](https://issues.liferay.com/browse/AUI-1341) Rename variable _eventHandles of Widget Trigger to _triggerEventHandles
+* [AUI-1153](https://issues.liferay.com/browse/AUI-1153) Create Bootstrap's Dropdown module
+* [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
+* [AUI-1178](https://issues.liferay.com/browse/AUI-1178) Enable use a function as value to widget position
+* [AUI-1098](https://issues.liferay.com/browse/AUI-1098) Upgrade to Bootstrap 3
+* [AUI-1253](https://issues.liferay.com/browse/AUI-1253) Fix modal header buttons pushing the header content down
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
