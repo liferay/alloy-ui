@@ -554,6 +554,89 @@ YUI.add('aui-tree-tests', function(Y) {
             rootNode.expand();
 
             test.wait();
+        },
+
+        'TreeNodeTask should not remove \'tree-node-child-unchecked\' class from nodes with unchecked descendants': function() {
+            var childNode,
+                children,
+                grandChildNode,
+                lazyRenderTimeout,
+                rootTreeNode,
+                rootTreeNodeCB,
+                test = this,
+                treeView;
+
+            treeView = new Y.TreeView({
+                children: [
+                    {
+                        children: [
+                            {
+                                children: [
+                                    {
+                                        id: 'ChildA',
+                                        type: 'task'
+                                    },
+                                    {
+                                        children: [
+                                            {
+                                                id: 'GrandChildA',
+                                                type: 'task'
+                                            }
+                                        ],
+                                        id: 'ChildB',
+                                        type: 'task'
+                                    }
+                                ],
+                                id: 'ParentA',
+                                type: 'task'
+                            },
+                            {
+                                id: 'ParentB',
+                                type: 'task'
+                            }
+                        ],
+                        id: 'GrandParent',
+                        type: 'task'
+                    }
+                ]
+            });
+
+            children = treeView.getChildren(true);
+
+            lazyRenderTimeout = (children.length * 300);
+
+            test.wait(function() {
+                childNode = treeView.getNodeById('ChildB');
+                grandChildNode = treeView.getNodeById('GrandChildA');
+                rootTreeNode = treeView.getNodeById('GrandParent');
+                rootTreeNodeCB = rootTreeNode.get('contentBox');
+
+                rootTreeNode.check();
+
+                Y.Assert.isFalse(
+                    rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                    'rootTreeNode does not have any unchecked decentants.');
+
+                childNode.uncheck();
+
+                Y.Assert.isTrue(
+                    rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                    'rootTreeNode has an unchecked decentant.');
+
+                grandChildNode.check();
+
+                Y.Assert.isTrue(
+                    rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                    'rootTreeNode has an unchecked decentant.');
+
+                childNode.check();
+
+                Y.Assert.isFalse(
+                    rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                    'rootTreeNode does not have any unchecked decentants.');
+
+                treeView.destroy();
+            }, lazyRenderTimeout);
         }
     }));
 
