@@ -1,4 +1,8 @@
-.drag-handle {
+.layout-resizing {
+    cursor: col-resize;
+}
+
+.layout-drag-handle {
     cursor: col-resize;
     position: absolute;
     bottom: 0;
@@ -14,6 +18,5 @@
     top: 0;
     bottom: 0;
     width: 0;
-    border: 1px dashed #ccc;
     border: 1px dashed rgba(86,61,124,.2);
 }

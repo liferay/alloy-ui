@@ -1,9 +1,9 @@
 {
-    "name"       : "aui-layout-builder",
-    "displayName": "Gallery: aui-layout-builder",
+    "name"       : "aui-layout",
+    "displayName": "Gallery: aui-layout",
     "description": "*Summary Goes Here*",
     "author"     : [ "brunocoelho" ],
-    "use"        : [ "aui-layout-builder" ],
+    "use"        : [ "aui-layout" ],
 
     "tags": [ "gallery" ],
 

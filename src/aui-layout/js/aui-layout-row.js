@@ -36,6 +36,12 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
         return row;
     },
 
+    /**
+     * Returns the sum of all this row's column sizes.
+     *
+     * @method getSize
+     * @return {Number}
+     */
     getSize: function() {
         var cols = this.get('cols'),
             size;

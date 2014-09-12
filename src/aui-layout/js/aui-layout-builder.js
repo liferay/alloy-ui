@@ -4,10 +4,10 @@
  * @module aui-layout-builder
  */
 
-var COL_CLASS = '.col',
-    CURSOR_COL_RESIZE = 'col-resize',
-    DRAG_HANDLE_CLASS = A.getClassName('drag', 'handle'),
-    LAYOUT_GRID_CLASS = A.getClassName('layout', 'grid'),
+var CSS_LAYOUT_DRAG_HANDLE = A.getClassName('layout', 'drag', 'handle'),
+    CSS_LAYOUT_GRID = A.getClassName('layout', 'grid'),
+    CSS_LAYOUT_RESIZING = A.getClassName('layout', 'resizing'),
+    SELECTOR_COL = '.col',
     MAX_NUMBER_OF_COLUMNS = 12,
     OFFSET_WIDTH = 'offsetWidth';
 
@@ -25,15 +25,6 @@ var COL_CLASS = '.col',
 A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
 
     /**
-     * Holds a reference to document's body style.
-     *
-     * @property documentBody
-     * @type {Node}
-     * @protected
-     */
-    bodyStyle: A.config.doc.body.style,
-
-    /**
      * Holds the drag handle node.
      *
      * @property dragHandle
@@ -41,15 +32,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     dragHandle: null,
-
-    /**
-     * Holds the previous body cursor.
-     *
-     * @property activeLink
-     * @type {Node}
-     * @protected
-     */
-    previousBodyCursor: '',
 
     /**
      * Construction logic executed during LayoutBuilder instantiation. Lifecycle.
@@ -67,9 +49,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         container.unselectable();
 
         this._eventHandles = [
-            container.delegate('mousedown', A.bind(this._onMouseDownEvent, this), '.' + DRAG_HANDLE_CLASS),
-            container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), COL_CLASS),
-            container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), COL_CLASS)
+            container.delegate('mousedown', A.bind(this._onMouseDownEvent, this), '.' + CSS_LAYOUT_DRAG_HANDLE),
+            container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), SELECTOR_COL),
+            container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL)
         ];
     },
 
@@ -90,7 +72,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _createDragHandle: function() {
-        this.dragHandle = A.Node.create('<span>').addClass(DRAG_HANDLE_CLASS);
+        this.dragHandle = A.Node.create('<span>').addClass(CSS_LAYOUT_DRAG_HANDLE);
     },
 
     /**
@@ -103,11 +85,11 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _decreaseCol: function(target, dragDifference) {
-        var colWidth = this.get('container').get(OFFSET_WIDTH)/MAX_NUMBER_OF_COLUMNS,
+        var colWidth = this.get('container').get(OFFSET_WIDTH) / MAX_NUMBER_OF_COLUMNS,
             nextClassNumber,
             targetWidth = target.get(OFFSET_WIDTH);
 
-        nextClassNumber = Math.ceil((targetWidth - dragDifference)/colWidth);
+        nextClassNumber = Math.ceil((targetWidth - dragDifference) / colWidth);
         nextClassNumber = nextClassNumber > 0 ? nextClassNumber : 1;
 
         target.getData('layout-col').set('size', nextClassNumber);
@@ -115,26 +97,11 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
-     * Calculates the space used in a row according to bootstrap's class number.
-     *
-     * @method _getUsedSpaceInARow
-     * @param {Node} col
-     * @return {Number}
-     * @protected
-     */
-
-     _getUsedSpaceInARow: function(col) {
-         var row = col.ancestor('.row');
-
-         return row.getData('layout-row').getSize();
-     },
-
-    /**
-     * Gets the column number according to bootstrap class.
+     * Gets the size of the given column node.
      *
      * @method _getColSize
-     * @param {Node} col Node to extract the bootstrap class number.
-     * @return {Number} Node's column number according bootstrap class.
+     * @param {Node} col Node to get the size of.
+     * @return {Number} Size of the column.
      * @protected
      */
     _getColSize: function(col) {
@@ -142,15 +109,29 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
+     * Calculates the space already being used by the given column's parent row.
+     *
+     * @method _getUsedSpaceInParentRow
+     * @param {Node} col
+     * @return {Number}
+     * @protected
+     */
+     _getUsedSpaceInParentRow: function(col) {
+         var row = col.ancestor('.row');
+
+         return row.getData('layout-row').getSize();
+     },
+
+    /**
      * Calculates if current target has space to move into parent's row.
      *
      * @method _hasSpaceToMove
-     * @param {Node} col Node which parent will determine if has space to move.
+     * @param {Node} col Node of the column to check for space.
      * @return {Boolean}
      * @protected
      */
     _hasSpaceToMove: function(col) {
-        var numberOfColumns = this._getUsedSpaceInARow(col);
+        var numberOfColumns = this._getUsedSpaceInParentRow(col);
 
         return numberOfColumns < MAX_NUMBER_OF_COLUMNS;
     },
@@ -168,10 +149,10 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         var colWidth = this.get('container').get(OFFSET_WIDTH) / MAX_NUMBER_OF_COLUMNS,
             currentTargetColNumber = this._getColSize(col),
             nextClassNumber,
-            numberOfUsedColumns = this._getUsedSpaceInARow(col),
+            numberOfUsedColumns = this._getUsedSpaceInParentRow(col),
             availableColumns = MAX_NUMBER_OF_COLUMNS - numberOfUsedColumns;
 
-        nextClassNumber = Math.ceil((col.get(OFFSET_WIDTH) - dragDifference)/colWidth);
+        nextClassNumber = Math.ceil((col.get(OFFSET_WIDTH) - dragDifference) / colWidth);
 
         if ((nextClassNumber - currentTargetColNumber) + numberOfUsedColumns > MAX_NUMBER_OF_COLUMNS) {
             nextClassNumber = currentTargetColNumber + availableColumns;
@@ -185,25 +166,25 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * Inserts a grid to the current node in order to visualize the columns area.
      *
      * @method _insertGrid
-     * @param {Node} target Node which the grid will be inserted.
+     * @param {Node} target Node in which the grid will be inserted.
      * @protected
      */
     _insertGrid: function(target) {
         var gridLine,
             i,
-            len,
             targetColNumber = this._getColSize(target),
-            gridWidth = target.get(OFFSET_WIDTH)/targetColNumber;
+            gridWidth = target.get(OFFSET_WIDTH) / targetColNumber;
 
-        for (i = 1, len = targetColNumber; i < len; i++) {
-            gridLine = A.Node.create('<div>').addClass(LAYOUT_GRID_CLASS);
+        for (i = 1; i < targetColNumber; i++) {
+            gridLine = A.Node.create('<div>').addClass(CSS_LAYOUT_GRID);
             gridLine.setStyle('left', gridWidth * i);
             target.append(gridLine);
         }
     },
 
     /**
-     * Attaches a mouseup event.
+     * Fired on `mousedown`. Inserts the drag grid and listens to the next
+     * `mouseup` event.
      *
      * @method _onMouseDownEvent
      * @param {EventFacade} event
@@ -211,15 +192,13 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      */
     _onMouseDownEvent: function(event) {
         var clientX = event.clientX,
-            bodyStyle = this.bodyStyle,
-            row = event.target.ancestor();
+            col = event.target.ancestor();
 
-        this._insertGrid(row);
+        this._insertGrid(col);
 
-        this.previousBodyCursor = bodyStyle.cursor;
-        bodyStyle.cursor = CURSOR_COL_RESIZE;
+        A.one('body').addClass(CSS_LAYOUT_RESIZING);
 
-        this.get('container').on('mouseup', this._onMouseUpEvent, this, clientX, row);
+        this.get('container').once('mouseup', this._onMouseUpEvent, this, clientX, col);
     },
 
     /**
@@ -244,29 +223,27 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
-     *
+     * Fires on `mouseup`. Makes the necessary changes to the layout.
      *
      * @method _onMouseUpEvent
      * @param {EventFacade} event
      * @param {Number} mouseDownClientX ClientX of previous mousedown event
-     * @param {Node} row Node to be resized
+     * @param {Node} col Node of the column to be resized
      * @protected
      */
-    _onMouseUpEvent: function(event, mouseDownClientX, row) {
-        var mouseUpClientX = event.clientX,
-            dragDifference = mouseDownClientX - mouseUpClientX;
+    _onMouseUpEvent: function(event, mouseDownClientX, col) {
+        var dragDifference = mouseDownClientX - event.clientX;
 
         this._removeGrid(event.target);
 
         if (dragDifference > 0) {
-            this._decreaseCol(row, dragDifference);
+            this._decreaseCol(col, dragDifference);
         }
-        else if (dragDifference < 0 && this._hasSpaceToMove(row)) {
-            this._increaseCol(row, dragDifference);
+        else if (dragDifference < 0 && this._hasSpaceToMove(col)) {
+            this._increaseCol(col, dragDifference);
         }
 
-        this.bodyStyle.cursor = this.previousBodyCursor;
-        this.get('container').detachAll('mouseup');
+        A.one('body').removeClass(CSS_LAYOUT_RESIZING);
     },
 
     /**
@@ -277,7 +254,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _removeGrid: function(target) {
-        target.ancestor().all('.' + LAYOUT_GRID_CLASS).remove();
+        target.ancestor().all('.' + CSS_LAYOUT_GRID).remove();
     },
 
 }, {

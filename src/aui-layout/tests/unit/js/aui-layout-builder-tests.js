@@ -3,7 +3,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
     var Assert = Y.Assert,
         container,
         Content,
-        DRAG_HANDLE_CLASS = '.' + Y.getClassName('drag', 'handle'),
+        DRAG_HANDLE_CLASS = '.' + Y.getClassName('layout', 'drag', 'handle'),
         LAYOUT_GRID_CLASS = '.' + Y.getClassName('layout', 'grid'),
         suite = new Y.Test.Suite('aui-layout-builder');
 
@@ -132,8 +132,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
         },
 
         'should append drag handle on mouseenter': function() {
-            var node = container.one('.col-md-1'),
-                node2 = container.one('.col-md-4');
+            var node = container.one('.col-md-1');
 
             Assert.isNull(node.one(DRAG_HANDLE_CLASS));
             // YUI doesn't simulate mouseenter event,
@@ -142,7 +141,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             node.simulate('mouseover');
             Assert.isNotNull(node.one(DRAG_HANDLE_CLASS));
 
-            node2.simulate('mouseover');
+            node.simulate('mouseout');
             Assert.isNull(node.one(DRAG_HANDLE_CLASS));
         },
 

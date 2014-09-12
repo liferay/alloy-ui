@@ -59,6 +59,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
             },
             value: 12
         },
+
         /**
          * Object containing a `content` attribute, which will be used as the
          * column's content.
