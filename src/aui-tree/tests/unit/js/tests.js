@@ -483,9 +483,13 @@ YUI.add('module-tests', function(Y) {
                 'rootTreeNode does not have unchecked child.');
         },
 
-        'TreeNodeTask should not remove the class \'tree-node-child-unchecked\' from Parents, if that Parent has Children with \'tree-node-child-unchecked\' as well.': function() {
-            var children,
+        'TreeNodeTask should not remove \'tree-node-child-unchecked\' class from nodes with unchecked descendants': function() {
+            var childNode,
+                children,
+                grandChildNode,
                 lazyRenderTimeout,
+                rootTreeNode,
+                rootTreeNodeCB,
                 test = this,
                 treeView;
 
@@ -528,47 +532,38 @@ YUI.add('module-tests', function(Y) {
 
             lazyRenderTimeout = (children.length * 300);
 
-            setTimeout(function() {
-                test.resume(function() {
-                    var childNode,
-                        grandChildNode,
-                        rootTreeNode,
-                        rootTreeNodeCB;
+            test.wait(function() {
+                childNode = treeView.getNodeById('ChildB');
+                grandChildNode = treeView.getNodeById('GrandChildA');
+                rootTreeNode = treeView.getNodeById('GrandParent');
+                rootTreeNodeCB = rootTreeNode.get('contentBox');
 
-                    childNode = treeView.getNodeById('ChildB');
-                    grandChildNode = treeView.getNodeById('GrandChildA');
-                    rootTreeNode = treeView.getNodeById('GrandParent');
-                    rootTreeNodeCB = rootTreeNode.get('contentBox');
+                rootTreeNode.check();
 
-                    rootTreeNode.check();
+                Y.Assert.isFalse(
+                    rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                    'rootTreeNode does not have any unchecked decentants.');
 
-                    Y.Assert.isFalse(
-                        rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
-                        'rootTreeNode does not have any unchecked decentants.')
+                childNode.uncheck();
 
-                    childNode.uncheck();
+                Y.Assert.isTrue(
+                    rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                    'rootTreeNode has an unchecked decentant.');
 
-                    Y.Assert.isTrue(
-                        rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
-                        'rootTreeNode has an unchecked decentant.');
+                grandChildNode.check();
 
-                    grandChildNode.check();
+                Y.Assert.isTrue(
+                    rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                    'rootTreeNode has an unchecked decentant.');
 
-                    Y.Assert.isTrue(
-                        rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
-                        'rootTreeNode has an unchecked decentant.');
+                childNode.check();
 
-                    childNode.check();
+                Y.Assert.isFalse(
+                    rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
+                    'rootTreeNode does not have any unchecked decentants.');
 
-                    Y.Assert.isFalse(
-                        rootTreeNodeCB.hasClass('tree-node-child-unchecked'),
-                        'rootTreeNode does not have any unchecked decentants.');
-
-                    treeView.destroy();
-                });
+                treeView.destroy();
             }, lazyRenderTimeout);
-
-            test.wait(lazyRenderTimeout);
         }
     }));
 
