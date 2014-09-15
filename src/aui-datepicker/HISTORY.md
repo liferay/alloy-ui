@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1613](DatePicker does not set value of trigger when date selected while picker is partially out of view)
 
 ## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
 
