@@ -67,7 +67,7 @@
     float: left;
 }
 
-.carousel-menu-item {
+.carousel .carousel-menu-item {
     background: #474A4B;
     cursor: pointer;
     display: block;
@@ -89,19 +89,19 @@
     position: static;
 }
 
-.carousel-menu-next {
+.carousel .carousel-menu-next {
     background-image: url(next.png);
 }
 
-.carousel-menu-play {
+.carousel .carousel-menu-play {
     background-image: url(play.png);
 }
 
-.carousel-menu-pause {
+.carousel .carousel-menu-pause {
     background-image: url(pause.png);
 }
 
-.carousel-menu-prev {
+.carousel .carousel-menu-prev {
     background-image: url(prev.png);
 }
 
@@ -111,7 +111,7 @@
     width: 9px;
 }
 
-.carousel-menu-active {
+.carousel .carousel-menu-active {
     background: #FFF;
 }
 
