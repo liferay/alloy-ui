@@ -6,6 +6,33 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
+    <style>
+        .btn {
+            background: #0E4681;
+            color: #FFF;
+            font-weight: bold;
+            margin: 15px 10px;
+            padding: 20px 50px;
+        }
+
+        .btn:hover {
+            background: #FFF;
+            color: #0E4681;
+        }
+
+        .image-viewer-base-node-content {
+            background: #4591CE;
+            color: #FFF;
+            padding-top: 5%;
+        }
+
+        .options a {
+            background: 0;
+            border: 1px solid #FFF;
+            font-weight: normal;
+            padding: 15px 30px;
+        }
+    </style>
 </head>
 <body>
     <h1>AlloyUI - Carousel</h1>
@@ -18,6 +45,19 @@
         <div style="background: url(assets/article1.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
         <div style="background: url(assets/article2.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
         <div style="background: url(assets/article3.png); width: 940px; height: 253px;" class="image-viewer-base-image"></div>
+        <div class="image-viewer-base-node-content">
+            <div class="content">
+                <div class="header">
+                    <h2>See how Liferay can work for you.</h2>
+                    <a class="btn">Contact us for a demo</a>
+                </div>
+
+                <div class="options">
+                    <a class="btn">See our products</a>
+                    <a class="btn">Start your free trial</a>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
     YUI({ filter: 'raw' }).use('aui-carousel', function(Y) {
