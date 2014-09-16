@@ -132,7 +132,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
         },
 
         'should append drag handle on mouseenter': function() {
-            var node = container.one('.col-md-1');
+            var node = container.one('.col-sm-1');
 
             Assert.isNull(node.one(DRAG_HANDLE_CLASS));
             // YUI doesn't simulate mouseenter event,
@@ -147,10 +147,11 @@ YUI.add('aui-layout-builder-tests', function(Y) {
 
         'should insert layout grid on dragHandle\'s click': function() {
             var dragHandle,
-                node = container.one('.col-md-4');
+                node = container.one('.col-sm-4');
 
             node.simulate('mouseover');
             dragHandle = node.one(DRAG_HANDLE_CLASS);
+
             dragHandle.simulate('mousedown');
 
             Assert.isNotNull(node.one(LAYOUT_GRID_CLASS));
@@ -158,50 +159,50 @@ YUI.add('aui-layout-builder-tests', function(Y) {
 
         'should not decrease the element\'s width if it has 1 column width': function() {
             var firstNode,
-                nodes = container.all('.col-md-1');
+                nodes = container.all('.col-sm-1');
 
             firstNode = nodes.first();
 
             Assert.areEqual(12, nodes.size());
 
             moveDragHandle(firstNode, 0);
-            nodes = container.all('.col-md-1');
+            nodes = container.all('.col-sm-1');
 
             Assert.areEqual(12, nodes.size());
         },
 
         'should decrease element\'s width if it\'s width is higher than 1 column': function() {
             var lastNode,
-                nodes = container.all('.col-md-4');
+                nodes = container.all('.col-sm-4');
 
             lastNode = nodes.last();
 
             Assert.areEqual(3, nodes.size());
             moveDragHandle(lastNode, 0);
 
-            nodes = container.all('.col-md-4');
+            nodes = container.all('.col-sm-4');
             Assert.areEqual(2, nodes.size());
         },
 
         'should increase element\'s width if it has space to move': function() {
-            var node = container.one('.col-md-8');
+            var node = container.one('.col-sm-8');
 
             Assert.isNotNull(node);
             moveDragHandle(node, container.get('offsetWidth'));
 
-            Assert.isNotNull(container.one('.col-md-12'));
+            Assert.isNotNull(container.one('.col-sm-12'));
         },
 
         'should not increase the element\'s width if it hasn\'t space to move': function() {
             var firstNode,
-                nodes = container.all('.col-md-6');
+                nodes = container.all('.col-sm-6');
 
             firstNode = nodes.first();
             Assert.areEqual(2, nodes.size());
 
             moveDragHandle(firstNode, container.get('offsetWidth'));
 
-            nodes = container.all('.col-md-6');
+            nodes = container.all('.col-sm-6');
             Assert.areEqual(2, nodes.size());
         }
     }));

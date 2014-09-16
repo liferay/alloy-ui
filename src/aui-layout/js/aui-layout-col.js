@@ -4,7 +4,7 @@
  * @module aui-layout-col
  */
 
-var BOOTSTRAP_CLASS_PREFIX = 'col-md-',
+var BOOTSTRAP_CLASS_PREFIX = 'col-sm-',
     COL_TEMPLATE = '<div class="col">';
 
 /**
