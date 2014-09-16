@@ -53,6 +53,24 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
             container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), SELECTOR_COL),
             container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL)
         ];
+
+        this.bindUI();
+    },
+
+    /**
+     * Bind the events on the A.LayoutBuilder. Lifecycle.
+     *
+     * @method bindUI
+     */
+    bindUI: function() {
+        var container = this.get('container'),
+            layout = this.get('layout');
+
+        layout.addTarget(this);
+
+        this.on('layout:rowsChange', function() {
+            layout.draw(container);
+        });
     },
 
     /**

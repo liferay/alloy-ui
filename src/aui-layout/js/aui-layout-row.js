@@ -69,10 +69,12 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
          * Array containing `A.LayoutCol` objects
          *
          * @attribute cols
+         * @default []
          * @type {Array}
          */
         cols: {
-            validator: A.Lang.isArray
+            validator: A.Lang.isArray,
+            value: []
         }
     }
 });

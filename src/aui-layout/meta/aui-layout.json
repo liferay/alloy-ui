@@ -28,6 +28,7 @@
     },
     "aui-layout-row": {
         "requires": [
+            "array-invoke",
             "aui-node-base",
             "base-build"
         ]
