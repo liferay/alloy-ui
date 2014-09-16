@@ -38,10 +38,20 @@
             }
         });
 
+        var col = new Y.LayoutCol({
+                    size: 8,
+                    value: new Content({ content: '8' })
+                });
+
         var layout = new Y.Layout({
             rows: [
                 new Y.LayoutRow({
                     cols: [
+                        col
+                    ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
                         new Y.LayoutCol({
                             size: 1,
                             value: new Content({ content: '1' })
@@ -101,14 +111,6 @@
                         new Y.LayoutCol({
                             size: 6,
                             value: new Content({ content: '6' })
-                        })
-                    ]
-                }),
-                new Y.LayoutRow({
-                    cols: [
-                        new Y.LayoutCol({
-                            size: 8,
-                            value: new Content({ content: '8' })
                         })
                     ]
                 }),

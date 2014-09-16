@@ -71,6 +71,10 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         this.on('layout:rowsChange', function() {
             layout.draw(container);
         });
+
+        this.on('layout-row:colsChange', function() {
+            layout.draw(container);
+        });
     },
 
     /**
