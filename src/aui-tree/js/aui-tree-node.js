@@ -1564,7 +1564,7 @@ var TreeNodeTask = A.Component.create({
                 });
             }
 
-            instance._ancestorUncheckedChildRemoveClass();
+            instance._uncheckedAncestorChildRemoveClass();
 
             contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
@@ -1593,7 +1593,7 @@ var TreeNodeTask = A.Component.create({
                 });
             }
 
-            instance._ancestorUncheckedChildAddClass();            
+            instance._uncheckedAncestorChildAddClass();
 
             contentBox.removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
@@ -1604,9 +1604,9 @@ var TreeNodeTask = A.Component.create({
         /**
          * Adds the class `tree-node-child-unchecked` to all checked ancestor TreeNodeTasks.
          *
-         * @method _ancestorUncheckedChildAddClass
+         * @method _uncheckedAncestorChildAddClass
          */
-        _ancestorUncheckedChildAddClass: function() {
+        _uncheckedAncestorChildAddClass: function() {
             var instance = this;
 
             instance.eachParent(
@@ -1621,9 +1621,9 @@ var TreeNodeTask = A.Component.create({
         /**
          * Removes the class `tree-node-child-unchecked` from ancestor TreeNodeTasks, when all descendant TreeNodeTasks are checked.
          *
-         * @method _ancestorUncheckedChildRemoveClass
+         * @method _uncheckedAncestorChildRemoveClass
          */
-        _ancestorUncheckedChildRemoveClass: function() {
+        _uncheckedAncestorChildRemoveClass: function() {
             var instance = this;
 
             var parentHasUncheckedDescendants;
@@ -1639,13 +1639,13 @@ var TreeNodeTask = A.Component.create({
                                 if ((child !== instance) && !child.isChecked()) {
                                     return true;
                                 }
-                            		else {
-                                		var childHasUncheckedChild = child.get('contentBox').hasClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+                                    else {
+                                        var childHasUncheckedChild = child.get('contentBox').hasClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 
-                                		if (childHasUncheckedChild) {
-		                                    return true;
-		                                }
-    		                        }
+                                        if (childHasUncheckedChild) {
+                                            return true;
+                                        }
+                                    }
                             }
                         );
 
