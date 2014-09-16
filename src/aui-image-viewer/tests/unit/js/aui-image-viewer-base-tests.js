@@ -28,6 +28,31 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
             }
         },
 
+        _testNodeContentVisibility: function() {
+            var boundingBox = this._imageViewer.get('boundingBox'),
+                nodeContent = boundingBox.one('.image-viewer-base-node-content'),
+                parentNode = nodeContent.get('parentNode');
+
+            Y.Assert.isNotNull(
+                nodeContent,
+                'A Node in the markeup with class image-viewer-base-node-content should be used in the viewer.'
+            );
+
+            this._imageViewer.set('currentIndex', 0);
+
+            Y.Assert.isFalse(
+                parentNode.hasClass('image-viewer-base-current-image'),
+                'Node content should not be visible when it is not the current image.'
+            );
+
+            this._imageViewer.set('currentIndex', 1);
+
+            Y.Assert.isTrue(
+                parentNode.hasClass('image-viewer-base-current-image'),
+                'Node content should be visible when it is the current image.'
+            );
+        },
+
         'should show loading indicator until image is ready': function() {
             var instance = this,
                 imageContainer,
@@ -402,6 +427,28 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
                 this._imageViewer.get('controlNext').hasClass('custom-control-next'),
                 'The next control should have the custom class'
             );
+        },
+
+        'should accept both images and node sources': function() {
+            this._imageViewer = new Y.ImageViewerBase({
+                currentIndex: 2,
+                sources: [
+                    'assets/lfr-soccer-2.jpg',
+                    Y.Node.create('<div class="image-viewer-base-node-content">Test Content</div>'),
+                    'assets/lfr-soccer-4.jpg'
+                ]
+            }).render('#container');
+
+            this._testNodeContentVisibility();
+        },
+
+        'should populate images from existing nodes': function() {
+            this._imageViewer = new Y.ImageViewerBase({
+                currentIndex: 2,
+                srcNode: '#htmlparser2'
+            }).render();
+
+            this._testNodeContentVisibility();
         }
     }));
 
