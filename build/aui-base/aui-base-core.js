@@ -508,4 +508,4 @@ A.fn = function(fn, context, args) {
 	return wrappedFn;
 };
 
-}, '@VERSION@' ,{skinnable:false, requires:['aui-classnamemanager','aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle']});
+}, '@VERSION@' ,{requires:['aui-classnamemanager','aui-node','aui-component','aui-debounce','aui-delayed-task','aui-selector','aui-event-base','oop','yui-throttle'], skinnable:false});
