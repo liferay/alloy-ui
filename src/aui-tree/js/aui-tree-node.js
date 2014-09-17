@@ -1624,30 +1624,28 @@ var TreeNodeTask = A.Component.create({
          * @method _uncheckedAncestorChildRemoveClass
          */
         _uncheckedAncestorChildRemoveClass: function() {
-            var instance = this;
-
-            var parentHasUncheckedDescendants;
+            var instance = this,
+                children,
+                childHasUncheckedChild,
+                parentHasUncheckedDescendants;
 
             instance.eachParent(
                 function(parentNode) {
                     if (isTreeNodeTask(parentNode) && !parentHasUncheckedDescendants) {
-                        var children = parentNode.getChildren();
+                        children = parentNode.getChildren();
 
-                        parentHasUncheckedDescendants = A.Array.some(
-                            children,
-                            function(child) {
-                                if ((child !== instance) && !child.isChecked()) {
+                        parentHasUncheckedDescendants = A.Array.some(children, function(child) {
+                            if ((child !== instance) && !child.isChecked()) {
+                                return true;
+                            }
+                            else {
+                                childHasUncheckedChild = child.get('contentBox').hasClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+                                if (childHasUncheckedChild) {
                                     return true;
                                 }
-                                    else {
-                                        var childHasUncheckedChild = child.get('contentBox').hasClass(CSS_TREE_NODE_CHILD_UNCHECKED);
-
-                                        if (childHasUncheckedChild) {
-                                            return true;
-                                        }
-                                    }
                             }
-                        );
+                        });
 
                         if (!parentHasUncheckedDescendants) {
                             parentNode.get('contentBox').removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
