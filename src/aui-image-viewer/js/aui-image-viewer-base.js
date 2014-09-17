@@ -783,19 +783,23 @@ A.ImageViewerBase = A.Base.create(
             },
 
             sources: function(srcNode) {
-                var images = srcNode.all('.' + CSS_IMAGE + ', .' + CSS_CONTENT),
+                var backgroundImageStyle,
+                    childImg,
+                    img,
+                    images = srcNode.all('.' + CSS_IMAGE + ', .' + CSS_CONTENT),
+                    isImg,
                     sources = [];
 
                 images.each(function() {
-                    var isImg = this.test('img'),
-                        childImg = this.one('img'),
-                        backgroundImageStyle = this.getStyle('backgroundImage');
+                    isImg = this.test('img'),
+                    childImg = this.one('img'),
+                    backgroundImageStyle = this.getStyle('backgroundImage');
 
                     if (this.hasClass(CSS_CONTENT)) {
                         sources.push(this);
                     }
                     else if (isImg || childImg) {
-                        var img = isImg ? this : childImg;
+                        img = isImg ? this : childImg;
 
                         sources.push(img.getAttribute('src'));
                     }
