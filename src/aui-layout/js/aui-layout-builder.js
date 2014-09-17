@@ -51,30 +51,10 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         this._eventHandles = [
             container.delegate('mousedown', A.bind(this._onMouseDownEvent, this), '.' + CSS_LAYOUT_DRAG_HANDLE),
             container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), SELECTOR_COL),
-            container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL)
+            container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL),
+            layout.after('layout-row:colsChange', A.bind(this._afterLayoutColsChange, this)),
+            layout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this))
         ];
-
-        this.bindUI();
-    },
-
-    /**
-     * Bind the events on the A.LayoutBuilder. Lifecycle.
-     *
-     * @method bindUI
-     */
-    bindUI: function() {
-        var container = this.get('container'),
-            layout = this.get('layout');
-
-        layout.addTarget(this);
-
-        this.on('layout:rowsChange', function() {
-            layout.draw(container);
-        });
-
-        this.on('layout-row:colsChange', function() {
-            layout.draw(container);
-        });
     },
 
     /**
@@ -85,6 +65,34 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      */
     destructor: function() {
         (new A.EventHandle(this._eventHandles)).detach();
+    },
+
+    /**
+     * Fires after cols changes.
+     *
+     * @method _afterLayoutColsChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterLayoutColsChange: function(e) {
+        var container = this.get('container'),
+            layout = this.get('layout');
+
+        layout.draw(container);
+    },
+
+    /**
+     * Fires after rows changes.
+     *
+     * @method _afterLayoutRowsChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterLayoutRowsChange: function() {
+        var container = this.get('container'),
+            layout = this.get('layout');
+
+        layout.draw(container);
     },
 
     /**

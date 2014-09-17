@@ -16,6 +16,28 @@
 A.Layout = A.Base.create('layout', A.Base, [], {
 
     /**
+     * Construction logic executed during Layout instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        this._eventHandles = [
+            this.after('rowsChange', A.bind(this._afterRowsChange, this))
+        ];
+    },
+
+    /**
+     * Destructor implementation for the `A.Layout` class. Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        (new A.EventHandle(this._eventHandles)).detach();
+    },
+
+    /**
      * Adds a new row to the current layout.
      *
      * @method addRow
@@ -23,13 +45,12 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @param {Node} row A brand new row.
      **/
     addRow: function(index, row) {
-        var rows = this.get('rows');
+        var rows = A.clone(this.get('rows'));
 
         if (!row) {
             row = new A.LayoutRow();
         }
 
-        row.addTarget(this);
         rows.splice(index, 0, row);
 
         this.set('rows', rows);
@@ -67,6 +88,21 @@ A.Layout = A.Base.create('layout', A.Base, [], {
     },
 
     /**
+     * Fires after rows changes.
+     *
+     * @method _afterRowsChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterRowsChange: function(event) {
+        var newRow = event.newVal,
+            prevRows = event.prevVal;
+
+        A.Array.invoke(prevRows, 'removeTarget', this);
+        A.Array.invoke(newRow, 'addTarget', this);
+    },
+
+    /**
      * Removes a row from this layout by it's index.
      *
      * @method _removeRowByIndex
@@ -74,7 +110,8 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @protected
      */
     _removeRowByIndex: function(index) {
-        var rows = this.get('rows');
+        var rows = A.clone(this.get('rows'));
+
         rows.splice(index, 1);
         this.set('rows', rows);
     },
@@ -87,7 +124,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @protected
      */
     _removeRowByReference: function(row) {
-        var rows = this.get('rows'),
+        var rows = A.clone(this.get('rows')),
             index;
 
         index = rows.indexOf(row);
