@@ -459,7 +459,8 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-editable-deprecated": {
         "requires": [
             "aui-base-deprecated",
-            "aui-form-combobox-deprecated"
+            "aui-form-combobox-deprecated",
+            "escape"
         ],
         "skinnable": true
     },
@@ -1427,4 +1428,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '7b0c35381c38b5d9703281a5a053d1cb';
+YUI.Env[Y.version].md5 = 'bf8ce7dd537b880bb44c424783e07077';
