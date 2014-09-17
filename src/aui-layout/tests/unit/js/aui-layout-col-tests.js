@@ -30,6 +30,23 @@ YUI.add('aui-layout-col-tests', function(Y) {
                 colSize = this.layoutCol.get('size');
 
             Assert.isTrue(colTemplate.hasClass('col-md-' + colSize));
+        },
+
+        'should set value using an instance of Base': function() {
+            var colTemplate = this.layoutCol.getContent();
+
+            Assert.areEqual('foo', colTemplate.text());
+        },
+
+        'should set value using a regular object': function() {
+            var colTemplate,
+                layoutCol = new Y.LayoutCol({
+                    size: 4,
+                    value: { content: 'foo' }
+                });
+
+            colTemplate = layoutCol.getContent();
+
             Assert.areEqual('foo', colTemplate.text());
         }
     }));

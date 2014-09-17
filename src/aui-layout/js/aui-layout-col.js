@@ -31,7 +31,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
 
         col.setData('layout-col', this);
         col.addClass(BOOTSTRAP_CLASS_PREFIX + size);
-        col.append(value.get('content'));
+        col.append(value.content || value.get('content'));
 
         return col;
     }
@@ -57,7 +57,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
             validator: function(val) {
                 return A.Lang.isNumber(val) && val >= 1 && val <= 12;
             },
-            value: 12
+            value: 1
         },
 
         /**
