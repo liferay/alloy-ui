@@ -67,7 +67,7 @@ var Editable = A.Component.create(
 		ATTRS: {
 			/**
 			 * <a href="ButtonItem.html">ButtonItem</a> constructor Object for the
-		     * cancelButton.
+			 * cancelButton.
 			 *
 			 * @attribute cancelButton
 			 * @default Button constructor Object.
@@ -109,6 +109,17 @@ var Editable = A.Component.create(
 			},
 
 			/**
+			 * Event type to initialize the editable.
+			 *
+			 * @attribute eventType
+			 * @default 'click'
+			 * @type String
+			 */
+			eventType: {
+				value: 'click'
+			},
+
+			/**
 			 * Function to format the input text displayed on the input.
 			 *
 			 * @attribute formatInput
@@ -133,6 +144,38 @@ var Editable = A.Component.create(
 			},
 
 			/**
+			 * Array with icons for the <a href="Toolbar.html">Toolbar</a>.
+			 *
+			 * @attribute icons
+			 * @default []
+			 * @type Array
+			 */
+			icons: {
+				value: []
+			},
+
+			/**
+			 * Type of the input used to edit the <a
+			 * href="Editable.html#config_node">node</a>.
+			 *
+			 * @attribute inputType
+			 * @default 'text'
+			 * @type String
+			 */
+			inputType: {
+				value: 'text',
+				setter: function(value) {
+					var instance = this;
+
+					if (value != 'text' && value != 'textarea') {
+						value = A.Attribute.INVALID_VALUE;
+					}
+
+					return value;
+				}
+			},
+
+			/**
 			 * Node to setup the editable.
 			 *
 			 * @attribute node
@@ -148,17 +191,6 @@ var Editable = A.Component.create(
 
 					return node;
 				}
-			},
-
-			/**
-			 * Event type to initialize the editable.
-			 *
-			 * @attribute eventType
-			 * @default 'click'
-			 * @type String
-			 */
-			eventType: {
-				value: 'click'
 			},
 
 			/**
@@ -191,7 +223,7 @@ var Editable = A.Component.create(
 
 			/**
 			 * <a href="ButtonItem.html">ButtonItem</a> constructor Object for the
-		     * saveButton.
+			 * saveButton.
 			 *
 			 * @attribute saveButton
 			 * @default Button constructor Object.
@@ -209,38 +241,6 @@ var Editable = A.Component.create(
 							fn: instance.save
 						}
 					};
-				}
-			},
-
-			/**
-			 * Array with icons for the <a href="Toolbar.html">Toolbar</a>.
-			 *
-			 * @attribute icons
-			 * @default []
-			 * @type Array
-			 */
-			icons: {
-				value: []
-			},
-
-			/**
-			 * Type of the input used to edit the <a
-		     * href="Editable.html#config_node">node</a>.
-			 *
-			 * @attribute inputType
-			 * @default 'text'
-			 * @type String
-			 */
-			inputType: {
-				value: 'text',
-				setter: function(value) {
-					var instance = this;
-
-					if (value != 'text' && value != 'textarea') {
-						value = A.Attribute.INVALID_VALUE;
-					}
-
-					return value;
 				}
 			},
 
@@ -391,7 +391,7 @@ var Editable = A.Component.create(
 
 			/**
 			 * Fires the <a href="Editable.html#event_stopEditing">stopEditing</a>
-	         * event.
+			 * event.
 			 *
 			 * @method _afterFocusedChangeEditable
 			 * @param {EventFacade} event
@@ -499,6 +499,19 @@ var Editable = A.Component.create(
 			},
 
 			/**
+			 * Fires the save event.
+			 *
+			 * @method _defSaveFn
+			 * @param {EventFacade} event save event facade
+			 * @protected
+			 */
+			_defSaveFn: function(event) {
+				var instance = this;
+
+				instance.fire('stopEditing', true);
+			},
+
+			/**
 			 * Fires the startEditing event.
 			 *
 			 * @method _defStartEditingFn
@@ -563,19 +576,6 @@ var Editable = A.Component.create(
 			},
 
 			/**
-			 * Fires the save event.
-			 *
-			 * @method _defSaveFn
-			 * @param {EventFacade} event save event facade
-			 * @protected
-			 */
-			_defSaveFn: function(event) {
-				var instance = this;
-
-				instance.fire('stopEditing', true);
-			},
-
-			/**
 			 * Fires <code>onkeypress</code> occurs on the editable element.
 			 *
 			 * @method _onKeypressEditable
@@ -623,7 +623,7 @@ var Editable = A.Component.create(
 
 			/**
 			 * Set the value of the <a
-	         * href="Editable.html#property_inputNode">inputNode</a>.
+			 * href="Editable.html#property_inputNode">inputNode</a>.
 			 *
 			 * @method _setInput
 			 * @param {String} value Value of the input.
@@ -646,7 +646,7 @@ var Editable = A.Component.create(
 
 			/**
 			 * Set the <code>innerHTML</code> of the <a
-	         * href="Editable.html#config_node">node</a>.
+			 * href="Editable.html#config_node">node</a>.
 			 *
 			 * @method _setOutput
 			 * @param {String} value
@@ -706,7 +706,7 @@ var Editable = A.Component.create(
 
 			/**
 			 * Converts the new lines <code>\n</code> to <code><br/></code> (i.e.,
-	         * nl2br).
+			 * nl2br).
 			 *
 			 * @method _toHTML
 			 * @param {String} text Input text.
