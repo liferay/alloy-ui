@@ -12,11 +12,6 @@
     font-weight: bold;
 }
 
-.scheduler-base-controls .scheduler-base-view-date {
-    display: inline-block;
-    margin-left: 10px;
-}
-
 .scheduler-base-controls .scheduler-base-today {
     margin: 2px 3px 0 0;
 }
@@ -37,6 +32,16 @@
         float: left;
         margin-top: 5px;
     }
+}
+
+.scheduler-base-content > .yui3-widget-bd {
+    border: 1px solid #ddd;
+}
+
+.scheduler-base-view-date {
+    font-size: 20px;
+    margin-top: 13px;
+    text-align: center;
 }
 
 .scheduler-base-views .yui3-button {
@@ -65,9 +70,6 @@
     text-shadow: none;
 }
 /* scheduler-base-view */
-.scheduler-view {
-    border: 1px solid #ddd;
-}
 
 .scheduler-view-scrollable {
     overflow-x: hidden;
