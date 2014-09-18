@@ -66,7 +66,6 @@ SchedulerDayViewTouch.prototype = {
         var scheduler = this.get('scheduler');
 
         if (A.UA.mobile) {
-            scheduler.controlsNode.get('parentNode').prepend(scheduler.viewDateNode);
             scheduler.get('boundingBox').addClass(CSS_SCHEDULER_MOBILE);
         }
     },
