@@ -520,9 +520,9 @@ YUI.add('aui-base-tests', function(Y) {
             Assert.areEqual(expected, actual);
         },
 
-        'should convert case to upper': function() {
-            for (var i = 0; i < caseStringsLower.length; i++) {
-                Assert.areEqual(Y.Lang.String.toUpperCase(caseStringsLower[i]), caseStringsUpper[i]);
+        'should convert case to lower': function() {
+            for (var i = 0; i < caseStringsUpper.length; i++) {
+                Assert.areEqual(Y.Lang.String.toLowerCase(caseStringsUpper[i]), caseStringsLower[i]);
             }
         }
     }));
