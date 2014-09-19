@@ -548,7 +548,7 @@ var Video = A.Component.create({
             var sourceMp4 = instance._sourceMp4;
 
             if (UA.gecko && !instance._usingVideo()) {
-                if (sourceMp4 !== null) {
+                if (sourceMp4 != null) {
                     sourceMp4.remove(true);
 
                     instance._sourceMp4 = null;
