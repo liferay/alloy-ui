@@ -204,6 +204,20 @@ YUI.add('aui-layout-builder-tests', function(Y) {
 
             nodes = container.all('.col-sm-6');
             Assert.areEqual(2, nodes.size());
+        },
+
+        'should redraw when set a new layout': function() {
+            var newLayout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow()
+                ]
+            });
+
+            Assert.areEqual(this.layoutBuilder.get('layout').get('rows').length, 4);
+
+            this.layoutBuilder.set('layout', newLayout);
+
+            Assert.areEqual(this.layoutBuilder.get('layout').get('rows').length, 1);
         }
     }));
 

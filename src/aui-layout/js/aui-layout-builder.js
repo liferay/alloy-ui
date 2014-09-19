@@ -53,7 +53,8 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
             container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), SELECTOR_COL),
             container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL),
             layout.after('layout-row:colsChange', A.bind(this._afterLayoutColsChange, this)),
-            layout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this))
+            layout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this)),
+            this.after('layoutChange', A.bind(this._afterLayoutChange, this))
         ];
     },
 
@@ -65,6 +66,22 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      */
     destructor: function() {
         (new A.EventHandle(this._eventHandles)).detach();
+    },
+
+    /**
+     * Fires after layout changes.
+     *
+     * @method _afterLayoutChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterLayoutChange: function(event) {
+        var container = this.get('container'),
+            newLayout = event.newVal,
+            prevLayout = event.prevVal;
+
+        prevLayout.detachAll();
+        newLayout.draw(container);
     },
 
     /**

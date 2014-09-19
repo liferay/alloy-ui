@@ -155,7 +155,8 @@ A.Layout = A.Base.create('layout', A.Base, [], {
             setter: function(rows) {
                 A.Array.invoke(rows, 'addTarget', this);
             },
-            validator: A.Lang.isArray
+            validator: A.Lang.isArray,
+            value: []
         }
     }
 });
