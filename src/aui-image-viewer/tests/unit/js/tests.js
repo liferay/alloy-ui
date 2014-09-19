@@ -367,6 +367,12 @@ YUI.add('aui-image-viewer-tests', function(Y) {
                 this._imageViewer._thumbnailsWidget.get('height'),
                 'Thumbnails widget should have new height value'
             );
+
+            Y.Assert.areEqual(
+                '100%',
+                this._imageViewer._thumbnailsWidget.get('width'),
+                'Thumbnails widget with value is 100% by default'
+            );
         },
 
         'should use link images for thumbnail sources': function() {

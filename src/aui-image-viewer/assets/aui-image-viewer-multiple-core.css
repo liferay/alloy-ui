@@ -1,6 +1,8 @@
-.image-viewer-multiple {
+.image-viewer-base.image-viewer-multiple {
     display: block;
+    margin: 0 auto;
     padding: 10px;
+    position: relative;
 }
 
 .image-viewer-multiple .image-viewer-multiple-content {
