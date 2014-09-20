@@ -438,7 +438,40 @@ var FormValidator = A.Component.create({
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Ability to add custom validation rules.
+     *
+     * @method customRules
+     * @param object
+     * @public
+     * @static
+     */
+    addCustomRules: function(object) {
+        var instance = this;
+        if (isObject(object)) {
+            instance._setCustomRules(object);
+        }
+    },
+
+    /**
+     * Creates custom rules from user input.
+     *
+     * @method _setCustomRules
+     * @param object
+     * @protected
+     */
+    _setCustomRules: function(object) {
+        var instance = this;
+        A.each(
+            object,
+            function(rule, fieldName) {
+                A.config.FormValidator.RULES[fieldName] = rule.condition;
+                A.config.FormValidator.STRINGS[fieldName] = rule.errorMessage;
+            }
+        );
+    },
+
+    /**
+     * Checks if a node is a checkbox or radio input.
      *
      * @method isCheckable
      * @param node
