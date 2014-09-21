@@ -2350,15 +2350,22 @@ var TreeNodeTask = A.Component.create(
 				instance.eachParent(
 					function(parentNode) {
 						if (isTreeNodeTask(parentNode)) {
-							var hasUncheckedChild = false;
+							var parentHasUncheckedDescendants = false;
 
 							parentNode.eachChildren(function(child) {
 								if ((child !== instance) && !child.isChecked()) {
-									hasUncheckedChild = true;
+									parentHasUncheckedDescendants = true;
+								}
+								else {
+									var childHasUncheckedChild = child.get(CONTENT_BOX).hasClass(CSS_TREE_NODE_CHILD_UNCHECKED);
+
+									if (childHasUncheckedChild) {
+										parentHasUncheckedDescendants = true;
+									}
 								}
 							});
 
-							if (!hasUncheckedChild) {
+							if (!parentHasUncheckedDescendants) {
 								parentNode.get(CONTENT_BOX).removeClass(CSS_TREE_NODE_CHILD_UNCHECKED);
 							}
 						}
