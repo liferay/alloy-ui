@@ -148,6 +148,19 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.isNull(node.one(DRAG_HANDLE_CLASS));
         },
 
+        'should lock drag handle when click on it': function() {
+            var node = container.one('.col-sm-4'),
+                node2 = container.one('.col-sm-8');
+
+            node.simulate('mouseover');
+            node.one(DRAG_HANDLE_CLASS).simulate('mousedown');
+
+            Assert.isTrue(this.layoutBuilder.isDragHandleLocked);
+
+            node2.simulate('mouseover');
+            Assert.isNull(node2.one(DRAG_HANDLE_CLASS));
+        },
+
         'should insert layout grid on dragHandle\'s click': function() {
             var dragHandle,
                 node = container.one('.col-sm-4');

@@ -34,6 +34,15 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     dragHandle: null,
 
     /**
+     * Determines if dragHandle is locked.
+     *
+     * @property isDragHandleLocked
+     * @type {Boolean}
+     * @protected
+     */
+    isDragHandleLocked: false,
+
+    /**
      * Construction logic executed during LayoutBuilder instantiation. Lifecycle.
      *
      * @method initializer
@@ -242,6 +251,8 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
             clientX = event.clientX,
             col = event.target.ancestor();
 
+        this.isDragHandleLocked = true;
+
         this._insertGrid(col);
 
         body.addClass(CSS_LAYOUT_RESIZING);
@@ -257,7 +268,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _onMouseEnterEvent: function(event) {
-        event.target.append(this.dragHandle);
+        if (!this.isDragHandleLocked) {
+            event.target.append(this.dragHandle);
+        }
     },
 
     /**
@@ -267,7 +280,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _onMouseLeaveEvent: function() {
-        this.dragHandle.remove();
+        if (!this.isDragHandleLocked) {
+            this.dragHandle.remove();
+        }
     },
 
     /**
@@ -281,6 +296,8 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      */
     _onMouseUpEvent: function(event, mouseDownClientX, col) {
         var dragDifference = mouseDownClientX - event.clientX;
+
+        this.isDragHandleLocked = false;
 
         this._removeGrid(event.target);
 
