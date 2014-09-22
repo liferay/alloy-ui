@@ -7,17 +7,9 @@ YUI.add('aui-layout-col-tests', function(Y) {
         name: 'Layout Col Tests',
 
         setUp: function() {
-            var Content = Y.Base.create('content', Y.Base, [], {}, {
-                ATTRS: {
-                    content: {
-                        value: 'foo'
-                    }
-                }
-            });
-
             this.layoutCol = new Y.LayoutCol({
                 size: 4,
-                value: new Content()
+                value: { content: 'foo' }
             });
         },
 
@@ -40,9 +32,16 @@ YUI.add('aui-layout-col-tests', function(Y) {
 
         'should set value using a regular object': function() {
             var colTemplate,
+                Content = Y.Base.create('content', Y.Base, [], {}, {
+                    ATTRS: {
+                        content: {
+                            value: 'foo'
+                        }
+                    }
+                }),
                 layoutCol = new Y.LayoutCol({
                     size: 4,
-                    value: { content: 'foo' }
+                    value: new Content()
                 });
 
             colTemplate = layoutCol.getContent();

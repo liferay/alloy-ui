@@ -151,7 +151,7 @@ YUI.add('aui-layout-tests', function(Y) {
                         cols: [
                             new Y.LayoutCol({
                                 size: 4,
-                                value: new Content()
+                                value: { content: 'foo' }
                             })
                         ]
                     });

@@ -91,7 +91,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @param {EventFacade} event
      * @protected
      */
-    _afterLayoutColsChange: function(e) {
+    _afterLayoutColsChange: function() {
         var container = this.get('container'),
             layout = this.get('layout');
 

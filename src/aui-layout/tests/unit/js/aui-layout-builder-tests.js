@@ -5,6 +5,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
         Content,
         DRAG_HANDLE_CLASS = '.' + Y.getClassName('layout', 'drag', 'handle'),
         LAYOUT_GRID_CLASS = '.' + Y.getClassName('layout', 'grid'),
+        layout,
         suite = new Y.Test.Suite('aui-layout-builder');
 
     Content = Y.Base.create('content', Y.Base, [], {}, {
@@ -28,100 +29,102 @@ YUI.add('aui-layout-builder-tests', function(Y) {
         name: 'Layout Builder Tests',
 
         setUp: function() {
+            layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 1,
+                                value: new Content({ content: '1' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: new Content({ content: '6' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: new Content({ content: '6' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 8,
+                                value: new Content({ content: '8' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                value: new Content({ content: '4' }),
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '4' }),
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '4' }),
+                                size: 4
+                            })
+                        ]
+                    })
+                ]
+            });
+
             this.layoutBuilder = new Y.LayoutBuilder({
                 container: '.container',
-                layout: new Y.Layout({
-                    rows: [
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 1,
-                                    value: new Content({ content: '1' })
-                                })
-                            ]
-                        }),
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    size: 6,
-                                    value: new Content({ content: '6' })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 6,
-                                    value: new Content({ content: '6' })
-                                })
-                            ]
-                        }),
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    size: 8,
-                                    value: new Content({ content: '8' })
-                                })
-                            ]
-                        }),
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    value: new Content({ content: '4' }),
-                                    size: 4
-                                }),
-                                new Y.LayoutCol({
-                                    value: new Content({ content: '4' }),
-                                    size: 4
-                                }),
-                                new Y.LayoutCol({
-                                    value: new Content({ content: '4' }),
-                                    size: 4
-                                })
-                            ]
-                        })
-                    ]
-                })
+                layout: layout
             });
 
             container = this.layoutBuilder.get('container');
@@ -218,6 +221,44 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             this.layoutBuilder.set('layout', newLayout);
 
             Assert.areEqual(this.layoutBuilder.get('layout').get('rows').length, 1);
+        },
+
+        'should redraw when add a new col to a row': function() {
+            var col,
+                row = layout.get('rows')[1];
+
+            col = new Y.LayoutCol({
+                size: 1,
+                value: { content: 'content' }
+            });
+
+            Assert.areEqual(row.get('cols').length, 2);
+
+            row.addCol(1, col);
+
+            Assert.areEqual(row.get('cols').length, 3);
+        },
+
+        'should redraw when remove a col from a row': function() {
+            var row = layout.get('rows')[1];
+
+            Assert.areEqual(row.get('cols').length, 2);
+
+            row.removeCol(1);
+
+            Assert.areEqual(row.get('cols').length, 1);
+        },
+
+        'should redraw when add a new row to layout': function() {
+            Assert.areEqual(container.get('children').size(), 4);
+            layout.addRow(4);
+            Assert.areEqual(container.get('children').size(), 5);
+        },
+
+        'should redraw when remove a row from layout': function() {
+            Assert.areEqual(container.get('children').size(), 4);
+            layout.removeRow(1);
+            Assert.areEqual(container.get('children').size(), 3);
         }
     }));
 
