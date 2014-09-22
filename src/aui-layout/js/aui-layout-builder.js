@@ -238,14 +238,15 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _onMouseDownEvent: function(event) {
-        var clientX = event.clientX,
+        var body = A.one('body'),
+            clientX = event.clientX,
             col = event.target.ancestor();
 
         this._insertGrid(col);
 
-        A.one('body').addClass(CSS_LAYOUT_RESIZING);
+        body.addClass(CSS_LAYOUT_RESIZING);
 
-        this.get('container').once('mouseup', this._onMouseUpEvent, this, clientX, col);
+        body.once('mouseup', this._onMouseUpEvent, this, clientX, col);
     },
 
     /**
