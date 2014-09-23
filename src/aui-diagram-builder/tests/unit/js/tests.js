@@ -92,30 +92,34 @@ YUI.add('module-tests', function(Y) {
         },
 
         /**
+         * @tests AUI-1666
+         */
+
+        /**
          * @tests AUI-1158
          */
-        'assert connector does not jump after scroll and mouseover': function() {
-            var end,
-                start;
+        'prevent XSS when displaying names': function() {
+            var fields = diagramBuilder.get('fields'),
+                startNode = fields.item(0),
+                transition = startNode.get('transitions').values()[0],
+                connector = startNode.getConnector(transition);
 
-            var lines = Y.all('path').get('nodes');
+            var calledXSS = false;
 
-            Y.Array.each(
-                lines,
-                function(item, index, collection) {
-                    width = item.attr('width');
+            window.callXSS = function() {
+                calledXSS = true;
+            };
 
-                    if (width) {
-                        start = item.attr('d');
+            var xss = '<img src=x onerror=callXSS()><script>callXSS()</script>';
 
-                        item.simulate('mouseout');
+            startNode.set('name', xss);
+            connector.set('name', xss);
 
-                        end = item.attr('d');
+            this.wait(function() {
+                Y.Assert.isFalse(calledXSS, 'XSS function should not be called.');
 
-                        Y.Assert.areEqual(start, end);
-                    }
-                }
-            );
+                delete window.callXSS;
+            }, 500);
         }
     }));
 
