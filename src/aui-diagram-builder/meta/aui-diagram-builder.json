@@ -21,6 +21,7 @@
         "requires": [
             "arraylist-add",
             "arraylist-filter",
+            "escape",
             "json",
             "graphics",
             "dd"
@@ -30,8 +31,9 @@
 
     "aui-diagram-node": {
         "requires": [
-            "overlay",
-            "aui-diagram-node-manager-base"
+            "aui-diagram-node-manager-base",
+            "escape",
+            "overlay"
         ]
     },
 
