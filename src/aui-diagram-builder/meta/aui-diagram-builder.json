@@ -21,6 +21,7 @@
         "requires": [
             "arraylist-add",
             "arraylist-filter",
+            "escape",
             "json",
             "graphics",
             "dd"
@@ -30,6 +31,7 @@
 
     "aui-diagram-builder-impl": {
         "requires": [
+            "escape",
             "overlay",
             "aui-map",
             "aui-diagram-builder-base",
