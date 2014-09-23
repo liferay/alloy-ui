@@ -1502,9 +1502,6 @@ var DiagramNode = A.Component.create({
          * @type String
          */
         name: {
-            setter: function(val) {
-                return A.Escape.html(val);
-            },
             valueFn: function() {
                 var instance = this;
 
@@ -2782,12 +2779,10 @@ var DiagramNode = A.Component.create({
             var instance = this;
             var boundingBox = instance.get(BOUNDING_BOX);
 
-            val = A.Escape.html(val);
-
-            boundingBox.setAttribute(DATA_NODE_ID, A.DiagramNode.buildNodeId(val));
+            boundingBox.setAttribute(DATA_NODE_ID, A.Escape.html(A.DiagramNode.buildNodeId(val)));
 
             if (instance.get('rendered')) {
-                instance.labelNode.setContent(val);
+                instance.labelNode.setContent(A.Escape.html(val));
             }
         },
 

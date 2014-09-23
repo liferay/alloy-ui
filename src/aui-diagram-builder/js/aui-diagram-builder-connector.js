@@ -630,9 +630,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
     _uiSetName: function(val) {
         var instance = this;
 
-        val = A.Escape.html(val);
-
-        instance.get(NODE_NAME).html(val);
+        instance.get(NODE_NAME).html(A.Escape.html(val));
     },
 
     /**
