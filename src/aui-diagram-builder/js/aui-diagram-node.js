@@ -180,9 +180,6 @@ DiagramNode = A.Component.create({
          * @type String
          */
         name: {
-            setter: function(val) {
-                return A.Escape.html(val);
-            },
             valueFn: function() {
                 var instance = this;
 
@@ -1497,12 +1494,10 @@ DiagramNode = A.Component.create({
             var instance = this;
             var boundingBox = instance.get('boundingBox');
 
-            val = A.Escape.html(val);
-
-            boundingBox.setAttribute('data-nodeId', A.DiagramNode.buildNodeId(val));
+            boundingBox.setAttribute('data-nodeId', A.Escape.html(A.DiagramNode.buildNodeId(val)));
 
             if (instance.get('rendered')) {
-                instance.labelNode.setContent(val);
+                instance.labelNode.setContent(A.Escape.html(val));
             }
         },
 
