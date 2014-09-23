@@ -502,7 +502,7 @@ var TextboxListEntry = A.Component.create({
             var text = A.Node.create(TPL_ENTRY_TEXT);
             var close = A.Node.create(TPL_ENTRY_REMOVE);
 
-            var labelText = A.Escape.html(instance.get('labelText'));
+            var labelText = A.Lang.String.unescapeHTML(instance.get('labelText'));
 
             text.set('innerHTML', labelText);
 
