@@ -14,6 +14,10 @@
     white-space: normal;
 }
 
+.scheduler-base-content .scheduler-base-views label {
+    padding-right: 5px;
+}
+
 .scheduler-base-content > .yui3-widget-bd {
     border: 1px solid #ddd;
 }
