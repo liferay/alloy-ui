@@ -95,11 +95,9 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @protected
      */
     _afterRowsChange: function(event) {
-        var newRow = event.newVal,
-            prevRows = event.prevVal;
+        var prevRows = event.prevVal;
 
         A.Array.invoke(prevRows, 'removeTarget', this);
-        A.Array.invoke(newRow, 'addTarget', this);
     },
 
     /**
@@ -124,14 +122,13 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @protected
      */
     _removeRowByReference: function(row) {
-        var rows = A.clone(this.get('rows')),
-            index;
+        var index,
+            rows = this.get('rows');
 
         index = rows.indexOf(row);
 
         if (index >= 0) {
-            rows.splice(index, 1);
-            this.set('rows', rows);
+            this._removeRowByIndex(index);
         }
     }
 }, {
