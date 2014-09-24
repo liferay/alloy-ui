@@ -14,15 +14,13 @@
 
 .scheduler-base-content .scheduler-base-views {
     float: right;
+    padding-top: 2px;
     white-space: normal;
     width: auto;
 }
 
-@media (max-width: 767px) {
-    .scheduler-base-content .scheduler-base-views {
-        float: left;
-        margin-top: 5px;
-    }
+.scheduler-base-content .scheduler-base-views label {
+    padding-right: 5px;
 }
 
 .scheduler-base-content > .yui3-widget-bd {
