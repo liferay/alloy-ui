@@ -9,7 +9,8 @@ var CSS_LAYOUT_DRAG_HANDLE = A.getClassName('layout', 'drag', 'handle'),
     CSS_LAYOUT_RESIZING = A.getClassName('layout', 'resizing'),
     SELECTOR_COL = '.col',
     MAX_NUMBER_OF_COLUMNS = 12,
-    OFFSET_WIDTH = 'offsetWidth';
+    OFFSET_WIDTH = 'offsetWidth',
+    REGEX_WIDTH = /\d+\.*\d*/;
 
 /**
  * A base class for Layout Builder.
@@ -249,7 +250,8 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     _onMouseDownEvent: function(event) {
         var body = A.one('body'),
             clientX = event.clientX,
-            col = event.target.ancestor();
+            col = event.target.ancestor(),
+            colWidth = Number(REGEX_WIDTH.exec(col.getStyle('width'))[0]);
 
         this.isDragHandleLocked = true;
 
@@ -258,6 +260,8 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         body.addClass(CSS_LAYOUT_RESIZING);
 
         body.once('mouseup', this._onMouseUpEvent, this, clientX, col);
+
+        this._mouseMoveEvent = body.on('mousemove', this._onMouseMove, this, clientX, colWidth);
     },
 
     /**
@@ -286,6 +290,29 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
+     * Moves drag handle.
+     *
+     * @method _onMouseMove
+     * @protected
+     */
+    _onMouseMove: function(event, clientX, colWidth) {
+        var difference = clientX - event.clientX,
+            rightPosition;
+
+        if (difference >= colWidth) {
+            rightPosition = colWidth + 'px';
+        }
+        else if (difference < colWidth && difference > 0) {
+            rightPosition = difference + 'px';
+        }
+        else {
+            rightPosition = 0;
+        }
+
+        this.dragHandle.setStyle('right', rightPosition);
+    },
+
+    /**
      * Fires on `mouseup`. Makes the necessary changes to the layout.
      *
      * @method _onMouseUpEvent
@@ -297,7 +324,11 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     _onMouseUpEvent: function(event, mouseDownClientX, col) {
         var dragDifference = mouseDownClientX - event.clientX;
 
+        this.dragHandle.setStyle('right', 0);
+
         this.isDragHandleLocked = false;
+
+        this._mouseMoveEvent.detach();
 
         this._removeGrid(event.target);
 

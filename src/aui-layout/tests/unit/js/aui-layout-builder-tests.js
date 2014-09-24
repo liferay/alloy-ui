@@ -123,7 +123,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             });
 
             this.layoutBuilder = new Y.LayoutBuilder({
-                container: '.container',
+                container: Y.one('.container'),
                 layout: layout
             });
 
@@ -135,7 +135,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
         },
 
         'should append drag handle on mouseenter': function() {
-            var node = container.one('.col-sm-1');
+            var node = container.one('.col-sm-4');
 
             Assert.isNull(node.one(DRAG_HANDLE_CLASS));
             // YUI doesn't simulate mouseenter event,
@@ -159,6 +159,30 @@ YUI.add('aui-layout-builder-tests', function(Y) {
 
             node2.simulate('mouseover');
             Assert.isNull(node2.one(DRAG_HANDLE_CLASS));
+        },
+
+        'should move drag handle through the column': function() {
+            var body = Y.one('body'),
+                colWidth,
+                dragHandle,
+                node = Y.one('.col-sm-8');
+
+            node.simulate('mouseover');
+            colWidth = node.getStyle('width');
+            dragHandle = node.one(DRAG_HANDLE_CLASS);
+
+            Assert.areEqual(dragHandle.getStyle('right'), '0px');
+
+            dragHandle.simulate('mousedown');
+
+            body.simulate('mousemove',  { clientX: -200 });
+            Assert.areEqual(dragHandle.getStyle('right'), '200px');
+
+            body.simulate('mousemove',  { clientX: -1000 });
+            Assert.areEqual(dragHandle.getStyle('right'), colWidth);
+
+            body.simulate('mousemove',  { clientX: 1000 });
+            Assert.areEqual(dragHandle.getStyle('right'), '0px');
         },
 
         'should insert layout grid on dragHandle\'s click': function() {
