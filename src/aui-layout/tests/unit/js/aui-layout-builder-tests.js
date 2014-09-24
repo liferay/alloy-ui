@@ -296,6 +296,30 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.areEqual(container.get('children').size(), 4);
             layout.removeRow(1);
             Assert.areEqual(container.get('children').size(), 3);
+        },
+
+        'should detach old layout events when set a new one': function() {
+            var newLayout = new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow()
+                    ]
+                }),
+                rowsSize;
+
+            this.layoutBuilder.set('layout', newLayout);
+
+            layout.addRow(1);
+            layout.addRow(1);
+
+            rowsSize = this.layoutBuilder.get('layout').get('rows').length;
+
+            Assert.areEqual(rowsSize, 1);
+
+            newLayout.addRow(1);
+
+            rowsSize = this.layoutBuilder.get('layout').get('rows').length;
+
+            Assert.areEqual(rowsSize, 2);
         }
     }));
 

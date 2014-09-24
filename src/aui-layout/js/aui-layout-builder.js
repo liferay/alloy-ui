@@ -62,9 +62,12 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
             container.delegate('mousedown', A.bind(this._onMouseDownEvent, this), '.' + CSS_LAYOUT_DRAG_HANDLE),
             container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), SELECTOR_COL),
             container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL),
-            layout.after('layout-row:colsChange', A.bind(this._afterLayoutColsChange, this)),
-            layout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this)),
             this.after('layoutChange', A.bind(this._afterLayoutChange, this))
+        ];
+
+        this._layoutEventHandles = [
+            layout.after('layout-row:colsChange', A.bind(this._afterLayoutColsChange, this)),
+            layout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this))
         ];
     },
 
@@ -76,6 +79,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      */
     destructor: function() {
         (new A.EventHandle(this._eventHandles)).detach();
+        (new A.EventHandle(this._layoutEventHandles)).detach();
     },
 
     /**
@@ -87,10 +91,15 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      */
     _afterLayoutChange: function(event) {
         var container = this.get('container'),
-            newLayout = event.newVal,
-            prevLayout = event.prevVal;
+            newLayout = event.newVal;
 
-        prevLayout.detachAll();
+        (new A.EventHandle(this._layoutEventHandles)).detach();
+
+        this._layoutEventHandles = [
+            newLayout.after('layout-row:colsChange', A.bind(this._afterLayoutColsChange, this)),
+            newLayout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this)),
+        ];
+
         newLayout.draw(container);
     },
 
