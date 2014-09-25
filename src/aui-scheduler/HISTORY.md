@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1672](https://issues.liferay.com/browse/AUI-1672) Scheduler navigation date for week view is not formatted correctly
 * [AUI-1641](https://issues.liferay.com/browse/AUI-1641) Events in agenda view does not respond to "click" event when scheduler is disabled
 * [AUI-1635](https://issues.liferay.com/browse/AUI-1635) Fix lint problems
 * [AUI-1601](https://issues.liferay.com/browse/AUI-1601) Source format media query max-width for consistency with Bootstrap

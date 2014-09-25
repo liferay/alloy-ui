@@ -212,7 +212,7 @@ var SchedulerWeekView = A.Component.create({
 
             var endDateLabel = A.DataType.Date.format(
                 endDate, {
-                    format: (DateMath.isMonthOverlapWeek(date) ? '%B %d' : '%d') + ', %Y',
+                    format: (DateMath.isMonthOverlapWeek(startDate) ? '%B %d' : '%d') + ', %Y',
                     locale: locale
                 }
             );
