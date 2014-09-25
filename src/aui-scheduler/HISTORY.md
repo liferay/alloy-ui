@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1672](https://issues.liferay.com/browse/AUI-1672) Scheduler navigation date for week view is not formatted correctly
 * [AUI-1591](https://issues.liferay.com/browse/AUI-1591) Fix scheduler behavior on touch screen desktop computers
 * [AUI-1309](https://issues.liferay.com/browse/AUI-1309) Make aui-scheduler responsive
 * [AUI-1809](https://issues.liferay.com/browse/AUI-1809) Events with duration longer than a week don't render correctly on month view
