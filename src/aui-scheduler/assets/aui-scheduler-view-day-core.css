@@ -162,6 +162,18 @@
     background: white;
 }
 
+.scheduler-view-day:not(.scheduler-view-week) .scheduler-view-day-header-day span {
+    display: none;
+}
+
+.scheduler-view-day:not(.scheduler-view-week) .scheduler-view-day-header-view-label {
+    top: 5px;
+}
+
+.view-lt480 .scheduler-view-day:not(.scheduler-view-week) .scheduler-view-day-header-view-label {
+    top: 10px;
+}
+
 .scheduler-view-day .scheduler-view-table {
     margin: 0 0 0 62px;
     border-left: 0;
