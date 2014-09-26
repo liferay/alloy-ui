@@ -17,12 +17,12 @@ YUI.add('aui-layout-row-tests', function(Y) {
                 cols: [
                     col,
                     new Y.LayoutCol({
-                        size: 2,
-                        value: {content: 'foo'}
+                        size: 3,
+                        value: { content: 'foo' }
                     }),
                     new Y.LayoutCol({
-                        size: 2,
-                        value: {content: 'foo'}
+                        size: 5,
+                        value: { content: 'foo' }
                     })
                 ]
             });
@@ -48,7 +48,7 @@ YUI.add('aui-layout-row-tests', function(Y) {
         'should calculate it\'s size based on col\'s size': function() {
             var rowSize = this.layoutRow.getSize();
 
-            Assert.areEqual(8, rowSize);
+            Assert.areEqual(12, rowSize);
         },
 
         'should add a col': function() {

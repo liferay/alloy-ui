@@ -30,6 +30,20 @@ YUI.add('aui-layout-col-tests', function(Y) {
             Assert.areEqual('foo', colTemplate.text());
         },
 
+        'should set maximum size if it\'s size is higher than the maximum': function() {
+            var layoutCol = new Y.LayoutCol({
+                    size: 20
+                });
+
+            Assert.areEqual(12, layoutCol.get('size'));
+        },
+
+        'should set minimum size if size is not passed through constructor': function() {
+            var layoutCol = new Y.LayoutCol();
+
+            Assert.areEqual(3, layoutCol.get('size'));
+        },
+
         'should set value using a regular object': function() {
             var colTemplate,
                 Content = Y.Base.create('content', Y.Base, [], {}, {
@@ -40,7 +54,7 @@ YUI.add('aui-layout-col-tests', function(Y) {
                     }
                 }),
                 layoutCol = new Y.LayoutCol({
-                    size: 4,
+                    size: 2,
                     value: new Content()
                 });
 

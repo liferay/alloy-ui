@@ -34,52 +34,20 @@ YUI.add('aui-layout-builder-tests', function(Y) {
                     new Y.LayoutRow({
                         cols: [
                             new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
+                                value: new Content({ content: '3' }),
+                                size: 3
                             }),
                             new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
+                                value: new Content({ content: '3' }),
+                                size: 3
                             }),
                             new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
+                                value: new Content({ content: '3' }),
+                                size: 3
                             }),
                             new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content({ content: '1' })
+                                size: 3,
+                                value: new Content({ content: '3' })
                             })
                         ]
                     }),
@@ -92,6 +60,18 @@ YUI.add('aui-layout-builder-tests', function(Y) {
                             new Y.LayoutCol({
                                 size: 6,
                                 value: new Content({ content: '6' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 9,
+                                value: new Content({ content: '9' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: new Content({ content: '3' })
                             })
                         ]
                     }),
@@ -100,6 +80,10 @@ YUI.add('aui-layout-builder-tests', function(Y) {
                             new Y.LayoutCol({
                                 size: 8,
                                 value: new Content({ content: '8' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 4,
+                                value: new Content({ content: '4' })
                             })
                         ]
                     }),
@@ -134,8 +118,8 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             this.layoutBuilder.destroy();
         },
 
-        'should append drag handle on mouseenter': function() {
-            var node = container.one('.col-sm-4');
+        'should append drag handle on mouseenter if col has next sibling': function() {
+            var node = container.one('.col-sm-8');
 
             Assert.isNull(node.one(DRAG_HANDLE_CLASS));
             // YUI doesn't simulate mouseenter event,
@@ -148,9 +132,18 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.isNull(node.one(DRAG_HANDLE_CLASS));
         },
 
+        'should not append drag handle on mouseenter if col is the last in a row': function() {
+            var node = container.one('.col-sm-4');
+
+            Assert.isNull(node.one(DRAG_HANDLE_CLASS));
+            node.simulate('mouseover');
+            Assert.isNull(node.one(DRAG_HANDLE_CLASS));
+        },
+
         'should lock drag handle when click on it': function() {
-            var node = container.one('.col-sm-4'),
-                node2 = container.one('.col-sm-8');
+            var nodes = container.all('.col-sm-4')._nodes,
+                node = Y.one(nodes[1]),
+                node2 = Y.one(nodes[2]);
 
             node.simulate('mouseover');
             node.one(DRAG_HANDLE_CLASS).simulate('mousedown');
@@ -187,7 +180,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
 
         'should insert layout grid on dragHandle\'s click': function() {
             var dragHandle,
-                node = container.one('.col-sm-4');
+                node = container.one('.col-sm-8');
 
             node.simulate('mouseover');
             dragHandle = node.one(DRAG_HANDLE_CLASS);
@@ -197,31 +190,28 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.isNotNull(node.one(LAYOUT_GRID_CLASS));
         },
 
-        'should not decrease the element\'s width if it has 1 column width': function() {
+        'should not decrease the element\'s width if it already has a minimum width': function() {
             var firstNode,
-                nodes = container.all('.col-sm-1');
+                nodes = container.all('.col-sm-3');
 
             firstNode = nodes.first();
 
-            Assert.areEqual(12, nodes.size());
+            Assert.areEqual(5, nodes.size());
 
             moveDragHandle(firstNode, 0);
-            nodes = container.all('.col-sm-1');
+            nodes = container.all('.col-sm-3');
 
-            Assert.areEqual(12, nodes.size());
+            Assert.areEqual(5, nodes.size());
         },
 
-        'should decrease element\'s width if it\'s width is higher than 1 column': function() {
-            var lastNode,
-                nodes = container.all('.col-sm-4');
+        'should decrease element\'s width if it\'s width is higher than the minimum size': function() {
+            var node = container.one('.col-sm-8');
 
-            lastNode = nodes.last();
+            Assert.isNotNull(node);
+            moveDragHandle(node, 300);
 
-            Assert.areEqual(3, nodes.size());
-            moveDragHandle(lastNode, 0);
-
-            nodes = container.all('.col-sm-4');
-            Assert.areEqual(2, nodes.size());
+            node = container.one('.col-sm-8');
+            Assert.isNull(node);
         },
 
         'should increase element\'s width if it has space to move': function() {
@@ -230,20 +220,18 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.isNotNull(node);
             moveDragHandle(node, container.get('offsetWidth'));
 
-            Assert.isNotNull(container.one('.col-sm-12'));
+            Assert.isNotNull(container.one('.col-sm-9'));
         },
 
         'should not increase the element\'s width if it hasn\'t space to move': function() {
-            var firstNode,
-                nodes = container.all('.col-sm-6');
+            var node = container.one('.col-sm-9');
 
-            firstNode = nodes.first();
-            Assert.areEqual(2, nodes.size());
+            Assert.isNotNull(node);
 
-            moveDragHandle(firstNode, container.get('offsetWidth'));
+            moveDragHandle(node, container.get('offsetWidth'));
 
-            nodes = container.all('.col-sm-6');
-            Assert.areEqual(2, nodes.size());
+            node = container.one('.col-sm-9');
+            Assert.isNotNull(node);
         },
 
         'should redraw when set a new layout': function() {
@@ -253,7 +241,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
                 ]
             });
 
-            Assert.areEqual(this.layoutBuilder.get('layout').get('rows').length, 4);
+            Assert.areEqual(this.layoutBuilder.get('layout').get('rows').length, 5);
 
             this.layoutBuilder.set('layout', newLayout);
 
@@ -287,15 +275,15 @@ YUI.add('aui-layout-builder-tests', function(Y) {
         },
 
         'should redraw when add a new row to layout': function() {
-            Assert.areEqual(container.get('children').size(), 4);
-            layout.addRow(4);
             Assert.areEqual(container.get('children').size(), 5);
+            layout.addRow(4);
+            Assert.areEqual(container.get('children').size(), 6);
         },
 
         'should redraw when remove a row from layout': function() {
-            Assert.areEqual(container.get('children').size(), 4);
+            Assert.areEqual(container.get('children').size(), 5);
             layout.removeRow(1);
-            Assert.areEqual(container.get('children').size(), 3);
+            Assert.areEqual(container.get('children').size(), 4);
         },
 
         'should detach old layout events when set a new one': function() {

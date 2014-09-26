@@ -132,6 +132,20 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
+     * Calculates if current target has space to move into parent's row.
+     *
+     * @method _availableSpaceToMove
+     * @param {Node} col Node to check if next col has available space to decrease.
+     * @return {Number}
+     * @protected
+     */
+    _availableSpaceToMove: function(col) {
+        var nextCol = col.next().getData('layout-col');
+
+        return nextCol.get('size') - nextCol.get('minSize');
+    },
+
+    /**
      * Creates drag handle node.
      *
      * @method _createDragHandle
@@ -142,7 +156,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
-     * Decreases target width.
+     * Decreases col width.
      *
      * @method _decreaseCol
      * @param {Node} target Node that will be decreased.
@@ -152,14 +166,35 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      */
     _decreaseCol: function(target, dragDifference) {
         var colWidth = this.get('container').get(OFFSET_WIDTH) / MAX_NUMBER_OF_COLUMNS,
-            nextClassNumber,
+            col = target.getData('layout-col'),
+            currentSize = col.get('size'),
+            minSize = col.get('minSize'),
+            nextSize,
             targetWidth = target.get(OFFSET_WIDTH);
 
-        nextClassNumber = Math.ceil((targetWidth - dragDifference) / colWidth);
-        nextClassNumber = nextClassNumber > 0 ? nextClassNumber : 1;
+        nextSize = Math.ceil((targetWidth - dragDifference) / colWidth);
 
-        target.getData('layout-col').set('size', nextClassNumber);
-        this.get('layout').draw(this.get('container'));
+        if (nextSize < minSize) {
+            nextSize = minSize;
+        }
+
+        if (nextSize < currentSize) {
+            col.set('size', nextSize);
+            this._increaseNextCol(target, currentSize - nextSize);
+        }
+    },
+
+    /**
+     * Decreases col width.
+     *
+     * @method _decreaseNextCol
+     * @param {Node} col Node that will be decreased.
+     * @param {Number} size Exact size to decrease.
+     * @protected
+     */
+    _decreaseNextCol: function(col, size) {
+        var nextCol = col.next().getData('layout-col');
+        nextCol.set('size', nextCol.get('size') - size);
     },
 
     /**
@@ -175,20 +210,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
-     * Calculates the space already being used by the given column's parent row.
-     *
-     * @method _getUsedSpaceInParentRow
-     * @param {Node} col
-     * @return {Number}
-     * @protected
-     */
-     _getUsedSpaceInParentRow: function(col) {
-         var row = col.ancestor('.row');
-
-         return row.getData('layout-row').getSize();
-     },
-
-    /**
      * Calculates if current target has space to move into parent's row.
      *
      * @method _hasSpaceToMove
@@ -197,9 +218,10 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _hasSpaceToMove: function(col) {
-        var numberOfColumns = this._getUsedSpaceInParentRow(col);
+        var nextCol = col.next().getData('layout-col'),
+            nextColSize = nextCol.get('size');
 
-        return numberOfColumns < MAX_NUMBER_OF_COLUMNS;
+        return nextColSize > nextCol.get('minSize');
     },
 
     /**
@@ -212,20 +234,36 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _increaseCol: function(col, dragDifference) {
-        var colWidth = this.get('container').get(OFFSET_WIDTH) / MAX_NUMBER_OF_COLUMNS,
-            currentTargetColNumber = this._getColSize(col),
-            nextClassNumber,
-            numberOfUsedColumns = this._getUsedSpaceInParentRow(col),
-            availableColumns = MAX_NUMBER_OF_COLUMNS - numberOfUsedColumns;
+        var availableSpaceToMove = this._availableSpaceToMove(col),
+            colWidth = this.get('container').get(OFFSET_WIDTH) / MAX_NUMBER_OF_COLUMNS,
+            currentSize = this._getColSize(col),
+            difference,
+            nextSize;
 
-        nextClassNumber = Math.ceil((col.get(OFFSET_WIDTH) - dragDifference) / colWidth);
+        nextSize = Math.ceil((col.get(OFFSET_WIDTH) - dragDifference) / colWidth);
 
-        if ((nextClassNumber - currentTargetColNumber) + numberOfUsedColumns > MAX_NUMBER_OF_COLUMNS) {
-            nextClassNumber = currentTargetColNumber + availableColumns;
+        difference = nextSize - currentSize;
+
+        if (difference > availableSpaceToMove) {
+            nextSize = currentSize + availableSpaceToMove;
+            difference = availableSpaceToMove;
         }
 
-        col.getData('layout-col').set('size', nextClassNumber);
-        this.get('layout').draw(this.get('container'));
+        col.getData('layout-col').set('size', nextSize);
+        this._decreaseNextCol(col, difference);
+    },
+
+    /**
+     * Increases col width.
+     *
+     * @method _increaseNextCol
+     * @param {Node} col Node that will be increased.
+     * @param {Number} size Exact size to increase.
+     * @protected
+     */
+    _increaseNextCol: function(col, size) {
+        var nextCol = col.next().getData('layout-col');
+        nextCol.set('size', nextCol.get('size') + size);
     },
 
     /**
@@ -281,8 +319,10 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _onMouseEnterEvent: function(event) {
-        if (!this.isDragHandleLocked) {
-            event.target.append(this.dragHandle);
+        var col = event.target;
+
+        if (!this.isDragHandleLocked && col.next()) {
+            col.append(this.dragHandle);
         }
     },
 
@@ -331,7 +371,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _onMouseUpEvent: function(event, mouseDownClientX, col) {
-        var dragDifference = mouseDownClientX - event.clientX;
+        var container = this.get('container'),
+            dragDifference = mouseDownClientX - event.clientX,
+            layout = this.get('layout');
 
         this.dragHandle.setStyle('right', 0);
 
@@ -348,6 +390,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
             this._increaseCol(col, dragDifference);
         }
 
+        layout.draw(container);
         A.one('body').removeClass(CSS_LAYOUT_RESIZING);
     },
 

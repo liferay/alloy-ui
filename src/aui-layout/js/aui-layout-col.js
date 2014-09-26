@@ -48,16 +48,36 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
     ATTRS: {
 
         /**
+         * Columns's minimum size.
+         *
+         * @attribute size
+         * @type {Number}
+         */
+        minSize: {
+            value: 3
+        },
+
+        /**
          * Columns's size, ranging from 1 to 12.
          *
          * @attribute size
          * @type {Number}
          */
         size: {
-            validator: function(val) {
-                return A.Lang.isNumber(val) && val >= 1 && val <= 12;
+            setter: function(val) {
+                if (val < this.get('minSize')) {
+                    return this.get('minSize');
+                }
+                else if (val > 12) {
+                    return 12;
+                }
+                else {
+                    return val;
+                }
             },
-            value: 1
+            valueFn: function() {
+                return this.get('minSize');
+            }
         },
 
         /**
