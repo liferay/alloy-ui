@@ -58,7 +58,7 @@
     width: 200px;
 }
 
-.scheduler-view-table-content .scheduler-view-table-header-day {
+.scheduler-view-table-header-day {
     color: #abaaab;
     text-align: right;
 }
@@ -77,13 +77,7 @@
 .scheduler-view-table-header-col .scheduler-view-table-header-day div {
     font-size: 14px;
     font-weight: normal;
-    padding: 6px 2px 0 6px;
-}
-
-@media (max-width: 550px) {
-    .scheduler-view-table-header-col .scheduler-view-table-header-day div {
-        font-size: 10px;
-    }
+    padding: 6px 2px 0 0;
 }
 
 .scheduler-view-table-container {
