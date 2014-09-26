@@ -1,25 +1,19 @@
 .scheduler-mobile .scheduler-base-content .scheduler-base-view-date,
 .scheduler-mobile .scheduler-base-content .scheduler-base-controls,
+.scheduler-mobile .scheduler-base-content .scheduler-base-controls .btn-group,
 .scheduler-mobile .scheduler-base-content .scheduler-base-views {
     text-align: center;
     width: 100%;
 }
 
-.scheduler-mobile .scheduler-base-controls .scheduler-base-today {
-    margin-right: 0;
+.scheduler-mobile .scheduler-base-controls .btn-group .scheduler-base-today {
     width: 50%;
 }
 
-.scheduler-mobile .scheduler-base-controls .btn-group {
-    padding: 0 0 0 3px;
-    width: 50%;
-}
-
-.scheduler-mobile .scheduler-base-controls .btn-group button {
-    width: 50%;
+.scheduler-mobile .scheduler-base-hd .btn-group button {
+    width: 25%;
 }
 
 .scheduler-mobile .scheduler-base-views button {
     float: none;
-    width: 25%;
 }

@@ -1,5 +1,5 @@
 /* scheduler-base */
- .scheduler-base-content {
+.scheduler-base-content {
     overflow: hidden;
 }
 .scheduler-base-hd {
@@ -10,14 +10,6 @@
     font-weight: bold;
 }
 
-.scheduler-base-controls .scheduler-base-today {
-    margin: 2px 3px 0 0;
-}
-
-.scheduler-base-controls .scheduler-base-icon-next,
-.scheduler-base-controls .scheduler-base-icon-prev {
-    line-height: 1.42857143;
-}
 .scheduler-base-content .scheduler-base-views {
     white-space: normal;
 }

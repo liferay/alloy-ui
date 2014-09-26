@@ -165,9 +165,9 @@ var Lang = A.Lang,
     TPL_SCHEDULER_CONTROLS = '<div class="span7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
     TPL_SCHEDULER_HD = '<div class="row-fluid ' + CSS_SCHEDULER_HD + '"></div>',
     TPL_SCHEDULER_ICON_NEXT = '<button type="button" class="' + [CSS_SCHEDULER_ICON_NEXT, CSS_BTN].join(_SPACE) +
-        '"><i class="' + CSS_ICON_CHEVRON_RIGHT + '"></i></button>',
+        '"><i class="' + [CSS_ICON, CSS_ICON_CHEVRON_RIGHT].join(_SPACE) + '"></i></button>',
     TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_SCHEDULER_ICON_PREV, CSS_BTN].join(_SPACE) +
-        '"><i class="' + CSS_ICON_CHEVRON_LEFT + '"></i></button>',
+        '"><i class="' + [CSS_ICON, CSS_ICON_CHEVRON_LEFT].join(_SPACE) + '"></i></button>',
     TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
     TPL_SCHEDULER_TODAY = '<button type="button" class="' + [CSS_SCHEDULER_TODAY, CSS_BTN].join(_SPACE) +
         '">{today}</button>',
