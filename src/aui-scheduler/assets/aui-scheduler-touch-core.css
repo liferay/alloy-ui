@@ -1,19 +1,21 @@
-.scheduler-mobile .scheduler-base-content .scheduler-base-view-date,
-.scheduler-mobile .scheduler-base-content .scheduler-base-controls,
-.scheduler-mobile .scheduler-base-content .scheduler-base-controls .btn-group,
-.scheduler-mobile .scheduler-base-content .scheduler-base-views {
-    text-align: center;
-    width: 100%;
-}
+@media (max-width: 767px) {
+	.scheduler-base-content .scheduler-base-view-date,
+	.scheduler-base-content .scheduler-base-controls,
+	.scheduler-base-content .scheduler-base-controls .btn-group,
+	.scheduler-base-content .scheduler-base-views {
+	    text-align: center;
+	    width: 100%;
+	}
 
-.scheduler-mobile .scheduler-base-controls .btn-group .scheduler-base-today {
-    width: 50%;
-}
+	.scheduler-base-controls .btn-group .scheduler-base-today {
+	    width: 50%;
+	}
 
-.scheduler-mobile .scheduler-base-hd .btn-group button {
-    width: 25%;
-}
+	.scheduler-base-hd .btn-group button {
+	    width: 25%;
+	}
 
-.scheduler-mobile .scheduler-base-views button {
-    float: none;
+	.scheduler-base-views button {
+	    float: none;
+	}
 }
