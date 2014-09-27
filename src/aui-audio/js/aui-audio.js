@@ -565,7 +565,7 @@ var AudioImpl = A.Component.create({
             var sourceMp3 = instance._sourceMp3;
 
             if (UA.gecko && !instance._usingAudio()) {
-                if (sourceMp3 !== null) {
+                if (sourceMp3 != null) {
                     sourceMp3.remove(true);
 
                     instance._sourceMp3 = null;
