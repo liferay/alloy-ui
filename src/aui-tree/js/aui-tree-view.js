@@ -11,11 +11,11 @@ var L = A.Lang,
 
     UA = A.UA,
 
-    classifyTreeNodeChildren = function(rootNode) {
+    addClassTreeNode = function(rootNode) {
         rootNode.addClass(CSS_TREE_NODE);
 
         rootNode.all('> ul > li').each(function(node) {
-            classifyTreeNodeChildren(node);
+            addClassTreeNode(node);
         });
     },
 
@@ -135,7 +135,7 @@ var TreeView = A.Component.create({
         contentBox: function(contentBox) {
             var root = contentBox.all('> li');
 
-            classifyTreeNodeChildren(root);
+            addClassTreeNode(root);
 
             return contentBox;
         }

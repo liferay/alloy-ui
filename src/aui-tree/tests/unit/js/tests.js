@@ -639,19 +639,19 @@ YUI.add('aui-tree-tests', function(Y) {
             }, lazyRenderTimeout);
         },
 
-        'TreeView generated from HTML markup without classnames should expand and collapse': function() {
+        'TreeView generated from HTML markup without CSS classes should expand and collapse': function() {
             var treeView,
-                originalListElements = Y.all('#createFromHTMLWithoutClassnamesTest li'),
+                originalListElements = Y.all('#createFromHTMLMarkupWithoutClassesTest li'),
                 originalListElementsCount = originalListElements.size(),
                 treeNodes,
                 treeNodesCount;
 
             treeView = new Y.TreeView({
-                boundingBox: '#createFromHTMLWithoutClassnamesTest',
-                contentBox: '#createFromHTMLWithoutClassnamesTest > ul'
+                boundingBox: '#createFromHTMLMarkupWithoutClassesTest',
+                contentBox: '#createFromHTMLMarkupWithoutClassesTest > ul'
             }).render();
 
-            treeNodes = Y.all('#createFromHTMLWithoutClassnamesTest .tree-node');
+            treeNodes = Y.all('#createFromHTMLMarkupWithoutClassesTest .tree-node');
             treeNodesCount = treeNodes.size();
 
             Y.Assert.areSame(treeNodesCount, originalListElementsCount);
