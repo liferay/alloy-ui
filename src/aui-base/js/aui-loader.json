@@ -1326,7 +1326,6 @@
         "requires": [
             "dd-delegate",
             "dd-proxy",
-            "widget",
             "aui-tree-node",
             "aui-tree-paginator",
             "aui-tree-io"

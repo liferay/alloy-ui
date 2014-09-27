@@ -1354,7 +1354,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "dd-delegate",
             "dd-proxy",
-            "widget",
             "aui-tree-node",
             "aui-tree-paginator",
             "aui-tree-io"
@@ -1451,4 +1450,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '6f97b90890102ec37e7ca5d9b570ef8c';
+YUI.Env[Y.version].md5 = 'd4acca9b0ed082d78ba0d16f1d30d01b';
