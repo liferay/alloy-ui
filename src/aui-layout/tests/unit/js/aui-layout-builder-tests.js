@@ -102,6 +102,22 @@ YUI.add('aui-layout-builder-tests', function(Y) {
                                 size: 4
                             })
                         ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '6' }),
+                                size: 6
+                            })
+                        ]
                     })
                 ]
             });
@@ -184,7 +200,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
 
             dragHandle.simulate('mousedown');
 
-            Assert.isNotNull(node.one(LAYOUT_GRID_CLASS));
+            Assert.isNotNull(node.ancestor().one(LAYOUT_GRID_CLASS));
         },
 
         'should not decrease the element\'s width if it already has a minimum width': function() {
@@ -193,12 +209,12 @@ YUI.add('aui-layout-builder-tests', function(Y) {
 
             firstNode = nodes.first();
 
-            Assert.areEqual(5, nodes.size());
+            Assert.areEqual(7, nodes.size());
 
             moveDragHandle(firstNode, 0);
             nodes = container.all('.col-sm-3');
 
-            Assert.areEqual(5, nodes.size());
+            Assert.areEqual(7, nodes.size());
         },
 
         'should decrease element\'s width if it\'s width is higher than the minimum size': function() {
@@ -209,6 +225,16 @@ YUI.add('aui-layout-builder-tests', function(Y) {
 
             node = container.one('.col-sm-8');
             Assert.isNull(node);
+        },
+
+        'should not decrease element\'s width if it doesn\'s hit a breakpoint': function() {
+            var node = container.one('.col-sm-8');
+
+            Assert.isNotNull(node);
+            moveDragHandle(node, 750);
+
+            node = container.one('.col-sm-8');
+            Assert.isNotNull(node);
         },
 
         'should increase element\'s width if it has space to move': function() {
@@ -231,6 +257,14 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.isNotNull(node);
         },
 
+        'should not increase element\'s width if it doesn\'s hit a breakpoint': function() {
+            var node = container.all('.col-sm-3').last();
+
+            moveDragHandle(node, 300);
+
+            Assert.isTrue(node.hasClass('col-sm-3'));
+        },
+
         'should redraw when set a new layout': function() {
             var newLayout = new Y.Layout({
                 rows: [
@@ -238,7 +272,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
                 ]
             });
 
-            Assert.areEqual(this.layoutBuilder.get('layout').get('rows').length, 5);
+            Assert.areEqual(this.layoutBuilder.get('layout').get('rows').length, 6);
 
             this.layoutBuilder.set('layout', newLayout);
 
@@ -272,15 +306,15 @@ YUI.add('aui-layout-builder-tests', function(Y) {
         },
 
         'should redraw when add a new row to layout': function() {
-            Assert.areEqual(container.get('children').size(), 5);
-            layout.addRow(4);
             Assert.areEqual(container.get('children').size(), 6);
+            layout.addRow(4);
+            Assert.areEqual(container.get('children').size(), 7);
         },
 
         'should redraw when remove a row from layout': function() {
-            Assert.areEqual(container.get('children').size(), 5);
+            Assert.areEqual(container.get('children').size(), 6);
             layout.removeRow(1);
-            Assert.areEqual(container.get('children').size(), 4);
+            Assert.areEqual(container.get('children').size(), 5);
         },
 
         'should detach old layout events when set a new one': function() {

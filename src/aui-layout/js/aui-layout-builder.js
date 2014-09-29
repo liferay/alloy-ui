@@ -178,6 +178,10 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
             nextSize = minSize;
         }
 
+        if (!this._isBreakpoint(target, nextSize)) {
+            return;
+        }
+
         if (nextSize < currentSize) {
             col.set('size', nextSize);
             this._increaseNextCol(target, currentSize - nextSize);
@@ -249,6 +253,10 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
             difference = availableSpaceToMove;
         }
 
+        if (!this._isBreakpoint(col, nextSize)) {
+            return;
+        }
+
         col.getData('layout-col').set('size', nextSize);
         this._decreaseNextCol(col, difference);
     },
@@ -267,22 +275,47 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
-     * Inserts a grid to the current node in order to visualize the columns area.
+     * Inserts a grid to the current row in order to visualize the possible breakpoints.
      *
      * @method _insertGrid
      * @param {Node} target Node in which the grid will be inserted.
      * @protected
      */
-    _insertGrid: function(target) {
-        var gridLine,
-            i,
-            targetColNumber = this._getColSize(target),
-            gridWidth = target.get(OFFSET_WIDTH) / targetColNumber;
+    _insertGrid: function(row) {
+        var breakpoints = this.get('breakpoints'),
+            gridLine,
+            gridWidth = row.get(OFFSET_WIDTH) / MAX_NUMBER_OF_COLUMNS;
 
-        for (i = 1; i < targetColNumber; i++) {
+        A.each(breakpoints, function(point) {
             gridLine = A.Node.create('<div>').addClass(CSS_LAYOUT_GRID);
-            gridLine.setStyle('left', gridWidth * i);
-            target.append(gridLine);
+            gridLine.setStyle('left', gridWidth * point);
+            row.append(gridLine);
+        });
+    },
+
+    /**
+     * Calculates if this col is inside a breakpoint.
+     *
+     * @method _isBreakpoint
+     * @param {Node} col Node in which the breakpoint will be calculated.
+     * @param {Node} size Size of the current col.
+     * @return {Boolean}
+     * @protected
+     */
+    _isBreakpoint: function(col, size) {
+        var breakpoints = this.get('breakpoints'),
+            totalSize = 0;
+
+        while (col.previous()) {
+            col = col.previous();
+
+            totalSize += col.getData('layout-col').get('size');
+        }
+
+        totalSize += size;
+
+        return breakpoints.indexOf(totalSize) >= 0;
+    },
 
     /**
      * Calculates the space on the left side of a col.
@@ -293,11 +326,11 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _leftAvailableSpace: function(col) {
-        var width = col.get('offsetWidth');
+        var width = col.get(OFFSET_WIDTH);
 
         while (col.previous()) {
             col = col.previous();
-            width += col.get('offsetWidth');
+            width += col.get(OFFSET_WIDTH);
         }
 
         return width;
@@ -320,7 +353,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
 
         this.isDragHandleLocked = true;
 
-        this._insertGrid(col);
+        this._insertGrid(col.ancestor(SELECTOR_ROW));
 
         body.addClass(CSS_LAYOUT_RESIZING);
 
@@ -447,7 +480,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
 
         while (col.next()) {
             col = col.next();
-            width += col.get('offsetWidth');
+            width += col.get(OFFSET_WIDTH);
         }
 
         return width;
@@ -462,6 +495,18 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @static
      */
     ATTRS: {
+
+        /**
+         * Array of breakpoints.
+         *
+         * @attribute breakpoints
+         * @type {Array}
+         */
+        breakpoints: {
+            validator: A.Lang.isArray,
+            value: [3, 4, 6, 8, 9]
+        },
+
         /**
          * Node that that will be inserted the layout.
          *

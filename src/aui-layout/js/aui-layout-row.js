@@ -4,7 +4,7 @@
  * @module aui-layout-row
  */
 
-var ROW_TEMPLATE = '<div class="row">';
+var ROW_TEMPLATE = '<div class="layout-row row">';
 
 /**
  * A base class for Layout Row.

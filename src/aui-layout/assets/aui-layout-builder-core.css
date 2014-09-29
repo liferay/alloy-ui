@@ -1,7 +1,3 @@
-.layout-resizing {
-    cursor: col-resize;
-}
-
 .layout-drag-handle {
     cursor: col-resize;
     position: absolute;
@@ -19,4 +15,12 @@
     bottom: 0;
     width: 0;
     border: 1px dashed rgba(86,61,124,.2);
+}
+
+.layout-resizing {
+    cursor: col-resize;
+}
+
+.layout-row {
+    position: relative;
 }
