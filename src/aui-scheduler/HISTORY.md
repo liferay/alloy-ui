@@ -8,6 +8,7 @@
 * [AUI-1653](https://issues.liferay.com/browse/AUI-1653) Clean up wrong A.Lang.isNode calls
 * [AUI-1809](https://issues.liferay.com/browse/AUI-1809) Events with duration longer than a week don't render correctly on month view
 * [AUI-1640](https://issues.liferay.com/browse/AUI-1640) Scheduler should create SchedulerEvent instances lazily
+* [AUI-1652](https://issues.liferay.com/browse/AUI-1652) Update Scheduler Agenda View
 * [AUI-1771](https://issues.liferay.com/browse/AUI-1771) Display all events in scheduler's month view
 * [AUI-1772](https://issues.liferay.com/browse/AUI-1772) Improve performance of SchedulerTableView plotEvents method
 
