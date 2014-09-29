@@ -7,10 +7,10 @@
 var CSS_LAYOUT_DRAG_HANDLE = A.getClassName('layout', 'drag', 'handle'),
     CSS_LAYOUT_GRID = A.getClassName('layout', 'grid'),
     CSS_LAYOUT_RESIZING = A.getClassName('layout', 'resizing'),
-    SELECTOR_COL = '.col',
     MAX_NUMBER_OF_COLUMNS = 12,
     OFFSET_WIDTH = 'offsetWidth',
-    REGEX_WIDTH = /\d+\.*\d*/;
+    SELECTOR_COL = '.col',
+    SELECTOR_ROW = '.row';
 
 /**
  * A base class for Layout Builder.
@@ -283,7 +283,24 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
             gridLine = A.Node.create('<div>').addClass(CSS_LAYOUT_GRID);
             gridLine.setStyle('left', gridWidth * i);
             target.append(gridLine);
+
+    /**
+     * Calculates the space on the left side of a col.
+     *
+     * @method _leftAvailableSpace
+     * @param {Node} col
+     * @return {Number}
+     * @protected
+     */
+    _leftAvailableSpace: function(col) {
+        var width = col.get('offsetWidth');
+
+        while (col.previous()) {
+            col = col.previous();
+            width += col.get('offsetWidth');
         }
+
+        return width;
     },
 
     /**
@@ -298,7 +315,8 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         var body = A.one('body'),
             clientX = event.clientX,
             col = event.target.ancestor(),
-            colWidth = Number(REGEX_WIDTH.exec(col.getStyle('width'))[0]);
+            leftAvailableSpace = this._leftAvailableSpace(col),
+            rightAvailableSpace = this._rightAvailableSpace(col);
 
         this.isDragHandleLocked = true;
 
@@ -308,7 +326,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
 
         body.once('mouseup', this._onMouseUpEvent, this, clientX, col);
 
-        this._mouseMoveEvent = body.on('mousemove', this._onMouseMove, this, clientX, colWidth);
+        this._mouseMoveEvent = body.on('mousemove', this._onMouseMove, this, clientX, leftAvailableSpace, rightAvailableSpace);
     },
 
     /**
@@ -344,18 +362,29 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @method _onMouseMove
      * @protected
      */
-    _onMouseMove: function(event, clientX, colWidth) {
-        var difference = clientX - event.clientX,
+    _onMouseMove: function(event, clientX, leftAvailableSpace, rightAvailableSpace) {
+        var absDifference,
+            difference = clientX - event.clientX,
+            dragHandleWidth = this.dragHandle.get('offsetWidth'),
             rightPosition;
 
-        if (difference >= colWidth) {
-            rightPosition = colWidth + 'px';
+        absDifference = Math.abs(difference);
+
+        if (difference < 0) {
+            if (absDifference <= rightAvailableSpace) {
+                rightPosition = difference + 'px';
+            }
+            else {
+                rightPosition = -rightAvailableSpace + 'px';
+            }
         }
-        else if (difference < colWidth && difference > 0) {
-            rightPosition = difference + 'px';
-        }
-        else {
-            rightPosition = 0;
+        else if (difference > 0) {
+            if (difference <= leftAvailableSpace) {
+                rightPosition = (difference - dragHandleWidth) + 'px';
+            }
+            else {
+                rightPosition = (leftAvailableSpace - dragHandleWidth) + 'px';
+            }
         }
 
         this.dragHandle.setStyle('right', rightPosition);
@@ -405,6 +434,24 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         target.ancestor().all('.' + CSS_LAYOUT_GRID).remove();
     },
 
+    /**
+     * Calculates the space on the right side of a col.
+     *
+     * @method _rightAvailableSpace
+     * @param {Node} col
+     * @return {Number}
+     * @protected
+     */
+    _rightAvailableSpace: function(col) {
+        var width = 0;
+
+        while (col.next()) {
+            col = col.next();
+            width += col.get('offsetWidth');
+        }
+
+        return width;
+    }
 }, {
     /**
      * Static property used to define the default attribute

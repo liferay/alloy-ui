@@ -154,28 +154,25 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.isNull(node2.one(DRAG_HANDLE_CLASS));
         },
 
-        'should move drag handle through the column': function() {
+        'should move drag handle through the row': function() {
             var body = Y.one('body'),
                 colWidth,
                 dragHandle,
                 node = Y.one('.col-sm-8');
 
             node.simulate('mouseover');
-            colWidth = node.getStyle('width');
+            colWidth = node.get('offsetWidth');
             dragHandle = node.one(DRAG_HANDLE_CLASS);
 
             Assert.areEqual(dragHandle.getStyle('right'), '0px');
 
             dragHandle.simulate('mousedown');
 
-            body.simulate('mousemove',  { clientX: -200 });
-            Assert.areEqual(dragHandle.getStyle('right'), '200px');
+            body.simulate('mousemove', { clientX: -200 });
+            Assert.areEqual(dragHandle.getStyle('right'), 200 - dragHandle.get('offsetWidth') + 'px');
 
-            body.simulate('mousemove',  { clientX: -1000 });
-            Assert.areEqual(dragHandle.getStyle('right'), colWidth);
-
-            body.simulate('mousemove',  { clientX: 1000 });
-            Assert.areEqual(dragHandle.getStyle('right'), '0px');
+            body.simulate('mousemove', { clientX: -1000 });
+            Assert.areEqual(dragHandle.getStyle('right'), colWidth - dragHandle.get('offsetWidth') + 'px');
         },
 
         'should insert layout grid on dragHandle\'s click': function() {
