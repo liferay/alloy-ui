@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1013](https://issues.liferay.com/browse/AUI-1013) Maximum call stack size exceeded when adding a column to datatable
 * [AUI-1592](https://issues.liferay.com/browse/AUI-1592) Fix modules behavior on touch screen desktop computers
 
 ## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)

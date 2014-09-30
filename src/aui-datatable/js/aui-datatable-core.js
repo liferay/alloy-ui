@@ -1,2 +1,2 @@
-A.DataTable.NAME = 'table';
+A.DataTable.NAME = 'datatable';
 A.DataTable.CSS_PREFIX = 'table';
