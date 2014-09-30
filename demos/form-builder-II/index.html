@@ -23,15 +23,15 @@
 YUI({ filter:'raw' }).use('aui-form-builder-II', function(Y) {
 
     formBuilderII = new Y.FormBuilderII(
-            {
-                boundingBox: '#formBuilder'
-            }
-        ).render();
+        {
+            boundingBox: '#formBuilder'
+        }
+    ).render();
 
     formBuilderII.registerFieldType(
         [
             {
-                icon: 'glyphicon-ok-sign',
+                icon: 'glyphicon glyphicon-ok-sign',
                 label: 'Ok'
             },
             {
@@ -43,13 +43,13 @@ YUI({ filter:'raw' }).use('aui-form-builder-II', function(Y) {
                 label: 'Sign'
             },
             {
-                icon: 'glyphicon-refresh',
+                icon: 'glyphicon glyphicon-refresh',
                 label: 'Refresh'
             }
 
         ]
     );
-    
+
     formBuilderII.showFieldsPanel();
 });
 

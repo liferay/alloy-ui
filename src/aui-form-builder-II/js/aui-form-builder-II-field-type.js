@@ -9,6 +9,7 @@
  * A base class for `A.FormBuilderIIFieldType`.
  *
  * @class A.FormBuilderIIFieldType
+ * @extends A.Base
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
