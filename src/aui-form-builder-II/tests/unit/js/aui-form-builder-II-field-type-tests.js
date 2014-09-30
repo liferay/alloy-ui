@@ -1,0 +1,94 @@
+YUI.add('aui-form-builder-II-field-type-tests', function(Y) {
+
+    var suite = new Y.Test.Suite('aui-form-builder-II-field-type');
+
+    suite.add(new Y.Test.Case({
+        name: 'AUI Form Builder II Field Type Unit Tests',
+
+        init: function() {
+            this._container = Y.one('#container');
+        },
+
+        setUp: function() {
+            this.createFormBuilder({});
+        },
+
+        tearDown: function() {
+            this._fieldType && this._fieldType.destroy();
+        },
+
+        createFormBuilder: function(config) {
+            this._fieldType = new Y.FormBuilderIIFieldType(config);
+            this._container.append(this._fieldType.get('fieldTypeNode'));
+        },
+
+        'should have a default configuration object': function () {
+            var fieldType = this._fieldType,
+                testValue = 'test';
+
+            fieldType.set('defaultConfig', {test: testValue});
+            Y.Assert.areEqual(fieldType.get('defaultConfig').test, 'test');
+        },
+
+        'should be disabled': function () {
+            var fieldType = this._fieldType;
+
+            fieldType.destroy();
+
+            fieldType = new Y.FormBuilderIIFieldType({disabled: true});
+            Y.Assert.isTrue(fieldType.get('disabled'));
+
+            fieldType.set('disabled', false);
+            Y.Assert.isFalse(fieldType.get('disabled'));
+
+            fieldType.set('disabled', true);
+            Y.Assert.isTrue(fieldType.get('disabled'));
+        },
+
+        'should set a icon': function () {
+            var iconTest = 'icon-test',
+                icon = 'icon';
+
+            this._fieldType.set('icon', iconTest);
+            Y.Assert.isTrue(Y.one('.field-type-icon').hasClass(iconTest));
+
+            this._fieldType.set('icon', 'icon');
+            Y.Assert.isFalse(Y.one('.field-type-icon').hasClass(iconTest));
+            Y.Assert.isTrue(Y.one('.field-type-icon').hasClass(icon));
+        },
+
+        'should not set a icon': function () {
+            var iconTest = 'icon-test';
+
+            Y.one('.field-type-icon').remove(true);
+            this._fieldType.set('icon', iconTest);
+            Y.Assert.isNull(Y.one('.field-type-icon'));
+        },
+
+        'should set a label': function () {
+            var label = 'label-test';
+
+            this._fieldType.set('label', label);
+            Y.Assert.areEqual(Y.one('.field-type-label').getHTML(), label);
+        },
+
+        'should not set a label': function () {
+            var label = 'label-test';
+
+            Y.one('.field-type-label').remove(true);
+            this._fieldType.set('label', label);
+            Y.Assert.isNull(Y.one('.field-type-label'));
+        },
+
+        'should the field type has unique class': function () {
+            this._fieldType.set('unique', true);
+            Y.Assert.isFalse(false);
+        }
+
+    }));
+
+    Y.Test.Runner.add(suite);
+
+}, '', {
+    requires: ['aui-form-builder-II-field-type', 'test']
+});

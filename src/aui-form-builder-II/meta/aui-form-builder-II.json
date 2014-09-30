@@ -1,0 +1,9 @@
+{
+    "aui-form-builder-II-field-type": {
+        "requires": [
+            "base",
+            "node-base"
+        ],
+        "skinnable": true
+    }
+}

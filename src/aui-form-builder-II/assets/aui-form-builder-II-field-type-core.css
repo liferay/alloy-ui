@@ -1,0 +1,27 @@
+.field-type {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    font-size: 10px;
+    line-height: 1.4;
+    text-align: center;
+    background-color: rgba(86,61,124,.15);
+    border: 1px solid #fff;
+}
+
+.field-type-icon {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.field-type-disabled {
+    cursor: not-allowed;
+    background-color: white;
+    filter: alpha(opacity=40);
+ /* internet explorer */
+    opacity: 0.4;
+ /* fx, safari, opera, chrome */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=40)";
+ /*IE8*/
+}
