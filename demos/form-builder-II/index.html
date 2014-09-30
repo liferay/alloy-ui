@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+    #wrapper {
+        margin: 10px 20px;
+    }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <h1>FormBuilder Demo</h1>
+
+    <div id="formBuilder"></div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+YUI({ filter:'raw' }).use('aui-form-builder-II', function(Y) {
+
+    formBuilderII = new Y.FormBuilderII(
+            {
+                boundingBox: '#formBuilder'
+            }
+        ).render();
+
+    formBuilderII.registerFieldType(
+        [
+            {
+                icon: 'glyphicon-ok-sign',
+                label: 'Ok'
+            },
+            {
+                icon: 'glyphicon glyphicon-search',
+                label: 'Search'
+            },
+            {
+                icon: 'glyphicon glyphicon-info-sign',
+                label: 'Sign'
+            },
+            {
+                icon: 'glyphicon-refresh',
+                label: 'Refresh'
+            }
+
+        ]
+    );
+    
+    formBuilderII.showFieldsPanel();
+});
+
+</script>
+
+</body>
+</html>

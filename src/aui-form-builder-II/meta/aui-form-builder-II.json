@@ -1,4 +1,12 @@
 {
+    "aui-form-builder-II": {
+        "requires": [
+            "aui-modal",
+            "aui-form-builder-II-field-type"
+        ],
+        "skinnable": true
+    },
+
     "aui-form-builder-II-field-type": {
         "requires": [
             "base",

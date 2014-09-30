@@ -1,0 +1,16 @@
+.field-types-list {
+    padding-left: 0;
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.form-builder-modal {
+    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.form-builder-modal-content {
+    border-radius: 0px;
+}
