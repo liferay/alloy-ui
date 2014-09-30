@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1125](https://issues.liferay.com/browse/AUI-1125) aui-selector hidden doesn't account for clip and position: absolute
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
