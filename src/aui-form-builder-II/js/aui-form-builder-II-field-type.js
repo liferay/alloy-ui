@@ -13,95 +13,93 @@
  *     properties.
  * @constructor
  */
-A.FormBuilderIIFieldType = A.Base.create('form-builder-II-field-type', A.Base, [
-    
-], {
-
-    FIELD_TYPE_TEMPLATE: '<div class="field-type">' +
-                            '<div class="field-type-icon glyphicon {icon}"></div>' +
-                            '<div class="field-type-label">{label}</div></div>' +
-                        '</div>',
+A.FormBuilderIIFieldType = A.Base.create('form-builder-II-field-type', A.Base, [], {
+    TPL_FIELD_TYPE: '<div class="field-type"></div>',
+    TPL_FIELD_TYPE_CONTENT: '<div class="field-type-icon {icon}"></div>' +
+        '<div class="field-type-label">{label}</div></div>',
 
     /**
-     * Render the `A.FormBuilderIIFieldType` component instance. Lifecycle.
+     * Constructor for `A.FormBuilderIIFieldType`. Lifecycle.
      *
-     * @method renderUI
+     * @method initializer
      * @protected
      */
     initializer: function() {
-        var instance = this;
-
-        this.set('fieldTypeNode', A.Node.create(
-            A.Lang.sub(instance.FIELD_TYPE_TEMPLATE, {
-                icon: instance.get('icon'),
-                label: instance.get('label')
+        this.get('node').setHTML(
+            A.Lang.sub(this.TPL_FIELD_TYPE_CONTENT, {
+                icon: this.get('icon'),
+                label: this.get('label')
             })
-        ));
+        );
 
-        if (this.get('disabled')) {
-            this.get('fieldTypeNode').addClass('field-type-disabled');
-        }
+        this._uiSetDisabled(this.get('disabled'));
 
-        this.on('disabledChange', instance._onDisabledChange);
-        this.on('iconChange', instance._onIconChange);
-        this.on('labelChange', instance._onLabelChange);
+        this.after({
+            disabledChange: this._afterDisabledChange,
+            iconChange: this._afterIconChange,
+            labelChange: this._afterLabelChange
+        });
     },
 
     /**
-     * Destructor for the Field Type component.
+     * Destructor implementation for `A.FormBuilderIIFieldType`. Lifecycle.
+     *
      * @method destructor
-     * @private
+     * @protected
      */
     destructor: function () {
-        this.get('fieldTypeNode').remove(true);
+        this.get('node').remove(true);
     },
 
     /**
-     * Determines the value of the `disabled` attribute.
+     * Fired after the `disabled` attribute is set.
      *
-     * @method _onDisabledChange
+     * @method _afterDisabledChange
+     * @protected
+     */
+    _afterDisabledChange: function() {
+        this._uiSetDisabled(this.get('disabled'));
+    },
+
+    /**
+     * Fired after the `icon` attribute is set.
+     *
+     * @method _afterIconChange
      * @param {CustomEvent} event The fired event
      * @protected
      */
-    _onDisabledChange: function(event) {
-        if (event.newVal) {
-            this.get('fieldTypeNode').addClass('field-type-disabled');
-        } else {
-            this.get('fieldTypeNode').removeClass('field-type-disabled');
+    _afterIconChange: function(event) {
+        var iconNode = this.get('node').one('.field-type-icon');
+
+        if (iconNode) {
+            iconNode.replaceClass(event.prevVal, event.newVal);
         }
     },
 
     /**
-     * Determines the value of the `icon` attribute.
+     * Fired after the `label` attribute is set.
      *
-     * @method setIcon
-     * @param {CustomEvent} event The fired event
-     */
-    _onIconChange: function(event) {
-        var icon = event,
-            glyphicon = this.get('fieldTypeNode').one('.field-type-icon');
-
-        if (glyphicon) {
-            glyphicon.removeClass(this.get('icon'));
-            glyphicon.addClass('glyphicon ' + icon.newVal);
-        }
-    },
-
-    /**
-     * Determines the value of the `label` attribute.
-     *
-     * @method _onLabelChange
-     * @param {CustomEvent} event The fired event
+     * @method _afterLabelChange
      * @protected
      */
-    _onLabelChange: function(event) {
-        var labelElement = this.get('fieldTypeNode').one('.field-type-label');
+    _afterLabelChange: function() {
+        var labelElement = this.get('node').one('.field-type-label');
 
         if (labelElement) {
-            labelElement.setHTML(event.newVal);
+            labelElement.setHTML(this.get('label'));
         }
-    }
+    },
 
+    /**
+     * Updates the UI according to the value of the `disabled` attribute.
+     *
+     * @method _uiSetDisabled
+     * @param {Boolean} disabled
+     * @protected
+     */
+    _uiSetDisabled: function(disabled) {
+        this.get('node').toggleClass('field-type-disabled', disabled);
+    }
 }, {
 
     /**
@@ -115,30 +113,28 @@ A.FormBuilderIIFieldType = A.Base.create('form-builder-II-field-type', A.Base, [
     ATTRS: {
 
         /**
-         * The Node of Field Type.
+         * The default configuration object to be used when creating an instance
+         * of a field of this type.
          *
-         * @attribute fieldTypeNode
-         */
-        fieldTypeNode: {},
-
-        /**
-         * Defines if the field type should be enable or not.
-         *
-         * @attribute disabled
-         * @type {Boolean}
+         * @attribute defaultConfig
+         * @default {}
+         * @type {Object}
          */
         defaultConfig: {
-            validator: A.Lang.isObject
+            validator: A.Lang.isObject,
+            value: {}
         },
 
         /**
-         * Defines if the field type should be enable or not.
+         * Defines if the field type should be disabled or not.
          *
          * @attribute disabled
+         * @default false
          * @type {Boolean}
          */
         disabled: {
-            validator: A.Lang.isBoolean
+            validator: A.Lang.isBoolean,
+            value: false
         },
 
         /**
@@ -146,10 +142,12 @@ A.FormBuilderIIFieldType = A.Base.create('form-builder-II-field-type', A.Base, [
          * [here](http://liferay.github.io/alloy-bootstrap/base-css.html#icons).
          *
          * @attribute icon
+         * @default ''
          * @type {String}
          */
         icon: {
-            validator: A.Lang.isString
+            validator: A.Lang.isString,
+            value: ''
         },
 
         /**
@@ -165,7 +163,22 @@ A.FormBuilderIIFieldType = A.Base.create('form-builder-II-field-type', A.Base, [
         },
 
         /**
-         * Checks if the input field is unique or not.
+         * The node used to render this field type.
+         *
+         * @attribute node
+         * @type {Node}
+         */
+        node: {
+            validator: function(val) {
+                return A.instanceOf(val, A.Node);
+            },
+            valueFn: function() {
+                return A.Node.create(this.TPL_FIELD_TYPE);
+            }
+        },
+
+        /**
+         * Defines if the input field is unique or not.
          *
          * @attribute unique
          * @default false

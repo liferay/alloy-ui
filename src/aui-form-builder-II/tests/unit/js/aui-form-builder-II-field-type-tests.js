@@ -19,7 +19,7 @@ YUI.add('aui-form-builder-II-field-type-tests', function(Y) {
 
         createFormBuilder: function(config) {
             this._fieldType = new Y.FormBuilderIIFieldType(config);
-            this._container.append(this._fieldType.get('fieldTypeNode'));
+            this._container.append(this._fieldType.get('node'));
         },
 
         'should have a default configuration object': function () {
@@ -45,7 +45,7 @@ YUI.add('aui-form-builder-II-field-type-tests', function(Y) {
             Y.Assert.isTrue(fieldType.get('disabled'));
         },
 
-        'should set a icon': function () {
+        'should set an icon': function () {
             var iconTest = 'icon-test',
                 icon = 'icon';
 
@@ -57,7 +57,7 @@ YUI.add('aui-form-builder-II-field-type-tests', function(Y) {
             Y.Assert.isTrue(Y.one('.field-type-icon').hasClass(icon));
         },
 
-        'should not set a icon': function () {
+        'should not set an icon': function () {
             var iconTest = 'icon-test';
 
             Y.one('.field-type-icon').remove(true);
@@ -80,9 +80,14 @@ YUI.add('aui-form-builder-II-field-type-tests', function(Y) {
             Y.Assert.isNull(Y.one('.field-type-label'));
         },
 
-        'should the field type has unique class': function () {
+        'should set unique value': function () {
+            Y.Assert.isFalse(this._fieldType.get('unique'));
+
             this._fieldType.set('unique', true);
-            Y.Assert.isFalse(false);
+            Y.Assert.isTrue(this._fieldType.get('unique'));
+
+            this._fieldType.set('unique', false);
+            Y.Assert.isFalse(this._fieldType.get('unique'));
         }
 
     }));
