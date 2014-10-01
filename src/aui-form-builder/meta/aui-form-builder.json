@@ -22,5 +22,12 @@
             "node-base"
         ],
         "skinnable": true
+    },
+
+    "aui-form-builder-page-break": {
+        "requires": [
+            "aui-form-builder-layout-col"
+        ],
+        "skinnable": true
     }
 }
