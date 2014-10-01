@@ -1,0 +1,10 @@
+{
+    "name": "aui-data-editor",
+    "builds": {
+        "aui-data-editor": {
+            "jsfiles": [
+                "js/aui-data-editor.js"
+            ]
+        }
+    }
+}
