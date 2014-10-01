@@ -257,7 +257,7 @@ A.Toolbar = A.Component.create({
             seed.setData(ENCLOSING_WIDGET_INITIALIZED, true);
 
             var enclosingWidget = A.Widget.getByNode(seed),
-                isAlreadyButton = A.instanceOf(enclosingWidget, A.Button),
+                isAlreadyButton = A.instanceOf(enclosingWidget, A.Button) || A.instanceOf(enclosingWidget, A.ToggleButton),
                 isAlreadyButtonGroup = A.instanceOf(enclosingWidget, A.ButtonGroup);
 
             if (isAlreadyButton || isAlreadyButtonGroup) {
