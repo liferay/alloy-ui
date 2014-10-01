@@ -1,4 +1,10 @@
 {
+    "aui-boolean-data-editor": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-data-editor"
+        ]
+    },
     "aui-data-editor": {
         "requires": [
             "base-build",

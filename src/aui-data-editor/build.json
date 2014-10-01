@@ -1,6 +1,11 @@
 {
     "name": "aui-data-editor",
     "builds": {
+        "aui-boolean-data-editor": {
+            "jsfiles": [
+                "js/aui-boolean-data-editor.js"
+            ]
+        },
         "aui-data-editor": {
             "jsfiles": [
                 "js/aui-data-editor.js"
