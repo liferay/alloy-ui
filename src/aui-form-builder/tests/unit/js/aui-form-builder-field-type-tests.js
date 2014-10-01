@@ -1,9 +1,9 @@
-YUI.add('aui-form-builder-II-field-type-tests', function(Y) {
+YUI.add('aui-form-builder-field-type-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-form-builder-II-field-type');
+    var suite = new Y.Test.Suite('aui-form-builder-field-type');
 
     suite.add(new Y.Test.Case({
-        name: 'AUI Form Builder II Field Type Unit Tests',
+        name: 'AUI Form Builder Field Type Unit Tests',
 
         init: function() {
             this._container = Y.one('#container');
@@ -18,7 +18,7 @@ YUI.add('aui-form-builder-II-field-type-tests', function(Y) {
         },
 
         createFormBuilder: function(config) {
-            this._fieldType = new Y.FormBuilderIIFieldType(config);
+            this._fieldType = new Y.FormBuilderFieldType(config);
             this._container.append(this._fieldType.get('node'));
         },
 
@@ -35,7 +35,7 @@ YUI.add('aui-form-builder-II-field-type-tests', function(Y) {
 
             fieldType.destroy();
 
-            fieldType = new Y.FormBuilderIIFieldType({disabled: true});
+            fieldType = new Y.FormBuilderFieldType({disabled: true});
             Y.Assert.isTrue(fieldType.get('disabled'));
 
             fieldType.set('disabled', false);
@@ -95,5 +95,5 @@ YUI.add('aui-form-builder-II-field-type-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-form-builder-II-field-type', 'test']
+    requires: ['aui-form-builder-field-type', 'test']
 });

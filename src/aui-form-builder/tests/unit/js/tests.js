@@ -1,9 +1,9 @@
-YUI.add('aui-form-builder-II-tests', function(Y) {
+YUI.add('aui-form-builder-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-form-builder-II');
+    var suite = new Y.Test.Suite('aui-form-builder');
 
     suite.add(new Y.Test.Case({
-        name: 'AUI Form Builder II Unit Tests',
+        name: 'AUI Form Builder Unit Tests',
 
         init: function() {
             this._container = Y.one('#container');
@@ -23,7 +23,7 @@ YUI.add('aui-form-builder-II-tests', function(Y) {
             var content = Y.Node.create('<div id="content" />');
 
             this._container.append(content);
-            this._formBuilder = new Y.FormBuilderII(config).render();
+            this._formBuilder = new Y.FormBuilder(config).render();
         },
 
         'should add a new field type on form': function() {
@@ -38,14 +38,14 @@ YUI.add('aui-form-builder-II-tests', function(Y) {
             Y.Assert.isNotNull(Y.one('.icon2'));
 
             formBuilder.registerFieldTypes([
-                new Y.FormBuilderIIFieldType({
+                new Y.FormBuilderFieldType({
                     icon: 'icon3'
                 })
             ]);
             Y.Assert.isNotNull(Y.one('.icon3'));
 
             formBuilder.registerFieldTypes(
-                new Y.FormBuilderIIFieldType({
+                new Y.FormBuilderFieldType({
                     icon: 'icon4'
                 })
             );
@@ -54,13 +54,13 @@ YUI.add('aui-form-builder-II-tests', function(Y) {
 
         'should remove a field type from form': function() {
             var formBuilder = this._formBuilder,
-                fieldType1 = new Y.FormBuilderIIFieldType({
+                fieldType1 = new Y.FormBuilderFieldType({
                     icon: 'icon-test'
                 });
 
             formBuilder.registerFieldTypes(fieldType1);
 
-            formBuilder.unregisterFieldTypes(new Y.FormBuilderIIFieldType({icon: 'icon-test'}));
+            formBuilder.unregisterFieldTypes(new Y.FormBuilderFieldType({icon: 'icon-test'}));
             Y.Assert.isNotNull(Y.one('.icon-test'));
 
             Y.Assert.isNotNull(Y.one('.icon-test'));
@@ -89,7 +89,7 @@ YUI.add('aui-form-builder-II-tests', function(Y) {
         },
 
         'should remove multiple field types on same call': function() {
-            var fieldType1 = new Y.FormBuilderIIFieldType({
+            var fieldType1 = new Y.FormBuilderFieldType({
                 fieldClass: 'Class1'
             });
 
@@ -131,5 +131,5 @@ YUI.add('aui-form-builder-II-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-form-builder-II', 'test']
+    requires: ['aui-form-builder', 'test']
 });

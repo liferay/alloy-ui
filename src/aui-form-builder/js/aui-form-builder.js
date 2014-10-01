@@ -1,21 +1,21 @@
 /**
- * The Form Builder II Component
+ * The Form Builder Component
  *
- * @module aui-form-builder-II
+ * @module aui-form-builder
  */
 
 /**
- * A base class for `A.FormBuilderII`.
+ * A base class for `A.FormBuilder`.
  *
- * @class A.FormBuilderII
+ * @class A.FormBuilder
  * @extends A.Widget
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
+A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     /**
-     * Construction logic executed during the `A.FormBuilderII`
+     * Construction logic executed during the `A.FormBuilder`
      * instantiation. Lifecycle.
      *
      * @method initializer
@@ -35,7 +35,7 @@ A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
     },
 
     /**
-     * Destructor lifecycle implementation for the `A.FormBuilderII` class.
+     * Destructor lifecycle implementation for the `A.FormBuilder` class.
      * Lifecycle.
      *
      * @method destructor
@@ -62,9 +62,9 @@ A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
      * Adds a the given field types to this form builder.
      *
      * @method registerFieldTypes
-     * @param {Array | Object | A.FormBuilderIIFieldType} fieldTypes This can be
+     * @param {Array | Object | A.FormBuilderFieldType} fieldTypes This can be
      *   either an array of items or a single item. Each item should be either
-     *   an instance of `A.FormBuilderIIFieldType`, or the configuration object
+     *   an instance of `A.FormBuilderFieldType`, or the configuration object
      *   to be used when instantiating one.
      */
     registerFieldTypes: function(fieldTypes) {
@@ -90,11 +90,11 @@ A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
      * Removes the given field types from this form builder.
      *
      * @method unregisterFieldTypes
-     * @param {Array | String | A.FormBuilderIIFieldType} fieldTypes This can be
+     * @param {Array | String | A.FormBuilderFieldType} fieldTypes This can be
      *   either an array of items, or a single one. For each item, if it's a
      *   string, the form builder will remove all registered field types with
      *   a field class that matches it. For items that are instances of
-     *   `A.FormBuilderIIFieldType`, only the same instances will be removed.
+     *   `A.FormBuilderFieldType`, only the same instances will be removed.
      */
     unregisterFieldTypes: function(fieldTypes) {
         var instance = this;
@@ -110,11 +110,11 @@ A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
      * Removes a Field Type from fieldTypes of this Form Buider.
      *
      * @method _registerFieldType
-     * @param {Object | A.FormBuilderIIFieldType} field
+     * @param {Object | A.FormBuilderFieldType} field
      */
     _registerFieldType: function(fieldType) {
-        if (!A.instanceOf(fieldType, A.FormBuilderIIFieldType)) {
-            fieldType = new A.FormBuilderIIFieldType(fieldType);
+        if (!A.instanceOf(fieldType, A.FormBuilderFieldType)) {
+            fieldType = new A.FormBuilderFieldType(fieldType);
         }
 
         this.get('boundingBox').one('.field-types-list').appendChild(fieldType.get('node'));
@@ -125,7 +125,7 @@ A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
      * Removes a single given field type from this form builder.
      *
      * @method _unregisterFieldType
-     * @param {String | A.FormBuilderIIFieldType} fieldType
+     * @param {String | A.FormBuilderFieldType} fieldType
      * @protected
      */
     _unregisterFieldType: function(fieldType) {
@@ -162,7 +162,7 @@ A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `A.FormBuilderII`.
+     * configuration for the `A.FormBuilder`.
      *
      * @property ATTRS
      * @type Object

@@ -1,26 +1,26 @@
 /**
- * The Form Builder Component
+ * The Form Builder Type Component
  *
- * @module aui-form-builder-II
- * @submodule aui-form-builder-II-field-type
+ * @module aui-form-builder
+ * @submodule aui-form-builder-field-type
  */
 
 /**
- * A base class for `A.FormBuilderIIFieldType`.
+ * A base class for `A.FormBuilderFieldType`.
  *
- * @class A.FormBuilderIIFieldType
+ * @class A.FormBuilderFieldType
  * @extends A.Base
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-A.FormBuilderIIFieldType = A.Base.create('form-builder-II-field-type', A.Base, [], {
+A.FormBuilderFieldType = A.Base.create('form-builder-field-type', A.Base, [], {
     TPL_FIELD_TYPE: '<div class="field-type"></div>',
     TPL_FIELD_TYPE_CONTENT: '<div class="field-type-icon {icon}"></div>' +
         '<div class="field-type-label">{label}</div></div>',
 
     /**
-     * Constructor for `A.FormBuilderIIFieldType`. Lifecycle.
+     * Constructor for `A.FormBuilderFieldType`. Lifecycle.
      *
      * @method initializer
      * @protected
@@ -43,7 +43,7 @@ A.FormBuilderIIFieldType = A.Base.create('form-builder-II-field-type', A.Base, [
     },
 
     /**
-     * Destructor implementation for `A.FormBuilderIIFieldType`. Lifecycle.
+     * Destructor implementation for `A.FormBuilderFieldType`. Lifecycle.
      *
      * @method destructor
      * @protected
@@ -105,7 +105,7 @@ A.FormBuilderIIFieldType = A.Base.create('form-builder-II-field-type', A.Base, [
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `A.FormBuilderIIFieldType`.
+     * configuration for the `A.FormBuilderFieldType`.
      *
      * @property ATTRS
      * @type Object

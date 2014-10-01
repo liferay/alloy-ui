@@ -20,15 +20,15 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-YUI({ filter:'raw' }).use('aui-form-builder-II', function(Y) {
+YUI({ filter:'raw' }).use('aui-form-builder', function(Y) {
 
-    formBuilderII = new Y.FormBuilderII(
+    formBuilder = new Y.FormBuilder(
         {
             boundingBox: '#formBuilder'
         }
     ).render();
 
-    formBuilderII.registerFieldType(
+    formBuilder.registerFieldTypes(
         [
             {
                 icon: 'glyphicon glyphicon-ok-sign',
@@ -50,7 +50,7 @@ YUI({ filter:'raw' }).use('aui-form-builder-II', function(Y) {
         ]
     );
 
-    formBuilderII.showFieldsPanel();
+    formBuilder.showFieldsPanel();
 });
 
 </script>

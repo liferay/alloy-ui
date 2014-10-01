@@ -1,0 +1,16 @@
+{
+    "name": "aui-form-builder",
+    "builds": {
+        "aui-form-builder": {
+            "jsfiles": [
+                "js/aui-form-builder.js"
+            ]
+        },
+
+        "aui-form-builder-field-type": {
+            "jsfiles": [
+                "js/aui-form-builder-field-type.js"
+            ]
+        }
+    }
+}
