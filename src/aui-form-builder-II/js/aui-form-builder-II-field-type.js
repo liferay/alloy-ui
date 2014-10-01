@@ -139,6 +139,16 @@ A.FormBuilderIIFieldType = A.Base.create('form-builder-II-field-type', A.Base, [
         },
 
         /**
+         * The name of the js class to be used when instantiating this field.
+         *
+         * @attribute fieldClass
+         * @type {String}
+         */
+        fieldClass: {
+            validator: A.Lang.isString
+        },
+
+        /**
          * Contains a CSS class of the icon to use. A list of icons can be found
          * [here](http://liferay.github.io/alloy-bootstrap/base-css.html#icons).
          *

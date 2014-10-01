@@ -4,5 +4,6 @@
 
 ## @VERSION@
 
+* [AUI-1712](https://issues.liferay.com/browse/AUI-1712) Store field class info on FieldType
 * [AUI-1647](https://issues.liferay.com/browse/AUI-1647) New form builder should know about the field types it will handle
 * [AUI-1658](https://issues.liferay.com/browse/AUI-1658) Create new Field Type submodule of Form Builder

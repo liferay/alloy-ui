@@ -59,22 +59,22 @@ A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
     },
 
     /**
-     * Adds a new Field Type to the Form Builder.
+     * Adds a the given field types to this form builder.
      *
-     * @method registerFieldType
-     * @param {Array | Object | A.FormBuilderIIFieldType} val
+     * @method registerFieldTypes
+     * @param {Array | Object | A.FormBuilderIIFieldType} fieldTypes This can be
+     *   either an array of items or a single item. Each item should be either
+     *   an instance of `A.FormBuilderIIFieldType`, or the configuration object
+     *   to be used when instantiating one.
      */
-    registerFieldType: function(val) {
+    registerFieldTypes: function(fieldTypes) {
         var instance = this;
 
-        if (A.Lang.isArray(val)) {
-            A.Array.each(val, function(field) {
-                instance._registerFieldType(field);
-            });
-        }
-        else {
-            instance._registerFieldType(val);
-        }
+        fieldTypes = A.Lang.isArray(fieldTypes) ? fieldTypes : [fieldTypes];
+
+        A.Array.each(fieldTypes, function(type) {
+            instance._registerFieldType(type);
+        });
     },
 
     /**
@@ -87,22 +87,23 @@ A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
     },
 
     /**
-     * Removes a Field Type from fieldTypes of this Form Builder.
+     * Removes the given field types from this form builder.
      *
-     * @method unregisterFieldType
-     * @param {A.FormBuilderIIFieldType} field
+     * @method unregisterFieldTypes
+     * @param {Array | String | A.FormBuilderIIFieldType} fieldTypes This can be
+     *   either an array of items, or a single one. For each item, if it's a
+     *   string, the form builder will remove all registered field types with
+     *   a field class that matches it. For items that are instances of
+     *   `A.FormBuilderIIFieldType`, only the same instances will be removed.
      */
-    unregisterFieldType: function(field) {
-        var index,
-            fieldTypes = this.get('fieldTypes');
+    unregisterFieldTypes: function(fieldTypes) {
+        var instance = this;
 
-        if (A.instanceOf(field, A.FormBuilderIIFieldType)) {
-            index = fieldTypes.indexOf(field);
-            if (index !== -1) {
-                fieldTypes[index].destroy();
-                fieldTypes.splice(index, 1);
-            }
-        }
+        fieldTypes = A.Lang.isArray(fieldTypes) ? fieldTypes : [fieldTypes];
+
+        A.Array.each(fieldTypes, function(type) {
+            instance._unregisterFieldType(type);
+        });
     },
 
     /**
@@ -111,13 +112,51 @@ A.FormBuilderII  = A.Base.create('form-builder-II', A.Widget, [], {
      * @method _registerFieldType
      * @param {Object | A.FormBuilderIIFieldType} field
      */
-    _registerFieldType: function(field) {
-        if (!A.instanceOf(field, A.FormBuilderIIFieldType)) {
-            field = new A.FormBuilderIIFieldType(field);
+    _registerFieldType: function(fieldType) {
+        if (!A.instanceOf(fieldType, A.FormBuilderIIFieldType)) {
+            fieldType = new A.FormBuilderIIFieldType(fieldType);
         }
 
-        this.get('boundingBox').one('.field-types-list').appendChild(field.get('node'));
-        this.get('fieldTypes').push(field);
+        this.get('boundingBox').one('.field-types-list').appendChild(fieldType.get('node'));
+        this.get('fieldTypes').push(fieldType);
+    },
+
+    /**
+     * Removes a single given field type from this form builder.
+     *
+     * @method _unregisterFieldType
+     * @param {String | A.FormBuilderIIFieldType} fieldType
+     * @protected
+     */
+    _unregisterFieldType: function(fieldType) {
+        var fieldTypes = this.get('fieldTypes');
+
+        if (A.Lang.isString(fieldType)) {
+            for (var i = fieldTypes.length - 1; i >= 0; i--) {
+                if (fieldTypes[i].get('fieldClass') === fieldType) {
+                    this._unregisterFieldTypeByIndex(i);
+                }
+            }
+        }
+        else {
+            this._unregisterFieldTypeByIndex(fieldTypes.indexOf(fieldType));
+        }
+    },
+
+    /**
+     * Unregisters the field type at the given index.
+     *
+     * @method _unregisterFieldTypeByIndex
+     * @param {Number} index
+     * @protected
+     */
+    _unregisterFieldTypeByIndex: function(index) {
+        var fieldTypes = this.get('fieldTypes');
+
+        if (index !== -1) {
+            fieldTypes[index].destroy();
+            fieldTypes.splice(index, 1);
+        }
     }
 }, {
 
