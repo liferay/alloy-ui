@@ -4,5 +4,12 @@
             "base-build",
             "node-base"
         ]
+    },
+    "aui-text-data-editor": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-data-editor"
+        ],
+        "skinnable": true
     }
 }
