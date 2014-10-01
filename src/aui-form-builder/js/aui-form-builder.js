@@ -15,30 +15,6 @@
  */
 A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     /**
-     * Construction logic executed during the `A.FormBuilder`
-     * instantiation. Lifecycle.
-     *
-     * @method initializer
-     * @protected
-     */
-    initializer: function() {
-        this._fieldTypesPanel = A.Node.create(
-            '<div class="field-types-list" role="main" />'
-        );
-
-        this._modal = new A.Modal({
-            bodyContent: this._fieldTypesPanel,
-            centered: true,
-            draggable: false,
-            modal: true,
-            resizable: false,
-            toolbars: null,
-            visible: false,
-            cssClass: 'form-builder-modal'
-        }).render(this.get('contentBox'));
-    },
-
-    /**
      * Bind the events for the `A.FormBuilder` UI. Lifecycle.
      *
      * @method bindUI
@@ -62,7 +38,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             field.destroy();
         });
 
-        this._modal.destroy();
+        if (this._modal) {
+            this._modal.destroy();
+        }
 
         (new A.EventHandle(this._eventHandles)).detach();
     },
@@ -73,7 +51,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @method hideFieldsPanel
      */
     hideFieldsPanel: function() {
-        this._modal.hide();
+        if (this._modal) {
+            this._modal.hide();
+        }
     },
 
     /**
@@ -103,6 +83,25 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @method showFieldsPanel
      */
     showFieldsPanel: function() {
+        if (!this._fieldTypesPanel) {
+            this._fieldTypesPanel = A.Node.create(
+                '<div class="field-types-list" role="main" />'
+            );
+
+            this._modal = new A.Modal({
+                bodyContent: this._fieldTypesPanel,
+                centered: true,
+                draggable: false,
+                modal: true,
+                resizable: false,
+                toolbars: null,
+                visible: false,
+                cssClass: 'form-builder-modal'
+            }).render();
+
+            this._uiSetFieldTypes(this.get('fieldTypes'));
+        }
+
         this._modal.show();
     },
 
@@ -147,6 +146,10 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      */
     _uiSetFieldTypes: function(fieldTypes) {
         var instance = this;
+
+        if (!this._fieldTypesPanel) {
+            return;
+        }
 
         this._fieldTypesPanel.get('children').remove();
         A.Array.each(fieldTypes, function(type) {

@@ -26,8 +26,26 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this._formBuilder = new Y.FormBuilder(config).render();
         },
 
+        'should not render field types before necessary': function() {
+            this._formBuilder.registerFieldTypes([{
+                icon: 'icon1'
+            }]);
+
+            Y.Assert.isNull(Y.one('.form-builder-modal'));
+
+            this._formBuilder.showFieldsPanel();
+            Y.Assert.isNotNull(Y.one('.form-builder-modal'));
+        },
+
+        'should not throw error when hiding the panel before rendered': function() {
+            this._formBuilder.hideFieldsPanel();
+            Y.Assert.isNull(Y.one('.form-builder-modal'));
+        },
+
         'should add a new field type on form': function() {
             var formBuilder = this._formBuilder;
+
+            formBuilder.showFieldsPanel();
 
             formBuilder.registerFieldTypes([{
                 icon: 'icon1'
@@ -58,7 +76,9 @@ YUI.add('aui-form-builder-tests', function(Y) {
                     icon: 'icon-test'
                 });
 
+            formBuilder.showFieldsPanel();
             formBuilder.registerFieldTypes(fieldType1);
+            Y.Assert.isNotNull(Y.one('.icon-test'));
 
             formBuilder.unregisterFieldTypes(new Y.FormBuilderFieldType({icon: 'icon-test'}));
             Y.Assert.isNotNull(Y.one('.icon-test'));
@@ -118,13 +138,17 @@ YUI.add('aui-form-builder-tests', function(Y) {
             var formBuilder = this._formBuilder,
                 formBuilderModal = Y.one('.form-builder-modal');
 
-            Y.Assert.isTrue(formBuilderModal.hasClass('modal-dialog-hidden'));
+            Y.Assert.isNull(formBuilderModal);
 
             formBuilder.showFieldsPanel();
+            formBuilderModal = Y.one('.form-builder-modal');
             Y.Assert.isFalse(formBuilderModal.hasClass('modal-dialog-hidden'));
 
             formBuilder.hideFieldsPanel();
             Y.Assert.isTrue(formBuilderModal.hasClass('modal-dialog-hidden'));
+
+            formBuilder.showFieldsPanel();
+            Y.Assert.isFalse(formBuilderModal.hasClass('modal-dialog-hidden'));
         },
 
         'should use new field types when attribute changes': function() {
