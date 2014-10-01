@@ -11,6 +11,12 @@
             "jsfiles": [
                 "js/aui-form-builder-field-type.js"
             ]
+        },
+
+        "aui-form-builder-layout-col": {
+            "jsfiles": [
+                "js/aui-form-builder-layout-col.js"
+            ]
         }
     }
 }

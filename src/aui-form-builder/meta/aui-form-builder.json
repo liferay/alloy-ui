@@ -13,5 +13,14 @@
             "node-base"
         ],
         "skinnable": true
+    },
+
+    "aui-form-builder-layout-col": {
+        "requires": [
+            "aui-classnamemanager",
+            "base",
+            "node-base"
+        ],
+        "skinnable": true
     }
 }
