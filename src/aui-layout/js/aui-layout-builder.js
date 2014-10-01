@@ -411,7 +411,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
                 rightPosition = -rightAvailableSpace + 'px';
             }
         }
-        else if (difference > 0) {
+        else {
             if (difference <= leftAvailableSpace) {
                 rightPosition = (difference - dragHandleWidth) + 'px';
             }

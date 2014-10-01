@@ -48,9 +48,19 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
     ATTRS: {
 
         /**
+         * Columns's maximum size.
+         *
+         * @attribute maxSize
+         * @type {Number}
+         */
+        maxSize: {
+            value: 12
+        },
+
+        /**
          * Columns's minimum size.
          *
-         * @attribute size
+         * @attribute minSize
          * @type {Number}
          */
         minSize: {
@@ -65,11 +75,14 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
          */
         size: {
             setter: function(val) {
-                if (val < this.get('minSize')) {
-                    return this.get('minSize');
+                var max = this.get('maxSize'),
+                    min = this.get('minSize');
+
+                if (val < min) {
+                    return min;
                 }
-                else if (val > 12) {
-                    return 12;
+                else if (val > max) {
+                    return max;
                 }
                 else {
                     return val;
@@ -88,7 +101,8 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
          * @type {Object}
          */
         value: {
-            validator: A.Lang.isObject
+            validator: A.Lang.isObject,
+            value: { content: 'Content' }
         }
     }
 });

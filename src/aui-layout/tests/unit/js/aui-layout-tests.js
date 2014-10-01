@@ -36,51 +36,19 @@ YUI.add('aui-layout-tests', function(Y) {
                     new Y.LayoutRow({
                         cols: [
                             new Y.LayoutCol({
-                                size: 1,
+                                size: 3,
                                 value: new Content()
                             }),
                             new Y.LayoutCol({
-                                size: 1,
+                                size: 3,
                                 value: new Content()
                             }),
                             new Y.LayoutCol({
-                                size: 1,
+                                size: 3,
                                 value: new Content()
                             }),
                             new Y.LayoutCol({
-                                size: 1,
-                                value: new Content()
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content()
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content()
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content()
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content()
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content()
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content()
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
-                                value: new Content()
-                            }),
-                            new Y.LayoutCol({
-                                size: 1,
+                                size: 3,
                                 value: new Content()
                             })
                         ]

@@ -4,7 +4,9 @@
  * @module aui-layout-row
  */
 
-var ROW_TEMPLATE = '<div class="layout-row row">';
+var ALLOWED_SIZE = 12,
+    MAXIMUM_COLS = 4,
+    ROW_TEMPLATE = '<div class="layout-row row">';
 
 /**
  * A base class for Layout Row.
@@ -33,6 +35,8 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
 
         cols.splice(index, 0, col);
 
+        cols = this._resizeCols(cols);
+
         this.set('cols', cols);
     },
 
@@ -56,24 +60,6 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     },
 
     /**
-     * Returns the sum of all this row's column sizes.
-     *
-     * @method getSize
-     * @return {Number}
-     */
-    getSize: function() {
-        var cols = this.get('cols'),
-            size;
-
-        size = A.Array.reduce(cols, 0, function(prev, current) {
-            prev = prev + current.get('size');
-            return prev;
-        });
-
-        return size;
-    },
-
-    /**
      * Removes a col from this row.
      *
      * @method removeCol
@@ -89,6 +75,19 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     },
 
     /**
+     * Returns the sum of all this row's column sizes.
+     *
+     * @method getSize
+     * @return {Number}
+     */
+    _getSize: function(cols) {
+        return A.Array.reduce(cols, 0, function(prev, current) {
+            prev += current.get('size');
+            return prev;
+        });
+    },
+
+    /**
      * Removes a col from this row by it's index.
      *
      * @method _removeColByIndex
@@ -98,6 +97,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     _removeColByIndex: function(index) {
         var cols = this.get('cols');
         cols.splice(index, 1);
+        cols = this._resizeCols(cols);
         this.set('cols', cols);
     },
 
@@ -115,7 +115,26 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
         if (index >= 0) {
             this._removeColByIndex(index);
         }
-    }
+    },
+
+    /**
+     * Resizes cols size.
+     *
+     * @method _resizeCols
+     * @param {Array} cols Columns to be resized.
+     * @return {Array} Columns resized.
+     * @protected
+     */
+    _resizeCols: function(cols) {
+        var length = cols.length,
+            size = ALLOWED_SIZE / length;
+
+        A.each(cols, function(col) {
+            col.set('size', size);
+        });
+
+        return cols;
+    },
 }, {
 
     /**
@@ -136,8 +155,33 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
          * @type {Array}
          */
         cols: {
-            validator: A.Lang.isArray,
-            value: []
+            setter: function(cols) {
+                var difference,
+                    size = this._getSize(cols);
+
+                difference = ALLOWED_SIZE - size;
+
+                if (difference > 0) {
+                    cols.push(new A.LayoutCol({ size: difference }));
+                }
+
+                return cols;
+            },
+            validator: function(cols) {
+                var difference,
+                    size = this._getSize(cols);
+
+                difference = ALLOWED_SIZE - size;
+
+                if (difference < 0 || size < 0 || !A.Lang.isArray(cols) || cols.length > MAXIMUM_COLS) {
+                    return false;
+                }
+
+                return true;
+            },
+            valueFn: function() {
+                return [new A.LayoutCol({ size: ALLOWED_SIZE })];
+            }
         }
     }
 });
