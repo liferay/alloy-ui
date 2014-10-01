@@ -125,6 +125,31 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             formBuilder.hideFieldsPanel();
             Y.Assert.isTrue(formBuilderModal.hasClass('modal-dialog-hidden'));
+        },
+
+        'should use new field types when attribute changes': function() {
+            this._formBuilder.showFieldsPanel();
+            this._formBuilder.registerFieldTypes([
+                {
+                    icon: 'icon1'
+                },
+                {
+                    icon: 'icon2'
+                }
+            ]);
+            this._formBuilder.set('fieldTypes', [
+                {
+                    icon: 'icon3'
+                },
+                {
+                    icon: 'icon4'
+                }
+            ]);
+
+            Y.Assert.isNull(Y.one('.icon1'));
+            Y.Assert.isNull(Y.one('.icon2'));
+            Y.Assert.isNotNull(Y.one('.icon3'));
+            Y.Assert.isNotNull(Y.one('.icon4'));
         }
     }));
 

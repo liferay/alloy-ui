@@ -22,8 +22,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     initializer: function() {
+        this._fieldTypesPanel = A.Node.create(
+            '<div class="field-types-list" role="main" />'
+        );
+
         this._modal = new A.Modal({
-            bodyContent: '<div class="field-types-list" role="main" />',
+            bodyContent: this._fieldTypesPanel,
             centered: true,
             draggable: false,
             modal: true,
@@ -32,6 +36,18 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             visible: false,
             cssClass: 'form-builder-modal'
         }).render(this.get('contentBox'));
+    },
+
+    /**
+     * Bind the events for the `A.FormBuilder` UI. Lifecycle.
+     *
+     * @method bindUI
+     * @protected
+     */
+    bindUI: function() {
+        this._eventHandles = [
+            this.after('fieldTypesChange', this._afterFieldTypesChange)
+        ];
     },
 
     /**
@@ -47,6 +63,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         });
 
         this._modal.destroy();
+
+        (new A.EventHandle(this._eventHandles)).detach();
     },
 
     /**
@@ -62,19 +80,21 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * Adds a the given field types to this form builder.
      *
      * @method registerFieldTypes
-     * @param {Array | Object | A.FormBuilderFieldType} fieldTypes This can be
+     * @param {Array | Object | A.FormBuilderFieldType} typesToAdd This can be
      *   either an array of items or a single item. Each item should be either
      *   an instance of `A.FormBuilderFieldType`, or the configuration object
      *   to be used when instantiating one.
      */
-    registerFieldTypes: function(fieldTypes) {
-        var instance = this;
+    registerFieldTypes: function(typesToAdd) {
+        var fieldTypes = this.get('fieldTypes');
 
-        fieldTypes = A.Lang.isArray(fieldTypes) ? fieldTypes : [fieldTypes];
+        typesToAdd = A.Lang.isArray(typesToAdd) ? typesToAdd : [typesToAdd];
 
-        A.Array.each(fieldTypes, function(type) {
-            instance._registerFieldType(type);
+        A.Array.each(typesToAdd, function(type) {
+            fieldTypes.push(type);
         });
+
+        this.set('fieldTypes', fieldTypes);
     },
 
     /**
@@ -90,35 +110,48 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * Removes the given field types from this form builder.
      *
      * @method unregisterFieldTypes
-     * @param {Array | String | A.FormBuilderFieldType} fieldTypes This can be
+     * @param {Array | String | A.FormBuilderFieldType} typesToRemove This can be
      *   either an array of items, or a single one. For each item, if it's a
      *   string, the form builder will remove all registered field types with
      *   a field class that matches it. For items that are instances of
      *   `A.FormBuilderFieldType`, only the same instances will be removed.
      */
-    unregisterFieldTypes: function(fieldTypes) {
+    unregisterFieldTypes: function(typesToRemove) {
         var instance = this;
 
-        fieldTypes = A.Lang.isArray(fieldTypes) ? fieldTypes : [fieldTypes];
+        typesToRemove = A.Lang.isArray(typesToRemove) ? typesToRemove : [typesToRemove];
 
-        A.Array.each(fieldTypes, function(type) {
+        A.Array.each(typesToRemove, function(type) {
             instance._unregisterFieldType(type);
         });
+
+        this.set('fieldTypes', this.get('fieldTypes'));
     },
 
     /**
-     * Removes a Field Type from fieldTypes of this Form Buider.
+     * Fired after the `fieldTypes` attribute is set.
      *
-     * @method _registerFieldType
-     * @param {Object | A.FormBuilderFieldType} field
+     * @method _afterFieldTypesChange
+     * @protected
      */
-    _registerFieldType: function(fieldType) {
-        if (!A.instanceOf(fieldType, A.FormBuilderFieldType)) {
-            fieldType = new A.FormBuilderFieldType(fieldType);
-        }
+    _afterFieldTypesChange: function() {
+        this._uiSetFieldTypes(this.get('fieldTypes'));
+    },
 
-        this.get('boundingBox').one('.field-types-list').appendChild(fieldType.get('node'));
-        this.get('fieldTypes').push(fieldType);
+    /**
+     * Updates the ui according to the value of the `fieldTypes` attribute.
+     *
+     * @method _uiSetFieldTypes
+     * @param {Array} fieldTypes
+     * @protected
+     */
+    _uiSetFieldTypes: function(fieldTypes) {
+        var instance = this;
+
+        this._fieldTypesPanel.get('children').remove();
+        A.Array.each(fieldTypes, function(type) {
+            instance._fieldTypesPanel.append(type.get('node'));
+        });
     },
 
     /**
@@ -179,6 +212,15 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
          * @type Array
          */
         fieldTypes: {
+            setter: function(val) {
+                for (var i = 0; i < val.length; i++) {
+                    if (!A.instanceOf(val[i], A.FormBuilderFieldType)) {
+                        val[i] = new A.FormBuilderFieldType(val[i]);
+                    }
+                }
+
+                return val;
+            },
             validator: A.Lang.isArray,
             value: []
         }
