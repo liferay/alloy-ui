@@ -13,6 +13,12 @@
             ]
         },
 
+        "aui-form-builder-field-text": {
+            "jsfiles": [
+                "js/aui-form-builder-field-text.js"
+            ]
+        },
+
         "aui-form-builder-field-type": {
             "jsfiles": [
                 "js/aui-form-builder-field-type.js"

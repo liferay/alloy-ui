@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1688](https://issues.liferay.com/browse/AUI-1688) Create text field
 * [AUI-1687](https://issues.liferay.com/browse/AUI-1687) Create base field class
 * [AUI-1682](https://issues.liferay.com/browse/AUI-1682) Create page break abstraction
 * [AUI-1714](https://issues.liferay.com/browse/AUI-1714) FormBuilder should update itself if `fieldTypes` attribute changes
