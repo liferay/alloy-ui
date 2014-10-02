@@ -7,6 +7,16 @@
         "skinnable": true
     },
 
+    "aui-form-builder-field-base": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-form-builder-layout-col",
+            "aui-modal",
+            "base",
+            "node-base"
+        ]
+    },
+
     "aui-form-builder-field-type": {
         "requires": [
             "base",

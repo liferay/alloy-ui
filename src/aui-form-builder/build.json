@@ -7,6 +7,12 @@
             ]
         },
 
+        "aui-form-builder-field-base": {
+            "jsfiles": [
+                "js/aui-form-builder-field-base.js"
+            ]
+        },
+
         "aui-form-builder-field-type": {
             "jsfiles": [
                 "js/aui-form-builder-field-type.js"
