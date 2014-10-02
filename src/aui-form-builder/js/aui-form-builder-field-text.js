@@ -16,14 +16,6 @@
  */
 A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderFieldBase, [], {
     /**
-     * Holds the name of this field.
-     *
-     * @property FIELD_NAME
-     * @type {String}
-     */
-    FIELD_NAME: 'Text',
-
-    /**
      * Fills the settings array with the information for this field.
      *
      * @method _fillSettings

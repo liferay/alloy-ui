@@ -5,9 +5,6 @@
  * @submodule aui-form-builder-field-base
  */
 
-var CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE =
-    A.getClassName('form', 'builder', 'field', 'settings', 'save');
-
 /**
  * A base class for Form Builder Field Base. All form builder fields should
  * extend from this.
@@ -20,49 +17,33 @@ var CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE =
  */
 A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     /**
-     * Holds the name of this field.
+     * Renders the settings panel.
      *
-     * @property FIELD_NAME
-     * @type {String}
+     * @method renderSettingsPanel
+     * @param {Node} container The container where the panel should be rendered.
      */
-    FIELD_NAME: 'Base',
+    renderSettingsPanel: function(container) {
+        var i,
+            settings = this._getSettings();
 
-    /**
-     * Destructor lifecycle implementation for the `A.FormBuilderFieldBase`
-     * class. Lifecycle.
-     *
-     * @method destructor
-     * @protected
-     */
-    destructor: function() {
-        if (this._modal) {
-            this._modal.destroy();
+        for (i = 0; i < settings.length; i++) {
+            settings[i].editor.set('originalValue', this.get(settings[i].attrName));
+            container.append(settings[i].editor.get('node'));
         }
     },
 
     /**
-     * Hides this field's settings.
+     * Saves the edited settings.
      *
-     * @method hideSettings
+     * @method saveSettings
      */
-    hideSettings: function() {
-        if (this._modal) {
-            this._modal.hide();
-        }
-    },
+    saveSettings: function() {
+        var i,
+            settings = this._getSettings();
 
-    /**
-     * Shows this field's settings and lets the user edit them.
-     *
-     * @method showSettings
-     */
-    showSettings: function() {
-        if (!this._modal) {
-            this._renderSettingsModal();
+        for (i = 0; i < settings.length; i++) {
+            this.set(settings[i].attrName, settings[i].editor.getEditedValue());
         }
-
-        this._updateSettingsPanel();
-        this._modal.show();
     },
 
     /**
@@ -92,86 +73,5 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
         }
 
         return this._settings;
-    },
-
-    /**
-     * Renders the settings modal.
-     *
-     * @method _renderSettingsModal
-     * @protected
-     */
-    _renderSettingsModal: function() {
-        this._modal = new A.Modal({
-            centered: true,
-            draggable: false,
-            headerContent: this.FIELD_NAME,
-            modal: true,
-            resizable: false,
-            zIndex: 1
-        }).render();
-
-        this._modal.addToolbar([{
-            cssClass: CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE,
-            label: 'Save',
-            on: {
-                click: A.bind(this._saveSettings, this)
-            },
-            render: true
-        }], A.WidgetStdMod.FOOTER);
-
-        this._renderSettingsPanel(this._modal.getStdModNode(A.WidgetStdMod.BODY));
-
-        this._modal.align();
-    },
-
-    /**
-     * Renders the settings panel.
-     *
-     * @method _renderSettingsPanel
-     * @param {Node} container The container where the panel should be rendered.
-     * @protected
-     */
-    _renderSettingsPanel: function(container) {
-        var i,
-            settings = this._getSettings();
-
-        for (i = 0; i < settings.length; i++) {
-            container.append(settings[i].editor.get('node'));
-        }
-    },
-
-    /**
-     * Saves the edited settings.
-     *
-     * @method _saveSettings
-     * @protected
-     */
-    _saveSettings: function() {
-        var i,
-            settings = this._getSettings();
-
-        for (i = 0; i < settings.length; i++) {
-            this.set(settings[i].attrName, settings[i].editor.getEditedValue());
-        }
-
-        this.hideSettings();
-    },
-
-    /**
-     * Updates the rendered settings panel with information (like the current
-     * value of each setting).
-     *
-     * @method _updateSettingsPanel
-     * @protected
-     */
-    _updateSettingsPanel: function() {
-        var i,
-            setting,
-            settings = this._getSettings();
-
-        for (i = 0; i < settings.length; i++) {
-            setting = settings[i];
-            setting.editor.set('originalValue', this.get(setting.attrName));
-        }
     }
 });

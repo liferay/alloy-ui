@@ -186,16 +186,15 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNotNull(Y.one('.icon4'));
         },
 
-        'should open settings editor when field type is clicked': function() {
-            var fieldTypeNode,
-                mock = new Y.Mock();
+        'should open settings editor for the clicked field type': function() {
+            var mock = new Y.Mock();
 
             Y.Mock.expect(mock, {
                 args: [Y.Mock.Value.Object],
                 callCount: 1,
                 method: 'fieldClass'
             });
-            mock.fieldClass.prototype.showSettings = function() {};
+            mock.fieldClass.prototype.renderSettingsPanel = function() {};
 
             this.createFormBuilder({
                 fieldTypes: [{
@@ -206,15 +205,77 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this._formBuilder.showFieldsPanel();
 
-            fieldTypeNode = Y.one('.field-type');
-            fieldTypeNode.simulate('click');
+            Y.one('.field-type').simulate('click');
 
             Y.Mock.verify(mock);
+        },
+
+        'should save the edited settings of the chosen new field': function() {
+            var field,
+                settingsPane;
+
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText,
+                    label: 'Text'
+                }]
+            });
+
+            this._formBuilder.showFieldsPanel();
+            Y.one('.field-type').simulate('click');
+
+            field = this._formBuilder._fieldBeingEdited;
+            Y.Assert.isNotNull(field);
+
+            settingsPane = Y.one('.form-builder-field-settings');
+            settingsPane.all('input[type="text"]').item(0).set('value', 'My Title');
+            settingsPane.all('input[type="text"]').item(1).set('value', 'My Help');
+            settingsPane.all('input[type="checkbox"]').item(0).set('checked', true);
+            settingsPane.all('input[type="checkbox"]').item(1).set('checked', true);
+
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            Y.Assert.areEqual('My Title', field.get('title'));
+            Y.Assert.areEqual('My Help', field.get('help'));
+            Y.Assert.isTrue(field.get('multiline'));
+            Y.Assert.isTrue(field.get('required'));
+        },
+
+        'should open and close the field settings editor': function() {
+            var field = new Y.FormBuilderFieldText(),
+                settingsPane;
+
+            this.createFormBuilder();
+            Y.Assert.isNull(Y.one('.form-builder-field-settings'));
+
+            this._formBuilder.showFieldSettingsPanel(field);
+            settingsPane = Y.one('.form-builder-field-settings');
+            Y.Assert.isNotNull(settingsPane);
+            Y.Assert.isFalse(settingsPane.hasClass('modal-dialog-hidden'));
+
+            this._formBuilder.hideFieldSettingsPanel(field);
+            Y.Assert.isTrue(settingsPane.hasClass('modal-dialog-hidden'));
+
+            this._formBuilder.showFieldSettingsPanel(field);
+            Y.Assert.isFalse(settingsPane.hasClass('modal-dialog-hidden'));
+        },
+
+        'should not throw error if hiding settings panel before rendered': function() {
+            this.createFormBuilder();
+
+            this._formBuilder.hideFieldSettingsPanel();
+            Y.Assert.isNull(Y.one('.form-builder-field-settings'));
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-form-builder', 'node-event-simulate', 'test']
+    requires: [
+        'aui-form-builder',
+        'aui-form-builder-field-text',
+        'node-event-simulate',
+        'test'
+    ]
 });

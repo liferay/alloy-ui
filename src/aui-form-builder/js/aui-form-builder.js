@@ -4,6 +4,10 @@
  * @module aui-form-builder
  */
 
+var CSS_FORM_BUILDER_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
+    CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE =
+        A.getClassName('form', 'builder', 'field', 'settings', 'save');
+
 /**
  * A base class for `A.FormBuilder`.
  *
@@ -42,7 +46,24 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             this._fieldTypesModal.destroy();
         }
 
+        if (this._fieldSettingsModal) {
+            this._fieldSettingsModal.destroy();
+        }
+
         (new A.EventHandle(this._eventHandles)).detach();
+    },
+
+    /**
+     * Hides the settings panel for the given field.
+     *
+     * @method hideFieldSettingsPanel
+     */
+    hideFieldSettingsPanel: function() {
+        if (this._fieldSettingsModal) {
+            this._fieldSettingsModal.hide();
+
+            this._fieldBeingEdited = null;
+        }
     },
 
     /**
@@ -82,9 +103,25 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      *
      * @method showFieldSettingsPanel
      * @param {A.FormBuilderFieldBase} field
+     * @param {String} typeName The name of the field type.
      */
-    showFieldSettingsPanel: function(field) {
-        field.showSettings();
+    showFieldSettingsPanel: function(field, typeName) {
+        var bodyNode;
+
+        if (!this._fieldSettingsModal) {
+            this._renderFieldSettingsModal();
+        }
+
+        bodyNode = this._fieldSettingsModal.getStdModNode(A.WidgetStdMod.BODY);
+        bodyNode.empty();
+        field.renderSettingsPanel(bodyNode);
+
+        this._fieldSettingsModal.setStdModContent(A.WidgetStdMod.HEADER, typeName);
+
+        this._fieldSettingsModal.show();
+        this._fieldSettingsModal.align();
+
+        this._fieldBeingEdited = field;
     },
 
     /**
@@ -170,7 +207,44 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         this.hideFieldsPanel();
 
         field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
-        this.showFieldSettingsPanel(field);
+        this.showFieldSettingsPanel(field, fieldType.get('label'));
+    },
+
+    /**
+     * Renders the field settings modal.
+     *
+     * @method _renderFieldSettingsModal
+     * @protected
+     */
+    _renderFieldSettingsModal: function() {
+        this._fieldSettingsModal = new A.Modal({
+            centered: true,
+            cssClass: CSS_FORM_BUILDER_FIELD_SETTINGS,
+            draggable: false,
+            modal: true,
+            resizable: false,
+            zIndex: 1
+        }).render();
+
+        this._fieldSettingsModal.addToolbar([{
+            cssClass: CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE,
+            label: 'Save',
+            on: {
+                click: A.bind(this._saveFieldSettings, this)
+            },
+            render: true
+        }], A.WidgetStdMod.FOOTER);
+    },
+
+    /**
+     * Saves the settings for the field currently being edited.
+     *
+     * @method _saveFieldSettings
+     * @protected
+     */
+    _saveFieldSettings: function() {
+        this._fieldBeingEdited.saveSettings();
+        this.hideFieldSettingsPanel();
     },
 
     /**

@@ -53,92 +53,64 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
         },
 
         'should throw error when using abstract class directly': function() {
-            var instance = this;
+            var instance = this,
+                container = Y.Node.create('<div></div>');
 
             this._field = new Y.FormBuilderFieldBase();
 
             Y.Assert.throwsError(Error, function() {
-                instance._field.showSettings();
+                instance._field.renderSettingsPanel(container);
             });
         },
 
-        'should not render settings modal before using it': function() {
-            this._field = new TestField();
-
-            Y.Assert.isNull(Y.one('.modal-dialog'));
-        },
-
         'should render settings modal correctly': function() {
-            var input,
-                modal;
+            var container = Y.Node.create('<div></div>'),
+                input;
 
             this._field = new TestField();
 
-            this._field.showSettings();
+            this._field.renderSettingsPanel(container);
 
-            modal = Y.one('.modal-dialog');
-            Y.Assert.isNotNull(modal);
-
-            input = modal.one('input[type="text"]');
+            input = container.one('input[type="text"]');
             Y.Assert.areEqual('Attr1', input.get('value'));
 
-            input = modal.all('input[type="text"]').item(1);
+            input = container.all('input[type="text"]').item(1);
             Y.Assert.areEqual('Attr3', input.get('value'));
 
-            input = modal.one('input[type="checkbox"]');
+            input = container.one('input[type="checkbox"]');
             Y.Assert.isTrue(input.get('checked'));
         },
 
-        'should hide settings modal correctly': function() {
-            this._field = new TestField();
-
-            this._field.showSettings();
-            this._field.hideSettings();
-
-            Y.Assert.isTrue(Y.one('.modal-dialog').hasClass('modal-dialog-hidden'));
-        },
-
-        'should not throw error when hiding settings before rendered': function() {
-            this._field = new TestField();
-
-            this._field.hideSettings();
-            Y.Assert.isNull(Y.one('.modal-dialog'));
-        },
-
         'should update settings modal correctly': function() {
-            var input,
-                modal;
+            var container = Y.Node.create('<div></div>'),
+                input;
 
             this._field = new TestField();
 
-            this._field.showSettings();
-            this._field.hideSettings();
+            this._field.renderSettingsPanel(container);
 
             this._field.set('attr1', 'Attr1New');
-            this._field.showSettings();
+            this._field.renderSettingsPanel(container);
 
-            modal = Y.one('.modal-dialog');
-            Y.Assert.isFalse(modal.hasClass('modal-dialog-hidden'));
+            Y.Assert.isFalse(container.hasClass('modal-dialog-hidden'));
 
-            input = modal.one('input[type="text"]');
+            input = container.one('input[type="text"]');
             Y.Assert.areEqual('Attr1New', input.get('value'));
         },
 
         'should save edited settings': function() {
-            var input,
-                modal;
+            var container = Y.Node.create('<div></div>'),
+                input;
 
             this._field = new TestField();
 
-            this._field.showSettings();
-            modal = Y.one('.modal-dialog');
-            input = modal.one('input[type="text"]');
+            this._field.renderSettingsPanel(container);
+            input = container.one('input[type="text"]');
             input.set('value', 'Attr1New');
 
             Y.Assert.areEqual('Attr1', this._field.get('attr1'));
 
-            modal.one('.form-builder-field-settings-save').simulate('mousemove');
-            modal.one('.form-builder-field-settings-save').simulate('click');
+            this._field.saveSettings();
             Y.Assert.areEqual('Attr1New', this._field.get('attr1'));
         }
     }));
@@ -149,7 +121,6 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
         'aui-boolean-data-editor',
         'aui-form-builder-field-base',
         'aui-text-data-editor',
-        'node-event-simulate',
         'test'
     ]
 });

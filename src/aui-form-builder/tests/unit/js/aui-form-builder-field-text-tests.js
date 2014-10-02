@@ -12,19 +12,17 @@ YUI.add('aui-form-builder-field-text-tests', function(Y) {
         },
 
         'should be able to edit settings': function() {
-            var modal;
+            var container = Y.Node.create('<div></div>');
 
             this._field = new Y.FormBuilderFieldText();
-            this._field.showSettings();
+            this._field.renderSettingsPanel(container);
 
-            modal = Y.one('.modal-dialog');
-            modal.all('input[type="text"]').item(0).set('value', 'My Title');
-            modal.all('input[type="text"]').item(1).set('value', 'My Help');
-            modal.all('input[type="checkbox"]').item(0).set('checked', true);
-            modal.all('input[type="checkbox"]').item(1).set('checked', true);
+            container.all('input[type="text"]').item(0).set('value', 'My Title');
+            container.all('input[type="text"]').item(1).set('value', 'My Help');
+            container.all('input[type="checkbox"]').item(0).set('checked', true);
+            container.all('input[type="checkbox"]').item(1).set('checked', true);
 
-            modal.one('.form-builder-field-settings-save').simulate('mousemove');
-            modal.one('.form-builder-field-settings-save').simulate('click');
+            this._field.saveSettings();
 
             Y.Assert.areEqual('My Title', this._field.get('title'));
             Y.Assert.areEqual('My Help', this._field.get('help'));
@@ -35,5 +33,5 @@ YUI.add('aui-form-builder-field-text-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['aui-form-builder-field-text', 'node-event-simulate', 'test']
+    requires: ['aui-form-builder-field-text', 'test']
 });
