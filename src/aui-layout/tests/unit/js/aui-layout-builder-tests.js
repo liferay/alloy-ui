@@ -279,7 +279,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.areEqual(this.layoutBuilder.get('layout').get('rows').length, 1);
         },
 
-        'should redraw when add a new col to a row': function() {
+        'should add a col to a row': function() {
             var col,
                 row = layout.get('rows')[1];
 
@@ -295,7 +295,21 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.areEqual(row.get('cols').length, 3);
         },
 
-        'should redraw when remove a col from a row': function() {
+        'should add a col to a row when click on add col button': function() {
+            var addColButton,
+                col = Y.one('.col-sm-6'),
+                row = col.ancestor('.row').getData('layout-row');
+
+            Assert.areEqual(row.get('cols').length, 2);
+
+            col.simulate('mouseover');
+            addColButton = col.one('.layout-add-col');
+            addColButton.simulate('click');
+
+            Assert.areEqual(row.get('cols').length, 3);
+        },
+
+        'should remove a col from a row': function() {
             var row = layout.get('rows')[1];
 
             Assert.areEqual(row.get('cols').length, 2);
@@ -305,13 +319,27 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.areEqual(row.get('cols').length, 1);
         },
 
-        'should redraw when add a new row to layout': function() {
+        'should remove a col when click on remove col button': function() {
+            var deleteColButton,
+                col = Y.one('.col-sm-3'),
+                row = col.ancestor('.row').getData('layout-row');
+
+            Assert.areEqual(row.get('cols').length, 4);
+
+            col.simulate('mouseover');
+            deleteColButton = col.one('.layout-remove-col');
+            deleteColButton.simulate('click');
+
+            Assert.areEqual(row.get('cols').length, 3);
+        },
+
+        'should add a row to layout': function() {
             Assert.areEqual(container.get('children').size(), 6);
             layout.addRow(4);
             Assert.areEqual(container.get('children').size(), 7);
         },
 
-        'should redraw when remove a row from layout': function() {
+        'should remove a row from layout': function() {
             Assert.areEqual(container.get('children').size(), 6);
             layout.removeRow(1);
             Assert.areEqual(container.get('children').size(), 5);

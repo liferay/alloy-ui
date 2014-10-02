@@ -27,7 +27,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @param {A.LayoutCol} col Col to be added.
      */
     addCol: function(index, col) {
-        var cols = this.get('cols');
+        var cols = A.clone(this.get('cols'));
 
         if (!col) {
             col = new A.LayoutCol();
@@ -95,7 +95,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _removeColByIndex: function(index) {
-        var cols = this.get('cols');
+        var cols = A.clone(this.get('cols'));
         cols.splice(index, 1);
         cols = this._resizeCols(cols);
         this.set('cols', cols);
@@ -156,24 +156,18 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
          */
         cols: {
             setter: function(cols) {
-                var difference,
-                    size = this._getSize(cols);
+                var size = this._getSize(cols);
 
-                difference = ALLOWED_SIZE - size;
-
-                if (difference > 0) {
-                    cols.push(new A.LayoutCol({ size: difference }));
+                if (size < ALLOWED_SIZE) {
+                    cols.push(new A.LayoutCol({ size: ALLOWED_SIZE - size }));
                 }
 
                 return cols;
             },
             validator: function(cols) {
-                var difference,
-                    size = this._getSize(cols);
+                var size = this._getSize(cols);
 
-                difference = ALLOWED_SIZE - size;
-
-                if (difference < 0 || size < 0 || !A.Lang.isArray(cols) || cols.length > MAXIMUM_COLS) {
+                if (size > ALLOWED_SIZE || size < 0 || !A.Lang.isArray(cols) || cols.length > MAXIMUM_COLS) {
                     return false;
                 }
 

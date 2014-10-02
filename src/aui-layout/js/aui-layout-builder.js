@@ -4,9 +4,11 @@
  * @module aui-layout-builder
  */
 
-var CSS_LAYOUT_DRAG_HANDLE = A.getClassName('layout', 'drag', 'handle'),
+var CSS_ADD_COL = A.getClassName('layout', 'add', 'col'),
+    CSS_LAYOUT_DRAG_HANDLE = A.getClassName('layout', 'drag', 'handle'),
     CSS_LAYOUT_GRID = A.getClassName('layout', 'grid'),
     CSS_LAYOUT_RESIZING = A.getClassName('layout', 'resizing'),
+    CSS_REMOVE_COL = A.getClassName('layout', 'remove', 'col'),
     MAX_NUMBER_OF_COLUMNS = 12,
     OFFSET_WIDTH = 'offsetWidth',
     SELECTOR_COL = '.col',
@@ -24,6 +26,15 @@ var CSS_LAYOUT_DRAG_HANDLE = A.getClassName('layout', 'drag', 'handle'),
  * @constructor
  */
 A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
+
+    /**
+     * Button to add a col.
+     *
+     * @property addColButton
+     * @type {Node}
+     * @protected
+     */
+    addColButton: null,
 
     /**
      * Holds the drag handle node.
@@ -44,6 +55,15 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     isDragHandleLocked: false,
 
     /**
+     * Button to remove a col.
+     *
+     * @property removeColButton
+     * @type {Node}
+     * @protected
+     */
+    removeColButton: null,
+
+    /**
      * Construction logic executed during LayoutBuilder instantiation. Lifecycle.
      *
      * @method initializer
@@ -56,12 +76,16 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         layout.draw(container);
 
         this._createDragHandle();
+        this._createHelperButtons();
+
         container.unselectable();
 
         this._eventHandles = [
             container.delegate('mousedown', A.bind(this._onMouseDownEvent, this), '.' + CSS_LAYOUT_DRAG_HANDLE),
             container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), SELECTOR_COL),
             container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL),
+            container.delegate('click', A.bind(this._onMouseClickRemoveColEvent, this), '.' + CSS_REMOVE_COL),
+            container.delegate('click', A.bind(this._onMouseClickAddColEvent, this), '.' + CSS_ADD_COL),
             this.after('layoutChange', A.bind(this._afterLayoutChange, this))
         ];
 
@@ -153,6 +177,17 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      */
     _createDragHandle: function() {
         this.dragHandle = A.Node.create('<span>').addClass(CSS_LAYOUT_DRAG_HANDLE);
+    },
+
+    /**
+     * Creates remove col button.
+     *
+     * @method _createHelperButtons
+     * @protected
+     */
+    _createHelperButtons: function() {
+        this.addColButton = A.Node.create('<span>').addClass(CSS_ADD_COL + ' glyphicon glyphicon-plus');
+        this.removeColButton = A.Node.create('<span>').addClass(CSS_REMOVE_COL + ' glyphicon glyphicon-remove');
     },
 
     /**
@@ -337,6 +372,32 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
+     * Fires after click on add col button.
+     *
+     * @method _onMouseClickAddColEvent
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onMouseClickAddColEvent: function(event) {
+        var row = event.target.ancestor(SELECTOR_ROW).getData('layout-row');
+        row.addCol(0);
+    },
+
+    /**
+     * Fires after click on delete col button.
+     *
+     * @method _onMouseClickRemoveColEvent
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onMouseClickRemoveColEvent: function(event) {
+        var col = event.target.ancestor(),
+            row = col.ancestor().getData('layout-row');
+
+        row.removeCol(col.getData('layout-col'));
+    },
+
+    /**
      * Fired on `mousedown`. Inserts the drag grid and listens to the next
      * `mouseup` event.
      *
@@ -372,6 +433,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     _onMouseEnterEvent: function(event) {
         var col = event.target;
 
+        col.append(this.removeColButton);
+        col.append(this.addColButton);
+
         if (!this.isDragHandleLocked && col.next()) {
             col.append(this.dragHandle);
         }
@@ -387,6 +451,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         if (!this.isDragHandleLocked) {
             this.dragHandle.remove();
         }
+
+        this.removeColButton.remove();
+        this.addColButton.remove();
     },
 
     /**
