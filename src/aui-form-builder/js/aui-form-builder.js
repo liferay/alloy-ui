@@ -38,8 +38,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             field.destroy();
         });
 
-        if (this._modal) {
-            this._modal.destroy();
+        if (this._fieldTypesModal) {
+            this._fieldTypesModal.destroy();
         }
 
         (new A.EventHandle(this._eventHandles)).detach();
@@ -51,8 +51,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @method hideFieldsPanel
      */
     hideFieldsPanel: function() {
-        if (this._modal) {
-            this._modal.hide();
+        if (this._fieldTypesModal) {
+            this._fieldTypesModal.hide();
         }
     },
 
@@ -78,6 +78,16 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     },
 
     /**
+     * Shows the settings panel for the given field.
+     *
+     * @method showFieldSettingsPanel
+     * @param {A.FormBuilderFieldBase} field
+     */
+    showFieldSettingsPanel: function(field) {
+        field.showSettings();
+    },
+
+    /**
      * Shows the fields modal.
      *
      * @method showFieldsPanel
@@ -88,7 +98,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
                 '<div class="field-types-list" role="main" />'
             );
 
-            this._modal = new A.Modal({
+            this._fieldTypesModal = new A.Modal({
                 bodyContent: this._fieldTypesPanel,
                 centered: true,
                 draggable: false,
@@ -100,9 +110,18 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             }).render();
 
             this._uiSetFieldTypes(this.get('fieldTypes'));
+
+            this._eventHandles.push(
+                this._fieldTypesPanel.delegate(
+                    'click',
+                    this._onClickFieldType,
+                    '.field-type',
+                    this
+                )
+            );
         }
 
-        this._modal.show();
+        this._fieldTypesModal.show();
     },
 
     /**
@@ -138,6 +157,23 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     },
 
     /**
+     * Fired when a field type is clicked.
+     *
+     * @method _onClickFieldType
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickFieldType: function(event) {
+        var field,
+            fieldType = event.currentTarget.getData('fieldType');
+
+        this.hideFieldsPanel();
+
+        field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
+        this.showFieldSettingsPanel(field);
+    },
+
+    /**
      * Updates the ui according to the value of the `fieldTypes` attribute.
      *
      * @method _uiSetFieldTypes
@@ -167,7 +203,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     _unregisterFieldType: function(fieldType) {
         var fieldTypes = this.get('fieldTypes');
 
-        if (A.Lang.isString(fieldType)) {
+        if (A.Lang.isFunction(fieldType)) {
             for (var i = fieldTypes.length - 1; i >= 0; i--) {
                 if (fieldTypes[i].get('fieldClass') === fieldType) {
                     this._unregisterFieldTypeByIndex(i);

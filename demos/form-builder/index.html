@@ -12,7 +12,7 @@
     }
     </style>
 </head>
-<body>
+<body class="yui3-skin-sam">
 <div id="wrapper">
     <h1>FormBuilder Demo</h1>
 
@@ -20,13 +20,15 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-YUI({ filter:'raw' }).use('aui-form-builder', function(Y) {
+YUI({ filter:'raw' }).use('aui-form-builder', 'aui-form-builder-field-text', function(Y) {
 
-    formBuilder = new Y.FormBuilder(
-        {
-            boundingBox: '#formBuilder'
-        }
-    ).render();
+    formBuilder = new Y.FormBuilder({
+        fieldTypes: [{
+            fieldClass: Y.FormBuilderFieldText,
+            icon:'glyphicon glyphicon-font',
+            label: 'Text'
+        }]
+    }).render('#formBuilder');
 
     formBuilder.registerFieldTypes(
         [

@@ -120,6 +120,8 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
         }], A.WidgetStdMod.FOOTER);
 
         this._renderSettingsPanel(this._modal.getStdModNode(A.WidgetStdMod.BODY));
+
+        this._modal.align();
     },
 
     /**

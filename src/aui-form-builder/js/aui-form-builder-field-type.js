@@ -32,6 +32,7 @@ A.FormBuilderFieldType = A.Base.create('form-builder-field-type', A.Base, [], {
                 label: this.get('label')
             })
         );
+        this.get('node').setData('fieldType', this);
 
         this._uiSetDisabled(this.get('disabled'));
 
@@ -139,13 +140,13 @@ A.FormBuilderFieldType = A.Base.create('form-builder-field-type', A.Base, [], {
         },
 
         /**
-         * The name of the js class to be used when instantiating this field.
+         * The js class constructor to be used when instantiating this field.
          *
          * @attribute fieldClass
-         * @type {String}
+         * @type {Function}
          */
         fieldClass: {
-            validator: A.Lang.isString
+            validator: A.Lang.isFunction
         },
 
         /**
