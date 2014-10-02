@@ -5,6 +5,9 @@
  * @submodule aui-form-builder-field-base
  */
 
+var CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE =
+    A.getClassName('form', 'builder', 'field', 'settings', 'save');
+
 /**
  * A base class for Form Builder Field Base. All form builder fields should
  * extend from this.
@@ -55,16 +58,7 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
      */
     showSettings: function() {
         if (!this._modal) {
-            this._modal = new A.Modal({
-                centered: true,
-                draggable: false,
-                headerContent: this.FIELD_NAME,
-                modal: true,
-                resizable: false,
-                zIndex: 1
-            }).render();
-
-            this._renderSettingsPanel(this._modal.getStdModNode(A.WidgetStdMod.BODY));
+            this._renderSettingsModal();
         }
 
         this._updateSettingsPanel();
@@ -101,6 +95,34 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
+     * Renders the settings modal.
+     *
+     * @method _renderSettingsModal
+     * @protected
+     */
+    _renderSettingsModal: function() {
+        this._modal = new A.Modal({
+            centered: true,
+            draggable: false,
+            headerContent: this.FIELD_NAME,
+            modal: true,
+            resizable: false,
+            zIndex: 1
+        }).render();
+
+        this._modal.addToolbar([{
+            cssClass: CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE,
+            label: 'Save',
+            on: {
+                click: A.bind(this._saveSettings, this)
+            },
+            render: true
+        }], A.WidgetStdMod.FOOTER);
+
+        this._renderSettingsPanel(this._modal.getStdModNode(A.WidgetStdMod.BODY));
+    },
+
+    /**
      * Renders the settings panel.
      *
      * @method _renderSettingsPanel
@@ -114,6 +136,23 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
         for (i = 0; i < settings.length; i++) {
             container.append(settings[i].editor.get('node'));
         }
+    },
+
+    /**
+     * Saves the edited settings.
+     *
+     * @method _saveSettings
+     * @protected
+     */
+    _saveSettings: function() {
+        var i,
+            settings = this._getSettings();
+
+        for (i = 0; i < settings.length; i++) {
+            this.set(settings[i].attrName, settings[i].editor.getEditedValue());
+        }
+
+        this.hideSettings();
     },
 
     /**

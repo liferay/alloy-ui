@@ -122,6 +122,24 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             input = modal.one('input[type="text"]');
             Y.Assert.areEqual('Attr1New', input.get('value'));
+        },
+
+        'should save edited settings': function() {
+            var input,
+                modal;
+
+            this._field = new TestField();
+
+            this._field.showSettings();
+            modal = Y.one('.modal-dialog');
+            input = modal.one('input[type="text"]');
+            input.set('value', 'Attr1New');
+
+            Y.Assert.areEqual('Attr1', this._field.get('attr1'));
+
+            modal.one('.form-builder-field-settings-save').simulate('mousemove');
+            modal.one('.form-builder-field-settings-save').simulate('click');
+            Y.Assert.areEqual('Attr1New', this._field.get('attr1'));
         }
     }));
 
@@ -131,6 +149,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
         'aui-boolean-data-editor',
         'aui-form-builder-field-base',
         'aui-text-data-editor',
+        'node-event-simulate',
         'test'
     ]
 });
