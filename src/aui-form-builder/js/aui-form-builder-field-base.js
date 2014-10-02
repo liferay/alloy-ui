@@ -15,7 +15,7 @@
  *     properties.
  * @constructor
  */
-A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
+A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.FormBuilderLayoutCol, [], {
     /**
      * Renders the settings panel.
      *
