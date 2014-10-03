@@ -39,19 +39,54 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     initializer: function() {
-        var container = this.get('container');
-
         this._addColButton = A.Node.create('<span>').addClass(CSS_ADD_COL + ' glyphicon glyphicon-plus');
 
         this._eventHandles.push(
-            container.delegate('mouseenter', A.bind(this._onMouseEnterAddColEvent, this), SELECTOR_COL),
-            container.delegate('mouseleave', A.bind(this._onMouseLeaveAddColEvent, this), SELECTOR_COL),
-            container.delegate('click', A.bind(this._onMouseClickAddColEvent, this), '.' + CSS_ADD_COL)
+            this.after('enableAddColsChange', this._afterEnableAddColsChange)
         );
+
+        this._uiSetEnableAddCols(this.get('enableAddCols'));
     },
 
     /**
-     * Fires on `click` event for the add column button.
+     * Destructor implementation for the `A.LayoutBuilderAddCol` class. Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        this._unbindAddColEvents();
+    },
+
+    /**
+     * Fired after the `enableAddCols` attribute changes.
+     *
+     * @method _afterEnableAddColsChange
+     * @protected
+     */
+    _afterEnableAddColsChange: function() {
+        this._uiSetEnableAddCols(this.get('enableAddCols'));
+    },
+
+    /**
+     * Binds the necessary events for the functionality of adding columns to the
+     * layout.
+     *
+     * @method _bindAddColEvents
+     * @protected
+     */
+    _bindAddColEvents: function() {
+        var container = this.get('container');
+
+        this._addColsEventHandles = [
+            container.delegate('mouseenter', A.bind(this._onMouseEnterAddColEvent, this), SELECTOR_COL),
+            container.delegate('mouseleave', A.bind(this._onMouseLeaveAddColEvent, this), SELECTOR_COL),
+            container.delegate('click', A.bind(this._onMouseClickAddColEvent, this), '.' + CSS_ADD_COL)
+        ];
+    },
+
+    /**
+     * Fired on `click` event for the add column button.
      *
      * @method _onMouseClickAddColEvent
      * @param {EventFacade} event
@@ -89,5 +124,58 @@ A.LayoutBuilderAddCol.prototype = {
      */
     _onMouseLeaveAddColEvent: function() {
         this._addColButton.remove();
+    },
+
+    /**
+     * Updates the UI according to the value of the `enableAddCols` attribute.
+     *
+     * @method _uiSetEnableAddCols
+     * @param {Boolean} enableAddCols
+     * @protected
+     */
+    _uiSetEnableAddCols: function(enableAddCols) {
+        if (enableAddCols) {
+            this._bindAddColEvents();
+        }
+        else {
+            this._unbindAddColEvents();
+            this._addColButton.remove();
+        }
+    },
+
+    /**
+     * Unbinds the events related to the functionality of adding columns to the
+     * layout.
+     *
+     * @method _unbindAddColEvents
+     * @protected
+     */
+    _unbindAddColEvents: function() {
+        if (this._addColsEventHandles) {
+            (new A.EventHandle(this._addColsEventHandles)).detach();
+        }
+    }
+};
+
+/**
+ * Static property used to define the default attribute configuration for the
+ * `A.LayoutBuilderAddCol`.
+ *
+ * @property ATTRS
+ * @type {Object}
+ * @static
+ */
+A.LayoutBuilderAddCol.ATTRS = {
+    /**
+     * Flag indicating if the feature of adding columns to the layout is
+     * enabled or not.
+     *
+     * @attribute enableAddCols
+     * @default true
+     * @type {Boolean}
+     */
+    enableAddCols: {
+        validator: A.Lang.isBoolean,
+        value: true
     }
 };

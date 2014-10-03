@@ -11,7 +11,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             }
         },
 
-        _createLayoutBuilder: function() {
+        _createLayoutBuilder: function(config) {
             var layout = new Y.Layout({
                 rows: [
                     new Y.LayoutRow({
@@ -48,10 +48,10 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
                     })
                 ]
             });
-            this._layoutBuilder = new Y.LayoutBuilder({
+            this._layoutBuilder = new Y.LayoutBuilder(Y.merge({
                 container: Y.one('.container'),
                 layout: layout
-            });
+            }, config));
         },
 
         'should add a col to a row when click on add col button': function() {
@@ -79,6 +79,47 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             col.simulate('mouseover');
 
             Y.Assert.isNull(col.one('.layout-add-col'));
+        },
+
+        'should not add col if enableAddCol is false': function() {
+            var addColButton,
+                col;
+
+            this._createLayoutBuilder({
+                enableAddCols: false
+            });
+
+            col = Y.one('.col-sm-6');
+            col.simulate('mouseover');
+
+            addColButton = col.one('.layout-add-col');
+            Y.Assert.isNull(addColButton);
+        },
+
+        'should enable/disable adding columns dynamically': function() {
+            var addColButton,
+                col,
+                layout;
+
+            this._createLayoutBuilder();
+
+            col = Y.one('.col-sm-6');
+
+            this._layoutBuilder.set('enableAddCols', false);
+
+            col.simulate('mouseover');
+            addColButton = col.one('.layout-add-col');
+            Y.Assert.isNull(addColButton);
+
+            this._layoutBuilder.set('enableAddCols', true);
+
+            col.simulate('mouseover');
+            addColButton = col.one('.layout-add-col');
+            Y.Assert.isNotNull(addColButton);
+
+            addColButton.simulate('click');
+            layout = this._layoutBuilder.get('layout');
+            Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 3);
         }
     }));
 
