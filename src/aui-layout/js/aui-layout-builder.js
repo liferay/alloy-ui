@@ -131,7 +131,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * Fires after cols changes.
      *
      * @method _afterLayoutColsChange
-     * @param {EventFacade} event
      * @protected
      */
     _afterLayoutColsChange: function() {
@@ -460,6 +459,10 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * Moves drag handle.
      *
      * @method _onMouseMove
+     * @param {EventFacade} event
+     * @param {Number} clientX
+     * @param {Number} leftAvailableSpace
+     * @param {Number} rightAvailableSpace
      * @protected
      */
     _onMouseMove: function(event, clientX, leftAvailableSpace, rightAvailableSpace) {
