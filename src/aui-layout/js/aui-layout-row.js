@@ -110,7 +110,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      */
     _removeColByReference: function(col) {
         var cols = this.get('cols'),
-            index = cols.indexOf(col);
+            index = A.Array.indexOf(cols, col);
 
         if (index >= 0) {
             this._removeColByIndex(index);

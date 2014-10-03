@@ -125,7 +125,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
         var index,
             rows = this.get('rows');
 
-        index = rows.indexOf(row);
+        index = A.Array.indexOf(rows, row);
 
         if (index >= 0) {
             this._removeRowByIndex(index);

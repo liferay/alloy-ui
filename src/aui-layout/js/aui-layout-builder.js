@@ -348,7 +348,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
 
         totalSize += size;
 
-        return breakpoints.indexOf(totalSize) >= 0;
+        return A.Array.indexOf(breakpoints, totalSize) >= 0;
     },
 
     /**
