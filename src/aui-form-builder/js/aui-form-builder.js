@@ -18,6 +18,33 @@ var CSS_FORM_BUILDER_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field',
  * @constructor
  */
 A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
+
+    TEMPLATE_FIELD_LIST: '<div class="field-list" ></div>',
+
+    TEMPLATE_BUTTON_ADD_NEW_LINE: '<button id="add-new-line" class="btn-default btn" type="span">' +
+                                  '<span class="glyphicon glyphicon-th-list"></span>' +
+                                  'Add New Line' +
+                                  '</button>',
+
+    TEMPLATE_EMPTY_LAYOUT: '<div class="empty-layout">You don\'t have any question yet.<br>' +
+                            'First for all let\'s create a new line?</div>',
+
+    /**
+     * Construction logic executed during the `FormBuilder`
+     * instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        var contentBox = this.get('contentBox');
+
+        contentBox.append(this.TEMPLATE_FIELD_LIST);
+        contentBox.append(this.TEMPLATE_BUTTON_ADD_NEW_LINE);
+
+        this.get('layout').addTarget(this);
+    },
+
     /**
      * Bind the events for the `A.FormBuilder` UI. Lifecycle.
      *
@@ -26,7 +53,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      */
     bindUI: function() {
         this._eventHandles = [
-            this.after('fieldTypesChange', this._afterFieldTypesChange)
+            this.after('fieldTypesChange', this._afterFieldTypesChange),
+            this.after('layout:rowsChange', this.syncUI),
+            this.get('contentBox').one('#add-new-line').on('click', this.addRow, this)
         ];
     },
 
@@ -51,6 +80,38 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         }
 
         (new A.EventHandle(this._eventHandles)).detach();
+    },
+
+    /**
+     * Syncs the UI. Lifecycle.
+     *
+     * @method syncUI
+     * @protected
+     */
+    syncUI: function() {
+        var contentBox = this.get('contentBox'),
+            emptyLayout = contentBox.one('.empty-layout');
+
+        this.get('layout').draw(contentBox.one('.field-list'));
+
+        if(emptyLayout) {
+            emptyLayout.remove(true);
+        }
+
+        if (!contentBox.one('.col') || !contentBox.one('.col').getDOMNode().textContent) {
+            contentBox.appendChild(this.TEMPLATE_EMPTY_LAYOUT);
+        }
+    },
+
+    /**
+     * Adds a new row to `layout`.
+     *
+     * @method addRow
+     * @param {Number} index Position to insert the new row.
+     * @param {Node} row A brand new row.
+     */
+    addRow: function () {
+        this.get('layout').addRow();
     },
 
     /**
@@ -336,6 +397,17 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             },
             validator: A.Lang.isArray,
             value: []
+        },
+
+        /**
+         * The collection of field types.
+         *
+         * @attribute fields
+         * @default []
+         * @type Array
+         */
+        layout: {
+            value: new A.Layout()
         }
     }
 });

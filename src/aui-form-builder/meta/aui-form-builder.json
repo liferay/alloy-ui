@@ -2,6 +2,7 @@
     "aui-form-builder": {
         "requires": [
             "aui-modal",
+            "aui-layout",
             "aui-form-builder-field-type"
         ],
         "skinnable": true

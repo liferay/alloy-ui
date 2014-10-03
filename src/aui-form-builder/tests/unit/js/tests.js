@@ -186,6 +186,14 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNotNull(Y.one('.icon4'));
         },
 
+        'should add a row on layout from form': function() {
+            var formBuilder = this.createFormBuilder();
+
+            Y.Assert.isNull(Y.one('#container').one('.row'));
+            formBuilder.addRow(new Y.LayoutCol());
+            Y.Assert.isNotNull(Y.one('#container').one('.row'));
+        },
+
         'should open settings editor for the clicked field type': function() {
             var mock = new Y.Mock();
 

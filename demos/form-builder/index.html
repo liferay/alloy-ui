@@ -10,6 +10,18 @@
     #wrapper {
         margin: 10px 20px;
     }
+    .col {
+        background-color: #ddd;
+        border: 1px solid #ccc;
+        height: 62px;
+    }
+    .container {
+        width: 80%;
+        margin-left: 10px;
+    }
+    .row {
+        margin-bottom: 15px;
+    }
     </style>
 </head>
 <body class="yui3-skin-sam">
@@ -21,13 +33,42 @@
 
 <script type="text/javascript" charset="utf-8">
 YUI({ filter:'raw' }).use('aui-form-builder', 'aui-form-builder-field-text', function(Y) {
+    var Content = Y.Base.create('content', Y.Base, [], {}, {
+            ATTRS: {
+                content: {
+                    value: 'foo'
+                }
+            }
+        });
 
-    formBuilder = new Y.FormBuilder({
+        var layout = new Y.Layout({
+            rows: [
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            size: 4,
+                            value: new Content({ content: '4' })
+                        }),
+                        new Y.LayoutCol({
+                            size: 4,
+                            value: new Content({ content: '4' })
+                        }),
+                        new Y.LayoutCol({
+                            size: 4,
+                            value: new Content({ content: '4' })
+                        })
+                    ]
+                })
+            ]
+        });
+
+    var formBuilder = new Y.FormBuilder({
         fieldTypes: [{
             fieldClass: Y.FormBuilderFieldText,
             icon:'glyphicon glyphicon-font',
             label: 'Text'
-        }]
+        }],
+        layout: layout
     }).render('#formBuilder');
 
     formBuilder.registerFieldTypes(
