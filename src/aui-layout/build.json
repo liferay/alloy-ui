@@ -13,6 +13,12 @@
             ]
         },
 
+        "aui-layout-builder-add-col": {
+            "jsfiles": [
+                "js/aui-layout-builder-add-col.js"
+            ]
+        },
+
         "aui-layout-col": {
             "jsfiles": [
                 "js/aui-layout-col.js"

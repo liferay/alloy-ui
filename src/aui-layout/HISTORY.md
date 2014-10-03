@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1718](https://issues.liferay.com/browse/AUI-1718) Should be able to enable/disable each feature of LayoutBuilder
 * [AUI-1705](https://issues.liferay.com/browse/AUI-1705) Buttons to add and remove columns
 * [AUI-1703](https://issues.liferay.com/browse/AUI-1703) New Layouts should enforce row sizes to equal 12
 * [AUI-1702](https://issues.liferay.com/browse/AUI-1702) LayoutBuilder should receive array of breakpoints

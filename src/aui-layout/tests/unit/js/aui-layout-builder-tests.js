@@ -295,20 +295,6 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.areEqual(row.get('cols').length, 3);
         },
 
-        'should add a col to a row when click on add col button': function() {
-            var addColButton,
-                col = Y.one('.col-sm-6'),
-                row = col.ancestor('.row').getData('layout-row');
-
-            Assert.areEqual(row.get('cols').length, 2);
-
-            col.simulate('mouseover');
-            addColButton = col.one('.layout-add-col');
-            addColButton.simulate('click');
-
-            Assert.areEqual(row.get('cols').length, 3);
-        },
-
         'should remove a col from a row': function() {
             var row = layout.get('rows')[1];
 
@@ -375,14 +361,6 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             col.simulate('mouseover');
 
             Assert.isNull(col.one(DRAG_HANDLE_CLASS));
-        },
-
-        'should not append addCol button if row alreay has the maximum number of cols': function() {
-            var col = Y.one('.col-sm-3');
-
-            col.simulate('mouseover');
-
-            Assert.isNull(col.one('.layout-add-col'));
         }
     }));
 

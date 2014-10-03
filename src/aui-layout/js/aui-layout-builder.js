@@ -4,8 +4,7 @@
  * @module aui-layout-builder
  */
 
-var CSS_ADD_COL = A.getClassName('layout', 'add', 'col'),
-    CSS_LAYOUT_DRAG_HANDLE = A.getClassName('layout', 'drag', 'handle'),
+var CSS_LAYOUT_DRAG_HANDLE = A.getClassName('layout', 'drag', 'handle'),
     CSS_LAYOUT_GRID = A.getClassName('layout', 'grid'),
     CSS_LAYOUT_RESIZING = A.getClassName('layout', 'resizing'),
     CSS_REMOVE_COL = A.getClassName('layout', 'remove', 'col'),
@@ -22,20 +21,14 @@ var CSS_ADD_COL = A.getClassName('layout', 'add', 'col'),
  *
  * @class A.LayoutBuilder
  * @extends Base
+ * @uses A.LayoutBuilderAddCol
  * @param {Object} config Object literal specifying layout builder configuration
  *     properties.
  * @constructor
  */
-A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
-
-    /**
-     * Button to add a col.
-     *
-     * @property addColButton
-     * @type {Node}
-     * @protected
-     */
-    addColButton: null,
+A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
+    A.LayoutBuilderAddCol
+], {
 
     /**
      * Holds the drag handle node.
@@ -86,7 +79,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
             container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), SELECTOR_COL),
             container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL),
             container.delegate('click', A.bind(this._onMouseClickRemoveColEvent, this), '.' + CSS_REMOVE_COL),
-            container.delegate('click', A.bind(this._onMouseClickAddColEvent, this), '.' + CSS_ADD_COL),
             this.after('layoutChange', A.bind(this._afterLayoutChange, this))
         ];
 
@@ -105,6 +97,8 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     destructor: function() {
         (new A.EventHandle(this._eventHandles)).detach();
         (new A.EventHandle(this._layoutEventHandles)).detach();
+
+        this.get('container').empty();
     },
 
     /**
@@ -186,7 +180,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _createHelperButtons: function() {
-        this.addColButton = A.Node.create('<span>').addClass(CSS_ADD_COL + ' glyphicon glyphicon-plus');
         this.removeColButton = A.Node.create('<span>').addClass(CSS_REMOVE_COL + ' glyphicon glyphicon-remove');
     },
 
@@ -372,18 +365,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     },
 
     /**
-     * Fires after click on add col button.
-     *
-     * @method _onMouseClickAddColEvent
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onMouseClickAddColEvent: function(event) {
-        var row = event.target.ancestor(SELECTOR_ROW).getData('layout-row');
-        row.addCol(0);
-    },
-
-    /**
      * Fires after click on delete col button.
      *
      * @method _onMouseClickRemoveColEvent
@@ -440,8 +421,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         col.append(this.removeColButton);
 
         if (numberOfCols < MAX_NUMBER_OF_COLUMNS) {
-            col.append(this.addColButton);
-
             if (!this.isDragHandleLocked && col.next()) {
                 col.append(this.dragHandle);
             }
@@ -460,7 +439,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
         }
 
         this.removeColButton.remove();
-        this.addColButton.remove();
     },
 
     /**

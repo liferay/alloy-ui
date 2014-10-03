@@ -1,8 +1,17 @@
 {
+    "aui-layout": {
+        "requires": [
+            "aui-layout-col",
+            "aui-layout-row",
+            "aui-node-base",
+            "base-build"
+        ]
+    },
     "aui-layout-builder": {
         "requires": [
             "aui-classnamemanager",
             "aui-layout",
+            "aui-layout-builder-add-col",
             "aui-node-base",
             "base-build",
             "event-mouseenter",
@@ -12,12 +21,9 @@
         ],
         "skinnable": true
     },
-    "aui-layout": {
+    "aui-layout-builder-add-col": {
         "requires": [
-            "aui-layout-col",
-            "aui-layout-row",
-            "aui-node-base",
-            "base-build"
+            "node-base"
         ]
     },
     "aui-layout-col": {
