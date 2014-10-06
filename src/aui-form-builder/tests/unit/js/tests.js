@@ -18,6 +18,45 @@ YUI.add('aui-form-builder-tests', function(Y) {
             return this._formBuilder;
         },
 
+        'should show message if layout is empty': function() {
+            this.createFormBuilder();
+
+            Y.Assert.areEqual('block', Y.one('.form-builder-empty-layout').getStyle('display'));
+        },
+
+        'should not show message if layout is not empty': function() {
+            this.createFormBuilder({
+                layout: new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow()
+                    ]
+                })
+            });
+
+            Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
+        },
+
+        'should hide empty layout message when layout gains rows': function() {
+            var formBuilder = this.createFormBuilder();
+
+            formBuilder.get('contentBox').one('.form-builder-add-row').simulate('click');
+            Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
+        },
+
+        'should udpate empty layout message when layout changes': function() {
+            var formBuilder = this.createFormBuilder();
+
+            formBuilder.set('layout', new Y.Layout({
+                rows: [
+                    new Y.LayoutRow()
+                ]
+            }))
+            Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
+
+            formBuilder.set('layout', new Y.Layout())
+            Y.Assert.areEqual('block', Y.one('.form-builder-empty-layout').getStyle('display'));
+        },
+
         'should not render field types before necessary': function() {
             this.createFormBuilder();
 
@@ -189,8 +228,9 @@ YUI.add('aui-form-builder-tests', function(Y) {
         'should add a row on layout from form': function() {
             var formBuilder = this.createFormBuilder();
 
-            Y.Assert.isNull(Y.one('#container').one('.row'));
-            formBuilder.addRow(new Y.LayoutCol());
+            Y.Assert.isNull(formBuilder.get('contentBox').one('.row'));
+
+            formBuilder.get('contentBox').one('.form-builder-add-row').simulate('click');
             Y.Assert.isNotNull(Y.one('#container').one('.row'));
         },
 

@@ -59,6 +59,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     bindUI: function() {
         this._eventHandles = [
             this.after('fieldTypesChange', this._afterFieldTypesChange),
+            this.after('layoutChange', this.syncUI),
             this.after('layout:rowsChange', this.syncUI),
             this.get('contentBox').one('.' + CSS_FORM_BUILDER_ADD_ROW).on('click', this._onClickAddRow, this)
         ];
@@ -412,7 +413,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             validator: function(val) {
                 return A.instanceOf(val, A.Layout);
             },
-            value: new A.Layout()
+            valueFn: function() {
+                return new A.Layout();
+            }
         }
     }
 });
