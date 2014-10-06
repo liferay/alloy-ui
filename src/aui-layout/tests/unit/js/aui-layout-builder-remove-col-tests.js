@@ -48,6 +48,47 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
 
             layout = this._layoutBuilder.get('layout');
             Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 1);
+        },
+
+        'should not remove col if enableRemoveCol is false': function() {
+            var col,
+                deleteColButton;
+
+            this._createLayoutBuilder({
+                enableRemoveCols: false
+            });
+
+            col = Y.one('.col-sm-6');
+            col.simulate('mouseover');
+
+            deleteColButton = col.one('.layout-remove-col');
+            Y.Assert.isNull(deleteColButton);
+        },
+
+        'should enable/disable removing columns dynamically': function() {
+            var col,
+                deleteColButton,
+                layout;
+
+            this._createLayoutBuilder();
+
+            col = Y.one('.col-sm-6');
+
+            this._layoutBuilder.set('enableRemoveCols', false);
+
+            col.simulate('mouseover');
+            deleteColButton = col.one('.layout-remove-col');
+            Y.Assert.isNull(deleteColButton);
+
+            this._layoutBuilder.set('enableRemoveCols', true);
+
+            col.simulate('mouseover');
+            deleteColButton = col.one('.layout-remove-col');
+            Y.Assert.isNotNull(deleteColButton);
+
+            deleteColButton.simulate('click');
+            layout = this._layoutBuilder.get('layout');
+            Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 1);
         }
     }));
 

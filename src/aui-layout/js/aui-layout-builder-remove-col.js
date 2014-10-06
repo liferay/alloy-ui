@@ -36,15 +36,50 @@ A.LayoutBuilderRemoveCol.prototype = {
      * @protected
      */
     initializer: function() {
-        var container = this.get('container');
-
         this._removeColButton = A.Node.create('<span>').addClass(CSS_REMOVE_COL + ' glyphicon glyphicon-remove');
 
         this._eventHandles.push(
+            this.after('enableRemoveColsChange', this._afterEnableRemoveColsChange)
+        );
+
+        this._uiSetEnableRemoveCols(this.get('enableRemoveCols'));
+    },
+
+    /**
+     * Destructor implementation for the `A.LayoutBuilderRemoveCol` class. Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        this._unbindRemoveColEvents();
+    },
+
+    /**
+     * Fired after the `enableRemoveCols` attribute changes.
+     *
+     * @method _afterEnableRemoveColsChange
+     * @protected
+     */
+    _afterEnableRemoveColsChange: function() {
+        this._uiSetEnableRemoveCols(this.get('enableRemoveCols'));
+    },
+
+    /**
+     * Binds the necessary events for the functionality of removing columns from
+     * the layout.
+     *
+     * @method _bindRemoveColEvents
+     * @protected
+     */
+    _bindRemoveColEvents: function() {
+        var container = this.get('container');
+
+        this._removeColsEventHandles = [
             container.delegate('mouseenter', A.bind(this._onMouseEnterRemoveColEvent, this), SELECTOR_COL),
             container.delegate('mouseleave', A.bind(this._onMouseLeaveRemoveColEvent, this), SELECTOR_COL),
             container.delegate('click', A.bind(this._onMouseClickRemoveColEvent, this), '.' + CSS_REMOVE_COL)
-        );
+        ];
     },
 
     /**
@@ -80,5 +115,58 @@ A.LayoutBuilderRemoveCol.prototype = {
      */
     _onMouseLeaveRemoveColEvent: function() {
         this._removeColButton.remove();
+    },
+
+    /**
+     * Updates the UI according to the value of the `enableRemoveCols` attribute.
+     *
+     * @method _uiSetEnableRemoveCols
+     * @param {Boolean} enableRemoveCols
+     * @protected
+     */
+    _uiSetEnableRemoveCols: function(enableRemoveCols) {
+        if (enableRemoveCols) {
+            this._bindRemoveColEvents();
+        }
+        else {
+            this._unbindRemoveColEvents();
+            this._removeColButton.remove();
+        }
+    },
+
+    /**
+     * Unbinds the events related to the functionality of removing columns from
+     * the layout.
+     *
+     * @method _unbindRemoveColEvents
+     * @protected
+     */
+    _unbindRemoveColEvents: function() {
+        if (this._removeColsEventHandles) {
+            (new A.EventHandle(this._removeColsEventHandles)).detach();
+        }
+    }
+};
+
+/**
+ * Static property used to define the default attribute configuration for the
+ * `A.LayoutBuilderRemoveCol`.
+ *
+ * @property ATTRS
+ * @type {Object}
+ * @static
+ */
+A.LayoutBuilderRemoveCol.ATTRS = {
+    /**
+     * Flag indicating if the feature of removing columns from the layout is
+     * enabled or not.
+     *
+     * @attribute enableRemoveCols
+     * @default true
+     * @type {Boolean}
+     */
+    enableRemoveCols: {
+        validator: A.Lang.isBoolean,
+        value: true
     }
 };
