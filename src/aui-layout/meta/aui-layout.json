@@ -13,9 +13,9 @@
             "aui-layout",
             "aui-layout-builder-add-col",
             "aui-layout-builder-remove-col",
+            "aui-layout-builder-resize-col",
             "aui-node-base",
             "base-build",
-            "event-mouseenter",
             "node-event-delegate",
             "node-screen",
             "node-style"
@@ -29,6 +29,12 @@
     },
     "aui-layout-builder-remove-col": {
         "requires": [
+            "node-base"
+        ]
+    },
+    "aui-layout-builder-resize-col": {
+        "requires": [
+            "event-mouseenter",
             "node-base"
         ]
     },
