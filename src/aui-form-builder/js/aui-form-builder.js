@@ -42,7 +42,10 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         var contentBox = this.get('contentBox');
 
         contentBox.append(this.TPL_FIELD_LIST);
+        contentBox.append(this.TPL_EMPTY_LAYOUT);
         contentBox.append(this.TPL_BUTTON_ADD_NEW_LINE);
+
+        this._emptyLayoutMsg = contentBox.one('.' + CSS_FORM_BUILDER_EMPTY_LAYOUT);
 
         this.get('layout').addTarget(this);
     },
@@ -97,12 +100,10 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
 
         this.get('layout').draw(contentBox.one('.' + CSS_FORM_BUILDER_FIELD_LIST));
 
-        if (emptyLayout) {
-            emptyLayout.remove(true);
-        }
-
         if (layout.get('rows').length === 0) {
-            contentBox.appendChild(this.TPL_EMPTY_LAYOUT);
+            this._emptyLayoutMsg.show();
+        } else {
+            this._emptyLayoutMsg.hide();
         }
     },
 
