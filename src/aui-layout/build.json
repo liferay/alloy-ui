@@ -19,6 +19,12 @@
             ]
         },
 
+        "aui-layout-builder-remove-col": {
+            "jsfiles": [
+                "js/aui-layout-builder-remove-col.js"
+            ]
+        },
+
         "aui-layout-col": {
             "jsfiles": [
                 "js/aui-layout-col.js"

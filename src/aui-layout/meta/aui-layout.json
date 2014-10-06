@@ -12,6 +12,7 @@
             "aui-classnamemanager",
             "aui-layout",
             "aui-layout-builder-add-col",
+            "aui-layout-builder-remove-col",
             "aui-node-base",
             "base-build",
             "event-mouseenter",
@@ -22,6 +23,11 @@
         "skinnable": true
     },
     "aui-layout-builder-add-col": {
+        "requires": [
+            "node-base"
+        ]
+    },
+    "aui-layout-builder-remove-col": {
         "requires": [
             "node-base"
         ]

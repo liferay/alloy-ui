@@ -305,20 +305,6 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.areEqual(row.get('cols').length, 1);
         },
 
-        'should remove a col when click on remove col button': function() {
-            var deleteColButton,
-                col = Y.one('.col-sm-3'),
-                row = col.ancestor('.row').getData('layout-row');
-
-            Assert.areEqual(row.get('cols').length, 4);
-
-            col.simulate('mouseover');
-            deleteColButton = col.one('.layout-remove-col');
-            deleteColButton.simulate('click');
-
-            Assert.areEqual(row.get('cols').length, 3);
-        },
-
         'should add a row to layout': function() {
             Assert.areEqual(container.get('children').size(), 6);
             layout.addRow(4);
