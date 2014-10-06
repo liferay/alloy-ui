@@ -271,6 +271,20 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             col.simulate('mouseover');
 
             Assert.isNull(col.one(DRAG_HANDLE_CLASS));
+        },
+
+        'should not be able to resize col if enableResizeCols is false': function() {
+            var node = container.one('.col-sm-8');
+
+            this.layoutBuilder.set('enableResizeCols', false);
+
+            node.simulate('mouseover');
+            Assert.isNull(node.one(DRAG_HANDLE_CLASS));
+
+            this.layoutBuilder.set('enableResizeCols', true);
+
+            node.simulate('mouseover');
+            Assert.isNotNull(node.one(DRAG_HANDLE_CLASS));
         }
     }));
 

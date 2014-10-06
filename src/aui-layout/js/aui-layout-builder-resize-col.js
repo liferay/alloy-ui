@@ -52,15 +52,34 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     initializer: function() {
-        var container = this.get('container');
-
         this._createDragHandle();
 
         this._eventHandles.push(
-            container.delegate('mousedown', A.bind(this._onMouseDownEvent, this), '.' + CSS_LAYOUT_DRAG_HANDLE),
-            container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), SELECTOR_COL),
-            container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL)
+            this.after('enableResizeColsChange', this._afterEnableResizeColsChange)
         );
+
+        this._uiSetEnableResizeCols(this.get('enableResizeCols'));
+    },
+
+    /**
+     * Destructor implementation for the `A.LayoutBuilderResizeCol` class.
+     * Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        this._unbindResizeColEvents();
+    },
+
+    /**
+     * Fired after the `enableResizeCols` attribute changes.
+     *
+     * @method _afterEnableResizeColsChange
+     * @protected
+     */
+    _afterEnableResizeColsChange: function() {
+        this._uiSetEnableResizeCols(this.get('enableResizeCols'));
     },
 
     /**
@@ -75,6 +94,23 @@ A.LayoutBuilderResizeCol.prototype = {
         var nextCol = col.next().getData('layout-col');
 
         return nextCol.get('size') - nextCol.get('minSize');
+    },
+
+    /**
+     * Binds the necessary events for the functionality of resizing layout
+     * columns.
+     *
+     * @method _bindResizeColEvents
+     * @protected
+     */
+    _bindResizeColEvents: function() {
+        var container = this.get('container');
+
+        this._resizeColsEventHandles = [
+            container.delegate('mousedown', A.bind(this._onMouseDownEvent, this), '.' + CSS_LAYOUT_DRAG_HANDLE),
+            container.delegate('mouseenter', A.bind(this._onMouseEnterEvent, this), SELECTOR_COL),
+            container.delegate('mouseleave', A.bind(this._onMouseLeaveEvent, this), SELECTOR_COL)
+        ];
     },
 
     /**
@@ -426,6 +462,36 @@ A.LayoutBuilderResizeCol.prototype = {
         }
 
         return width;
+    },
+
+    /**
+     * Updates the UI according to the value of the `enableResizeCols` attribute.
+     *
+     * @method _uiSetEnableResizeCols
+     * @param {Boolean} enableResizeCols
+     * @protected
+     */
+    _uiSetEnableResizeCols: function(enableResizeCols) {
+        if (enableResizeCols) {
+            this._bindResizeColEvents();
+        }
+        else {
+            this._unbindResizeColEvents();
+            this.dragHandle.remove();
+        }
+    },
+
+    /**
+     * Unbinds the events related to the functionality of resizing layout
+     * columns.
+     *
+     * @method _unbindResizeColEvents
+     * @protected
+     */
+    _unbindResizeColEvents: function() {
+        if (this._resizeColsEventHandles) {
+            (new A.EventHandle(this._resizeColsEventHandles)).detach();
+        }
     }
 };
 
@@ -447,5 +513,18 @@ A.LayoutBuilderResizeCol.ATTRS = {
     breakpoints: {
         validator: A.Lang.isArray,
         value: [3, 4, 6, 8, 9]
+    },
+
+    /**
+     * Flag indicating if the feature of resizing layout columns is enabled or
+     * not.
+     *
+     * @attribute enableResizeCols
+     * @default true
+     * @type {Boolean}
+     */
+    enableResizeCols: {
+        validator: A.Lang.isBoolean,
+        value: true
     }
 };
