@@ -31,7 +31,10 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
 
         col.setData('layout-col', this);
         col.addClass(BOOTSTRAP_CLASS_PREFIX + size);
-        col.append(value.content || value.get('content'));
+
+        if (value) {
+            col.append(value.content || value.get('content'));
+        }
 
         return col;
     }
@@ -98,11 +101,12 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
          * column's content.
          *
          * @attribute value
+         * @default null
          * @type {Object}
          */
         value: {
             validator: A.Lang.isObject,
-            value: { content: 'Content' }
+            value: null
         }
     }
 });

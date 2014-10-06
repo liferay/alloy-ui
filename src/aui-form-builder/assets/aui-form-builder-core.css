@@ -14,3 +14,33 @@
 .form-builder-modal-content {
     border-radius: 0px;
 }
+
+.form-builder-field-list .layout-row .col {
+    border: 2px solid #ccc;
+    border-left: none;
+    min-height: 200px;
+    padding: 0;
+}
+
+.form-builder-field-list .layout-row .col:first-child {
+    border-left: 2px solid #ccc;
+    padding-left: 15px;
+}
+
+.form-builder-field-list .layout-row .col:last-child {
+    padding-right: 15px;
+}
+
+.form-builder-empty-col {
+    cursor: pointer;
+    text-align: center;
+    margin-top: 65px;
+}
+
+.form-builder-empty-col .form-builder-empty-col-icon {
+    font-size: 40px;
+}
+
+.form-builder-empty-col .form-builder-empty-col-label {
+    font-size: 15px;
+}

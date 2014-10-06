@@ -314,6 +314,173 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this._formBuilder.hideFieldSettingsPanel();
             Y.Assert.isNull(Y.one('.form-builder-field-settings'));
+        },
+
+        'should fill initial empty columns with content': function() {
+            this.createFormBuilder({
+                layout: new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 4
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: {content: 'Something'}
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4
+                                })
+                            ]
+                        })
+                    ]
+                })
+            });
+
+            Y.Assert.areEqual(
+                2,
+                Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
+            );
+        },
+
+        'should fill empty columns for new rows': function() {
+            this.createFormBuilder({
+                layout: new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 4
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: {content: 'Something'}
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4
+                                })
+                            ]
+                        })
+                    ]
+                })
+            });
+
+            this._formBuilder.get('layout').addRow(0, new Y.LayoutRow({
+                cols: [
+                    new Y.LayoutCol({
+                        size: 6
+                    }),
+                    new Y.LayoutCol({
+                        size: 6,
+                        value: {content: 'Something'}
+                    })
+                ]
+            }));
+
+            Y.Assert.areEqual(
+                3,
+                Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
+            );
+        },
+
+        'should fill empty columns for new cols': function() {
+            this.createFormBuilder({
+                layout: new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 4
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: {content: 'Something'}
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4
+                                })
+                            ]
+                        })
+                    ]
+                })
+            });
+
+            this._formBuilder.get('layout').get('rows')[0].set('cols', [
+                new Y.LayoutCol({
+                    size: 6
+                }),
+                new Y.LayoutCol({
+                    size: 6,
+                    value: {content: 'Something'}
+                })
+            ]);
+
+            Y.Assert.areEqual(
+                1,
+                Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
+            );
+        },
+
+        'should fill empty columns for new layouts': function() {
+            this.createFormBuilder({
+                layout: new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 4
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: {content: 'Something'}
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4
+                                })
+                            ]
+                        })
+                    ]
+                })
+            });
+
+            this._formBuilder.set('layout', new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 6
+                            }),
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: {content: 'Something'}
+                            })
+                        ]
+                    })
+                ]
+            }));
+
+            Y.Assert.areEqual(
+                1,
+                Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
+            );
+
+            this._formBuilder.get('layout').addRow(0, new Y.LayoutRow({
+                cols: [
+                    new Y.LayoutCol({
+                        size: 6
+                    }),
+                    new Y.LayoutCol({
+                        size: 6,
+                        value: {content: 'Something'}
+                    })
+                ]
+            }));
+
+            Y.Assert.areEqual(
+                2,
+                Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
+            );
         }
     }));
 

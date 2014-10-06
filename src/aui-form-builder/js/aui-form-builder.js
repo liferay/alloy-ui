@@ -4,7 +4,10 @@
  * @module aui-form-builder
  */
 
-var CSS_FORM_BUILDER_ADD_ROW = A.getClassName('form', 'builder', 'add', 'row'),
+var CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
+    CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
+    CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
+    CSS_FORM_BUILDER_ADD_ROW = A.getClassName('form', 'builder', 'add', 'row'),
     CSS_FORM_BUILDER_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
     CSS_FORM_BUILDER_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FORM_BUILDER_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
@@ -26,13 +29,17 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         '<span class="glyphicon glyphicon-th-list"></span>' +
         'Add New Line' +
         '</button>',
+    TPL_EMPTY_COL: '<div class="' + CSS_EMPTY_COL + '">' +
+        '<span class="glyphicon glyphicon-plus ' + CSS_EMPTY_COL_ICON + '"></span>' +
+        '<div class="' + CSS_EMPTY_COL_LABEL + '">Add Field</div>' +
+        '</div>',
     TPL_EMPTY_LAYOUT: '<div class="' + CSS_FORM_BUILDER_EMPTY_LAYOUT + '">' +
         '<div>You don\'t have any question yet.</div>' +
         '<div>First for all let\'s create a new line?</div></div>',
     TPL_FIELD_LIST: '<div class="' + CSS_FORM_BUILDER_FIELD_LIST + '" ></div>',
 
     /**
-     * Construction logic executed during the `FormBuilder`
+     * Construction logic executed during the `A.FormBuilder`
      * instantiation. Lifecycle.
      *
      * @method initializer
@@ -51,6 +58,16 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     },
 
     /**
+     * Create the DOM structure for the `A.FormBuilder`. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
+        this._renderEmptyColumns();
+    },
+
+    /**
      * Bind the events for the `A.FormBuilder` UI. Lifecycle.
      *
      * @method bindUI
@@ -59,8 +76,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     bindUI: function() {
         this._eventHandles = [
             this.after('fieldTypesChange', this._afterFieldTypesChange),
-            this.after('layoutChange', this.syncUI),
-            this.after('layout:rowsChange', this.syncUI),
+            this.after('layoutChange', this._afterLayoutChange),
+            this.after('layout:rowsChange', this._afterLayoutRowsChange),
+            this.after('layout-row:colsChange', this._afterLayoutColsChange),
             this.get('contentBox').one('.' + CSS_FORM_BUILDER_ADD_ROW).on('click', this._onClickAddRow, this)
         ];
     },
@@ -95,17 +113,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     syncUI: function() {
-        var contentBox = this.get('contentBox'),
-            emptyLayout = contentBox.one('.' + CSS_FORM_BUILDER_EMPTY_LAYOUT),
-            layout = this.get('layout');
-
-        this.get('layout').draw(contentBox.one('.' + CSS_FORM_BUILDER_FIELD_LIST));
-
-        if (layout.get('rows').length === 0) {
-            this._emptyLayoutMsg.show();
-        } else {
-            this._emptyLayoutMsg.hide();
-        }
+        this._syncLayoutRows();
     },
 
     /**
@@ -249,6 +257,44 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     },
 
     /**
+     * Fired after the `layout` attribute is set.
+     *
+     * @method _afterLayoutChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterLayoutChange: function(event) {
+        this._syncLayoutRows();
+
+        event.prevVal.removeTarget(this);
+        event.newVal.addTarget(this);
+    },
+
+    /**
+     * Fired after the `layout:layout-row:colsChange` event is triggered.
+     *
+     * @method _afterLayoutColsChange
+     * @protected
+     */
+    _afterLayoutColsChange: function() {
+        this._renderEmptyColumns();
+
+        this.get('layout').draw(
+            this.get('contentBox').one('.' + CSS_FORM_BUILDER_FIELD_LIST)
+        );
+    },
+
+    /**
+     * Fired after the `layout:rowsChange` event is triggered.
+     *
+     * @method _afterLayoutRowsChange
+     * @protected
+     */
+    _afterLayoutRowsChange: function() {
+        this._syncLayoutRows();
+    },
+
+    /**
      * Adds a new row to `layout`.
      *
      * @method _onClickAddRow
@@ -273,6 +319,25 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
 
         field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
         this.showFieldSettingsPanel(field, fieldType.get('label'));
+    },
+
+    /**
+     * Renders some content inside the empty columns of the current layout.
+     *
+     * @method _renderEmptyColumns
+     * @protected
+     */
+    _renderEmptyColumns: function() {
+        var instance = this,
+            rows = this.get('layout').get('rows');
+
+        A.Array.each(rows, function(row) {
+            A.Array.each(row.get('cols'), function(col) {
+                if (!col.get('value')) {
+                    col.set('value', {content: instance.TPL_EMPTY_COL});
+                }
+            });
+        });
     },
 
     /**
@@ -310,6 +375,27 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     _saveFieldSettings: function() {
         this._fieldBeingEdited.saveSettings();
         this.hideFieldSettingsPanel();
+    },
+
+    /**
+     * Syncs the UI according to changes in the layout's rows.
+     *
+     * @method _syncLayoutRows
+     * @protected
+     */
+    _syncLayoutRows: function() {
+        var contentBox = this.get('contentBox'),
+            layout = this.get('layout');
+
+        this._renderEmptyColumns();
+
+        layout.draw(contentBox.one('.' + CSS_FORM_BUILDER_FIELD_LIST));
+
+        if (layout.get('rows').length === 0) {
+            this._emptyLayoutMsg.show();
+        } else {
+            this._emptyLayoutMsg.hide();
+        }
     },
 
     /**

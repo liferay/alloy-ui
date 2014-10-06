@@ -6,23 +6,6 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
-    <style>
-    #wrapper {
-        margin: 10px 20px;
-    }
-    .col {
-        background-color: #ddd;
-        border: 1px solid #ccc;
-        height: 62px;
-    }
-    .container {
-        width: 80%;
-        margin-left: 10px;
-    }
-    .row {
-        margin-bottom: 15px;
-    }
-    </style>
 </head>
 <body class="yui3-skin-sam">
 <div id="wrapper">
@@ -46,16 +29,13 @@ YUI({ filter:'raw' }).use('aui-form-builder', 'aui-form-builder-field-text', fun
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            size: 4,
-                            value: new Content({ content: '4' })
+                            size: 4
                         }),
                         new Y.LayoutCol({
-                            size: 4,
-                            value: new Content({ content: '4' })
+                            size: 4
                         }),
                         new Y.LayoutCol({
-                            size: 4,
-                            value: new Content({ content: '4' })
+                            size: 4
                         })
                     ]
                 })
