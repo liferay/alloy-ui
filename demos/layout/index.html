@@ -38,39 +38,25 @@
             }
         });
 
-        var col = new Y.LayoutCol({
-                    size: 8,
-                    value: new Content({ content: '8' })
-                });
-
         var layout = new Y.Layout({
             rows: [
                 new Y.LayoutRow({
                     cols: [
-                        col,
                         new Y.LayoutCol({
-                            size: 4,
-                            value: { content: '4' }
-                        })
-                    ]
-                }),
-                new Y.LayoutRow({
-                    cols: [
+                            value: new Content({ content: '3' }),
+                            size: 3
+                        }),
                         new Y.LayoutCol({
-                            size: 3,
-                            value: { content: '3' }
+                            value: new Content({ content: '3' }),
+                            size: 3
+                        }),
+                        new Y.LayoutCol({
+                            value: new Content({ content: '3' }),
+                            size: 3
                         }),
                         new Y.LayoutCol({
                             size: 3,
-                            value: { content: '3' }
-                        }),
-                        new Y.LayoutCol({
-                            size: 3,
-                            value: { content: '3' }
-                        }),
-                        new Y.LayoutCol({
-                            size: 3,
-                            value: { content: '3' }
+                            value: new Content({ content: '3' })
                         })
                     ]
                 }),
@@ -89,16 +75,56 @@
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            size: 4,
-                            value: new Content({ content: '4' })
+                            size: 9,
+                            value: new Content({ content: '9' })
+                        }),
+                        new Y.LayoutCol({
+                            size: 3,
+                            value: new Content({ content: '3' })
+                        })
+                    ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            size: 8,
+                            value: new Content({ content: '8' })
                         }),
                         new Y.LayoutCol({
                             size: 4,
                             value: new Content({ content: '4' })
+                        })
+                    ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            value: new Content({ content: '4' }),
+                            size: 4
                         }),
                         new Y.LayoutCol({
-                            size: 4,
-                            value: new Content({ content: '4' })
+                            value: new Content({ content: '4' }),
+                            size: 4
+                        }),
+                        new Y.LayoutCol({
+                            value: new Content({ content: '4' }),
+                            size: 4
+                        })
+                    ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            value: new Content({ content: '3' }),
+                            size: 3
+                        }),
+                        new Y.LayoutCol({
+                            value: new Content({ content: '3' }),
+                            size: 3
+                        }),
+                        new Y.LayoutCol({
+                            value: new Content({ content: '6' }),
+                            size: 6
                         })
                     ]
                 })

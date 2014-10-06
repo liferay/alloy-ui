@@ -9,7 +9,8 @@ var CSS_ADD_COL = A.getClassName('layout', 'add', 'col'),
     CSS_LAYOUT_GRID = A.getClassName('layout', 'grid'),
     CSS_LAYOUT_RESIZING = A.getClassName('layout', 'resizing'),
     CSS_REMOVE_COL = A.getClassName('layout', 'remove', 'col'),
-    MAX_NUMBER_OF_COLUMNS = 12,
+    MAX_NUMBER_OF_COLUMNS = 4,
+    MAX_SIZE = 12,
     OFFSET_WIDTH = 'offsetWidth',
     SELECTOR_COL = '.col',
     SELECTOR_ROW = '.row';
@@ -199,7 +200,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _decreaseCol: function(target, dragDifference) {
-        var colWidth = this.get('container').get(OFFSET_WIDTH) / MAX_NUMBER_OF_COLUMNS,
+        var colWidth = this.get('container').get(OFFSET_WIDTH) / MAX_SIZE,
             col = target.getData('layout-col'),
             currentSize = col.get('size'),
             minSize = col.get('minSize'),
@@ -273,7 +274,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      */
     _increaseCol: function(col, dragDifference) {
         var availableSpaceToMove = this._availableSpaceToMove(col),
-            colWidth = this.get('container').get(OFFSET_WIDTH) / MAX_NUMBER_OF_COLUMNS,
+            colWidth = this.get('container').get(OFFSET_WIDTH) / MAX_SIZE,
             currentSize = this._getColSize(col),
             difference,
             nextSize;
@@ -318,7 +319,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
     _insertGrid: function(row) {
         var breakpoints = this.get('breakpoints'),
             gridLine,
-            gridWidth = row.get(OFFSET_WIDTH) / MAX_NUMBER_OF_COLUMNS;
+            gridWidth = row.get(OFFSET_WIDTH) / MAX_SIZE;
 
         A.each(breakpoints, function(point) {
             gridLine = A.Node.create('<div>').addClass(CSS_LAYOUT_GRID);
@@ -430,13 +431,20 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [], {
      * @protected
      */
     _onMouseEnterEvent: function(event) {
-        var col = event.target;
+        var col = event.target,
+            numberOfCols,
+            row = col.ancestor(SELECTOR_ROW).getData('layout-row');
+
+        numberOfCols = row.get('cols').length;
 
         col.append(this.removeColButton);
-        col.append(this.addColButton);
 
-        if (!this.isDragHandleLocked && col.next()) {
-            col.append(this.dragHandle);
+        if (numberOfCols < MAX_NUMBER_OF_COLUMNS) {
+            col.append(this.addColButton);
+
+            if (!this.isDragHandleLocked && col.next()) {
+                col.append(this.dragHandle);
+            }
         }
     },
 

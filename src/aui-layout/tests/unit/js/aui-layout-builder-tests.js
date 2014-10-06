@@ -207,7 +207,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             var firstNode,
                 nodes = container.all('.col-sm-3');
 
-            firstNode = nodes.first();
+            firstNode = nodes.last();
 
             Assert.areEqual(7, nodes.size());
 
@@ -367,6 +367,22 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             rowsSize = this.layoutBuilder.get('layout').get('rows').length;
 
             Assert.areEqual(rowsSize, 2);
+        },
+
+        'should not append dragHandle if row alreay has the maximum number of cols': function() {
+            var col = Y.one('.col-sm-3');
+
+            col.simulate('mouseover');
+
+            Assert.isNull(col.one(DRAG_HANDLE_CLASS));
+        },
+
+        'should not append addCol button if row alreay has the maximum number of cols': function() {
+            var col = Y.one('.col-sm-3');
+
+            col.simulate('mouseover');
+
+            Assert.isNull(col.one('.layout-add-col'));
         }
     }));
 
