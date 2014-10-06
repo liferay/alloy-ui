@@ -4,9 +4,13 @@
  * @module aui-form-builder
  */
 
-var CSS_FORM_BUILDER_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
+var CSS_FORM_BUILDER_ADD_ROW = A.getClassName('form', 'builder', 'add', 'row'),
+    CSS_FORM_BUILDER_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
+    CSS_FORM_BUILDER_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
+    CSS_FORM_BUILDER_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE =
-        A.getClassName('form', 'builder', 'field', 'settings', 'save');
+        A.getClassName('form', 'builder', 'field', 'settings', 'save'),
+    CSS_FORM_BUILDER_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list');
 
 /**
  * A base class for `A.FormBuilder`.
@@ -18,16 +22,14 @@ var CSS_FORM_BUILDER_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field',
  * @constructor
  */
 A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
-
-    TEMPLATE_FIELD_LIST: '<div class="field-list" ></div>',
-
-    TEMPLATE_BUTTON_ADD_NEW_LINE: '<button id="add-new-line" class="btn-default btn" type="span">' +
-                                  '<span class="glyphicon glyphicon-th-list"></span>' +
-                                  'Add New Line' +
-                                  '</button>',
-
-    TEMPLATE_EMPTY_LAYOUT: '<div class="empty-layout">You don\'t have any question yet.<br>' +
-                            'First for all let\'s create a new line?</div>',
+    TPL_BUTTON_ADD_NEW_LINE: '<button class="btn-default btn ' + CSS_FORM_BUILDER_ADD_ROW + '" type="span">' +
+        '<span class="glyphicon glyphicon-th-list"></span>' +
+        'Add New Line' +
+        '</button>',
+    TPL_EMPTY_LAYOUT: '<div class="' + CSS_FORM_BUILDER_EMPTY_LAYOUT + '">' +
+        '<div>You don\'t have any question yet.</div>' +
+        '<div>First for all let\'s create a new line?</div></div>',
+    TPL_FIELD_LIST: '<div class="' + CSS_FORM_BUILDER_FIELD_LIST + '" ></div>',
 
     /**
      * Construction logic executed during the `FormBuilder`
@@ -39,8 +41,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     initializer: function() {
         var contentBox = this.get('contentBox');
 
-        contentBox.append(this.TEMPLATE_FIELD_LIST);
-        contentBox.append(this.TEMPLATE_BUTTON_ADD_NEW_LINE);
+        contentBox.append(this.TPL_FIELD_LIST);
+        contentBox.append(this.TPL_BUTTON_ADD_NEW_LINE);
 
         this.get('layout').addTarget(this);
     },
@@ -55,7 +57,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         this._eventHandles = [
             this.after('fieldTypesChange', this._afterFieldTypesChange),
             this.after('layout:rowsChange', this.syncUI),
-            this.get('contentBox').one('#add-new-line').on('click', this.addRow, this)
+            this.get('contentBox').one('.' + CSS_FORM_BUILDER_ADD_ROW).on('click', this._onClickAddRow, this)
         ];
     },
 
@@ -90,28 +92,18 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      */
     syncUI: function() {
         var contentBox = this.get('contentBox'),
-            emptyLayout = contentBox.one('.empty-layout');
+            emptyLayout = contentBox.one('.' + CSS_FORM_BUILDER_EMPTY_LAYOUT),
+            layout = this.get('layout');
 
-        this.get('layout').draw(contentBox.one('.field-list'));
+        this.get('layout').draw(contentBox.one('.' + CSS_FORM_BUILDER_FIELD_LIST));
 
-        if(emptyLayout) {
+        if (emptyLayout) {
             emptyLayout.remove(true);
         }
 
-        if (!contentBox.one('.col') || !contentBox.one('.col').getDOMNode().textContent) {
-            contentBox.appendChild(this.TEMPLATE_EMPTY_LAYOUT);
+        if (layout.get('rows').length === 0) {
+            contentBox.appendChild(this.TPL_EMPTY_LAYOUT);
         }
-    },
-
-    /**
-     * Adds a new row to `layout`.
-     *
-     * @method addRow
-     * @param {Number} index Position to insert the new row.
-     * @param {Node} row A brand new row.
-     */
-    addRow: function () {
-        this.get('layout').addRow();
     },
 
     /**
@@ -193,7 +185,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     showFieldsPanel: function() {
         if (!this._fieldTypesPanel) {
             this._fieldTypesPanel = A.Node.create(
-                '<div class="field-types-list" role="main" />'
+                '<div class="' + CSS_FORM_BUILDER_FIELD_TYPES_LIST + '" role="main" />'
             );
 
             this._fieldTypesModal = new A.Modal({
@@ -252,6 +244,16 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      */
     _afterFieldTypesChange: function() {
         this._uiSetFieldTypes(this.get('fieldTypes'));
+    },
+
+    /**
+     * Adds a new row to `layout`.
+     *
+     * @method _onClickAddRow
+     * @protected
+     */
+    _onClickAddRow: function () {
+        this.get('layout').addRow();
     },
 
     /**
@@ -381,7 +383,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
          * The collection of field types that can be selected as fields for
          * this form builder.
          *
-         * @attribute fields
+         * @attribute fieldTypes
          * @default []
          * @type Array
          */
@@ -400,13 +402,15 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         },
 
         /**
-         * The collection of field types.
+         * The layout where the form fields will be rendered.
          *
-         * @attribute fields
-         * @default []
-         * @type Array
+         * @attribute layout
+         * @type A.Layout
          */
         layout: {
+            validator: function(val) {
+                return A.instanceOf(val, A.Layout);
+            },
             value: new A.Layout()
         }
     }
