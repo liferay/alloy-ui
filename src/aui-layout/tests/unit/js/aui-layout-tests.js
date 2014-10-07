@@ -97,7 +97,7 @@ YUI.add('aui-layout-tests', function(Y) {
 
             this.layout.draw(container);
 
-            Assert.areEqual(4, container.get('children').size());
+            Assert.areEqual(4, container.all('.row').size());
         },
 
         'should add a row': function() {
@@ -105,12 +105,12 @@ YUI.add('aui-layout-tests', function(Y) {
 
             this.layout.draw(container);
 
-            Assert.areEqual(4, container.get('children').size());
+            Assert.areEqual(4, container.all('.row').size());
 
             this.layout.addRow(1);
             this.layout.draw(container);
 
-            Assert.areEqual(5, container.get('children').size());
+            Assert.areEqual(5, container.all('.row').size());
         },
 
         'should add a row passing a row object as parameter': function() {
@@ -126,12 +126,12 @@ YUI.add('aui-layout-tests', function(Y) {
 
             this.layout.draw(container);
 
-            Assert.areEqual(4, container.get('children').size());
+            Assert.areEqual(4, container.all('.row').size());
 
             this.layout.addRow(1, row);
             this.layout.draw(container);
 
-            Assert.areEqual(5, container.get('children').size());
+            Assert.areEqual(5, container.all('.row').size());
         },
 
         'should remove a row by index': function() {
@@ -139,12 +139,12 @@ YUI.add('aui-layout-tests', function(Y) {
 
             this.layout.draw(container);
 
-            Assert.areEqual(4, container.get('children').size());
+            Assert.areEqual(4, container.all('.row').size());
 
             this.layout.removeRow(1);
             this.layout.draw(container);
 
-            Assert.areEqual(3, container.get('children').size());
+            Assert.areEqual(3, container.all('.row').size());
         },
 
         'should remove a row by reference': function() {
@@ -152,12 +152,12 @@ YUI.add('aui-layout-tests', function(Y) {
 
             this.layout.draw(container);
 
-            Assert.areEqual(4, container.get('children').size());
+            Assert.areEqual(4, container.all('.row').size());
 
             this.layout.removeRow(row);
             this.layout.draw(container);
 
-            Assert.areEqual(3, container.get('children').size());
+            Assert.areEqual(3, container.all('.row').size());
         },
 
         'should not remove a row that is not in layout': function() {
@@ -173,12 +173,12 @@ YUI.add('aui-layout-tests', function(Y) {
 
             this.layout.draw(container);
 
-            Assert.areEqual(4, container.get('children').size());
+            Assert.areEqual(4, container.all('.row').size());
 
             this.layout.removeRow(row);
             this.layout.draw(container);
 
-            Assert.areEqual(4, container.get('children').size());
+            Assert.areEqual(4, container.all('.row').size());
         },
 
         'should not remove a row if nor an index nor a valid row is passed': function() {
@@ -186,12 +186,12 @@ YUI.add('aui-layout-tests', function(Y) {
 
             this.layout.draw(container);
 
-            Assert.areEqual(4, container.get('children').size());
+            Assert.areEqual(4, container.all('.row').size());
 
             this.layout.removeRow();
             this.layout.draw(container);
 
-            Assert.areEqual(4, container.get('children').size());
+            Assert.areEqual(4, container.all('.row').size());
         },
 
         'should remove rows\' target when remove it from layout': function() {

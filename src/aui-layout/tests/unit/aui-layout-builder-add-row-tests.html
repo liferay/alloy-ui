@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <title>aui-layout-builder</title>
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-layout-builder-add-row-tests.js"></script>
+    <meta charset="utf-8" />
+    <style>
+    .col {
+        background-color: rgba(86,61,124,.15);
+        border: 1px solid rgba(86,61,124,.2);
+        height: 62px;
+    }
+    .container {
+        width: 1500px;
+        margin-left: 10px;
+    }
+    .row {
+        margin-bottom: 15px;
+    }
+    .last-row {
+        margin-bottom: 0px;
+    }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+
+<div class="container">
+</div>
+
+<div id="logger"></div>
+
+<script>
+YUI({
+    coverage: ['aui-layout-builder-add-row'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-layout-builder-add-row-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-layout-builder-add-row');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

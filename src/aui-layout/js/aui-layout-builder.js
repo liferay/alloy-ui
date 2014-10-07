@@ -4,6 +4,8 @@
  * @module aui-layout-builder
  */
 
+var TEMPLATE_LAYOUT_CONTAINER = '<div class="layout-container"></div>';
+
 /**
  * A base class for Layout Builder.
  *
@@ -18,9 +20,19 @@
  */
 A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     A.LayoutBuilderAddCol,
+    A.LayoutBuilderAddRow,
     A.LayoutBuilderRemoveCol,
     A.LayoutBuilderResizeCol
 ], {
+
+    /**
+     * Determines if dragHandle is locked.
+     *
+     * @property isDragHandleLocked
+     * @type {Boolean}
+     * @protected
+     */
+    layoutContainer: null,
 
     /**
      * Construction logic executed during LayoutBuilder instantiation. Lifecycle.
@@ -32,9 +44,11 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
         var container = this.get('container'),
             layout = this.get('layout');
 
-        layout.draw(container);
+        this._createLayoutContainer(container);
 
-        container.unselectable();
+        layout.draw(this.layoutContainer);
+
+        this.layoutContainer.unselectable();
 
         this._eventHandles = [
             this.after('layoutChange', A.bind(this._afterLayoutChange, this))
@@ -67,8 +81,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
      * @protected
      */
     _afterLayoutChange: function(event) {
-        var container = this.get('container'),
-            newLayout = event.newVal;
+        var newLayout = event.newVal;
 
         (new A.EventHandle(this._layoutEventHandles)).detach();
 
@@ -77,7 +90,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
             newLayout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this)),
         ];
 
-        newLayout.draw(container);
+        newLayout.draw(this.layoutContainer);
     },
 
     /**
@@ -87,10 +100,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
      * @protected
      */
     _afterLayoutColsChange: function() {
-        var container = this.get('container'),
-            layout = this.get('layout');
+        var layout = this.get('layout');
 
-        layout.draw(container);
+        layout.draw(this.layoutContainer);
     },
 
     /**
@@ -101,10 +113,21 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
      * @protected
      */
     _afterLayoutRowsChange: function() {
-        var container = this.get('container'),
-            layout = this.get('layout');
+        var layout = this.get('layout');
 
-        layout.draw(container);
+        layout.draw(this.layoutContainer);
+    },
+
+    /**
+     * Create layout container node.
+     *
+     * @method _createLayoutContainer
+     * @param {Node} container Node that will be appended the layoutContainer node.
+     * @protected
+     */
+    _createLayoutContainer: function(container) {
+        this.layoutContainer = A.Node.create(TEMPLATE_LAYOUT_CONTAINER);
+        container.append(this.layoutContainer);
     }
 }, {
     /**

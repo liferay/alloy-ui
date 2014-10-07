@@ -29,6 +29,10 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     addCol: function(index, col) {
         var cols = A.clone(this.get('cols'));
 
+        if (A.Lang.isUndefined(index)) {
+            index = cols.length;
+        }
+
         if (!col) {
             col = new A.LayoutCol();
         }

@@ -14,6 +14,7 @@
             "aui-layout-builder-add-col",
             "aui-layout-builder-remove-col",
             "aui-layout-builder-resize-col",
+            "aui-layout-builder-add-row",
             "aui-node-base",
             "base-build",
             "node-event-delegate",
@@ -47,6 +48,12 @@
     "aui-layout-row": {
         "requires": [
             "array-invoke",
+            "aui-node-base",
+            "base-build"
+        ]
+    },
+    "aui-layout-builder-add-row": {
+        "requires": [
             "aui-node-base",
             "base-build"
         ]

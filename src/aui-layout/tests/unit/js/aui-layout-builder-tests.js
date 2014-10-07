@@ -51,7 +51,7 @@ YUI.add('aui-layout-builder-tests', function(Y) {
                 layout: layout
             });
 
-            container = this.layoutBuilder.get('container');
+            container = this.layoutBuilder.layoutContainer;
         },
 
         tearDown: function() {

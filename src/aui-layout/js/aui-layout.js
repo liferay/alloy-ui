@@ -25,6 +25,8 @@ A.Layout = A.Base.create('layout', A.Base, [], {
         this._eventHandles = [
             this.after('rowsChange', A.bind(this._afterRowsChange, this))
         ];
+
+        A.Array.invoke(this.get('rows'), 'addTarget', this);
     },
 
     /**
@@ -46,6 +48,10 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      **/
     addRow: function(index, row) {
         var rows = A.clone(this.get('rows'));
+
+        if (A.Lang.isUndefined(index)) {
+            index = rows.length;
+        }
 
         if (!row) {
             row = new A.LayoutRow();
@@ -95,9 +101,8 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @protected
      */
     _afterRowsChange: function(event) {
-        var prevRows = event.prevVal;
-
-        A.Array.invoke(prevRows, 'removeTarget', this);
+        A.Array.invoke(event.prevVal, 'removeTarget', this);
+        A.Array.invoke(event.newVal, 'addTarget', this);
     },
 
     /**
@@ -149,9 +154,6 @@ A.Layout = A.Base.create('layout', A.Base, [], {
          * @type {Array}
          */
         rows: {
-            setter: function(rows) {
-                A.Array.invoke(rows, 'addTarget', this);
-            },
             validator: A.Lang.isArray,
             value: []
         }
