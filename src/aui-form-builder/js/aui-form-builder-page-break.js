@@ -6,10 +6,12 @@
  */
 
 var CSS_PAGE_BREAK = A.getClassName('form', 'builder', 'page', 'break'),
-    CSS_PAGE_BREAK_LABEL = A.getClassName('form', 'builder', 'page', 'break', 'label'),
+    CSS_PAGE_BREAK_INDEX = A.getClassName('form', 'builder', 'page', 'break', 'index'),
+    CSS_PAGE_BREAK_QUANTITY = A.getClassName('form', 'builder', 'page', 'break', 'quantity'),
 
     TPL_PAGE_BREAK = '<div class="' + CSS_PAGE_BREAK + '">' +
-        '<div class="' + CSS_PAGE_BREAK_LABEL + '"></div></div>';
+        '<p>Page <span class="' + CSS_PAGE_BREAK_INDEX +
+        '"></span> of <span class="' + CSS_PAGE_BREAK_QUANTITY + '"></span></p></div>';
 
 /**
  * A base class for Form Builder Page Break.
@@ -32,9 +34,11 @@ A.FormBuilderPageBreak = A.Base.create(
          * @protected
          */
         initializer: function() {
-            this._uiSetLabel(this.get('label'));
+            this._uiSetIndex(this.get('index'));
+            this._uiSetQuantity(this.get('quantity'));
 
-            this.after('labelChange', this._afterLabelChange);
+            this.after('indexChange', this._afterIndexChange);
+            this.after('quantityChange', this._afterQuantityChange);
         },
 
         /**
@@ -43,8 +47,18 @@ A.FormBuilderPageBreak = A.Base.create(
          * @method _afterLabelChange
          * @protected
          */
-        _afterLabelChange: function() {
-            this._uiSetLabel(this.get('label'));
+        _afterIndexChange: function() {
+            this._uiSetIndex(this.get('index'));
+        },
+
+        /**
+         * Fired after the `label` attribute is set.
+         *
+         * @method _afterLabelChange
+         * @protected
+         */
+        _afterQuantityChange: function() {
+            this._uiSetQuantity(this.get('quantity'));
         },
 
         /**
@@ -54,8 +68,19 @@ A.FormBuilderPageBreak = A.Base.create(
          * @param {String} label
          * @protected
          */
-        _uiSetLabel: function(label) {
-            this.get('content').one('.' + CSS_PAGE_BREAK_LABEL).set('text', label);
+        _uiSetIndex: function(index) {
+            this.get('content').one('.' + CSS_PAGE_BREAK_INDEX).set('text', index);
+        },
+
+        /**
+         * Updates the ui according to the value of the `label` attribute.
+         *
+         * @method _uiSetLabel
+         * @param {String} label
+         * @protected
+         */
+        _uiSetQuantity: function(quantity) {
+            this.get('content').one('.' + CSS_PAGE_BREAK_QUANTITY).set('text', quantity);
         }
     }, {
         /**
@@ -84,15 +109,23 @@ A.FormBuilderPageBreak = A.Base.create(
             },
 
             /**
-             * The text that will be shown on this page break.
+             * Index the page break.
              *
-             * @attribute label
-             * @default ''
-             * @type String
+             * @attribute index
+             * @type Number
              */
-            label: {
-                validator: A.Lang.isString,
-                value: ''
+            index: {
+                validator: A.Lang.isNumber
+            },
+
+            /**
+             * Total of page breaks.
+             *
+             * @attribute quatity
+             * @type Number
+             */
+            quantity: {
+                validator: A.Lang.isNumber
             }
         }
     }

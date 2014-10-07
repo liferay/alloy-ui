@@ -5,21 +5,38 @@ YUI.add('aui-form-builder-page-break-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Form Builder Page Break Tests',
 
-        'should render label': function() {
+        'should render index': function() {
             var col = new Y.FormBuilderPageBreak({
-                label: 'My Label'
+                index: 10
             });
 
-            Y.Assert.areEqual('My Label', col.get('content').get('text'));
+            Y.Assert.areEqual('10', col.get('content').one('.form-builder-page-break-index').get('text'));
         },
 
-        'should update label': function() {
+        'should update index': function() {
             var col = new Y.FormBuilderPageBreak({
-                label: 'My Label'
+                index: 10
             });
-            col.set('label', 'My Other Label');
+            col.set('index', 20);
 
-            Y.Assert.areEqual('My Other Label', col.get('content').get('text'));
+            Y.Assert.areEqual('20', col.get('content').one('.form-builder-page-break-index').get('text'));
+        },
+
+        'should render quantity': function() {
+            var col = new Y.FormBuilderPageBreak({
+                quantity: 10
+            });
+
+            Y.Assert.areEqual('10', col.get('content').one('.form-builder-page-break-quantity').get('text'));
+        },
+
+        'should update quantity': function() {
+            var col = new Y.FormBuilderPageBreak({
+                quantity: 10
+            });
+            col.set('quantity', 20);
+
+            Y.Assert.areEqual('20', col.get('content').one('.form-builder-page-break-quantity').get('text'));
         }
     }));
 
