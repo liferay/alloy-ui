@@ -48,7 +48,7 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
         },
 
         'should add a new row when click on add new row button': function() {
-            var button = container.one('.add-row-button'),
+            var button = container.one('.layout-builder-add-row-button'),
                 rows = container.all('.row');
 
             Assert.areEqual(1, rows.size());
@@ -61,13 +61,13 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
         },
 
         'should hide add row button if disable enableAddRows attribute': function() {
-            var button = container.one('.add-row-button');
+            var button = container.one('.layout-builder-add-row-button');
 
             Assert.isNotNull(button);
 
             this.layoutBuilder.set('enableAddRows', false);
 
-            button = container.one('.add-row-button');
+            button = container.one('.layout-builder-add-row-button');
 
             Assert.isNull(button);
         },
@@ -83,7 +83,7 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
                 layout: layout
             });
 
-            button = container.one('.add-row-button');
+            button = container.one('.layout-builder-add-row-button');
 
             Assert.isNull(button);
         }

@@ -4,8 +4,8 @@
  * @module aui-layout-add-row
  */
 
-var CSS_ADD_ROW = A.getClassName('add', 'row', 'button'),
-    TEMPLATE_ADD_ROW_BUTTON = '<div class="layout-add-row-button"><button class="add-row-button">Add row</button></div>';
+var CSS_ADD_ROW = A.getClassName('layout', 'builder', 'add', 'row', 'button'),
+    TPL_ADD_ROW_BUTTON = '<div><button class="' + CSS_ADD_ROW + '">Add row</button></div>';
 
 /**
  * A base class for Layout Add Row.
@@ -25,13 +25,23 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     initializer: function() {
-        this._addRowButton = A.Node.create(TEMPLATE_ADD_ROW_BUTTON);
+        this._addRowButton = A.Node.create(TPL_ADD_ROW_BUTTON);
 
         this._eventHandles.push(
             this.after('enableAddRowsChange', this._afterEnableAddRowsChange)
         );
 
         this._uiSetEnableAddRows(this.get('enableAddRows'));
+    },
+
+    /**
+     * Destructor implementation for the `A.LayoutBuilderAddRow` class. Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        this._unbindAddRowEvents();
     },
 
     /**
@@ -101,6 +111,14 @@ LayoutBuilderAddRow.prototype = {
     }
 };
 
+/**
+ * Static property used to define the default attribute configuration for the
+ * `A.LayoutBuilderAddRow`.
+ *
+ * @property ATTRS
+ * @type {Object}
+ * @static
+ */
 LayoutBuilderAddRow.ATTRS = {
     /**
      * Flag indicating if the feature of adding rows to the layout is

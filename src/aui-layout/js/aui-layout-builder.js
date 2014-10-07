@@ -4,7 +4,7 @@
  * @module aui-layout-builder
  */
 
-var TEMPLATE_LAYOUT_CONTAINER = '<div class="layout-container"></div>';
+var TPL_LAYOUT_CONTAINER = '<div class="layout-builder-layout-container"></div>';
 
 /**
  * A base class for Layout Builder.
@@ -26,13 +26,13 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
 ], {
 
     /**
-     * Determines if dragHandle is locked.
+     * The node where the layout will be rendered.
      *
-     * @property isDragHandleLocked
-     * @type {Boolean}
+     * @property _layoutContainer
+     * @type {Node}
      * @protected
      */
-    layoutContainer: null,
+    _layoutContainer: null,
 
     /**
      * Construction logic executed during LayoutBuilder instantiation. Lifecycle.
@@ -46,9 +46,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
 
         this._createLayoutContainer(container);
 
-        layout.draw(this.layoutContainer);
+        layout.draw(this._layoutContainer);
 
-        this.layoutContainer.unselectable();
+        this._layoutContainer.unselectable();
 
         this._eventHandles = [
             this.after('layoutChange', A.bind(this._afterLayoutChange, this))
@@ -90,7 +90,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
             newLayout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this)),
         ];
 
-        newLayout.draw(this.layoutContainer);
+        newLayout.draw(this._layoutContainer);
     },
 
     /**
@@ -102,7 +102,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     _afterLayoutColsChange: function() {
         var layout = this.get('layout');
 
-        layout.draw(this.layoutContainer);
+        layout.draw(this._layoutContainer);
     },
 
     /**
@@ -115,19 +115,19 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     _afterLayoutRowsChange: function() {
         var layout = this.get('layout');
 
-        layout.draw(this.layoutContainer);
+        layout.draw(this._layoutContainer);
     },
 
     /**
      * Create layout container node.
      *
      * @method _createLayoutContainer
-     * @param {Node} container Node that will be appended the layoutContainer node.
+     * @param {Node} container Node that will append the _layoutContainer node.
      * @protected
      */
     _createLayoutContainer: function(container) {
-        this.layoutContainer = A.Node.create(TEMPLATE_LAYOUT_CONTAINER);
-        container.append(this.layoutContainer);
+        this._layoutContainer = A.Node.create(TPL_LAYOUT_CONTAINER);
+        container.append(this._layoutContainer);
     }
 }, {
     /**
