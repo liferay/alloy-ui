@@ -5,17 +5,21 @@
  * @submodule aui-form-builder-field-base
  */
 
+var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
+
+    TPL_FIELD = '<div class="' + CSS_FIELD + '"></div>';
+
 /**
  * A base class for Form Builder Field Base. All form builder fields should
  * extend from this.
  *
  * @class A.FormBuilderFieldBase
- * @extends A.FormBuilderLayoutCol
+ * @extends A.Base
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.FormBuilderLayoutCol, [], {
+A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     /**
      * Renders the settings panel.
      *
@@ -73,5 +77,31 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.FormBuilderL
         }
 
         return this._settings;
+    }
+}, {
+    /**
+     * Static property used to define the default attribute configuration
+     * for the `A.FormBuilderFieldBase`.
+     *
+     * @property ATTRS
+     * @type Object
+     * @static
+     */
+    ATTRS: {
+        /**
+         * Node containing the contents of this field.
+         *
+         * @attribute content
+         * @type Node
+         */
+        content: {
+            validator: function(val) {
+                return A.instanceOf(val, A.Node);
+            },
+            valueFn: function() {
+                return A.Node.create(TPL_FIELD);
+            },
+            writeOnce: 'initOnly'
+        }
     }
 });

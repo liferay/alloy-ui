@@ -8,20 +8,21 @@
 var CSS_PAGE_BREAK = A.getClassName('form', 'builder', 'page', 'break'),
     CSS_PAGE_BREAK_LABEL = A.getClassName('form', 'builder', 'page', 'break', 'label'),
 
-    TPL_PAGE_BREAK_CONTENT = '<div class="' + CSS_PAGE_BREAK_LABEL + '"></div>';
+    TPL_PAGE_BREAK = '<div class="' + CSS_PAGE_BREAK + '">' +
+        '<div class="' + CSS_PAGE_BREAK_LABEL + '"></div></div>';
 
 /**
  * A base class for Form Builder Page Break.
  *
  * @class A.FormBuilderPageBreak
- * @extends A.FormBuilderLayoutCol
+ * @extends A.Base
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
 A.FormBuilderPageBreak = A.Base.create(
     'form-builder-page-break',
-    A.FormBuilderLayoutCol,
+    A.Base,
     [], {
 
         /**
@@ -31,10 +32,6 @@ A.FormBuilderPageBreak = A.Base.create(
          * @protected
          */
         initializer: function() {
-            var content = this.get('content');
-
-            content.addClass(CSS_PAGE_BREAK);
-            content.setHTML(TPL_PAGE_BREAK_CONTENT);
             this._uiSetLabel(this.get('label'));
 
             this.after('labelChange', this._afterLabelChange);
@@ -70,6 +67,22 @@ A.FormBuilderPageBreak = A.Base.create(
          * @static
          */
         ATTRS: {
+            /**
+             * Node containing the contents of this page break.
+             *
+             * @attribute content
+             * @type Node
+             */
+            content: {
+                validator: function(val) {
+                    return A.instanceOf(val, A.Node);
+                },
+                valueFn: function() {
+                    return A.Node.create(TPL_PAGE_BREAK);
+                },
+                writeOnce: 'initOnly'
+            },
+
             /**
              * The text that will be shown on this page break.
              *
