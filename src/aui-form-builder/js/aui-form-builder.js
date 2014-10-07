@@ -4,7 +4,8 @@
  * @module aui-form-builder
  */
 
-var CSS_ADD_ROW_BUTTON = A.getClassName('form', 'builder', 'add', 'row', 'button'),
+var CSS_FORM_BUILDER_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break'),
+    CSS_ADD_ROW_BUTTON = A.getClassName('form', 'builder', 'add', 'row', 'button'),
     CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
     CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
     CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
@@ -25,7 +26,8 @@ var CSS_ADD_ROW_BUTTON = A.getClassName('form', 'builder', 'add', 'row', 'button
  * @constructor
  */
 A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
-    TPL_BUTTON_ADD_NEW_LINE: '<button class="btn-default btn ' + CSS_ADD_ROW_BUTTON + '" type="span">' +
+
+    TPL_BUTTON_ADD_NEW_LINE: '<button class="btn-default btn ' + CSS_ADD_ROW_BUTTON + '">' +
         '<span class="glyphicon glyphicon-th-list"></span>' +
         'Add New Line' +
         '</button>',
@@ -37,6 +39,10 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         '<div>You don\'t have any question yet.</div>' +
         '<div>First for all let\'s create a new line?</div></div>',
     TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '" ></div>',
+    TPL_BUTTON_ADD_PAGEBREAK: '<button class="btn-default btn ' + CSS_FORM_BUILDER_ADD_PAGE_BREAK + '">' +
+        '<span class="glyphicon glyphicon-th-list"></span>' +
+        'Add Page Break' +
+        '</button>',
 
     /**
      * Construction logic executed during the `A.FormBuilder`
@@ -51,6 +57,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         contentBox.append(this.TPL_FIELD_LIST);
         contentBox.append(this.TPL_EMPTY_LAYOUT);
         contentBox.append(this.TPL_BUTTON_ADD_NEW_LINE);
+        contentBox.append(this.TPL_BUTTON_ADD_PAGEBREAK);
 
         this._emptyLayoutMsg = contentBox.one('.' + CSS_EMPTY_LAYOUT);
 
@@ -82,7 +89,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             this.after('layout:rowsChange', this._afterLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterLayoutColsChange),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL, this),
-            boundingBox.one('.' + CSS_ADD_ROW_BUTTON).on('click', this._onClickAddRow, this)
+            boundingBox.one('.' + CSS_ADD_ROW_BUTTON).on('click', this._onClickAddRow, this),
+            this.get('contentBox').one('.' + CSS_FORM_BUILDER_ADD_PAGE_BREAK).on('click',this._onClickAddPageBreak, this)
         ];
     },
 
@@ -312,6 +320,16 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     },
 
     /**
+     * Generate a new page break position.
+     *
+     * @method _nextPageBreakPosition
+     * @protected
+     */
+    _nextPageBreakPosition: function() {
+        return A.all('.form-builder-page-break')._nodes.length + 1;
+    },
+
+    /**
      * Fired when the button for adding a new field is clicked.
      *
      * @method _onClickAddField
@@ -332,6 +350,36 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      */
     _onClickAddRow: function () {
         this.get('layout').addRow();
+    },
+
+    /**
+     * Adds a new page break to `layout`.
+     *
+     * @method _onClickAddPageBreak
+     */
+    _onClickAddPageBreak: function () {
+        var pageBreak,
+            pageBreakQuant = this._nextPageBreakPosition(),
+            newRowIndex = this.get('layout').get('rows').length;
+
+        pageBreak = new A.FormBuilderPageBreak({
+                index: pageBreakQuant,
+                quantity: pageBreakQuant
+        });
+
+        this.get('layout').addRow(
+            newRowIndex,
+            new A.LayoutRow({
+                cols: [
+                    new A.LayoutCol({
+                        value: pageBreak,
+                        size: 12
+                    })
+                ]
+            })
+        );
+
+        this._updatePageBreaks(pageBreakQuant);
     },
 
     /**
@@ -501,6 +549,23 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             fieldTypes[index].destroy();
             fieldTypes.splice(index, 1);
         }
+    },
+
+    /**
+     * Update the quantity value of each page break created.
+     *
+     * @method _updatePageBreaks
+     * @param {Number} quantity
+     * @protected
+     */
+    _updatePageBreaks: function (quantity) {
+        A.Array.each(this.get('layout').get('rows'), function (row) {
+            var pageBreak = (row.get('cols')[0]).get('value');
+
+            if (A.instanceOf(pageBreak, A.FormBuilderPageBreak)) {
+                pageBreak.set('quantity', quantity);
+            }
+        });
     }
 }, {
 

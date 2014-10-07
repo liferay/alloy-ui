@@ -3,6 +3,7 @@
         "requires": [
             "aui-modal",
             "aui-layout",
+            "aui-form-builder-page-break",
             "aui-form-builder-field-type"
         ],
         "skinnable": true

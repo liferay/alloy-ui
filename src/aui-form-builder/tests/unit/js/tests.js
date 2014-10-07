@@ -131,6 +131,27 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNotNull(Y.one('.icon4'));
         },
 
+        'should add a new page break on form': function() {
+            var formBuilder = this.createFormBuilder();
+
+            Y.Assert.isNull(Y.one('.form-builder-page-break'));
+            formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
+            Y.Assert.isNotNull(Y.one('.form-builder-page-break'));
+        },
+
+        'should update quantity value of all pages break on form': function() {
+            var formBuilder = this.createFormBuilder();
+
+            formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
+
+            Y.Assert.areEqual(1, Y.one('.form-builder-page-break-quantity').get('text'));
+
+            formBuilder.get('contentBox').one('.form-builder-add-row-button').simulate('click');
+            formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
+            formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
+            Y.Assert.areEqual(3, Y.one('.form-builder-page-break-quantity').get('text'));
+        },
+
         'should remove a field type from form': function() {
             var formBuilder = this.createFormBuilder(),
                 fieldType1 = new Y.FormBuilderFieldType({
