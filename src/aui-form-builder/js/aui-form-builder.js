@@ -74,12 +74,15 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     bindUI: function() {
+        var boundingBox = this.get('boundingBox');
+
         this._eventHandles = [
             this.after('fieldTypesChange', this._afterFieldTypesChange),
             this.after('layoutChange', this._afterLayoutChange),
             this.after('layout:rowsChange', this._afterLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterLayoutColsChange),
-            this.get('contentBox').one('.' + CSS_FORM_BUILDER_ADD_ROW).on('click', this._onClickAddRow, this)
+            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL, this),
+            boundingBox.one('.' + CSS_FORM_BUILDER_ADD_ROW).on('click', this._onClickAddRow, this)
         ];
     },
 
@@ -124,8 +127,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     hideFieldSettingsPanel: function() {
         if (this._fieldSettingsModal) {
             this._fieldSettingsModal.hide();
-
-            this._fieldBeingEdited = null;
         }
     },
 
@@ -201,12 +202,13 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             this._fieldTypesModal = new A.Modal({
                 bodyContent: this._fieldTypesPanel,
                 centered: true,
+                cssClass: 'form-builder-modal',
                 draggable: false,
                 modal: true,
                 resizable: false,
                 toolbars: null,
                 visible: false,
-                cssClass: 'form-builder-modal'
+                zIndex: 1
             }).render();
 
             this._uiSetFieldTypes(this.get('fieldTypes'));
@@ -278,10 +280,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      */
     _afterLayoutColsChange: function() {
         this._renderEmptyColumns();
-
-        this.get('layout').draw(
-            this.get('contentBox').one('.' + CSS_FORM_BUILDER_FIELD_LIST)
-        );
+        this._syncLayout();
     },
 
     /**
@@ -292,6 +291,19 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      */
     _afterLayoutRowsChange: function() {
         this._syncLayoutRows();
+    },
+
+    /**
+     * Fired when the button for adding a new field is clicked.
+     *
+     * @method _onClickAddField
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickAddField: function(event) {
+        this._colAddingField = event.currentTarget.ancestor('.col').getData('layout-col');
+
+        this.showFieldsPanel();
     },
 
     /**
@@ -374,7 +386,29 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      */
     _saveFieldSettings: function() {
         this._fieldBeingEdited.saveSettings();
+
+        if (this._colAddingField) {
+            this._colAddingField.set('value', this._fieldBeingEdited);
+            this._colAddingField = null;
+        }
+
+        this._syncLayout();
+
         this.hideFieldSettingsPanel();
+        this._fieldBeingEdited = null;
+    },
+
+    /**
+     * Syncs the layout, redrawing it.
+     *
+     * @method _syncLayout
+     * @protected
+     */
+    _syncLayout: function() {
+        var contentBox = this.get('contentBox'),
+            layout = this.get('layout');
+
+        layout.draw(contentBox.one('.' + CSS_FORM_BUILDER_FIELD_LIST));
     },
 
     /**
@@ -388,8 +422,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             layout = this.get('layout');
 
         this._renderEmptyColumns();
-
-        layout.draw(contentBox.one('.' + CSS_FORM_BUILDER_FIELD_LIST));
+        this._syncLayout();
 
         if (layout.get('rows').length === 0) {
             this._emptyLayoutMsg.show();

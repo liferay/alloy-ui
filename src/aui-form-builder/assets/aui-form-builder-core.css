@@ -15,6 +15,14 @@
     border-radius: 0px;
 }
 
+.form-builder-field-list {
+    margin: 20px;
+}
+
+.form-builder-field-list .layout-row {
+    margin-bottom: 20px;
+}
+
 .form-builder-field-list .layout-row .col {
     border: 2px solid #ccc;
     border-left: none;
