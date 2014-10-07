@@ -1,11 +1,10 @@
 .field-type {
-    background-color: #eee;
-    border: 1px solid #fff;
+    border: 1px solid #ccc;
     float: left;
     font-size: 10px;
     padding: 10px;
     text-align: center;
-    width: 50%;
+    width: 150px;
 }
 
 .field-type-icon {

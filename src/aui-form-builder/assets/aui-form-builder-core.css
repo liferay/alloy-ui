@@ -1,4 +1,4 @@
-.field-types-list {
+.form-builder-field-types-list {
     padding-left: 0;
     list-style-type: none;
     margin-top: 0;
@@ -7,8 +7,17 @@
 
 .form-builder-modal {
     margin: 0;
-    margin-left: 0;
-    margin-right: 0;
+    width: 452px;
+}
+
+.form-builder-modal .modal-header {
+    background: #bbb;
+    text-align: center;
+}
+
+.form-builder-modal .modal-body {
+    background-color: #eee;
+    padding: 0;
 }
 
 .form-builder-modal-content {

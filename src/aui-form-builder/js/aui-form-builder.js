@@ -4,16 +4,16 @@
  * @module aui-form-builder
  */
 
-var CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
+var CSS_ADD_ROW_BUTTON = A.getClassName('form', 'builder', 'add', 'row', 'button'),
+    CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
     CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
     CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
-    CSS_FORM_BUILDER_ADD_ROW = A.getClassName('form', 'builder', 'add', 'row'),
-    CSS_FORM_BUILDER_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
-    CSS_FORM_BUILDER_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
-    CSS_FORM_BUILDER_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
-    CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE =
+    CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
+    CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
+    CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
+    CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
-    CSS_FORM_BUILDER_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list');
+    CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list');
 
 /**
  * A base class for `A.FormBuilder`.
@@ -25,7 +25,7 @@ var CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
  * @constructor
  */
 A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
-    TPL_BUTTON_ADD_NEW_LINE: '<button class="btn-default btn ' + CSS_FORM_BUILDER_ADD_ROW + '" type="span">' +
+    TPL_BUTTON_ADD_NEW_LINE: '<button class="btn-default btn ' + CSS_ADD_ROW_BUTTON + '" type="span">' +
         '<span class="glyphicon glyphicon-th-list"></span>' +
         'Add New Line' +
         '</button>',
@@ -33,10 +33,10 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         '<span class="glyphicon glyphicon-plus ' + CSS_EMPTY_COL_ICON + '"></span>' +
         '<div class="' + CSS_EMPTY_COL_LABEL + '">Add Field</div>' +
         '</div>',
-    TPL_EMPTY_LAYOUT: '<div class="' + CSS_FORM_BUILDER_EMPTY_LAYOUT + '">' +
+    TPL_EMPTY_LAYOUT: '<div class="' + CSS_EMPTY_LAYOUT + '">' +
         '<div>You don\'t have any question yet.</div>' +
         '<div>First for all let\'s create a new line?</div></div>',
-    TPL_FIELD_LIST: '<div class="' + CSS_FORM_BUILDER_FIELD_LIST + '" ></div>',
+    TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '" ></div>',
 
     /**
      * Construction logic executed during the `A.FormBuilder`
@@ -52,7 +52,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         contentBox.append(this.TPL_EMPTY_LAYOUT);
         contentBox.append(this.TPL_BUTTON_ADD_NEW_LINE);
 
-        this._emptyLayoutMsg = contentBox.one('.' + CSS_FORM_BUILDER_EMPTY_LAYOUT);
+        this._emptyLayoutMsg = contentBox.one('.' + CSS_EMPTY_LAYOUT);
 
         this.get('layout').addTarget(this);
     },
@@ -82,7 +82,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             this.after('layout:rowsChange', this._afterLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterLayoutColsChange),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL, this),
-            boundingBox.one('.' + CSS_FORM_BUILDER_ADD_ROW).on('click', this._onClickAddRow, this)
+            boundingBox.one('.' + CSS_ADD_ROW_BUTTON).on('click', this._onClickAddRow, this)
         ];
     },
 
@@ -194,9 +194,11 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @method showFieldsPanel
      */
     showFieldsPanel: function() {
+        var instance = this;
+
         if (!this._fieldTypesPanel) {
             this._fieldTypesPanel = A.Node.create(
-                '<div class="' + CSS_FORM_BUILDER_FIELD_TYPES_LIST + '" role="main" />'
+                '<div class="clearfix ' + CSS_FIELD_TYPES_LIST + '" role="main" />'
             );
 
             this._fieldTypesModal = new A.Modal({
@@ -204,9 +206,24 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
                 centered: true,
                 cssClass: 'form-builder-modal',
                 draggable: false,
+                headerContent: 'Add Field',
                 modal: true,
                 resizable: false,
-                toolbars: null,
+                toolbars: {
+                    header: [
+                        {
+                            cssClass: 'close',
+                            label: '\u00D7',
+                            on: {
+                                click: function() {
+                                    instance.hideFieldsPanel();
+                                    instance._colAddingField = null;
+                                }
+                            },
+                            render: true
+                        }
+                    ]
+                },
                 visible: false,
                 zIndex: 1
             }).render();
@@ -361,7 +378,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     _renderFieldSettingsModal: function() {
         this._fieldSettingsModal = new A.Modal({
             centered: true,
-            cssClass: CSS_FORM_BUILDER_FIELD_SETTINGS,
+            cssClass: CSS_FIELD_SETTINGS,
             draggable: false,
             modal: true,
             resizable: false,
@@ -369,7 +386,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         }).render();
 
         this._fieldSettingsModal.addToolbar([{
-            cssClass: CSS_FORM_BUILDER_FIELD_SETTINGS_SAVE,
+            cssClass: CSS_FIELD_SETTINGS_SAVE,
             label: 'Save',
             on: {
                 click: A.bind(this._saveFieldSettings, this)
@@ -408,7 +425,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         var contentBox = this.get('contentBox'),
             layout = this.get('layout');
 
-        layout.draw(contentBox.one('.' + CSS_FORM_BUILDER_FIELD_LIST));
+        layout.draw(contentBox.one('.' + CSS_FIELD_LIST));
     },
 
     /**
@@ -418,8 +435,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     _syncLayoutRows: function() {
-        var contentBox = this.get('contentBox'),
-            layout = this.get('layout');
+        var layout = this.get('layout');
 
         this._renderEmptyColumns();
         this._syncLayout();

@@ -63,7 +63,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 layout: new Y.Layout()
             });
 
-            formBuilder.get('contentBox').one('.form-builder-add-row').simulate('click');
+            formBuilder.get('contentBox').one('.form-builder-add-row-button').simulate('click');
             Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
         },
 
@@ -76,10 +76,10 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 rows: [
                     new Y.LayoutRow()
                 ]
-            }))
+            }));
             Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
 
-            formBuilder.set('layout', new Y.Layout())
+            formBuilder.set('layout', new Y.Layout());
             Y.Assert.areEqual('block', Y.one('.form-builder-empty-layout').getStyle('display'));
         },
 
@@ -224,6 +224,19 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isFalse(formBuilderModal.hasClass('modal-dialog-hidden'));
         },
 
+        'should close field types panel through close button': function() {
+            var formBuilderModal;
+
+            this.createFormBuilder();
+            this._formBuilder.showFieldsPanel();
+
+            formBuilderModal = Y.one('.form-builder-modal');
+            formBuilderModal.one('.close').simulate('mousemove');
+            formBuilderModal.one('.close').simulate('click');
+
+            Y.Assert.isTrue(formBuilderModal.hasClass('modal-dialog-hidden'));
+        },
+
         'should use new field types when attribute changes': function() {
             this.createFormBuilder();
 
@@ -258,7 +271,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.Assert.isNull(formBuilder.get('contentBox').one('.row'));
 
-            formBuilder.get('contentBox').one('.form-builder-add-row').simulate('click');
+            formBuilder.get('contentBox').one('.form-builder-add-row-button').simulate('click');
             Y.Assert.isNotNull(Y.one('#container').one('.row'));
         },
 
