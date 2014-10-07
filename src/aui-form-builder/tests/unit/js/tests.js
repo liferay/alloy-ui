@@ -67,7 +67,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
         },
 
-        'should udpate empty layout message when layout changes': function() {
+        'should update empty layout message when layout changes': function() {
             var formBuilder = this.createFormBuilder({
                 layout: new Y.Layout()
             });

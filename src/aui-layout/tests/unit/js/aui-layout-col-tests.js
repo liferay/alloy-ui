@@ -18,16 +18,23 @@ YUI.add('aui-layout-col-tests', function(Y) {
         },
 
         'should add bootstrap class according to it\'s size': function() {
-            var colTemplate = this.layoutCol.getContent(),
+            var colTemplate = this.layoutCol.get('node'),
                 colSize = this.layoutCol.get('size');
 
             Assert.isTrue(colTemplate.hasClass('col-sm-' + colSize));
+
+            this.layoutCol.set('size', 7);
+            Assert.isFalse(colTemplate.hasClass('col-sm-' + colSize));
+            Assert.isTrue(colTemplate.hasClass('col-sm-7'));
         },
 
         'should set value using an instance of Base': function() {
-            var colTemplate = this.layoutCol.getContent();
+            var colTemplate = this.layoutCol.get('node');
 
             Assert.areEqual('foo', colTemplate.text());
+
+            this.layoutCol.set('value', {content: 'bar'});
+            Assert.areEqual('bar', colTemplate.text());
         },
 
         'should set maximum size if it\'s size is higher than the maximum': function() {
@@ -53,14 +60,29 @@ YUI.add('aui-layout-col-tests', function(Y) {
                         }
                     }
                 }),
-                layoutCol = new Y.LayoutCol({
-                    size: 2,
-                    value: new Content()
-                });
+                layoutCol,
+                value = new Content();
 
-            colTemplate = layoutCol.getContent();
+            layoutCol = new Y.LayoutCol({
+                size: 2,
+                value: value
+            });
+            colTemplate = layoutCol.get('node');
 
             Assert.areEqual('foo', colTemplate.text());
+
+            value.set('content', 'bar');
+            Assert.areEqual('bar', colTemplate.text());
+
+            layoutCol.set('value', {content: 'foo'});
+            Assert.areEqual('foo', colTemplate.text());
+
+            value.set('content', 'bar');
+            Assert.areEqual(
+                'foo',
+                colTemplate.text(),
+                'Should not update when the old value changes'
+            );
         }
     }));
 

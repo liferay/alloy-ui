@@ -27,6 +27,8 @@ A.Layout = A.Base.create('layout', A.Base, [], {
         ];
 
         A.Array.invoke(this.get('rows'), 'addTarget', this);
+
+        this._uiSetRows(this.get('rows'));
     },
 
     /**
@@ -47,7 +49,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @param {Node} row A brand new row.
      **/
     addRow: function(index, row) {
-        var rows = A.clone(this.get('rows'));
+        var rows = this.get('rows');
 
         if (A.Lang.isUndefined(index)) {
             index = rows.length;
@@ -69,13 +71,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @param {Node} container The container to draw the layout on.
      **/
     draw: function(container) {
-        var rows = this.get('rows');
-
-        container.empty();
-
-        A.each(rows, function(row) {
-            container.append(row.getContent());
-        });
+        container.setHTML(this.get('node'));
     },
 
     /**
@@ -103,6 +99,8 @@ A.Layout = A.Base.create('layout', A.Base, [], {
     _afterRowsChange: function(event) {
         A.Array.invoke(event.prevVal, 'removeTarget', this);
         A.Array.invoke(event.newVal, 'addTarget', this);
+
+        this._uiSetRows(this.get('rows'));
     },
 
     /**
@@ -113,7 +111,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @protected
      */
     _removeRowByIndex: function(index) {
-        var rows = A.clone(this.get('rows'));
+        var rows = this.get('rows');
 
         rows.splice(index, 1);
         this.set('rows', rows);
@@ -135,6 +133,22 @@ A.Layout = A.Base.create('layout', A.Base, [], {
         if (index >= 0) {
             this._removeRowByIndex(index);
         }
+    },
+
+    /**
+     * Updates the UI according to the value of the `rows` attribute.
+     *
+     * @method _uiSetRows
+     * @param  {Array} rows
+     * @protected
+     */
+    _uiSetRows: function(rows) {
+        var node = this.get('node');
+
+        node.empty();
+        A.each(rows, function(row) {
+            node.append(row.get('node'));
+        });
     }
 }, {
 
@@ -147,6 +161,20 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @static
      */
     ATTRS: {
+        /**
+         * The node where this column will be rendered.
+         *
+         * @attribute node
+         * @type Node
+         */
+        node: {
+            validator: A.Lang.isNode,
+            valueFn: function() {
+                return A.Node.create('<div></div>');
+            },
+            writeOnce: 'initOnly'
+        },
+
         /**
          * Rows to be appended into container node
          *

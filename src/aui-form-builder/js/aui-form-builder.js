@@ -116,6 +116,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     syncUI: function() {
+        this._syncLayout();
         this._syncLayoutRows();
     },
 
@@ -283,6 +284,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     _afterLayoutChange: function(event) {
+        this._syncLayout();
         this._syncLayoutRows();
 
         event.prevVal.removeTarget(this);
@@ -297,7 +299,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      */
     _afterLayoutColsChange: function() {
         this._renderEmptyColumns();
-        this._syncLayout();
     },
 
     /**
@@ -409,8 +410,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             this._colAddingField = null;
         }
 
-        this._syncLayout();
-
         this.hideFieldSettingsPanel();
         this._fieldBeingEdited = null;
     },
@@ -438,7 +437,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         var layout = this.get('layout');
 
         this._renderEmptyColumns();
-        this._syncLayout();
 
         if (layout.get('rows').length === 0) {
             this._emptyLayoutMsg.show();

@@ -192,16 +192,6 @@ YUI.add('aui-layout-tests', function(Y) {
             this.layout.draw(container);
 
             Assert.areEqual(4, container.all('.row').size());
-        },
-
-        'should remove rows\' target when remove it from layout': function() {
-            var row = this.layout.get('rows')[0];
-
-            Assert.areEqual(row.getTargets().length, 1);
-
-            this.layout.removeRow(0);
-
-            Assert.areEqual(row.getTargets().length, 0);
         }
     }));
 

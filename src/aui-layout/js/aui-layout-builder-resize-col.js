@@ -430,7 +430,6 @@ A.LayoutBuilderResizeCol.prototype = {
             this._increaseCol(col, dragDifference);
         }
 
-        layout.draw(container);
         A.one('body').removeClass(CSS_LAYOUT_RESIZING);
     },
 

@@ -5,7 +5,7 @@
  */
 
 var BOOTSTRAP_CLASS_PREFIX = 'col-sm-',
-    COL_TEMPLATE = '<div class="col">';
+    TPL_COL = '<div class="col"></div>';
 
 /**
  * A base class for Layout Col.
@@ -17,26 +17,94 @@ var BOOTSTRAP_CLASS_PREFIX = 'col-sm-',
  * @constructor
  */
 A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
+    /**
+     * Construction logic executed during `A.LayoutCol` instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        this.after({
+            sizeChange: this._afterSizeChange,
+            valueChange: this._afterValueChange
+        });
+
+        this._uiSetSize(this.get('size'));
+        this._uiSetValue(this.get('value'));
+    },
 
     /**
-     * Renders column template
+     * Fired after the `content` attribute from this column's value object is set.
      *
-     * @method getContent
-     * @return {Node} Column template rendered with a field inside
+     * @method _afterContentChange
+     * @protected
      */
-    getContent: function() {
-        var col = A.Node.create(COL_TEMPLATE),
-            size = this.get('size'),
-            value = this.get('value');
+    _afterContentChange: function() {
+        this._uiSetValue(this.get('value'));
+    },
 
-        col.setData('layout-col', this);
-        col.addClass(BOOTSTRAP_CLASS_PREFIX + size);
+    /**
+     * Fired after the `size` attribute changes.
+     *
+     * @method _afterSizeChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterSizeChange: function(event) {
+        this.get('node').removeClass(BOOTSTRAP_CLASS_PREFIX + event.prevVal);
+        this._uiSetSize(this.get('size'));
+    },
 
-        if (value) {
-            col.append(value.content || value.get('content'));
+    /**
+     * Fired after the `value` attribute changes.
+     *
+     * @method _afterValueChange
+     * @protected
+     */
+    _afterValueChange: function() {
+        if (this._contentEventHandle) {
+            this._contentEventHandle.detach();
+            this._contentEventHandle = null;
         }
 
-        return col;
+        this._uiSetValue(this.get('value'));
+    },
+
+    /**
+     * Updates the UI according to the value of the `size` attribute.
+     *
+     * @method _uiSetSize
+     * @param {Number} size
+     * @protected
+     */
+    _uiSetSize: function(size) {
+        this.get('node').addClass(BOOTSTRAP_CLASS_PREFIX + size);
+    },
+
+    /**
+     * Updates the UI according to the value of the `value` attribute.
+     *
+     * @method _uiSetValue
+     * @param {Object} value
+     * @protected
+     */
+    _uiSetValue: function(value) {
+        var node = this.get('node');
+
+        node.empty();
+        if (value) {
+            if (value.content) {
+                node.append(value.content);
+            }
+            else {
+                node.append(value.get('content'));
+
+                this._contentEventHandle = value.after(
+                    'contentChange',
+                    A.bind(this._afterContentChange, this)
+                );
+            }
+        }
     }
 }, {
 
@@ -68,6 +136,24 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
          */
         minSize: {
             value: 3
+        },
+
+        /**
+         * The node where this column will be rendered.
+         *
+         * @attribute node
+         * @type Node
+         */
+        node: {
+            setter: function(val) {
+                val.setData('layout-col', this);
+                return val;
+            },
+            validator: A.Lang.isNode,
+            valueFn: function() {
+                return A.Node.create(TPL_COL);
+            },
+            writeOnce: 'initOnly'
         },
 
         /**

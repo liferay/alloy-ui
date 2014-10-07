@@ -6,7 +6,7 @@
 
 var ALLOWED_SIZE = 12,
     MAXIMUM_COLS = 4,
-    ROW_TEMPLATE = '<div class="layout-row row">';
+    TPL_ROW = '<div class="layout-row row">';
 
 /**
  * A base class for Layout Row.
@@ -18,6 +18,19 @@ var ALLOWED_SIZE = 12,
  * @constructor
  */
 A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
+    /**
+     * Construction logic executed during `A.LayoutRow` instantiation. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        this.after({
+            colsChange: this._afterColsChange
+        });
+
+        this._uiSetCols(this.get('cols'));
+    },
 
     /**
      * Adds a col to this row.
@@ -27,7 +40,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @param {A.LayoutCol} col Col to be added.
      */
     addCol: function(index, col) {
-        var cols = A.clone(this.get('cols'));
+        var cols = this.get('cols');
 
         if (A.Lang.isUndefined(index)) {
             index = cols.length;
@@ -45,25 +58,6 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     },
 
     /**
-     * Renders row template
-     *
-     * @method getContent
-     * @return {Node} Row template rendered with columns inside
-     */
-    getContent: function() {
-        var cols = this.get('cols'),
-            row = A.Node.create(ROW_TEMPLATE);
-
-        row.setData('layout-row', this);
-
-        A.each(cols, function(col) {
-            row.append(col.getContent());
-        });
-
-        return row;
-    },
-
-    /**
      * Removes a col from this row.
      *
      * @method removeCol
@@ -76,6 +70,16 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
         else if (A.instanceOf(col, A.LayoutCol)) {
             this._removeColByReference(col);
         }
+    },
+
+    /**
+     * Fired after the `cols` attribute is set.
+     *
+     * @method _afterColsChange
+     * @protected
+     */
+    _afterColsChange: function() {
+        this._uiSetCols(this.get('cols'));
     },
 
     /**
@@ -99,7 +103,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _removeColByIndex: function(index) {
-        var cols = A.clone(this.get('cols'));
+        var cols = this.get('cols');
         cols.splice(index, 1);
         cols = this._resizeCols(cols);
         this.set('cols', cols);
@@ -139,6 +143,23 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
 
         return cols;
     },
+
+    /**
+     * Update the UI according to the value of the `cols` attribute.
+     *
+     * @method _uiSetCols
+     * @param {Array} cols
+     * @protected
+     */
+    _uiSetCols: function(cols) {
+        var cols = this.get('cols'),
+            node = this.get('node');
+
+        node.empty();
+        A.each(cols, function(col) {
+            node.append(col.get('node'));
+        });
+    }
 }, {
 
     /**
@@ -180,6 +201,24 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
             valueFn: function() {
                 return [new A.LayoutCol({ size: ALLOWED_SIZE })];
             }
+        },
+
+        /**
+         * The node where this column will be rendered.
+         *
+         * @attribute node
+         * @type Node
+         */
+        node: {
+            setter: function(val) {
+                val.setData('layout-row', this);
+                return val;
+            },
+            validator: A.Lang.isNode,
+            valueFn: function() {
+                return A.Node.create(TPL_ROW);
+            },
+            writeOnce: 'initOnly'
         }
     }
 });

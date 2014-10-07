@@ -33,16 +33,29 @@ YUI.add('aui-layout-row-tests', function(Y) {
         },
 
         'should have class row after renders': function() {
-            var row = this.layoutRow.getContent();
+            var row = this.layoutRow.get('node');
 
             Assert.isTrue(row.hasClass('row'));
         },
 
         'should have 3 children after renders': function() {
-            var row = this.layoutRow.getContent(),
+            var row = this.layoutRow.get('node'),
                 childNumber = row.get('children').size();
 
             Assert.areEqual(3, childNumber);
+        },
+
+        'should update cols when they change': function() {
+            this.layoutRow.set('cols', [
+                new Y.LayoutCol({
+                    size: 6
+                }),
+                new Y.LayoutCol({
+                    size: 6
+                })
+            ]);
+
+            Assert.areEqual(2, this.layoutRow.get('node').get('children').size());
         },
 
         'should calculate it\'s size based on col\'s size': function() {
@@ -51,17 +64,36 @@ YUI.add('aui-layout-row-tests', function(Y) {
             Assert.areEqual(12, rowSize);
         },
 
-        'should add a col': function() {
+        'should add a col to the bottom by default': function() {
             var childNumber,
+                firstCol,
                 row = this.layoutRow;
 
             childNumber = row.get('cols').length;
             Assert.areEqual(3, childNumber);
 
+            firstCol = row.get('cols')[0];
+            row.addCol();
+            childNumber = row.get('cols').length;
+
+            Assert.areEqual(4, childNumber);
+            Assert.areSame(firstCol, row.get('cols')[0]);
+        },
+
+        'should add a col at specific position': function() {
+            var childNumber,
+                firstCol,
+                row = this.layoutRow;
+
+            childNumber = row.get('cols').length;
+            Assert.areEqual(3, childNumber);
+
+            firstCol = row.get('cols')[0];
             row.addCol(0);
             childNumber = row.get('cols').length;
 
             Assert.areEqual(4, childNumber);
+            Assert.areNotSame(firstCol, row.get('cols')[0]);
         },
 
         'should add a col passing a reference': function() {

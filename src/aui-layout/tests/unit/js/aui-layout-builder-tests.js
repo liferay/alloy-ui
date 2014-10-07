@@ -99,15 +99,15 @@ YUI.add('aui-layout-builder-tests', function(Y) {
         },
 
         'should add a row to layout': function() {
-            Assert.areEqual(container.get('children').size(), 2);
+            Assert.areEqual(container.all('.row').size(), 2);
             layout.addRow(4);
-            Assert.areEqual(container.get('children').size(), 3);
+            Assert.areEqual(container.all('.row').size(), 3);
         },
 
         'should remove a row from layout': function() {
-            Assert.areEqual(container.get('children').size(), 2);
+            Assert.areEqual(container.all('.row').size(), 2);
             layout.removeRow(1);
-            Assert.areEqual(container.get('children').size(), 1);
+            Assert.areEqual(container.all('.row').size(), 1);
         },
 
         'should detach old layout events when set a new one': function() {

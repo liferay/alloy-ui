@@ -53,11 +53,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
         this._eventHandles = [
             this.after('layoutChange', A.bind(this._afterLayoutChange, this))
         ];
-
-        this._layoutEventHandles = [
-            layout.after('layout-row:colsChange', A.bind(this._afterLayoutColsChange, this)),
-            layout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this))
-        ];
     },
 
     /**
@@ -68,7 +63,6 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
      */
     destructor: function() {
         (new A.EventHandle(this._eventHandles)).detach();
-        (new A.EventHandle(this._layoutEventHandles)).detach();
 
         this.get('container').empty();
     },
@@ -83,39 +77,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     _afterLayoutChange: function(event) {
         var newLayout = event.newVal;
 
-        (new A.EventHandle(this._layoutEventHandles)).detach();
-
-        this._layoutEventHandles = [
-            newLayout.after('layout-row:colsChange', A.bind(this._afterLayoutColsChange, this)),
-            newLayout.after('rowsChange', A.bind(this._afterLayoutRowsChange, this)),
-        ];
-
         newLayout.draw(this._layoutContainer);
-    },
-
-    /**
-     * Fires after cols changes.
-     *
-     * @method _afterLayoutColsChange
-     * @protected
-     */
-    _afterLayoutColsChange: function() {
-        var layout = this.get('layout');
-
-        layout.draw(this._layoutContainer);
-    },
-
-    /**
-     * Fires after rows changes.
-     *
-     * @method _afterLayoutRowsChange
-     * @param {EventFacade} event
-     * @protected
-     */
-    _afterLayoutRowsChange: function() {
-        var layout = this.get('layout');
-
-        layout.draw(this._layoutContainer);
     },
 
     /**
