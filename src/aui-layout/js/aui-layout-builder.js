@@ -46,6 +46,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
 
         this._createLayoutContainer(container);
 
+        layout.addTarget(this);
         layout.draw(this._layoutContainer);
 
         this._layoutContainer.unselectable();
@@ -77,6 +78,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     _afterLayoutChange: function(event) {
         var newLayout = event.newVal;
 
+        event.prevVal.removeTarget(this);
+
+        newLayout.addTarget(this);
         newLayout.draw(this._layoutContainer);
     },
 

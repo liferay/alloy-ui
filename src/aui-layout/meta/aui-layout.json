@@ -20,8 +20,7 @@
             "node-event-delegate",
             "node-screen",
             "node-style"
-        ],
-        "skinnable": true
+        ]
     },
     "aui-layout-builder-add-col": {
         "requires": [
@@ -35,9 +34,14 @@
     },
     "aui-layout-builder-resize-col": {
         "requires": [
+            "dd-constrain",
+            "dd-delegate",
+            "dd-drop-plugin",
+            "dd-proxy",
             "event-mouseenter",
             "node-base"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-layout-col": {
         "requires": [
