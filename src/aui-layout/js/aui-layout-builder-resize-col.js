@@ -411,9 +411,7 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _onMouseUpEvent: function(event, mouseDownClientX, col) {
-        var container = this.get('container'),
-            dragDifference = mouseDownClientX - event.clientX,
-            layout = this.get('layout');
+        var dragDifference = mouseDownClientX - event.clientX;
 
         this.dragHandle.setStyle('right', 0);
 

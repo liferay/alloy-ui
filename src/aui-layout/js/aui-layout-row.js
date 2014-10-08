@@ -40,7 +40,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @param {A.LayoutCol} col Col to be added.
      */
     addCol: function(index, col) {
-        var cols = this.get('cols');
+        var cols = this.get('cols').concat();
 
         if (A.Lang.isUndefined(index)) {
             index = cols.length;
@@ -103,7 +103,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _removeColByIndex: function(index) {
-        var cols = this.get('cols');
+        var cols = this.get('cols').concat();
         cols.splice(index, 1);
         cols = this._resizeCols(cols);
         this.set('cols', cols);
@@ -117,7 +117,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _removeColByReference: function(col) {
-        var cols = this.get('cols'),
+        var cols = this.get('cols').concat(),
             index = A.Array.indexOf(cols, col);
 
         if (index >= 0) {
@@ -152,8 +152,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _uiSetCols: function(cols) {
-        var cols = this.get('cols'),
-            node = this.get('node');
+        var node = this.get('node');
 
         node.empty();
         A.each(cols, function(col) {

@@ -109,6 +109,13 @@ YUI.add('aui-layout-row-tests', function(Y) {
             Assert.areEqual(4, childNumber);
         },
 
+        'should not add col if max is reached': function() {
+            this.layoutRow.addCol();
+            this.layoutRow.addCol();
+
+            Assert.areEqual(4, this.layoutRow.get('cols').length);
+        },
+
         'should remove a col by index': function() {
             var childNumber,
                 row = this.layoutRow;

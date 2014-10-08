@@ -49,7 +49,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @param {Node} row A brand new row.
      **/
     addRow: function(index, row) {
-        var rows = this.get('rows');
+        var rows = this.get('rows').concat();
 
         if (A.Lang.isUndefined(index)) {
             index = rows.length;
@@ -111,7 +111,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @protected
      */
     _removeRowByIndex: function(index) {
-        var rows = this.get('rows');
+        var rows = this.get('rows').concat();
 
         rows.splice(index, 1);
         this.set('rows', rows);
@@ -126,7 +126,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      */
     _removeRowByReference: function(row) {
         var index,
-            rows = this.get('rows');
+            rows = this.get('rows').concat();
 
         index = A.Array.indexOf(rows, row);
 
