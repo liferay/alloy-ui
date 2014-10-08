@@ -12,9 +12,10 @@
             "aui-classnamemanager",
             "aui-layout",
             "aui-layout-builder-add-col",
-            "aui-layout-builder-remove-col",
-            "aui-layout-builder-resize-col",
             "aui-layout-builder-add-row",
+            "aui-layout-builder-remove-col",
+            "aui-layout-builder-remove-row",
+            "aui-layout-builder-resize-col",
             "aui-node-base",
             "base-build",
             "node-event-delegate",
@@ -57,6 +58,12 @@
         ]
     },
     "aui-layout-builder-add-row": {
+        "requires": [
+            "aui-node-base",
+            "base-build"
+        ]
+    },
+    "aui-layout-builder-remove-row": {
         "requires": [
             "aui-node-base",
             "base-build"

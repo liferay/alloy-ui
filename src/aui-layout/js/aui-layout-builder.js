@@ -22,6 +22,7 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     A.LayoutBuilderAddCol,
     A.LayoutBuilderAddRow,
     A.LayoutBuilderRemoveCol,
+    A.LayoutBuilderRemoveRow,
     A.LayoutBuilderResizeCol
 ], {
 
@@ -76,9 +77,10 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
      * @protected
      */
     _afterLayoutChange: function(event) {
-        var newLayout = event.newVal;
+        var newLayout = event.newVal,
+            prevLayout = event.prevVal;
 
-        event.prevVal.removeTarget(this);
+        prevLayout.removeTarget(this);
 
         newLayout.addTarget(this);
         newLayout.draw(this._layoutContainer);

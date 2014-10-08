@@ -5,6 +5,7 @@
 ## @VERSION@
 
 * [AUI-1704](https://issues.liferay.com/browse/AUI-1704) Drag handles for all columns should update position during drag
+* [AUI-1708](https://issues.liferay.com/browse/AUI-1708) Button to remove rows
 * [AUI-1722](https://issues.liferay.com/browse/AUI-1722) Button to add rows
 * [AUI-1718](https://issues.liferay.com/browse/AUI-1718) Should be able to enable/disable each feature of LayoutBuilder
 * [AUI-1705](https://issues.liferay.com/browse/AUI-1705) Buttons to add and remove columns

@@ -47,6 +47,12 @@
             "jsfiles": [
                 "js/aui-layout-builder-add-row.js"
             ]
+        },
+
+        "aui-layout-builder-remove-row": {
+            "jsfiles": [
+                "js/aui-layout-builder-remove-row.js"
+            ]
         }
     }
 }
