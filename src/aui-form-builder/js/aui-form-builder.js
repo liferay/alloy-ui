@@ -462,6 +462,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             this._colAddingField = null;
         }
 
+        this._updateFieldTypes(this._fieldBeingEdited, true);
+
         this.hideFieldSettingsPanel();
         this._fieldBeingEdited = null;
     },
@@ -553,6 +555,14 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             fieldTypes[index].destroy();
             fieldTypes.splice(index, 1);
         }
+    },
+
+    _updateFieldTypes: function (field, disabled) {
+        A.Array.each(this.get('fieldTypes'), function (fieldType) {
+            if (A.instanceOf(field, fieldType.get('fieldClass')) && fieldType.get('unique')) {
+                fieldType.set('disabled', disabled);
+            }
+        });
     },
 
     /**

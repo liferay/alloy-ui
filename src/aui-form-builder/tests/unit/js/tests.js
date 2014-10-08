@@ -352,6 +352,25 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(field.get('required'));
         },
 
+        'shouldn\'t save a second field from a field type with unique true': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText,
+                    unique: true
+                }]
+            });
+
+            this._formBuilder.showFieldsPanel();
+            Y.one('.field-type').simulate('click');
+            Y.Assert.isFalse(Y.one('.form-builder-field-settings').hasClass('modal-dialog-hidden'));
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            this._formBuilder.showFieldsPanel();
+            Y.one('.field-type').simulate('click');
+            Y.Assert.isTrue(Y.one('.form-builder-field-settings').hasClass('modal-dialog-hidden'));
+        },
+
         'should open and close the field settings editor': function() {
             var field = new Y.FormBuilderFieldText(),
                 settingsPane;
