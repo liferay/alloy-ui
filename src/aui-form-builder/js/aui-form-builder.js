@@ -395,10 +395,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         var field,
             fieldType = event.currentTarget.getData('fieldType');
 
+        if (!fieldType.get('disabled')) {
         this.hideFieldsPanel();
 
         field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
         this.showFieldSettingsPanel(field, fieldType.get('label'));
+        }
     },
 
     /**
