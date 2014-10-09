@@ -39,13 +39,12 @@
     padding: 0;
 }
 
-.form-builder-field-list .layout-row .col:first-child {
-    border-left: 2px solid #ccc;
-    padding-left: 15px;
+.form-builder-field-list .layout-row.form-builder-page-break-row .col {
+    min-height: 0;
 }
 
-.form-builder-field-list .layout-row .col:last-child {
-    padding-right: 15px;
+.form-builder-field-list .layout-row .col:first-child {
+    border-left: 2px solid #ccc;
 }
 
 .form-builder-empty-col {

@@ -14,7 +14,8 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
-    CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list');
+    CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list'),
+    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row');
 
 /**
  * A base class for `A.FormBuilder`.
@@ -360,24 +361,25 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     _onClickAddPageBreak: function () {
         var newRowIndex = this.get('layout').get('rows').length,
             pageBreak,
-            pageBreakQuant = this._nextPageBreakPosition();
+            pageBreakQuant = this._nextPageBreakPosition(),
+            row;
 
         pageBreak = new A.FormBuilderPageBreak({
             index: pageBreakQuant,
             quantity: pageBreakQuant
         });
 
-        this.get('layout').addRow(
-            newRowIndex,
-            new A.LayoutRow({
-                cols: [
-                    new A.LayoutCol({
-                        size: 12,
-                        value: pageBreak
-                    })
-                ]
-            })
-        );
+        row = new A.LayoutRow({
+            cols: [
+                new A.LayoutCol({
+                    size: 12,
+                    value: pageBreak
+                })
+            ]
+        });
+        row.get('node').addClass(CSS_PAGE_BREAK_ROW);
+
+        this.get('layout').addRow(newRowIndex, row);
 
         this._updatePageBreaks(pageBreakQuant);
     },
