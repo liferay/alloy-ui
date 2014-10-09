@@ -4,7 +4,7 @@
  * @module aui-form-builder
  */
 
-var CSS_FORM_BUILDER_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break'),
+var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break'),
     CSS_ADD_ROW_BUTTON = A.getClassName('form', 'builder', 'add', 'row', 'button'),
     CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
     CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
@@ -26,10 +26,13 @@ var CSS_FORM_BUILDER_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', '
  * @constructor
  */
 A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
-
     TPL_BUTTON_ADD_NEW_LINE: '<button class="btn-default btn ' + CSS_ADD_ROW_BUTTON + '">' +
         '<span class="glyphicon glyphicon-th-list"></span>' +
         'Add New Line' +
+        '</button>',
+    TPL_BUTTON_ADD_PAGEBREAK: '<button class="btn-default btn ' + CSS_ADD_PAGE_BREAK + '">' +
+        '<span class="glyphicon glyphicon-th-list"></span>' +
+        'Add Page Break' +
         '</button>',
     TPL_EMPTY_COL: '<div class="' + CSS_EMPTY_COL + '">' +
         '<span class="glyphicon glyphicon-plus ' + CSS_EMPTY_COL_ICON + '"></span>' +
@@ -39,10 +42,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         '<div>You don\'t have any question yet.</div>' +
         '<div>First for all let\'s create a new line?</div></div>',
     TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '" ></div>',
-    TPL_BUTTON_ADD_PAGEBREAK: '<button class="btn-default btn ' + CSS_FORM_BUILDER_ADD_PAGE_BREAK + '">' +
-        '<span class="glyphicon glyphicon-th-list"></span>' +
-        'Add Page Break' +
-        '</button>',
 
     /**
      * Construction logic executed during the `A.FormBuilder`
@@ -90,7 +89,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             this.after('layout-row:colsChange', this._afterLayoutColsChange),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL, this),
             boundingBox.one('.' + CSS_ADD_ROW_BUTTON).on('click', this._onClickAddRow, this),
-            this.get('contentBox').one('.' + CSS_FORM_BUILDER_ADD_PAGE_BREAK).on('click',this._onClickAddPageBreak, this)
+            boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this)
         ];
     },
 
@@ -326,7 +325,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     _nextPageBreakPosition: function() {
-        return A.all('.form-builder-page-break')._nodes.length + 1;
+        return this.get('contentBox').all('.form-builder-page-break').size() + 1;
     },
 
     /**
@@ -356,15 +355,16 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * Adds a new page break to `layout`.
      *
      * @method _onClickAddPageBreak
+     * @protected
      */
     _onClickAddPageBreak: function () {
-        var pageBreak,
-            pageBreakQuant = this._nextPageBreakPosition(),
-            newRowIndex = this.get('layout').get('rows').length;
+        var newRowIndex = this.get('layout').get('rows').length,
+            pageBreak,
+            pageBreakQuant = this._nextPageBreakPosition();
 
         pageBreak = new A.FormBuilderPageBreak({
-                index: pageBreakQuant,
-                quantity: pageBreakQuant
+            index: pageBreakQuant,
+            quantity: pageBreakQuant
         });
 
         this.get('layout').addRow(
@@ -372,8 +372,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             new A.LayoutRow({
                 cols: [
                     new A.LayoutCol({
-                        value: pageBreak,
-                        size: 12
+                        size: 12,
+                        value: pageBreak
                     })
                 ]
             })
@@ -559,8 +559,10 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     _updatePageBreaks: function (quantity) {
+        var pageBreak;
+
         A.Array.each(this.get('layout').get('rows'), function (row) {
-            var pageBreak = (row.get('cols')[0]).get('value');
+            pageBreak = row.get('cols')[0].get('value');
 
             if (A.instanceOf(pageBreak, A.FormBuilderPageBreak)) {
                 pageBreak.set('quantity', quantity);

@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1685](https://issues.liferay.com/browse/AUI-1685) Button to add page breaks
 * [AUI-1722](https://issues.liferay.com/browse/AUI-1722) Button to add rows
 * [AUI-1684](https://issues.liferay.com/browse/AUI-1684) Add fields on empty columns
 * [AUI-1688](https://issues.liferay.com/browse/AUI-1688) Create text field

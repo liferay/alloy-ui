@@ -42,9 +42,9 @@ A.FormBuilderPageBreak = A.Base.create(
         },
 
         /**
-         * Fired after the `label` attribute is set.
+         * Fired after the `index` attribute is set.
          *
-         * @method _afterLabelChange
+         * @method _afterIndexChange
          * @protected
          */
         _afterIndexChange: function() {
@@ -52,9 +52,9 @@ A.FormBuilderPageBreak = A.Base.create(
         },
 
         /**
-         * Fired after the `label` attribute is set.
+         * Fired after the `quantity` attribute is set.
          *
-         * @method _afterLabelChange
+         * @method _afterQuantityChange
          * @protected
          */
         _afterQuantityChange: function() {
@@ -62,10 +62,10 @@ A.FormBuilderPageBreak = A.Base.create(
         },
 
         /**
-         * Updates the ui according to the value of the `label` attribute.
+         * Updates the ui according to the value of the `index` attribute.
          *
-         * @method _uiSetLabel
-         * @param {String} label
+         * @method _uiSetIndex
+         * @param {String} index
          * @protected
          */
         _uiSetIndex: function(index) {
@@ -73,10 +73,10 @@ A.FormBuilderPageBreak = A.Base.create(
         },
 
         /**
-         * Updates the ui according to the value of the `label` attribute.
+         * Updates the ui according to the value of the `quantity` attribute.
          *
-         * @method _uiSetLabel
-         * @param {String} label
+         * @method _uiSetQuantity
+         * @param {String} quantity
          * @protected
          */
         _uiSetQuantity: function(quantity) {
@@ -109,7 +109,7 @@ A.FormBuilderPageBreak = A.Base.create(
             },
 
             /**
-             * Index the page break.
+             * Index of the page break.
              *
              * @attribute index
              * @type Number
@@ -121,7 +121,7 @@ A.FormBuilderPageBreak = A.Base.create(
             /**
              * Total of page breaks.
              *
-             * @attribute quatity
+             * @attribute quantity
              * @type Number
              */
             quantity: {
