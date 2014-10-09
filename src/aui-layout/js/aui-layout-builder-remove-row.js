@@ -5,7 +5,7 @@
  */
 
 var CSS_REMOVE_ROW = A.getClassName('layout', 'builder', 'remove', 'row', 'button'),
-    TPL_REMOVE_ROW_BUTTON = '<button type="button" class="btn btn-default btn-xs layout-builder-remove-row-button">' +
+    TPL_REMOVE_ROW_BUTTON = '<button type="button" class="btn btn-default btn-xs ' + CSS_REMOVE_ROW + '">' +
         '<span class="glyphicon glyphicon-trash"></span> Remove Row</button>';
 
 /**
@@ -14,6 +14,7 @@ var CSS_REMOVE_ROW = A.getClassName('layout', 'builder', 'remove', 'row', 'butto
  * @class A.LayoutBuilderRemoveRow
  * @param {Object} config Object literal specifying layout configuration
  *     properties.
+ * @constructor
  */
 function LayoutBuilderRemoveRow() {}
 

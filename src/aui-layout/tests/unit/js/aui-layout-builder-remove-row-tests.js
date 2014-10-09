@@ -31,7 +31,8 @@ YUI.add('aui-layout-builder-remove-row-tests', function(Y) {
                                 value: { content: 'foo' }
                             })
                         ]
-                    })
+                    }),
+                    new Y.LayoutRow()
                 ]
             });
 
@@ -47,17 +48,47 @@ YUI.add('aui-layout-builder-remove-row-tests', function(Y) {
             this.layoutBuilder.destroy();
         },
 
+        'should add remove button for each row': function() {
+            var removeButtons = container.all('.layout-builder-remove-row-button');
+
+            Assert.areEqual(2, removeButtons.size());
+        },
+
+        'should update buttons after layout changes': function() {
+            var removeButtons;
+
+            this.layoutBuilder.set('layout', new Y.Layout({
+                rows: [
+                    new Y.LayoutRow(),
+                    new Y.LayoutRow(),
+                    new Y.LayoutRow()
+                ]
+            }));
+
+            removeButtons = container.all('.layout-builder-remove-row-button');
+            Assert.areEqual(3, removeButtons.size());
+        },
+
+        'should update buttons after layout rows change': function() {
+            var removeButtons;
+
+            this.layoutBuilder.get('layout').addRow(new Y.LayoutRow());
+
+            removeButtons = container.all('.layout-builder-remove-row-button');
+            Assert.areEqual(3, removeButtons.size());
+        },
+
         'should remove a new row when click on remove row button': function() {
             var button = container.one('.layout-builder-remove-row-button'),
                 rows = container.all('.row');
 
-            Assert.areEqual(1, rows.size());
+            Assert.areEqual(2, rows.size());
 
             button.simulate('click');
 
             rows = container.all('.row');
 
-            Assert.areEqual(0, rows.size());
+            Assert.areEqual(1, rows.size());
         },
 
         'should hide remove row button if disable enableRemoveRows attribute': function() {
@@ -83,7 +114,7 @@ YUI.add('aui-layout-builder-remove-row-tests', function(Y) {
                 layout: layout
             });
 
-            button = container.one('.remove-row-button');
+            button = container.one('.layout-builder-remove-row-button');
 
             Assert.isNull(button);
         }
