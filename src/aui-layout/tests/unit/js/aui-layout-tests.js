@@ -108,9 +108,10 @@ YUI.add('aui-layout-tests', function(Y) {
             Assert.areEqual(4, container.all('.row').size());
 
             this.layout.addRow(1);
+            this.layout.addRow();
             this.layout.draw(container);
 
-            Assert.areEqual(5, container.all('.row').size());
+            Assert.areEqual(6, container.all('.row').size());
         },
 
         'should add a row passing a row object as parameter': function() {
@@ -192,6 +193,28 @@ YUI.add('aui-layout-tests', function(Y) {
             this.layout.draw(container);
 
             Assert.areEqual(4, container.all('.row').size());
+        },
+
+        'should be able to move a row': function() {
+            var container = Y.one(CONTAINER_CLASS),
+                row,
+                rows = this.layout.get('rows');
+
+            row = rows[0];
+
+            Assert.areEqual(0, rows.indexOf(row));
+
+            this.layout.moveRow(row, 2);
+
+            rows = this.layout.get('rows')
+
+            Assert.areEqual(1, rows.indexOf(row));
+
+            this.layout.moveRow(row, 0);
+
+            rows = this.layout.get('rows')
+
+            Assert.areEqual(0, rows.indexOf(row));
         }
     }));
 

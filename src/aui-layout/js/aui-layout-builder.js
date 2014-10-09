@@ -21,6 +21,7 @@ var TPL_LAYOUT_CONTAINER = '<div class="layout-builder-layout-container"></div>'
 A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     A.LayoutBuilderAddCol,
     A.LayoutBuilderAddRow,
+    A.LayoutBuilderMoveRow,
     A.LayoutBuilderRemoveCol,
     A.LayoutBuilderRemoveRow,
     A.LayoutBuilderResizeCol

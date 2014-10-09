@@ -125,10 +125,10 @@ LayoutBuilderRemoveRow.prototype = {
     /**
      * Removes all remove row buttons.
      *
-     * @method _removeButtonFromRows
+     * @method _removeRemoveButtonFromRows
      * @protected
      */
-    _removeButtonFromRows: function() {
+    _removeRemoveButtonFromRows: function() {
         this.get('container').all('.' + CSS_REMOVE_ROW).remove();
     },
 
@@ -145,7 +145,7 @@ LayoutBuilderRemoveRow.prototype = {
             this._bindRemoveRowEvents();
         }
         else {
-            this._removeButtonFromRows();
+            this._removeRemoveButtonFromRows();
             this._unbindRemoveRowEvents();
         }
     },

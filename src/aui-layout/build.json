@@ -53,6 +53,12 @@
             "jsfiles": [
                 "js/aui-layout-builder-remove-row.js"
             ]
+        },
+
+        "aui-layout-builder-move-row": {
+            "jsfiles": [
+                "js/aui-layout-builder-move-row.js"
+            ]
         }
     }
 }

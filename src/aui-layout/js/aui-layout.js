@@ -75,6 +75,31 @@ A.Layout = A.Base.create('layout', A.Base, [], {
     },
 
     /**
+     * Moves a row to a different position.
+     *
+     * @method moveRow
+     * @param {Node} row Row to change the position.
+     * @param {Number} position The new position of the row.
+     **/
+    moveRow: function(row, position) {
+        var index,
+            rows = this.get('rows').concat();
+
+        index = rows.indexOf(row);
+
+        rows.splice(position, 0, row);
+
+        if (index >= position) {
+            rows.splice(index + 1, 1);
+        }
+        else {
+            rows.splice(index, 1);
+        }
+
+        this.set('rows', rows);
+    },
+
+    /**
      * Removes a row from this layout.
      *
      * @method removeRow
@@ -139,7 +164,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * Updates the UI according to the value of the `rows` attribute.
      *
      * @method _uiSetRows
-     * @param  {Array} rows
+     * @param {Array} rows
      * @protected
      */
     _uiSetRows: function(rows) {
