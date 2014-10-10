@@ -51,7 +51,7 @@
 }
 .scheduler-view-table-header-day {
     color: #abaaab;
-    text-align: right;
+    text-align: center;
 }
 .scheduler-view-table-header-table {
     table-layout: fixed;
