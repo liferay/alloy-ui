@@ -33,10 +33,10 @@ YUI.add('aui-toolbar-tests', function(Y) {
 
         addContent: function() {
             var content = {
-                    label: 'Test',
-                    domType: 'button',
-                    id: 'button'
-                };
+                label: 'Test',
+                domType: 'button',
+                id: 'button'
+            };
 
             this._toolbar.add([content]);
 
