@@ -421,6 +421,7 @@
         "requires": [
             "arraylist-add",
             "arraylist-filter",
+            "escape",
             "json",
             "graphics",
             "dd"
@@ -429,8 +430,9 @@
     },
     "aui-diagram-node": {
         "requires": [
-            "overlay",
-            "aui-diagram-node-manager-base"
+            "aui-diagram-node-manager-base",
+            "escape",
+            "overlay"
         ]
     },
     "aui-diagram-node-condition": {
@@ -1326,6 +1328,7 @@
         "requires": [
             "dd-delegate",
             "dd-proxy",
+            "widget",
             "aui-tree-node",
             "aui-tree-paginator",
             "aui-tree-io"
