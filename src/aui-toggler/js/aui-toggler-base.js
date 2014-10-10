@@ -391,12 +391,10 @@ var Toggler = A.Component.create({
          * @protected
          */
         _animation: function(expand, payload) {
-            var instance = this;
-
-            var content = instance.get('content');
-
-            var height = instance.getContentHeight();
-            var gutter = instance.contentGutter;
+            var instance = this,
+                content = instance.get('content'),
+                gutter = instance.contentGutter,
+                height = instance.getContentHeight();
 
             if (isUndefined(gutter)) {
                 gutter = instance.contentGutter = toInt(content.getStyle('marginTop'));
