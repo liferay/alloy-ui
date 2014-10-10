@@ -1,5 +1,6 @@
 .field-type {
     border: 1px solid #ccc;
+    cursor: pointer;
     float: left;
     font-size: 10px;
     padding: 10px;

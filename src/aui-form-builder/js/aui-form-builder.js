@@ -396,10 +396,10 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             fieldType = event.currentTarget.getData('fieldType');
 
         if (!fieldType.get('disabled')) {
-        this.hideFieldsPanel();
+            this.hideFieldsPanel();
 
-        field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
-        this.showFieldSettingsPanel(field, fieldType.get('label'));
+            field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
+            this.showFieldSettingsPanel(field, fieldType.get('label'));
         }
     },
 
@@ -462,7 +462,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             this._colAddingField = null;
         }
 
-        this._updateFieldTypes(this._fieldBeingEdited, true);
+        this._toggleUniqueDisabled(this._fieldBeingEdited, true);
 
         this.hideFieldSettingsPanel();
         this._fieldBeingEdited = null;
@@ -497,6 +497,23 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
         } else {
             this._emptyLayoutMsg.hide();
         }
+    },
+
+    /**
+     * Disables or enabled unique fields for the field class that the given
+     * field is an instance of.
+     *
+     * @method _toggleUniqueDisabled
+     * @param {A.FormBuilderFieldBase} field
+     * @param {Boolean} disabled
+     * @protected
+     */
+    _toggleUniqueDisabled: function (field, disabled) {
+        A.Array.each(this.get('fieldTypes'), function (fieldType) {
+            if (A.instanceOf(field, fieldType.get('fieldClass')) && fieldType.get('unique')) {
+                fieldType.set('disabled', disabled);
+            }
+        });
     },
 
     /**
@@ -555,14 +572,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             fieldTypes[index].destroy();
             fieldTypes.splice(index, 1);
         }
-    },
-
-    _updateFieldTypes: function (field, disabled) {
-        A.Array.each(this.get('fieldTypes'), function (fieldType) {
-            if (A.instanceOf(field, fieldType.get('fieldClass')) && fieldType.get('unique')) {
-                fieldType.set('disabled', disabled);
-            }
-        });
     },
 
     /**

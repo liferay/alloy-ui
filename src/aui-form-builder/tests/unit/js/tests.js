@@ -352,6 +352,19 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(field.get('required'));
         },
 
+        'shouldn\'t save a disabled field': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    disabled: true,
+                    fieldClass: Y.FormBuilderFieldText
+                }]
+            });
+
+            this._formBuilder.showFieldsPanel();
+            Y.one('.field-type').simulate('click');
+            Y.Assert.isNull(Y.one('.form-builder-field-settings'));
+        },
+
         'shouldn\'t save a second field from a field type with unique true': function() {
             this.createFormBuilder({
                 fieldTypes: [{
