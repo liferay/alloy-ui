@@ -7,6 +7,20 @@ YUI.add('aui-base-tests', function(Y) {
             'loremIpsumDolorSitAmet, LOREMIpsumD&OLOR',
             'LoremIpsumDolorSitAmet. loremIpsumDolorSitAmet, loremIpsumDolorSitAmet'
         ],
+        caseStringsUpper = [
+            'YIELDING GREAT GIVEN',
+            'WATERS WHEREIN CREATURE OVER',
+            'DARKNESS BEHOLD FOWL LIKENESS UPON',
+            'GREEN. THE BEHOLD LIKENESS FISH',
+            'MOVED RULE HEAVEN'
+        ],
+        caseStringsLower = [
+            'yielding great given',
+            'waters wherein creature over',
+            'darkness behold fowl likeness upon',
+            'green. the behold likeness fish',
+            'moved rule heaven'
+        ],
         caseStrings = ['liferay', 'Liferay', 'cAPITAL', 'Capital', 'word-dash', 'Word-dash'],
         containStrings = ['alongstring', 'a-different-string', 'anotherstring123'],
         definedStrings = [
@@ -290,8 +304,8 @@ YUI.add('aui-base-tests', function(Y) {
                     else {
                         Assert.areSame(character.toUpperCase(), character);
                     }
-                };
-            };
+                }
+            }
         },
 
         'should pad numbers correctly': function() {
