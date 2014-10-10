@@ -7,13 +7,13 @@ YUI.add('aui-toggler-base-tests', function(Y) {
 
         init: function() {
             var content = Y.Node.create('<div id="toggler" class="content toggler-content-collapsed">' +
-                                            'L' +
-                                        '</div>'),
+                    'L' +
+                '</div>'),
                 header = Y.Node.create('<div id="header" class="accordion-heading">' +
-                                            '<a class="accordion-toggle">' +
-                                                'Collapsible' +
-                                            '</a>' +
-                                        '</div>');
+                    '<a class="accordion-toggle">' +
+                        'Collapsible' +
+                    '</a>' +
+                '</div>');
 
             this._container = Y.one('#container');
             this._container.append(header);
@@ -21,7 +21,6 @@ YUI.add('aui-toggler-base-tests', function(Y) {
         },
 
         setUp: function() {
-        	
             this.createToggler({
             animated: true,
             content: '.content',

@@ -363,8 +363,7 @@ var Toggler = A.Component.create({
                     return expand;
                 }
 
-            instance._animation(expand, payload);
-                
+                instance._animation(expand, payload);
             }
             else {
                 instance.set('expanded', expand, payload);
@@ -377,7 +376,9 @@ var Toggler = A.Component.create({
          * Apply animation on `toggle`.
          *
          * @method _animation
-         * @param expand
+         * @param {Boolean} expand
+         * @param {Object} payload
+         * @protected
          */
         _animation: function(expand, payload) {
             var instance = this;
