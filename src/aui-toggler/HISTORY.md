@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1627](https://issues.liferay.com/browse/AUI-1627) Remove DOM content added by toggler on destroyed
 * [AUI-1624](https://issues.liferay.com/browse/AUI-1624) Add unit test for toggler module
 * [AUI-1364](https://issues.liferay.com/browse/AUI-1364) Make aui-toggler accessible
 

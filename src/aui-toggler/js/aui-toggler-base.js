@@ -257,13 +257,15 @@ var Toggler = A.Component.create({
          * @protected
          */
         destructor: function() {
-            var instance = this;
+            var instance = this,
+                content,
+                wrapper;
 
             instance.get('header').setData('toggler', null);
 
             if (instance.wrapped) {
-                var content = instance.get('content');
-                var wrapper = content.get('parentNode');
+                content = instance.get('content');
+                wrapper = content.get('parentNode');
 
                 wrapper.insert(content, 'before');
                 wrapper.remove();
