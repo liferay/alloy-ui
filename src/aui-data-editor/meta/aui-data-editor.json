@@ -15,7 +15,6 @@
         "requires": [
             "aui-classnamemanager",
             "aui-data-editor"
-        ],
-        "skinnable": true
+        ]
     }
 }
