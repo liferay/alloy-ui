@@ -19,6 +19,10 @@ var Lang = A.Lang,
         return A.one(v);
     },
 
+    createButton = function() {
+        return A.Node.create(BUTTON_TPL);
+    },
+
     createSelect = function() {
         return A.Node.create(SELECT_TPL);
     },
@@ -88,6 +92,7 @@ var Lang = A.Lang,
     CSS_DATEPICKER_YEAR = getClassName(DATEPICKER, YEAR),
     CSS_HELPER_CLEARFIX = getClassName(HELPER, CLEARFIX),
 
+    BUTTON_TPL = '<button />',
     SELECT_TPL = '<select></select>',
     SELECT_OPTION_TPL = '<option></option>',
     WRAPPER_BUTTON_TPL = '<div class="' + CSS_DATEPICKER_BUTTON_WRAPPER + '"></div>',
@@ -163,7 +168,10 @@ var DatePickerSelect = A.Component.create({
          * @default Generated div element.
          * @type String
          */
-        buttonNode: {},
+        buttonNode: {
+            setter: nodeSetter,
+            valueFn: createButton
+        },
 
         /**
          * <a href="Calendar.html">Calendar</a> configuration Object.</a>
