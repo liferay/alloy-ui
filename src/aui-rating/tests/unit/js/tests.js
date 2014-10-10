@@ -31,7 +31,7 @@ YUI.add('aui-rating-tests', function(Y) {
         },
 
         isInactive: function(index) {
-            return Y.all('.rating-content a').item(index)._node.getAttribute('class').indexOf('glyphicon-star-empty') === -1;
+            return !Y.all('.rating-content a').item(index).hasClass('glyphicon-star-empty');
         },
 
         'should select all element until a index': function() {
@@ -58,7 +58,7 @@ YUI.add('aui-rating-tests', function(Y) {
             var label = 'Label';
 
             this._rating.set('label', label);
-            Y.Test.Assert.isTrue(Y.one('.rating-label')._node.innerHTML === label);
+            Y.Test.Assert.areEqual(label, Y.one('.rating-label').get('text'));
         },
 
         'should fill all element until a index when mouse is over': function() {
@@ -122,10 +122,10 @@ YUI.add('aui-rating-tests', function(Y) {
 
         'should fill a element': function() {
             this._thumbRating.fillTo(0);
-            Y.Test.Assert.isTrue(Y.all('#content span a').item(0)._node.getAttribute('class').indexOf('rating-on') >= 0);
+            Y.Test.Assert.isTrue(Y.all('#content span a').item(0).hasClass('rating-on'));
 
             this._thumbRating.fillTo(-1);
-            Y.Test.Assert.isFalse(Y.all('#content span a').item(0)._node.getAttribute('class').indexOf('rating-on') >= 0);
+            Y.Test.Assert.isFalse(Y.all('#content span a').item(0).hasClass('rating-on'));
         }
     }));
 
@@ -165,11 +165,11 @@ YUI.add('aui-rating-tests', function(Y) {
             this._rating = new Y.Rating(config).render();
         },
 
-    //     //----------------------------------------------------------------------
-    //     // Tests
-    //     //----------------------------------------------------------------------
+        //----------------------------------------------------------------------
+        // Tests
+        //----------------------------------------------------------------------
 
-    //     // Tests: AUI-1132
+        // Tests: AUI-1132
         'check that pressing enter selects an item': function() {
             var item = Y.one('.glyphicon-star-empty');
 
@@ -181,9 +181,6 @@ YUI.add('aui-rating-tests', function(Y) {
             });
 
             Y.Test.Assert.isTrue(item.hasClass('glyphicon-star'), 'The first item should be selected');
-            
-            // AUI
-            // saer = 2.5
         }
     }));
 
@@ -194,9 +191,9 @@ YUI.add('aui-rating-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'RoundingFloats',
 
-    //     //----------------------------------------------------------------------
-    //     // Tests
-    //     //----------------------------------------------------------------------
+        //----------------------------------------------------------------------
+        // Tests
+        //----------------------------------------------------------------------
 
         init: function() {
             this._container = Y.one('#container');
@@ -218,7 +215,7 @@ YUI.add('aui-rating-tests', function(Y) {
 
         createRating: function(config) {
             var content = Y.Node.create('<div id="content" />');
-            
+
             this._roundedValue = Math.round(this._selectedValue);
             this._container.append(content);
             this._ratingRounded = new Y.Rating(config).render();
@@ -234,5 +231,5 @@ YUI.add('aui-rating-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test', 'aui-rating', 'node-event-simulate', 'node-event-simulate']
+    requires: ['aui-rating', 'node-event-simulate', 'test']
 });
