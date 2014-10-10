@@ -5,7 +5,7 @@ YUI.add('aui-selector-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Selector',
 
-        'Hidden selector accounts for position:absolute and clip': function() {
+        'Hidden selector accounts for position: absolute and clip styles': function() {
             var node = Y.one('#nodeToHide');
 
             node.hideAccessible();
@@ -17,8 +17,8 @@ YUI.add('aui-selector-tests', function(Y) {
             Y.Assert.isFalse(node.test(':hidden'));
 
             node.setStyles({
-                position: 'absolute',
-                clip: 'rect(0 0 0 0)'
+                clip: 'rect(0 0 0 0)',
+                position: 'absolute'
             });
 
             Y.Assert.isTrue(node.test(':hidden'));
