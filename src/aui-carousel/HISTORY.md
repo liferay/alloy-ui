@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1598](https://issues.liferay.com/browse/AUI-1598) Carousel should work with text and other contents
 * [AUI-1592](https://issues.liferay.com/browse/AUI-1592) Fix modules behavior on touch screen desktop computers
 * [AUI-1578](https://issues.liferay.com/browse/AUI-1578) AUI Carousel can be temporarily hidden if navigated between slides during transition
 

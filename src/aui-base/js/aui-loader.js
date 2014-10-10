@@ -551,6 +551,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "arraylist-add",
             "arraylist-filter",
+            "escape",
             "json",
             "graphics",
             "dd"
@@ -559,8 +560,9 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-diagram-node": {
         "requires": [
-            "overlay",
-            "aui-diagram-node-manager-base"
+            "aui-diagram-node-manager-base",
+            "escape",
+            "overlay"
         ]
     },
     "aui-diagram-node-condition": {
@@ -1737,6 +1739,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "dd-delegate",
             "dd-proxy",
+            "widget",
             "aui-tree-node",
             "aui-tree-paginator",
             "aui-tree-io"
@@ -1833,4 +1836,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'be096e7de9183ae356068281b327e9ef';
+YUI.Env[Y.version].md5 = 'b847a93b195e96324676c09169cc53a2';

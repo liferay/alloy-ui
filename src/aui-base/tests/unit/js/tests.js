@@ -1,6 +1,27 @@
 YUI.add('aui-base-tests', function(Y) {
 
-    var caseStrings = ['liferay', 'Liferay', 'cAPITAL', 'Capital', 'word-dash', 'Word-dash'],
+    var camelizedStrings = [
+            'loremIpsumDolorSitAmet',
+            'LorEmIpsumDolorSitAMET',
+            'LoremIpsumDoLOR. sitAmet +1',
+            'loremIpsumDolorSitAmet, LOREMIpsumD&OLOR',
+            'LoremIpsumDolorSitAmet. loremIpsumDolorSitAmet, loremIpsumDolorSitAmet'
+        ],
+        caseStringsUpper = [
+            'YIELDING GREAT GIVEN',
+            'WATERS WHEREIN CREATURE OVER',
+            'DARKNESS BEHOLD FOWL LIKENESS UPON',
+            'GREEN. THE BEHOLD LIKENESS FISH',
+            'MOVED RULE HEAVEN'
+        ],
+        caseStringsLower = [
+            'yielding great given',
+            'waters wherein creature over',
+            'darkness behold fowl likeness upon',
+            'green. the behold likeness fish',
+            'moved rule heaven'
+        ],
+        caseStrings = ['liferay', 'Liferay', 'cAPITAL', 'Capital', 'word-dash', 'Word-dash'],
         containStrings = ['alongstring', 'a-different-string', 'anotherstring123'],
         definedStrings = [
             '',
@@ -228,7 +249,6 @@ YUI.add('aui-base-tests', function(Y) {
                     character = null,
                     dashCount = 0;
 
-                //find the dash and capitalized indicies
                 for (var j = 0; j < toBeCamelized.length; j++) {
                     character = toBeCamelized[j];
 
@@ -242,11 +262,43 @@ YUI.add('aui-base-tests', function(Y) {
                     }
                 }
 
-                //ensure the result is camelized
                 for (var k = 0; k < camelized.length; k++) {
                     character = camelized[k];
 
                     if (Y.Array.indexOf(capitalIndices, k) === -1) {
+                        Assert.areSame(character.toLowerCase(), character);
+                    }
+                    else {
+                        Assert.areSame(character.toUpperCase(), character);
+                    }
+                }
+            }
+        },
+
+        'should uncamelize strings correctly': function() {
+            for (var i = 0; i < camelizedStrings.length; i++) {
+                var toBeUncamelized = camelizedStrings[i],
+                    uncamelized = Y.Lang.String.uncamelize(toBeUncamelized, '-'),
+                    capitalIndices = [],
+                    character = null,
+                    dashCount = 0;
+
+                for (var j = 0; j < toBeUncamelized.length; j++) {
+                    character = toBeUncamelized[j];
+
+                    if (character.toUpperCase() === character) {
+                        capitalIndices.push(j);
+                    }
+                }
+
+                for (var k = 0; k < uncamelized.length; k++) {
+                    character = uncamelized[k];
+
+                    if (character === '-') {
+                        dashCount++;
+                    }
+
+                    if (capitalIndices.indexOf(k - dashCount) === -1) {
                         Assert.areSame(character.toLowerCase(), character);
                     }
                     else {
@@ -504,6 +556,12 @@ YUI.add('aui-base-tests', function(Y) {
             expected = '...';
 
             Assert.areEqual(expected, actual);
+        },
+
+        'should convert case to lower': function() {
+            for (var i = 0; i < caseStringsUpper.length; i++) {
+                Assert.areEqual(Y.Lang.String.toLowerCase(caseStringsUpper[i]), caseStringsLower[i]);
+            }
         }
     }));
 

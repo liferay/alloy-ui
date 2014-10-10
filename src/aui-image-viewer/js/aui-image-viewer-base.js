@@ -4,7 +4,8 @@
  * @module aui-image-viewer-base
  */
 
-var CSS_CONTROL = A.getClassName('image', 'viewer', 'base', 'control'),
+var CSS_CONTENT = A.getClassName('image', 'viewer', 'base', 'node', 'content'),
+    CSS_CONTROL = A.getClassName('image', 'viewer', 'base', 'control'),
     CSS_CONTROL_LEFT = A.getClassName('image', 'viewer', 'base', 'control', 'left'),
     CSS_CONTROL_RIGHT = A.getClassName('image', 'viewer', 'base', 'control', 'right'),
     CSS_CURRENT_IMAGE = A.getClassName('image', 'viewer', 'base', 'current', 'image'),
@@ -422,18 +423,28 @@ A.ImageViewerBase = A.Base.create(
                 image = A.Node.create(this.TPL_IMAGE),
                 src = this.get('sources')[index];
 
-            container.prepend(image);
+            if (A.Lang.isString(src)) {
+                container.prepend(image);
 
-            this._eventHandles.push(
-                image.once('load', A.bind(this._onImageLoad, this, image, index))
-            );
+                this._eventHandles.push(
+                    image.once('load', A.bind(this._onImageLoad, this, image, index))
+                );
 
-            group = new A.ImgLoadGroup();
-            group.addCustomTrigger('load' + index, this);
-            group.registerImage({
-                domId: image.generateID(),
-                srcUrl: src
-            });
+                group = new A.ImgLoadGroup();
+                group.addCustomTrigger('load' + index, this);
+                group.registerImage({
+                    domId: image.generateID(),
+                    srcUrl: src
+                });
+            }
+            else if (src instanceof A.Node) {
+                container.prepend(src);
+
+                src.setData('loaded', true);
+                src.addClass(CSS_IMAGE);
+                src.addClass(CSS_CONTENT);
+                src.get('parentNode').removeClass(CSS_LOADING);
+            }
         },
 
         /**
@@ -772,15 +783,28 @@ A.ImageViewerBase = A.Base.create(
             },
 
             sources: function(srcNode) {
-                var images = srcNode.all('.' + CSS_IMAGE),
+                var backgroundImageStyle,
+                    childImg,
+                    img,
+                    images = srcNode.all('.' + CSS_IMAGE + ', .' + CSS_CONTENT),
+                    isImg,
                     sources = [];
 
                 images.each(function() {
-                    if (this.test('img')) {
-                        sources.push(this.getAttribute('src'));
+                    isImg = this.test('img'),
+                    childImg = this.one('img'),
+                    backgroundImageStyle = this.getStyle('backgroundImage');
+
+                    if (this.hasClass(CSS_CONTENT)) {
+                        sources.push(this);
                     }
-                    else {
-                        sources.push(A.Lang.String.removeAll(this.getStyle('backgroundImage').slice(4, -1), '"'));
+                    else if (isImg || childImg) {
+                        img = isImg ? this : childImg;
+
+                        sources.push(img.getAttribute('src'));
+                    }
+                    else if (backgroundImageStyle !== 'none') {
+                        sources.push(A.Lang.String.removeAll(backgroundImageStyle.slice(4, -1), '"'));
                     }
                 });
 

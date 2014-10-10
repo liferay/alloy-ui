@@ -249,6 +249,41 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
     },
 
     /**
+     * Prefetches the specified path if there is a route handler that matches.
+     *
+     * @method navigate
+     * @param {String} path Path containing the querystring part.
+     * @return {Promise} Returns a pending request cancellable promise.
+     */
+    prefetch: function(path) {
+        var nextScreen,
+            pendingPrefetch,
+            route = this.matchesPath(path),
+            self = this;
+
+        if (!route) {
+            return A.CancellablePromise.reject(new A.CancellablePromise.Error('No screen for ' + path));
+        }
+
+        A.log('Prefetching [' + path + ']', 'info');
+
+        nextScreen = this._getScreenInstance(path, route);
+        pendingPrefetch = A.CancellablePromise.resolve()
+            .then(function() {
+                return nextScreen.load(path);
+            })
+            .then(function() {
+                    self.screens[path] = nextScreen;
+                },
+                function(reason) {
+                    self._removeScreen(path, nextScreen);
+                    throw reason;
+                });
+
+        return pendingPrefetch;
+    },
+
+    /**
      * Starts navigation to a path.
      *
      * @method  _defStartNavigateFn

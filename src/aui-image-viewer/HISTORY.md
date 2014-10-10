@@ -4,9 +4,10 @@
 
 ## @VERSION@
 
+* [AUI-1639](https://issues.liferay.com/browse/AUI-1639) Setting height/width in ImageViewer
+* [AUI-1598](https://issues.liferay.com/browse/AUI-1598) Carousel should work with text and other contents
 * [AUI-1593](https://issues.liferay.com/browse/AUI-1593) Removing ie8 hack on ImageViewerBase
 * [AUI-1581](https://issues.liferay.com/browse/AUI-1581) AUI Carousel demo images don't appear in Firefox
-* [AUI-1485](https://issues.liferay.com/browse/AUI-1485) aui-image-viewer HISTORY.md
 * [AUI-1485](https://issues.liferay.com/browse/AUI-1485) aui-image-viewer HISTORY.md
 
 ## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)

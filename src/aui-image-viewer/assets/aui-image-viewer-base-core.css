@@ -1,7 +1,12 @@
 .image-viewer-base .image-viewer-base-image-list {
-    text-align: center;
+    height: 100%;
     overflow: hidden;
+    text-align: center;
     width: 100%;
+}
+
+.image-viewer-base .image-viewer-base-image-list .image-viewer-base-image-list-inner {
+    height: 100%;
 }
 
 .image-viewer-base .image-viewer-base-image-container {

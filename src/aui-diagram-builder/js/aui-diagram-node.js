@@ -1494,10 +1494,10 @@ DiagramNode = A.Component.create({
             var instance = this;
             var boundingBox = instance.get('boundingBox');
 
-            boundingBox.setAttribute('data-nodeId', A.DiagramNode.buildNodeId(val));
+            boundingBox.setAttribute('data-nodeId', A.Escape.html(A.DiagramNode.buildNodeId(val)));
 
             if (instance.get('rendered')) {
-                instance.labelNode.setContent(val);
+                instance.labelNode.setContent(A.Escape.html(val));
             }
         },
 

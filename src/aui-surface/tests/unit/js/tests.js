@@ -17,6 +17,9 @@ YUI.add('aui-surface-tests', function(Y) {
                 'should throw error when surface is not found': noHTML5,
                 'should match surface elements': noHTML5,
                 'should lazily match surface element': noHTML5,
+                'should prefetch': noHTML5,
+                'should prefetch fail using HtmlScreen': noHTML5,
+                'should not prefetch unrouted path': noHTML5,
                 'should navigate with screen lifecycle': noHTML5,
                 'should navigate to hash clicked links': noHTML5,
                 'should navigate asynchronously': noHTML5,
@@ -706,6 +709,61 @@ YUI.add('aui-surface-tests', function(Y) {
                     Y.config.win.history.back();
                 });
             });
+            instance.wait();
+        },
+
+        'should prefetch': function() {
+            var fetched = false,
+                instance = this;
+
+            instance.app.prefetch('/base/page').then(function() {
+                fetched = true;
+            })
+            .thenAlways(function() {
+                instance.resume(function() {
+                    Y.Assert.isTrue(fetched);
+                });
+            });
+
+            instance.wait();
+        },
+
+        'should prefetch fail using HtmlScreen': function() {
+            var fail = false,
+                instance = this;
+
+            instance.app.addScreenRoutes({
+                path: '/not-found.txt',
+                screen: Y.HTML404Screen
+            });
+
+            instance.app.set('basePath', instance.getOriginalBasePath());
+
+            instance.app.prefetch(instance.getOriginalBasePath() + '/not-found.txt').thenCatch(function() {
+              fail = true;
+            })
+            .thenAlways(function() {
+                instance.resume(function() {
+                    Y.Assert.isTrue(fail);
+                });
+            });
+
+            instance.wait();
+        },
+
+        'should not prefetch unrouted path': function() {
+            var fail = false,
+                instance = this;
+
+            instance.app.prefetch('/no-route').thenCatch(function() {
+                fail = true;
+            })
+            .thenAlways(function() {
+                instance.resume(function() {
+                    Y.Assert.isTrue(fail);
+                });
+            });
+
             instance.wait();
         }
     }));
