@@ -18,6 +18,7 @@ var CSS_MOVE_CANCEL_BUTTON = A.getClassName('layout', 'builder', 'move', 'cancel
  * @class A.LayoutBuilderMoveRow
  * @param {Object} config Object literal specifying layout configuration
  *     properties.
+ * @constructor
  */
 function LayoutBuilderMoveRow() {}
 
@@ -60,6 +61,16 @@ LayoutBuilderMoveRow.prototype = {
     },
 
     /**
+     * Fired after the `enableMoveRows` attribute changes.
+     *
+     * @method _afterEnableMoveRowsChange
+     * @protected
+     */
+    _afterEnableMoveRowsChange: function() {
+        this._resetMoveUI();
+    },
+
+    /**
      * Fired after `layout` attribute changes.
      *
      * @method _afterMoveRowLayoutChange
@@ -76,16 +87,6 @@ LayoutBuilderMoveRow.prototype = {
      * @protected
      */
     _afterMoveRowRowsChange: function() {
-        this._resetMoveUI();
-    },
-
-    /**
-     * Fired after the `enableMoveRows` attribute changes.
-     *
-     * @method _afterEnableMoveRowsChange
-     * @protected
-     */
-    _afterEnableMoveRowsChange: function() {
         this._resetMoveUI();
     },
 
@@ -245,7 +246,7 @@ LayoutBuilderMoveRow.prototype = {
     },
 
     /**
-     * Resetd the UI to a initial state.
+     * Reset the UI to a initial state.
      *
      * @method _resetMoveUI
      * @protected

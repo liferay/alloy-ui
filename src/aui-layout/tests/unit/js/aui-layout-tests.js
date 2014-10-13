@@ -196,8 +196,7 @@ YUI.add('aui-layout-tests', function(Y) {
         },
 
         'should be able to move a row': function() {
-            var container = Y.one(CONTAINER_CLASS),
-                row,
+            var row,
                 rows = this.layout.get('rows');
 
             row = rows[0];
@@ -206,13 +205,13 @@ YUI.add('aui-layout-tests', function(Y) {
 
             this.layout.moveRow(row, 2);
 
-            rows = this.layout.get('rows')
+            rows = this.layout.get('rows');
 
             Assert.areEqual(1, rows.indexOf(row));
 
             this.layout.moveRow(row, 0);
 
-            rows = this.layout.get('rows')
+            rows = this.layout.get('rows');
 
             Assert.areEqual(0, rows.indexOf(row));
         }

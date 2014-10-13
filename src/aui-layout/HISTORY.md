@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1707](https://issues.liferay.com/browse/AUI-1707) Button to move row
 * [AUI-1704](https://issues.liferay.com/browse/AUI-1704) Drag handles for all columns should update position during drag
 * [AUI-1708](https://issues.liferay.com/browse/AUI-1708) Button to remove rows
 * [AUI-1722](https://issues.liferay.com/browse/AUI-1722) Button to add rows
