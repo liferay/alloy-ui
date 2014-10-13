@@ -39,7 +39,7 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
         var content = this.get('content');
 
         content.addClass(CSS_FIELD_CHOICE);
-        content.setHTML(TPL_FIELD_CHOICE_CONTENT);
+        content.one('.form-builder-field-content').setHTML(TPL_FIELD_CHOICE_CONTENT);
 
         this._uiSetHelp(this.get('help'));
         this._uiSetTitle(this.get('title'));

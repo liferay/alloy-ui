@@ -14,8 +14,13 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
+    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
+    CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list'),
-    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row');
+    CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'configuration'),
+    CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'edit'),
+    CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'remove'),
+    CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'close');
 
 /**
  * A base class for `A.FormBuilder`.
@@ -88,9 +93,17 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             this.after('layoutChange', this._afterLayoutChange),
             this.after('layout:rowsChange', this._afterLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterLayoutColsChange),
+            boundingBox.delegate('mouseenter', this._onFieldMouseEnter, '.' + CSS_FIELD, this),
+            boundingBox.delegate('mouseleave', this._onFieldMouseLeave, '.' + CSS_FIELD, this),
+            boundingBox.delegate('touchstart', this._onTouchField, '.' + CSS_FIELD, this),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL, this),
-            boundingBox.one('.' + CSS_ADD_ROW_BUTTON).on('click', this._onClickAddRow, this),
-            boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this)
+            boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this),
+            boundingBox.delegate('click', this._onClickConfigurationField, '.' + CSS_FIELD_CONFIGURATION, this),
+            boundingBox.delegate('click', this._onClickEditField, '.' + CSS_FIELD_TOOLBAR_EDIT, this),
+            boundingBox.delegate('click', this._onClickCloseField, '.' + CSS_FIELD_TOOLBAR_CLOSE, this),
+            boundingBox.delegate('click', this._onClickRemoveField, '.' + CSS_FIELD_TOOLBAR_REMOVE, this),
+            boundingBox.one('.' + CSS_ADD_ROW_BUTTON).on('click', this._onClickAddRow, this)
+
         ];
     },
 
@@ -385,6 +398,85 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     },
 
     /**
+     * Fired when the button for configuration a field is clicked.
+     *
+     * @method _onClickConfigurationField
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickConfigurationField: function (event) {
+        var field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
+
+        field.toggleToolbar(true);
+    },
+
+    /**
+     * Fired when the button for closing a toolbar of field is clicked.
+     *
+     * @method _onClickCloseField
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickCloseField: function (event) {
+        var field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
+
+        field.toggleToolbar(false);
+    },
+
+    /**
+     * Fired when the button for editing a field is clicked.
+     *
+     * @method _onClickEditField
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickEditField: function (event) {
+        var field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
+
+        field.toggleToolbar(false);
+        this.showFieldSettingsPanel(field, field.get('title'));
+    },
+
+    /**
+     * Fires when mouse enters on field.
+     *
+     * @method _onFieldMouseEnter
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onFieldMouseEnter: function (event) {
+        var field = event.currentTarget.getData('field-instance');
+
+        field.toggleConfigurationButton(true);
+    },
+
+    /**
+     * Fires when mouse leaves the field.
+     *
+     * @method _onFieldMouseLeave
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onFieldMouseLeave: function (event) {
+        var field = event.currentTarget.getData('field-instance');
+
+        field.toggleConfigurationButton(false);
+    },
+
+    /**
+     * Fired when a field is clicked.
+     *
+     * @method _onTouchField
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onTouchField: function (event) {
+        var field = event.currentTarget.getData('field-instance');
+
+        field.toggleToolbar(true);
+    },
+
+    /**
      * Fired when a field type is clicked.
      *
      * @method _onClickFieldType
@@ -401,6 +493,20 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
             this.showFieldSettingsPanel(field, fieldType.get('label'));
         }
+    },
+
+    /**
+     * Fired when the button for removing a field is clicked.
+     *
+     * @method _onClickRemoveField
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickRemoveField: function (event) {
+        var instance = this,
+            col = event.currentTarget.ancestor('.col').getData('layout-col');
+
+        col.set('value', {content: instance.TPL_EMPTY_COL});
     },
 
     /**

@@ -5,6 +5,16 @@ YUI.add('aui-form-builder-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'AUI Form Builder Unit Tests',
 
+        _should: {
+            // Ignore the following tests in touch enabled browsers. They will
+            // be tested properly in the tests for the aui-form-builder module.
+            ignore: {
+                'should show the toolbar of field when touch on field': function () {
+                    return !Y.UA.touchEnabled;
+                }
+            }
+        },
+
         init: function() {
             this._container = Y.one('#container');
         },
@@ -401,6 +411,117 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this._formBuilder.showFieldSettingsPanel(field);
             Y.Assert.isFalse(settingsPane.hasClass('modal-dialog-hidden'));
+        },
+
+        'should show the toolbar of field when clicked on configutarion button of field': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText
+                }]
+            });
+
+            Y.one('.form-builder-empty-col').simulate('click');
+            
+            Y.one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+            Y.Assert.isTrue(Y.one('.form-builder-toolbar').hasClass('hide'));
+
+            Y.one('.form-builder-configuration').simulate('click');
+            Y.Assert.isFalse(Y.one('.form-builder-toolbar').hasClass('hide'));
+        },
+
+        'should show the toolbar of field when touch on field': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText
+                }]
+            });
+
+            Y.one('.form-builder-empty-col').simulate('click');
+            
+            Y.one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            Y.one('.form-builder-field').simulateGesture('tap');
+            Y.Assert.isFalse(Y.one('.form-builder-toolbar').hasClass('hide'));
+        },
+
+        'should show field settings when clicked on editing button': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText
+                }]
+            });
+
+            Y.one('.form-builder-empty-col').simulate('click');
+            
+            Y.one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+            Y.one('.form-builder-configuration').simulate('click');
+            Y.Assert.isTrue(Y.one('.form-builder-field-settings').hasClass('modal-dialog-hidden'));
+
+            Y.one('.form-builder-edit').simulate('click');
+            Y.Assert.isFalse(Y.one('.form-builder-field-settings').hasClass('modal-dialog-hidden'));
+        },
+
+        'should show a configuration button when mouse enter on field region': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText
+                }]
+            });
+
+            Y.one('.form-builder-empty-col').simulate('click');
+            
+            Y.one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+            Y.one('.form-builder-field').simulate('mouseover');
+            Y.Assert.isFalse(Y.one('.form-builder-configuration').hasClass('hide'));
+
+            Y.one('.form-builder-field').simulate('mouseout');
+            Y.Assert.isTrue(Y.one('.form-builder-configuration').hasClass('hide'));
+        },
+
+        'should remove a field when clicked on remove button': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText
+                }]
+            });
+
+            Y.one('.form-builder-empty-col').simulate('click');
+            
+            Y.one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+            Y.one('.form-builder-configuration').simulate('click');
+            Y.Assert.isNotNull(Y.one('.form-builder-field'));
+
+            Y.one('.form-builder-remove').simulate('click');
+            Y.Assert.isNull(Y.one('.form-builder-field'));
+        },
+
+        'should close field configutarion when clicked on editing button': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText
+                }]
+            });
+
+            Y.one('.form-builder-empty-col').simulate('click');
+            
+            Y.one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+            Y.one('.form-builder-configuration').simulate('click');
+            Y.Assert.isFalse(Y.one('.form-builder-toolbar').hasClass('hide'));
+
+            Y.one('.form-builder-close').simulate('click');
+            Y.Assert.isTrue(Y.one('.form-builder-toolbar').hasClass('hide'));
         },
 
         'should not throw error if hiding settings panel before rendered': function() {
