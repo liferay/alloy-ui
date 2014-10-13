@@ -11,6 +11,18 @@
             "node-base"
         ]
     },
+    "aui-options-data-editor": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-data-editor",
+            "dd-constrain",
+            "dd-delegate",
+            "dd-drop-plugin",
+            "dd-proxy",
+            "node-event-delegate"
+        ],
+        "skinnable": true
+    },
     "aui-text-data-editor": {
         "requires": [
             "aui-classnamemanager",

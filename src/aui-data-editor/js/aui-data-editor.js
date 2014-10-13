@@ -29,6 +29,17 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
     },
 
     /**
+     * Destructor lifecycle implementation for the `A.DataEditor` class.
+     * Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        this.get('node').remove(true);
+    },
+
+    /**
      * Fired after the `originalValue` attribute is set.
      *
      * @method _afterOriginalValueChange

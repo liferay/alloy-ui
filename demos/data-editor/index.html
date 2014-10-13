@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<h1>Data Editors Demo</h1>
+
+<div id="optionsEditor"></div>
+<button id="optionsEditorValue">Print Values</button>
+
+<script type="text/javascript" charset="utf-8">
+YUI({ filter:'raw' }).use(
+    'aui-data-editor',
+    'aui-options-data-editor',
+    function(Y) {
+        var optionsEditor = new Y.OptionsDataEditor({
+            originalValue: ['Drogon', 'Visirion', 'Rhaegal']
+        });
+        Y.one('#optionsEditor').append(optionsEditor.get('node'));
+
+        Y.one('#optionsEditorValue').on('click', function() {
+            console.log(optionsEditor.get('editedValue'));
+        });
+    }
+);
+</script>
+</body>
+</html>

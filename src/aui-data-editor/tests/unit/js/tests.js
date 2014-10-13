@@ -39,6 +39,20 @@ YUI.add('aui-data-editor-tests', function(Y) {
             Y.Assert.throwsError(Error, function() {
                 new Y.DataEditor();
             });
+        },
+
+        'should remove node after editor is destroyed': function() {
+            var editor,
+                TestEditor = this._createTestEditorClass();
+
+            editor = new TestEditor();
+
+            editor.get('node').set('id', 'testEditor');
+            Y.one('body').append(editor.get('node'));
+            Y.Assert.isNotNull(Y.one('#testEditor'));
+
+            editor.destroy();
+            Y.Assert.isNull(Y.one('#testEditor'));
         }
     }));
 
