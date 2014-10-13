@@ -21,6 +21,17 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
  */
 A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     /**
+     * Destructor lifecycle implementation for the `A.FormBuilderFieldBase` class.
+     * Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        this.get('content').remove(true);
+    },
+
+    /**
      * Renders the settings panel.
      *
      * @method renderSettingsPanel

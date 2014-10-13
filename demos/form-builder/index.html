@@ -15,8 +15,12 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-YUI({ filter:'raw' }).use('aui-form-builder', 'aui-form-builder-field-text', function(Y) {
-    var Content = Y.Base.create('content', Y.Base, [], {}, {
+YUI({ filter:'raw' }).use(
+    'aui-form-builder',
+    'aui-form-builder-field-choice',
+    'aui-form-builder-field-text',
+    function(Y) {
+        var Content = Y.Base.create('content', Y.Base, [], {}, {
             ATTRS: {
                 content: {
                     value: 'foo'
@@ -42,52 +46,53 @@ YUI({ filter:'raw' }).use('aui-form-builder', 'aui-form-builder-field-text', fun
             ]
         });
 
-    var formBuilder = new Y.FormBuilder({
-        fieldTypes: [{
-            fieldClass: Y.FormBuilderFieldText,
-            icon:'glyphicon glyphicon-font',
-            label: 'Text',
-            unique: true
-        },{
-            fieldClass: Y.FormBuilderFieldText,
-            icon:'glyphicon glyphicon-font',
-            label: 'Text'
-        },{
-            fieldClass: Y.FormBuilderFieldText,
-            icon:'glyphicon glyphicon-font',
-            label: 'Text',
-            unique: true
-        },{
-            fieldClass: Y.FormBuilderFieldText,
-            icon:'glyphicon glyphicon-font',
-            label: 'Text'
-        },{
-            fieldClass: Y.FormBuilderFieldText,
-            icon:'glyphicon glyphicon-font',
-            label: 'Text',
-            unique: true
-        },{
-            fieldClass: Y.FormBuilderFieldText,
-            icon:'glyphicon glyphicon-font',
-            label: 'Text'
-        },{
-            fieldClass: Y.FormBuilderFieldText,
-            icon:'glyphicon glyphicon-font',
-            label: 'Text',
-            unique: true
-        },{
-            fieldClass: Y.FormBuilderFieldText,
-            icon:'glyphicon glyphicon-font',
-            label: 'Text'
-        },{
-            fieldClass: Y.FormBuilderFieldText,
-            icon:'glyphicon glyphicon-font',
-            label: 'Text',
-            unique: true
-        }],
-        layout: layout
-    }).render('#formBuilder');
-});
+        var formBuilder = new Y.FormBuilder({
+            fieldTypes: [{
+                fieldClass: Y.FormBuilderFieldText,
+                icon:'glyphicon glyphicon-font',
+                label: 'Text',
+                unique: true
+            },{
+                fieldClass: Y.FormBuilderFieldChoice,
+                icon:'glyphicon glyphicon-font',
+                label: 'Choice'
+            },{
+                fieldClass: Y.FormBuilderFieldText,
+                icon:'glyphicon glyphicon-font',
+                label: 'Text',
+                unique: true
+            },{
+                fieldClass: Y.FormBuilderFieldText,
+                icon:'glyphicon glyphicon-font',
+                label: 'Text'
+            },{
+                fieldClass: Y.FormBuilderFieldText,
+                icon:'glyphicon glyphicon-font',
+                label: 'Text',
+                unique: true
+            },{
+                fieldClass: Y.FormBuilderFieldText,
+                icon:'glyphicon glyphicon-font',
+                label: 'Text'
+            },{
+                fieldClass: Y.FormBuilderFieldText,
+                icon:'glyphicon glyphicon-font',
+                label: 'Text',
+                unique: true
+            },{
+                fieldClass: Y.FormBuilderFieldText,
+                icon:'glyphicon glyphicon-font',
+                label: 'Text'
+            },{
+                fieldClass: Y.FormBuilderFieldText,
+                icon:'glyphicon glyphicon-font',
+                label: 'Text',
+                unique: true
+            }],
+            layout: layout
+        }).render('#formBuilder');
+    }
+);
 
 </script>
 

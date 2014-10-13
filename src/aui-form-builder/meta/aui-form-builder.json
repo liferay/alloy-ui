@@ -18,6 +18,15 @@
         ]
     },
 
+    "aui-form-builder-field-choice": {
+        "requires": [
+            "aui-boolean-data-editor",
+            "aui-form-builder-field-base",
+            "aui-options-data-editor",
+            "aui-text-data-editor"
+        ]
+    },
+
     "aui-form-builder-field-text": {
         "requires": [
             "aui-boolean-data-editor",
