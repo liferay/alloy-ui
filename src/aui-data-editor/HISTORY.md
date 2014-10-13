@@ -4,4 +4,5 @@
 
 ## @VERSION@
 
+* [AUI-1689](https://issues.liferay.com/browse/AUI-1689) Create choice field
 * [AUI-1686](https://issues.liferay.com/browse/AUI-1686) Create editors for changing field settings

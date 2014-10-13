@@ -29,16 +29,6 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
     },
 
     /**
-     * Gets the edited value of the data from the editor.
-     * This should be overridden by subclasses.
-     *
-     * @method getEditedValue
-     */
-    getEditedValue: function() {
-        throw new Error('Subclasses should override getEditedValue');
-    },
-
-    /**
      * Fired after the `originalValue` attribute is set.
      *
      * @method _afterOriginalValueChange
@@ -68,6 +58,17 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      * @static
      */
     ATTRS: {
+        /**
+         * The value after edition.
+         *
+         * @attribute editedValue
+         * @default null
+         * @type *
+         */
+        editedValue: {
+            value: null
+        },
+
         /**
          * The node where the editor UI is rendered.
          *

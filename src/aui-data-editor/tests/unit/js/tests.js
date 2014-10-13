@@ -39,14 +39,6 @@ YUI.add('aui-data-editor-tests', function(Y) {
             Y.Assert.throwsError(Error, function() {
                 new Y.DataEditor();
             });
-        },
-
-        'should throw error when calling unimplemented abstract method': function() {
-            var editor,
-                TestEditor = this._createTestEditorClass();
-
-            editor = new TestEditor();
-            Y.Assert.throwsError(Error, editor.getEditedValue);
         }
     }));
 

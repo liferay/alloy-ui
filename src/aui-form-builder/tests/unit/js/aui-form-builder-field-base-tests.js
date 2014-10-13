@@ -112,6 +112,13 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             this._field.saveSettings();
             Y.Assert.areEqual('Attr1New', this._field.get('attr1'));
+        },
+
+        'should return field content': function() {
+            this._field = new TestField();
+
+            Y.Assert.isNotNull(this._field.get('content'));
+            Y.Assert.isTrue(this._field.get('content').hasClass('form-builder-field'));
         }
     }));
 

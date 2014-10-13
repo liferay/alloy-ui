@@ -46,7 +46,7 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
             settings = this._getSettings();
 
         for (i = 0; i < settings.length; i++) {
-            this.set(settings[i].attrName, settings[i].editor.getEditedValue());
+            this.set(settings[i].attrName, settings[i].editor.get('editedValue'));
         }
     },
 

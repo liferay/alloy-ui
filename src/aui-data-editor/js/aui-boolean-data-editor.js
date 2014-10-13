@@ -33,15 +33,6 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     },
 
     /**
-     * Gets the edited value of the data from the editor.
-     *
-     * @method getEditedValue
-     */
-    getEditedValue: function() {
-        return this.get('node').one('input').get('checked');
-    },
-
-    /**
      * Fired after the `label` attribute is set.
      *
      * @method _afterLabelChange
@@ -49,6 +40,16 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      */
     _afterLabelChange: function() {
         this._uiSetLabel(this.get('label'));
+    },
+
+    /**
+     * Gets the edited value of the data from the editor.
+     *
+     * @method _getEditedValue
+     * @protected
+     */
+    _getEditedValue: function() {
+        return this.get('node').one('input').get('checked');
     },
 
     /**
@@ -82,6 +83,18 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * @static
      */
     ATTRS: {
+        /**
+         * The value after edition.
+         *
+         * @attribute editedValue
+         * @default false
+         * @type Boolean
+         */
+        editedValue: {
+            getter: '_getEditedValue',
+            value: false
+        },
+
         /**
          * The label to be used by this boolean editor.
          *

@@ -11,7 +11,7 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
             });
 
             Y.Assert.areEqual('original', editor.get('node').one('input').get('value'));
-            Y.Assert.areEqual('original', editor.getEditedValue());
+            Y.Assert.areEqual('original', editor.get('editedValue'));
         },
 
         'should get edited value from the ui': function() {
@@ -20,7 +20,7 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
             });
 
             editor.get('node').one('input').set('value', 'new');
-            Y.Assert.areEqual('new', editor.getEditedValue());
+            Y.Assert.areEqual('new', editor.get('editedValue'));
         },
 
         'should set label': function() {

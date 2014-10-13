@@ -11,11 +11,11 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
             });
 
             Y.Assert.isTrue(editor.get('node').one('input').get('checked'));
-            Y.Assert.isTrue(editor.getEditedValue());
+            Y.Assert.isTrue(editor.get('editedValue'));
 
             editor.set('originalValue', false);
             Y.Assert.isFalse(editor.get('node').one('input').get('checked'));
-            Y.Assert.isFalse(editor.getEditedValue());
+            Y.Assert.isFalse(editor.get('editedValue'));
         },
 
         'should get edited value from the ui': function() {
@@ -24,10 +24,10 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
             });
 
             editor.get('node').one('input').set('checked', true);
-            Y.Assert.isTrue(editor.getEditedValue());
+            Y.Assert.isTrue(editor.get('editedValue'));
 
             editor.get('node').one('input').set('checked', false);
-            Y.Assert.isFalse(editor.getEditedValue());
+            Y.Assert.isFalse(editor.get('editedValue'));
         },
 
         'should set label': function() {
