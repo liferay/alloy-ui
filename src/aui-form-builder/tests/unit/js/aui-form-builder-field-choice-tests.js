@@ -28,8 +28,6 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
             this._createField();
             this._field.renderSettingsPanel(settings);
 
-            settings.all('input[type="text"]').item(0).set('value', 'My Title');
-            settings.all('input[type="text"]').item(1).set('value', 'My Help');
             settings.all('input[type="checkbox"]').item(0).set('checked', true);
             settings.all('input[type="checkbox"]').item(1).set('checked', true);
             settings.all('input[type="checkbox"]').item(2).set('checked', true);
@@ -41,8 +39,6 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
 
             this._field.saveSettings();
 
-            Y.Assert.areEqual('My Title', this._field.get('title'));
-            Y.Assert.areEqual('My Help', this._field.get('help'));
             Y.Assert.areEqual(2, this._field.get('options').length);
             Y.Assert.areEqual('Option 1', this._field.get('options')[0]);
             Y.Assert.areEqual('Option 2', this._field.get('options')[1]);

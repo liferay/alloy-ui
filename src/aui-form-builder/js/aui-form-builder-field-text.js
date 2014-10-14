@@ -5,16 +5,8 @@
  * @submodule aui-form-builder-field-text
  */
 
-var CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
-    CSS_FIELD_TEXT = A.getClassName('form', 'builder', 'field', 'text'),
-    CSS_FIELD_TEXT_HELP = A.getClassName('form', 'builder', 'field', 'text', 'help'),
+var CSS_FIELD_TEXT = A.getClassName('form', 'builder', 'field', 'text'),
     CSS_FIELD_TEXT_INPUT = A.getClassName('form', 'builder', 'field', 'text', 'input'),
-    CSS_FIELD_TEXT_TITLE = A.getClassName('form', 'builder', 'field', 'text', 'title'),
-
-    TPL_FIELD_TEXT_CONTENT = '<div class="form-group">' +
-        '<label class="' + CSS_FIELD_TEXT_TITLE + '"></label>' +
-        '<div class="' + CSS_FIELD_TEXT_HELP + '"></div>' +
-        '<div class="' + CSS_FIELD_TEXT_INPUT + '"></div></div>',
     TPL_SINGLE_LINE = '<input type="text" class="form-control"></input>',
     TPL_MULTILINE = '<textarea class="form-control" rows="3"></textarea>';
 
@@ -22,12 +14,14 @@ var CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
  * A base class for Form Builder Field Text.
  *
  * @class A.FormBuilderFieldText
- * @extends A.FormBuilderFieldBase
+ * @extends A.FormBuilderFieldSentence
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderFieldBase, [], {
+A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderFieldSentence, [], {
+    TPL_FIELD_CONTENT: '<div><div class="' + CSS_FIELD_TEXT_INPUT + '"></div></div>',
+
     /**
      * Constructor for the `A.FormBuilderFieldText`. Lifecycle.
      *
@@ -38,27 +32,12 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
         var content = this.get('content');
 
         content.addClass(CSS_FIELD_TEXT);
-        content.one('.' + CSS_FIELD_CONTENT).setHTML(TPL_FIELD_TEXT_CONTENT);
 
-        this._uiSetHelp(this.get('help'));
         this._uiSetMultiline(this.get('multiline'));
-        this._uiSetTitle(this.get('title'));
 
         this.after({
-            helpChange: this._afterHelpChange,
-            multilineChange: this._afterMultilineChange,
-            titleChange: this._afterTitleChange
+            multilineChange: this._afterMultilineChange
         });
-    },
-
-    /**
-     * Fired after the `help` attribute is set.
-     *
-     * @method _afterHelpChange
-     * @protected
-     */
-    _afterHelpChange: function() {
-        this._uiSetHelp(this.get('help'));
     },
 
     /**
@@ -72,16 +51,6 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
     },
 
     /**
-     * Fired after the `title` attribute is set.
-     *
-     * @method _afterTitleChange
-     * @protected
-     */
-    _afterTitleChange: function() {
-        this._uiSetTitle(this.get('title'));
-    },
-
-    /**
      * Fills the settings array with the information for this field.
      *
      * @method _fillSettings
@@ -89,43 +58,23 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
      * @protected
      */
     _fillSettings: function() {
-        this._settings = [
-            {
-                attrName: 'title',
-                editor: new A.TextDataEditor({
-                    label: 'Type your question here'
-                })
-            },
-            {
-                attrName: 'help',
-                editor: new A.TextDataEditor({
-                    label: 'Help text...'
-                })
-            },
-            {
-                attrName: 'multiline',
-                editor: new A.BooleanDataEditor({
-                    label: 'Multiline'
-                })
-            },
-            {
-                attrName: 'required',
-                editor: new A.BooleanDataEditor({
-                    label: 'Required'
-                })
-            }
-        ];
-    },
+        var instance = this;
 
-    /**
-     * Updates the ui according to the value of the `help` attribute.
-     *
-     * @method _uiSetHelp
-     * @param {String} help
-     * @protected
-     */
-    _uiSetHelp: function(help) {
-        this.get('content').one('.' + CSS_FIELD_TEXT_HELP).set('text', help);
+        A.FormBuilderFieldText.superclass._fillSettings.apply(instance, arguments);
+
+        instance._settings.push({
+            attrName: 'multiline',
+            editor: new A.BooleanDataEditor({
+                label: 'Multiline'
+            })
+        });
+
+        instance._settings.push({
+            attrName: 'required',
+            editor: new A.BooleanDataEditor({
+                label: 'Required'
+            })
+        });
     },
 
     /**
@@ -146,17 +95,6 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
         else {
             inputNode.append(TPL_SINGLE_LINE);
         }
-    },
-
-    /**
-     * Updates the ui according to the value of the `title` attribute.
-     *
-     * @method _uiSetTitle
-     * @param {String} title
-     * @protected
-     */
-    _uiSetTitle: function(title) {
-        this.get('content').one('.' + CSS_FIELD_TEXT_TITLE).set('text', title);
     }
 }, {
     /**
@@ -169,22 +107,10 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
      */
     ATTRS: {
         /**
-         * Help text.
-         *
-         * @attribute help
-         * @default ''
-         * @type {String}
-         */
-        help: {
-            validator: A.Lang.isString,
-            value: ''
-        },
-
-        /**
          * Flag indicating if the text input will allow multiple lines.
          *
          * @attribute multiline
-         * @default  false
+         * @default false
          * @type {Boolean}
          */
         multiline: {
@@ -196,24 +122,12 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
          * Flag indicating if this field is required.
          *
          * @attribute required
-         * @default  false
+         * @default false
          * @type {Boolean}
          */
         required: {
             validator: A.Lang.isBoolean,
             value: false
-        },
-
-        /**
-         * The title of this field.
-         *
-         * @attribute title
-         * @default ''
-         * @type {String}
-         */
-        title: {
-            validator: A.Lang.isString,
-            value: ''
         }
     }
 });

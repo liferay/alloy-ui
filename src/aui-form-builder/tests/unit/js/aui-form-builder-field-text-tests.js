@@ -17,15 +17,11 @@ YUI.add('aui-form-builder-field-text-tests', function(Y) {
             this._field = new Y.FormBuilderFieldText();
             this._field.renderSettingsPanel(container);
 
-            container.all('input[type="text"]').item(0).set('value', 'My Title');
-            container.all('input[type="text"]').item(1).set('value', 'My Help');
             container.all('input[type="checkbox"]').item(0).set('checked', true);
             container.all('input[type="checkbox"]').item(1).set('checked', true);
 
             this._field.saveSettings();
 
-            Y.Assert.areEqual('My Title', this._field.get('title'));
-            Y.Assert.areEqual('My Help', this._field.get('help'));
             Y.Assert.isTrue(this._field.get('multiline'));
             Y.Assert.isTrue(this._field.get('required'));
         }

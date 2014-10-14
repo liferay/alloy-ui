@@ -20,20 +20,25 @@
 
     "aui-form-builder-field-choice": {
         "requires": [
+            "aui-form-builder-field-sentence"
+        ]
+    },
+
+    "aui-form-builder-field-sentence": {
+        "requires": [
             "aui-boolean-data-editor",
             "aui-form-builder-field-base",
             "aui-options-data-editor",
             "aui-text-data-editor"
-        ]
+        ],
+        "skinnable": true
     },
 
     "aui-form-builder-field-text": {
         "requires": [
             "aui-boolean-data-editor",
-            "aui-form-builder-field-base",
-            "aui-text-data-editor"
-        ],
-        "skinnable": true
+            "aui-form-builder-field-sentence"
+        ]
     },
 
     "aui-form-builder-field-type": {

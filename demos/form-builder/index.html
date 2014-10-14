@@ -19,6 +19,7 @@ YUI({ filter:'raw' }).use(
     'aui-form-builder',
     'aui-form-builder-field-choice',
     'aui-form-builder-field-text',
+    'aui-form-builder-field-sentence',
     function(Y) {
         var Content = Y.Base.create('content', Y.Base, [], {}, {
             ATTRS: {
@@ -48,10 +49,9 @@ YUI({ filter:'raw' }).use(
 
         var formBuilder = new Y.FormBuilder({
             fieldTypes: [{
-                fieldClass: Y.FormBuilderFieldText,
+                fieldClass: Y.FormBuilderFieldSentence,
                 icon:'glyphicon glyphicon-font',
-                label: 'Text',
-                unique: true
+                label: 'Sentence'
             },{
                 fieldClass: Y.FormBuilderFieldChoice,
                 icon:'glyphicon glyphicon-font',
