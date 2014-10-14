@@ -145,6 +145,24 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     },
 
     /**
+     * Sets the `cols` attribute.
+     *
+     * @method _setCols
+     * @param {Array} cols
+     * @return {Array}
+     * @protected
+     */
+    _setCols: function(cols) {
+        var size = this._getSize(cols);
+
+        if (size < ALLOWED_SIZE) {
+            cols.push(new A.LayoutCol({ size: ALLOWED_SIZE - size }));
+        }
+
+        return cols;
+    },
+
+    /**
      * Update the UI according to the value of the `cols` attribute.
      *
      * @method _uiSetCols
@@ -158,6 +176,24 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
         A.each(cols, function(col) {
             node.append(col.get('node'));
         });
+    },
+
+    /**
+     * Validates the `cols` attribute.
+     *
+     * @method _validateCols
+     * @param  {Array} cols
+     * @return {Boolean}
+     * @protected
+     */
+    _validateCols: function(cols) {
+        var size = this._getSize(cols);
+
+        if (size > ALLOWED_SIZE || size < 0 || !A.Lang.isArray(cols) || cols.length > MAXIMUM_COLS) {
+            return false;
+        }
+
+        return true;
     }
 }, {
 
@@ -179,24 +215,8 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
          * @type {Array}
          */
         cols: {
-            setter: function(cols) {
-                var size = this._getSize(cols);
-
-                if (size < ALLOWED_SIZE) {
-                    cols.push(new A.LayoutCol({ size: ALLOWED_SIZE - size }));
-                }
-
-                return cols;
-            },
-            validator: function(cols) {
-                var size = this._getSize(cols);
-
-                if (size > ALLOWED_SIZE || size < 0 || !A.Lang.isArray(cols) || cols.length > MAXIMUM_COLS) {
-                    return false;
-                }
-
-                return true;
-            },
+            setter: '_setCols',
+            validator: '_validateCols',
             valueFn: function() {
                 return [new A.LayoutCol({ size: ALLOWED_SIZE })];
             }
