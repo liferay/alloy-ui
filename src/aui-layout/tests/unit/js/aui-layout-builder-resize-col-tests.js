@@ -291,6 +291,11 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
             breakpoints = this._getVisibleRowNodes(row, '.' + CSS_RESIZE_COL_BREAKPOINT);
             Y.Assert.areEqual(5, breakpoints.length);
+            Y.Assert.areEqual(3, breakpoints[0].getData('layout-position'));
+            Y.Assert.areEqual(4, breakpoints[1].getData('layout-position'));
+            Y.Assert.areEqual(6, breakpoints[2].getData('layout-position'));
+            Y.Assert.areEqual(8, breakpoints[3].getData('layout-position'));
+            Y.Assert.areEqual(9, breakpoints[4].getData('layout-position'));
 
             // The fifth row has 3 columns with size 4 each.
             row = this._layoutBuilder.get('layout').get('rows')[4];
@@ -301,6 +306,23 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             Y.Assert.areEqual(2, breakpoints.length);
             Y.Assert.areEqual(3, breakpoints[0].getData('layout-position'));
             Y.Assert.areEqual(4, breakpoints[1].getData('layout-position'));
+        },
+
+        'should update layout grid when breakpoints change': function() {
+            var breakpoints,
+                dragHandle,
+                row;
+
+            this._layoutBuilder.set('breakpoints', [5, 7]);
+
+            row = this._layoutBuilder.get('layout').get('rows')[1];
+            dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
+            dragHandle.simulate('mousedown');
+
+            breakpoints = this._getVisibleRowNodes(row, '.' + CSS_RESIZE_COL_BREAKPOINT);
+            Y.Assert.areEqual(2, breakpoints.length);
+            Y.Assert.areEqual(5, breakpoints[0].getData('layout-position'));
+            Y.Assert.areEqual(7, breakpoints[1].getData('layout-position'));
         },
 
         'should not insert layout grid for borders without handles': function() {

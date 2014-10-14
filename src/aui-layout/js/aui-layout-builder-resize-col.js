@@ -78,8 +78,9 @@ A.LayoutBuilderResizeCol.prototype = {
         }
         else {
             dragNode.show();
-            this._hideBreakpoints(row);
         }
+
+        this._hideBreakpoints(row);
     },
 
     /**
@@ -153,6 +154,16 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
+     * Fired after the `breakpoints` attribute changes.
+     *
+     * @method _afterBreakpointsChange
+     * @protected
+     */
+    _afterBreakpointsChange: function() {
+        this._insertGrid();
+    },
+
+    /**
      * Fired after the `enableResizeCols` attribute changes.
      *
      * @method _afterEnableResizeColsChange
@@ -169,7 +180,8 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _afterResizeColLayoutChange: function() {
-        this._syncDragResources();
+        this._syncDragHandles();
+        this._insertGrid();
     },
 
     /**
@@ -179,7 +191,8 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _afterResizeColLayoutRowsChange: function() {
-        this._syncDragResources();
+        this._syncDragHandles();
+        this._insertGrid();
     },
 
     /**
@@ -189,7 +202,8 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _afterResizeColLayoutColsChange: function() {
-        this._syncDragResources();
+        this._syncDragHandles();
+        this._insertGrid();
     },
 
     /**
@@ -201,6 +215,7 @@ A.LayoutBuilderResizeCol.prototype = {
      */
     _bindResizeColEvents: function() {
         this._resizeColsEventHandles = [
+            this.after('breakpointsChange', this._afterBreakpointsChange),
             this.after('layoutChange', this._afterResizeColLayoutChange),
             this.after('layout:rowsChange', this._afterResizeColLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterResizeColLayoutColsChange),
@@ -294,7 +309,7 @@ A.LayoutBuilderResizeCol.prototype = {
         col1.set('size', col1.get('size') + difference);
         col2.set('size', col2.get('size') - difference);
 
-        this._syncDragResources();
+        this._syncDragHandles();
     },
 
     /**
@@ -376,17 +391,6 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
-     * Updates all the DOM resources needed for the drag functionality.
-     *
-     * @method _syncDragResources
-     * @protected
-     */
-    _syncDragResources: function() {
-        this._syncDragHandles();
-        this._insertGrid();
-    },
-
-    /**
      * Updates the drag handles for the given layout row.
      *
      * @method _syncRowDragHandles
@@ -427,7 +431,8 @@ A.LayoutBuilderResizeCol.prototype = {
      */
     _uiSetEnableResizeCols: function(enableResizeCols) {
         if (enableResizeCols) {
-            this._syncDragResources();
+            this._syncDragHandles();
+            this._insertGrid();
             this._bindResizeColEvents();
         }
         else {
