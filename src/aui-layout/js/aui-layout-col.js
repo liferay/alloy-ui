@@ -191,7 +191,9 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
          * @type {Object}
          */
         value: {
-            validator: A.Lang.isObject,
+            validator: function(val) {
+                return A.Lang.isObject(val) || A.Lang.isNull(val);
+            },
             value: null
         }
     }

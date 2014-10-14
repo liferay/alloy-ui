@@ -18,11 +18,11 @@ YUI.add('aui-layout-row-tests', function(Y) {
                     col,
                     new Y.LayoutCol({
                         size: 3,
-                        value: { content: 'foo' }
+                        value: { content: 'bar' }
                     }),
                     new Y.LayoutCol({
                         size: 5,
-                        value: { content: 'foo' }
+                        value: { content: 'baz' }
                     })
                 ]
             });
@@ -170,6 +170,19 @@ YUI.add('aui-layout-row-tests', function(Y) {
             childNumber = row.get('cols').length;
 
             Assert.areEqual(3, childNumber);
+        },
+
+        'should move a col': function() {
+            var cols = this.layoutRow.get('cols'),
+                row = this.layoutRow;
+
+            Assert.areEqual('bar', cols[1].get('value').content);
+
+            row.moveColContent(cols[0].get('value'), 1);
+
+            cols = this.layoutRow.get('cols');
+
+            Assert.areEqual('foo', cols[1].get('value').content);
         },
 
         'should be possible to create a row without passing a col': function() {

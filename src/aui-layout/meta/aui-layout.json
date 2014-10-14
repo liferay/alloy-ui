@@ -13,7 +13,7 @@
             "aui-layout",
             "aui-layout-builder-add-col",
             "aui-layout-builder-add-row",
-            "aui-layout-builder-move-row",
+            "aui-layout-builder-move",
             "aui-layout-builder-remove-col",
             "aui-layout-builder-remove-row",
             "aui-layout-builder-resize-col",
@@ -70,7 +70,7 @@
             "base-build"
         ]
     },
-    "aui-layout-builder-move-row": {
+    "aui-layout-builder-move": {
         "requires": [
             "aui-node-base",
             "base-build"

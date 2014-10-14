@@ -55,9 +55,9 @@
             ]
         },
 
-        "aui-layout-builder-move-row": {
+        "aui-layout-builder-move": {
             "jsfiles": [
-                "js/aui-layout-builder-move-row.js"
+                "js/aui-layout-builder-move.js"
             ]
         }
     }

@@ -25,11 +25,15 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     initializer: function() {
+        var cols = this.get('cols');
+
+        A.Array.invoke(cols, 'addTarget', this);
+
         this.after({
             colsChange: this._afterColsChange
         });
 
-        this._uiSetCols(this.get('cols'));
+        this._uiSetCols(cols);
     },
 
     /**
@@ -58,6 +62,22 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     },
 
     /**
+     * Moves a row to a different position.
+     *
+     * @method moveRow
+     * @param {Node} content Content to add to this new position.
+     * @param {Number} position The new position of the row.
+     **/
+    moveColContent: function(content, position) {
+        var cols = this.get('cols').concat(),
+            targetCol = cols[position];
+
+        targetCol.set('value', content);
+
+        this.set('cols', cols);
+    },
+
+    /**
      * Removes a col from this row.
      *
      * @method removeCol
@@ -78,7 +98,10 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @method _afterColsChange
      * @protected
      */
-    _afterColsChange: function() {
+    _afterColsChange: function(event) {
+        A.Array.invoke(event.prevVal, 'removeTarget', this);
+        A.Array.invoke(event.newVal, 'addTarget', this);
+
         this._uiSetCols(this.get('cols'));
     },
 
