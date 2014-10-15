@@ -5,7 +5,6 @@
  */
 
 var CSS_ADD_COL = A.getClassName('layout', 'add', 'col'),
-    MAX_NUMBER_OF_COLUMNS = 4,
     SELECTOR_COL = '.col',
     SELECTOR_ROW = '.row';
 
@@ -111,7 +110,7 @@ A.LayoutBuilderAddCol.prototype = {
 
         numberOfCols = row.get('cols').length;
 
-        if (numberOfCols < MAX_NUMBER_OF_COLUMNS) {
+        if (numberOfCols < row.get('maximumCols')) {
             event.currentTarget.append(this._addColButton);
         }
     },

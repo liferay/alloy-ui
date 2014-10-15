@@ -5,7 +5,6 @@
  */
 
 var ALLOWED_SIZE = 12,
-    MAXIMUM_COLS = 4,
     TPL_ROW = '<div class="layout-row row">';
 
 /**
@@ -213,7 +212,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     _validateCols: function(cols) {
         var size = this._getSize(cols);
 
-        if (size > ALLOWED_SIZE || size < 0 || !A.Lang.isArray(cols) || cols.length > MAXIMUM_COLS) {
+        if (size > ALLOWED_SIZE || size < 0 || !A.Lang.isArray(cols) || cols.length > this.get('maximumCols')) {
             return false;
         }
 
@@ -241,9 +240,21 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
         cols: {
             setter: '_setCols',
             validator: '_validateCols',
-            valueFn: function() {
-                return [new A.LayoutCol({ size: ALLOWED_SIZE })];
-            }
+            value: []
+        },
+
+        /**
+         * Number to determine maximum cols on a row.
+         *
+         * @attribute maximumCols
+         * @default 4
+         * @type {Number}
+         */
+        maximumCols: {
+            validator: function(val) {
+                return val > 0 && val <= 12;
+            },
+            value: 4
         },
 
         /**

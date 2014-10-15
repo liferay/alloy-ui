@@ -204,6 +204,24 @@ YUI.add('aui-layout-row-tests', function(Y) {
             row.set('cols', [new Y.LayoutCol({ size: 12 }), new Y.LayoutCol({ size: 12 })]);
 
             Assert.areEqual(12, row._getSize(row.get('cols')));
+        },
+
+        'should set maximum cols of a row': function() {
+            var layoutRow = new Y.LayoutRow({
+                cols: [
+                    new Y.LayoutCol({
+                        size: 3,
+                        value: { content: 'foo' }
+                    }),
+                    new Y.LayoutCol({
+                        size: 5,
+                        value: { content: 'foo' }
+                    })
+                ],
+                maximumCols: 1
+            });
+
+            Assert.areEqual(1, layoutRow.get('cols').length);
         }
     }));
 
