@@ -51,7 +51,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this._formBuilder = new Y.FormBuilder().render('#container');
 
             Y.Assert.isNotNull(this._formBuilder.get('layout'));
-            Y.Assert.areEqual(0, this._formBuilder.get('layout').get('rows').length);
+            Y.Assert.areEqual(1, this._formBuilder.get('layout').get('rows').length);
         },
 
         'should show message if layout is empty': function() {
@@ -73,7 +73,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 layout: new Y.Layout()
             });
 
-            formBuilder.get('contentBox').one('.form-builder-add-row-button').simulate('click');
+            formBuilder.get('contentBox').one('.layout-builder-add-row-button').simulate('click');
             Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
         },
 
@@ -141,12 +141,33 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNotNull(Y.one('.icon4'));
         },
 
+        'should add page break to layout that doesn\'t have one': function() {
+            this.createFormBuilder();
+
+            Y.Assert.areEqual(2, Y.all('.layout-row').size());
+        },
+
+        'should not add page break to layout that has one': function() {
+            this.createFormBuilder({
+                layout: new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.FormBuilderPageBreak()
+                            ]
+                        })
+                    ]
+                })
+            });
+
+            Y.Assert.areEqual(1, Y.all('.layout-row').size());
+        },
+
         'should add a new page break on form': function() {
             var formBuilder = this.createFormBuilder();
 
-            Y.Assert.isNull(Y.one('.form-builder-page-break'));
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-            Y.Assert.isNotNull(Y.one('.form-builder-page-break'));
+            Y.Assert.areEqual(2, Y.all('.form-builder-page-break').size());
         },
 
         'should update quantity value of all pages break on form': function() {
@@ -154,12 +175,12 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
 
-            Y.Assert.areEqual(1, Y.one('.form-builder-page-break-quantity').get('text'));
+            Y.Assert.areEqual(2, Y.one('.form-builder-page-break-quantity').get('text'));
 
-            formBuilder.get('contentBox').one('.form-builder-add-row-button').simulate('click');
+            formBuilder.get('contentBox').one('.layout-builder-add-row-button').simulate('click');
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-            Y.Assert.areEqual(3, Y.one('.form-builder-page-break-quantity').get('text'));
+            Y.Assert.areEqual(4, Y.one('.form-builder-page-break-quantity').get('text'));
         },
 
         'should remove a field type from form': function() {
@@ -293,17 +314,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNull(Y.one('.icon2'));
             Y.Assert.isNotNull(Y.one('.icon3'));
             Y.Assert.isNotNull(Y.one('.icon4'));
-        },
-
-        'should add a row on layout from form': function() {
-            var formBuilder = this.createFormBuilder({
-                layout: new Y.Layout()
-            });
-
-            Y.Assert.isNull(formBuilder.get('contentBox').one('.row'));
-
-            formBuilder.get('contentBox').one('.form-builder-add-row-button').simulate('click');
-            Y.Assert.isNotNull(Y.one('#container').one('.row'));
         },
 
         'should open settings editor for the clicked field type': function() {
@@ -585,7 +595,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
         'should fill empty columns for new cols': function() {
             this.createFormBuilder();
 
-            this._formBuilder.get('layout').get('rows')[0].set('cols', [
+            this._formBuilder.get('layout').get('rows')[1].set('cols', [
                 new Y.LayoutCol({
                     size: 6
                 }),
@@ -666,7 +676,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
 
-            col = this._formBuilder.get('layout').get('rows')[0].get('cols')[0];
+            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
             Y.Assert.isTrue(Y.instanceOf(col.get('value'), Y.FormBuilderFieldText));
         }
     }));

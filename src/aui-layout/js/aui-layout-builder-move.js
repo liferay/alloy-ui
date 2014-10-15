@@ -292,6 +292,7 @@ LayoutBuilderMove.prototype = {
         var row = target.ancestor('.row').getData('layout-row');
 
         row.moveCol(this._colToBeMoved, target.getData('position'));
+        this._resetMoveUI();
     },
 
     /**

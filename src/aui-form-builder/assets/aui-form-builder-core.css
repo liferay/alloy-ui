@@ -60,3 +60,7 @@
 .form-builder-empty-col .form-builder-empty-col-label {
     font-size: 15px;
 }
+
+.form-builder-add-page-break {
+    width: 100%;
+}

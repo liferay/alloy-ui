@@ -37,6 +37,12 @@
             ]
         },
 
+        "aui-form-builder-layout-builder": {
+            "jsfiles": [
+                "js/aui-form-builder-layout-builder.js"
+            ]
+        },
+
         "aui-form-builder-page-break": {
             "jsfiles": [
                 "js/aui-form-builder-page-break.js"

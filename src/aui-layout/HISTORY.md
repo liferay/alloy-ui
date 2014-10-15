@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1698](https://issues.liferay.com/browse/AUI-1698) Layout builder mode
 * [AUI-1725](https://issues.liferay.com/browse/AUI-1725) Add option to specify max number of columns per row
 * [AUI-1719](https://issues.liferay.com/browse/AUI-1719) Move columns inside a row
 * [AUI-1707](https://issues.liferay.com/browse/AUI-1707) Button to move row

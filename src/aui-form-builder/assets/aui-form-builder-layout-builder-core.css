@@ -1,0 +1,22 @@
+.form-builder-layout-mode-cancel {
+    display: none;
+}
+
+.form-builder-layout-mode .form-builder-layout-mode-cancel {
+    display: inline;
+}
+
+.form-builder-layout-mode .form-builder-layout-mode-edit,
+.form-builder-layout-mode .form-builder-empty-col {
+    display: none;
+}
+
+.form-builder-layout-mode .form-builder-field-overlay {
+    background-color: #ddd;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}

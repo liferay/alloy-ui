@@ -10,5 +10,6 @@
     display: inline-block;
     height: 20px;
     margin-bottom: -7px;
+    position: relative;
     width: 22px;
 }

@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1698](https://issues.liferay.com/browse/AUI-1698) Layout builder mode
 * [AUI-1696](https://issues.liferay.com/browse/AUI-1696) Create sentence field
 * [AUI-1697](https://issues.liferay.com/browse/AUI-1697) Add toolbar for fields
 * [AUI-1689](https://issues.liferay.com/browse/AUI-1689) Create choice field

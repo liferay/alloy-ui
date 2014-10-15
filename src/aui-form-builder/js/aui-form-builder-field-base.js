@@ -8,6 +8,7 @@
 var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
+    CSS_FIELD_OVERLAY = A.getClassName('form', 'builder', 'field', 'overlay'),
     CSS_FIELD_TOOLBAR = A.getClassName('form', 'builder', 'field', 'toolbar'),
     CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
     CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'field', 'toolbar', 'edit'),
@@ -16,6 +17,7 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
 
     TPL_FIELD = '<div class="' + CSS_FIELD + '">' +
         '<div class="' + CSS_FIELD_CONTENT + '"></div>' +
+        '<div class="' + CSS_FIELD_OVERLAY + '"></div>' +
         '<div class="btn-group ' + CSS_FIELD_TOOLBAR + ' hide">' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_EDIT + '"><span class="glyphicon glyphicon-wrench"></span></button>' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_REMOVE + '"><span class="glyphicon glyphicon-trash"></span></button>' +

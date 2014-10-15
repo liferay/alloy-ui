@@ -73,8 +73,6 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
 
         targetCol.set('value', col.get('value'));
         col.set('value', null);
-
-        this.set('cols', cols);
     },
 
     /**
