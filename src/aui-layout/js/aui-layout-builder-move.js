@@ -291,8 +291,7 @@ LayoutBuilderMove.prototype = {
     _moveColContent: function(target) {
         var row = target.ancestor('.row').getData('layout-row');
 
-        row.moveColContent(this._colToBeMoved.get('value'), target.getData('position'));
-        this._colToBeMoved.set('value', null);
+        row.moveCol(this._colToBeMoved, target.getData('position'));
     },
 
     /**

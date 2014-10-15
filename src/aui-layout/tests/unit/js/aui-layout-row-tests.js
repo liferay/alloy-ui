@@ -178,11 +178,12 @@ YUI.add('aui-layout-row-tests', function(Y) {
 
             Assert.areEqual('bar', cols[1].get('value').content);
 
-            row.moveColContent(cols[0].get('value'), 1);
+            row.moveCol(cols[0], 1);
 
             cols = this.layoutRow.get('cols');
 
             Assert.areEqual('foo', cols[1].get('value').content);
+            Assert.isNull(cols[0].get('value'));
         },
 
         'should be possible to create a row without passing a col': function() {
