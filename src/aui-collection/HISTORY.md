@@ -6,7 +6,7 @@
 
 No registries yet.
 
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
 * [AUI-1273](https://issues.liferay.com/browse/AUI-AUI-1273) Describe source code changes in HISTORY.md
 

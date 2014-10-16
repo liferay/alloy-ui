@@ -6,7 +6,7 @@
 
 No registries yet
 
-# [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
+# [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
 * [AUI-1536](https://issues.liferay.com/browse/AUI-1536) FormBuilder - Nested fields not working after refactoring
 * [AUI-1303](https://issues.liferay.com/browse/AUI-1303) Make aui-form-builder responsive

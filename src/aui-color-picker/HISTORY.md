@@ -6,7 +6,7 @@
 
 No registries yet.
 
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
 * [AUI-1328](https://issues.liferay.com/browse/AUI-1328) Move automated tasks from Grunt to Gulp
 * [AUI-1294](https://issues.liferay.com/browse/AUI-1294) All Alloy's modules should be responsive and working on mobile devices

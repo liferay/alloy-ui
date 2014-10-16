@@ -4,11 +4,12 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
+
 * [AUI-1013](https://issues.liferay.com/browse/AUI-1013) Maximum call stack size exceeded when adding a column to datatable
 * [AUI-1592](https://issues.liferay.com/browse/AUI-1592) Fix modules behavior on touch screen desktop computers
-
-## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
-
 * [AUI-1550](https://issues.liferay.com/browse/AUI-1550) Make aui-datatable cell editing accessible
 * [AUI-1288](https://issues.liferay.com/browse/AUI-1288) Datatable Property List errors when 'enter' key is pressed when no active cell
 * [AUI-1342](https://issues.liferay.com/browse/AUI-1342) A User is unable to deselect their previous selection in a Datatable with Selection and Highlight
@@ -17,9 +18,6 @@
 * [AUI-1170](https://issues.liferay.com/browse/AUI-1170) Datatable highlight does not resize to fit when highlighted elements resize
 * [AUI-1340](https://issues.liferay.com/browse/AUI-1340) Escape data table parameters
 * [AUI-1383](https://issues.liferay.com/browse/AUI-1383) Decouple datatable subcomponents
-
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
-
 * [AUI-1404](https://issues.liferay.com/browse/AUI-1404) Fix aui-promise API Docs
 * [AUI-1328](https://issues.liferay.com/browse/AUI-1328) Move automated tasks from Grunt to Gulp
 * [AUI-1288](https://issues.liferay.com/browse/AUI-1288) Datatable Property List errors when 'enter' key is pressed when no active cell

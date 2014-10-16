@@ -4,14 +4,15 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
+
 * [AUI-1545](https://issues.liferay.com/browse/AUI-1545) Form Builder Checkbox and Radio have incorrect markup
 * [AUI-1635](https://issues.liferay.com/browse/AUI-1635) Fix lint problems
 * [AUI-1606](https://issues.liferay.com/browse/AUI-1606) Form Builder select field closes by itself when clicking after already focused
 * [AUI-1612](https://issues.liferay.com/browse/AUI-1612) Form builder textfield and textarea need width validators
 * [AUI-1610](https://issues.liferay.com/browse/AUI-1610) Changing predefinedValue for text fields doesn't update them
-
-## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
-
 * [AUI-1303](https://issues.liferay.com/browse/AUI-1303) Make aui-form-builder responsive
 * [AUI-1529](https://issues.liferay.com/browse/AUI-1529) Change width ratio of form builder columns
 * [AUI-1528](https://issues.liferay.com/browse/AUI-1528) Drop Zone on Form-Builder Styling is off
@@ -20,9 +21,6 @@
 * [AUI-1414](https://issues.liferay.com/browse/AUI-1414) Change field width sizes
 * [AUI-1415](https://issues.liferay.com/browse/AUI-1415) All form fields are showing up as required
 * [AUI-1339](https://issues.liferay.com/browse/AUI-1339) Escape form builder parameters
-
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
-
 * [AUI-1346](https://issues.liferay.com/browse/AUI-1346) Cannot clone hiddenAttributes in Form Builder
 * [AUI-1328](https://issues.liferay.com/browse/AUI-1328) Move automated tasks from Grunt to Gulp
 * [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Wrong css formatting when running "grunt format"

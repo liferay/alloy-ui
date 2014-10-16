@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
+
 * [AUI-1672](https://issues.liferay.com/browse/AUI-1672) Scheduler navigation date for week view is not formatted correctly
 * [AUI-1641](https://issues.liferay.com/browse/AUI-1641) Events in agenda view does not respond to "click" event when scheduler is disabled
 * [AUI-1635](https://issues.liferay.com/browse/AUI-1635) Fix lint problems
@@ -12,16 +16,10 @@
 * [AUI-1591](https://issues.liferay.com/browse/AUI-1591) Fix scheduler behavior on touch screen desktop computers
 * [AUI-1546](https://issues.liferay.com/browse/AUI-1546) The Scheduler month view is incorrect if there are multiple overlapping events at the first day of the week
 * [AUI-1544](https://issues.liferay.com/browse/AUI-1544) Javascript error breaks Scheduler month view with multiple overlapping events
-
-## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
-
 * [AUI-1527](https://issues.liferay.com/browse/AUI-1527) add base keyboard navigation
 * [AUI-1531](https://issues.liferay.com/browse/AUI-1531) Scroll to current time when opening scheduler
 * [AUI-1530](https://issues.liferay.com/browse/AUI-1530) Show red line at current time on Scheduler
 * [AUI-1309](https://issues.liferay.com/browse/AUI-1309) Make aui-scheduler responsive
-
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
-
 * [AUI-1376](https://issues.liferay.com/browse/AUI-1376) AUI-Scheduler tests fail on IE8
 * [AUI-1328](https://issues.liferay.com/browse/AUI-1328) Move automated tasks from Grunt to Gulp
 * [AUI-1370](https://issues.liferay.com/browse/AUI-1370) Add ability to set an event's border color, style, and width

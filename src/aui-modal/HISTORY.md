@@ -4,10 +4,11 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
+
 * [AUI-1549](https://issues.liferay.com/browse/AUI-1549) Error in widget-modality.js
-
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
-
 * [AUI-1306](https://issues.liferay.com/browse/AUI-1306) Make aui-modal responsive
 * [AUI-1336](https://issues.liferay.com/browse/AUI-1336) Scrolling content in Modal on mobile devices can scroll parent page
 * [AUI-1368](https://issues.liferay.com/browse/AUI-1368) Modal can't be hidden if destroyOnHide is false

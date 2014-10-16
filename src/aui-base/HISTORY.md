@@ -4,15 +4,16 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
+
 * [AUI-1650](https://issues.liferay.com/browse/AUI-1650) Surface reloads infinitely on android's mobile browser
 * [AUI-1569](https://issues.liferay.com/browse/AUI-1569) Create unit test for uncamelize
 * [AUI-1576](https://issues.liferay.com/browse/AUI-1576) A.Lang.String.Uncamelize method drops letters from the string
 * [AUI-1577](https://issues.liferay.com/browse/AUI-1577) Inconsistent string truncation in aui-base-lang
 * [AUI-1348](https://issues.liferay.com/browse/AUI-1348) Make aui-audio module accessible
 * [AUI-1558](https://issues.liferay.com/browse/AUI-1558) Create unit test for padNumber
-
-## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
-
 * [AUI-1551](https://issues.liferay.com/browse/AUI-1551) Create unit test for camelize
 * [AUI-1527](https://issues.liferay.com/browse/AUI-1527) Add base keyboard navigation
 * [AUI-1309](https://issues.liferay.com/browse/AUI-1309) Make aui-scheduler responsive
@@ -26,9 +27,6 @@
 * [AUI-1383](https://issues.liferay.com/browse/AUI-1383) Decouple datatable subcomponents
 * [AUI-1339](https://issues.liferay.com/browse/AUI-1339) Escape form builder parameters
 * [AUI-1340](https://issues.liferay.com/browse/AUI-1340) Escape data table parameters
-
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
-
 * [AUI-1328](https://issues.liferay.com/browse/AUI-1328) Move automated tasks from Grunt to Gulp
 * [AUI-1388](https://issues.liferay.com/browse/AUI-1388) Make aui-toggler responsive
 * [AUI-1310](https://issues.liferay.com/browse/AUI-1310) Make aui-tooltip responsive

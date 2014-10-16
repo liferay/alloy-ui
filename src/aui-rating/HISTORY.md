@@ -4,12 +4,11 @@
 
 ## @VERSION@
 
-* [AUI-1587](https://issues.liferay.com/browse/AUI-1587) Rating - only set the font-size on mobile screen sizes
-
 No registries yet.
 
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
+* [AUI-1587](https://issues.liferay.com/browse/AUI-1587) Rating - only set the font-size on mobile screen sizes
 * [AUI-1308](https://issues.liferay.com/browse/AUI-1308) Make aui-rating responsive
 * [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Wrong css formatting when running "grunt format"
 * [AUI-1243](https://issues.liferay.com/browse/AUI-1243) Remove Rating's underline on hover
