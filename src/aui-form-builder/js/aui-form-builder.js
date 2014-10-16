@@ -10,17 +10,17 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
     CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
     CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
+    CSS_FIELD = A.getClassName('form', 'builder', 'field'),
+    CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
-    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
-    CSS_FIELD = A.getClassName('form', 'builder', 'field'),
+    CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
+    CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'field', 'toolbar', 'edit'),
+    CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'field', 'toolbar', 'remove'),
     CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list'),
-    CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'configuration'),
-    CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'edit'),
-    CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'remove'),
-    CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'close');
+    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row');
 
 /**
  * A base class for `A.FormBuilder`.
@@ -97,12 +97,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
             boundingBox.delegate('mouseleave', this._onFieldMouseLeave, '.' + CSS_FIELD, this),
             boundingBox.delegate('touchstart', this._onTouchField, '.' + CSS_FIELD, this),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL, this),
-            boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this),
             boundingBox.delegate('click', this._onClickConfigurationField, '.' + CSS_FIELD_CONFIGURATION, this),
             boundingBox.delegate('click', this._onClickEditField, '.' + CSS_FIELD_TOOLBAR_EDIT, this),
             boundingBox.delegate('click', this._onClickCloseField, '.' + CSS_FIELD_TOOLBAR_CLOSE, this),
             boundingBox.delegate('click', this._onClickRemoveField, '.' + CSS_FIELD_TOOLBAR_REMOVE, this),
-            boundingBox.one('.' + CSS_ADD_ROW_BUTTON).on('click', this._onClickAddRow, this)
+            boundingBox.one('.' + CSS_ADD_ROW_BUTTON).on('click', this._onClickAddRow, this),
+            boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this)
 
         ];
     },
@@ -405,7 +405,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     _onClickConfigurationField: function (event) {
-        var field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
+        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
 
         field.toggleToolbar(true);
     },
@@ -418,7 +418,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
      * @protected
      */
     _onClickCloseField: function (event) {
-        var field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
+        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
 
         field.toggleToolbar(false);
     },

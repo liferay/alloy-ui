@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1697](https://issues.liferay.com/browse/AUI-1697) Add toolbar for fields
 * [AUI-1689](https://issues.liferay.com/browse/AUI-1689) Create choice field
 * [AUI-1685](https://issues.liferay.com/browse/AUI-1685) Button to add page breaks
 * [AUI-1722](https://issues.liferay.com/browse/AUI-1722) Button to add rows

@@ -6,12 +6,12 @@
  */
 
 var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
+    CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
-    CSS_FIELD_TOOLBAR = A.getClassName('form', 'builder', 'toolbar'),
-    CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'configuration'),
-    CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'edit'),
-    CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'remove'),
-    CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'close'),
+    CSS_FIELD_TOOLBAR = A.getClassName('form', 'builder', 'field', 'toolbar'),
+    CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
+    CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'field', 'toolbar', 'edit'),
+    CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'field', 'toolbar', 'remove'),
     CSS_HIDE = A.getClassName('hide'),
 
     TPL_FIELD = '<div class="' + CSS_FIELD + '">' +
@@ -22,7 +22,6 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_CLOSE + '"><span class="glyphicon glyphicon-remove"></span></button>' +
         '</div>' +
         '</div>',
-
     TPL_FIELD_CONFIGURATION = '<button class="btn btn-default ' + CSS_FIELD_CONFIGURATION + ' hide">' +
         '<span class="glyphicon glyphicon-cog"></span>' +
         '</button>';
@@ -38,9 +37,9 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
  * @constructor
  */
 A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
-    
+
     /**
-     * Constructor for the Field Base component.
+     * Constructor for the `A.FormBuilderFieldBase` component. Lifecycle.
      *
      * @method initializer
      * @protected

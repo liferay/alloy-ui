@@ -5,7 +5,8 @@
  * @submodule aui-form-builder-field-text
  */
 
-var CSS_FIELD_TEXT = A.getClassName('form', 'builder', 'field', 'text'),
+var CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
+    CSS_FIELD_TEXT = A.getClassName('form', 'builder', 'field', 'text'),
     CSS_FIELD_TEXT_HELP = A.getClassName('form', 'builder', 'field', 'text', 'help'),
     CSS_FIELD_TEXT_INPUT = A.getClassName('form', 'builder', 'field', 'text', 'input'),
     CSS_FIELD_TEXT_TITLE = A.getClassName('form', 'builder', 'field', 'text', 'title'),
@@ -37,7 +38,7 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
         var content = this.get('content');
 
         content.addClass(CSS_FIELD_TEXT);
-        content.one('.form-builder-field-content').setHTML(TPL_FIELD_TEXT_CONTENT);
+        content.one('.' + CSS_FIELD_CONTENT).setHTML(TPL_FIELD_TEXT_CONTENT);
 
         this._uiSetHelp(this.get('help'));
         this._uiSetMultiline(this.get('multiline'));

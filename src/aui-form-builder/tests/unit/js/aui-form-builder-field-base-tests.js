@@ -88,13 +88,13 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             container.appendChild(this._field.get('content'));
 
-            Y.Assert.isTrue(container.one('.form-builder-toolbar').hasClass('hide'));
+            Y.Assert.isTrue(container.one('.form-builder-field-toolbar').hasClass('hide'));
 
             this._field.toggleToolbar(true);
-            Y.Assert.isFalse(container.one('.form-builder-toolbar').hasClass('hide'));
+            Y.Assert.isFalse(container.one('.form-builder-field-toolbar').hasClass('hide'));
 
             this._field.toggleToolbar(false);
-            Y.Assert.isTrue(container.one('.form-builder-toolbar').hasClass('hide'));
+            Y.Assert.isTrue(container.one('.form-builder-field-toolbar').hasClass('hide'));
         },
 
         'should toggle the configuration button': function() {
@@ -104,13 +104,13 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             container.appendChild(this._field.get('content'));
 
-            Y.Assert.isTrue(container.one('.form-builder-configuration').hasClass('hide'));
+            Y.Assert.isTrue(container.one('.form-builder-field-configuration').hasClass('hide'));
 
             this._field.toggleConfigurationButton(true);
-            Y.Assert.isFalse(container.one('.form-builder-configuration').hasClass('hide'));
+            Y.Assert.isFalse(container.one('.form-builder-field-configuration').hasClass('hide'));
 
             this._field.toggleConfigurationButton(false);
-            Y.Assert.isTrue(container.one('.form-builder-configuration').hasClass('hide'));
+            Y.Assert.isTrue(container.one('.form-builder-field-configuration').hasClass('hide'));
         },
 
         'should hide the toolbar on click outside': function() {
@@ -120,17 +120,17 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             container.appendChild(this._field.get('content'));
 
-            Y.Assert.isTrue(container.one('.form-builder-configuration').hasClass('hide'));
-            Y.Assert.isTrue(container.one('.form-builder-toolbar').hasClass('hide'));
+            Y.Assert.isTrue(container.one('.form-builder-field-configuration').hasClass('hide'));
+            Y.Assert.isTrue(container.one('.form-builder-field-toolbar').hasClass('hide'));
 
             this._field.toggleToolbar(true);
-            Y.Assert.isTrue(container.one('.form-builder-configuration').hasClass('hide'));
-            Y.Assert.isFalse(container.one('.form-builder-toolbar').hasClass('hide'));
+            Y.Assert.isTrue(container.one('.form-builder-field-configuration').hasClass('hide'));
+            Y.Assert.isFalse(container.one('.form-builder-field-toolbar').hasClass('hide'));
 
             container.simulate('mousemove');
             container.simulate('click');
-            Y.Assert.isTrue(container.one('.form-builder-configuration').hasClass('hide'));
-            Y.Assert.isTrue(container.one('.form-builder-toolbar').hasClass('hide'));
+            Y.Assert.isTrue(container.one('.form-builder-field-configuration').hasClass('hide'));
+            Y.Assert.isTrue(container.one('.form-builder-field-toolbar').hasClass('hide'));
         },
 
         'should update settings modal correctly': function() {

@@ -413,7 +413,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isFalse(settingsPane.hasClass('modal-dialog-hidden'));
         },
 
-        'should show the toolbar of field when clicked on configutarion button of field': function() {
+        'should show the toolbar of field when clicked on configuration button of field': function() {
             this.createFormBuilder({
                 fieldTypes: [{
                     fieldClass: Y.FormBuilderFieldText
@@ -421,14 +421,14 @@ YUI.add('aui-form-builder-tests', function(Y) {
             });
 
             Y.one('.form-builder-empty-col').simulate('click');
-            
+
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
-            Y.Assert.isTrue(Y.one('.form-builder-toolbar').hasClass('hide'));
+            Y.Assert.isTrue(Y.one('.form-builder-field-toolbar').hasClass('hide'));
 
-            Y.one('.form-builder-configuration').simulate('click');
-            Y.Assert.isFalse(Y.one('.form-builder-toolbar').hasClass('hide'));
+            Y.one('.form-builder-field-configuration').simulate('click');
+            Y.Assert.isFalse(Y.one('.form-builder-field-toolbar').hasClass('hide'));
         },
 
         'should show the toolbar of field when touch on field': function() {
@@ -439,13 +439,13 @@ YUI.add('aui-form-builder-tests', function(Y) {
             });
 
             Y.one('.form-builder-empty-col').simulate('click');
-            
+
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
 
             Y.one('.form-builder-field').simulateGesture('tap');
-            Y.Assert.isFalse(Y.one('.form-builder-toolbar').hasClass('hide'));
+            Y.Assert.isFalse(Y.one('.form-builder-field-toolbar').hasClass('hide'));
         },
 
         'should show field settings when clicked on editing button': function() {
@@ -456,14 +456,14 @@ YUI.add('aui-form-builder-tests', function(Y) {
             });
 
             Y.one('.form-builder-empty-col').simulate('click');
-            
+
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
-            Y.one('.form-builder-configuration').simulate('click');
+            Y.one('.form-builder-field-configuration').simulate('click');
             Y.Assert.isTrue(Y.one('.form-builder-field-settings').hasClass('modal-dialog-hidden'));
 
-            Y.one('.form-builder-edit').simulate('click');
+            Y.one('.form-builder-field-toolbar-edit').simulate('click');
             Y.Assert.isFalse(Y.one('.form-builder-field-settings').hasClass('modal-dialog-hidden'));
         },
 
@@ -475,15 +475,15 @@ YUI.add('aui-form-builder-tests', function(Y) {
             });
 
             Y.one('.form-builder-empty-col').simulate('click');
-            
+
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
             Y.one('.form-builder-field').simulate('mouseover');
-            Y.Assert.isFalse(Y.one('.form-builder-configuration').hasClass('hide'));
+            Y.Assert.isFalse(Y.one('.form-builder-field-configuration').hasClass('hide'));
 
             Y.one('.form-builder-field').simulate('mouseout');
-            Y.Assert.isTrue(Y.one('.form-builder-configuration').hasClass('hide'));
+            Y.Assert.isTrue(Y.one('.form-builder-field-configuration').hasClass('hide'));
         },
 
         'should remove a field when clicked on remove button': function() {
@@ -494,18 +494,18 @@ YUI.add('aui-form-builder-tests', function(Y) {
             });
 
             Y.one('.form-builder-empty-col').simulate('click');
-            
+
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
-            Y.one('.form-builder-configuration').simulate('click');
+            Y.one('.form-builder-field-configuration').simulate('click');
             Y.Assert.isNotNull(Y.one('.form-builder-field'));
 
-            Y.one('.form-builder-remove').simulate('click');
+            Y.one('.form-builder-field-toolbar-remove').simulate('click');
             Y.Assert.isNull(Y.one('.form-builder-field'));
         },
 
-        'should close field configutarion when clicked on editing button': function() {
+        'should close field configuration when clicked on editing button': function() {
             this.createFormBuilder({
                 fieldTypes: [{
                     fieldClass: Y.FormBuilderFieldText
@@ -513,15 +513,15 @@ YUI.add('aui-form-builder-tests', function(Y) {
             });
 
             Y.one('.form-builder-empty-col').simulate('click');
-            
+
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
-            Y.one('.form-builder-configuration').simulate('click');
-            Y.Assert.isFalse(Y.one('.form-builder-toolbar').hasClass('hide'));
+            Y.one('.form-builder-field-configuration').simulate('click');
+            Y.Assert.isFalse(Y.one('.form-builder-field-toolbar').hasClass('hide'));
 
-            Y.one('.form-builder-close').simulate('click');
-            Y.Assert.isTrue(Y.one('.form-builder-toolbar').hasClass('hide'));
+            Y.one('.form-builder-field-toolbar-close').simulate('click');
+            Y.Assert.isTrue(Y.one('.form-builder-field-toolbar').hasClass('hide'));
         },
 
         'should not throw error if hiding settings panel before rendered': function() {
