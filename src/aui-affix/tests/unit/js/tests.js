@@ -26,6 +26,10 @@ YUI.add('aui-affix-tests', function(Y) {
             target.removeClass(Y.Affix.CSS_CLASSES_BOTTOM);
             target.removeClass(Y.Affix.CSS_CLASSES_DEFAULT);
             target.removeClass(Y.Affix.CSS_CLASSES_TOP);
+
+            // Scroll back to top.
+            window.scrollTo(0, 0);
+            this.wait(500);
         },
 
         'should set attributes': function() {
