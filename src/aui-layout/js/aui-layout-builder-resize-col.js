@@ -337,11 +337,14 @@ A.LayoutBuilderResizeCol.prototype = {
         var instance = this,
             breakpoints = this.get('breakpoints'),
             gridLine,
-            gridWidth;
+            gridWidth,
+            node;
 
         this._removeGrid();
         A.each(this.get('layout').get('rows'), function(row) {
-            gridWidth = row.get('node').get(OFFSET_WIDTH) / MAX_SIZE;
+            node = row.get('node').one(SELECTOR_ROW);
+
+            gridWidth = node.get(OFFSET_WIDTH) / MAX_SIZE;
 
             A.each(breakpoints, function(point) {
                 gridLine = A.Node.create(instance.TPL_RESIZE_COL_BREAKPOINT);
@@ -350,7 +353,7 @@ A.LayoutBuilderResizeCol.prototype = {
                 gridLine.plug(A.Plugin.Drop, {
                     padding: '30px'
                 });
-                row.get('node').append(gridLine);
+                node.append(gridLine);
             });
         });
     },
@@ -403,7 +406,7 @@ A.LayoutBuilderResizeCol.prototype = {
             currentPos = 0,
             draggable,
             index,
-            rowNode = row.get('node');
+            rowNode = row.get('node').one(SELECTOR_ROW);
 
         for (index = 0; index < cols.length - 1; index++) {
             currentPos += cols[index].get('size');

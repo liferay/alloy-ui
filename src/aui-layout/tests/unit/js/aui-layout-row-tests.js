@@ -33,13 +33,13 @@ YUI.add('aui-layout-row-tests', function(Y) {
         },
 
         'should have class row after renders': function() {
-            var row = this.layoutRow.get('node');
+            var row = this.layoutRow.get('node').one('.row');
 
             Assert.isTrue(row.hasClass('row'));
         },
 
         'should have 3 children after renders': function() {
-            var row = this.layoutRow.get('node'),
+            var row = this.layoutRow.get('node').one('.row'),
                 childNumber = row.get('children').size();
 
             Assert.areEqual(3, childNumber);
@@ -55,7 +55,7 @@ YUI.add('aui-layout-row-tests', function(Y) {
                 })
             ]);
 
-            Assert.areEqual(2, this.layoutRow.get('node').get('children').size());
+            Assert.areEqual(2, this.layoutRow.get('node').one('.row').get('children').size());
         },
 
         'should calculate it\'s size based on col\'s size': function() {

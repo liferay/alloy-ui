@@ -5,7 +5,8 @@
  */
 
 var ALLOWED_SIZE = 12,
-    TPL_ROW = '<div class="layout-row row">';
+    SELECTOR_ROW = '.row',
+    TPL_ROW = '<div class="layout-row-container-row"><div class="layout-row row"></div></div>';
 
 /**
  * A base class for Layout Row.
@@ -191,7 +192,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _uiSetCols: function(cols) {
-        var node = this.get('node');
+        var node = this.get('node').one(SELECTOR_ROW);
 
         node.empty();
         A.each(cols, function(col) {
@@ -256,6 +257,18 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
         },
 
         /**
+         * Determine if the row can move.
+         *
+         * @attribute movable
+         * @default true
+         * @type {Boolean}
+         */
+        movable: {
+            validator: A.Lang.isBoolean,
+            value: true
+        },
+
+        /**
          * The node where this column will be rendered.
          *
          * @attribute node
@@ -263,7 +276,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
          */
         node: {
             setter: function(val) {
-                val.setData('layout-row', this);
+                val.one(SELECTOR_ROW).setData('layout-row', this);
                 return val;
             },
             validator: A.Lang.isNode,
@@ -271,6 +284,18 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
                 return A.Node.create(TPL_ROW);
             },
             writeOnce: 'initOnly'
+        },
+
+        /**
+         * Determine if the row can be removed.
+         *
+         * @attribute removable
+         * @default true
+         * @type {Boolean}
+         */
+        removable: {
+            validator: A.Lang.isBoolean,
+            value: true
         }
     }
 });

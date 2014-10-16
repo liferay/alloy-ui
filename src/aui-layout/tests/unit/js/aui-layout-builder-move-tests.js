@@ -251,8 +251,158 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             cutButton = container.one('.layout-builder-move-cut-button');
             cutButton.simulate('click');
 
-            Assert.isFalse(row0.next().hasClass('.layout-builder-move-row-target'));
-            Assert.isFalse(row1.next().hasClass('.layout-builder-move-row-target'));
+            Assert.isFalse(row0.ancestor().next().hasClass('.layout-builder-move-row-target'));
+            Assert.isFalse(row1.ancestor().next().hasClass('.layout-builder-move-row-target'));
+        },
+
+        'should not add target before an unmovable row and the row to be moved': function() {
+            var cutButton,
+                layout = new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 3,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 3,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 3,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 3,
+                                    value: { content: 'foo' }
+                                })
+                            ],
+                            movable: false
+                        }),
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                })
+                            ]
+                        }),
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                })
+                            ]
+                        })
+                    ]
+                }),
+                moveButton,
+                targetArea;
+
+            this.layoutBuilder.set('layout', layout);
+
+            moveButton = container.all('.layout-builder-move-button').last();
+            moveButton.simulate('click');
+
+            cutButton = container.one('.layout-builder-move-cut-button');
+            cutButton.simulate('click');
+
+            targetArea = container.one('.layout-builder-move-target');
+
+            Assert.areEqual(1, targetArea.getData('position'));
+        },
+
+        'should not add target after the row to be moved and the unmovable row': function() {
+            var cutButton,
+                layout = new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 3,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 3,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 3,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 3,
+                                    value: { content: 'foo' }
+                                })
+                            ]
+                        }),
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                })
+                            ]
+                        }),
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: { content: 'foo' }
+                                })
+                            ],
+                            movable: false
+                        })
+                    ]
+                }),
+                moveButton,
+                targetArea;
+
+            this.layoutBuilder.set('layout', layout);
+
+            moveButton = Y.one(container.all('.layout-builder-move-button')._nodes[1]);
+            moveButton.simulate('click');
+
+            cutButton = container.one('.layout-builder-move-cut-button');
+            cutButton.simulate('click');
+
+            targetArea = container.one('.layout-builder-move-target');
+
+            Assert.areNotEqual(4, targetArea.getData('position'));
         },
 
         'should add targets on cols': function() {

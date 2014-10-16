@@ -84,13 +84,18 @@ LayoutBuilderRemoveRow.prototype = {
      */
     _appendButtonToRows: function() {
         var layoutContainer = this._layoutContainer,
+            layoutRow,
             removeRowButton,
             rows = layoutContainer.all('.row');
 
         rows.each(function(row) {
-            removeRowButton = A.Node.create(TPL_REMOVE_ROW_BUTTON);
-            removeRowButton.setData('layout-row', row.getData('layout-row'));
-            layoutContainer.insertBefore(removeRowButton, row);
+            layoutRow = row.getData('layout-row');
+
+            if (layoutRow.get('removable')) {
+                removeRowButton = A.Node.create(TPL_REMOVE_ROW_BUTTON);
+                removeRowButton.setData('layout-row', layoutRow);
+                layoutContainer.insertBefore(removeRowButton, row);
+            }
         });
     },
 
@@ -140,12 +145,13 @@ LayoutBuilderRemoveRow.prototype = {
      * @protected
      */
     _uiSetEnableRemoveRows: function(enableRemoveRows) {
+        this._removeRemoveButtonFromRows();
+
         if (enableRemoveRows) {
             this._appendButtonToRows();
             this._bindRemoveRowEvents();
         }
         else {
-            this._removeRemoveButtonFromRows();
             this._unbindRemoveRowEvents();
         }
     },

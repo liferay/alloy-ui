@@ -139,6 +139,18 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
         },
 
         /**
+         * Determine if the col can move.
+         *
+         * @attribute movable
+         * @default true
+         * @type {Boolean}
+         */
+        movable: {
+            validator: A.Lang.isBoolean,
+            value: true
+        },
+
+        /**
          * The node where this column will be rendered.
          *
          * @attribute node
@@ -154,6 +166,18 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
                 return A.Node.create(TPL_COL);
             },
             writeOnce: 'initOnly'
+        },
+
+        /**
+         * Determine if the col can be removed.
+         *
+         * @attribute removable
+         * @default true
+         * @type {Boolean}
+         */
+        removable: {
+            validator: A.Lang.isBoolean,
+            value: true
         },
 
         /**

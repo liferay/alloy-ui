@@ -12,6 +12,8 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
     CSS_MOVE_CUT_ROW_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'row', 'button'),
     CSS_MOVE_CUT_COL_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'col', 'button'),
     CSS_MOVE_TARGET = A.getClassName('layout', 'builder', 'move', 'target'),
+    CSS_ROW_CONTAINER_ROW = A.getClassName('layout', 'row', 'container', 'row'),
+    SELECTOR_ROW = '.row',
     TPL_MOVE_BUTTON = '<button type="button" class="btn btn-default btn-xs ' + CSS_MOVE_BUTTON + '">' +
         '<span class="glyphicon glyphicon-sort"></span> <span class="' + CSS_MOVE_BUTTON_TEXT + '"> Move</span></button>',
     TPL_MOVE_CUT = '<div class="' + CSS_MOVE_CUT_BUTTON + '"></div>',
@@ -124,7 +126,7 @@ LayoutBuilderMove.prototype = {
     _appendMoveButtonToRows: function() {
         var layoutContainer = this._layoutContainer,
             moveButton,
-            rows = layoutContainer.all('.row');
+            rows = layoutContainer.all(SELECTOR_ROW);
 
         rows.each(function(row) {
             moveButton = A.Node.create(TPL_MOVE_BUTTON);
@@ -173,7 +175,8 @@ LayoutBuilderMove.prototype = {
      */
     _createColTargetArea: function(col) {
         var cols,
-            rows = this._layoutContainer.all('.row'),
+            layoutCol,
+            rows = this._layoutContainer.all(SELECTOR_ROW),
             target;
 
         this._colToBeMoved = col.getData('layout-col');
@@ -182,7 +185,9 @@ LayoutBuilderMove.prototype = {
             cols = row.all('.col');
 
             cols.each(function(currentCol, index) {
-                if (currentCol !== col) {
+                layoutCol = currentCol.getData('layout-col');
+
+                if (currentCol !== col && layoutCol.get('movable')) {
                     target = A.Node.create(TPL_MOVE_TARGET);
                     target.setData('position', index);
                     target.addClass(CSS_MOVE_COL_TARGET);
@@ -196,27 +201,56 @@ LayoutBuilderMove.prototype = {
      * Create target area to move the row.
      *
      * @method _createRowTargetArea
+     * @param {Node} nodeRow
      * @protected
      */
-    _createRowTargetArea: function() {
-        var container = this._layoutContainer,
-            indexRowToBeMoved = this.get('layout').get('rows').indexOf(this._rowToBeMoved),
-            rows = this._layoutContainer.all('.row'),
+    _createRowTargetArea: function(nodeRow) {
+        var indexRowToBeMoved,
+            nextContainerRow = nodeRow.ancestor('.' + CSS_ROW_CONTAINER_ROW).next(),
+            previousContainerRow = nodeRow.ancestor('.' + CSS_ROW_CONTAINER_ROW).previous(),
+            rows = this.get('layout').get('rows');
+
+        indexRowToBeMoved = rows.indexOf(this._rowToBeMoved);
+        this._createRowTargetAreaInOneDirection(indexRowToBeMoved, previousContainerRow, 'before');
+
+        indexRowToBeMoved = rows.indexOf(this._rowToBeMoved) + 1;
+        this._createRowTargetAreaInOneDirection(indexRowToBeMoved, nextContainerRow, 'after');
+    },
+
+    /**
+     * Create target area to move the row to one direction.
+     *
+     * @method _createRowTargetAreaInOneDirection
+     * @param {Number} indexRowToBeMoved
+     * @param {Node} containerRow
+     * @param {String} direction
+     * @protected
+     */
+    _createRowTargetAreaInOneDirection: function(indexRowToBeMoved, containerRow, direction) {
+        var currentRow,
+            method = direction === 'before' ? 'previous' : 'next',
             target;
 
-        if (indexRowToBeMoved !== 0) {
-            target = A.Node.create(TPL_MOVE_TARGET);
-            target.setData('position', 0);
-            container.prepend(target);
-        }
+        while (containerRow) {
+            currentRow = containerRow.one(SELECTOR_ROW);
 
-        rows.each(function(row, index) {
-            if (indexRowToBeMoved !== index && indexRowToBeMoved !== index + 1) {
-                target = A.Node.create(TPL_MOVE_TARGET);
-                target.setData('position', index + 1);
-                container.insertBefore(target, row.next());
+            if (direction === 'before') {
+                indexRowToBeMoved -= 1;
             }
-        });
+            else {
+                indexRowToBeMoved += 1;
+            }
+
+            if (currentRow.getData('layout-row').get('movable')) {
+                target = A.Node.create(TPL_MOVE_TARGET);
+                target.setData('position', indexRowToBeMoved);
+                containerRow.insert(target, direction);
+                containerRow = containerRow[method]('.' + CSS_ROW_CONTAINER_ROW);
+            }
+            else {
+                break;
+            }
+        }
     },
 
     /**
@@ -241,8 +275,9 @@ LayoutBuilderMove.prototype = {
     _insertCutButtonOnCols: function(moveButton) {
         var cols,
             cutButton,
+            layoutCol,
             row = moveButton.getData('node-row'),
-            rows = this._layoutContainer.all('.row');
+            rows = this._layoutContainer.all(SELECTOR_ROW);
 
         cols = row.all('.col');
 
@@ -251,11 +286,15 @@ LayoutBuilderMove.prototype = {
         }
 
         cols.each(function(col) {
-            cutButton = A.Node.create(TPL_MOVE_CUT);
-            cutButton.setData('node-row', row);
-            cutButton.setData('node-col', col);
-            cutButton.addClass(CSS_MOVE_CUT_COL_BUTTON);
-            col.append(cutButton);
+            layoutCol = col.getData('layout-col');
+
+            if (layoutCol.get('movable')) {
+                cutButton = A.Node.create(TPL_MOVE_CUT);
+                cutButton.setData('node-row', row);
+                cutButton.setData('node-col', col);
+                cutButton.addClass(CSS_MOVE_CUT_COL_BUTTON);
+                col.append(cutButton);
+            }
         });
     },
 
@@ -268,15 +307,21 @@ LayoutBuilderMove.prototype = {
      */
     _insertCutButtonOnRow: function(moveButton) {
         var cutButton = A.Node.create(TPL_MOVE_CUT),
-            rows = this._layoutContainer.all('.row');
+            layoutRow = moveButton.getData('layout-row'),
+            rows = this._layoutContainer.all(SELECTOR_ROW);
 
         if (rows.size() === 1) {
             return;
         }
 
-        cutButton.addClass(CSS_MOVE_CUT_ROW_BUTTON);
+        if (!layoutRow.get('movable')) {
+            return;
+        }
 
-        this._rowToBeMoved = moveButton.getData('layout-row');
+        cutButton.addClass(CSS_MOVE_CUT_ROW_BUTTON);
+        cutButton.setData('node-row', moveButton.getData('node-row'));
+
+        this._rowToBeMoved = layoutRow;
 
         this._layoutContainer.insertBefore(cutButton, moveButton);
     },
@@ -289,7 +334,7 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _moveColContent: function(target) {
-        var row = target.ancestor('.row').getData('layout-row');
+        var row = target.ancestor(SELECTOR_ROW).getData('layout-row');
 
         row.moveCol(this._colToBeMoved, target.getData('position'));
         this._resetMoveUI();
@@ -332,7 +377,7 @@ LayoutBuilderMove.prototype = {
         this._removeAllCutButton();
 
         if (cutButton.hasClass(CSS_MOVE_CUT_ROW_BUTTON)) {
-            this._createRowTargetArea();
+            this._createRowTargetArea(cutButton.getData('node-row'));
         }
         else {
             col = cutButton.getData('node-col');

@@ -104,7 +104,12 @@ A.LayoutBuilderRemoveCol.prototype = {
      * @protected
      */
     _onMouseEnterRemoveColEvent: function(event) {
-        event.currentTarget.append(this._removeColButton);
+        var col = event.currentTarget,
+            layoutCol = col.getData('layout-col');
+
+        if (layoutCol.get('removable')) {
+            col.append(this._removeColButton);
+        }
     },
 
     /**
