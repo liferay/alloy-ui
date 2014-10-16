@@ -16,7 +16,6 @@ No registries yet.
 * [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
 * [AUI-1236](https://issues.liferay.com/browse/AUI-1236) Add .table class to DataTable on Bootstrap 3
 * [AUI-1224](https://issues.liferay.com/browse/AUI-1224) Add .glyphicon and change prefix from .icon-* to .glyphicon-* on Bootstrap 3
-* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 * [AUI-1158](https://issues.liferay.com/browse/AUI-1158) Diagram Builder connections jump if diagram area is scrollable
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)

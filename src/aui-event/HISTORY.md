@@ -11,7 +11,6 @@ No registries yet.
 * [AUI-1048](https://issues.liferay.com/browse/AUI-1048) Remove API Docs placeholder content
 * [AUI-1466](https://issues.liferay.com/browse/AUI-1466) aui-base HISTORY.md
 * [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
-* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 

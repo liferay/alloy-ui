@@ -8,13 +8,10 @@ No registries yet.
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
-* [AUI-1459](https://issues.liferay.com/browse/AUI-1459) aui-ace-editor HISTORY.md
-* [AUI-1380](https://issues.liferay.com/browse/AUI-1380) AUI-Ace-Editor tests fail on IE8
 * [AUI-1213](https://issues.liferay.com/browse/AUI-1213) Use Bower to fetch dependencies
 * [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Wrong css formatting when running "grunt format"
 * [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
 * [AUI-1224](https://issues.liferay.com/browse/AUI-1224) Add .glyphicon and change prefix from .icon-* to .glyphicon-* on Bootstrap 3
-* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 

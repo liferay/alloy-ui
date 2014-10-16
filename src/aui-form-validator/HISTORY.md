@@ -14,7 +14,6 @@ No registries yet.
 * [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
 * [AUI-1245](https://issues.liferay.com/browse/AUI-1245) Add .has-* prefix on Form .success/.error classes on Bootstrap 3
 * [AUI-1244](https://issues.liferay.com/browse/AUI-1244) Use .form-control instead of .control-group on Bootstrap 3
-* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 

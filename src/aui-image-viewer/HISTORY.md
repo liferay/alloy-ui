@@ -22,7 +22,6 @@ No registries yet.
 * [AUI-1098](https://issues.liferay.com/browse/AUI-1098) Upgrade to Bootstrap 3
 * [AUI-1230](https://issues.liferay.com/browse/AUI-1230) Improve ImageGallery button alignment and general spacings on Bootstrap 3
 * [AUI-1224](https://issues.liferay.com/browse/AUI-1224) Add .glyphicon and change prefix from .icon-* to .glyphicon-* on Bootstrap 3
-* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 

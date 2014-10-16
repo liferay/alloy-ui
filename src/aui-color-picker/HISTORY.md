@@ -20,7 +20,6 @@ No registries yet.
 * [AUI-1244](https://issues.liferay.com/browse/AUI-1244) Use .form-control instead of .control-group on Bootstrap 3
 * [AUI-1239](https://issues.liferay.com/browse/AUI-1239) Change grid system from .row-fluid to .row on Bootstrap 3
 * [AUI-1235](https://issues.liferay.com/browse/AUI-1235) Change grid system from .span-* to .col-[lg|md|sm]-* on Bootstrap 3
-* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 

@@ -8,9 +8,9 @@ No registries yet.
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
+* [AUI-1674](https://issues.liferay.com/browse/AUI-1674) Audio throws error when oggUrl is not specified in Firefox
 * [AUI-1348](https://issues.liferay.com/browse/AUI-1348) Make aui-audio module accessible
 * [AUI-991](https://issues.liferay.com/browse/AUI-991) Add ability to interact with audio/video player
-* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 

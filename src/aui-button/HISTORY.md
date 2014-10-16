@@ -23,7 +23,6 @@ No registries yet.
 * [AUI-1220](https://issues.liferay.com/browse/AUI-1220) Add .btn-default to .btn elements with no other color on Bootstrap 3
 * [AUI-1223](https://issues.liferay.com/browse/AUI-1223) Use <span> instead of <i> when creating icons on Bootstrap 3
 * [AUI-1224](https://issues.liferay.com/browse/AUI-1224) Add .glyphicon and change prefix from .icon-* to .glyphicon-* on Bootstrap 3
-* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 
