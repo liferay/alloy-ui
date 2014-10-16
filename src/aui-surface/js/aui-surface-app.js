@@ -137,13 +137,10 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             successNavigate: {},
             endNavigate: {}
         });
+        A.once('load', this._onLoad, win, this);
         A.on('scroll', A.debounce(this._onScroll, 50, this));
         A.on('popstate', this._onPopState, win, this);
         A.delegate('click', this._onDocClick, doc, this.get('linkSelector'), this);
-
-        // Don't fire popstate event on initial document load, for more
-        // information see https://codereview.chromium.org/136463002.
-        this.skipLoadPopstate = A.UA.safari && (doc.readyState === 'interactive');
     },
 
     /**
@@ -249,6 +246,41 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             replaceHistory: !! opt_replaceHistory
         });
         return this.pendingNavigate;
+    },
+
+    /**
+     * Prefetches the specified path if there is a route handler that matches.
+     *
+     * @method navigate
+     * @param {String} path Path containing the querystring part.
+     * @return {Promise} Returns a pending request cancellable promise.
+     */
+    prefetch: function(path) {
+        var nextScreen,
+            pendingPrefetch,
+            route = this.matchesPath(path),
+            self = this;
+
+        if (!route) {
+            return A.CancellablePromise.reject(new A.CancellablePromise.Error('No screen for ' + path));
+        }
+
+        A.log('Prefetching [' + path + ']', 'info');
+
+        nextScreen = this._getScreenInstance(path, route);
+        pendingPrefetch = A.CancellablePromise.resolve()
+            .then(function() {
+                return nextScreen.load(path);
+            })
+            .then(function() {
+                    self.screens[path] = nextScreen;
+                },
+                function(reason) {
+                    self._removeScreen(path, nextScreen);
+                    throw reason;
+                });
+
+        return pendingPrefetch;
     },
 
     /**
@@ -507,6 +539,11 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             path = link.get('pathname') + link.get('search') + link.get('hash'),
             navigateFailed = false;
 
+        if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+            A.log('Stop the SPA navigation when a modifier key is pressed');
+            return;
+        }
+
         if (!this._isLinkSameOrigin(hostname)) {
             A.log('Offsite link clicked', 'info');
             return;
@@ -528,6 +565,25 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
         if (!navigateFailed) {
             event.preventDefault();
         }
+    },
+
+    /**
+     * Listens to the window's load event in order avoid issues with some browsers
+     * that trigger popstate calls on the first load. For more information see
+     * http://stackoverflow.com/questions/6421769/popstate-on-pages-load-in-chrome.
+     *
+     * @method _onLoad
+     * @private
+     */
+    _onLoad: function() {
+        var instance = this;
+
+        this.skipLoadPopstate = true;
+        setTimeout(function() {
+            // The timeout ensures that popstate events will be unblocked right
+            // after the load event occured, but not in the same event-loop cycle.
+            instance.skipLoadPopstate = false;
+        }, 0);
     },
 
     /**
@@ -560,8 +616,6 @@ A.SurfaceApp = A.Base.create('surface-app', A.Base, [], {
             this._lockScroll();
             this.navigate(state.path, true);
         }
-
-        this.skipLoadPopstate = false;
     },
 
     /**

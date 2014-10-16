@@ -17,6 +17,9 @@ YUI.add('aui-surface-tests', function(Y) {
                 'should throw error when surface is not found': noHTML5,
                 'should match surface elements': noHTML5,
                 'should lazily match surface element': noHTML5,
+                'should prefetch': noHTML5,
+                'should prefetch fail using HtmlScreen': noHTML5,
+                'should not prefetch unrouted path': noHTML5,
                 'should navigate with screen lifecycle': noHTML5,
                 'should navigate to hash clicked links': noHTML5,
                 'should navigate asynchronously': noHTML5,
@@ -29,6 +32,7 @@ YUI.add('aui-surface-tests', function(Y) {
                 'should navigate when history buttons are clicked': noHTML5,
                 'should not navigate to history states that are not ours': noHTML5,
                 'should navigate fail using HTMLScreen': noHTML5,
+                'should update cached surfaces and title using HTMLScreen': noHTML5,
                 'should update surfaces and title using HTMLScreen': noHTML5,
                 'should update surfaces using HTMLScreen': noHTML5,
                 'should navigate to clicked links': noHTML5,
@@ -575,6 +579,31 @@ YUI.add('aui-surface-tests', function(Y) {
             instance.wait();
         },
 
+        'should update cached surfaces and title using HTMLScreen': function() {
+            var instance = this,
+                path = instance.getOriginalBasePath() + '/content.txt?2';
+
+            instance.app.addScreenRoutes({
+                path: '/content.txt?2',
+                screen: Y.HTMLScreen
+            });
+
+            instance.app.set('basePath', instance.getOriginalBasePath());
+            instance.app.navigate(path).then(function() {
+                instance.app.set('basePath', '/base');
+                instance.app.navigate('/base/page').then(function() {
+                    instance.app.set('basePath', instance.getOriginalBasePath());
+                    instance.app.navigate(path).then(function() {
+                        instance.resume(function() {
+                            instance.assertNavigation(path, 'html');
+                            instance.app.set('basePath', '/base');
+                        });
+                    });
+                });
+            });
+            instance.wait();
+        },
+
         'should update surfaces and title using HTMLScreen': function() {
             var instance = this,
                 path = instance.getOriginalBasePath() + '/content.txt';
@@ -649,6 +678,20 @@ YUI.add('aui-surface-tests', function(Y) {
             Y.Assert.isNull(this.app.pendingNavigate);
         },
 
+        'should not navigate to links clicked with modifier keys': function() {
+            Y.one('a[href="/base/page#hash"]').simulate('click', {altKey: true});
+            Y.Assert.isNull(this.app.pendingNavigate);
+
+            Y.one('a[href="/base/page#hash"]').simulate('click', {ctrlKey: true});
+            Y.Assert.isNull(this.app.pendingNavigate);
+
+            Y.one('a[href="/base/page#hash"]').simulate('click', {metaKey: true});
+            Y.Assert.isNull(this.app.pendingNavigate);
+
+            Y.one('a[href="/base/page#hash"]').simulate('click', {shiftKey: true});
+            Y.Assert.isNull(this.app.pendingNavigate);
+        },
+
         'should navigate to previous page asynchronously': function() {
             var instance = this,
                 start = 0,
@@ -666,6 +709,61 @@ YUI.add('aui-surface-tests', function(Y) {
                     Y.config.win.history.back();
                 });
             });
+            instance.wait();
+        },
+
+        'should prefetch': function() {
+            var fetched = false,
+                instance = this;
+
+            instance.app.prefetch('/base/page').then(function() {
+                fetched = true;
+            })
+            .thenAlways(function() {
+                instance.resume(function() {
+                    Y.Assert.isTrue(fetched);
+                });
+            });
+
+            instance.wait();
+        },
+
+        'should prefetch fail using HtmlScreen': function() {
+            var fail = false,
+                instance = this;
+
+            instance.app.addScreenRoutes({
+                path: '/not-found.txt',
+                screen: Y.HTML404Screen
+            });
+
+            instance.app.set('basePath', instance.getOriginalBasePath());
+
+            instance.app.prefetch(instance.getOriginalBasePath() + '/not-found.txt').thenCatch(function() {
+              fail = true;
+            })
+            .thenAlways(function() {
+                instance.resume(function() {
+                    Y.Assert.isTrue(fail);
+                });
+            });
+
+            instance.wait();
+        },
+
+        'should not prefetch unrouted path': function() {
+            var fail = false,
+                instance = this;
+
+            instance.app.prefetch('/no-route').thenCatch(function() {
+                fail = true;
+            })
+            .thenAlways(function() {
+                instance.resume(function() {
+                    Y.Assert.isTrue(fail);
+                });
+            });
+
             instance.wait();
         }
     }));
