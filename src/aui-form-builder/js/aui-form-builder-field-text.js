@@ -20,7 +20,7 @@ var CSS_FIELD_TEXT = A.getClassName('form', 'builder', 'field', 'text'),
  * @constructor
  */
 A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderFieldSentence, [], {
-    TPL_FIELD_CONTENT: '<div><div class="' + CSS_FIELD_TEXT_INPUT + '"></div></div>',
+    TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_TEXT_INPUT + '"></div>',
 
     /**
      * Constructor for the `A.FormBuilderFieldText`. Lifecycle.
@@ -58,23 +58,22 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
      * @protected
      */
     _fillSettings: function() {
-        var instance = this;
+        A.FormBuilderFieldText.superclass._fillSettings.apply(this, arguments);
 
-        A.FormBuilderFieldText.superclass._fillSettings.apply(instance, arguments);
-
-        instance._settings.push({
-            attrName: 'multiline',
-            editor: new A.BooleanDataEditor({
-                label: 'Multiline'
-            })
-        });
-
-        instance._settings.push({
-            attrName: 'required',
-            editor: new A.BooleanDataEditor({
-                label: 'Required'
-            })
-        });
+        this._settings.push(
+            {
+                attrName: 'multiline',
+                editor: new A.BooleanDataEditor({
+                    label: 'Multiline'
+                })
+            },
+            {
+                attrName: 'required',
+                editor: new A.BooleanDataEditor({
+                    label: 'Required'
+                })
+            }
+        );
     },
 
     /**

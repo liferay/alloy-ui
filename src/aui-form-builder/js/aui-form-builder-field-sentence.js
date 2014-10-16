@@ -5,7 +5,8 @@
  * @submodule aui-form-builder-field-sentence
  */
 
-var CSS_FIELD_SENTENCE = A.getClassName('form', 'builder', 'field', 'sentence'),
+var CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
+    CSS_FIELD_SENTENCE = A.getClassName('form', 'builder', 'field', 'sentence'),
     CSS_FIELD_SENTENCE_HELP = A.getClassName('form', 'builder', 'field', 'sentence', 'help'),
     CSS_FIELD_SENTENCE_TITLE = A.getClassName('form', 'builder', 'field', 'sentence', 'title'),
 
@@ -35,8 +36,8 @@ A.FormBuilderFieldSentence = A.Base.create('form-builder-field-sentece', A.FormB
         var content = this.get('content');
 
         content.addClass(CSS_FIELD_SENTENCE);
-        content.one('.form-builder-field-content').setHTML(TPL_FIELD_SENTENCE_CONTENT);
-        content.one('.form-builder-field-content').appendChild(this.TPL_FIELD_CONTENT);
+        content.one('.' + CSS_FIELD_CONTENT).setHTML(TPL_FIELD_SENTENCE_CONTENT);
+        content.one('.' + CSS_FIELD_CONTENT).appendChild(this.TPL_FIELD_CONTENT);
 
         this._uiSetHelp(this.get('help'));
         this._uiSetTitle(this.get('title'));

@@ -23,7 +23,7 @@ var CSS_FIELD_CHOICE = A.getClassName('form', 'builder', 'field', 'choice'),
  * @constructor
  */
 A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuilderFieldSentence, [], {
-    TPL_FIELD_CONTENT: '<div><div class="' + CSS_FIELD_CHOICE_OPTIONS + ' form-group"></div></div>',
+    TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_CHOICE_OPTIONS + ' form-group"></div>',
 
     /**
      * Constructor for the `A.FormBuilderFieldChoice`. Lifecycle.
@@ -84,35 +84,32 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
      * @protected
      */
     _fillSettings: function() {
-        var instance = this;
+        A.FormBuilderFieldChoice.superclass._fillSettings.apply(this, arguments);
 
-        A.FormBuilderFieldChoice.superclass._fillSettings.apply(instance, arguments);
-
-        instance._settings.push({
-            attrName: 'options',
-            editor: new A.OptionsDataEditor()
-        });
-
-        instance._settings.push({
-            attrName: 'otherOption',
-            editor: new A.BooleanDataEditor({
-                label: 'Add "Other" option'
-            })
-        });
-
-        instance._settings.push({
-            attrName: 'multiple',
-            editor: new A.BooleanDataEditor({
-                label: 'Activate multiple choice'
-            })
-        });
-
-        instance._settings.push({
-            attrName: 'required',
-            editor: new A.BooleanDataEditor({
-                label: 'Required'
-            })
-        });
+        this._settings.push(
+            {
+                attrName: 'options',
+                editor: new A.OptionsDataEditor()
+            },
+            {
+                attrName: 'otherOption',
+                editor: new A.BooleanDataEditor({
+                    label: 'Add "Other" option'
+                })
+            },
+            {
+                attrName: 'multiple',
+                editor: new A.BooleanDataEditor({
+                    label: 'Activate multiple choice'
+                })
+            },
+            {
+                attrName: 'required',
+                editor: new A.BooleanDataEditor({
+                    label: 'Required'
+                })
+            }
+        );
     },
 
     /**
