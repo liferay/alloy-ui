@@ -18,10 +18,11 @@
 YUI({ filter:'raw' }).use(
     'aui-form-builder',
     'aui-form-builder-field-choice',
+    'aui-form-builder-field-list',
     'aui-form-builder-field-text',
     'aui-form-builder-field-sentence',
     function(Y) {
-        var Content = Y.Base.create('content', Y.Base, [], {}, {
+        Y.Base.create('content', Y.Base, [], {}, {
             ATTRS: {
                 content: {
                     value: 'foo'
@@ -47,7 +48,7 @@ YUI({ filter:'raw' }).use(
             ]
         });
 
-        var formBuilder = new Y.FormBuilder({
+        new Y.FormBuilder({
             fieldTypes: [{
                 fieldClass: Y.FormBuilderFieldSentence,
                 icon:'glyphicon glyphicon-font',
@@ -57,10 +58,9 @@ YUI({ filter:'raw' }).use(
                 icon:'glyphicon glyphicon-font',
                 label: 'Choice'
             },{
-                fieldClass: Y.FormBuilderFieldText,
+                fieldClass: Y.FormBuilderFieldList,
                 icon:'glyphicon glyphicon-font',
-                label: 'Text',
-                unique: true
+                label: 'List'
             },{
                 fieldClass: Y.FormBuilderFieldText,
                 icon:'glyphicon glyphicon-font',
