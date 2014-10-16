@@ -72,6 +72,16 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
+     * Checks if the toolbar node is visible.
+     *
+     * @method isToolbarVisible
+     * @return {Boolean}
+     */
+    isToolbarVisible: function() {
+        return !this.get('content').one('.' + CSS_FIELD_TOOLBAR).hasClass(CSS_HIDE);
+    },
+
+    /**
      * Renders the settings panel.
      *
      * @method renderSettingsPanel

@@ -447,7 +447,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [], {
     _onFieldMouseEnter: function (event) {
         var field = event.currentTarget.getData('field-instance');
 
-        field.toggleConfigurationButton(true);
+        if (!field.isToolbarVisible()) {
+            field.toggleConfigurationButton(true);
+        }
     },
 
     /**

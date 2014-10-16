@@ -486,6 +486,27 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(Y.one('.form-builder-field-configuration').hasClass('hide'));
         },
 
+        'should not show config button on mouseover if toolbar is already open': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText
+                }]
+            });
+
+            Y.one('.form-builder-empty-col').simulate('click');
+
+            Y.one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            Y.one('.form-builder-field').simulate('mouseover');
+            Y.one('.form-builder-field-configuration').simulate('click');
+            Y.Assert.isTrue(Y.one('.form-builder-field-configuration').hasClass('hide'));
+
+            Y.one('.form-builder-field').simulate('mouseover');
+            Y.Assert.isTrue(Y.one('.form-builder-field-configuration').hasClass('hide'));
+        },
+
         'should remove a field when clicked on remove button': function() {
             this.createFormBuilder({
                 fieldTypes: [{
