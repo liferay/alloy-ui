@@ -20,3 +20,7 @@
     top: 0;
     width: 100%;
 }
+
+.form-builder-layout-mode .layout-builder-move-target {
+    position: relative;
+}

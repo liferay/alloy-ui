@@ -9,9 +9,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             // Ignore the following tests in touch enabled browsers. They will
             // be tested properly in the tests for the aui-form-builder module.
             ignore: {
-                'should show the toolbar of field when touch on field': function () {
-                    return !Y.UA.touchEnabled;
-                }
+                'should show the toolbar of field when touch on field': !Y.UA.touchEnabled
             }
         },
 
@@ -170,6 +168,36 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(2, Y.all('.form-builder-page-break').size());
         },
 
+        'should make page breaks columns unmovable and unremovable': function() {
+            var row;
+
+            this.createFormBuilder();
+            row = this._formBuilder.get('layout').get('rows')[0];
+
+            Y.Assert.isFalse(row.get('cols')[0].get('movable'));
+            Y.Assert.isFalse(row.get('cols')[0].get('removable'));
+        },
+
+        'should make first page break row unmovable and unremovable': function() {
+            var row;
+
+            this.createFormBuilder();
+            this._formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
+            this._formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
+
+            row = this._formBuilder.get('layout').get('rows')[0];
+            Y.Assert.isFalse(row.get('movable'));
+            Y.Assert.isFalse(row.get('removable'));
+
+            row = this._formBuilder.get('layout').get('rows')[1];
+            Y.Assert.isTrue(row.get('movable'));
+            Y.Assert.isTrue(row.get('removable'));
+
+            row = this._formBuilder.get('layout').get('rows')[2];
+            Y.Assert.isTrue(row.get('movable'));
+            Y.Assert.isTrue(row.get('removable'));
+        },
+
         'should update quantity value of all pages break on form': function() {
             var formBuilder = this.createFormBuilder();
 
@@ -197,7 +225,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNotNull(Y.one('.icon-test'));
 
             Y.Assert.isNotNull(Y.one('.icon-test'));
-            formBuilder.unregisterFieldTypes(fieldType1);
+            formBuilder.unregisterFieldTypes(fieldType1);-
             Y.Assert.isNull(Y.one('.icon-test'));
         },
 
@@ -442,6 +470,8 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should show the toolbar of field when touch on field': function() {
+            var instance = this;
+
             this.createFormBuilder({
                 fieldTypes: [{
                     fieldClass: Y.FormBuilderFieldText
@@ -454,8 +484,12 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
 
-            Y.one('.form-builder-field').simulateGesture('tap');
-            Y.Assert.isFalse(Y.one('.form-builder-field-toolbar').hasClass('hide'));
+            Y.one('.form-builder-field-content').simulateGesture('tap', {}, function() {
+                instance.resume(function() {
+                    Y.Assert.isFalse(Y.one('.form-builder-field-toolbar').hasClass('hide'));
+                });
+            });
+            this.wait();
         },
 
         'should show field settings when clicked on editing button': function() {
@@ -489,7 +523,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
-            Y.one('.form-builder-field').simulate('mouseover');
+            Y.one('.form-builder-field-content').simulate('mouseover');
             Y.Assert.isFalse(Y.one('.form-builder-field-configuration').hasClass('hide'));
 
             Y.one('.form-builder-field').simulate('mouseout');
@@ -518,22 +552,30 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should remove a field when clicked on remove button': function() {
+            var col;
+
             this.createFormBuilder({
                 fieldTypes: [{
                     fieldClass: Y.FormBuilderFieldText
                 }]
             });
 
-            Y.one('.form-builder-empty-col').simulate('click');
+            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
+            col.get('node').one('.form-builder-empty-col').simulate('click');
 
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
             Y.one('.form-builder-field-configuration').simulate('click');
-            Y.Assert.isNotNull(Y.one('.form-builder-field'));
+            Y.Assert.isNull(col.get('node').one('.form-builder-empty-col'));
+            Y.Assert.isNotNull(col.get('node').one('.form-builder-field'));
 
             Y.one('.form-builder-field-toolbar-remove').simulate('click');
-            Y.Assert.isNull(Y.one('.form-builder-field'));
+            Y.Assert.isNotNull(col.get('node').one('.form-builder-empty-col'));
+            Y.Assert.isNull(col.get('node').one('.form-builder-field'));
+
+            Y.Assert.isFalse(col.get('movable'));
+            Y.Assert.isFalse(col.get('removable'));
         },
 
         'should close field configuration when clicked on editing button': function() {
@@ -653,6 +695,16 @@ YUI.add('aui-form-builder-tests', function(Y) {
             );
         },
 
+        'should make empty columns unmovable and unremovable': function() {
+            var emptyCol;
+
+            this.createFormBuilder();
+            emptyCol = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
+
+            Y.Assert.isFalse(emptyCol.get('movable'));
+            Y.Assert.isFalse(emptyCol.get('removable'));
+        },
+
         'should add a field to a column': function() {
             var col,
                 colNode,
@@ -678,6 +730,27 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
             Y.Assert.isTrue(Y.instanceOf(col.get('value'), Y.FormBuilderFieldText));
+        },
+
+        'should make field columns movable and removable': function() {
+            var col;
+
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText,
+                    label: 'Text'
+                }]
+            });
+
+            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
+            col.get('node').one('.form-builder-empty-col').simulate('click');
+
+            Y.one('.form-builder-modal').one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            Y.Assert.isTrue(col.get('movable'));
+            Y.Assert.isTrue(col.get('removable'));
         }
     }));
 

@@ -10,6 +10,7 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
     CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
+    CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
     CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
@@ -94,9 +95,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             this.after('layout:rowsChange', this._afterLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterLayoutColsChange),
             this.after('layout-col:valueChange', this._afterLayoutColValueChange),
-            boundingBox.delegate('mouseenter', this._onFieldMouseEnter, '.' + CSS_FIELD, this),
+            boundingBox.delegate('mouseenter', this._onFieldMouseEnter, '.' + CSS_FIELD_CONTENT, this),
             boundingBox.delegate('mouseleave', this._onFieldMouseLeave, '.' + CSS_FIELD, this),
-            boundingBox.delegate('touchstart', this._onTouchField, '.' + CSS_FIELD, this),
+            boundingBox.delegate('tap', this._onTapField, '.' + CSS_FIELD_CONTENT, this),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL, this),
             boundingBox.delegate('click', this._onClickConfigurationField, '.' + CSS_FIELD_CONFIGURATION, this),
             boundingBox.delegate('click', this._onClickEditField, '.' + CSS_FIELD_TOOLBAR_EDIT, this),
@@ -356,16 +357,33 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         row = new A.LayoutRow({
             cols: [
                 new A.LayoutCol({
+                    movable: false,
+                    removable: false,
                     size: 12,
                     value: pageBreak
                 })
             ],
-            maximumCols: 1
+            maximumCols: 1,
+            movable: nextPageBreakIndex > 1,
+            removable: nextPageBreakIndex > 1
         });
 
         row.get('node').addClass(CSS_PAGE_BREAK_ROW);
 
         return row;
+    },
+
+    /**
+     * Turns the given column into an empty form builder column.
+     *
+     * @method _makeColumnEmpty
+     * @param  {A.LayoutCol} col
+     * @protected
+     */
+    _makeColumnEmpty: function(col) {
+        col.set('value', {content: this.TPL_EMPTY_COL});
+        col.set('movable', false);
+        col.set('removable', false);
     },
 
     /**
@@ -457,7 +475,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _onFieldMouseEnter: function (event) {
-        var field = event.currentTarget.getData('field-instance');
+        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
 
         if (!field.isToolbarVisible()) {
             field.toggleConfigurationButton(true);
@@ -480,12 +498,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     /**
      * Fired when a field is clicked.
      *
-     * @method _onTouchField
+     * @method _onTapField
      * @param {EventFacade} event
      * @protected
      */
-    _onTouchField: function (event) {
-        var field = event.currentTarget.getData('field-instance');
+    _onTapField: function (event) {
+        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
 
         field.toggleToolbar(true);
     },
@@ -517,10 +535,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _onClickRemoveField: function (event) {
-        var instance = this,
-            col = event.currentTarget.ancestor('.col').getData('layout-col');
+        var col = event.currentTarget.ancestor('.col').getData('layout-col');
 
-        col.set('value', {content: instance.TPL_EMPTY_COL});
+        this._makeColumnEmpty(col);
     },
 
     /**
@@ -536,7 +553,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         A.Array.each(rows, function(row) {
             A.Array.each(row.get('cols'), function(col) {
                 if (!col.get('value')) {
-                    col.set('value', {content: instance.TPL_EMPTY_COL});
+                    instance._makeColumnEmpty(col);
                 }
             });
         });
@@ -579,6 +596,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
 
         if (this._colAddingField) {
             this._colAddingField.set('value', this._fieldBeingEdited);
+            this._colAddingField.set('movable', true);
+            this._colAddingField.set('removable', true);
             this._colAddingField = null;
         }
 

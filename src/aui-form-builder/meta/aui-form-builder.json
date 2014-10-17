@@ -5,7 +5,8 @@
             "aui-layout",
             "aui-form-builder-field-type",
             "aui-form-builder-layout-builder",
-            "aui-form-builder-page-break"
+            "aui-form-builder-page-break",
+            "event-tap"
         ],
         "skinnable": true
     },

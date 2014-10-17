@@ -18,6 +18,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                         new Y.LayoutRow({
                             cols: [
                                 new Y.LayoutCol({
+                                    value: new Y.FormBuilderFieldText(),
                                     size: 4
                                 }),
                                 new Y.LayoutCol({
@@ -191,26 +192,28 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
         },
 
         'should update with new attributes after rendering': function() {
-            var button,
-                rowNodes;
+            var rowNodes;
 
             this._createFormBuilder({}, true);
 
             this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            this._formBuilder.set('layout', new Y.Layout());
+            this._formBuilder.set('layout', new Y.Layout({
+                rows: [
+                    new Y.LayoutRow(),
+                    new Y.LayoutRow()
+                ]
+            }));
 
             this._formBuilder.render('#container');
             rowNodes = this._formBuilder.get('contentBox').all('.layout-row');
-            Y.Assert.areEqual(1, rowNodes.size());
+            Y.Assert.areEqual(3, rowNodes.size());
 
-            button = this._formBuilder.get('contentBox').one('.layout-builder-remove-row-button');
-            Y.Assert.isNotNull(button);
-            Y.Assert.areNotEqual('none', button.getStyle('display'));
+            Y.Assert.isTrue(this._formBuilder.get('boundingBox').hasClass('form-builder-layout-mode'));
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-form-builder', 'node-event-simulate', 'test']
+    requires: ['aui-form-builder', 'aui-form-builder-field-text', 'node-event-simulate', 'test']
 });
