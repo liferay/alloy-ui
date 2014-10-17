@@ -83,7 +83,7 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             this.layoutBuilder.destroy();
         },
 
-        'should appear cut button when click on move button': function() {
+        'should show cut button when click on move button': function() {
             var cutColButton,
                 cutRowButton,
                 moveButton = container.one('.layout-builder-move-button'),
@@ -96,6 +96,19 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             Assert.areEqual(1, cutRowButton.size());
             Assert.areEqual(row.get('cols').length, cutColButton.size());
+        },
+
+        'should fire preventable event for adding col move buttons': function() {
+            var cutColButton,
+                moveButton = container.one('.layout-builder-move-button');
+
+            this.layoutBuilder.on('addColMoveButton', function(event) {
+                event.preventDefault();
+            });
+            moveButton.simulate('click');
+
+            cutColButton = container.all('.layout-builder-move-cut-col-button');
+            Assert.areEqual(0, cutColButton.size());
         },
 
         'should change row\'s position': function() {
@@ -136,6 +149,20 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             cutButton = container.one('.layout-builder-move-cut-button');
 
             Assert.isNull(cutButton);
+        },
+
+        'should fire preventable event for removing col move buttons': function() {
+            var cutColButton,
+                moveButton = container.one('.layout-builder-move-button');
+
+            this.layoutBuilder.on('removeColMoveButtons', function(event) {
+                event.preventDefault();
+            });
+            moveButton.simulate('click');
+            moveButton.simulate('click');
+
+            cutColButton = container.all('.layout-builder-move-cut-col-button');
+            Assert.areEqual(4, cutColButton.size());
         },
 
         'should hide move row button if disable enableMove attribute': function() {

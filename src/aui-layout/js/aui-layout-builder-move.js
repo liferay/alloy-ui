@@ -13,11 +13,30 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
     CSS_MOVE_CUT_COL_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'col', 'button'),
     CSS_MOVE_TARGET = A.getClassName('layout', 'builder', 'move', 'target'),
     CSS_ROW_CONTAINER_ROW = A.getClassName('layout', 'row', 'container', 'row'),
+
+    EVENT_ADD_COL_MOVE_BUTTON = 'addColMoveButton',
+    EVENT_REMOVE_COL_MOVE_BUTTONS = 'removeColMoveButtons',
+
     SELECTOR_ROW = '.row',
+
     TPL_MOVE_BUTTON = '<button type="button" class="btn btn-default btn-xs ' + CSS_MOVE_BUTTON + '">' +
         '<span class="glyphicon glyphicon-sort"></span> <span class="' + CSS_MOVE_BUTTON_TEXT + '"> Move</span></button>',
     TPL_MOVE_CUT = '<div class="' + CSS_MOVE_CUT_BUTTON + '"></div>',
     TPL_MOVE_TARGET = '<div class="' + CSS_MOVE_TARGET + '">Move</div>';
+
+/**
+ * Fired when a button for moving a column will be added.
+ *
+ * @event addColMoveButton
+ * @preventable _defAddColMoveButtonFn
+ */
+
+/**
+ * Fired when all buttons for moving columns will be removed.
+ *
+ * @event removeColMoveButtons
+ * @preventable _defRemoveColMoveButtonsFn
+ */
 
 /**
  * A base class for Layout Move.
@@ -63,6 +82,15 @@ LayoutBuilderMove.prototype = {
             this.after('layout:rowsChange', A.bind(this._afterMoveRowsChange, this)),
             this.after('layoutChange', A.bind(this._afterMoveLayoutChange, this))
         );
+
+        this.publish({
+            addColMoveButton: {
+                defaultFn: this._defAddColMoveButtonFn
+            },
+            removeColMoveButtons: {
+                defaultFn: this._defRemoveColMoveButtonsFn
+            }
+        });
 
         this._uiSetEnableMove(this.get('enableMove'));
     },
@@ -247,6 +275,35 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
+     * Default behavior for the `addColMoveButton` event.
+     *
+     * @method _defAddColMoveButtonFn
+     * @param {EventFacade} event
+     * @protected
+     */
+    _defAddColMoveButtonFn: function(event) {
+        var colNode = event.colNode,
+            cutButton,
+            rowNode = event.rowNode;
+
+        cutButton = A.Node.create(TPL_MOVE_CUT);
+        cutButton.setData('node-row', rowNode);
+        cutButton.setData('node-col', colNode);
+        cutButton.addClass(CSS_MOVE_CUT_COL_BUTTON);
+        colNode.append(cutButton);
+    },
+
+    /**
+     * Default behavior for the `removeColMoveButtons` event.
+     *
+     * @method _defRemoveColMoveButtonsFn
+     * @protected
+     */
+    _defRemoveColMoveButtonsFn: function() {
+        this._layoutContainer.all('.' + CSS_MOVE_CUT_COL_BUTTON).remove();
+    },
+
+    /**
      * Inserts cut buttons on row and cols.
      *
      * @method _insertCutButton
@@ -266,8 +323,8 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _insertCutButtonOnCols: function(moveButton) {
-        var cols,
-            cutButton,
+        var instance = this,
+            cols,
             layoutCol,
             row = moveButton.getData('node-row'),
             rows = this._layoutContainer.all(SELECTOR_ROW);
@@ -282,11 +339,10 @@ LayoutBuilderMove.prototype = {
             layoutCol = col.getData('layout-col');
 
             if (layoutCol.get('movableContent')) {
-                cutButton = A.Node.create(TPL_MOVE_CUT);
-                cutButton.setData('node-row', row);
-                cutButton.setData('node-col', col);
-                cutButton.addClass(CSS_MOVE_CUT_COL_BUTTON);
-                col.append(cutButton);
+                instance.fire(EVENT_ADD_COL_MOVE_BUTTON, {
+                    colNode: col,
+                    rowNode: row
+                });
             }
         });
     },
@@ -405,7 +461,8 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _removeAllCutButton: function() {
-        this._layoutContainer.all('.' + CSS_MOVE_CUT_BUTTON).remove();
+        this.fire(EVENT_REMOVE_COL_MOVE_BUTTONS);
+        this._layoutContainer.all('.' + CSS_MOVE_CUT_ROW_BUTTON).remove();
     },
 
     /**

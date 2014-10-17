@@ -50,7 +50,15 @@ YUI({ filter:'raw' }).use(
                             })
                         }),
                         new Y.LayoutCol({
-                            size: 4
+                            size: 4,
+                            value: new Y.FormBuilderFieldSentence({
+                                nestedFields: [
+                                    new Y.FormBuilderFieldText({
+                                        title: 'How many?'
+                                    })
+                                ],
+                                title: 'Do you have children?'
+                            })
                         }),
                         new Y.LayoutCol({
                             size: 4

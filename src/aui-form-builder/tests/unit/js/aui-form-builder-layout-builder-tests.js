@@ -209,6 +209,44 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areEqual(3, rowNodes.size());
 
             Y.Assert.isTrue(this._formBuilder.get('boundingBox').hasClass('form-builder-layout-mode'));
+        },
+
+        'should add css class when choosing cols to be moved': function() {
+            var button,
+                row;
+
+            this._createFormBuilder({
+                mode: Y.FormBuilder.MODES.LAYOUT
+            });
+
+            row = this._formBuilder.get('layout').get('rows')[1];
+            button = row.get('node').one('.layout-builder-move-button');
+            button.simulate('click');
+
+            Y.Assert.areEqual(1, row.get('node').all('.form-builder-choose-col-move').size());
+
+            button.simulate('click');
+            Y.Assert.areEqual(0, row.get('node').all('.form-builder-choose-col-move').size());
+        },
+
+        'should allow moving the whole field to another column': function() {
+            var field,
+                row;
+
+            this._createFormBuilder({
+                mode: Y.FormBuilder.MODES.LAYOUT
+            });
+
+            row = this._formBuilder.get('layout').get('rows')[1];
+            field = row.get('cols')[0].get('value');
+
+            row.get('node').one('.layout-builder-move-button').simulate('click');
+            row.get('node').one('.form-builder-field-move-button').simulate('click');
+            row.get('node').one('.layout-builder-move-col-target').simulate('click');
+
+            Y.Assert.areNotEqual(field, row.get('cols')[0].get('value'));
+            Y.Assert.areEqual(field, row.get('cols')[1].get('value'));
+
         }
     }));
 

@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1720](https://issues.liferay.com/browse/AUI-1720) Allow moving fields inside existing fields
 * [AUI-1709](https://issues.liferay.com/browse/AUI-1709) Flags to indicate if col/row is movable/removable
 * [AUI-1698](https://issues.liferay.com/browse/AUI-1698) Layout builder mode
 * [AUI-1725](https://issues.liferay.com/browse/AUI-1725) Add option to specify max number of columns per row

@@ -13,3 +13,9 @@
     position: relative;
     width: 22px;
 }
+
+.layout-builder-move-cut-col-button {
+    left: 0;
+    position: absolute;
+    top: 0;
+}

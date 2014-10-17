@@ -30,3 +30,15 @@
 .form-builder-layout-mode .layout-builder-move-target {
     position: relative;
 }
+
+.form-builder-field-move-button {
+    display: none;
+}
+
+.form-builder-choose-col-move .form-builder-field-move-button {
+    display: block;
+    left: -25px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}

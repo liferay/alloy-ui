@@ -5,7 +5,9 @@
  * @submodule aui-form-builder-layout-builder
  */
 
-var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
+var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'move'),
+    CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
+    CSS_FIELD_MOVE_BUTTON = A.getClassName('form', 'builder', 'field', 'move', 'button'),
     CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode'),
     CSS_LAYOUT_MODE_BUTTON = A.getClassName('form', 'builder', 'layout', 'mode', 'button'),
     CSS_LAYOUT_MODE_CANCEL = A.getClassName('form', 'builder', 'layout', 'mode', 'cancel'),
@@ -110,8 +112,24 @@ A.FormBuilderLayoutBuilder.prototype = {
             container: this.get('contentBox').one('.' + CSS_FIELD_LIST),
             layout: this.get('layout')
         });
+        this._bindLayoutBuilderEvents();
 
         this._uiSetMode(this.get('mode'));
+    },
+
+    /**
+     * Binds all events related to the layout builder.
+     *
+     * @method _bindLayoutBuilderEvents
+     * @protected
+     */
+    _bindLayoutBuilderEvents: function() {
+        this._eventHandles.push(
+            this._layoutBuilder.on({
+                addColMoveButton: A.bind(this._onAddColMoveButton, this),
+                removeColMoveButtons: A.bind(this._onRemoveColMoveButtons, this)
+            })
+        );
     },
 
     /**
@@ -148,6 +166,38 @@ A.FormBuilderLayoutBuilder.prototype = {
                 enableResizeCols: false
             });
         }
+    },
+
+    /**
+     * Fired when the `addColMoveButton` event from the layout builder is triggered.
+     *
+     * @method _onAddColMoveButton
+     * @param  {EventFacade} event
+     * @protected
+     */
+    _onAddColMoveButton: function(event) {
+        var targetNodes;
+
+        event.colNode.addClass(CSS_CHOOSE_COL_MOVE);
+
+        targetNodes = event.colNode.all('.' + CSS_FIELD_MOVE_BUTTON);
+        targetNodes.setData('node-col', event.colNode);
+        targetNodes.setData('node-row', event.rowNode);
+
+        event.preventDefault();
+    },
+
+    /**
+     * Fired when the `removeColMoveButtons` event from the layout builder is triggered.
+     *
+     * @method _onRemoveColMoveButtons
+     * @param  {EventFacade} event
+     * @protected
+     */
+    _onRemoveColMoveButtons: function(event) {
+        this.get('contentBox').all('.' + CSS_CHOOSE_COL_MOVE).removeClass(CSS_CHOOSE_COL_MOVE);
+
+        event.preventDefault();
     },
 
     /**

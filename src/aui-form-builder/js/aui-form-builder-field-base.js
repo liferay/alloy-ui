@@ -9,6 +9,7 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
     CSS_FIELD_CONTENT_TOOLBAR = A.getClassName('form', 'builder', 'field', 'content', 'toolbar'),
+    CSS_FIELD_MOVE_BUTTON = A.getClassName('form', 'builder', 'field', 'move', 'button'),
     CSS_FIELD_NESTED = A.getClassName('form', 'builder', 'field', 'nested'),
     CSS_FIELD_OVERLAY = A.getClassName('form', 'builder', 'field', 'overlay'),
     CSS_FIELD_TOOLBAR = A.getClassName('form', 'builder', 'field', 'toolbar'),
@@ -20,6 +21,7 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     TPL_FIELD = '<div class="' + CSS_FIELD + '">' +
         '<div class="' + CSS_FIELD_CONTENT_TOOLBAR + '">' +
         '<div class="' + CSS_FIELD_CONTENT + '"></div>' +
+        '<div class="' + CSS_FIELD_MOVE_BUTTON + ' layout-builder-move-cut-button"></div>' +
         '<div class="btn-group ' + CSS_FIELD_TOOLBAR + ' hide">' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_EDIT + '"><span class="glyphicon glyphicon-wrench"></span></button>' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_REMOVE + '"><span class="glyphicon glyphicon-trash"></span></button>' +
