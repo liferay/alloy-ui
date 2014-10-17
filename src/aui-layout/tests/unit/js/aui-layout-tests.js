@@ -203,13 +203,13 @@ YUI.add('aui-layout-tests', function(Y) {
 
             Assert.areEqual(0, rows.indexOf(row));
 
-            this.layout.moveRow(row, 2);
+            this.layout.moveRow(1, row);
 
             rows = this.layout.get('rows');
 
             Assert.areEqual(1, rows.indexOf(row));
 
-            this.layout.moveRow(row, 0);
+            this.layout.moveRow(0, row);
 
             rows = this.layout.get('rows');
 

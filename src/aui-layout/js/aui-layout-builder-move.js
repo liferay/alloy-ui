@@ -201,49 +201,42 @@ LayoutBuilderMove.prototype = {
      * Create target area to move the row.
      *
      * @method _createRowTargetArea
-     * @param {Node} nodeRow
      * @protected
      */
-    _createRowTargetArea: function(nodeRow) {
-        var indexRowToBeMoved,
-            nextContainerRow = nodeRow.ancestor('.' + CSS_ROW_CONTAINER_ROW).next(),
-            previousContainerRow = nodeRow.ancestor('.' + CSS_ROW_CONTAINER_ROW).previous(),
-            rows = this.get('layout').get('rows');
-
-        indexRowToBeMoved = rows.indexOf(this._rowToBeMoved);
-        this._createRowTargetAreaInOneDirection(indexRowToBeMoved, previousContainerRow, 'before');
-
-        indexRowToBeMoved = rows.indexOf(this._rowToBeMoved) + 1;
-        this._createRowTargetAreaInOneDirection(indexRowToBeMoved, nextContainerRow, 'after');
+    _createRowTargetArea: function() {
+        this._createRowTargetAreaInOneDirection('before');
+        this._createRowTargetAreaInOneDirection('after');
     },
 
     /**
      * Create target area to move the row to one direction.
      *
      * @method _createRowTargetAreaInOneDirection
-     * @param {Number} indexRowToBeMoved
-     * @param {Node} containerRow
-     * @param {String} direction
+     * @param {A.LayoutRow} rowToBeMoved
+     * @param {String} direction Should be either 'before' or 'after'.
      * @protected
      */
-    _createRowTargetAreaInOneDirection: function(indexRowToBeMoved, containerRow, direction) {
-        var currentRow,
+    _createRowTargetAreaInOneDirection: function(direction) {
+        var containerRow,
+            currentIndex = A.Array.indexOf(this.get('layout').get('rows'), this._rowToBeMoved),
+            currentRow,
             method = direction === 'before' ? 'previous' : 'next',
             target;
 
+        containerRow = this._rowToBeMoved.get('node')[method]('.' + CSS_ROW_CONTAINER_ROW);
         while (containerRow) {
             currentRow = containerRow.one(SELECTOR_ROW);
 
             if (direction === 'before') {
-                indexRowToBeMoved -= 1;
+                currentIndex -= 1;
             }
             else {
-                indexRowToBeMoved += 1;
+                currentIndex += 1;
             }
 
             if (currentRow.getData('layout-row').get('movable')) {
                 target = A.Node.create(TPL_MOVE_TARGET);
-                target.setData('position', indexRowToBeMoved);
+                target.setData('position', currentIndex);
                 containerRow.insert(target, direction);
                 containerRow = containerRow[method]('.' + CSS_ROW_CONTAINER_ROW);
             }
@@ -377,7 +370,7 @@ LayoutBuilderMove.prototype = {
         this._removeAllCutButton();
 
         if (cutButton.hasClass(CSS_MOVE_CUT_ROW_BUTTON)) {
-            this._createRowTargetArea(cutButton.getData('node-row'));
+            this._createRowTargetArea();
         }
         else {
             col = cutButton.getData('node-col');
@@ -401,7 +394,7 @@ LayoutBuilderMove.prototype = {
             this._moveColContent(target);
         }
         else {
-            layout.moveRow(this._rowToBeMoved, target.getData('position'));
+            layout.moveRow(target.getData('position'), this._rowToBeMoved);
         }
     },
 

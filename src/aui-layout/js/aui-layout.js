@@ -78,25 +78,12 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * Moves a row to a different position.
      *
      * @method moveRow
+     * @param {Number} index The new position of the row.
      * @param {Node} row Row to change the position.
-     * @param {Number} position The new position of the row.
      **/
-    moveRow: function(row, position) {
-        var index,
-            rows = this.get('rows').concat();
-
-        index = rows.indexOf(row);
-
-        rows.splice(position, 0, row);
-
-        if (index >= position) {
-            rows.splice(index + 1, 1);
-        }
-        else {
-            rows.splice(index, 1);
-        }
-
-        this.set('rows', rows);
+    moveRow: function(index, row) {
+        this.removeRow(row);
+        this.addRow(index, row);
     },
 
     /**
