@@ -187,7 +187,7 @@ LayoutBuilderMove.prototype = {
             cols.each(function(currentCol, index) {
                 layoutCol = currentCol.getData('layout-col');
 
-                if (currentCol !== col && layoutCol.get('movable')) {
+                if (currentCol !== col) {
                     target = A.Node.create(TPL_MOVE_TARGET);
                     target.setData('position', index);
                     target.addClass(CSS_MOVE_COL_TARGET);
@@ -281,7 +281,7 @@ LayoutBuilderMove.prototype = {
         cols.each(function(col) {
             layoutCol = col.getData('layout-col');
 
-            if (layoutCol.get('movable')) {
+            if (layoutCol.get('movableContent')) {
                 cutButton = A.Node.create(TPL_MOVE_CUT);
                 cutButton.setData('node-row', row);
                 cutButton.setData('node-col', col);
@@ -329,7 +329,7 @@ LayoutBuilderMove.prototype = {
     _moveColContent: function(target) {
         var row = target.ancestor(SELECTOR_ROW).getData('layout-row');
 
-        row.moveCol(this._colToBeMoved, target.getData('position'));
+        row.moveColContent(target.getData('position'), this._colToBeMoved);
         this._resetMoveUI();
     },
 

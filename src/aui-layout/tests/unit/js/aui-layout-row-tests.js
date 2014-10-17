@@ -178,7 +178,7 @@ YUI.add('aui-layout-row-tests', function(Y) {
 
             Assert.areEqual('bar', cols[1].get('value').content);
 
-            row.moveCol(cols[0], 1);
+            row.moveColContent(1, cols[0]);
 
             cols = this.layoutRow.get('cols');
 

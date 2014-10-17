@@ -139,13 +139,13 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
         },
 
         /**
-         * Determine if the col can move.
+         * Determine if the col's content can be moved.
          *
-         * @attribute movable
+         * @attribute movableContent
          * @default true
          * @type {Boolean}
          */
-        movable: {
+        movableContent: {
             validator: A.Lang.isBoolean,
             value: true
         },

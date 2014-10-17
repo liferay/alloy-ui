@@ -174,7 +174,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this.createFormBuilder();
             row = this._formBuilder.get('layout').get('rows')[0];
 
-            Y.Assert.isFalse(row.get('cols')[0].get('movable'));
+            Y.Assert.isFalse(row.get('cols')[0].get('movableContent'));
             Y.Assert.isFalse(row.get('cols')[0].get('removable'));
         },
 
@@ -574,7 +574,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNotNull(col.get('node').one('.form-builder-empty-col'));
             Y.Assert.isNull(col.get('node').one('.form-builder-field'));
 
-            Y.Assert.isFalse(col.get('movable'));
+            Y.Assert.isFalse(col.get('movableContent'));
             Y.Assert.isFalse(col.get('removable'));
         },
 
@@ -701,7 +701,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this.createFormBuilder();
             emptyCol = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
 
-            Y.Assert.isFalse(emptyCol.get('movable'));
+            Y.Assert.isFalse(emptyCol.get('movableContent'));
             Y.Assert.isFalse(emptyCol.get('removable'));
         },
 
@@ -749,7 +749,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
 
-            Y.Assert.isTrue(col.get('movable'));
+            Y.Assert.isTrue(col.get('movableContent'));
             Y.Assert.isTrue(col.get('removable'));
         }
     }));

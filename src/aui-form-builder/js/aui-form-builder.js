@@ -357,7 +357,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         row = new A.LayoutRow({
             cols: [
                 new A.LayoutCol({
-                    movable: false,
+                    movableContent: false,
                     removable: false,
                     size: 12,
                     value: pageBreak
@@ -382,7 +382,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     _makeColumnEmpty: function(col) {
         col.set('value', {content: this.TPL_EMPTY_COL});
-        col.set('movable', false);
+        col.set('movableContent', false);
         col.set('removable', false);
     },
 
@@ -596,7 +596,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
 
         if (this._colAddingField) {
             this._colAddingField.set('value', this._fieldBeingEdited);
-            this._colAddingField.set('movable', true);
+            this._colAddingField.set('movableContent', true);
             this._colAddingField.set('removable', true);
             this._colAddingField = null;
         }

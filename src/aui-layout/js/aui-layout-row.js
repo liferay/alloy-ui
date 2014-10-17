@@ -62,13 +62,13 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     },
 
     /**
-     * Moves a row to a different position.
+     * Moves the content of the given column to a different position.
      *
      * @method moveRow
-     * @param {A.LayoutCol} col Column to move to the new position.
-     * @param {Number} position The new position of the row.
+     * @param {A.LayoutCol} col Column to move the content to the new position.
+     * @param {Number} position The new position of the column's content.
      **/
-    moveCol: function(col, position) {
+    moveColContent: function(position, col) {
         var cols = this.get('cols').concat(),
             targetCol = cols[position];
 
