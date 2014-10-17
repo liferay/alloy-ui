@@ -22,14 +22,6 @@ YUI({ filter:'raw' }).use(
     'aui-form-builder-field-text',
     'aui-form-builder-field-sentence',
     function(Y) {
-        Y.Base.create('content', Y.Base, [], {}, {
-            ATTRS: {
-                content: {
-                    value: 'foo'
-                }
-            }
-        });
-
         var layout = new Y.Layout({
             rows: [
                 new Y.LayoutRow({

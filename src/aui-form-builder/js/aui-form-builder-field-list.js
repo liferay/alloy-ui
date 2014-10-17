@@ -7,7 +7,6 @@
 
 var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_LIST_OPTION = A.getClassName('form', 'builder', 'field', 'list', 'option'),
-    CSS_FIELD_LIST_OTHER = A.getClassName('form', 'builder', 'field', 'list', 'other'),
     CSS_FIELD_LIST_OPTION_OTHER = A.getClassName('form', 'builder', 'field', 'list', 'option', 'other'),
     CSS_FIELD_LIST_OPTIONS = A.getClassName('form', 'builder', 'field', 'list', 'options'),
 
@@ -73,28 +72,26 @@ A.FormBuilderFieldList = A.Base.create('form-builder-field-list', A.FormBuilderF
      * @protected
      */
     _fillSettings: function() {
-        var instance = this;
+        A.FormBuilderFieldList.superclass._fillSettings.apply(this, arguments);
 
-        A.FormBuilderFieldList.superclass._fillSettings.apply(instance, arguments);
-
-        instance._settings.push({
-            attrName: 'options',
-            editor: new A.OptionsDataEditor()
-        });
-             
-        instance._settings.push({
-            attrName: 'otherOption',
-            editor: new A.BooleanDataEditor({
-                label: 'Add "Other" option'
-            })
-        });
-             
-        instance._settings.push({
-            attrName: 'required',
-            editor: new A.BooleanDataEditor({
-                label: 'Required'
-            })
-        });
+        this._settings.push(
+            {
+                attrName: 'options',
+                editor: new A.OptionsDataEditor()
+            },
+            {
+                attrName: 'otherOption',
+                editor: new A.BooleanDataEditor({
+                    label: 'Add "Other" option'
+                })
+            },
+            {
+                attrName: 'required',
+                editor: new A.BooleanDataEditor({
+                    label: 'Required'
+                })
+            }
+        );
     },
 
     /**
