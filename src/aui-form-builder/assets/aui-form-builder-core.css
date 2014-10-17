@@ -39,7 +39,7 @@
     padding: 0;
 }
 
-.form-builder-field-list .layout-row.form-builder-page-break-row .col {
+.form-builder-field-list .form-builder-page-break-row .col {
     min-height: 0;
 }
 
