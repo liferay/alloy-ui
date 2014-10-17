@@ -336,6 +336,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     _afterLayoutRowsChange: function() {
         this._syncLayoutRows();
+        this._updatePageBreaks();
     },
 
     /**
@@ -374,6 +375,16 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
+     * Gets the number of page breaks currently inside the layout.
+     *
+     * @method _getNumberOfPageBreaks
+     * @protected
+     */
+    _getNumberOfPageBreaks: function() {
+        return this.get('contentBox').all('.form-builder-page-break').size();
+    },
+
+    /**
      * Turns the given column into an empty form builder column.
      *
      * @method _makeColumnEmpty
@@ -384,16 +395,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         col.set('value', {content: this.TPL_EMPTY_COL});
         col.set('movableContent', false);
         col.set('removable', false);
-    },
-
-    /**
-     * Generate a new page break position.
-     *
-     * @method _nextPageBreakPosition
-     * @protected
-     */
-    _nextPageBreakPosition: function() {
-        return this.get('contentBox').all('.form-builder-page-break').size() + 1;
     },
 
     /**
@@ -417,14 +418,11 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     _onClickAddPageBreak: function () {
         var newRowIndex = this.get('layout').get('rows').length,
-            pageBreakQuant = this._nextPageBreakPosition(),
             row;
 
-        row = this._createPageBreakRow(pageBreakQuant);
+        row = this._createPageBreakRow(this._getNumberOfPageBreaks() + 1);
 
         this.get('layout').addRow(newRowIndex, row);
-
-        this._updatePageBreaks(pageBreakQuant);
     },
 
     /**
@@ -725,16 +723,18 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * Update the quantity value of each page break created.
      *
      * @method _updatePageBreaks
-     * @param {Number} quantity
      * @protected
      */
-    _updatePageBreaks: function (quantity) {
-        var pageBreak;
+    _updatePageBreaks: function () {
+        var index = 1,
+            pageBreak,
+            quantity = this._getNumberOfPageBreaks();
 
         A.Array.each(this.get('layout').get('rows'), function (row) {
             pageBreak = row.get('cols')[0].get('value');
 
             if (A.instanceOf(pageBreak, A.FormBuilderPageBreak)) {
+                pageBreak.set('index', index++);
                 pageBreak.set('quantity', quantity);
             }
         });

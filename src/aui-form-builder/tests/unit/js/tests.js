@@ -211,6 +211,24 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(4, Y.one('.form-builder-page-break-quantity').get('text'));
         },
 
+        'should update page breaks when one is removed': function() {
+            var row;
+
+            this.createFormBuilder();
+            this._formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
+            this._formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
+
+            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
+
+            row = this._formBuilder.get('layout').get('rows')[2];
+            row.get('node').one('.layout-builder-remove-row-button').simulate('click');
+            Y.Assert.areEqual(2, Y.all('.form-builder-page-break').size());
+
+            row = this._formBuilder.get('layout').get('rows')[2];
+            Y.Assert.areEqual(2, row.get('cols')[0].get('value').get('index'));
+            Y.Assert.areEqual(2, row.get('cols')[0].get('value').get('quantity'));
+        },
+
         'should remove a field type from form': function() {
             var formBuilder = this.createFormBuilder(),
                 fieldType1 = new Y.FormBuilderFieldType({
