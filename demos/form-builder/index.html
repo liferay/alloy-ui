@@ -27,7 +27,27 @@ YUI({ filter:'raw' }).use(
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            size: 4
+                            size: 4,
+                            value: new Y.FormBuilderFieldSentence({
+                                help: 'My Help',
+                                nestedFields: [
+                                    new Y.FormBuilderFieldText({
+                                        help: 'First nested field',
+                                        nestedFields: [
+                                            new Y.FormBuilderFieldText({
+                                                help: 'Second level nested field',
+                                                title: 'Nested Field 1.1'
+                                            })
+                                        ],
+                                        title: 'Nested Field 1'
+                                    }),
+                                    new Y.FormBuilderFieldText({
+                                        help: 'Second nested field',
+                                        title: 'Nested Field 2'
+                                    })
+                                ],
+                                title: 'My Title'
+                            })
                         }),
                         new Y.LayoutCol({
                             size: 4

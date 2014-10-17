@@ -11,6 +11,7 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
+    CSS_FIELD_CONTENT_TOOLBAR = A.getClassName('form', 'builder', 'field', 'content', 'toolbar'),
     CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
@@ -96,7 +97,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             this.after('layout-row:colsChange', this._afterLayoutColsChange),
             this.after('layout-col:valueChange', this._afterLayoutColValueChange),
             boundingBox.delegate('mouseenter', this._onFieldMouseEnter, '.' + CSS_FIELD_CONTENT, this),
-            boundingBox.delegate('mouseleave', this._onFieldMouseLeave, '.' + CSS_FIELD, this),
+            boundingBox.delegate('mouseleave', this._onFieldMouseLeave, '.' + CSS_FIELD_CONTENT_TOOLBAR, this),
             boundingBox.delegate('tap', this._onTapField, '.' + CSS_FIELD_CONTENT, this),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL, this),
             boundingBox.delegate('click', this._onClickConfigurationField, '.' + CSS_FIELD_CONFIGURATION, this),
@@ -488,7 +489,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _onFieldMouseLeave: function (event) {
-        var field = event.currentTarget.getData('field-instance');
+        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
 
         field.toggleConfigurationButton(false);
     },

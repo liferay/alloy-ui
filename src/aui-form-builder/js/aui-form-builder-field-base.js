@@ -8,6 +8,8 @@
 var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
+    CSS_FIELD_CONTENT_TOOLBAR = A.getClassName('form', 'builder', 'field', 'content', 'toolbar'),
+    CSS_FIELD_NESTED = A.getClassName('form', 'builder', 'field', 'nested'),
     CSS_FIELD_OVERLAY = A.getClassName('form', 'builder', 'field', 'overlay'),
     CSS_FIELD_TOOLBAR = A.getClassName('form', 'builder', 'field', 'toolbar'),
     CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
@@ -16,13 +18,15 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_HIDE = A.getClassName('hide'),
 
     TPL_FIELD = '<div class="' + CSS_FIELD + '">' +
+        '<div class="' + CSS_FIELD_CONTENT_TOOLBAR + '">' +
         '<div class="' + CSS_FIELD_CONTENT + '"></div>' +
-        '<div class="' + CSS_FIELD_OVERLAY + '"></div>' +
         '<div class="btn-group ' + CSS_FIELD_TOOLBAR + ' hide">' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_EDIT + '"><span class="glyphicon glyphicon-wrench"></span></button>' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_REMOVE + '"><span class="glyphicon glyphicon-trash"></span></button>' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_CLOSE + '"><span class="glyphicon glyphicon-remove"></span></button>' +
-        '</div>' +
+        '</div></div>' +
+        '<div class="' + CSS_FIELD_NESTED + '"></div>' +
+        '<div class="' + CSS_FIELD_OVERLAY + '"></div>' +
         '</div>',
     TPL_FIELD_CONFIGURATION = '<button class="btn btn-default ' + CSS_FIELD_CONFIGURATION + ' hide">' +
         '<span class="glyphicon glyphicon-cog"></span>' +
@@ -50,14 +54,18 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
         var content = this.get('content');
 
         if (!A.UA.mobile) {
-            content.appendChild(TPL_FIELD_CONFIGURATION);
+            this._configurationButton = A.Node.create(TPL_FIELD_CONFIGURATION);
+            content.one('.' + CSS_FIELD_CONTENT_TOOLBAR).append(this._configurationButton);
         }
 
         content.setData('field-instance', this);
 
         this._fieldEventHandles = [
+            this.after('nestedFieldsChange', this._afterNestedFieldsChange),
             content.on('clickoutside', this._onClickOutsideField, this)
         ];
+
+        this._uiSetNestedFields(this.get('nestedFields'));
     },
 
     /**
@@ -137,6 +145,16 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
+     * Fired after the `nestedFields` attribute is set.
+     *
+     * @method _afterNestedFieldsChange
+     * @protected
+     */
+    _afterNestedFieldsChange: function() {
+        this._uiSetNestedFields(this.get('nestedFields'));
+    },
+
+    /**
      * Fills the settings array with the information for this field.
      * Subclasses should override this.
      *
@@ -184,10 +202,8 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
      * @protected
      */
     _toggleConfigurationButton: function(visible) {
-        var content = this.get('content');
-
-        if (!A.UA.mobile) {
-            content.one('.' + CSS_FIELD_CONFIGURATION).toggleClass(CSS_HIDE, !visible);
+        if (this._configurationButton) {
+            this._configurationButton.toggleClass(CSS_HIDE, !visible);
         }
     },
 
@@ -200,6 +216,45 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
      */
     _toggleToolbar: function(visible) {
         this.get('content').one('.' + CSS_FIELD_TOOLBAR).toggleClass(CSS_HIDE, !visible);
+    },
+
+    /**
+     * Updates the UI according to the value of the `nestedFields` attribute.
+     *
+     * @method _uiSetNestedFields
+     * @param  {Array} nestedFields
+     * @protected
+     */
+    _uiSetNestedFields: function(nestedFields) {
+        var nestedFieldsNode = this.get('content').one('.' + CSS_FIELD_NESTED);
+
+        nestedFieldsNode.empty();
+        A.Array.each(nestedFields, function(nestedField) {
+            nestedFieldsNode.append(nestedField.get('content'));
+        });
+    },
+
+    /**
+     * Validates the value being set to the `nestedFields` attribute.
+     *
+     * @method _validateNestedFields
+     * @param {Array} val
+     * @protected
+     */
+    _validateNestedFields: function(val) {
+        var i;
+
+        if (!A.Lang.isArray(val)) {
+            return false;
+        }
+
+        for (i = 0; i < val.length; i++) {
+            if (!A.instanceOf(val[i], A.FormBuilderFieldBase)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }, {
     /**
@@ -226,6 +281,18 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
                 return A.Node.create(TPL_FIELD);
             },
             writeOnce: 'initOnly'
+        },
+
+        /**
+         * The fields that are nested inside this field.
+         *
+         * @attribute nestedFields
+         * @default []
+         * @type Array
+         */
+        nestedFields: {
+            validator: '_validateNestedFields',
+            value: []
         }
     }
 });

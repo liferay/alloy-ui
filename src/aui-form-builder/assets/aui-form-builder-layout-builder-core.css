@@ -7,7 +7,9 @@
 }
 
 .form-builder-layout-mode .form-builder-layout-mode-edit,
-.form-builder-layout-mode .form-builder-empty-col {
+.form-builder-layout-mode .form-builder-empty-col,
+.form-builder-layout-mode .form-builder-field-content-inner,
+.form-builder-layout-mode .form-builder-field-sentence-help {
     display: none;
 }
 
@@ -19,6 +21,10 @@
     position: absolute;
     top: 0;
     width: 100%;
+}
+
+.form-builder-layout-mode .form-builder-field-nested .form-builder-field-overlay {
+    display: none;
 }
 
 .form-builder-layout-mode .layout-builder-move-target {

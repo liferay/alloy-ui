@@ -6,13 +6,16 @@
  */
 
 var CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
+    CSS_FIELD_CONTENT_INNER  = A.getClassName('form', 'builder', 'field', 'content', 'inner'),
     CSS_FIELD_SENTENCE = A.getClassName('form', 'builder', 'field', 'sentence'),
     CSS_FIELD_SENTENCE_HELP = A.getClassName('form', 'builder', 'field', 'sentence', 'help'),
     CSS_FIELD_SENTENCE_TITLE = A.getClassName('form', 'builder', 'field', 'sentence', 'title'),
 
     TPL_FIELD_SENTENCE_CONTENT = '<div class="form-group">' +
         '<label class="' + CSS_FIELD_SENTENCE_TITLE + '"></label>' +
-        '<div class="' + CSS_FIELD_SENTENCE_HELP + '"></div></div>';
+        '<div class="' + CSS_FIELD_SENTENCE_HELP + '"></div>' +
+        '<div class="' + CSS_FIELD_CONTENT_INNER + '">{innerContent}</div>' +
+        '</div>';
 
 /**
  * A base class for Form Builder Field Text.
@@ -36,8 +39,9 @@ A.FormBuilderFieldSentence = A.Base.create('form-builder-field-sentece', A.FormB
         var content = this.get('content');
 
         content.addClass(CSS_FIELD_SENTENCE);
-        content.one('.' + CSS_FIELD_CONTENT).setHTML(TPL_FIELD_SENTENCE_CONTENT);
-        content.one('.' + CSS_FIELD_CONTENT).appendChild(this.TPL_FIELD_CONTENT);
+        content.one('.' + CSS_FIELD_CONTENT).setHTML(A.Lang.sub(TPL_FIELD_SENTENCE_CONTENT, {
+            innerContent: this.TPL_FIELD_CONTENT
+        }));
 
         this._uiSetHelp(this.get('help'));
         this._uiSetTitle(this.get('title'));

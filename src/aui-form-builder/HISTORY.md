@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1720](https://issues.liferay.com/browse/AUI-1720) Allow moving fields inside existing fields
 * [AUI-1690](https://issues.liferay.com/browse/AUI-1690) Create list field
 * [AUI-1698](https://issues.liferay.com/browse/AUI-1698) Layout builder mode
 * [AUI-1696](https://issues.liferay.com/browse/AUI-1696) Create sentence field

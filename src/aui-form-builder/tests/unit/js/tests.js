@@ -544,7 +544,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-content').simulate('mouseover');
             Y.Assert.isFalse(Y.one('.form-builder-field-configuration').hasClass('hide'));
 
-            Y.one('.form-builder-field').simulate('mouseout');
+            Y.one('.form-builder-field-content-toolbar').simulate('mouseout');
             Y.Assert.isTrue(Y.one('.form-builder-field-configuration').hasClass('hide'));
         },
 
