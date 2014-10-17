@@ -534,9 +534,20 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _onClickRemoveField: function (event) {
-        var col = event.currentTarget.ancestor('.col').getData('layout-col');
+        var col,
+            field,
+            parentField,
+            nestedFieldsNode = event.currentTarget.ancestor('.form-builder-field-nested');
 
-        this._makeColumnEmpty(col);
+        if (nestedFieldsNode) {
+            field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
+            parentField = nestedFieldsNode.ancestor('.form-builder-field').getData('field-instance');
+            parentField.removeNestedField(field);
+        }
+        else {
+            col = event.currentTarget.ancestor('.col').getData('layout-col');
+            this._makeColumnEmpty(col);
+        }
     },
 
     /**

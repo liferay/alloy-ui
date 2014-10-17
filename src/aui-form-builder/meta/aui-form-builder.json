@@ -15,6 +15,7 @@
         "requires": [
             "aui-classnamemanager",
             "aui-modal",
+            "aui-node-base",
             "base",
             "node-base"
         ]

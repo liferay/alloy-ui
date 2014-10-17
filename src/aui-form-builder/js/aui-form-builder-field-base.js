@@ -92,6 +92,24 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
+     * Removes the given field from this field's nested list.
+     *
+     * @method removeNestedField
+     * @param {A.FormBuilderFieldBase} field
+     */
+    removeNestedField: function(field) {
+        var index,
+            nestedFields = this.get('nestedFields');
+
+        index = A.Array.indexOf(nestedFields, field);
+        if (index !== -1) {
+            nestedFields.splice(index, 1);
+        }
+
+        this.set('nestedFields', nestedFields);
+    },
+
+    /**
      * Renders the settings panel.
      *
      * @method renderSettingsPanel

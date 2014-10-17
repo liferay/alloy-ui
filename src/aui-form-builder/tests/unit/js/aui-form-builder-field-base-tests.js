@@ -211,6 +211,24 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             this._field.set('nestedFields', [new TestField()]);
             Y.Assert.areEqual(1, this._field.get('content').all('.form-builder-field').size());
+        },
+
+        'should remove nested fields': function() {
+            var nestedField = new TestField();
+
+            this._field = new TestField({
+                nestedFields: [nestedField, new TestField()]
+            });
+            Y.one('#container').append(this._field.get('content'));
+
+            this._field.removeNestedField(nestedField);
+            Y.Assert.areEqual(1, this._field.get('nestedFields').length);
+            Y.Assert.areEqual(1, this._field.get('content').all('.form-builder-field').size());
+
+            this._field.removeNestedField(new TestField());
+            Y.Assert.areEqual(1, this._field.get('nestedFields').length);
+            Y.Assert.areEqual(1, this._field.get('content').all('.form-builder-field').size());
+
         }
     }));
 

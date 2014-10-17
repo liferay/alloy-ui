@@ -34,7 +34,21 @@ YUI.add('aui-form-builder-tests', function(Y) {
                                     size: 4
                                 }),
                                 new Y.LayoutCol({
-                                    size: 4
+                                    size: 4,
+                                    value: new Y.FormBuilderFieldSentence({
+                                        help: 'My Help',
+                                        nestedFields: [
+                                            new Y.FormBuilderFieldText({
+                                                help: 'First nested field',
+                                                title: 'Nested Field 1'
+                                            }),
+                                            new Y.FormBuilderFieldText({
+                                                help: 'Second nested field',
+                                                title: 'Nested Field 2'
+                                            })
+                                        ],
+                                        title: 'My Title'
+                                    })
                                 })
                             ]
                         })
@@ -569,7 +583,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(Y.one('.form-builder-field-configuration').hasClass('hide'));
         },
 
-        'should remove a field when clicked on remove button': function() {
+        'should remove a field when clicking on remove button': function() {
             var col;
 
             this.createFormBuilder({
@@ -584,16 +598,31 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
-            Y.one('.form-builder-field-configuration').simulate('click');
             Y.Assert.isNull(col.get('node').one('.form-builder-empty-col'));
             Y.Assert.isNotNull(col.get('node').one('.form-builder-field'));
 
+            Y.one('.form-builder-field-configuration').simulate('click');
             Y.one('.form-builder-field-toolbar-remove').simulate('click');
             Y.Assert.isNotNull(col.get('node').one('.form-builder-empty-col'));
             Y.Assert.isNull(col.get('node').one('.form-builder-field'));
 
             Y.Assert.isFalse(col.get('movableContent'));
             Y.Assert.isFalse(col.get('removable'));
+        },
+
+        'should remove a nested field when clicking on remove button': function() {
+            var col,
+                nestedField;
+
+            this.createFormBuilder();
+
+            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[2];
+            nestedField = col.get('value').get('nestedFields')[0];
+            nestedField.get('content').one('.form-builder-field-configuration').simulate('click');
+            nestedField.get('content').one('.form-builder-field-toolbar-remove').simulate('click');
+
+            Y.Assert.isNull(col.get('node').one('.form-builder-empty-col'));
+            Y.Assert.areEqual(1, col.get('value').get('nestedFields').length);
         },
 
         'should close field configuration when clicked on editing button': function() {
@@ -626,7 +655,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this.createFormBuilder();
 
             Y.Assert.areEqual(
-                3,
+                2,
                 Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
             );
         },
@@ -647,7 +676,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             }));
 
             Y.Assert.areEqual(
-                4,
+                3,
                 Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
             );
         },
