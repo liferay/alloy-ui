@@ -11,11 +11,15 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
     CSS_MOVE_CUT_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'button'),
     CSS_MOVE_CUT_ROW_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'row', 'button'),
     CSS_MOVE_CUT_COL_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'col', 'button'),
+    CSS_MOVE_ROW_TARGET = A.getClassName('layout', 'builder', 'move', 'row', 'target'),
     CSS_MOVE_TARGET = A.getClassName('layout', 'builder', 'move', 'target'),
     CSS_ROW_CONTAINER_ROW = A.getClassName('layout', 'row', 'container', 'row'),
 
     EVENT_ADD_COL_MOVE_BUTTON = 'addColMoveButton',
+    EVENT_ADD_COL_MOVE_TARGET = 'addColMoveTarget',
+    EVENT_CHOOSE_COL_MOVE_TARGET = 'chooseColMoveTarget',
     EVENT_REMOVE_COL_MOVE_BUTTONS = 'removeColMoveButtons',
+    EVENT_REMOVE_COL_MOVE_TARGETS = 'removeColMoveTargets',
 
     SELECTOR_ROW = '.row',
 
@@ -32,10 +36,31 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
  */
 
 /**
+ * Fired when a target for moving a column will be added.
+ *
+ * @event addColMoveTarget
+ * @preventable _defAddColMoveTargetFn
+ */
+
+/**
+ * Fired when he targets where the picked column should move to will be chosen.
+ *
+ * @event chooseColMoveTarget
+ * @preventable _defChooseColMoveTargetFn
+ */
+
+/**
  * Fired when all buttons for moving columns will be removed.
  *
  * @event removeColMoveButtons
  * @preventable _defRemoveColMoveButtonsFn
+ */
+
+/**
+ * Fired when all targets for moving columns will be removed.
+ *
+ * @event removeColMoveTargets
+ * @preventable _defRemoveColMoveTargetsFn
  */
 
 /**
@@ -87,8 +112,17 @@ LayoutBuilderMove.prototype = {
             addColMoveButton: {
                 defaultFn: this._defAddColMoveButtonFn
             },
+            addColMoveTarget: {
+                defaultFn: this._defAddColMoveTargetFn
+            },
+            chooseColMoveTarget: {
+                defaultFn: this._defChooseColMoveTargetFn
+            },
             removeColMoveButtons: {
                 defaultFn: this._defRemoveColMoveButtonsFn
+            },
+            removeColMoveTargets: {
+                defaultFn: this._defRemoveColMoveTargetsFn
             }
         });
 
@@ -195,37 +229,6 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
-     * Create target area to move the col.
-     *
-     * @method _createColTargetArea
-     * @param {Node} col
-     * @protected
-     */
-    _createColTargetArea: function(col) {
-        var cols,
-            layoutCol,
-            rows = this._layoutContainer.all(SELECTOR_ROW),
-            target;
-
-        this._colToBeMoved = col.getData('layout-col');
-
-        rows.each(function(row) {
-            cols = row.all('.col');
-
-            cols.each(function(currentCol, index) {
-                layoutCol = currentCol.getData('layout-col');
-
-                if (currentCol !== col) {
-                    target = A.Node.create(TPL_MOVE_TARGET);
-                    target.setData('position', index);
-                    target.addClass(CSS_MOVE_COL_TARGET);
-                    currentCol.append(target);
-                }
-            });
-        });
-    },
-
-    /**
      * Create target area to move the row.
      *
      * @method _createRowTargetArea
@@ -264,7 +267,8 @@ LayoutBuilderMove.prototype = {
 
             if (currentRow.getData('layout-row').get('movable')) {
                 target = A.Node.create(TPL_MOVE_TARGET);
-                target.setData('position', currentIndex);
+                target.addClass(CSS_MOVE_ROW_TARGET);
+                target.setData('row-index', currentIndex);
                 containerRow.insert(target, direction);
                 containerRow = containerRow[method]('.' + CSS_ROW_CONTAINER_ROW);
             }
@@ -294,6 +298,46 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
+     * Default behavior for the `addColMoveTarget` event.
+     *
+     * @method _defAddColMoveTargetFn
+     * @param {EventFacade} event
+     * @protected
+     */
+    _defAddColMoveTargetFn: function(event) {
+        var target = A.Node.create(TPL_MOVE_TARGET);
+        target.setData('col-index', event.colIndex);
+        target.addClass(CSS_MOVE_COL_TARGET);
+        event.col.get('node').append(target);
+    },
+
+    /**
+     * Default behavior for the `chooseColMoveTarget` event.
+     *
+     * @method _defChooseColMoveTargetFn
+     * @param {EventFacade} event
+     * @protected
+     */
+    _defChooseColMoveTargetFn: function(event) {
+        var instance = this,
+            rows = this.get('layout').get('rows');
+
+        this._colToBeMoved = event.col;
+
+        A.Array.forEach(rows, function(row) {
+            A.Array.forEach(row.get('cols'), function(col, index) {
+                if (col !== instance._colToBeMoved) {
+                    instance.fire(EVENT_ADD_COL_MOVE_TARGET, {
+                        col: col,
+                        colIndex: index,
+                        row: row
+                    });
+                }
+            });
+        });
+    },
+
+    /**
      * Default behavior for the `removeColMoveButtons` event.
      *
      * @method _defRemoveColMoveButtonsFn
@@ -301,6 +345,16 @@ LayoutBuilderMove.prototype = {
      */
     _defRemoveColMoveButtonsFn: function() {
         this._layoutContainer.all('.' + CSS_MOVE_CUT_COL_BUTTON).remove();
+    },
+
+    /**
+     * Default behavior for the `removeColMoveTargets` event.
+     *
+     * @method _defRemoveColMoveTargetsFn
+     * @protected
+     */
+    _defRemoveColMoveTargetsFn: function() {
+        this._layoutContainer.all('.' + CSS_MOVE_COL_TARGET).remove();
     },
 
     /**
@@ -385,7 +439,7 @@ LayoutBuilderMove.prototype = {
     _moveColContent: function(target) {
         var row = target.ancestor(SELECTOR_ROW).getData('layout-row');
 
-        row.moveColContent(target.getData('position'), this._colToBeMoved);
+        row.moveColContent(target.getData('col-index'), this._colToBeMoved);
         this._resetMoveUI();
     },
 
@@ -419,9 +473,7 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _onMouseClickOnMoveCutButton: function(event) {
-        var col,
-            cutButton = event.currentTarget,
-            row;
+        var cutButton = event.currentTarget;
 
         this._removeAllCutButton();
 
@@ -429,9 +481,10 @@ LayoutBuilderMove.prototype = {
             this._createRowTargetArea();
         }
         else {
-            col = cutButton.getData('node-col');
-            row = cutButton.getData('node-row');
-            this._createColTargetArea(col, row);
+            this.fire(EVENT_CHOOSE_COL_MOVE_TARGET, {
+                clickedButton: cutButton,
+                col: cutButton.getData('node-col').getData('layout-col')
+            });
         }
     },
 
@@ -450,7 +503,7 @@ LayoutBuilderMove.prototype = {
             this._moveColContent(target);
         }
         else {
-            layout.moveRow(target.getData('position'), this._rowToBeMoved);
+            layout.moveRow(target.getData('row-index'), this._rowToBeMoved);
         }
     },
 
@@ -494,7 +547,8 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _removeTargetArea: function() {
-        this._layoutContainer.all('.' + CSS_MOVE_TARGET).remove();
+        this._layoutContainer.all('.' + CSS_MOVE_ROW_TARGET).remove();
+        this.fire(EVENT_REMOVE_COL_MOVE_TARGETS);
     },
 
     /**

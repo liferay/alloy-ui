@@ -18,8 +18,21 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                         new Y.LayoutRow({
                             cols: [
                                 new Y.LayoutCol({
-                                    value: new Y.FormBuilderFieldText(),
-                                    size: 4
+                                    size: 4,
+                                    value: new Y.FormBuilderFieldSentence({
+                                        help: 'My Help',
+                                        nestedFields: [
+                                            new Y.FormBuilderFieldText({
+                                                help: 'First nested field',
+                                                title: 'Nested Field 1'
+                                            }),
+                                            new Y.FormBuilderFieldText({
+                                                help: 'Second nested field',
+                                                title: 'Nested Field 2'
+                                            })
+                                        ],
+                                        title: 'My Title'
+                                    })
                                 }),
                                 new Y.LayoutCol({
                                     size: 4
@@ -229,8 +242,68 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areEqual(0, row.get('node').all('.form-builder-choose-col-move').size());
         },
 
+        'should show valid field move targets for root field': function() {
+            var moveButton,
+                row,
+                rowNode,
+                visibleTargets;
+
+            this._createFormBuilder({
+                mode: Y.FormBuilder.MODES.LAYOUT
+            });
+
+            row = this._formBuilder.get('layout').get('rows')[1];
+            rowNode = row.get('node');
+
+            moveButton = rowNode.one('.layout-builder-move-button');
+            moveButton.simulate('click');
+
+            rowNode.one('.form-builder-field-move-button').simulate('click');
+            visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
+                return node.getStyle('visibility') !== 'hidden';
+            });
+            Y.Assert.areEqual(2, visibleTargets.size());
+
+            moveButton.simulate('click');
+            visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
+                return node.getStyle('visibility') !== 'hidden';
+            });
+            Y.Assert.areEqual(0, visibleTargets.size());
+        },
+
+        'should show valid field move targets for nested field': function() {
+            var moveButton,
+                row,
+                rowNode,
+                visibleTargets;
+
+            this._createFormBuilder({
+                mode: Y.FormBuilder.MODES.LAYOUT
+            });
+
+            row = this._formBuilder.get('layout').get('rows')[1];
+            rowNode = row.get('node');
+
+            moveButton = rowNode.one('.layout-builder-move-button');
+            moveButton.simulate('click');
+
+            rowNode.all('.form-builder-field-move-button').item(1).simulate('click');
+            visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
+                return node.getStyle('visibility') !== 'hidden';
+            });
+            Y.Assert.areEqual(4, visibleTargets.size());
+
+            moveButton.simulate('click');
+            visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
+                return node.getStyle('visibility') !== 'hidden';
+            });
+            Y.Assert.areEqual(0, visibleTargets.size());
+        },
+
         'should allow moving the whole field to another column': function() {
-            var field,
+            var col,
+                cols,
+                field,
                 row;
 
             this._createFormBuilder({
@@ -238,14 +311,22 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             });
 
             row = this._formBuilder.get('layout').get('rows')[1];
-            field = row.get('cols')[0].get('value');
+            cols = row.get('cols');
+            field = cols[0].get('value');
 
             row.get('node').one('.layout-builder-move-button').simulate('click');
             row.get('node').one('.form-builder-field-move-button').simulate('click');
-            row.get('node').one('.layout-builder-move-col-target').simulate('click');
+            cols[1].get('node').one('.layout-builder-move-col-target').simulate('click');
 
-            Y.Assert.areNotEqual(field, row.get('cols')[0].get('value'));
-            Y.Assert.areEqual(field, row.get('cols')[1].get('value'));
+            col = row.get('cols')[0];
+            Y.Assert.areNotEqual(field, col.get('value'));
+            Y.Assert.isFalse(col.get('movableContent'));
+            Y.Assert.isFalse(col.get('removable'));
+
+            col = row.get('cols')[1];
+            Y.Assert.areEqual(field, col.get('value'));
+            Y.Assert.isTrue(col.get('movableContent'));
+            Y.Assert.isTrue(col.get('removable'));
 
         }
     }));

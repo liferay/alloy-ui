@@ -6,8 +6,13 @@
  */
 
 var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'move'),
+    CSS_CHOOSE_COL_MOVE_TARGET = A.getClassName('form', 'builder', 'choose', 'col', 'move', 'target'),
+    CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_MOVE_BUTTON = A.getClassName('form', 'builder', 'field', 'move', 'button'),
+    CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
+    CSS_FIELD_MOVE_TARGET_INVALID = A.getClassName('form', 'builder', 'field', 'move', 'target', 'invalid'),
+    CSS_FIELD_MOVING = A.getClassName('form', 'builder', 'field', 'moving'),
     CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode'),
     CSS_LAYOUT_MODE_BUTTON = A.getClassName('form', 'builder', 'layout', 'mode', 'button'),
     CSS_LAYOUT_MODE_CANCEL = A.getClassName('form', 'builder', 'layout', 'mode', 'cancel'),
@@ -127,7 +132,10 @@ A.FormBuilderLayoutBuilder.prototype = {
         this._eventHandles.push(
             this._layoutBuilder.on({
                 addColMoveButton: A.bind(this._onAddColMoveButton, this),
-                removeColMoveButtons: A.bind(this._onRemoveColMoveButtons, this)
+                addColMoveTarget: A.bind(this._onAddColMoveTarget, this),
+                chooseColMoveTarget: A.bind(this._onChooseColMoveTarget, this),
+                removeColMoveButtons: A.bind(this._onRemoveColMoveButtons, this),
+                removeColMoveTargets: A.bind(this._onRemoveColMoveTargets, this)
             })
         );
     },
@@ -188,6 +196,53 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
+     * Fired when the `addColMoveTarget` event from the layout builder is triggered.
+     *
+     * @method _onAddColMoveTarget
+     * @param  {EventFacade]} event
+     * @protected
+     */
+    _onAddColMoveTarget: function(event) {
+        var colNode = event.col.get('node'),
+            targetNodes;
+
+        colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
+
+        targetNodes = colNode.all('.' + CSS_FIELD_MOVE_TARGET);
+        targetNodes.setData('node-col', colNode);
+        targetNodes.setData('node-row', event.row.get('node'));
+        targetNodes.setData('col-index', event.colIndex);
+
+        event.preventDefault();
+    },
+
+    /**
+     * Fired when the `chooseColMoveTarget` event from the layout builder is triggered.
+     *
+     * @method _onChooseColMoveTarget
+     * @param  {EventFacade} event
+     * @protected
+     */
+    _onChooseColMoveTarget: function(event) {
+        var colNode = event.col.get('node'),
+            fieldNode = event.clickedButton.ancestor('.' + CSS_FIELD),
+            targetNode;
+
+        colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
+        fieldNode.addClass(CSS_FIELD_MOVING);
+
+        targetNode = fieldNode.previous('.' + CSS_FIELD_MOVE_TARGET);
+        if (targetNode) {
+            targetNode.addClass(CSS_FIELD_MOVE_TARGET_INVALID);
+        }
+
+        targetNode = fieldNode.next('.' + CSS_FIELD_MOVE_TARGET);
+        if (targetNode) {
+            targetNode.addClass(CSS_FIELD_MOVE_TARGET_INVALID);
+        }
+    },
+
+    /**
      * Fired when the `removeColMoveButtons` event from the layout builder is triggered.
      *
      * @method _onRemoveColMoveButtons
@@ -196,6 +251,21 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     _onRemoveColMoveButtons: function(event) {
         this.get('contentBox').all('.' + CSS_CHOOSE_COL_MOVE).removeClass(CSS_CHOOSE_COL_MOVE);
+
+        event.preventDefault();
+    },
+
+    /**
+     * Fired when the `removeColMoveTargets` event from the layout builder is triggered.
+     *
+     * @method _onRemoveColMoveTargets
+     * @param  {EventFacade} event
+     * @protected
+     */
+    _onRemoveColMoveTargets: function(event) {
+        this.get('contentBox').all('.' + CSS_CHOOSE_COL_MOVE_TARGET).removeClass(CSS_CHOOSE_COL_MOVE_TARGET);
+        this.get('contentBox').all('.' + CSS_FIELD_MOVING).removeClass(CSS_FIELD_MOVING);
+        this.get('contentBox').all('.' + CSS_FIELD_MOVE_TARGET_INVALID).removeClass(CSS_FIELD_MOVE_TARGET_INVALID);
 
         event.preventDefault();
     },

@@ -354,7 +354,7 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             targetArea = container.one('.layout-builder-move-target');
 
-            Assert.areEqual(1, targetArea.getData('position'));
+            Assert.areEqual(1, targetArea.getData('row-index'));
         },
 
         'should not add target after the row to be moved and the unmovable row': function() {
@@ -429,7 +429,7 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             targetArea = container.one('.layout-builder-move-target');
 
-            Assert.areNotEqual(4, targetArea.getData('position'));
+            Assert.areNotEqual(4, targetArea.getData('row-index'));
         },
 
         'should add targets on cols': function() {

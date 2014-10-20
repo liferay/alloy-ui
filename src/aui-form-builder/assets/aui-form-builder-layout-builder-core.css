@@ -7,7 +7,7 @@
 }
 
 .form-builder-layout-mode .form-builder-layout-mode-edit,
-.form-builder-layout-mode .form-builder-empty-col,
+.form-builder-layout-mode .form-builder-empty-col-add-button,
 .form-builder-layout-mode .form-builder-field-content-inner,
 .form-builder-layout-mode .form-builder-field-sentence-help {
     display: none;
@@ -27,10 +27,6 @@
     display: none;
 }
 
-.form-builder-layout-mode .layout-builder-move-target {
-    position: relative;
-}
-
 .form-builder-field-move-button {
     display: none;
 }
@@ -41,4 +37,42 @@
     position: absolute;
     top: 0;
     z-index: 1;
+}
+
+.form-builder-layout-mode .layout-builder-move-target {
+    position: relative;
+}
+
+.form-builder-layout-mode .form-builder-field-move-target {
+    display: block;
+    visibility: hidden;
+}
+
+.form-builder-field-move-target {
+    background-color: #fff;
+    border-color: #ccc;
+    display: none;
+    font-size: 12px;
+    margin: 0 0 5px;
+    padding: 2px 3px;
+    position: relative;
+    z-index: 1;
+}
+
+.form-builder-empty-col .form-builder-field-move-target {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-builder-choose-col-move-target .form-builder-field-move-target {
+    visibility: visible;
+}
+
+.form-builder-choose-col-move-target .form-builder-field-moving {
+    border: 1px dotted;
+}
+
+.form-builder-choose-col-move-target .form-builder-field-moving .form-builder-field-move-target,
+.form-builder-choose-col-move-target .form-builder-field-move-target-invalid {
+    visibility: hidden;
 }

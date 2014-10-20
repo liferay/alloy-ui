@@ -6,6 +6,7 @@
 
 var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break'),
     CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
+    CSS_EMPTY_COL_ADD_BUTTON = A.getClassName('form', 'builder', 'empty', 'col', 'add', 'button'),
     CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
     CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
     CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
@@ -14,6 +15,7 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_CONTENT_TOOLBAR = A.getClassName('form', 'builder', 'field', 'content', 'toolbar'),
     CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
+    CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
@@ -44,8 +46,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         'Add Page Break' +
         '</button>',
     TPL_EMPTY_COL: '<div class="' + CSS_EMPTY_COL + '">' +
+        '<div class="' + CSS_EMPTY_COL_ADD_BUTTON + '">' +
         '<span class="glyphicon glyphicon-plus ' + CSS_EMPTY_COL_ICON + '"></span>' +
-        '<div class="' + CSS_EMPTY_COL_LABEL + '">Add Field</div>' +
+        '<div class="' + CSS_EMPTY_COL_LABEL + '">Add Field</div></div>' +
+        '<button class="' + CSS_FIELD_MOVE_TARGET +
+        ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
+        'Paste here</button>' +
         '</div>',
     TPL_EMPTY_LAYOUT: '<div class="' + CSS_EMPTY_LAYOUT + '">' +
         '<div>You don\'t have any question yet.</div>' +
@@ -72,16 +78,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
-     * Create the DOM structure for the `A.FormBuilder`. Lifecycle.
-     *
-     * @method renderUI
-     * @protected
-     */
-    renderUI: function() {
-        this._renderEmptyColumns();
-    },
-
-    /**
      * Bind the events for the `A.FormBuilder` UI. Lifecycle.
      *
      * @method bindUI
@@ -99,13 +95,23 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             boundingBox.delegate('mouseenter', this._onFieldMouseEnter, '.' + CSS_FIELD_CONTENT, this),
             boundingBox.delegate('mouseleave', this._onFieldMouseLeave, '.' + CSS_FIELD_CONTENT_TOOLBAR, this),
             boundingBox.delegate('tap', this._onTapField, '.' + CSS_FIELD_CONTENT, this),
-            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL, this),
+            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
             boundingBox.delegate('click', this._onClickConfigurationField, '.' + CSS_FIELD_CONFIGURATION, this),
             boundingBox.delegate('click', this._onClickEditField, '.' + CSS_FIELD_TOOLBAR_EDIT, this),
             boundingBox.delegate('click', this._onClickCloseField, '.' + CSS_FIELD_TOOLBAR_CLOSE, this),
             boundingBox.delegate('click', this._onClickRemoveField, '.' + CSS_FIELD_TOOLBAR_REMOVE, this),
             boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this)
         ];
+    },
+
+    /**
+     * Syncs the UI. Lifecycle.
+     *
+     * @method syncUI
+     * @protected
+     */
+    syncUI: function() {
+        this._syncLayoutRows();
     },
 
     /**
@@ -129,16 +135,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         }
 
         (new A.EventHandle(this._eventHandles)).detach();
-    },
-
-    /**
-     * Syncs the UI. Lifecycle.
-     *
-     * @method syncUI
-     * @protected
-     */
-    syncUI: function() {
-        this._syncLayoutRows();
     },
 
     /**
@@ -323,10 +319,25 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
 
     /**
      * Fired after the `layout-col:valueChange` event is triggered.
-     * @return {[type]} [description]
+     *
+     * @method _afterLayoutColValueChange
+     * @param {EventFacade} event
+     * @protected
      */
-    _afterLayoutColValueChange: function() {
-        this._renderEmptyColumns();
+    _afterLayoutColValueChange: function(event) {
+        var col = event.target;
+
+        if (A.instanceOf(event.newVal, A.FormBuilderFieldBase)) {
+            col.set('movableContent', true);
+            col.set('removable', true);
+        }
+        else if (!event.newVal) {
+            this._makeColumnEmpty(col);
+        }
+        else {
+            col.set('movableContent', false);
+            col.set('removable', false);
+        }
     },
 
     /**
@@ -394,8 +405,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     _makeColumnEmpty: function(col) {
         col.set('value', {content: this.TPL_EMPTY_COL});
-        col.set('movableContent', false);
-        col.set('removable', false);
     },
 
     /**
@@ -606,8 +615,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
 
         if (this._colAddingField) {
             this._colAddingField.set('value', this._fieldBeingEdited);
-            this._colAddingField.set('movableContent', true);
-            this._colAddingField.set('removable', true);
             this._colAddingField = null;
         }
 

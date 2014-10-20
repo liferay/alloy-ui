@@ -490,7 +490,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            Y.one('.form-builder-empty-col').simulate('click');
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
 
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
@@ -510,7 +510,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            Y.one('.form-builder-empty-col').simulate('click');
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
 
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
@@ -531,7 +531,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            Y.one('.form-builder-empty-col').simulate('click');
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
 
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
@@ -550,7 +550,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            Y.one('.form-builder-empty-col').simulate('click');
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
 
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
@@ -569,7 +569,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            Y.one('.form-builder-empty-col').simulate('click');
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
 
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
@@ -593,7 +593,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             });
 
             col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
-            col.get('node').one('.form-builder-empty-col').simulate('click');
+            col.get('node').one('.form-builder-empty-col-add-button').simulate('click');
 
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
@@ -632,7 +632,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            Y.one('.form-builder-empty-col').simulate('click');
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
 
             Y.one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
@@ -658,6 +658,17 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 2,
                 Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
             );
+        },
+
+        'should turn col with null value into empty column': function() {
+            var col;
+
+            this.createFormBuilder();
+
+            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[2];
+            col.set('value', null);
+
+            Y.Assert.isNotNull(col.get('node').one('.form-builder-empty-col'));
         },
 
         'should fill empty columns for new rows': function() {
@@ -764,7 +775,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            colNode = Y.one('.form-builder-empty-col');
+            colNode = Y.one('.form-builder-empty-col-add-button');
             colNode.simulate('click');
 
             modal = Y.one('.form-builder-modal');
@@ -790,7 +801,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             });
 
             col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
-            col.get('node').one('.form-builder-empty-col').simulate('click');
+            col.get('node').one('.form-builder-empty-col-add-button').simulate('click');
 
             Y.one('.form-builder-modal').one('.field-type').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');

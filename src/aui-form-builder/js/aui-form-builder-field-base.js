@@ -10,6 +10,7 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
     CSS_FIELD_CONTENT_TOOLBAR = A.getClassName('form', 'builder', 'field', 'content', 'toolbar'),
     CSS_FIELD_MOVE_BUTTON = A.getClassName('form', 'builder', 'field', 'move', 'button'),
+    CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_NESTED = A.getClassName('form', 'builder', 'field', 'nested'),
     CSS_FIELD_OVERLAY = A.getClassName('form', 'builder', 'field', 'overlay'),
     CSS_FIELD_TOOLBAR = A.getClassName('form', 'builder', 'field', 'toolbar'),
@@ -32,7 +33,10 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
         '</div>',
     TPL_FIELD_CONFIGURATION = '<button class="btn btn-default ' + CSS_FIELD_CONFIGURATION + ' hide">' +
         '<span class="glyphicon glyphicon-cog"></span>' +
-        '</button>';
+        '</button>',
+    TPL_FIELD_MOVE_TARGET = '<button class="' + CSS_FIELD_MOVE_TARGET +
+        ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
+        'Paste as subquestion</button>';
 
 /**
  * A base class for Form Builder Field Base. All form builder fields should
@@ -175,6 +179,23 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
+     * Creates a move target node.
+     *
+     * @method _createMoveTarget
+     * @param {Number} position The position where the moved field will be added
+     *   if this is the chosen target.
+     * @return {Node}
+     * @protected
+     */
+    _createMoveTarget: function(position) {
+        var targetNode = A.Node.create(TPL_FIELD_MOVE_TARGET);
+        targetNode.setData('nested-field-index', position);
+        targetNode.setData('nested-field-parent', this);
+
+        return targetNode;
+    },
+
+    /**
      * Fills the settings array with the information for this field.
      * Subclasses should override this.
      *
@@ -246,11 +267,14 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
      * @protected
      */
     _uiSetNestedFields: function(nestedFields) {
-        var nestedFieldsNode = this.get('content').one('.' + CSS_FIELD_NESTED);
+        var instance = this,
+            nestedFieldsNode = this.get('content').one('.' + CSS_FIELD_NESTED);
 
         nestedFieldsNode.empty();
-        A.Array.each(nestedFields, function(nestedField) {
+        nestedFieldsNode.append(this._createMoveTarget(0));
+        A.Array.each(nestedFields, function(nestedField, index) {
             nestedFieldsNode.append(nestedField.get('content'));
+            nestedFieldsNode.append(instance._createMoveTarget(index + 1));
         });
     },
 
