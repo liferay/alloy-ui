@@ -18,6 +18,7 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
     EVENT_ADD_COL_MOVE_BUTTON = 'addColMoveButton',
     EVENT_ADD_COL_MOVE_TARGET = 'addColMoveTarget',
     EVENT_CHOOSE_COL_MOVE_TARGET = 'chooseColMoveTarget',
+    EVENT_CLICK_COL_MOVE_TARGET = 'clickColMoveTarget',
     EVENT_REMOVE_COL_MOVE_BUTTONS = 'removeColMoveButtons',
     EVENT_REMOVE_COL_MOVE_TARGETS = 'removeColMoveTargets',
 
@@ -43,10 +44,17 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
  */
 
 /**
- * Fired when he targets where the picked column should move to will be chosen.
+ * Fired when the target where the picked column should move to will be chosen.
  *
  * @event chooseColMoveTarget
  * @preventable _defChooseColMoveTargetFn
+ */
+
+/**
+ * Fired when a column move targets is clicked.
+ *
+ * @event clickColMoveTarget
+ * @preventable _defClickColMoveTargetFn
  */
 
 /**
@@ -118,6 +126,9 @@ LayoutBuilderMove.prototype = {
             chooseColMoveTarget: {
                 defaultFn: this._defChooseColMoveTargetFn
             },
+            clickColMoveTarget: {
+                defaultFn: this._defClickColMoveTargetFn
+            },
             removeColMoveButtons: {
                 defaultFn: this._defRemoveColMoveButtonsFn
             },
@@ -137,6 +148,15 @@ LayoutBuilderMove.prototype = {
      */
     destructor: function() {
         this._unbindMoveEvents();
+    },
+
+    /**
+     * Cancels the ongoing move operation.
+     *
+     * @method cancelMove
+     */
+    cancelMove: function() {
+        this._resetMoveUI();
     },
 
     /**
@@ -338,6 +358,20 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
+     * Default behavior for the `clickColMoveTarget` event.
+     *
+     * @method _defClickColMoveTargetFn
+     * @param {EventFacade} event
+     * @protected
+     */
+    _defClickColMoveTargetFn: function(event) {
+        var row = event.moveTarget.ancestor(SELECTOR_ROW).getData('layout-row');
+
+        row.moveColContent(event.moveTarget.getData('col-index'), this._colToBeMoved);
+        this._resetMoveUI();
+    },
+
+    /**
      * Default behavior for the `removeColMoveButtons` event.
      *
      * @method _defRemoveColMoveButtonsFn
@@ -430,20 +464,6 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
-     * Moves col content between rows.
-     *
-     * @method _moveColContent
-     * @param {Node} target
-     * @protected
-     */
-    _moveColContent: function(target) {
-        var row = target.ancestor(SELECTOR_ROW).getData('layout-row');
-
-        row.moveColContent(target.getData('col-index'), this._colToBeMoved);
-        this._resetMoveUI();
-    },
-
-    /**
      * Fires after click on move button.
      *
      * @method _onMouseClickMoveEvent
@@ -459,9 +479,7 @@ LayoutBuilderMove.prototype = {
             this._insertCutButton(moveButton);
         }
         else {
-            moveButton.remove();
-            this._removeAllCutButton();
-            this._resetMoveUI();
+            this.cancelMove();
         }
     },
 
@@ -500,7 +518,9 @@ LayoutBuilderMove.prototype = {
             target = event.currentTarget;
 
         if (target.hasClass(CSS_MOVE_COL_TARGET)) {
-            this._moveColContent(target);
+            this.fire(EVENT_CLICK_COL_MOVE_TARGET, {
+                moveTarget: target
+            });
         }
         else {
             layout.moveRow(target.getData('row-index'), this._rowToBeMoved);

@@ -134,6 +134,7 @@ A.FormBuilderLayoutBuilder.prototype = {
                 addColMoveButton: A.bind(this._onAddColMoveButton, this),
                 addColMoveTarget: A.bind(this._onAddColMoveTarget, this),
                 chooseColMoveTarget: A.bind(this._onChooseColMoveTarget, this),
+                clickColMoveTarget: A.bind(this._onClickColMoveTarget, this),
                 removeColMoveButtons: A.bind(this._onRemoveColMoveButtons, this),
                 removeColMoveTargets: A.bind(this._onRemoveColMoveTargets, this)
             })
@@ -209,9 +210,7 @@ A.FormBuilderLayoutBuilder.prototype = {
         colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
 
         targetNodes = colNode.all('.' + CSS_FIELD_MOVE_TARGET);
-        targetNodes.setData('node-col', colNode);
-        targetNodes.setData('node-row', event.row.get('node'));
-        targetNodes.setData('col-index', event.colIndex);
+        targetNodes.setData('col', event.col);
 
         event.preventDefault();
     },
@@ -228,6 +227,9 @@ A.FormBuilderLayoutBuilder.prototype = {
             fieldNode = event.clickedButton.ancestor('.' + CSS_FIELD),
             targetNode;
 
+        this._fieldBeingMoved = fieldNode.getData('field-instance');
+        this._fieldBeingMovedCol = event.col;
+
         colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
         fieldNode.addClass(CSS_FIELD_MOVING);
 
@@ -240,6 +242,39 @@ A.FormBuilderLayoutBuilder.prototype = {
         if (targetNode) {
             targetNode.addClass(CSS_FIELD_MOVE_TARGET_INVALID);
         }
+    },
+
+    /**
+     * Fired when the `clickColMoveTarget` event from the layout builder is triggered.
+     *
+     * @method _onClickColMoveTarget
+     * @param  {EventFacade} event
+     * @protected
+     */
+    _onClickColMoveTarget: function(event) {
+        var moveTarget = event.moveTarget,
+            parentFieldNode = this._fieldBeingMoved.get('content').ancestor('.' + CSS_FIELD),
+            targetNestedParent = moveTarget.getData('nested-field-parent');
+
+        if (parentFieldNode) {
+            parentFieldNode.getData('field-instance').removeNestedField(this._fieldBeingMoved);
+        }
+        else {
+            this._fieldBeingMovedCol.set('value', null);
+        }
+
+        if (targetNestedParent) {
+            targetNestedParent.addNestedField(
+                moveTarget.getData('nested-field-index'),
+                this._fieldBeingMoved
+            );
+        }
+        else {
+            moveTarget.getData('col').set('value', this._fieldBeingMoved);
+        }
+
+        this._layoutBuilder.cancelMove();
+        event.preventDefault();
     },
 
     /**

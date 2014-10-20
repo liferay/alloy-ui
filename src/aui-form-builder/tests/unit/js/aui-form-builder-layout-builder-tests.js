@@ -38,7 +38,10 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                                     size: 4
                                 }),
                                 new Y.LayoutCol({
-                                    size: 4
+                                    size: 4,
+                                    value: new Y.FormBuilderFieldSentence({
+                                        title: 'Another Field'
+                                    })
                                 })
                             ]
                         })
@@ -236,7 +239,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             button = row.get('node').one('.layout-builder-move-button');
             button.simulate('click');
 
-            Y.Assert.areEqual(1, row.get('node').all('.form-builder-choose-col-move').size());
+            Y.Assert.areEqual(2, row.get('node').all('.form-builder-choose-col-move').size());
 
             button.simulate('click');
             Y.Assert.areEqual(0, row.get('node').all('.form-builder-choose-col-move').size());
@@ -327,7 +330,30 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areEqual(field, col.get('value'));
             Y.Assert.isTrue(col.get('movableContent'));
             Y.Assert.isTrue(col.get('removable'));
+        },
 
+        'should allow moving fields inside other fields': function() {
+            var cols,
+                field,
+                row;
+
+            this._createFormBuilder({
+                mode: Y.FormBuilder.MODES.LAYOUT
+            });
+
+            row = this._formBuilder.get('layout').get('rows')[1];
+            cols = row.get('cols');
+            field = cols[0].get('value').get('nestedFields')[0];
+
+            row.get('node').one('.layout-builder-move-button').simulate('click');
+            row.get('node').all('.form-builder-field-move-button').item(1).simulate('click');
+            cols[2].get('node').one('.layout-builder-move-col-target').simulate('click');
+
+            Y.Assert.areEqual(1, cols[0].get('value').get('nestedFields').length);
+            Y.Assert.areNotEqual(field, cols[0].get('value').get('nestedFields')[0]);
+
+            Y.Assert.areEqual(1, cols[2].get('value').get('nestedFields').length);
+            Y.Assert.areEqual(field, cols[2].get('value').get('nestedFields')[0]);
         }
     }));
 

@@ -88,6 +88,21 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
+     * Adds the given field to this field's nested list.
+     *
+     * @method addNestedField
+     * @param {Number} index
+     * @param {A.FormBuilderFieldBase} field
+     */
+    addNestedField: function(index, field) {
+        var nestedFields = this.get('nestedFields');
+
+        nestedFields.splice(index, 0, field);
+
+        this.set('nestedFields', nestedFields);
+    },
+
+    /**
      * Checks if the toolbar node is visible.
      *
      * @method isToolbarVisible
