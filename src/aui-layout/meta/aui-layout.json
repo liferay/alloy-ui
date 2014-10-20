@@ -27,12 +27,14 @@
     "aui-layout-builder-add-col": {
         "requires": [
             "node-base"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-layout-builder-remove-col": {
         "requires": [
             "node-base"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-layout-builder-resize-col": {
         "requires": [

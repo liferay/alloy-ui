@@ -4,8 +4,9 @@
  * @module aui-layout-builder-remove-col
  */
 
-var CSS_REMOVE_COL = A.getClassName('layout', 'remove', 'col'),
-    SELECTOR_COL = '.col';
+var CSS_REMOVE_COL = A.getClassName('layout', 'builder', 'remove', 'col', 'button'),
+    SELECTOR_COL = '.col',
+    TPL_REMOVE_COL = '<span class="glyphicon glyphicon-remove ' + CSS_REMOVE_COL + '"></span>';
 
 /**
  * LayoutBuilder extension, which can be used to add the funcionality of removing
@@ -19,14 +20,6 @@ var CSS_REMOVE_COL = A.getClassName('layout', 'remove', 'col'),
 A.LayoutBuilderRemoveCol = function() {};
 
 A.LayoutBuilderRemoveCol.prototype = {
-    /**
-     * Button to remove a col.
-     *
-     * @property _removeColButton
-     * @type {Node}
-     * @protected
-     */
-    _removeColButton: null,
 
     /**
      * Construction logic executed during LayoutBuilderRemoveCol instantiation.
@@ -36,8 +29,6 @@ A.LayoutBuilderRemoveCol.prototype = {
      * @protected
      */
     initializer: function() {
-        this._removeColButton = A.Node.create('<span>').addClass(CSS_REMOVE_COL + ' glyphicon glyphicon-remove');
-
         this._eventHandles.push(
             this.after('enableRemoveColsChange', this._afterEnableRemoveColsChange)
         );
@@ -66,6 +57,58 @@ A.LayoutBuilderRemoveCol.prototype = {
     },
 
     /**
+     * Fired after the `cols` attribute changes.
+     *
+     * @method _afterRemoveColLayoutColsChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterRemoveColLayoutColsChange: function(event) {
+        var cols,
+            containerRow = event.target.get('node');
+
+        containerRow.all('.' + CSS_REMOVE_COL).remove();
+
+        cols = containerRow.all(SELECTOR_COL);
+
+        this._appendRemoveButtonToCols(cols);
+    },
+
+    /**
+     * Fired after the `rows` attribute changes.
+     *
+     * @method _afterRemoveColRowsChange
+     * @protected
+     */
+    _afterRemoveColRowsChange: function() {
+        this._removeColButton();
+        this._appendRemoveButtonToCols();
+    },
+
+    /**
+     * Appends remove col button on each row.
+     *
+     * @method _appendRemoveButtonToCols
+     * @param {NodeList} cols Cols to add the remove col button
+     * @protected
+     */
+    _appendRemoveButtonToCols: function(cols) {
+        var layoutCol,
+            removeColButton;
+
+        cols = cols || this._layoutContainer.all(SELECTOR_COL);
+
+        cols.each(function(col) {
+            layoutCol = col.getData('layout-col');
+
+            if (layoutCol.get('removable')) {
+                removeColButton = A.Node.create(TPL_REMOVE_COL);
+                col.append(removeColButton);
+            }
+        });
+    },
+
+    /**
      * Binds the necessary events for the functionality of removing columns from
      * the layout.
      *
@@ -76,9 +119,9 @@ A.LayoutBuilderRemoveCol.prototype = {
         var container = this.get('container');
 
         this._removeColsEventHandles = [
-            container.delegate('mouseenter', A.bind(this._onMouseEnterRemoveColEvent, this), SELECTOR_COL),
-            container.delegate('mouseleave', A.bind(this._onMouseLeaveRemoveColEvent, this), SELECTOR_COL),
-            container.delegate('click', A.bind(this._onMouseClickRemoveColEvent, this), '.' + CSS_REMOVE_COL)
+            container.delegate('click', A.bind(this._onMouseClickRemoveColEvent, this), '.' + CSS_REMOVE_COL),
+            this.after('layout-row:colsChange', this._afterRemoveColLayoutColsChange),
+            this.after('layout:rowsChange', A.bind(this._afterRemoveColRowsChange, this))
         ];
     },
 
@@ -97,29 +140,13 @@ A.LayoutBuilderRemoveCol.prototype = {
     },
 
     /**
-     * Fired on `mouseenter` event for the layout columns.
+     * Removes all remove col button.
      *
-     * @method _onMouseEnterRemoveColEvent
-     * @param {EventFacade} event
+     * @method _removeColButton
      * @protected
      */
-    _onMouseEnterRemoveColEvent: function(event) {
-        var col = event.currentTarget,
-            layoutCol = col.getData('layout-col');
-
-        if (layoutCol.get('removable')) {
-            col.append(this._removeColButton);
-        }
-    },
-
-    /**
-     * Fired on `mouseleave` event for the layout columns.
-     *
-     * @method _onMouseLeaveRemoveColEvent
-     * @protected
-     */
-    _onMouseLeaveRemoveColEvent: function() {
-        this._removeColButton.remove();
+    _removeColButton: function() {
+        this._layoutContainer.all('.' + CSS_REMOVE_COL).remove();
     },
 
     /**
@@ -131,11 +158,12 @@ A.LayoutBuilderRemoveCol.prototype = {
      */
     _uiSetEnableRemoveCols: function(enableRemoveCols) {
         if (enableRemoveCols) {
+            this._appendRemoveButtonToCols();
             this._bindRemoveColEvents();
         }
         else {
+            this._removeColButton();
             this._unbindRemoveColEvents();
-            this._removeColButton.remove();
         }
     },
 

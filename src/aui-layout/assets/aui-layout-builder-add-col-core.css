@@ -1,0 +1,13 @@
+.layout-builder-add-col {
+    position: absolute;
+}
+
+.layout-builder-add-col-left {
+    left: -6px;
+    top: 35%;
+}
+
+.layout-builder-add-col-right {
+    right: -6px;
+    top: 35%;
+}

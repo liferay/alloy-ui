@@ -62,12 +62,57 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             this._createLayoutBuilder();
 
             col = Y.one('.col-sm-6');
-            col.simulate('mouseover');
-            addColButton = col.one('.layout-add-col');
+            addColButton = col.ancestor().one('.layout-builder-add-col');
             addColButton.simulate('click');
 
             layout = this._layoutBuilder.get('layout');
             Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 3);
+        },
+
+        'should add a col at the beginning of a row when click on the left button': function() {
+            var addColButton,
+                container,
+                firstCol,
+                row;
+
+            this._createLayoutBuilder();
+
+            container = this._layoutBuilder.get('container');
+            row = container.one('.row');
+
+            firstCol = row.one('.col');
+
+            Y.Assert.isNotNull(firstCol.getData('layout-col').get('value'));
+
+            addColButton = row.one('.layout-builder-add-col-left');
+            addColButton.simulate('click');
+
+            firstCol = row.one('.col');
+
+            Y.Assert.isNull(firstCol.getData('layout-col').get('value'));
+        },
+
+        'should add a col at the end of a row when click on the right button': function() {
+            var addColButton,
+                container,
+                lastCol,
+                row;
+
+            this._createLayoutBuilder();
+
+            container = this._layoutBuilder.get('container');
+            row = container.one('.row');
+
+            lastCol = row.all('.col').last();
+
+            Y.Assert.isNotNull(lastCol.getData('layout-col').get('value'));
+
+            addColButton = row.one('.layout-builder-add-col-right');
+            addColButton.simulate('click');
+
+            lastCol = row.all('.col').last();
+
+            Y.Assert.isNull(lastCol.getData('layout-col').get('value'));
         },
 
         'should not append addCol button if row alreay has the maximum number of cols': function() {
@@ -76,9 +121,8 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             this._createLayoutBuilder();
 
             col = Y.one('.col-sm-3');
-            col.simulate('mouseover');
 
-            Y.Assert.isNull(col.one('.layout-add-col'));
+            Y.Assert.isNull(col.one('.layout-builder-add-col'));
         },
 
         'should not add col if enableAddCol is false': function() {
@@ -90,9 +134,8 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             });
 
             col = Y.one('.col-sm-6');
-            col.simulate('mouseover');
 
-            addColButton = col.one('.layout-add-col');
+            addColButton = col.one('.layout-builder-add-col');
             Y.Assert.isNull(addColButton);
         },
 
@@ -107,19 +150,49 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             this._layoutBuilder.set('enableAddCols', false);
 
-            col.simulate('mouseover');
-            addColButton = col.one('.layout-add-col');
+            addColButton = col.ancestor().one('.layout-builder-add-col');
             Y.Assert.isNull(addColButton);
 
             this._layoutBuilder.set('enableAddCols', true);
 
-            col.simulate('mouseover');
-            addColButton = col.one('.layout-add-col');
+            addColButton = col.ancestor().one('.layout-builder-add-col');
             Y.Assert.isNotNull(addColButton);
 
             addColButton.simulate('click');
             layout = this._layoutBuilder.get('layout');
             Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 3);
+        },
+
+        'should add two add col buttons per row': function() {
+            var container,
+                row;
+
+            this._createLayoutBuilder();
+
+            container = this._layoutBuilder.get('container');
+            row = container.one('.row');
+
+            Y.Assert.areEqual(2, row.all('.layout-builder-add-col').size());
+        },
+
+        'should add addColButton to new rows': function() {
+            var addColButtons,
+                addRowButton,
+                container;
+
+            this._createLayoutBuilder();
+
+            container = this._layoutBuilder.get('container');
+            addColButtons = container.all('.layout-builder-add-col');
+
+            Y.Assert.areEqual(2, addColButtons.size());
+
+            addRowButton = container.one('.layout-builder-add-row-button');
+            addRowButton.simulate('click');
+
+            addColButtons = container.all('.layout-builder-add-col');
+
+            Y.Assert.areEqual(4, addColButtons.size());
         }
     }));
 

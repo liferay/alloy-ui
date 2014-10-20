@@ -42,15 +42,14 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
             this._createLayoutBuilder();
 
             col = Y.one('.col-sm-6');
-            col.simulate('mouseover');
-            deleteColButton = col.one('.layout-remove-col');
+            deleteColButton = col.one('.layout-builder-remove-col-button');
             deleteColButton.simulate('click');
 
             layout = this._layoutBuilder.get('layout');
             Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 1);
         },
 
-        'should not remove col if enableRemoveCol is false': function() {
+        'should not add remove col button if enableRemoveCol is false': function() {
             var col,
                 deleteColButton;
 
@@ -59,9 +58,8 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
             });
 
             col = Y.one('.col-sm-6');
-            col.simulate('mouseover');
 
-            deleteColButton = col.one('.layout-remove-col');
+            deleteColButton = col.one('.layout-builder-remove-col-button');
             Y.Assert.isNull(deleteColButton);
         },
 
@@ -76,14 +74,12 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
 
             this._layoutBuilder.set('enableRemoveCols', false);
 
-            col.simulate('mouseover');
-            deleteColButton = col.one('.layout-remove-col');
+            deleteColButton = col.one('.layout-builder-remove-col-button');
             Y.Assert.isNull(deleteColButton);
 
             this._layoutBuilder.set('enableRemoveCols', true);
 
-            col.simulate('mouseover');
-            deleteColButton = col.one('.layout-remove-col');
+            deleteColButton = col.one('.layout-builder-remove-col-button');
             Y.Assert.isNotNull(deleteColButton);
 
             deleteColButton.simulate('click');
