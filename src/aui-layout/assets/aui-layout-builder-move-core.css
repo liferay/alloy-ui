@@ -15,7 +15,7 @@
 }
 
 .layout-builder-move-cut-col-button {
-    left: 0;
+    left: 10px;
     position: absolute;
     top: 0;
 }

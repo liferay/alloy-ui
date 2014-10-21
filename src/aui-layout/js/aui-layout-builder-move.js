@@ -22,6 +22,7 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
     EVENT_REMOVE_COL_MOVE_BUTTONS = 'removeColMoveButtons',
     EVENT_REMOVE_COL_MOVE_TARGETS = 'removeColMoveTargets',
 
+    SELECTOR_COL = '.col',
     SELECTOR_ROW = '.row',
 
     TPL_MOVE_BUTTON = '<button type="button" class="btn btn-default btn-xs ' + CSS_MOVE_BUTTON + '">' +
@@ -206,15 +207,18 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _appendMoveButtonToRows: function() {
-        var layoutContainer = this._layoutContainer,
+        var instance = this,
+            layoutContainer = this._layoutContainer,
             moveButton,
             rows = layoutContainer.all(SELECTOR_ROW);
 
         rows.each(function(row) {
-            moveButton = A.Node.create(TPL_MOVE_BUTTON);
-            moveButton.setData('layout-row', row.getData('layout-row'));
-            moveButton.setData('node-row', row);
-            layoutContainer.insertBefore(moveButton, row);
+            if (instance._hasAnythingMovable(row)) {
+                moveButton = A.Node.create(TPL_MOVE_BUTTON);
+                moveButton.setData('layout-row', row.getData('layout-row'));
+                moveButton.setData('node-row', row);
+                layoutContainer.insertBefore(moveButton, row);
+            }
         });
     },
 
@@ -346,7 +350,7 @@ LayoutBuilderMove.prototype = {
 
         A.Array.forEach(rows, function(row) {
             A.Array.forEach(row.get('cols'), function(col, index) {
-                if (col !== instance._colToBeMoved) {
+                if (col !== instance._colToBeMoved && col.get('movableContent')) {
                     instance.fire(EVENT_ADD_COL_MOVE_TARGET, {
                         col: col,
                         colIndex: index,
@@ -391,6 +395,27 @@ LayoutBuilderMove.prototype = {
         this._layoutContainer.all('.' + CSS_MOVE_COL_TARGET).remove();
     },
 
+    _hasAnythingMovable: function(row) {
+        var cols = row.all(SELECTOR_COL).get('nodes'),
+            index,
+            layoutCol,
+            layoutRow = row.getData('layout-row');
+
+        if (layoutRow.get('movable')) {
+            return true;
+        }
+
+        for (index = 0; index < cols.length; index++) {
+            layoutCol = cols[index].getData('layout-col');
+
+            if (layoutCol.get('movableContent')) {
+                return true;
+            }
+        }
+
+        return false;
+    },
+
     /**
      * Inserts cut buttons on row and cols.
      *
@@ -417,7 +442,7 @@ LayoutBuilderMove.prototype = {
             row = moveButton.getData('node-row'),
             rows = this._layoutContainer.all(SELECTOR_ROW);
 
-        cols = row.all('.col');
+        cols = row.all(SELECTOR_COL);
 
         if (cols.size() === 1 && rows.size() === 1) {
             return;

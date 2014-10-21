@@ -177,6 +177,39 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             Assert.isNull(button);
         },
 
+        'should not add move row button on rows that hasn\'t anything to move': function() {
+            var moveButton,
+                layout = new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    movableContent: false,
+                                    size: 3,
+                                    value: { content: 'foo' }
+                                }),
+                                new Y.LayoutCol({
+                                    movableContent: false,
+                                    size: 9,
+                                    value: { content: 'foo' }
+                                })
+                            ],
+                            movable: true
+                        })
+                    ]
+                });
+
+            this.layoutBuilder.set('layout', layout);
+
+            moveButton = Y.one('.layout-builder-move-button');
+            Assert.isNotNull(moveButton);
+
+            layout.get('rows')[0].set('movable', false);
+
+            moveButton = Y.one('.layout-builder-move-button');
+            Assert.isNotNull(moveButton);
+        },
+
         'should disable enableMove attribute when creating the layout builder': function() {
             var button;
 
