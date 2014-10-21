@@ -4,6 +4,8 @@
 
 ## @VERSION@
 
+* [AUI-1745](https://issues.liferay.com/browse/AUI-1745) Investigate and fix performance problems on Layout Builder
+* [AUI-1726](https://issues.liferay.com/browse/AUI-1726) Position buttons to add/remove columns according to wireframe
 * [AUI-1720](https://issues.liferay.com/browse/AUI-1720) Allow moving fields inside existing fields
 * [AUI-1709](https://issues.liferay.com/browse/AUI-1709) Flags to indicate if col/row is movable/removable
 * [AUI-1698](https://issues.liferay.com/browse/AUI-1698) Layout builder mode

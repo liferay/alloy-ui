@@ -35,6 +35,15 @@ A.LayoutBuilderResizeCol.prototype = {
         '<span class="glyphicon glyphicon-resize-horizontal"></span></div></div>',
 
     /**
+     * Grid line nodes.
+     *
+     * @property _gridlineNodes
+     * @type {Array}
+     * @protected
+     */
+    _gridlineNodes: [],
+
+    /**
      * Construction logic executed during `A.LayoutBuilderResizeCol` instantiation.
      * Lifecycle.
      *
@@ -43,6 +52,8 @@ A.LayoutBuilderResizeCol.prototype = {
      */
     initializer: function() {
         this._createDelegateDrag();
+
+        this._gridlineNodes = [];
 
         this._eventHandles.push(
             this.after('enableResizeColsChange', this._afterEnableResizeColsChange)
@@ -60,6 +71,8 @@ A.LayoutBuilderResizeCol.prototype = {
      */
     destructor: function() {
         this._unbindResizeColEvents();
+
+        this._removeGrid();
     },
 
     /**
@@ -354,6 +367,8 @@ A.LayoutBuilderResizeCol.prototype = {
                     padding: '30px'
                 });
                 node.append(gridLine);
+
+                instance._gridlineNodes.push(gridLine);
             });
         });
     },
@@ -375,7 +390,14 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _removeGrid: function() {
-        this.get('container').all('.' + CSS_RESIZE_COL_BREAKPOINT).remove();
+        if (this._gridlineNodes.length) {
+            A.Array.each(this._gridlineNodes, function(node) {
+                node.unplug(A.Plugin.Drop);
+                node.remove();
+            });
+
+            this._gridlineNodes = [];
+        }
     },
 
     /**
