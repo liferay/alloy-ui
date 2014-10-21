@@ -31,6 +31,12 @@
             ]
         },
 
+        "aui-form-builder-field-scale": {
+            "jsfiles": [
+                "js/aui-form-builder-field-scale.js"
+            ]
+        },
+
         "aui-form-builder-field-sentence": {
             "jsfiles": [
                 "js/aui-form-builder-field-sentence.js"

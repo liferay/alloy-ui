@@ -98,10 +98,11 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
          * The value after edition.
          *
          * @attribute editedValue
-         * @type String
+         * @type Array
          */
         editedValue: {
-            getter: '_getEditedValue'
+            getter: '_getEditedValue',
+            value: []
         },
 
         /**
@@ -109,7 +110,7 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
          *
          * @attribute label
          * @default ''
-         * @type String
+         * @type Array
          */
         label: {
             value: ''
@@ -119,9 +120,10 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
          * The value to be edited.
          *
          * @attribute originalValue
-         * @type String
+         * @type Array
          */
         originalValue: {
+            value: []
         }
     }
 });

@@ -1,0 +1,15 @@
+.form-builder-field-scale-input-higher-value {
+    float: right;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(153, 153, 153, 0.44);
+    text-align: center;
+}
+
+.form-builder-field-scale-input-lower-value {
+    float: left;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(153, 153, 153, 0.44);
+    text-align: center;
+}
