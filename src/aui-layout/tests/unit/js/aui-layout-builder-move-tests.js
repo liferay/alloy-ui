@@ -194,7 +194,7 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
                                     value: { content: 'foo' }
                                 })
                             ],
-                            movable: true
+                            movable: false
                         })
                     ]
                 });
@@ -202,12 +202,7 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             this.layoutBuilder.set('layout', layout);
 
             moveButton = Y.one('.layout-builder-move-button');
-            Assert.isNotNull(moveButton);
-
-            layout.get('rows')[0].set('movable', false);
-
-            moveButton = Y.one('.layout-builder-move-button');
-            Assert.isNotNull(moveButton);
+            Assert.isNull(moveButton);
         },
 
         'should disable enableMove attribute when creating the layout builder': function() {

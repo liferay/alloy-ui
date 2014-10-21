@@ -350,7 +350,7 @@ LayoutBuilderMove.prototype = {
 
         A.Array.forEach(rows, function(row) {
             A.Array.forEach(row.get('cols'), function(col, index) {
-                if (col !== instance._colToBeMoved && col.get('movableContent')) {
+                if (col !== instance._colToBeMoved) {
                     instance.fire(EVENT_ADD_COL_MOVE_TARGET, {
                         col: col,
                         colIndex: index,
@@ -395,20 +395,27 @@ LayoutBuilderMove.prototype = {
         this._layoutContainer.all('.' + CSS_MOVE_COL_TARGET).remove();
     },
 
+    /**
+     * Checks if the given row either can be moved or has at least one column
+     * that can.
+     *
+     * @method _hasAnythingMovable
+     * @param {A.LayoutRow} row
+     * @return {Boolean}
+     * @protected
+     */
     _hasAnythingMovable: function(row) {
-        var cols = row.all(SELECTOR_COL).get('nodes'),
-            index,
-            layoutCol,
+        var index,
+            layoutCols,
             layoutRow = row.getData('layout-row');
 
         if (layoutRow.get('movable')) {
             return true;
         }
 
-        for (index = 0; index < cols.length; index++) {
-            layoutCol = cols[index].getData('layout-col');
-
-            if (layoutCol.get('movableContent')) {
+        layoutCols = layoutRow.get('cols');
+        for (index = 0; index < layoutCols.length; index++) {
+            if (layoutCols[index].get('movableContent')) {
                 return true;
             }
         }
