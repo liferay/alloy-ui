@@ -86,7 +86,7 @@ A.LayoutBuilderRemoveCol.prototype = {
     },
 
     /**
-     * Appends remove col button on each row.
+     * Appends remove col button on each col.
      *
      * @method _appendRemoveButtonToCols
      * @param {NodeList} cols Cols to add the remove col button
@@ -140,7 +140,7 @@ A.LayoutBuilderRemoveCol.prototype = {
     },
 
     /**
-     * Removes all remove col button.
+     * Removes all remove col buttons.
      *
      * @method _removeColButton
      * @protected

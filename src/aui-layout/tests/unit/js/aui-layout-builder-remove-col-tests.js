@@ -49,6 +49,29 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
             Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 1);
         },
 
+        'should add remove col buttons when rows change': function() {
+            var rowNode;
+
+            this._createLayoutBuilder();
+
+            this._layoutBuilder.get('layout').addRow(0, new Y.LayoutRow({
+                cols: [
+                    new Y.LayoutCol({
+                        size: 4
+                    }),
+                    new Y.LayoutCol({
+                        size: 4
+                    }),
+                    new Y.LayoutCol({
+                        size: 4
+                    })
+                ]
+            }));
+            rowNode = this._layoutBuilder.get('layout').get('rows')[0].get('node');
+
+            Y.Assert.areEqual(3, rowNode.all('.layout-builder-remove-col-button').size());
+        },
+
         'should not add remove col button if enableRemoveCol is false': function() {
             var col,
                 deleteColButton;

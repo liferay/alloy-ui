@@ -68,7 +68,7 @@ A.LayoutBuilderAddCol.prototype = {
      */
     _afterAddColLayoutColsChange: function(event) {
         var row = event.target.get('node').one(SELECTOR_ROW);
-        this._appendAddColButtonForARow(row);
+        this._appendAddColButtonToSingleRow(row);
     },
 
     /**
@@ -103,18 +103,18 @@ A.LayoutBuilderAddCol.prototype = {
             rows = this._layoutContainer.all(SELECTOR_ROW);
 
         rows.each(function(row) {
-            instance._appendAddColButtonForARow(row);
+            instance._appendAddColButtonToSingleRow(row);
         });
     },
 
     /**
      * Appends add col button for a single row.
      *
-     * @method _appendAddColButtonForARow
+     * @method _appendAddColButtonToSingleRow
      * @param {Node} row Row to append the add col buttons.
      * @protected
      */
-    _appendAddColButtonForARow: function(row) {
+    _appendAddColButtonToSingleRow: function(row) {
         var addColLeft,
             addColRight,
             colsLength,
@@ -186,9 +186,9 @@ A.LayoutBuilderAddCol.prototype = {
     },
 
     /**
-     * Removes all remove col button.
+     * Removes all add col buttons.
      *
-     * @method _removeColButton
+     * @method _removeAddColButton
      * @protected
      */
     _removeAddColButton: function() {
