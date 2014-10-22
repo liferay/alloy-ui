@@ -184,6 +184,10 @@ var TextboxList = A.Component.create({
             );
 
             instance.inputNode.on('focus', instance._onInputNodeFocus, instance);
+
+            instance.inputField.after('focusedChange', function(event) {
+                instance._set('focused', event.newVal, {src: 'inputfield'});
+            });
         },
 
         add: function(label) {
