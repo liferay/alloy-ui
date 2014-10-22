@@ -568,11 +568,13 @@ A.ImageViewerBase = A.Base.create(
          * @protected
          */
         _setCurrentIndex: function(val) {
+            var sourcesLength = this.get('sources').length;
+
             if (val === 'rand') {
-                return Math.floor(Math.random() * this.get('sources').length);
+                return Math.floor(Math.random() * sourcesLength);
             }
             else {
-                return Math.max(Math.min(val, (this.get('sources').length - 1)), 0);
+                return Math.max(Math.min(val, (sourcesLength - 1)), 0);
             }
         },
 
