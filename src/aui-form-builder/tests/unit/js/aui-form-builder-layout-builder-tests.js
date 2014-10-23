@@ -88,13 +88,11 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._createFormBuilder();
 
-            button = this._formBuilder.get('contentBox').one('.layout-add-col');
-            this._formBuilder.get('contentBox').all('.col').item(1).simulate('mouseover');
+            button = this._formBuilder.get('contentBox').one('.layout-builder-add-col');
             Y.Assert.isNull(button);
 
             this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            this._formBuilder.get('contentBox').all('.col').item(1).simulate('mouseover');
-            button = this._formBuilder.get('contentBox').one('.layout-add-col');
+            button = this._formBuilder.get('contentBox').one('.layout-builder-add-col');
             Y.Assert.isNotNull(button);
         },
 
@@ -103,13 +101,11 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._createFormBuilder();
 
-            button = this._formBuilder.get('contentBox').one('.layout-remove-col');
-            this._formBuilder.get('contentBox').all('.col').item(1).simulate('mouseover');
+            button = this._formBuilder.get('contentBox').one('.layout-builder-remove-col-button');
             Y.Assert.isNull(button);
 
             this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            this._formBuilder.get('contentBox').all('.col').item(1).simulate('mouseover');
-            button = this._formBuilder.get('contentBox').one('.layout-remove-col');
+            button = this._formBuilder.get('contentBox').one('.layout-builder-remove-col-button');
             Y.Assert.isNotNull(button);
         },
 
@@ -324,12 +320,10 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             col = row.get('cols')[0];
             Y.Assert.areNotEqual(field, col.get('value'));
             Y.Assert.isFalse(col.get('movableContent'));
-            Y.Assert.isFalse(col.get('removable'));
 
             col = row.get('cols')[1];
             Y.Assert.areEqual(field, col.get('value'));
             Y.Assert.isTrue(col.get('movableContent'));
-            Y.Assert.isTrue(col.get('removable'));
         },
 
         'should allow moving fields inside other fields': function() {

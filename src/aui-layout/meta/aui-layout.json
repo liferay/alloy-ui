@@ -49,6 +49,7 @@
     },
     "aui-layout-col": {
         "requires": [
+            "aui-classnamemanager",
             "aui-node-base",
             "base-build"
         ]

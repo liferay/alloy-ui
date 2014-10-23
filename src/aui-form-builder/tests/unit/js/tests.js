@@ -607,7 +607,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNull(col.get('node').one('.form-builder-field'));
 
             Y.Assert.isFalse(col.get('movableContent'));
-            Y.Assert.isFalse(col.get('removable'));
         },
 
         'should remove a nested field when clicking on remove button': function() {
@@ -753,14 +752,13 @@ YUI.add('aui-form-builder-tests', function(Y) {
             );
         },
 
-        'should make empty columns unmovable and unremovable': function() {
+        'should make empty columns unmovable': function() {
             var emptyCol;
 
             this.createFormBuilder();
             emptyCol = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
 
             Y.Assert.isFalse(emptyCol.get('movableContent'));
-            Y.Assert.isFalse(emptyCol.get('removable'));
         },
 
         'should add a field to a column': function() {
@@ -790,7 +788,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(Y.instanceOf(col.get('value'), Y.FormBuilderFieldText));
         },
 
-        'should make field columns movable and removable': function() {
+        'should make field columns movable': function() {
             var col;
 
             this.createFormBuilder({
@@ -808,7 +806,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-settings-save').simulate('click');
 
             Y.Assert.isTrue(col.get('movableContent'));
-            Y.Assert.isTrue(col.get('removable'));
         }
     }));
 

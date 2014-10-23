@@ -329,14 +329,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
 
         if (A.instanceOf(event.newVal, A.FormBuilderFieldBase)) {
             col.set('movableContent', true);
-            col.set('removable', true);
         }
         else if (!event.newVal) {
             this._makeColumnEmpty(col);
         }
         else {
             col.set('movableContent', false);
-            col.set('removable', false);
         }
     },
 

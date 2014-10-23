@@ -5,7 +5,8 @@
  */
 
 var BOOTSTRAP_CLASS_PREFIX = 'col-sm-',
-    TPL_COL = '<div class="col"></div>';
+    CSS_COL_CONTENT = A.getClassName('layout', 'col', 'content'),
+    TPL_COL = '<div class="col"><div class="' + CSS_COL_CONTENT + '"></div></div>';
 
 /**
  * A base class for Layout Col.
@@ -89,15 +90,16 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
      * @protected
      */
     _uiSetValue: function(value) {
-        var node = this.get('node');
+        var node = this.get('node'),
+            valueNode = node.one('.' + CSS_COL_CONTENT);
 
-        node.empty();
+        valueNode.empty();
         if (value) {
             if (value.content) {
-                node.append(value.content);
+                valueNode.append(value.content);
             }
             else {
-                node.append(value.get('content'));
+                valueNode.append(value.get('content'));
 
                 this._contentEventHandle = value.after(
                     'contentChange',
