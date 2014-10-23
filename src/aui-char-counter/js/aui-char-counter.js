@@ -60,8 +60,19 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * Max number of characters the <a
-         * href="CharCounter.html#config_input">input</a> can have.
+         * Node or Selector for the input field. Required.
+         *
+         * @attribute input
+         * @default null
+         * @type {Node | String}
+         */
+        input: {
+            setter: A.one
+        },
+
+        /**
+         * Max number of characters the [input](A.CharCounter.html#attr_input)
+         * can have.
          *
          * @attribute maxLength
          * @default Infinity
@@ -72,19 +83,8 @@ var CharCounter = A.Component.create({
             setter: function(v) {
                 return this._setMaxLength(v);
             },
-            value: Infinity,
-            validator: isNumber
-        },
-
-        /**
-         * Node or Selector for the input field. Required.
-         *
-         * @attribute input
-         * @default null
-         * @type {Node | String}
-         */
-        input: {
-            setter: A.one
+            validator: isNumber,
+            value: Infinity
         }
     },
 
