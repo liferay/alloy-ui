@@ -95,6 +95,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * Fired after the `cols` attribute is set.
      *
      * @method _afterColsChange
+     * @param {EventFacade} event
      * @protected
      */
     _afterColsChange: function(event) {

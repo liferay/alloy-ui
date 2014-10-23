@@ -4,6 +4,8 @@
  * @module aui-layout
  */
 
+var MAXIMUM_COLS_PER_ROW = 12;
+
 /**
  * A base class for Layout.
  *
@@ -39,6 +41,31 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      */
     destructor: function() {
         (new A.EventHandle(this._eventHandles)).detach();
+    },
+
+    /**
+     * Adds a new row with specified number of cols to the current layout.
+     *
+     * @method addRowWithSpecifiedColNumber
+     * @param {Number} numberOfCols Number of cols to create the row with.
+     **/
+    addRowWithSpecifiedColNumber: function(numberOfCols) {
+        var cols = [],
+            i,
+            row,
+            rows = this.get('rows').concat();
+
+        if (numberOfCols) {
+            for (i = 0; i < numberOfCols; i++) {
+                cols.push(new A.LayoutCol({ size: MAXIMUM_COLS_PER_ROW / numberOfCols }));
+            }
+
+            row = new A.LayoutRow({ cols: cols });
+
+            rows.splice(rows.length, 0, row);
+
+            this.set('rows', rows);
+        }
     },
 
     /**

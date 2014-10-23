@@ -1,0 +1,21 @@
+.layout-builder-add-row-choose-row {
+    background-color: white;
+    border: 1px solid black;
+    float: left;
+    height: 50px;
+    text-align: center;
+}
+
+.layout-builder-add-row-area {
+    cursor: pointer;
+    height: 50px;
+    margin-left: -15px;
+    margin-right: -15px;
+    position: relative;
+    z-index: 999;
+}
+
+.layout-builder-add-row-area-fixed {
+    bottom: -30px;
+    position: fixed;
+}

@@ -177,7 +177,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
         'should add addColButton to new rows': function() {
             var addColButtons,
-                addRowButton,
+                addRowArea,
                 container;
 
             this._createLayoutBuilder();
@@ -187,8 +187,8 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             Y.Assert.areEqual(2, addColButtons.size());
 
-            addRowButton = container.one('.layout-builder-add-row-button');
-            addRowButton.simulate('click');
+            addRowArea = container.one('.layout-builder-add-row-choose-row');
+            addRowArea.simulate('click');
 
             addColButtons = container.all('.layout-builder-add-col');
 

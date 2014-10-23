@@ -4,8 +4,12 @@
  * @module aui-layout-add-row
  */
 
-var CSS_ADD_ROW = A.getClassName('layout', 'builder', 'add', 'row', 'button'),
-    TPL_ADD_ROW_BUTTON = '<div><button class="' + CSS_ADD_ROW + '">Add row</button></div>';
+var CSS_ADD_ROW_AREA = A.getClassName('layout', 'builder', 'add', 'row', 'area'),
+    CSS_ADD_ROW_AREA_FIXED = A.getClassName('layout', 'builder', 'add', 'row', 'area', 'fixed'),
+    CSS_ADD_ROW_CHOOSE_ROW = A.getClassName('layout', 'builder', 'add', 'row', 'choose', 'row'),
+
+    TPL_ADD_ROW_AREA = '<div class="' + CSS_ADD_ROW_AREA + ' ' + CSS_ADD_ROW_AREA_FIXED + '"></div>',
+    TPL_ADD_ROW_CHOOSE_ROW = '<div class="' + CSS_ADD_ROW_CHOOSE_ROW + '"></div>';
 
 /**
  * A base class for Layout Add Row.
@@ -17,6 +21,25 @@ var CSS_ADD_ROW = A.getClassName('layout', 'builder', 'add', 'row', 'button'),
 function LayoutBuilderAddRow() {}
 
 LayoutBuilderAddRow.prototype = {
+
+    /**
+     * Area to choose a new type of row.
+     *
+     * @property _addRowArea
+     * @type {Node}
+     * @protected
+     */
+    _addRowArea: null,
+
+    /**
+     * Body's node.
+     *
+     * @property _bodyNode
+     * @type {Node}
+     * @protected
+     */
+    _bodyNode: null,
+
     /**
      * Construction logic executed during instantiation.
      * Lifecycle.
@@ -25,7 +48,9 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     initializer: function() {
-        this._addRowButton = A.Node.create(TPL_ADD_ROW_BUTTON);
+        this._addRowArea = this._createAddRowArea();
+
+        this._bodyNode = A.one('body');
 
         this._eventHandles.push(
             this.after('enableAddRowsChange', this._afterEnableAddRowsChange)
@@ -62,21 +87,80 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     _bindAddRowEvents: function() {
-        var container = this.get('container');
+        var instance = this,
+            container = this.get('container');
+
+        this._bodyNode.plug(A.Plugin.ScrollInfo);
+
+        this._bodyNode.scrollInfo.on('scroll', function() {
+            instance._setAddRowAreaPosition();
+        });
 
         this._addRowsEventHandles = [
-            container.delegate('click', A.bind(this._onMouseClickAddRowEvent, this), '.' + CSS_ADD_ROW)
+            container.delegate('click', A.bind(this._onMouseClickAddRowEvent, this), '.' + CSS_ADD_ROW_AREA)
         ];
+    },
+
+    /**
+     * Sets row area to fixed or relative depending on it's position.
+     *
+     * @method _setAddRowAreaPosition
+     * @protected
+     */
+    _setAddRowAreaPosition: function() {
+        var addRowArea = this._addRowArea,
+            bodyBottom = this._bodyNode.scrollInfo.getScrollInfo().scrollBottom,
+            layoutContainerBottom = this._layoutContainer.get('region').bottom;
+
+        if (bodyBottom < layoutContainerBottom) {
+            addRowArea.addClass(CSS_ADD_ROW_AREA_FIXED);
+        }
+        else if (bodyBottom >= layoutContainerBottom && addRowArea.hasClass(CSS_ADD_ROW_AREA_FIXED)) {
+            addRowArea.removeClass(CSS_ADD_ROW_AREA_FIXED);
+            window.scrollBy(0, addRowArea.get('region').height);
+        }
+    },
+
+    /**
+     * Creates the area to choose the new row.
+     *
+     * @method _createAddRowArea
+     * @protected
+     */
+    _createAddRowArea: function() {
+        var colWidth,
+            index,
+            maximumColsForNewRows = this.get('maximumColsForNewRows'),
+            rowArea = A.Node.create(TPL_ADD_ROW_AREA),
+            rowOption;
+
+        colWidth = (100 / maximumColsForNewRows) + '%';
+        rowArea.setStyle('width', this._layoutContainer.getStyle('width'));
+
+        for (index = 1; index <= maximumColsForNewRows; index++) {
+            rowOption = A.Node.create(TPL_ADD_ROW_CHOOSE_ROW);
+            rowOption.setData('numberOfCols', index);
+            rowOption.setStyle('width', colWidth);
+            rowOption.set('text', 'Add ' + index + (index !== 1 ? ' cols' : ' col'));
+
+            rowArea.append(rowOption);
+        }
+
+        return rowArea;
     },
 
     /**
      * Fires after click on add row button.
      *
      * @method _onMouseClickEvent
+     * @param {EventFacade} event
      * @protected
      */
-    _onMouseClickAddRowEvent: function() {
-        this.get('layout').addRow();
+    _onMouseClickAddRowEvent: function(event) {
+        var button = event.target,
+            numberOfCols = button.getData('numberOfCols');
+
+        this.get('layout').addRowWithSpecifiedColNumber(numberOfCols);
     },
 
     /**
@@ -88,11 +172,12 @@ LayoutBuilderAddRow.prototype = {
      */
     _uiSetEnableAddRows: function(enableAddRows) {
         if (enableAddRows) {
-            this.get('container').append(this._addRowButton);
+            this.get('container').append(this._addRowArea);
             this._bindAddRowEvents();
+            this._setAddRowAreaPosition();
         }
         else {
-            this._addRowButton.remove();
+            this._addRowArea.remove();
             this._unbindAddRowEvents();
         }
     },
@@ -105,6 +190,8 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     _unbindAddRowEvents: function() {
+        this._bodyNode.unplug(A.Plugin.ScrollInfo);
+
         if (this._addRowsEventHandles) {
             (new A.EventHandle(this._addRowsEventHandles)).detach();
         }
@@ -131,6 +218,19 @@ LayoutBuilderAddRow.ATTRS = {
     enableAddRows: {
         validator: A.Lang.isBoolean,
         value: true
+    },
+
+    /**
+     * Flag indicating the maximum number of cols for new rows.
+     *
+     * @attribute
+     * @default 4
+     * @type {Number}
+     */
+    maximumColsForNewRows: {
+        validator: A.Lang.isNumber,
+        value: 4,
+        writeOnce: 'initOnly'
     }
 };
 

@@ -3,7 +3,42 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
     var Assert = Y.Assert,
         container,
         layout,
+        layoutBuilder,
         suite = new Y.Test.Suite('aui-layout-builder-add-row');
+
+    function createALotOfRows() {
+        var i,
+            rows = [];
+
+        layoutBuilder.destroy();
+
+        for (i = 0; i < 15; i++) {
+            rows.push(new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            value: { content: 'foo' },
+                            size: 3
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: 'foo' },
+                            size: 3
+                        }),
+                        new Y.LayoutCol({
+                            value: { content: 'foo' },
+                            size: 6
+                        })
+                    ]
+                })
+            );
+        }
+
+        layoutBuilder = new Y.LayoutBuilder({
+            container: Y.one('.container'),
+            layout: new Y.Layout({
+                rows: rows
+            })
+        });
+    }
 
     suite.add(new Y.Test.Case({
         name: 'Layout Builder Add Row Tests',
@@ -35,25 +70,25 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
                 ]
             });
 
-            this.layoutBuilder = new Y.LayoutBuilder({
+            layoutBuilder = new Y.LayoutBuilder({
                 container: Y.one('.container'),
                 layout: layout
             });
 
-            container = this.layoutBuilder.get('container');
+            container = layoutBuilder.get('container');
         },
 
         tearDown: function() {
-            this.layoutBuilder.destroy();
+            layoutBuilder.destroy();
         },
 
-        'should add a new row when click on add new row button': function() {
-            var button = container.one('.layout-builder-add-row-button'),
+        'should add a new row when click on add new row area': function() {
+            var addNewRowArea = container.one('.layout-builder-add-row-choose-row'),
                 rows = container.all('.row');
 
             Assert.areEqual(1, rows.size());
 
-            button.simulate('click');
+            addNewRowArea.simulate('click');
 
             rows = container.all('.row');
 
@@ -61,23 +96,23 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
         },
 
         'should hide add row button if disable enableAddRows attribute': function() {
-            var button = container.one('.layout-builder-add-row-button');
+            var addNewRowOption = container.one('.layout-builder-add-row-choose-row');
 
-            Assert.isNotNull(button);
+            Assert.isNotNull(addNewRowOption);
 
-            this.layoutBuilder.set('enableAddRows', false);
+            layoutBuilder.set('enableAddRows', false);
 
-            button = container.one('.layout-builder-add-row-button');
+            addNewRowOption = container.one('.layout-builder-add-row-button');
 
-            Assert.isNull(button);
+            Assert.isNull(addNewRowOption);
         },
 
         'should disable enableAddRows attribute when creating the layout builder': function() {
             var button;
 
-            this.layoutBuilder.destroy();
+            layoutBuilder.destroy();
 
-            this.layoutBuilder = new Y.LayoutBuilder({
+            layoutBuilder = new Y.LayoutBuilder({
                 container: Y.one('.container'),
                 enableAddRows: false,
                 layout: layout
@@ -86,6 +121,76 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
             button = container.one('.layout-builder-add-row-button');
 
             Assert.isNull(button);
+        },
+
+        'should create an area to select the new row': function() {
+            var addRowArea = container.one('.layout-builder-add-row-area');
+
+            Assert.isNotNull(addRowArea);
+        },
+
+        'should create add row options depending on maximumColsForNewRows attribute': function() {
+            var addRowArea = container.all('.layout-builder-add-row-choose-row'),
+                maximumColsForNewRows = layoutBuilder.get('maximumColsForNewRows');
+
+            Assert.areEqual(maximumColsForNewRows, addRowArea.size());
+        },
+
+        'should be able to have diffent cols\' size options for new rows': function() {
+            var addNewRowOption = container.one('.layout-builder-add-row-choose-row');
+
+            Assert.areEqual(4, layoutBuilder.get('layout').get('rows')[0].get('cols').length);
+
+            addNewRowOption.simulate('click');
+
+            Assert.areEqual(1, layoutBuilder.get('layout').get('rows')[1].get('cols').length);
+
+            addNewRowOption = container.all('.layout-builder-add-row-choose-row').last();
+            addNewRowOption.simulate('click');
+
+            Assert.areEqual(1, layoutBuilder.get('layout').get('rows')[1].get('cols').length);
+        },
+
+        'should change add row area position depending upon the scroll position': function() {
+            createALotOfRows();
+
+            Assert.areEqual('fixed', Y.one('.layout-builder-add-row-area').getStyle('position'));
+
+            Y.config.win.scroll(0, 10);
+
+            this.wait(function() {
+                Assert.areEqual('fixed', Y.one('.layout-builder-add-row-area').getStyle('position'));
+            }, 100);
+        },
+
+        'should change add row area position to relative if scroll beyond the height of layoutContainer': function() {
+            createALotOfRows();
+
+            Y.config.win.scroll(0, Y.one('body').get('region').height);
+
+            this.wait(function() {
+                Assert.areEqual('relative', Y.one('.layout-builder-add-row-area').getStyle('position'));
+            }, 100);
+        },
+
+        'should ': function() {
+            var body = Y.config.doc.body,
+                instance = this,
+                topDistance;
+
+            createALotOfRows();
+
+            Y.config.win.scrollTo(0, body.getBoundingClientRect().height);
+
+            this.wait(function() {
+                topDistance = body.getBoundingClientRect().top;
+
+                instance.wait(function() {
+                    Y.config.win.scrollBy(0, - 10);
+                    Assert.areEqual(topDistance + 10, body.getBoundingClientRect().top);
+                }, 100);
+
+            }, 100);
         }
     }));
 

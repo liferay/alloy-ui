@@ -64,8 +64,10 @@
     "aui-layout-builder-add-row": {
         "requires": [
             "aui-node-base",
-            "base-build"
-        ]
+            "base-build",
+            "node-scroll-info"
+        ],
+        "skinnable": true
     },
     "aui-layout-builder-remove-row": {
         "requires": [
