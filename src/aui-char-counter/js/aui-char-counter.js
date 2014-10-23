@@ -156,9 +156,9 @@ var CharCounter = A.Component.create({
             if (counter) {
                 var value = instance.get(INPUT).val();
 
-                counter.html(
-                    instance.get(MAX_LENGTH) - value.length
-                );
+                var counterValue = instance.get(MAX_LENGTH) - instance._getNormalizedLength(value);
+
+                counter.html(counterValue);
             }
         },
 
@@ -198,13 +198,17 @@ var CharCounter = A.Component.create({
             var scrollTop = input.get(SCROLL_TOP);
             var scrollLeft = input.get(SCROLL_LEFT);
 
-            if (value.length > maxLength) {
-                input.val(
-                    value.substring(0, maxLength)
-                );
+            var normalizedLength = instance._getNormalizedLength(value);
+
+            if (normalizedLength > maxLength) {
+                var trimLength = maxLength - (normalizedLength - value.length);
+
+                value = value.substring(0, trimLength);
+
+                input.val(value);
             }
 
-            if (value.length == maxLength) {
+            if (normalizedLength >= maxLength) {
                 instance.fire('maxLength');
             }
 
@@ -212,6 +216,28 @@ var CharCounter = A.Component.create({
             input.set(SCROLL_LEFT, scrollLeft);
 
             instance.syncUI();
+        },
+
+        /**
+         * Normalize reported length between browsers.
+         *
+         * @method _getNormalizedLength
+         * @param {String} value.
+         * @protected
+         * @return {Number}
+         */
+        _getNormalizedLength: function(value) {
+            var instance = this;
+
+            var newLines = value.match(/(\r\n|\n|\r)/g);
+
+            var newLinesCorrection = 0;
+
+            if (newLines != null) {
+                newLinesCorrection = newLines.length;
+            }
+
+            return value.length + newLinesCorrection;
         },
 
         /**
