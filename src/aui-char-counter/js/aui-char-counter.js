@@ -187,35 +187,38 @@ var CharCounter = A.Component.create({
          */
         checkLength: function() {
             var instance = this;
+
             var input = instance.get(INPUT);
-            var maxLength = instance.get(MAX_LENGTH);
 
-            if (!input) {
-                return false; // NOTE: return
+            if (input) {
+                var maxLength = instance.get(MAX_LENGTH);
+                var value = input.val();
+
+                var normalizedLength = instance._getNormalizedLength(value);
+
+                if (normalizedLength > maxLength) {
+                    var scrollTop = input.get('scrollTop');
+                    var scrollLeft = input.get('scrollLeft');
+
+                    var trimLength = maxLength - (normalizedLength - value.length);
+
+                    value = value.substring(0, trimLength);
+
+                    input.val(value);
+
+                    input.set(SCROLL_TOP, scrollTop);
+                    input.set(SCROLL_LEFT, scrollLeft);
+                }
+
+                instance.syncUI();
+
+                if (normalizedLength >= maxLength) {
+                    instance.fire('maxLength');
+                }
             }
-
-            var value = input.val();
-            var scrollTop = input.get(SCROLL_TOP);
-            var scrollLeft = input.get(SCROLL_LEFT);
-
-            var normalizedLength = instance._getNormalizedLength(value);
-
-            if (normalizedLength > maxLength) {
-                var trimLength = maxLength - (normalizedLength - value.length);
-
-                value = value.substring(0, trimLength);
-
-                input.val(value);
+            else {
+                return false;
             }
-
-            if (normalizedLength >= maxLength) {
-                instance.fire('maxLength');
-            }
-
-            input.set(SCROLL_TOP, scrollTop);
-            input.set(SCROLL_LEFT, scrollLeft);
-
-            instance.syncUI();
         },
 
         /**
