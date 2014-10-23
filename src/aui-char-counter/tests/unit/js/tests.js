@@ -238,6 +238,28 @@ YUI.add('aui-char-counter-tests', function(Y) {
             this.changeInputContent('123456');
             Y.Assert.areEqual('123456', this.input.val());
             Y.Assert.areEqual('123456', this.textarea.val());
+        },
+
+        'should treat new lines in textareas as 2 characters': function() {
+            this.inputCharCounter = new Y.CharCounter({
+                input: this.input,
+                maxLength: 10
+            });
+
+            this.textareaCharCounter = new Y.CharCounter({
+                input: this.textarea,
+                maxLength: 10
+            });
+
+            this.changeInputContent('12345\n67890');
+
+            Y.Assert.areEqual(10, this.input.val().length);
+            Y.Assert.areEqual(9, this.textarea.val().length);
+
+            this.changeInputContent('12345\r\n67890');
+
+            Y.Assert.areEqual(10, this.input.val().length);
+            Y.Assert.areEqual(9, this.textarea.val().length);
         }
     }));
 
