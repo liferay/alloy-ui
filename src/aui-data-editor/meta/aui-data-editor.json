@@ -1,19 +1,18 @@
 {
     "aui-boolean-data-editor": {
         "requires": [
-            "aui-classnamemanager",
             "aui-data-editor"
         ]
     },
     "aui-data-editor": {
         "requires": [
+            "aui-classnamemanager",
             "base-build",
             "node-base"
         ]
     },
     "aui-options-data-editor": {
         "requires": [
-            "aui-classnamemanager",
             "aui-data-editor",
             "dd-constrain",
             "dd-delegate",
@@ -25,7 +24,6 @@
     },
     "aui-text-data-editor": {
         "requires": [
-            "aui-classnamemanager",
             "aui-data-editor"
         ]
     }

@@ -28,17 +28,6 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
 
             editor.get('node').one('input').set('checked', false);
             Y.Assert.isFalse(editor.get('editedValue'));
-        },
-
-        'should set label': function() {
-            var editor = new Y.BooleanDataEditor({
-                label: 'My Label'
-            });
-
-            Y.Assert.areEqual('My Label', editor.get('node').one('label').get('text'));
-
-            editor.set('label', 'New Label');
-            Y.Assert.areEqual('New Label', editor.get('node').one('label').get('text'));
         }
     }));
 

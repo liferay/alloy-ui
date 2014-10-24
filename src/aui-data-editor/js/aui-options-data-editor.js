@@ -22,7 +22,7 @@ var CSS_EDITOR = A.getClassName('options', 'data', 'editor'),
  * @constructor
  */
 A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
-    TPL_EDITOR: '<div class="' + CSS_EDITOR + '">' +
+    TPL_EDITOR_CONTENT: '<div class="' + CSS_EDITOR + '">' +
         '<div class="' + CSS_EDITOR_OPTIONS + '"></div>' +
         '<button class="' + CSS_EDITOR_ADD + '">Add Option</button></div>',
     TPL_EDITOR_OPTION: '<div class="' + CSS_EDITOR_OPTION + '">' +

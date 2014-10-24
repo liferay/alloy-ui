@@ -53,6 +53,20 @@ YUI.add('aui-data-editor-tests', function(Y) {
 
             editor.destroy();
             Y.Assert.isNull(Y.one('#testEditor'));
+        },
+
+        'should set label': function() {
+            var editor,
+                TestEditor = this._createTestEditorClass();
+
+            editor = new TestEditor({
+                label: 'My Label'
+            });
+
+            Y.Assert.areEqual('My Label', editor.get('node').one('label').get('text'));
+
+            editor.set('label', 'New Label');
+            Y.Assert.areEqual('New Label', editor.get('node').one('label').get('text'));
         }
     }));
 

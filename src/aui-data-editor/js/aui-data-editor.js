@@ -4,6 +4,13 @@
  * @module aui-data-editor
  */
 
+var CSS_EDITOR = A.getClassName('data', 'editor'),
+    CSS_EDITOR_CONTENT_INNER = A.getClassName('data', 'editor', 'content', 'inner'),
+
+    TPL_EDITOR = '<div class="' + CSS_EDITOR + '"><label></label>' +
+        '<div class="' + CSS_EDITOR_CONTENT_INNER + '"></div>' +
+        '</div>';
+
 /**
  * A base class for Data Editor. All data editors should extend from this.
  *
@@ -14,7 +21,7 @@
  * @constructor
  */
 A.DataEditor = A.Base.create('data-editor', A.Base, [], {
-    TPL_EDITOR: '<div></div>',
+    TPL_EDITOR_CONTENT: '<div></div>',
 
     /**
      * Constructor for the `A.DataEditor`. Lifecycle.
@@ -23,9 +30,27 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      * @protected
      */
     initializer: function() {
-        this.after('originalValueChange', this._afterOriginalValueChange);
+        var node = this.get('node');
+
+        node.one('.' + CSS_EDITOR_CONTENT_INNER).setHTML(this.TPL_EDITOR_CONTENT);
 
         this._uiSetOriginalValue(this.get('originalValue'));
+        this._uiSetLabel(this.get('label'));
+
+        this.after({
+            originalValueChange: this._afterOriginalValueChange,
+            labelChange: this._afterLabelChange
+        });
+    },
+
+    /**
+     * Fired after the `label` attribute is set.
+     *
+     * @method _afterLabelChange
+     * @protected
+     */
+    _afterLabelChange: function() {
+        this._uiSetLabel(this.get('label'));
     },
 
     /**
@@ -58,6 +83,17 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      */
     _uiSetOriginalValue: function() {
         throw new Error('Subclasses should override _uiSetOriginalValue');
+    },
+
+    /**
+     * Updates the ui according to the value of the `label` attribute.
+     *
+     * @method _uiSetLabel
+     * @param {String} label
+     * @protected
+     */
+    _uiSetLabel: function(label) {
+        return this.get('node').one('label').set('text', label);
     }
 }, {
     /**
@@ -81,6 +117,17 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
         },
 
         /**
+         * The label to be used by this boolean editor.
+         *
+         * @attribute label
+         * @default ''
+         * @type String
+         */
+        label: {
+            value: ''
+        },
+
+        /**
          * The node where the editor UI is rendered.
          *
          * @attribute node
@@ -89,7 +136,7 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
         node: {
             readOnly: true,
             valueFn: function() {
-                return A.Node.create(this.TPL_EDITOR);
+                return A.Node.create(TPL_EDITOR);
             }
         },
 

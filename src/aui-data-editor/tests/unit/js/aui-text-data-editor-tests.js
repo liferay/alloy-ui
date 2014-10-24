@@ -21,17 +21,6 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
 
             editor.get('node').one('input').set('value', 'new');
             Y.Assert.areEqual('new', editor.get('editedValue'));
-        },
-
-        'should set label': function() {
-            var editor = new Y.TextDataEditor({
-                label: 'My Label'
-            });
-
-            Y.Assert.areEqual('My Label', editor.get('node').one('label').get('text'));
-
-            editor.set('label', 'New Label');
-            Y.Assert.areEqual('New Label', editor.get('node').one('label').get('text'));
         }
     }));
 
