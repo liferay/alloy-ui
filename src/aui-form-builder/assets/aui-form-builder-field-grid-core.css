@@ -1,3 +1,4 @@
-table, th, td {
+.form-builder-field-grid th,
+.form-builder-field-grid td {
     border: 1px solid;
 }

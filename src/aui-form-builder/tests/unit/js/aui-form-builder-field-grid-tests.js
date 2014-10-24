@@ -48,13 +48,25 @@ YUI.add('aui-form-builder-field-grid-tests', function(Y) {
             this._field.set('columns', ['Column1', 'Column2', 'Column3']);
             Y.Assert.areEqual(
                 4,
-                this._field.get('content').one('.form-builder-field-columns').all('th').size()
+                this._field.get('content').one('.form-builder-field-grid-columns').all('th').size()
+            );
+
+            this._field.set('columns', ['Column1', 'Column2']);
+            Y.Assert.areEqual(
+                3,
+                this._field.get('content').one('.form-builder-field-grid-columns').all('th').size()
             );
 
             this._field.set('rows', ['Row1', 'Row2']);
             Y.Assert.areEqual(
                 3,
-                this._field.get('content').one('.form-builder-field-table').all('tr').size()
+                this._field.get('content').one('.form-builder-field-grid-table').all('tr').size()
+            );
+
+            this._field.set('rows', ['Row1', 'Row2', 'Row3']);
+            Y.Assert.areEqual(
+                4,
+                this._field.get('content').one('.form-builder-field-grid-table').all('tr').size()
             );
         }
     }));

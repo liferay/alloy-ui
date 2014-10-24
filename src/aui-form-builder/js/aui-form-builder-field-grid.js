@@ -6,15 +6,13 @@
  */
 
 var CSS_FIELD_GRID = A.getClassName('form', 'builder', 'field', 'grid'),
-    CSS_FIELD_GRID_ROW = A.getClassName('form', 'builder', 'field', 'row'),
-    CSS_FIELD_GRID_TABLE = A.getClassName('form', 'builder', 'field', 'table'),
-    CSS_FIELD_GRID_COLUMNS = A.getClassName('form', 'builder', 'field', 'columns'),
+    CSS_FIELD_GRID_COLUMNS = A.getClassName('form', 'builder', 'field', 'grid', 'columns'),
+    CSS_FIELD_GRID_ROW = A.getClassName('form', 'builder', 'field', 'grid', 'row'),
+    CSS_FIELD_GRID_TABLE = A.getClassName('form', 'builder', 'field', 'grid', 'table'),
 
     TPL_FIELD_GRID_CELL = '<td></td>',
     TPL_FIELD_GRID_COLUMN =  '<th>{value}</th>',
-    TPL_FIELD_GRID_COLUMNS =  '<tr class="' + CSS_FIELD_GRID_COLUMNS + '"><th></th></tr>',
-    TPL_FIELD_GRID_ROW = '<th>{value}</th>',
-    TPL_FIELD_GRID_ROWS = '<tr class="' + CSS_FIELD_GRID_ROW + '"></tr>';
+    TPL_FIELD_GRID_ROW = '<tr class="' + CSS_FIELD_GRID_ROW + '"><th>{value}</th></tr>';
 
 /**
  * A base class for Form Builder Field Grid.
@@ -27,10 +25,11 @@ var CSS_FIELD_GRID = A.getClassName('form', 'builder', 'field', 'grid'),
  */
 A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderFieldSentence, [], {
     TPL_FIELD_CONTENT: '<table class="' + CSS_FIELD_GRID_TABLE + '">' +
+        '<tr class="' + CSS_FIELD_GRID_COLUMNS + '"></tr>' +
         '</table>',
 
     /**
-     * Constructor for the `A.FormBuilderFieldRow`. Lifecycle.
+     * Constructor for the `A.FormBuilderFieldGrid`. Lifecycle.
      *
      * @method initializer
      * @protected
@@ -43,7 +42,6 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
         this._uiSetColumns(this.get('columns'));
         this._uiSetRows(this.get('rows'));
 
-
         this.after({
             columnsChange: this._afterColumnsChange,
             rowsChange: this._afterRowsChange
@@ -51,7 +49,7 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
     },
 
     /**
-     * Fired after the `grids` attribute is set.
+     * Fired after the `rows` attribute is set.
      *
      * @method _afterRowsChange
      * @protected
@@ -61,13 +59,14 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
     },
 
     /**
-     * Fired after the `grids` attribute is set.
+     * Fired after the `columns` attribute is set.
      *
      * @method _afterColumnsChange
      * @protected
      */
     _afterColumnsChange: function() {
         this._uiSetColumns(this.get('columns'));
+        this._uiSetRows(this.get('rows'));
     },
 
     /**
@@ -110,16 +109,18 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
      * @protected
      */
     _uiSetColumns: function(columns) {
-        var columnsContainer = this.get('content').one('.' + CSS_FIELD_GRID_TABLE),
-            columnNode = A.Node.create(TPL_FIELD_GRID_COLUMNS);
+        var columnNode = this.get('content').one('.' + CSS_FIELD_GRID_COLUMNS);
 
-        columnsContainer.empty();
+        columnNode.empty();
+        columnNode.append(A.Lang.sub(TPL_FIELD_GRID_COLUMN, {
+            value: ''
+        }));
+
         A.Array.each(columns, function(column) {
             columnNode.append(A.Lang.sub(TPL_FIELD_GRID_COLUMN, {
                 value: column
             }));
         });
-        columnsContainer.appendChild(columnNode);
     },
 
     /**
@@ -130,14 +131,15 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
      * @protected
      */
     _uiSetRows: function(rows) {
-        var tableContainer = this.get('content').one('table'),
-            columns = this.get('columns'),
-            rowNode;
+        var columns = this.get('columns'),
+            content = this.get('content'),
+            rowNode,
+            tableContainer = content.one('.' + CSS_FIELD_GRID_TABLE);
+
+        content.all('.' + CSS_FIELD_GRID_ROW).remove(true);
 
         A.Array.each(rows, function(row) {
-            rowNode = A.Node.create(A.Lang.sub(TPL_FIELD_GRID_ROWS));
-
-            rowNode.appendChild(A.Lang.sub(TPL_FIELD_GRID_ROW, {
+            rowNode = A.Node.create(A.Lang.sub(TPL_FIELD_GRID_ROW, {
                 value: row
             }));
 
@@ -170,18 +172,6 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
         },
 
         /**
-         * The rows that can be chosen.
-         *
-         * @attribute rows
-         * @default []
-         * @type String
-         */
-        rows: {
-            validator: A.Lang.isArray,
-            value: []
-        },
-
-        /**
          * Flag indicating if this field is required.
          *
          * @attribute required
@@ -191,6 +181,18 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
         required: {
             validator: A.Lang.isBoolean,
             value: false
+        },
+
+        /**
+         * The rows that can be chosen.
+         *
+         * @attribute rows
+         * @default []
+         * @type String
+         */
+        rows: {
+            validator: A.Lang.isArray,
+            value: []
         }
     }
 });
