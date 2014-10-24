@@ -6,11 +6,11 @@
  */
 
 var CSS_FIELD_SCALE = A.getClassName('form', 'builder', 'field', 'scale'),
-    CSS_FIELD_SCALE_RANGE = A.getClassName('form', 'builder', 'field', 'scale', 'range'),
-    CSS_FIELD_SCALE_INPUT_LOWER_VALUE =
-    A.getClassName('form', 'builder', 'field', 'scale', 'input', 'lower', 'value'),
     CSS_FIELD_SCALE_INPUT_HIGHER_VALUE =
-    A.getClassName('form', 'builder', 'field', 'scale', 'input', 'higher', 'value');
+        A.getClassName('form', 'builder', 'field', 'scale', 'input', 'higher', 'value'),
+    CSS_FIELD_SCALE_INPUT_LOWER_VALUE =
+        A.getClassName('form', 'builder', 'field', 'scale', 'input', 'lower', 'value'),
+    CSS_FIELD_SCALE_RANGE = A.getClassName('form', 'builder', 'field', 'scale', 'range');
 
 /**
  * A base class for Form Builder Field Scale.
@@ -113,7 +113,7 @@ A.FormBuilderFieldScale = A.Base.create('form-builder-field-scale', A.FormBuilde
          */
         range: {
             validator: A.Lang.isArray,
-            value: []
+            value: [1, 10]
         },
 
         /**
