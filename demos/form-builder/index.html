@@ -19,6 +19,7 @@ YUI({ filter:'raw' }).use(
     'aui-form-builder',
     'aui-form-builder-field-choice',
     'aui-form-builder-field-list',
+    'aui-form-builder-field-grid',
     'aui-form-builder-field-text',
     'aui-form-builder-field-sentence',
     function(Y) {
@@ -104,10 +105,9 @@ YUI({ filter:'raw' }).use(
                 icon:'glyphicon glyphicon-font',
                 label: 'Text'
             },{
-                fieldClass: Y.FormBuilderFieldText,
+                fieldClass: Y.FormBuilderFieldGrid,
                 icon:'glyphicon glyphicon-font',
-                label: 'Text',
-                unique: true
+                label: 'Grid'
             }],
             layout: layout
         }).render('#formBuilder');
