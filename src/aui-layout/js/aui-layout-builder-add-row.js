@@ -102,26 +102,6 @@ LayoutBuilderAddRow.prototype = {
     },
 
     /**
-     * Sets row area to fixed or relative depending on it's position.
-     *
-     * @method _setAddRowAreaPosition
-     * @protected
-     */
-    _setAddRowAreaPosition: function() {
-        var addRowArea = this._addRowArea,
-            bodyBottom = this._bodyNode.scrollInfo.getScrollInfo().scrollBottom,
-            layoutContainerBottom = this._layoutContainer.get('region').bottom;
-
-        if (bodyBottom < layoutContainerBottom) {
-            addRowArea.addClass(CSS_ADD_ROW_AREA_FIXED);
-        }
-        else if (bodyBottom >= layoutContainerBottom && addRowArea.hasClass(CSS_ADD_ROW_AREA_FIXED)) {
-            addRowArea.removeClass(CSS_ADD_ROW_AREA_FIXED);
-            window.scrollBy(0, addRowArea.get('region').height);
-        }
-    },
-
-    /**
      * Creates the area to choose the new row.
      *
      * @method _createAddRowArea
@@ -135,7 +115,6 @@ LayoutBuilderAddRow.prototype = {
             rowOption;
 
         colWidth = (100 / maximumColsForNewRows) + '%';
-        rowArea.setStyle('width', this._layoutContainer.getStyle('width'));
 
         for (index = 1; index <= maximumColsForNewRows; index++) {
             rowOption = A.Node.create(TPL_ADD_ROW_CHOOSE_ROW);
@@ -161,6 +140,26 @@ LayoutBuilderAddRow.prototype = {
             numberOfCols = button.getData('numberOfCols');
 
         this.get('layout').addRowWithSpecifiedColNumber(numberOfCols);
+    },
+
+    /**
+     * Sets row area to fixed or relative depending on it's position.
+     *
+     * @method _setAddRowAreaPosition
+     * @protected
+     */
+    _setAddRowAreaPosition: function() {
+        var addRowArea = this._addRowArea,
+            bodyBottom = this._bodyNode.scrollInfo.getScrollInfo().scrollBottom,
+            layoutContainerBottom = this._layoutContainer.get('region').bottom;
+
+        if (bodyBottom < layoutContainerBottom) {
+            addRowArea.addClass(CSS_ADD_ROW_AREA_FIXED);
+        }
+        else if (bodyBottom >= layoutContainerBottom && addRowArea.hasClass(CSS_ADD_ROW_AREA_FIXED)) {
+            addRowArea.removeClass(CSS_ADD_ROW_AREA_FIXED);
+            window.scrollBy(0, addRowArea.get('region').height);
+        }
     },
 
     /**

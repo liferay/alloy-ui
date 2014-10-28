@@ -12,6 +12,7 @@
     margin-left: -15px;
     margin-right: -15px;
     position: relative;
+    width: 100%;
     z-index: 999;
 }
 

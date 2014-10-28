@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1711](https://issues.liferay.com/browse/AUI-1711) Improve interaction of adding new rows
 * [AUI-1745](https://issues.liferay.com/browse/AUI-1745) Investigate and fix performance problems on Layout Builder
 * [AUI-1726](https://issues.liferay.com/browse/AUI-1726) Position buttons to add/remove columns according to wireframe
 * [AUI-1720](https://issues.liferay.com/browse/AUI-1720) Allow moving fields inside existing fields

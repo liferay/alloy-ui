@@ -135,6 +135,16 @@ YUI.add('aui-layout-tests', function(Y) {
             Assert.areEqual(5, container.all('.row').size());
         },
 
+        'should add a row with the specified number of cols': function() {
+            var container = Y.one(CONTAINER_CLASS);
+
+            this.layout.draw(container);
+            this.layout.addRowWithSpecifiedColNumber(4);
+
+            Assert.areEqual(5, container.all('.row').size());
+            Assert.areEqual(4, this.layout.get('rows')[4].get('cols').length);
+        },
+
         'should remove a row by index': function() {
             var container = Y.one(CONTAINER_CLASS);
 
