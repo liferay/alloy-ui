@@ -260,6 +260,30 @@ YUI.add('aui-char-counter-tests', function(Y) {
 
             Y.Assert.areEqual(10, this.input.val().length);
             Y.Assert.areEqual(9, this.textarea.val().length);
+        },
+
+        'character counter should never be negative': function() {
+            this.inputCharCounter = new Y.CharCounter({
+                input: this.input,
+                counter: this.inputCounter,
+                maxLength: 10
+            });
+
+            this.textareaCharCounter = new Y.CharCounter({
+                input: this.textarea,
+                counter: this.textareaCounter,
+                maxLength: 10
+            });
+
+            this.changeInputContent('12345\n67890');
+
+            Y.Assert.isTrue(Lang.toInt(this.inputCounter.text()) >= 0);
+            Y.Assert.isTrue(Lang.toInt(this.textareaCounter.text()) >= 0);
+
+            this.changeInputContent('12345\r\n67890');
+
+            Y.Assert.isTrue(Lang.toInt(this.inputCounter.text()) >= 0);
+            Y.Assert.isTrue(Lang.toInt(this.textareaCounter.text()) >= 0);
         }
     }));
 
