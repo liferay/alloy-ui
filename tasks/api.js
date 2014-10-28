@@ -11,38 +11,45 @@ var ROOT = path.join(__dirname, '..');
 gulp.task('api', ['api-include'], function(callback) {
     var args = [];
     var cmd = 'yuidoc';
-    var cwd = ROOT;
+    var cwd = path.join(ROOT, 'api');
 
-    args.push('temp');
+    args.push('.');
     args.push('--project-version');
     args.push(alloy.version);
     args.push('--config');
-    args.push('bower_components/alloy-apidocs-theme/yuidoc.json');
+    args.push('alloy-apidocs-theme/yuidoc.json');
+    args.push('--themedir');
+    args.push('alloy-apidocs-theme');
     args.push('--outdir');
-    args.push('api');
+    args.push('out');
 
     spawn(cmd, args, cwd)
         .on('exit', callback);
 });
 
 gulp.task('api-copy', function(callback) {
-    run('init', 'clean-api', ['api-copy-aui', 'api-copy-yui'], callback);
+    run('init', 'clean-api', ['api-copy-aui', 'api-copy-theme', 'api-copy-yui'], callback);
 });
 
 gulp.task('api-copy-aui', function() {
     return gulp.src('src/**/*', { cwd: ROOT })
-        .pipe(gulp.dest('temp/alloy-ui/src/', { cwd: ROOT }));
+        .pipe(gulp.dest('api/alloy-ui/src/', { cwd: ROOT }));
+});
+
+gulp.task('api-copy-theme', function() {
+    return gulp.src('bower_components/alloy-apidocs-theme/**/*', { cwd: ROOT })
+        .pipe(gulp.dest('api/alloy-apidocs-theme/', { cwd: ROOT }));
 });
 
 gulp.task('api-copy-yui', function() {
     return gulp.src('bower_components/yui3/src/**/*', { cwd: ROOT })
-        .pipe(gulp.dest('temp/yui3/src/', { cwd: ROOT }));
+        .pipe(gulp.dest('api/yui3/src/', { cwd: ROOT }));
 });
 
 gulp.task('api-include', ['api-copy'], function() {
-    return gulp.src('temp/alloy-ui/src/**/js/*', { cwd: ROOT })
+    return gulp.src('api/alloy-ui/src/**/js/*', { cwd: ROOT })
         .pipe(replace(/@include [^\s]+/g, replaceInclude))
-        .pipe(gulp.dest('temp/alloy-ui/src/', { cwd: ROOT }));
+        .pipe(gulp.dest('api/alloy-ui/src/', { cwd: ROOT }));
 });
 
 gulp.task('api-watch', ['init-bower'], function(callback) {

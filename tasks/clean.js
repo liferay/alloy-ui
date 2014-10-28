@@ -6,7 +6,7 @@ gulp.task('clean-aliases', function(callback) {
 });
 
 gulp.task('clean-api', function(callback) {
-    del(['api', 'temp'], callback);
+    del(['api'], callback);
 });
 
 gulp.task('clean-bower', function(callback) {
