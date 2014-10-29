@@ -36,21 +36,13 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
 
         this._uiSetOriginalValue(this.get('originalValue'));
         this._uiSetLabel(this.get('label'));
+        this._uiSetVisible(this.get('visible'));
 
         this.after({
             originalValueChange: this._afterOriginalValueChange,
-            labelChange: this._afterLabelChange
+            labelChange: this._afterLabelChange,
+            visibleChange: this._afterVisibleChange
         });
-    },
-
-    /**
-     * Fired after the `label` attribute is set.
-     *
-     * @method _afterLabelChange
-     * @protected
-     */
-    _afterLabelChange: function() {
-        this._uiSetLabel(this.get('label'));
     },
 
     /**
@@ -65,6 +57,26 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
     },
 
     /**
+     * Updates the ui according to the value of the parameter.
+     * This should be overridden by subclasses.
+     *
+     * @method updateUiWithValue
+     */
+    updateUiWithValue: function() {
+        throw new Error('Subclasses should override updateUiWithValue');
+    },
+
+    /**
+     * Fired after the `label` attribute is set.
+     *
+     * @method _afterLabelChange
+     * @protected
+     */
+    _afterLabelChange: function() {
+        this._uiSetLabel(this.get('label'));
+    },
+
+    /**
      * Fired after the `originalValue` attribute is set.
      *
      * @method _afterOriginalValueChange
@@ -75,14 +87,13 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
     },
 
     /**
-     * Updates the ui according to the value of the `originalValue` attribute.
-     * This should be overridden by subclasses.
+     * Fired after the `visible` attribute is set.
      *
-     * @method _uiSetOriginalValue
+     * @method _afterVisibleChange
      * @protected
      */
-    _uiSetOriginalValue: function() {
-        throw new Error('Subclasses should override _uiSetOriginalValue');
+    _afterVisibleChange: function() {
+        this._uiSetVisible(this.get('visible'));
     },
 
     /**
@@ -94,6 +105,32 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      */
     _uiSetLabel: function(label) {
         return this.get('node').one('label').set('text', label);
+    },
+
+    /**
+     * Updates the ui according to the value of the `originalValue` attribute.
+     *
+     * @method _uiSetOriginalValue
+     * @protected
+     */
+    _uiSetOriginalValue: function(originalValue) {
+        this.updateUiWithValue(originalValue);
+    },
+
+    /**
+     * Updates the ui according to the value of the `visible` attribute.
+     *
+     * @method _uiSetVisible
+     * @param visible
+     * @protected
+     */
+    _uiSetVisible: function(visible) {
+        if (visible) {
+            this.get('node').show();
+        }
+        else {
+            this.get('node').hide();
+        }
     }
 }, {
     /**
@@ -149,6 +186,18 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
          */
         originalValue: {
             value: null
+        },
+
+        /**
+         * Determines if `DataEditor` is visible or not.
+         *
+         * @attribute visible
+         * @default false
+         * @type Boolean
+         */
+        visible: {
+            lazyAdd: false,
+            value: true
         }
     }
 });

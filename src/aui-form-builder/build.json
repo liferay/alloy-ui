@@ -19,6 +19,12 @@
             ]
         },
 
+        "aui-form-builder-field-date": {
+            "jsfiles": [
+                "js/aui-form-builder-field-date.js"
+            ]
+        },
+
         "aui-form-builder-field-list": {
             "jsfiles": [
                 "js/aui-form-builder-field-list.js"

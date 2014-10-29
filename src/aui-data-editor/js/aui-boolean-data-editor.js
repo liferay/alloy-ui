@@ -27,10 +27,22 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * @protected
      */
     initializer: function() {
-        this._setUncheckedContent();
-
+        this._uiSetEditedValue(this.get('editedValue'));
+        
         this.get('node').one('input').after('change', A.bind(this._afterClickCheckbox, this));
+        
         this.after('editedValueChange', this._afterEditedValueChange);
+    },
+
+    /**
+     * Updates the ui according to the value of the parameter.
+     *
+     * @method updateUiWithValue
+     * @param {Boolean} value
+     */
+    updateUiWithValue: function(value) {
+        this.get('node').one('input').set('checked', value);
+        this.set('editedValue', value);
     },
 
     /**
@@ -51,13 +63,8 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * @param {CustomEvent} event The fired event
      * @protected
      */
-    _afterEditedValueChange: function(event) {
-        if (event.newVal) {
-            this._setCheckedContent();
-        }
-        else {
-            this._setUncheckedContent();
-        }
+    _afterEditedValueChange: function() {
+        this._uiSetEditedValue(this.get('editedValue'));
     },
 
     /**
@@ -94,32 +101,19 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     },
 
     /**
-     * Updates the ui according to the value of the `originalValue` attribute.
+     * Updates the ui according to the value of the `editedValue` attribute.
      *
-     * @method _uiSetOriginalValue
-     * @param originalValue
+     * @method _uiSetEditedValue
+     * @param editedValue
      * @protected
      */
-    _uiSetOriginalValue: function(originalValue) {
-        this.get('node').one('input').set('checked', originalValue);
-        this.set('editedValue', originalValue);
-    },
-
-    /**
-     * Updates the ui according to the value of the `visible` attribute.
-     *
-     * @method _uiSetVisible
-     * @param visible
-     * @protected
-     */
-    _setVisible: function(visible) {
-        if (visible) {
-            this.get('node').show();
+    _uiSetEditedValue: function(editedValue) {
+        if (editedValue) {
+            this._setCheckedContent();
         }
         else {
-            this.get('node').hide();
+            this._setUncheckedContent();
         }
-        return visible;
     }
 }, {
     /**
@@ -173,19 +167,6 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
          */
         originalValue: {
             value: false
-        },
-
-        /**
-         * 
-         *
-         * @attribute visible
-         * @default false
-         * @type Boolean
-         */
-        visible: {
-            lazyAdd: false,
-            setter: '_setVisible',
-            value: true
         }
     }
 });
