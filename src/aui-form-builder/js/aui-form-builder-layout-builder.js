@@ -8,11 +8,11 @@
 var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'move'),
     CSS_CHOOSE_COL_MOVE_TARGET = A.getClassName('form', 'builder', 'choose', 'col', 'move', 'target'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
-    CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_MOVE_BUTTON = A.getClassName('form', 'builder', 'field', 'move', 'button'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_MOVE_TARGET_INVALID = A.getClassName('form', 'builder', 'field', 'move', 'target', 'invalid'),
     CSS_FIELD_MOVING = A.getClassName('form', 'builder', 'field', 'moving'),
+    CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
     CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode'),
     CSS_LAYOUT_MODE_BUTTON = A.getClassName('form', 'builder', 'layout', 'mode', 'button'),
     CSS_LAYOUT_MODE_CANCEL = A.getClassName('form', 'builder', 'layout', 'mode', 'cancel'),
@@ -114,7 +114,7 @@ A.FormBuilderLayoutBuilder.prototype = {
         button.after('click', A.bind(this._afterClickLayoutModeButton, this));
 
         this._layoutBuilder = new A.LayoutBuilder({
-            container: this.get('contentBox').one('.' + CSS_FIELD_LIST),
+            container: this.get('contentBox').one('.' + CSS_LAYOUT),
             layout: this.get('layout')
         });
         this._bindLayoutBuilderEvents();

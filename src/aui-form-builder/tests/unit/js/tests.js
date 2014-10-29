@@ -655,7 +655,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.Assert.areEqual(
                 2,
-                Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
+                Y.one('.form-builder-layout').all('.form-builder-empty-col').size()
             );
         },
 
@@ -687,7 +687,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.Assert.areEqual(
                 3,
-                Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
+                Y.one('.form-builder-layout').all('.form-builder-empty-col').size()
             );
         },
 
@@ -706,7 +706,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.Assert.areEqual(
                 1,
-                Y.one('.form-builder-field-list').all('.form-builder-empty-col').size()
+                Y.one('.form-builder-layout').all('.form-builder-empty-col').size()
             );
         },
 

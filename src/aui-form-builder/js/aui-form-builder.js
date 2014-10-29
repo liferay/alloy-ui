@@ -14,7 +14,6 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
     CSS_FIELD_CONTENT_TOOLBAR = A.getClassName('form', 'builder', 'field', 'content', 'toolbar'),
     CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
-    CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FIELD_SETTINGS_SAVE =
@@ -23,6 +22,7 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'field', 'toolbar', 'edit'),
     CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'field', 'toolbar', 'remove'),
     CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list'),
+    CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
     CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
 
     MODES = {
@@ -56,7 +56,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     TPL_EMPTY_LAYOUT: '<div class="' + CSS_EMPTY_LAYOUT + '">' +
         '<div>You don\'t have any question yet.</div>' +
         '<div>First for all let\'s create a new line?</div></div>',
-    TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '" ></div>',
+    TPL_LAYOUT: '<div class="' + CSS_LAYOUT + '" ></div>',
 
     /**
      * Construction logic executed during the `A.FormBuilder`
@@ -68,7 +68,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     initializer: function() {
         var contentBox = this.get('contentBox');
 
-        contentBox.append(this.TPL_FIELD_LIST);
+        contentBox.append(this.TPL_LAYOUT);
         contentBox.append(this.TPL_EMPTY_LAYOUT);
         contentBox.append(this.TPL_BUTTON_ADD_PAGEBREAK);
 
