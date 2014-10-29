@@ -28,9 +28,9 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
             this._createField();
             this._field.renderSettingsPanel(settings);
 
-            settings.all('input[type="checkbox"]').item(0).set('checked', true);
-            settings.all('input[type="checkbox"]').item(1).set('checked', true);
-            settings.all('input[type="checkbox"]').item(2).set('checked', true);
+            settings.all('input[type="checkbox"]').item(0).simulate('click');
+            settings.all('input[type="checkbox"]').item(1).simulate('click');
+            settings.all('input[type="checkbox"]').item(2).simulate('click');
 
             settings.one('.options-data-editor-add').simulate('click');
             settings.one('.options-data-editor-add').simulate('click');

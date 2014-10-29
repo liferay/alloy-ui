@@ -12,13 +12,15 @@ YUI.add('aui-form-builder-field-text-tests', function(Y) {
         },
 
         'should be able to edit settings': function() {
-            var container = Y.Node.create('<div></div>');
+            var settings = Y.one('#settings');
 
             this._field = new Y.FormBuilderFieldText();
-            this._field.renderSettingsPanel(container);
+            Y.one('#container').append(this._field.get('content'));
 
-            container.all('input[type="checkbox"]').item(0).set('checked', true);
-            container.all('input[type="checkbox"]').item(1).set('checked', true);
+            this._field.renderSettingsPanel(settings);
+
+            settings.all('input[type="checkbox"]').item(0).simulate('click');
+            settings.all('input[type="checkbox"]').item(1).simulate('click');
 
             this._field.saveSettings();
 
@@ -29,5 +31,5 @@ YUI.add('aui-form-builder-field-text-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['aui-form-builder-field-text', 'test']
+    requires: ['aui-form-builder-field-text', 'node-event-simulate', 'test']
 });

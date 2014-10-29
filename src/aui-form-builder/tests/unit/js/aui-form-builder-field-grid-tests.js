@@ -28,7 +28,7 @@ YUI.add('aui-form-builder-field-grid-tests', function(Y) {
             this._createField();
             this._field.renderSettingsPanel(settings);
 
-            settings.all('input[type="checkbox"]').item(0).set('checked', true);
+            settings.all('input[type="checkbox"]').item(0).simulate('click');
 
             settings.all('.options-data-editor-add').item(0).simulate('click');
             settings.all('.options-data-editor-option').item(0).one('input').set('value', 'Column 1');
