@@ -24,6 +24,8 @@ var AArray = A.Array,
      * @param {Object} config Object literal specifying widget configuration
      *     properties.
      * @constructor
+     * @include http://alloyui.com/examples/color-picker/basic-markup.html
+     * @include http://alloyui.com/examples/color-picker/basic.js
      */
     ColorPalette = A.Base.create('color-palette', A.Widget, [
     A.Palette,

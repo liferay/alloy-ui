@@ -15,6 +15,8 @@
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/dropdown/basic-markup.html
+ * @include http://alloyui.com/examples/dropdown/basic.js
  */
 A.Dropdown = A.Base.create('dropdown', A.Widget, [
     A.WidgetCssClass,
