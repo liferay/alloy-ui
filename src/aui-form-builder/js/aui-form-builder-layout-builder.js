@@ -13,10 +13,7 @@ var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'mo
     CSS_FIELD_MOVE_TARGET_INVALID = A.getClassName('form', 'builder', 'field', 'move', 'target', 'invalid'),
     CSS_FIELD_MOVING = A.getClassName('form', 'builder', 'field', 'moving'),
     CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
-    CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode'),
-    CSS_LAYOUT_MODE_BUTTON = A.getClassName('form', 'builder', 'layout', 'mode', 'button'),
-    CSS_LAYOUT_MODE_CANCEL = A.getClassName('form', 'builder', 'layout', 'mode', 'cancel'),
-    CSS_LAYOUT_MODE_EDIT = A.getClassName('form', 'builder', 'layout', 'mode', 'edit');
+    CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode');
 
 /**
  * `A.FormBuilder` extension, which handles the `A.LayoutBuilder` inside it.
@@ -29,9 +26,7 @@ var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'mo
 A.FormBuilderLayoutBuilder = function() {};
 
 A.FormBuilderLayoutBuilder.prototype = {
-    TPL_BUTTON_LAYOUT_MODE: '<button class="btn-default btn ' + CSS_LAYOUT_MODE_BUTTON + '">' +
-        '<span class="' + CSS_LAYOUT_MODE_EDIT + '">Edit Layout</span>' +
-        '<span class="' + CSS_LAYOUT_MODE_CANCEL + '">Cancel</span></button>',
+    TITLE_LAYOUT: 'Edit Layout',
 
     /**
      * Construction logic executed during the `A.FormBuilderLayoutBuilder`
@@ -62,22 +57,6 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Fired after the button for entering/exiting layout mode is clicked.
-     *
-     * @method _afterClickLayoutModeButton
-     * @protected
-     */
-    _afterClickLayoutModeButton: function() {
-        var newMode = A.FormBuilder.MODES.LAYOUT;
-
-        if (this.get('mode') === A.FormBuilder.MODES.LAYOUT) {
-            newMode = A.FormBuilder.MODES.REGULAR;
-        }
-
-        this.set('mode', newMode);
-    },
-
-    /**
      * Fired after the `layout` attribute is set.
      *
      * @method _afterLayoutBuilderLayoutChange
@@ -96,7 +75,7 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _afterLayoutBuilderModeChange: function() {
-        this._uiSetMode(this.get('mode'));
+        this._uiSetLayoutBuilderMode(this.get('mode'));
     },
 
     /**
@@ -106,20 +85,13 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _afterLayoutBuilderRender: function() {
-        var button = this.get('layoutModeButton');
-
-        if (!button.get('parentNode')) {
-            this.get('contentBox').prepend(button);
-        }
-        button.after('click', A.bind(this._afterClickLayoutModeButton, this));
-
         this._layoutBuilder = new A.LayoutBuilder({
             container: this.get('contentBox').one('.' + CSS_LAYOUT),
             layout: this.get('layout')
         });
         this._bindLayoutBuilderEvents();
 
-        this._uiSetMode(this.get('mode'));
+        this._uiSetLayoutBuilderMode(this.get('mode'));
     },
 
     /**
@@ -157,6 +129,8 @@ A.FormBuilderLayoutBuilder.prototype = {
                 enableResizeCols: true
             });
         }
+
+        this._updateHeaderTitle(this.TITLE_LAYOUT);
     },
 
     /**
@@ -175,6 +149,8 @@ A.FormBuilderLayoutBuilder.prototype = {
                 enableResizeCols: false
             });
         }
+
+        this._updateHeaderTitle(this.TITLE_REGULAR);
     },
 
     /**
@@ -308,11 +284,11 @@ A.FormBuilderLayoutBuilder.prototype = {
     /**
      * Updates the UI according to the value of the `mode` attribute.
      *
-     * @method _uiSetMode
+     * @method _uiSetLayoutBuilderMode
      * @param  {String} mode
      * @protected
      */
-    _uiSetMode: function(mode) {
+    _uiSetLayoutBuilderMode: function(mode) {
         if (mode === A.FormBuilder.MODES.LAYOUT) {
             this._enterLayoutMode();
             this.get('boundingBox').addClass(CSS_LAYOUT_MODE);
@@ -320,29 +296,6 @@ A.FormBuilderLayoutBuilder.prototype = {
         else {
             this._exitLayoutMode();
             this.get('boundingBox').removeClass(CSS_LAYOUT_MODE);
-        }
-    }
-};
-
-/**
- * Static property used to define the default attribute configuration for the
- * `A.FormBuilderLayoutBuilder`.
- *
- * @property ATTRS
- * @type {Object}
- * @static
- */
-A.FormBuilderLayoutBuilder.ATTRS = {
-    /**
-     * The node that should be used as the button for entering/exiting layout
-     * mode.
-     *
-     * @attribute layoutModeButton
-     * @type Node
-     */
-    layoutModeButton: {
-        valueFn: function() {
-            return A.Node.create(this.TPL_BUTTON_LAYOUT_MODE);
         }
     }
 };

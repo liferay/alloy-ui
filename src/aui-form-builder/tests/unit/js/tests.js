@@ -806,6 +806,21 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-settings-save').simulate('click');
 
             Y.Assert.isTrue(col.get('movableContent'));
+        },
+
+        'should change to layout mode when menu button is clicked': function() {
+            var contentBox;
+
+            this.createFormBuilder();
+
+            contentBox = this._formBuilder.get('contentBox');
+            contentBox.one('.form-builder-menu-button').simulate('click');
+            contentBox.one('.form-builder-edit-layout-button').simulate('click');
+
+            Y.Assert.areEqual(Y.FormBuilder.MODES.LAYOUT, this._formBuilder.get('mode'));
+
+            contentBox.one('.form-builder-header-back').simulate('click');
+            Y.Assert.areEqual(Y.FormBuilder.MODES.REGULAR, this._formBuilder.get('mode'));
         }
     }));
 

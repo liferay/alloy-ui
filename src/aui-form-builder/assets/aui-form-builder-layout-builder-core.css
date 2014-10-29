@@ -1,12 +1,11 @@
-.form-builder-layout-mode-cancel {
-    display: none;
+.form-builder-layout-mode .form-builder-header .form-builder-header-back {
+    visibility: visible;
 }
 
-.form-builder-layout-mode .form-builder-layout-mode-cancel {
-    display: inline;
+.form-builder-layout-mode .form-builder-header .form-builder-menu {
+    visibility: hidden;
 }
 
-.form-builder-layout-mode .form-builder-layout-mode-edit,
 .form-builder-layout-mode .form-builder-empty-col-add-button,
 .form-builder-layout-mode .form-builder-field-content-inner,
 .form-builder-layout-mode .form-builder-field-sentence-help {

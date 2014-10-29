@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1759](https://issues.liferay.com/browse/AUI-1759) Form builder should have a header with an options menu
 * [AUI-1693](https://issues.liferay.com/browse/AUI-1693) Create scale field
 * [AUI-1694](https://issues.liferay.com/browse/AUI-1694) Create grid field
 * [AUI-1720](https://issues.liferay.com/browse/AUI-1720) Allow moving fields inside existing fields

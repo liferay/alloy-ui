@@ -5,6 +5,8 @@
  */
 
 var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break'),
+    CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout', 'button'),
+    CSS_EDIT_LAYOUT_BUTTON_ICON = A.getClassName('form', 'builder', 'edit', 'layout', 'button', 'icon'),
     CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
     CSS_EMPTY_COL_ADD_BUTTON = A.getClassName('form', 'builder', 'empty', 'col', 'add', 'button'),
     CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
@@ -22,7 +24,13 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'field', 'toolbar', 'edit'),
     CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'field', 'toolbar', 'remove'),
     CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list'),
+    CSS_HEADER = A.getClassName('form', 'builder', 'header'),
+    CSS_HEADER_BACK = A.getClassName('form', 'builder', 'header', 'back'),
+    CSS_HEADER_TITLE = A.getClassName('form', 'builder', 'header', 'title'),
     CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
+    CSS_MENU = A.getClassName('form', 'builder', 'menu'),
+    CSS_MENU_BUTTON = A.getClassName('form', 'builder', 'menu', 'button'),
+    CSS_MENU_CONTENT = A.getClassName('form', 'builder', 'menu', 'content'),
     CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
 
     MODES = {
@@ -41,10 +49,15 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
  * @constructor
  */
 A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBuilder], {
+    TITLE_REGULAR: 'Build your form',
+
     TPL_BUTTON_ADD_PAGEBREAK: '<button class="btn-default btn ' + CSS_ADD_PAGE_BREAK + '">' +
         '<span class="glyphicon glyphicon-th-list"></span>' +
         'Add Page Break' +
         '</button>',
+    TPL_EDIT_LAYOUT_BUTTON: '<div class="' + CSS_EDIT_LAYOUT_BUTTON + '">' +
+        '<span class="glyphicon glyphicon-pencil ' + CSS_EDIT_LAYOUT_BUTTON_ICON + '">' +
+        '</span><a>Edit Layout</a></div>',
     TPL_EMPTY_COL: '<div class="' + CSS_EMPTY_COL + '">' +
         '<div class="' + CSS_EMPTY_COL_ADD_BUTTON + '">' +
         '<span class="glyphicon glyphicon-plus ' + CSS_EMPTY_COL_ICON + '"></span>' +
@@ -56,6 +69,14 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     TPL_EMPTY_LAYOUT: '<div class="' + CSS_EMPTY_LAYOUT + '">' +
         '<div>You don\'t have any question yet.</div>' +
         '<div>First for all let\'s create a new line?</div></div>',
+    TPL_HEADER: '<div class="' + CSS_HEADER + '">' +
+        '<a class="' + CSS_HEADER_BACK + '"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
+        '<div class="' + CSS_MENU + '">' +
+        '<a class="dropdown-toggle ' + CSS_MENU_BUTTON + '" data-toggle="dropdown">' +
+        '<span class="glyphicon glyphicon-cog"></span></a>' +
+        '<div class="' + CSS_MENU_CONTENT + ' dropdown-menu dropdown-menu-right"></div></div>' +
+        '<div class="' + CSS_HEADER_TITLE + '"></div>' +
+        '</div>',
     TPL_LAYOUT: '<div class="' + CSS_LAYOUT + '" ></div>',
 
     /**
@@ -68,6 +89,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     initializer: function() {
         var contentBox = this.get('contentBox');
 
+        contentBox.append(this.TPL_HEADER);
         contentBox.append(this.TPL_LAYOUT);
         contentBox.append(this.TPL_EMPTY_LAYOUT);
         contentBox.append(this.TPL_BUTTON_ADD_PAGEBREAK);
@@ -75,6 +97,25 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         this._emptyLayoutMsg = contentBox.one('.' + CSS_EMPTY_LAYOUT);
 
         this.get('layout').addTarget(this);
+    },
+
+    /**
+     * Renders the `A.FormBuilder` UI. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
+        this._menuEditLayoutItem = new A.MenuItem({
+            content: this.TPL_EDIT_LAYOUT_BUTTON
+        });
+
+        this._menu = new A.Menu({
+            boundingBox: '.' + CSS_MENU,
+            contentBox: '.' + CSS_MENU,
+            items: [this._menuEditLayoutItem],
+            trigger: '.' + CSS_MENU_BUTTON
+        }).render();
     },
 
     /**
@@ -100,7 +141,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             boundingBox.delegate('click', this._onClickEditField, '.' + CSS_FIELD_TOOLBAR_EDIT, this),
             boundingBox.delegate('click', this._onClickCloseField, '.' + CSS_FIELD_TOOLBAR_CLOSE, this),
             boundingBox.delegate('click', this._onClickRemoveField, '.' + CSS_FIELD_TOOLBAR_REMOVE, this),
-            boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this)
+            boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this),
+            boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
+            this._menu.after('itemSelected', A.bind(this._afterItemSelected, this))
         ];
     },
 
@@ -294,6 +337,20 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
+     * Fired after the `itemSelected` event is triggered for the form builder's
+     * menu.
+     *
+     * @method _afterItemSelected
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterItemSelected: function(event) {
+        if (event.item === this._menuEditLayoutItem) {
+            this.set('mode', A.FormBuilder.MODES.LAYOUT);
+        }
+    },
+
+    /**
      * Fired after the `layout` attribute is set.
      *
      * @method _afterLayoutChange
@@ -471,6 +528,16 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
 
         field.toggleToolbar(false);
         this.showFieldSettingsPanel(field, field.get('title'));
+    },
+
+    /**
+     * Fired when the header back button is clicked.
+     *
+     * @method _onClickHeaderBack
+     * @protected
+     */
+    _onClickHeaderBack: function() {
+        this.set('mode', A.FormBuilder.MODES.REGULAR);
     },
 
     /**
@@ -734,6 +801,19 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             fieldTypes[index].destroy();
             fieldTypes.splice(index, 1);
         }
+    },
+
+    /**
+     * Updates the form builder header's title.
+     *
+     * @method _updateHeaderTitle
+     * @param {String} title
+     * @protected
+     */
+    _updateHeaderTitle: function(title) {
+        var titleNode = this.get('contentBox').one('.' + CSS_HEADER_TITLE);
+
+        titleNode.set('text', title);
     },
 
     /**

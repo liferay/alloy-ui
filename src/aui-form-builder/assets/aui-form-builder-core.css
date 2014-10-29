@@ -1,3 +1,54 @@
+.form-builder-header {
+    background-color: #bbb;
+    color: #fff;
+    font-size: 18px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.form-builder-header .form-builder-header-back {
+    color: #fff;
+    cursor: pointer;
+    visibility: hidden;
+    float: left;
+    padding-left: 10px;
+}
+
+.form-builder-header .form-builder-header-title {
+    color: #555;
+}
+
+.form-builder-header .form-builder-menu {
+    float: right;
+    padding-right: 10px;
+}
+
+.form-builder-menu .form-builder-menu-button {
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-builder-menu .form-builder-menu-content {
+    background-color: #bbb;
+    line-height: 15px;
+}
+
+.form-builder-edit-layout-button .form-builder-edit-layout-button-icon {
+    font-size: 12px;
+    margin-right: 5px;
+    margin-top: -3px;
+}
+
+.form-builder-edit-layout-button:hover {
+    color: #000;
+}
+
+.form-builder-menu .menu-item .form-builder-edit-layout-button a {
+    color: #fff;
+}
+
 .form-builder-field-types-list {
     padding-left: 0;
     list-style-type: none;

@@ -147,34 +147,6 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.isFalse(this._formBuilder.get('boundingBox').hasClass('form-builder-layout-mode'));
         },
 
-        'should enable/disable layout mode through a button': function() {
-            var modeButton;
-
-            this._createFormBuilder();
-
-            modeButton = this._formBuilder.get('contentBox').one('.form-builder-layout-mode-button');
-            modeButton.simulate('click');
-            Y.Assert.areEqual(Y.FormBuilder.MODES.LAYOUT, this._formBuilder.get('mode'));
-
-            modeButton.simulate('click');
-            Y.Assert.areEqual(Y.FormBuilder.MODES.REGULAR, this._formBuilder.get('mode'));
-        },
-
-        'should allow setting custom button for enabling/disabling layout mode': function() {
-            var modeButton = Y.Node.create('<button>Test Button</button>');
-
-            Y.one('body').append(modeButton);
-            this._createFormBuilder({
-                layoutModeButton: modeButton
-            });
-
-            modeButton.simulate('click');
-            Y.Assert.areEqual(Y.FormBuilder.MODES.LAYOUT, this._formBuilder.get('mode'));
-
-            modeButton.simulate('click');
-            Y.Assert.areEqual(Y.FormBuilder.MODES.REGULAR, this._formBuilder.get('mode'));
-        },
-
         'should update layout when it changes': function() {
             var rowNodes;
 
