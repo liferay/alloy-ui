@@ -224,13 +224,11 @@ var CharCounter = A.Component.create({
          * @return {Number}
          */
         _getNormalizedLength: function(value) {
-            var instance = this;
-
             var newLines = value.match(/(\r\n|\n|\r)/g);
 
             var newLinesCorrection = 0;
 
-            if (newLines != null) {
+            if (newLines !== null) {
                 newLinesCorrection = newLines.length;
             }
 
