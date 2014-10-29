@@ -1,7 +1,8 @@
 {
     "aui-boolean-data-editor": {
         "requires": [
-            "aui-data-editor"
+            "aui-data-editor",
+            "event-valuechange"
         ]
     },
     "aui-data-editor": {
