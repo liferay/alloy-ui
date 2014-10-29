@@ -243,7 +243,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
                     ]
                 },
                 visible: false,
-                zIndex: 1
+                zIndex: 2
             }).render();
 
             this._uiSetFieldTypes(this.get('fieldTypes'));
@@ -589,7 +589,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             draggable: false,
             modal: true,
             resizable: false,
-            zIndex: 1
+            zIndex: 2
         }).render();
 
         this._fieldSettingsModal.addToolbar([{

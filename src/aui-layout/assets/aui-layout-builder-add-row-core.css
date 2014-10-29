@@ -13,7 +13,7 @@
     margin-right: -15px;
     position: relative;
     width: 100%;
-    z-index: 999;
+    z-index: 1;
 }
 
 .layout-builder-add-row-area-fixed {
