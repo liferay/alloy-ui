@@ -59,12 +59,12 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._createFormBuilder();
 
-            button = this._formBuilder.get('contentBox').one('.layout-builder-add-row-button');
+            button = this._formBuilder.get('contentBox').one('.layout-builder-add-row-area');
             Y.Assert.isNotNull(button);
             Y.Assert.areNotEqual('none', button.getStyle('display'));
 
             this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            button = this._formBuilder.get('contentBox').one('.layout-builder-add-row-button');
+            button = this._formBuilder.get('contentBox').one('.layout-builder-add-row-area');
             Y.Assert.isNotNull(button);
             Y.Assert.areNotEqual('none', button.getStyle('display'));
         },

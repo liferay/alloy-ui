@@ -85,7 +85,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 layout: new Y.Layout()
             });
 
-            formBuilder.get('contentBox').one('.layout-builder-add-row-button').simulate('click');
+            formBuilder.get('contentBox').one('.layout-builder-add-row-choose-row').simulate('click');
             Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
         },
 
@@ -219,7 +219,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.Assert.areEqual(2, Y.one('.form-builder-page-break-quantity').get('text'));
 
-            formBuilder.get('contentBox').one('.layout-builder-add-row-button').simulate('click');
+            formBuilder.get('contentBox').one('.layout-builder-add-row-choose-row').simulate('click');
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
             Y.Assert.areEqual(4, Y.one('.form-builder-page-break-quantity').get('text'));
