@@ -131,6 +131,18 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
+     * Renders a single field setting to be edited.
+     *
+     * @method renderSetting
+     * @param {Object} setting
+     * @return {Node}
+     * @protected
+     */
+    renderSetting: function(setting) {
+        return setting.editor.get('node');
+    },
+
+    /**
      * Renders the settings panel.
      *
      * @method renderSettingsPanel
@@ -142,7 +154,7 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
 
         for (i = 0; i < settings.length; i++) {
             settings[i].editor.set('originalValue', this.get(settings[i].attrName));
-            container.append(settings[i].editor.get('node'));
+            container.append(this.renderSetting(settings[i]));
         }
     },
 
