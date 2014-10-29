@@ -54,9 +54,23 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
     _afterClickAddButton: function() {
         var optionsContainer = this.get('node').one('.' + CSS_EDITOR_OPTIONS);
 
-        optionsContainer.append(A.Node.create(A.Lang.sub(this.TPL_EDITOR_OPTION, {
-            text: ''
-        })));
+        optionsContainer.append(this._createOptionNode(''));
+    },
+
+    /**
+     * Creates an option node.
+     *
+     * @method _createOptionNode
+     * @return {Node}
+     * @protected
+     */
+    _createOptionNode: function(text) {
+        var optionNode = A.Node.create(A.Lang.sub(this.TPL_EDITOR_OPTION, {
+            text: text
+        }));
+
+        optionNode.plug(A.Plugin.Drop);
+        return optionNode;
     },
 
     /**
@@ -86,7 +100,7 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
     _onClickRemoveButton: function(event) {
         var optionNode = event.currentTarget.ancestor('.' + CSS_EDITOR_OPTION);
 
-        optionNode.remove(true);
+        this._removeOptionNode(optionNode);
     },
 
     /**
@@ -125,6 +139,11 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
         event.drop.sizeShim();
     },
 
+    _removeOptionNode: function(optionNode) {
+        optionNode.unplug(A.Plugin.Drop);
+        optionNode.remove();
+    },
+
     /**
      * Sets up everything needed for dragging options to different positions.
      *
@@ -135,8 +154,7 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
         this._delegateDrag = new A.DD.Delegate({
             container: this.get('node'),
             handles: ['.' + CSS_EDITOR_OPTION_HANDLE],
-            nodes: '.' + CSS_EDITOR_OPTION,
-            target: true
+            nodes: '.' + CSS_EDITOR_OPTION
         });
         this._delegateDrag.dd.plug(A.Plugin.DDConstrained, {
             stickY: true
@@ -159,15 +177,14 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
      */
     _uiSetOriginalValue: function(value) {
         var instance = this,
-            optionNode,
             optionsContainer = this.get('node').one('.' + CSS_EDITOR_OPTIONS);
 
-        optionsContainer.empty();
+        optionsContainer.all('.' + CSS_EDITOR_OPTION).each(function(optionNode) {
+            instance._removeOptionNode(optionNode);
+        });
+
         A.Array.each(value, function(option) {
-            optionNode = A.Node.create(A.Lang.sub(instance.TPL_EDITOR_OPTION, {
-                text: option
-            }));
-            optionsContainer.append(optionNode);
+            optionsContainer.append(instance._createOptionNode(option));
         });
     }
 }, {

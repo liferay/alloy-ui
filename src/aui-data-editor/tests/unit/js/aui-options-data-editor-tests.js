@@ -64,6 +64,12 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
             Y.Assert.areEqual('Drogon', optionNodes.item(0).one('input').get('value'));
             Y.Assert.areEqual('Visirion', optionNodes.item(1).one('input').get('value'));
             Y.Assert.areEqual('Rhaegal', optionNodes.item(2).one('input').get('value'));
+
+            this._editor.set('originalValue', ['Saphira', 'Smaug']);
+            optionNodes = this._editor.get('node').all('.options-data-editor-option');
+            Y.Assert.areEqual(2, optionNodes.size());
+            Y.Assert.areEqual('Saphira', optionNodes.item(0).one('input').get('value'));
+            Y.Assert.areEqual('Smaug', optionNodes.item(1).one('input').get('value'));
         },
 
         'should get edited value from the ui': function() {
