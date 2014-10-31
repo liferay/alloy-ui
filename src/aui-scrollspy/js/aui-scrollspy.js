@@ -19,6 +19,8 @@ var getClassName = A.getClassName,
  * @param {Object} config Object literal specifying scrollspy configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/scrollspy/basic-markup.html
+ * @include http://alloyui.com/examples/scrollspy/basic.js
  */
 A.Scrollspy = A.Base.create('scrollspy', A.Base, [], {
 

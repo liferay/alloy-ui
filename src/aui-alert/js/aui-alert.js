@@ -20,6 +20,8 @@ var getClassName = A.getClassName,
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/alert/basic-markup.html
+ * @include http://alloyui.com/examples/alert/basic.js
  */
 A.Alert = A.Base.create('alert', A.Widget, [
     A.WidgetCssClass,

@@ -4,10 +4,11 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
+
 * [AUI-1549](https://issues.liferay.com/browse/AUI-1549) Error in widget-modality.js
-
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
-
 * [AUI-1306](https://issues.liferay.com/browse/AUI-1306) Make aui-modal responsive
 * [AUI-1336](https://issues.liferay.com/browse/AUI-1336) Scrolling content in Modal on mobile devices can scroll parent page
 * [AUI-1368](https://issues.liferay.com/browse/AUI-1368) Modal can't be hidden if destroyOnHide is false
@@ -21,7 +22,6 @@
 * [AUI-1253](https://issues.liferay.com/browse/AUI-1253) Fix modal header buttons pushing the header content down
 * [AUI-1248](https://issues.liferay.com/browse/AUI-1248) Allow users to request buttons to not have the .btn-default class on Bootstrap 3
 * [AUI-1238](https://issues.liferay.com/browse/AUI-1238) Migrate Modal markup to Bootstrap 3
-* [AUI-1273](https://issues.liferay.com/browse/AUI-1273) Describe source code changes in HISTORY.md
 
 ## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
 

@@ -1,35 +1,26 @@
+var del = require('del');
 var gulp = require('gulp');
-var path = require('path');
-var rimraf = require('gulp-rimraf');
 
-var ROOT = path.join(__dirname, '..');
-
-gulp.task('clean-aliases', function() {
-    return gulp.src(['src/aui-base/js/aui-aliases.js'], { cwd: ROOT, read: false })
-        .pipe(rimraf());
+gulp.task('clean-aliases', function(callback) {
+    del(['src/aui-base/js/aui-aliases.js'], callback);
 });
 
-gulp.task('clean-api', function() {
-    return gulp.src(['api', 'temp'], { cwd: ROOT, read: false })
-        .pipe(rimraf());
+gulp.task('clean-api', function(callback) {
+    del(['api'], callback);
 });
 
-gulp.task('clean-bower', function() {
-    return gulp.src('bower_components', { cwd: ROOT, read: false })
-        .pipe(rimraf());
+gulp.task('clean-bower', function(callback) {
+    del(['bower_components'], callback);
 });
 
-gulp.task('clean-build', function() {
-    return gulp.src('build', { cwd: ROOT, read: false })
-        .pipe(rimraf());
+gulp.task('clean-build', function(callback) {
+    del(['build'], callback);
 });
 
-gulp.task('clean-npm', function() {
-    return gulp.src('node_modules', { cwd: ROOT, read: false })
-        .pipe(rimraf());
+gulp.task('clean-npm', function(callback) {
+    del(['node_modules'], callback);
 });
 
-gulp.task('clean-zip', function() {
-    return gulp.src('*.zip', { cwd: ROOT, read: false })
-        .pipe(rimraf());
+gulp.task('clean-zip', function(callback) {
+    del(['*.zip'], callback);
 });

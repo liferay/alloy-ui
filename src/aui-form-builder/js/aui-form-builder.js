@@ -176,7 +176,7 @@ var FormBuilder = A.Component.create({
     SETTINGS_TAB: 1,
 
     prototype: {
-        CONTENT_CONTAINER_TEMPLATE: '<div class="col-xs-12 col-sm-6 col-md-8 col-lg-9 ' + CSS_PROPERTY_BUILDER_CONTENT_CONTAINER + '"></div>',
+        CONTENT_CONTAINER_TEMPLATE: '<div class="col-xs-12 col-sm-6 col-md-8 ' + CSS_PROPERTY_BUILDER_CONTENT_CONTAINER + '"></div>',
 
         selectedFieldsLinkedSet: null,
         uniqueFieldsMap: null,
@@ -847,7 +847,7 @@ var FormBuilder = A.Component.create({
         _renderTabs: function() {
             FormBuilder.superclass._renderTabs.apply(this, arguments);
 
-            this.tabView.get('boundingBox').addClass('col-xs-12 col-sm-6 col-md-4 col-lg-3');
+            this.tabView.get('boundingBox').addClass('col-xs-12 col-sm-6 col-md-4');
         },
 
         /**

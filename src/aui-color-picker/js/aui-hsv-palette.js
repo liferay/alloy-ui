@@ -87,6 +87,8 @@ var AColor = A.Color,
      * @param {Object} config Object literal specifying widget configuration
      *     properties.
      * @constructor
+     * @include http://alloyui.com/examples/color-picker/hsv-markup.html
+     * @include http://alloyui.com/examples/color-picker/hsv.js
      */
     HSVPalette = A.Base.create('hsv-palette', A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         CSS_VALUE_RIGHT_SIDE_CONTAINER: 'col-sm-10 col-xs-10',

@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>AUI Rating Unit tests</title>
+    <title>aui-button-core</title>
 
     <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
 
     <script src="../../../../build/aui/aui.js"></script>
-    <script src="js/tests.js"></script>
+    <script src="js/aui-button-core-tests.js"></script>
+    <meta charset="utf-8" />
 </head>
 <body class="yui3-skin-sam">
 <div id="logger"></div>
 <div class="row">
-    <div id="container"></div>  
+  <div id="container"></div>  
 </div>
 
 <script>
 YUI({
-    coverage: ['aui-rating'],
+    coverage: ['aui-button'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'aui-rating-tests', function(Y) {
+}).use('test-console', 'test', 'aui-button-core-tests', function(Y) {
 
     (new Y.Test.Console()).render('#logger');
 
-    Y.Test.Runner.setName('aui-rating');
+    Y.Test.Runner.setName('aui-button-core');
     Y.Test.Runner.run();
 });
 </script>

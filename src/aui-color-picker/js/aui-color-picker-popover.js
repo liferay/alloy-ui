@@ -16,6 +16,8 @@ var Lang = A.Lang;
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/color-picker/popover-markup.html
+ * @include http://alloyui.com/examples/color-picker/popover.js
  */
 var ColorPickerPopover = A.Base.create('color-picker-popover', A.Popover, [
     A.ColorPickerBase,

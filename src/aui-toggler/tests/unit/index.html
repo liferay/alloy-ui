@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>aui-toggler</title>
+    <title>aui-toggler-base</title>
 
     <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
 
@@ -11,16 +11,19 @@
 </head>
 <body class="yui3-skin-sam">
 <div id="logger"></div>
+<div class="row">
+    <div id="container"></div>  
+</div>
 
 <script>
 YUI({
-    coverage: ['aui-toggler'],
+    coverage: ['aui-toggler-base'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'aui-toggler-tests', function(Y) {
+}).use('test-console', 'test', 'aui-toggler-base-tests', function(Y) {
 
     (new Y.Test.Console()).render('#logger');
 
-    Y.Test.Runner.setName('aui-toggler');
+    Y.Test.Runner.setName('aui-toggler-base');
     Y.Test.Runner.run();
 });
 </script>

@@ -16,6 +16,8 @@ var win = A.config.win;
  * @param {Object} config Object literal specifying scrollspy configuration
  *     properties.
  * @constructor
+ * @include http://alloyui.com/examples/affix/basic-markup.html
+ * @include http://alloyui.com/examples/affix/basic.js
  */
 A.Affix = A.Base.create('affix', A.Base, [], {
     /**

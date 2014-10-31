@@ -4,10 +4,11 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
+
 * [AUI-1619](https://issues.liferay.com/browse/AUI-1619) Cannot set zIndex on Tooltip
-
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
-
 * [AUI-1310](https://issues.liferay.com/browse/AUI-1310) Make aui-tooltip responsive
 * [AUI-1335](https://issues.liferay.com/browse/AUI-1335) Tooltips should make HTML escaped by default
 * [AUI-1255](https://issues.liferay.com/browse/AUI-1255) Apply "display: none" on Tooltip hide

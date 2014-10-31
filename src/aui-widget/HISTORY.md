@@ -4,15 +4,11 @@
 
 ## @VERSION@
 
-* [AUI-1655](https://issues.liferay.com/browse/AUI-1655) WidgetTrigger doesn't work with `tap` event
-* [AUI-1526](https://issues.liferay.com/browse/AUI-1526) Create a menu module
-
-## [3.0.0pr2](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr2)
+## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
 * [AUI-1305](https://issues.liferay.com/browse/AUI-1305) Make aui-image-gallery responsive
-
-## [3.0.0pr1](https://github.com/liferay/alloy-ui/releases/tag/3.0.0pr1)
-
+* [AUI-1655](https://issues.liferay.com/browse/AUI-1655) WidgetTrigger doesn't work with `tap` event
+* [AUI-1526](https://issues.liferay.com/browse/AUI-1526) Create a menu module
 * [AUI-1310](https://issues.liferay.com/browse/AUI-1310) Make aui-tooltip responsive
 * [AUI-1318](https://issues.liferay.com/browse/AUI-1318) Make aui-image-viewer responsive
 * [AUI-1299](https://issues.liferay.com/browse/AUI-1299) Make aui-carousel responsive

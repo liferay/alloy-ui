@@ -11,6 +11,17 @@ var L = A.Lang,
 
     UA = A.UA,
 
+    getCN = A.getClassName,
+
+    CSS_TREE_HITAREA = getCN('tree', 'hitarea'),
+    CSS_TREE_ICON = getCN('tree', 'icon'),
+    CSS_TREE_LABEL = getCN('tree', 'label'),
+    CSS_TREE_NODE = getCN('tree', 'node'),
+    CSS_TREE_NODE_CONTENT = getCN('tree', 'node', 'content'),
+    CSS_TREE_NODE_CONTENT_INVALID = getCN('tree', 'node', 'content', 'invalid'),
+    CSS_TREE_ROOT_CONTAINER = getCN('tree', 'root', 'container'),
+    CSS_TREE_VIEW_CONTENT = getCN('tree', 'view', 'content'),
+
     addClassTreeNode = function(rootNode) {
         rootNode.addClass(CSS_TREE_NODE);
 
@@ -25,18 +36,7 @@ var L = A.Lang,
 
     isTreeNode = function(v) {
         return (v instanceof A.TreeNode);
-    },
-
-    getCN = A.getClassName,
-
-    CSS_TREE_HITAREA = getCN('tree', 'hitarea'),
-    CSS_TREE_ICON = getCN('tree', 'icon'),
-    CSS_TREE_LABEL = getCN('tree', 'label'),
-    CSS_TREE_NODE = getCN('tree', 'node'),
-    CSS_TREE_NODE_CONTENT = getCN('tree', 'node', 'content'),
-    CSS_TREE_NODE_CONTENT_INVALID = getCN('tree', 'node', 'content', 'invalid'),
-    CSS_TREE_ROOT_CONTAINER = getCN('tree', 'root', 'container'),
-    CSS_TREE_VIEW_CONTENT = getCN('tree', 'view', 'content');
+    };
 
 /**
  * A base class for TreeView, providing:

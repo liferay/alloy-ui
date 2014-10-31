@@ -6,6 +6,70 @@ YUI.add('aui-toolbar-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-toolbar');
 
+    suite.add(new Y.Test.Case({
+        name: 'Toolbar Tests',
+
+        init: function() {
+            this._container = Y.one('#container');
+        },
+
+        setUp: function() {
+            this.createToolbar({
+            boundingBox: '#toolbar'
+        });
+        },
+
+        tearDown: function() {
+            this._toolbar && this._toolbar.destroy();
+        },
+
+        createToolbar: function(config) {
+            var content = Y.Node.create('<div id="toolbar" class="toolbar"></div>');
+
+            this._container.append(content);
+
+            this._toolbar = new Y.Toolbar(config).render();
+        },
+
+        addContent: function() {
+            var content = {
+                label: 'Test',
+                domType: 'button',
+                id: 'button'
+            };
+
+            this._toolbar.add([content]);
+
+            return content;
+        },
+
+        'should add a item': function() {
+            this.addContent();
+
+            Y.Assert.isNotNull(Y.one('#button'));
+        },
+
+        'should remove a item': function() {
+            this.addContent();
+
+            this._toolbar.remove(0);
+            Y.Assert.isNull(Y.one('#button'));
+        },
+
+        'should remove all items on call clear function': function() {
+            this.addContent();
+
+            this._toolbar.clear();
+            Y.Assert.isNull(Y.one('#button'));
+        },
+
+        'should item function return the right valeu': function() {
+            var item = this.addContent();
+
+            Y.Assert.areEqual(item.id, this._toolbar.item(0).get('id'));
+        }
+    }));
+
     //--------------------------------------------------------------------------
     // Test Case for setting title to button node
     //--------------------------------------------------------------------------
@@ -25,7 +89,7 @@ YUI.add('aui-toolbar-tests', function(Y) {
             title = 'Title should be present';
 
             toolbar = new Y.Toolbar({
-                boundingBox: '#toolbar',
+                boundingBox: '#toolbar-971',
                 children: [{
                     label: 'Test label',
                     title: title
@@ -33,7 +97,7 @@ YUI.add('aui-toolbar-tests', function(Y) {
             }).render();
 
             Y.Assert.isNotNull(
-                Y.one('#toolbar').one('button[title="' + title + '"]'),
+                Y.one('#toolbar-971').one('button[title="' + title + '"]'),
                 'Title attribute should be set to the button node.');
         }
     }));
