@@ -67,6 +67,23 @@ YUI.add('aui-data-editor-tests', function(Y) {
 
             editor.set('label', 'New Label');
             Y.Assert.areEqual('New Label', editor.get('node').one('label').get('text'));
+        },
+
+        'should show/hide editor when requested': function() {
+            var editor,
+                TestEditor = this._createTestEditorClass();
+
+            editor = new TestEditor({
+                label: 'My Label'
+            });
+
+            Y.Assert.areNotEqual('none', editor.get('node').getStyle('display'));
+
+            editor.set('visible', false);
+            Y.Assert.areEqual('none', editor.get('node').getStyle('display'));
+
+            editor.set('visible', true);
+            Y.Assert.areNotEqual('none', editor.get('node').getStyle('display'));
         }
     }));
 

@@ -34,6 +34,29 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
             input.set('checked', false);
             input.simulate('change');
             Y.Assert.isFalse(editor.get('editedValue'));
+        },
+
+        'should show content related to the checked state of the editor': function() {
+            var editor,
+                input;
+
+            editor = new Y.BooleanDataEditor({
+                checkedContent: 'Editor Checked',
+                originalValue: 'original',
+                uncheckedContent: Y.Node.create('<div class="unchecked">Editor Unchecked</div>')
+            });
+            input = editor.get('node').one('input');
+
+            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+
+            input.set('checked', false);
+            input.simulate('change');
+            Y.Assert.areEqual('Editor Unchecked', editor.get('node').get('text'));
+            Y.Assert.isNotNull(editor.get('node').one('.unchecked'));
+
+            input.set('checked', true);
+            input.simulate('change');
+            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
         }
     }));
 
