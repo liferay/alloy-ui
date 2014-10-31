@@ -57,7 +57,7 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
     },
 
     /**
-     * Updates the ui according to the value of the parameter.
+     * Updates the editor's UI to display the given value.
      * This should be overridden by subclasses.
      *
      * @method updateUiWithValue
@@ -196,7 +196,7 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
          * @type Boolean
          */
         visible: {
-            lazyAdd: false,
+            validator: A.Lang.isBoolean,
             value: true
         }
     }

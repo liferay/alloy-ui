@@ -4,7 +4,8 @@
  * @module aui-boolean-data-editor
  */
 
-var CSS_BOOLEAN_DATA_EDITOR = A.getClassName('boolean', 'data', 'editor');
+var CSS_BOOLEAN_DATA_EDITOR = A.getClassName('boolean', 'data', 'editor'),
+    CSS_BOOLEAN_DATA_EDITOR_CONTENT = A.getClassName('boolean', 'data', 'editor', 'content');
 
 /**
  * A base class for Boolean Data Editor.
@@ -17,7 +18,7 @@ var CSS_BOOLEAN_DATA_EDITOR = A.getClassName('boolean', 'data', 'editor');
  */
 A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     TPL_EDITOR_CONTENT: '<div class="' + CSS_BOOLEAN_DATA_EDITOR + '">' +
-        '<div class="form-group"><div class="content"></div>' +
+        '<div class="form-group"><div class="' + CSS_BOOLEAN_DATA_EDITOR_CONTENT + '"></div>' +
         '<input type="checkbox"></input></div></div>',
 
     /**
@@ -28,14 +29,14 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      */
     initializer: function() {
         this._uiSetEditedValue(this.get('editedValue'));
-        
+
         this.get('node').one('input').after('change', A.bind(this._afterClickCheckbox, this));
-        
+
         this.after('editedValueChange', this._afterEditedValueChange);
     },
 
     /**
-     * Updates the ui according to the value of the parameter.
+     * Updates the editor's UI to display the given value.
      *
      * @method updateUiWithValue
      * @param {Boolean} value
@@ -68,13 +69,29 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     },
 
     /**
+     * Sets content attributes like `checkedContent` and `uncheckedContent`.
+     *
+     * @method _setContent
+     * @param {String | Node} val
+     * @return {Node}
+     * @protected
+     */
+    _setContent: function(val) {
+        if (A.Lang.isString(val)) {
+            val = A.Node.create(val);
+        }
+
+        return val;
+    },
+
+    /**
      * Updates the ui according to the value of the `checkedContent` attribute.
      *
      * @method _setCheckedContent
      * @protected
      */
     _setCheckedContent: function() {
-        this.get('node').one('.content').setHTML(this.get('checkedContent'));
+        this.get('node').one('.' + CSS_BOOLEAN_DATA_EDITOR_CONTENT).setHTML(this.get('checkedContent'));
     },
 
     /**
@@ -84,20 +101,7 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * @protected
      */
     _setUncheckedContent: function() {
-        this.get('node').one('.content').setHTML(this.get('uncheckedContent'));
-    },
-
-    /**
-     * Updates the ui according to the value of the `label` attribute.
-     *
-     * @method _uiSetLabel
-     * @param {String} label
-     * @protected
-     */
-    _uiSetLabel: function(label) {
-        if (!this.get('checkedContent')) {
-            A.BooleanDataEditor.superclass._uiSetLabel.call(this, label);
-        }
+        this.get('node').one('.' + CSS_BOOLEAN_DATA_EDITOR_CONTENT).setHTML(this.get('uncheckedContent'));
     },
 
     /**
@@ -114,6 +118,18 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
         else {
             this._setUncheckedContent();
         }
+    },
+
+    /**
+     * Validates content attributes like `checkedContent` and `uncheckedContent`.
+     *
+     * @method _validateContent
+     * @param {*} val
+     * @return {Boolean}
+     * @protected
+     */
+    _validateContent: function(val) {
+        return A.Lang.isString(val) || A.instanceOf(val, A.Node);
     }
 }, {
     /**
@@ -126,25 +142,17 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      */
     ATTRS: {
         /**
-         * The value after edition.
+         * Optional content that should show up when the data editor is in the
+         * checked state.
          *
          * @attribute checkedContent
          * @default null
-         * @type Node
+         * @type String | Node
          */
         checkedContent: {
-            value: null
-        },
-
-        /**
-         * The value after edition.
-         *
-         * @attribute uncheckedContent
-         * @default null
-         * @type Node
-         */
-        uncheckedContent: {
-            value: null
+            setter: '_setContent',
+            validator: '_validateContent',
+            value: ''
         },
 
         /**
@@ -167,6 +175,20 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
          */
         originalValue: {
             value: false
+        },
+
+        /**
+         * Optional content that should show up when the data editor is in the
+         * unchecked state.
+         *
+         * @attribute uncheckedContent
+         * @default null
+         * @type String | Node
+         */
+        uncheckedContent: {
+            setter: '_setContent',
+            validator: '_validateContent',
+            value: ''
         }
     }
 });

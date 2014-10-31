@@ -46,6 +46,25 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
     },
 
     /**
+     * Updates the editor's UI to display the given value.
+     *
+     * @method updateUiWithValue
+     * @param {Array} value
+     */
+    updateUiWithValue: function(value) {
+        var instance = this,
+            optionsContainer = this.get('node').one('.' + CSS_EDITOR_OPTIONS);
+
+        optionsContainer.all('.' + CSS_EDITOR_OPTION).each(function(optionNode) {
+            instance._removeOptionNode(optionNode);
+        });
+
+        A.Array.each(value, function(option) {
+            optionsContainer.append(instance._createOptionNode(option));
+        });
+    },
+
+    /**
      * Fired after the button for adding options is clicked.
      *
      * @method _afterClickAddButton
@@ -166,26 +185,6 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
 
         this._delegateDrag.after('drag:drag', A.bind(this._onDrag, this));
         this._delegateDrag.after('drag:over', A.bind(this._onDragOver, this));
-    },
-
-    /**
-     * Updates the ui according to the value of the `value` attribute.
-     *
-     * @method _uiSetValue
-     * @param {Array} value
-     * @protected
-     */
-    _uiSetOriginalValue: function(value) {
-        var instance = this,
-            optionsContainer = this.get('node').one('.' + CSS_EDITOR_OPTIONS);
-
-        optionsContainer.all('.' + CSS_EDITOR_OPTION).each(function(optionNode) {
-            instance._removeOptionNode(optionNode);
-        });
-
-        A.Array.each(value, function(option) {
-            optionsContainer.append(instance._createOptionNode(option));
-        });
     }
 }, {
     /**

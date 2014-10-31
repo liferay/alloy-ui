@@ -19,18 +19,24 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
         },
 
         'should get edited value from the ui': function() {
-            var editor = new Y.BooleanDataEditor({
+            var editor,
+                input;
+
+            editor = new Y.BooleanDataEditor({
                 originalValue: 'original'
             });
+            input = editor.get('node').one('input');
 
-            editor.get('node').one('input').set('checked', true);
+            input.set('checked', true);
+            input.simulate('change');
             Y.Assert.isTrue(editor.get('editedValue'));
 
-            editor.get('node').one('input').set('checked', false);
+            input.set('checked', false);
+            input.simulate('change');
             Y.Assert.isFalse(editor.get('editedValue'));
         }
     }));
 
     Y.Test.Runner.add(suite);
 
-},'', { requires: [ 'aui-boolean-data-editor' ] });
+},'', { requires: [ 'aui-boolean-data-editor', 'node-event-simulate' ] });

@@ -20,6 +20,16 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
         '<input type="text" class="form-control"></input></div>',
 
     /**
+     * Updates the editor's UI to display the given value.
+     *
+     * @method updateUiWithValue
+     * @param originalValue
+     */
+    updateUiWithValue: function(originalValue) {
+        this.get('node').one('.form-control').set('value', originalValue);
+    },
+
+    /**
      * Gets the edited value of the data from the editor.
      *
      * @method _getEditedValue
@@ -27,17 +37,6 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
      */
     _getEditedValue: function() {
         return this.get('node').one('.form-control').get('value');
-    },
-
-    /**
-     * Updates the ui according to the value of the `originalValue` attribute.
-     *
-     * @method _uiSetOriginalValue
-     * @param originalValue
-     * @protected
-     */
-    _uiSetOriginalValue: function(originalValue) {
-        this.get('node').one('.form-control').set('value', originalValue);
     }
 }, {
     /**

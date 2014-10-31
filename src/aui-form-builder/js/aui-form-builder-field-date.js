@@ -11,13 +11,13 @@ var CSS_FIELD_DATE = A.getClassName('form', 'builder', 'field', 'date'),
     CSS_FIELD_DATE_TO_DATE = A.getClassName('form', 'builder', 'field', 'date', 'to', 'date'),
     CSS_FIELD_DATE_TO_TIME = A.getClassName('form', 'builder', 'field', 'date', 'to', 'time'),
     CSS_CHECKED_CONTENT_DATE = A.getClassName('checked', 'content', 'date'),
-    CSS_UNCHECKED_CONTENT_DATE = A.getClassName('unchecked', 'content', 'date'),
     CSS_CHECKED_CONTENT_TIME = A.getClassName('checked', 'content', 'time'),
+    CSS_UNCHECKED_CONTENT_DATE = A.getClassName('unchecked', 'content', 'date'),
     CSS_UNCHECKED_CONTENT_TIME = A.getClassName('unchecked', 'content', 'time'),
 
     TPL_CHECKED_CONTENT_DATE = '<div class="' + CSS_CHECKED_CONTENT_DATE + '"> Month | Day | Year </div>',
-    TPL_UNCHECKED_CONTENT_DATE = '<div class="' + CSS_UNCHECKED_CONTENT_DATE + '"> Month | Day </div>',
     TPL_CHECKED_CONTENT_TIME = '<div class="' + CSS_CHECKED_CONTENT_TIME + '"> Hour | Min | AM/PM </div>',
+    TPL_UNCHECKED_CONTENT_DATE = '<div class="' + CSS_UNCHECKED_CONTENT_DATE + '"> Month | Day </div>',
     TPL_UNCHECKED_CONTENT_TIME = '<div class="' + CSS_UNCHECKED_CONTENT_TIME + '">Include Time?</div>';
 
 /**
@@ -53,7 +53,7 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
         this._uiSetToggleInterval(this.get('toggleInterval'));
         this._uiSetYearToggleTo(this.get('yearToggleTo'));
         this._uiSetTimeToggleTo(this.get('timeToggleTo'));
-        
+
         this.after({
             yearToggleFromChange: this._afterYearToggleFromChange,
             toggleIntervalChange: this._afterToggleIntervalChange,
@@ -61,6 +61,25 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
             yearToggleToChange: this._afterYearToggleToChange,
             timeToggleToChange: this._afterTimeToggleToChange
         });
+    },
+
+    /**
+     * Fired after the `BooleanFromTo` checkbox is set.
+     *
+     * @method _afterBooleanFromToChange
+     * @param {Object} booleanYearToggleFrom
+     * @param {Object} booleanYearToggleTo
+     * @param {Object} booleanTimeToggleFrom
+     * @param {Object} booleanTimeToggleTo
+     * @param {CustomEvent} event The fired event
+     * @protected
+     */
+    _afterBooleanFromToChange: function (booleanYearToggleFrom, booleanYearToggleTo, booleanTimeToggleFrom, booleanTimeToggleTo, event) {
+        booleanYearToggleTo.updateUiWithValue(booleanYearToggleFrom.get('editedValue'));
+        booleanTimeToggleTo.updateUiWithValue(booleanTimeToggleFrom.get('editedValue'));
+
+        booleanYearToggleTo.set('visible', event.newVal);
+        booleanTimeToggleTo.set('visible', event.newVal);
     },
 
     /**
@@ -114,27 +133,6 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
     },
 
     /**
-     * Fired after the `BooleanFromTo` checkbox is set.
-     *
-     * @method _afterBooleanFromToChange
-     * @param {Object} booleanYearToggleFrom
-     * @param {Object} booleanYearToggleTo
-     * @param {Object} booleanTimeToggleFrom
-     * @param {Object} booleanTimeToggleTo
-     * @param {CustomEvent} event The fired event
-     * @protected
-     */
-    _afterBooleanFromToChange: function (booleanYearToggleFrom, booleanYearToggleTo, booleanTimeToggleFrom, booleanTimeToggleTo, event) {
-
-        booleanYearToggleTo.updateUiWithValue(booleanYearToggleFrom.get('editedValue'));
-        booleanTimeToggleTo.updateUiWithValue(booleanTimeToggleFrom.get('editedValue'));
-
-        booleanYearToggleTo.set('visible', event.newVal);
-        booleanTimeToggleTo.set('visible', event.newVal);
-
-    },
-
-    /**
      * Fills the settings array with the information for this field.
      *
      * @method _fillSettings
@@ -147,6 +145,8 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
             booleanFromTo,
             booleanYearToggleTo,
             booleanTimeToggleTo;
+
+        A.FormBuilderFieldDate.superclass._fillSettings.apply(this, arguments);
 
         booleanYearToggleFrom = new A.BooleanDataEditor({
             checkedContent: TPL_CHECKED_CONTENT_DATE,
@@ -174,11 +174,14 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
             visible: false
         });
 
-        booleanFromTo.after('editedValueChange',
-            A.bind(this._afterBooleanFromToChange, this,
-            booleanYearToggleFrom, booleanYearToggleTo, booleanTimeToggleFrom, booleanTimeToggleTo));
-
-        A.FormBuilderFieldDate.superclass._fillSettings.apply(this, arguments);
+        booleanFromTo.after('editedValueChange', A.bind(
+            this._afterBooleanFromToChange,
+            this,
+            booleanYearToggleFrom,
+            booleanYearToggleTo,
+            booleanTimeToggleFrom,
+            booleanTimeToggleTo
+        ));
 
         this._settings.push(
             {

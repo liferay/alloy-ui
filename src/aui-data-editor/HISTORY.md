@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1691](https://issues.liferay.com/browse/AUI-1691) Create date field
 * [AUI-1693](https://issues.liferay.com/browse/AUI-1693) Create scale field
 * [AUI-1694](https://issues.liferay.com/browse/AUI-1694) Create grid field
 * [AUI-1689](https://issues.liferay.com/browse/AUI-1689) Create choice field
