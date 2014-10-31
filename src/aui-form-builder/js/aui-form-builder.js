@@ -528,7 +528,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
 
         field.toggleToolbar(false);
-        
+
         A.Array.each(this.get('fieldTypes'), function (fieldType) {
             if (field.constructor === fieldType.get('fieldClass')) {
                 instance.showFieldSettingsPanel(field, fieldType.get('label'));
@@ -907,6 +907,15 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             value: MODES.REGULAR
         }
     },
+
+    /**
+     * Static property provides a string to identify the CSS prefix.
+     *
+     * @property CSS_PREFIX
+     * @type String
+     * @static
+     */
+    CSS_PREFIX: A.getClassName('form-builder'),
 
     /**
      * Static property used to define the valid `A.FormBuilder` modes.

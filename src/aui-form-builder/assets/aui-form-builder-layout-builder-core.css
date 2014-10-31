@@ -13,7 +13,7 @@
 }
 
 .form-builder-layout-mode .form-builder-field-overlay {
-    background-color: #ddd;
+    background-color: #eee;
     height: 100%;
     left: 0;
     opacity: 0.5;
@@ -24,6 +24,15 @@
 
 .form-builder-layout-mode .form-builder-field-nested .form-builder-field-overlay {
     display: none;
+}
+
+.form-builder-content .layout-builder-layout-container {
+    margin-bottom: 20px;
+}
+
+.form-builder-layout-mode .form-builder-layout .layout-row-container-row {
+    margin-bottom: 10px;
+    margin-top: 0;
 }
 
 .form-builder-field-move-button {

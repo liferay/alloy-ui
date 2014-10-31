@@ -1,11 +1,28 @@
+.form-builder-content {
+    background-color: #ecedee;
+}
+
 .form-builder-header {
-    background-color: #bbb;
+    background-color: #00a3ff;
     color: #fff;
-    font-size: 18px;
-    height: 40px;
-    line-height: 40px;
+    font-size: 20px;
+    height: 56px;
+    line-height: 56px;
     text-align: center;
     vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .form-builder-header {
+        font-size: 14px;
+        height: 44px;
+        line-height: 44px;
+    }
+
+    .form-builder-header .form-builder-header-back,
+    .form-builder-header .form-builder-menu {
+        width: 44px;
+    }
 }
 
 .form-builder-header .form-builder-header-back {
@@ -13,16 +30,12 @@
     cursor: pointer;
     visibility: hidden;
     float: left;
-    padding-left: 10px;
-}
-
-.form-builder-header .form-builder-header-title {
-    color: #555;
+    width: 56px;
 }
 
 .form-builder-header .form-builder-menu {
     float: right;
-    padding-right: 10px;
+    width: 56px;
 }
 
 .form-builder-menu .form-builder-menu-button {
@@ -72,7 +85,7 @@
 }
 
 .form-builder-modal-content {
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .form-builder-field-settings .modal-body {
@@ -81,26 +94,34 @@
 }
 
 .form-builder-layout {
-    margin: 20px;
+    margin: 20px 73px;
 }
 
-.form-builder-layout .layout-row {
-    margin-bottom: 20px;
+.form-builder-layout .layout-row-container-row + .form-builder-page-break-row {
+    margin-top: 10px;
 }
 
 .form-builder-layout .layout-row .col {
-    border: 2px solid #ccc;
+    background-color: #fff;
+    border-right: 3px solid #ecedee;
     border-left: none;
     min-height: 200px;
     padding: 0;
 }
 
 .form-builder-layout .form-builder-page-break-row .col {
+    border-radius: 5px 5px 0 0;
+    height: 48px;
+    line-height: 48px;
     min-height: 0;
 }
 
-.form-builder-layout .layout-row .col:first-child {
-    border-left: 2px solid #ccc;
+.form-builder-layout .layout-row .col:last-child {
+    border-right: none;
+}
+
+.form-builder-layout .layout-row-container-row:last-child .col {
+    border-radius: 0 0 5px 5px;
 }
 
 .form-builder-layout .form-builder-field {
@@ -128,8 +149,8 @@
 
 .form-builder-empty-col {
     cursor: pointer;
+    padding-top: 45px;
     text-align: center;
-    margin-top: 45px;
 }
 
 .form-builder-empty-col .form-builder-empty-col-icon {

@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1763](https://issues.liferay.com/browse/AUI-1763) Update layout of page breaks and fields on regular mode
 * [AUI-1749](https://issues.liferay.com/browse/AUI-1749) Fix title of modal for editing a field
 * [AUI-1691](https://issues.liferay.com/browse/AUI-1691) Create date field
 * [AUI-1759](https://issues.liferay.com/browse/AUI-1759) Form builder should have a header with an options menu

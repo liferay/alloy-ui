@@ -28,6 +28,17 @@ YUI({ filter:'raw' }).use(
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
+                            size: 12,
+                            value: new Y.FormBuilderFieldText({
+                                help: 'Some help text here',
+                                title: 'My First Field'
+                            })
+                        })
+                    ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
                             size: 4,
                             value: new Y.FormBuilderFieldSentence({
                                 help: 'My Help',
