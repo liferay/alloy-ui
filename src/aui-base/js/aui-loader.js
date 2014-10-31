@@ -433,6 +433,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "arraylist-add",
             "arraylist-filter",
+            "escape",
             "json",
             "graphics",
             "dd"
@@ -441,6 +442,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-diagram-builder-impl": {
         "requires": [
+            "escape",
             "overlay",
             "aui-map",
             "aui-diagram-builder-base",
@@ -1478,4 +1480,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '37c5c0e9ff6e5d9bb70b23b18437857e';
+YUI.Env[Y.version].md5 = '61c8295230e4f1de4df2b86169983827';
