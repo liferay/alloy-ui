@@ -821,6 +821,26 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             contentBox.one('.form-builder-header-back').simulate('click');
             Y.Assert.areEqual(Y.FormBuilder.MODES.REGULAR, this._formBuilder.get('mode'));
+        },
+
+        'souhld show corret label when open settings editor': function() {
+            var col;
+
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText,
+                    label: 'Text'
+                }]
+            });
+
+            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
+            col.get('node').one('.form-builder-empty-col-add-button').simulate('click');
+
+            Y.one('.form-builder-modal').one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+            Y.one('.form-builder-field-toolbar-edit').simulate('click');
+
+            Y.Assert.areEqual(Y.one('.modal-header').getHTML(), 'Text');
         }
     }));
 

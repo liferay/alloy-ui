@@ -524,10 +524,16 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _onClickEditField: function (event) {
-        var field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
+        var instance = this,
+            field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
 
         field.toggleToolbar(false);
-        this.showFieldSettingsPanel(field, field.get('title'));
+        
+        A.Array.each(this.get('fieldTypes'), function (fieldType) {
+            if (field.constructor === fieldType.get('fieldClass')) {
+                instance.showFieldSettingsPanel(field, fieldType.get('label'));
+            }
+        });
     },
 
     /**
@@ -739,7 +745,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     _toggleUniqueDisabled: function (field, disabled) {
         A.Array.each(this.get('fieldTypes'), function (fieldType) {
-            if (A.instanceOf(field, fieldType.get('fieldClass')) && fieldType.get('unique')) {
+            if (field.constructor === fieldType.get('fieldClass') && fieldType.get('unique')) {
                 fieldType.set('disabled', disabled);
             }
         });
