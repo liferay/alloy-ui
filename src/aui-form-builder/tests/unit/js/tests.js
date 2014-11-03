@@ -456,6 +456,9 @@ YUI.add('aui-form-builder-tests', function(Y) {
         'shouldn\'t save a second field from a field type with unique true': function() {
             this.createFormBuilder({
                 fieldTypes: [{
+                    defaultConfig: {
+                        title: 'Title'
+                    },
                     fieldClass: Y.FormBuilderFieldText,
                     unique: true
                 }]
@@ -533,7 +536,19 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should show field settings when clicked on editing button': function() {
-            this.createFormBuilder();
+            this.createFormBuilder({
+                fieldTypes: [
+                    {
+                        fieldClass: Y.FormBuilderFieldSentence
+                    },
+                    {
+                        defaultConfig: {
+                            title: 'Title'
+                        },
+                        fieldClass: Y.FormBuilderFieldText
+                    }
+                ]
+            });
 
             Y.one('.form-builder-empty-col-add-button').simulate('click');
 
@@ -592,6 +607,9 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this.createFormBuilder({
                 fieldTypes: [{
+                    defaultConfig: {
+                        title: 'Title'
+                    },
                     fieldClass: Y.FormBuilderFieldText
                 }]
             });
@@ -772,6 +790,9 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this.createFormBuilder({
                 fieldTypes: [{
+                    defaultConfig: {
+                        title: 'Title'
+                    },
                     fieldClass: Y.FormBuilderFieldText,
                     label: 'Text'
                 }]
@@ -792,11 +813,41 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(Y.instanceOf(col.get('value'), Y.FormBuilderFieldText));
         },
 
+        'should not allow creating fields without required data': function() {
+            var settingsModal;
+
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText,
+                    label: 'Text'
+                }]
+            });
+
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
+            Y.one('.form-builder-modal').one('.field-type').simulate('click');
+
+            settingsModal = Y.one('.form-builder-field-settings');
+            Y.Assert.isNotNull(settingsModal);
+            Y.Assert.areNotEqual('none', settingsModal.getStyle('display'));
+
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+            Y.Assert.areNotEqual('none', settingsModal.getStyle('display'));
+
+            settingsModal.one('input[type="text"]').set('value', 'My Title');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+            Y.Assert.areEqual('none', settingsModal.getStyle('display'));
+        },
+
         'should make field columns movable': function() {
             var col;
 
             this.createFormBuilder({
                 fieldTypes: [{
+                    defaultConfig: {
+                        title: 'Title'
+                    },
                     fieldClass: Y.FormBuilderFieldText,
                     label: 'Text'
                 }]

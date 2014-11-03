@@ -9,7 +9,8 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
                 {
                     attrName: 'attr1',
                     editor: new Y.TextDataEditor({
-                        label: 'Attribute 1'
+                        label: 'Attribute 1',
+                        required: true
                     })
                 },
                 {
@@ -165,6 +166,23 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             input = container.one('input[type="text"]');
             Y.Assert.areEqual('Attr1New', input.get('value'));
+        },
+
+        'should validate edited settings': function() {
+            var container = Y.Node.create('<div></div>'),
+                input;
+
+            this._field = new TestField();
+
+            this._field.renderSettingsPanel(container);
+            Y.Assert.isTrue(this._field.validateSettings());
+
+            input = container.one('input[type="text"]');
+            input.set('value', '');
+            Y.Assert.isFalse(this._field.validateSettings());
+
+            input.set('value', 'Attr1New');
+            Y.Assert.isTrue(this._field.validateSettings());
         },
 
         'should save edited settings': function() {
