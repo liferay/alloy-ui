@@ -21,6 +21,7 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
                                 value: { content: '6' }
                             }),
                             new Y.LayoutCol({
+                                removable: false,
                                 size: 6,
                                 value: { content: '6' }
                             })
@@ -86,6 +87,25 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
             Y.Assert.isNull(deleteColButton);
         },
 
+        'should not add remove col button if a col is not removable': function() {
+            var col,
+                deleteColButton;
+
+            this._createLayoutBuilder();
+
+            col = Y.one('.col-sm-6');
+
+            col.getData('layout-col').set('removable', false);
+
+            deleteColButton = col.one('.layout-builder-remove-col-button');
+            Y.Assert.isNull(deleteColButton);
+
+            col.getData('layout-col').set('removable', true);
+
+            deleteColButton = col.one('.layout-builder-remove-col-button');
+            Y.Assert.isNotNull(deleteColButton);
+        },
+
         'should enable/disable removing columns dynamically': function() {
             var col,
                 deleteColButton,
@@ -108,6 +128,22 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
             deleteColButton.simulate('click');
             layout = this._layoutBuilder.get('layout');
             Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 1);
+        },
+
+        'should remove a col when press enter on remove col button': function() {
+            var removeColButton,
+                row;
+
+            this._createLayoutBuilder();
+
+            removeColButton = Y.one('.layout-builder-remove-col-button');
+            row = removeColButton.ancestor('.row');
+
+            Y.Assert.areEqual(2, row.getData('layout-row').get('cols').length);
+
+            removeColButton.simulate('keypress', { keyCode: 13 });
+
+            Y.Assert.areEqual(1, row.getData('layout-row').get('cols').length);
         }
     }));
 

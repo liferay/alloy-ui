@@ -50,6 +50,6 @@
     height: 100%;
 }
 
-.layout-builder-resize-col-breakpoint-over .layout-builder-resize-col-breakpoint-line {
+.layout-builder-resize-col-breakpoint-over .layout-builder-resize-col-breakpoint-line, .layout-builder-resize-col-breakpoint-line:focus {
     border-color: red;
 }

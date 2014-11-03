@@ -193,6 +193,22 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             addColButtons = container.all('.layout-builder-add-col');
 
             Y.Assert.areEqual(4, addColButtons.size());
+        },
+
+        'should add a col when press enter on add col button': function() {
+            var addColButton,
+                row;
+
+            this._createLayoutBuilder();
+
+            addColButton = Y.one('.layout-builder-add-col');
+            row = addColButton.ancestor('.row');
+
+            Y.Assert.areEqual(2, row.getData('layout-row').get('cols').length);
+
+            addColButton.simulate('keypress', { keyCode: 13 });
+
+            Y.Assert.areEqual(3, row.getData('layout-row').get('cols').length);
         }
     }));
 

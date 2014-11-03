@@ -98,6 +98,19 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             Assert.areEqual(row.get('cols').length, cutColButton.size());
         },
 
+        'should not show cut row button if row is not movable': function() {
+            var firstRow = Y.one('.row'),
+                firstLayoutRow = firstRow.getData('layout-row'),
+                moveButton;
+
+            firstLayoutRow.set('movable', false);
+
+            moveButton = Y.one('.layout-builder-move-button');
+            moveButton.simulate('click');
+
+            Assert.isNull(firstRow.previous('.layout-builder-move-cut-row-button'));
+        },
+
         'should fire preventable event for adding col move buttons': function() {
             var cutColButton,
                 moveButton = container.one('.layout-builder-move-button');
@@ -500,6 +513,79 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             col = container.one('.col');
             Assert.isNull(col.getData('layout-col').get('value'));
+        },
+
+        'should move a row using keyboard': function() {
+            var cutRowButton,
+                firstRow = Y.one('.row'),
+                lastRow,
+                lastTarget,
+                moveButton = Y.one('.layout-builder-move-button');
+
+            Assert.areEqual(4, firstRow.all('.col').size());
+
+            lastRow = Y.all('.row').last();
+            Assert.areEqual(1, lastRow.all('.col').size());
+
+            moveButton.simulate('click');
+
+            cutRowButton = Y.one('.layout-builder-move-cut-row-button');
+            cutRowButton.simulate('keypress', { keyCode: 13 });
+
+            lastTarget = Y.all('.layout-builder-move-row-target').last();
+            lastTarget.simulate('keypress', { keyCode: 13 });
+
+            firstRow = Y.one('.row');
+            Assert.areEqual(3, firstRow.all('.col').size());
+
+            lastRow = Y.all('.row').last();
+            Assert.areEqual(4, lastRow.all('.col').size());
+        },
+
+        'should move a col using keyboard': function() {
+            var cutColButton,
+                secondCall,
+                firstLayoutCol,
+                firstRow = Y.one('.row'),
+                lastLayoutCol,
+                lastTarget,
+                moveButton = Y.one('.layout-builder-move-button');
+
+            firstLayoutCol = firstRow.one('.col').getData('layout-col');
+
+            Assert.areEqual('foo', firstLayoutCol.get('value').content);
+
+            lastLayoutCol = firstRow.all('.col').last().getData('layout-col');
+            Assert.areEqual('foo', lastLayoutCol.get('value').content);
+
+            secondCall = firstRow.all('.col').item(1);
+            secondCall.getData('layout-col').set('movableContent', false);
+
+            moveButton.simulate('click');
+
+            Assert.isNull(secondCall.one('.layout-builder-move-col-target'));
+
+            cutColButton = firstRow.one('.layout-builder-move-cut-col-button');
+            cutColButton.simulate('keypress', { keyCode: 13 });
+
+            lastTarget = firstRow.all('.layout-builder-move-col-target').last();
+            lastTarget.simulate('keypress', { keyCode: 13 });
+
+            firstLayoutCol = firstRow.one('.col').getData('layout-col');
+            Assert.isNull(firstLayoutCol.get('value'));
+
+            lastLayoutCol = firstRow.all('.col').last().getData('layout-col');
+            Assert.areEqual('foo', lastLayoutCol.get('value').content);
+        },
+
+        'should call _resetMoveUI method when change cols attribute': function() {
+            Y.Mock.expect(this.layoutBuilder, {
+                method: '_resetMoveUI'
+            });
+
+            Y.one('.row').getData('layout-row').set('cols', []);
+
+            Y.Mock.verify(this.layoutBuilder);
         }
     }));
 

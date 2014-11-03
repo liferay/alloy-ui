@@ -191,6 +191,16 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
                 }, 100);
 
             }, 100);
+        },
+
+        'should add a new row when key press on any option': function() {
+            var createNewRowButton = Y.one('.layout-builder-add-row-choose-row');
+
+            Assert.areEqual(1, layout.get('rows').length);
+
+            createNewRowButton.simulate('keypress', { keyCode: 13 });
+
+            Assert.areEqual(2, layout.get('rows').length);
         }
     }));
 

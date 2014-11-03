@@ -9,7 +9,7 @@ var CSS_ADD_ROW_AREA = A.getClassName('layout', 'builder', 'add', 'row', 'area')
     CSS_ADD_ROW_CHOOSE_ROW = A.getClassName('layout', 'builder', 'add', 'row', 'choose', 'row'),
 
     TPL_ADD_ROW_AREA = '<div class="' + CSS_ADD_ROW_AREA + ' ' + CSS_ADD_ROW_AREA_FIXED + '"></div>',
-    TPL_ADD_ROW_CHOOSE_ROW = '<div class="' + CSS_ADD_ROW_CHOOSE_ROW + '"></div>';
+    TPL_ADD_ROW_CHOOSE_ROW = '<div class="' + CSS_ADD_ROW_CHOOSE_ROW + '" tabindex="6"></div>';
 
 /**
  * A base class for Layout Add Row.
@@ -70,6 +70,20 @@ LayoutBuilderAddRow.prototype = {
     },
 
     /**
+     * Add a row to layout.
+     *
+     * @method _addRow
+     * @param {EventFacace} event
+     * @protected
+     */
+    _addRow: function(event) {
+        var button = event.target,
+            numberOfCols = button.getData('numberOfCols');
+
+        this.get('layout').addRowWithSpecifiedColNumber(numberOfCols);
+    },
+
+    /**
      * Fired after the `enableAddRows` attribute changes.
      *
      * @method _afterEnableAddRowsChange
@@ -97,7 +111,8 @@ LayoutBuilderAddRow.prototype = {
         });
 
         this._addRowsEventHandles = [
-            container.delegate('click', A.bind(this._onMouseClickAddRowEvent, this), '.' + CSS_ADD_ROW_AREA)
+            container.delegate('click', A.bind(this._onMouseClickAddRowEvent, this), '.' + CSS_ADD_ROW_AREA),
+            container.delegate('key', A.bind(this._onKeyPressAddRowEvent, this), 'press:13', '.' + CSS_ADD_ROW_AREA),
         ];
     },
 
@@ -129,6 +144,17 @@ LayoutBuilderAddRow.prototype = {
     },
 
     /**
+     * Fired on `key:press` event for the add row button.
+     *
+     * @method _onKeyPressAddRowEvent
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onKeyPressAddRowEvent: function(event) {
+        this._addRow(event);
+    },
+
+    /**
      * Fires after click on add row button.
      *
      * @method _onMouseClickEvent
@@ -136,10 +162,7 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     _onMouseClickAddRowEvent: function(event) {
-        var button = event.target,
-            numberOfCols = button.getData('numberOfCols');
-
-        this.get('layout').addRowWithSpecifiedColNumber(numberOfCols);
+        this._addRow(event);
     },
 
     /**

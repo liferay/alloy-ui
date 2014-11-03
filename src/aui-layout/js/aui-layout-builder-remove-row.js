@@ -5,7 +5,7 @@
  */
 
 var CSS_REMOVE_ROW = A.getClassName('layout', 'builder', 'remove', 'row', 'button'),
-    TPL_REMOVE_ROW_BUTTON = '<button type="button" class="btn btn-default btn-xs ' + CSS_REMOVE_ROW + '">' +
+    TPL_REMOVE_ROW_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_REMOVE_ROW + '" tabindex="4" type="button">' +
         '<span class="glyphicon glyphicon-trash"></span> Remove Row</button>';
 
 /**
@@ -83,20 +83,38 @@ LayoutBuilderRemoveRow.prototype = {
      * @protected
      */
     _appendButtonToRows: function() {
-        var layoutContainer = this._layoutContainer,
+        var instance = this,
             layoutRow,
-            removeRowButton,
-            rows = layoutContainer.all('.row');
+            rows = this._layoutContainer.all('.row');
 
         rows.each(function(row) {
             layoutRow = row.getData('layout-row');
 
             if (layoutRow.get('removable')) {
-                removeRowButton = A.Node.create(TPL_REMOVE_ROW_BUTTON);
-                removeRowButton.setData('layout-row', layoutRow);
-                layoutContainer.insertBefore(removeRowButton, row);
+                instance._insertRemoveButtonBeforeRow(layoutRow, row);
             }
         });
+    },
+
+    /**
+     * Fired after the `removable` attribute changes.
+     *
+     * @method _afterRemoveRowRemovableChange
+     * @protected
+     */
+    _afterRemoveRowRemovableChange: function(event) {
+        var containerRow = event.target.get('node'),
+            layoutRow = event.target,
+            removeRowButton;
+
+        removeRowButton = containerRow.one('.' + CSS_REMOVE_ROW);
+
+        if (!event.newVal) {
+            removeRowButton.remove();
+        }
+        else {
+            this._insertRemoveButtonBeforeRow(layoutRow, containerRow.one('.row'));
+        }
     },
 
     /**
@@ -109,8 +127,24 @@ LayoutBuilderRemoveRow.prototype = {
         var container = this.get('container');
 
         this._removeRowsEventHandles = [
-            container.delegate('click', A.bind(this._onMouseClickRemoveRowEvent, this), '.' + CSS_REMOVE_ROW)
+            container.delegate('click', A.bind(this._onMouseClickRemoveRowEvent, this), '.' + CSS_REMOVE_ROW),
+            this.after('layout-row:removableChange', this._afterRemoveRowRemovableChange)
         ];
+    },
+
+    /**
+     * Inserts remove button before a specified row.
+     *
+     * @method _insertRemoveButtonBeforeRow
+     * @param {Node} layoutRow
+     * @param {Node} row
+     * @protected
+     */
+    _insertRemoveButtonBeforeRow: function(layoutRow, row) {
+        var removeRowButton = A.Node.create(TPL_REMOVE_ROW_BUTTON);
+
+        removeRowButton.setData('layout-row', layoutRow);
+        this._layoutContainer.insertBefore(removeRowButton, row);
     },
 
     /**

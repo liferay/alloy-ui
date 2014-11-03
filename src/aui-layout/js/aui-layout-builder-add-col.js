@@ -8,7 +8,7 @@ var CSS_ADD_COL = A.getClassName('layout', 'builder', 'add', 'col'),
     CSS_ADD_COL_LEFT = A.getClassName('layout', 'builder', 'add', 'col', 'left'),
     CSS_ADD_COL_RIGHT = A.getClassName('layout', 'builder', 'add', 'col', 'right'),
     SELECTOR_ROW = '.row',
-    TPL_ADD_COL = '<span class="glyphicon glyphicon-plus ' + CSS_ADD_COL + '"></span>';
+    TPL_ADD_COL = '<span class="glyphicon glyphicon-plus ' + CSS_ADD_COL + '" tabindex="5"></span>';
 
 /**
  * LayoutBuilder extension, which can be used to add the funcionality of adding
@@ -57,6 +57,25 @@ A.LayoutBuilderAddCol.prototype = {
      */
     destructor: function() {
         this._unbindAddColEvents();
+    },
+
+    /**
+     * Add a col to row.
+     *
+     * @method _addCol
+     * @param {EventFacace} event
+     * @protected
+     */
+    _addCol: function(event) {
+        var addButton = A.one(event.currentTarget),
+            row = event.currentTarget.ancestor(SELECTOR_ROW).getData('layout-row');
+
+        if (addButton.hasClass(CSS_ADD_COL_LEFT)) {
+            row.addCol(0);
+        }
+        else {
+            row.addCol(row.get('cols').length);
+        }
     },
 
     /**
@@ -143,9 +162,21 @@ A.LayoutBuilderAddCol.prototype = {
 
         this._addColsEventHandles = [
             container.delegate('click', A.bind(this._onMouseClickAddColEvent, this), '.' + CSS_ADD_COL),
+            container.delegate('key', A.bind(this._onKeyPressAddColEvent, this), 'press:13', '.' + CSS_ADD_COL),
             this.after('layout-row:colsChange', this._afterAddColLayoutColsChange),
             this.after('layout:rowsChange', this._afterAddColRowsChange)
         ];
+    },
+
+    /**
+     * Fired on `key:press` event for the add column button.
+     *
+     * @method _onKeyPressAddColEvent
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onKeyPressAddColEvent: function(event) {
+       this._addCol(event);
     },
 
     /**
@@ -156,15 +187,7 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     _onMouseClickAddColEvent: function(event) {
-        var addButton = A.one(event.currentTarget),
-            row = event.currentTarget.ancestor(SELECTOR_ROW).getData('layout-row');
-
-        if (addButton.hasClass(CSS_ADD_COL_LEFT)) {
-            row.addCol(0);
-        }
-        else {
-            row.addCol(row.get('cols').length);
-        }
+       this._addCol(event);
     },
 
     /**

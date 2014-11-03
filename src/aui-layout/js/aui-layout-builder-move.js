@@ -25,10 +25,10 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
     SELECTOR_COL = '.col',
     SELECTOR_ROW = '.row',
 
-    TPL_MOVE_BUTTON = '<button type="button" class="btn btn-default btn-xs ' + CSS_MOVE_BUTTON + '">' +
+    TPL_MOVE_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_MOVE_BUTTON + '" tabindex="1" type="button">' +
         '<span class="glyphicon glyphicon-sort"></span> <span class="' + CSS_MOVE_BUTTON_TEXT + '"> Move</span></button>',
-    TPL_MOVE_CUT = '<div class="' + CSS_MOVE_CUT_BUTTON + '"></div>',
-    TPL_MOVE_TARGET = '<div class="' + CSS_MOVE_TARGET + '">Move</div>';
+    TPL_MOVE_CUT = '<div class="' + CSS_MOVE_CUT_BUTTON + '" tabindex="2"></div>',
+    TPL_MOVE_TARGET = '<div class="' + CSS_MOVE_TARGET + '" tabindex="3">Move</div>';
 
 /**
  * Fired when a button for moving a column will be added.
@@ -234,7 +234,9 @@ LayoutBuilderMove.prototype = {
         this._moveEventHandles = [
             container.delegate('click', A.bind(this._onMouseClickMoveEvent, this), '.' + CSS_MOVE_BUTTON + ', .' + CSS_MOVE_CANCEL_BUTTON),
             this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveCutButton, this), '.' + CSS_MOVE_CUT_BUTTON),
-            this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveTarget, this), '.' + CSS_MOVE_TARGET)
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressOnMoveCutButton, this), 'press:13', '.' + CSS_MOVE_CUT_BUTTON),
+            this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveTarget, this), '.' + CSS_MOVE_TARGET),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressOnMoveTarget, this), 'press:13', '.' + CSS_MOVE_TARGET)
         ];
     },
 
@@ -250,6 +252,29 @@ LayoutBuilderMove.prototype = {
 
         button.removeClass(CSS_MOVE_BUTTON);
         button.addClass(CSS_MOVE_CANCEL_BUTTON);
+    },
+
+    /**
+     * Create target areas.
+     *
+     * @method _clickOnCutButton
+     * @param {EventFacade} event
+     * @protected
+     */
+    _clickOnCutButton: function(event) {
+        var cutButton = event.currentTarget;
+
+        this._removeAllCutButton();
+
+        if (cutButton.hasClass(CSS_MOVE_CUT_ROW_BUTTON)) {
+            this._createRowTargetArea();
+        }
+        else {
+            this.fire(EVENT_CHOOSE_COL_MOVE_TARGET, {
+                clickedButton: cutButton,
+                col: cutButton.getData('node-col').getData('layout-col')
+            });
+        }
     },
 
     /**
@@ -468,7 +493,7 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
-     * Inserts cut buttons on rows.
+     * Inserts cut button on a row.
      *
      * @method _insertCutButtonOnRow
      * @param {Node} moveButton
@@ -493,6 +518,38 @@ LayoutBuilderMove.prototype = {
         this._rowToBeMoved = layoutRow;
 
         this._layoutContainer.insertBefore(cutButton, moveButton);
+    },
+
+    /**
+     * Move col or row to another place.
+     *
+     * @method _moveToTarget
+     * @param {EventFacade} event
+     * @protected
+     */
+    _moveToTarget: function(event) {
+        var layout = this.get('layout'),
+            target = event.currentTarget;
+
+        if (target.hasClass(CSS_MOVE_COL_TARGET)) {
+            this.fire(EVENT_CLICK_COL_MOVE_TARGET, {
+                moveTarget: target
+            });
+        }
+        else {
+            layout.moveRow(target.getData('row-index'), this._rowToBeMoved);
+        }
+    },
+
+    /**
+     * Fires when key press on cut button.
+     *
+     * @method _onKeyPressOnMoveCutButton
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onKeyPressOnMoveCutButton: function(event) {
+        this._clickOnCutButton(event);
     },
 
     /**
@@ -523,19 +580,18 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _onMouseClickOnMoveCutButton: function(event) {
-        var cutButton = event.currentTarget;
+        this._clickOnCutButton(event);
+    },
 
-        this._removeAllCutButton();
-
-        if (cutButton.hasClass(CSS_MOVE_CUT_ROW_BUTTON)) {
-            this._createRowTargetArea();
-        }
-        else {
-            this.fire(EVENT_CHOOSE_COL_MOVE_TARGET, {
-                clickedButton: cutButton,
-                col: cutButton.getData('node-col').getData('layout-col')
-            });
-        }
+    /**
+     * Fires when key press on target area.
+     *
+     * @method _onKeyPressOnMoveTarget
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onKeyPressOnMoveTarget: function(event) {
+        this._moveToTarget(event);
     },
 
     /**
@@ -546,17 +602,7 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _onMouseClickOnMoveTarget: function(event) {
-        var layout = this.get('layout'),
-            target = event.currentTarget;
-
-        if (target.hasClass(CSS_MOVE_COL_TARGET)) {
-            this.fire(EVENT_CLICK_COL_MOVE_TARGET, {
-                moveTarget: target
-            });
-        }
-        else {
-            layout.moveRow(target.getData('row-index'), this._rowToBeMoved);
-        }
+        this._moveToTarget(event);
     },
 
     /**

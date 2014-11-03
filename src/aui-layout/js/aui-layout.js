@@ -55,17 +55,17 @@ A.Layout = A.Base.create('layout', A.Base, [], {
             row,
             rows = this.get('rows').concat();
 
-        if (numberOfCols) {
-            for (i = 0; i < numberOfCols; i++) {
-                cols.push(new A.LayoutCol({ size: MAXIMUM_COLS_PER_ROW / numberOfCols }));
-            }
+        numberOfCols = numberOfCols || 1;
 
-            row = new A.LayoutRow({ cols: cols });
-
-            rows.splice(rows.length, 0, row);
-
-            this.set('rows', rows);
+        for (i = 0; i < numberOfCols; i++) {
+            cols.push(new A.LayoutCol({ size: MAXIMUM_COLS_PER_ROW / numberOfCols }));
         }
+
+        row = new A.LayoutRow({ cols: cols });
+
+        rows.splice(rows.length, 0, row);
+
+        this.set('rows', rows);
     },
 
     /**

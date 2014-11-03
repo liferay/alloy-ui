@@ -117,6 +117,61 @@ YUI.add('aui-layout-builder-remove-row-tests', function(Y) {
             button = container.one('.layout-builder-remove-row-button');
 
             Assert.isNull(button);
+        },
+
+        'should not add remove row button if a row is not removable': function() {
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: { content: 'foo' }
+                            }),
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: { content: 'foo' }
+                            }),
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: { content: 'foo' }
+                            }),
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: { content: 'foo' }
+                            })
+                        ],
+                        removable: false
+                    })
+                ]
+            });
+
+            this.layoutBuilder.set('layout', layout);
+
+            Assert.isNull(Y.one('.layout-builder-remove-row-button'));
+        },
+
+        'should add or remove remove row button when change row\'s removable attribute': function() {
+            var deleteRowButton,
+                row = Y.one('.row');
+
+            row.getData('layout-row').set('removable', false);
+
+            deleteRowButton = row.previous('.layout-builder-remove-row-button');
+            Y.Assert.isNull(deleteRowButton);
+
+
+            row.getData('layout-row').set('removable', true);
+
+            deleteRowButton = row.previous('.layout-builder-remove-row-button');
+            Y.Assert.isNotNull(deleteRowButton);
+
+            this.layoutBuilder.set('enableRemoveRows', false);
+
+            row.getData('layout-row').set('removable', false);
+
+            deleteRowButton = row.previous('.layout-builder-remove-row-button');
+            Y.Assert.isNull(deleteRowButton);
         }
     }));
 

@@ -416,6 +416,42 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             Assert.areEqual(1, this._getVisibleRowNodes(rows[3], '.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).length);
             Assert.areEqual(2, this._getVisibleRowNodes(rows[4], '.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).length);
             Assert.areEqual(1, this._getVisibleRowNodes(rows[5], '.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).length);
+        },
+
+        'should resize columns': function() {
+            var col,
+                dragHandle,
+                firstBreakpointLine,
+                row = Y.all('.row').item(1);
+
+            col = row.one('.col');
+            dragHandle = row.one('.layout-builder-resize-col-draggable-handle');
+
+            Assert.areEqual(6, col.getData('layout-col').get('size'));
+
+            dragHandle.simulate('keypress', { keyCode: 13 });
+
+            firstBreakpointLine = row.one('.layout-builder-resize-col-breakpoint-line');
+            firstBreakpointLine.simulate('keypress', { keyCode: 13 });
+
+            col = row.one('.col');
+
+            Assert.areEqual(3, col.getData('layout-col').get('size'));
+        },
+
+        'should toggle breakpoints visibility when keypress on draghandle': function() {
+            var dragHandle,
+                row = Y.all('.row').item(1);
+
+            dragHandle = row.one('.layout-builder-resize-col-draggable-handle');
+
+            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+
+            dragHandle.simulate('keypress', { keyCode: 13 });
+            Assert.areEqual('block', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+
+            dragHandle.simulate('keypress', { keyCode: 13 });
+            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
         }
     }));
 

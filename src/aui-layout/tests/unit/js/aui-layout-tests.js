@@ -139,10 +139,14 @@ YUI.add('aui-layout-tests', function(Y) {
             var container = Y.one(CONTAINER_CLASS);
 
             this.layout.draw(container);
-            this.layout.addRowWithSpecifiedColNumber(4);
 
+            this.layout.addRowWithSpecifiedColNumber(4);
             Assert.areEqual(5, container.all('.row').size());
             Assert.areEqual(4, this.layout.get('rows')[4].get('cols').length);
+
+            this.layout.addRowWithSpecifiedColNumber();
+            Assert.areEqual(6, container.all('.row').size());
+            Assert.areEqual(1, this.layout.get('rows')[5].get('cols').length);
         },
 
         'should remove a row by index': function() {

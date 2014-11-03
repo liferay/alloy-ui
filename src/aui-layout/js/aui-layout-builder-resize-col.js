@@ -28,11 +28,20 @@ A.LayoutBuilderResizeCol = function() {};
 
 A.LayoutBuilderResizeCol.prototype = {
     TPL_RESIZE_COL_BREAKPOINT: '<div class="' + CSS_RESIZE_COL_BREAKPOINT + '">' +
-        '<div class="' + CSS_RESIZE_COL_BREAKPOINT_LINE + '"></div></div>',
+        '<div class="' + CSS_RESIZE_COL_BREAKPOINT_LINE + '" tabindex="8"></div></div>',
     TPL_RESIZE_COL_DRAGGABLE: '<div class="' + CSS_RESIZE_COL_DRAGGABLE + '">' +
         '<div class="' + CSS_RESIZE_COL_DRAGGABLE_BORDER + '"></div>' +
-        '<div class="' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + '">' +
+        '<div class="' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + '" tabindex="8">' +
         '<span class="glyphicon glyphicon-resize-horizontal"></span></div></div>',
+
+    /**
+     * Keeps a reference for dragNode for keyboard purposes only.
+     *
+     * @property _dragNode
+     * @type {Node}
+     * @protected
+     */
+    _dragNode: null,
 
     /**
      * Grid line nodes.
@@ -85,15 +94,7 @@ A.LayoutBuilderResizeCol.prototype = {
         var dragNode = this._delegateDrag.get('lastNode'),
             row = dragNode.ancestor(SELECTOR_ROW);
 
-        if (this._lastDropEnter) {
-            this._handleBreakpointDrop(dragNode, this._lastDropEnter);
-            this._lastDropEnter = null;
-        }
-        else {
-            dragNode.show();
-        }
-
-        this._hideBreakpoints(row);
+        this._resize(dragNode, row);
     },
 
     /**
@@ -121,22 +122,14 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _afterDragMouseDown: function(event) {
-        var instance = this,
-            dropNodes,
-            dragNode = event.target.get('node'),
+        var dragNode = event.target.get('node'),
             row = dragNode.ancestor(SELECTOR_ROW);
 
         if (!event.target.validClick(event.ev)) {
             return;
         }
 
-        // We need to show the drop targets before drag:start, or they won't work.
-        dropNodes = row.all('.' + CSS_RESIZE_COL_BREAKPOINT);
-        dropNodes.each(function(dropNode) {
-            if (instance._canDrop(dragNode, dropNode.getData('layout-position'))) {
-                dropNode.setStyle('display', 'block');
-            }
-        });
+        this._showBreakpoints(row, dragNode);
     },
 
     /**
@@ -236,7 +229,9 @@ A.LayoutBuilderResizeCol.prototype = {
             this._delegateDrag.after('drag:enter', A.bind(this._afterDragEnter, this)),
             this._delegateDrag.after('drag:mouseDown', A.bind(this._afterDragMouseDown, this)),
             this._delegateDrag.after('drag:mouseup', A.bind(this._afterDragMouseup, this)),
-            this._delegateDrag.after('drag:start', A.bind(this._afterDragStart, this))
+            this._delegateDrag.after('drag:start', A.bind(this._afterDragStart, this)),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColDragHandle, this), 'press:13', '.' + CSS_RESIZE_COL_DRAGGABLE),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColBreakpoint, this), 'press:13', '.' + CSS_RESIZE_COL_BREAKPOINT_LINE)
         ];
     },
 
@@ -297,9 +292,11 @@ A.LayoutBuilderResizeCol.prototype = {
             handles: ['.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE],
             nodes: '.' + CSS_RESIZE_COL_DRAGGABLE
         });
+
         this._delegateDrag.dd.plug(A.Plugin.DDConstrained, {
             stickX: true
         });
+
         this._delegateDrag.dd.plug(A.Plugin.DDProxy, {
             cloneNode: true,
             moveOnEnd: false
@@ -374,6 +371,52 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
+     * Fired when the user starts the action to resize a col.
+     *
+     * @method _onKeyPressResizeColBreakpoint
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onKeyPressResizeColBreakpoint: function(event) {
+        var row;
+
+        this._lastDropEnter = event.target.ancestor('.' + CSS_RESIZE_COL_BREAKPOINT);
+
+        row = this._lastDropEnter.ancestor(SELECTOR_ROW);
+
+        this._resize(this._dragNode, row);
+    },
+
+    /**
+     * Fired when the enter button is pressed on drag handle.
+     *
+     * @method _onKeyPressResizeColDragHandle
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onKeyPressResizeColDragHandle: function(event) {
+        var breakpoints,
+            dragNode = event.target.ancestor('.' + CSS_RESIZE_COL_DRAGGABLE),
+            hasVisibleBreakpoint,
+            row = event.target.ancestor(SELECTOR_ROW);
+
+        this._dragNode = dragNode;
+
+        breakpoints = row.all('.' + CSS_RESIZE_COL_BREAKPOINT);
+
+        hasVisibleBreakpoint = breakpoints.filter(function(breakpoint) {
+            return breakpoint.getStyle('display') !== 'none';
+        }).size();
+
+        if (hasVisibleBreakpoint) {
+            this._hideBreakpoints(row);
+        }
+        else {
+            this._showBreakpoints(row, dragNode);
+        }
+    },
+
+    /**
      * Removes all the drag handles from the layout.
      *
      * @method _removeDragHandles
@@ -401,6 +444,46 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
+     * Resizes cols after a resize event.
+     *
+     * @method _syncRowDragHandles
+     * @param {Node} dragNode
+     * @param {Node} row
+     * @protected
+     */
+    _resize: function(dragNode, row) {
+        if (this._lastDropEnter) {
+            this._handleBreakpointDrop(dragNode, this._lastDropEnter);
+            this._lastDropEnter = null;
+        }
+        else {
+            dragNode.show();
+        }
+
+        this._hideBreakpoints(row);
+    },
+
+    /**
+     * Shows all breakpoints in the given row.
+     * We need to show the drop targets before `drag:start` event, or they won't work.
+     *
+     * @method _showBreakpoints
+     * @param {Node} row
+     * @param {Node} dragNode
+     * @protected
+     */
+    _showBreakpoints: function(row, dragNode) {
+        var dropNodes = row.all('.' + CSS_RESIZE_COL_BREAKPOINT),
+            instance = this;
+
+        dropNodes.each(function(dropNode) {
+            if (instance._canDrop(dragNode, dropNode.getData('layout-position'))) {
+                dropNode.setStyle('display', 'block');
+            }
+        });
+    },
+
+    /**
      * Updates the drag handles for all the layout rows.
      *
      * @method _syncDragHandles
@@ -423,8 +506,7 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _syncRowDragHandles: function(row) {
-        var instance = this,
-            cols = row.get('cols'),
+        var cols = row.get('cols'),
             currentPos = 0,
             draggable,
             index,
@@ -433,7 +515,7 @@ A.LayoutBuilderResizeCol.prototype = {
         for (index = 0; index < cols.length - 1; index++) {
             currentPos += cols[index].get('size');
 
-            draggable = A.Node.create(instance.TPL_RESIZE_COL_DRAGGABLE);
+            draggable = A.Node.create(this.TPL_RESIZE_COL_DRAGGABLE);
             draggable.setStyle('left', ((currentPos * 100) / MAX_SIZE) + '%');
             draggable.setData('layout-position', currentPos);
             draggable.setData('layout-col1', cols[index]);

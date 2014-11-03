@@ -26,12 +26,14 @@
     },
     "aui-layout-builder-add-col": {
         "requires": [
+            "event-key",
             "node-base"
         ],
         "skinnable": true
     },
     "aui-layout-builder-remove-col": {
         "requires": [
+            "event-key",
             "node-base"
         ],
         "skinnable": true
