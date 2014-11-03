@@ -56,6 +56,23 @@ YUI.add('aui-scale-data-editor-tests', function(Y) {
 
             editor.get('node').one('.scale-data-editor-higher-value').set('value', '1986');
             Y.Assert.isTrue(editor.isValid());
+        },
+
+        'should the originalValue has at least 2 positions': function() {
+            var editor = new Y.ScaleDataEditor();
+
+            Y.Assert.areEqual(editor.get('node').one('.scale-data-editor-lower-value').get(''));
+            Y.Assert.areEqual(editor.get('node').one('.scale-data-editor-higher-value').get(''));
+
+            editor.set('originalValue', [0]);
+
+            Y.Assert.areEqual(editor.get('node').one('.scale-data-editor-lower-value').get('0'));
+            Y.Assert.areEqual(editor.get('node').one('.scale-data-editor-higher-value').get(''));
+
+            editor.set('originalValue', [0, 1]);
+
+            Y.Assert.areEqual(editor.get('node').one('.scale-data-editor-lower-value').get('0'));
+            Y.Assert.areEqual(editor.get('node').one('.scale-data-editor-higher-value').get('1'));
         }
     }));
 
