@@ -13,6 +13,10 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_NESTED = A.getClassName('form', 'builder', 'field', 'nested'),
     CSS_FIELD_OVERLAY = A.getClassName('form', 'builder', 'field', 'overlay'),
+    CSS_FIELD_SETTINGS_PANEL = A.getClassName('form', 'builder', 'field', 'settings', 'panel'),
+    CSS_FIELD_SETTINGS_PANEL_LEFT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'left'),
+    CSS_FIELD_SETTINGS_PANEL_RIGHT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'right'),
+    CSS_FIELD_SETTINGS_PANEL_SEPARATOR = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'separator'),
     CSS_FIELD_TOOLBAR = A.getClassName('form', 'builder', 'field', 'toolbar'),
     CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
     CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'field', 'toolbar', 'edit'),
@@ -36,7 +40,12 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
         '</button>',
     TPL_FIELD_MOVE_TARGET = '<button class="' + CSS_FIELD_MOVE_TARGET +
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
-        'Paste as subquestion</button>';
+        'Paste as subquestion</button>',
+    TPL_FIELD_SETTINGS_PANEL = '<div class="' + CSS_FIELD_SETTINGS_PANEL + ' clearfix">' +
+        '<div class="' + CSS_FIELD_SETTINGS_PANEL_SEPARATOR + '"></div>' +
+        '<div class="' + CSS_FIELD_SETTINGS_PANEL_LEFT + ' col-md-6"></div>' +
+        '<div class="' + CSS_FIELD_SETTINGS_PANEL_RIGHT + ' col-md-6"></div>' +
+        '</div>';
 
 /**
  * A base class for Form Builder Field Base. All form builder fields should
@@ -49,6 +58,7 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
  * @constructor
  */
 A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
+    SETTINGS_DIVIDER_POSITION: 3,
 
     /**
      * Constructor for the `A.FormBuilderFieldBase` component. Lifecycle.
@@ -149,12 +159,20 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
      * @param {Node} container The container where the panel should be rendered.
      */
     renderSettingsPanel: function(container) {
-        var i,
+        var currentNode,
+            i,
             settings = this._getSettings();
 
+        container.setHTML(TPL_FIELD_SETTINGS_PANEL);
+        currentNode = container.one('.' + CSS_FIELD_SETTINGS_PANEL_LEFT);
+
         for (i = 0; i < settings.length; i++) {
+            if (i === this.SETTINGS_DIVIDER_POSITION) {
+                currentNode = container.one('.' + CSS_FIELD_SETTINGS_PANEL_RIGHT);
+            }
+
             settings[i].editor.set('originalValue', this.get(settings[i].attrName));
-            container.append(this.renderSetting(settings[i]));
+            currentNode.append(this.renderSetting(settings[i]));
         }
     },
 

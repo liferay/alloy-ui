@@ -1,0 +1,34 @@
+.form-builder-field {
+    padding: 20px 40px;
+}
+
+.form-builder-field .form-builder-field-nested .form-builder-field {
+    padding: 5px 0 0 20px;
+}
+
+.form-builder-field .form-builder-field-content-toolbar {
+    position: relative;
+}
+
+.form-builder-field .form-builder-field-nested .form-builder-field-content {
+    margin-bottom: 10px;
+}
+
+.form-builder-field .form-builder-field-configuration,
+.form-builder-field .form-builder-field-toolbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+@media (min-width: 991px) {
+    .form-builder-field-settings-panel-separator {
+        border-left: 1px solid #ccc;
+        bottom: 0;
+        left: 50%;
+        margin: 10px 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}

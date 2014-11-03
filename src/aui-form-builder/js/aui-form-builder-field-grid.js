@@ -81,6 +81,12 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
 
         this._settings.push(
             {
+                attrName: 'required',
+                editor: new A.BooleanDataEditor({
+                    label: 'Required'
+                })
+            },
+            {
                 attrName: 'columns',
                 editor: new A.OptionsDataEditor({
                     label: 'Columns'
@@ -90,12 +96,6 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
                 attrName: 'rows',
                 editor: new A.OptionsDataEditor({
                     label: 'Rows'
-                })
-            },
-            {
-                attrName: 'required',
-                editor: new A.BooleanDataEditor({
-                    label: 'Required'
                 })
             }
         );

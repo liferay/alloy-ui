@@ -88,6 +88,12 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
 
         this._settings.push(
             {
+                attrName: 'required',
+                editor: new A.BooleanDataEditor({
+                    label: 'Required'
+                })
+            },
+            {
                 attrName: 'options',
                 editor: new A.OptionsDataEditor()
             },
@@ -101,12 +107,6 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
                 attrName: 'multiple',
                 editor: new A.BooleanDataEditor({
                     label: 'Activate multiple choice'
-                })
-            },
-            {
-                attrName: 'required',
-                editor: new A.BooleanDataEditor({
-                    label: 'Required'
                 })
             }
         );

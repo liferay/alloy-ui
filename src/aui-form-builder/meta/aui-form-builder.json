@@ -19,7 +19,8 @@
             "aui-node-base",
             "base",
             "node-base"
-        ]
+        ],
+        "skinnable": true
     },
 
     "aui-form-builder-field-choice": {

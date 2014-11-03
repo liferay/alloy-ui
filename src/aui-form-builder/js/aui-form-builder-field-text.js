@@ -62,15 +62,15 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
 
         this._settings.push(
             {
-                attrName: 'multiline',
-                editor: new A.BooleanDataEditor({
-                    label: 'Multiline'
-                })
-            },
-            {
                 attrName: 'required',
                 editor: new A.BooleanDataEditor({
                     label: 'Required'
+                })
+            },
+            {
+                attrName: 'multiline',
+                editor: new A.BooleanDataEditor({
+                    label: 'Multiline'
                 })
             }
         );

@@ -23,6 +23,12 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
                     editor: new Y.BooleanDataEditor({
                         label: 'Attribute Boolean'
                     })
+                },
+                {
+                    attrName: 'attrOptions',
+                    editor: new Y.OptionsDataEditor({
+                        label: 'Attribute Options'
+                    })
                 }
             ];
         }
@@ -263,6 +269,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
     requires: [
         'aui-boolean-data-editor',
         'aui-form-builder-field-base',
+        'aui-options-data-editor',
         'aui-text-data-editor',
         'node-event-simulate',
         'test'

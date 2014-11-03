@@ -231,7 +231,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @param {String} typeName The name of the field type.
      */
     showFieldSettingsPanel: function(field, typeName) {
-        var bodyNode;
+        var bodyNode,
+            firstInput;
 
         if (!this._fieldSettingsModal) {
             this._renderFieldSettingsModal();
@@ -245,6 +246,11 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
 
         this._fieldSettingsModal.show();
         this._fieldSettingsModal.align();
+
+        firstInput = bodyNode.one('input[type="text"]');
+        if (firstInput) {
+            firstInput.focus();
+        }
 
         this._fieldBeingEdited = field;
     },
@@ -524,16 +530,18 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _onClickEditField: function (event) {
-        var instance = this,
-            field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
+        var field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance'),
+            fieldTypes = this.get('fieldTypes'),
+            i;
 
         field.toggleToolbar(false);
 
-        A.Array.each(this.get('fieldTypes'), function (fieldType) {
-            if (field.constructor === fieldType.get('fieldClass')) {
-                instance.showFieldSettingsPanel(field, fieldType.get('label'));
+        for (i = 0; i < fieldTypes.length; i++) {
+            if (field.constructor === fieldTypes[i].get('fieldClass')) {
+                this.showFieldSettingsPanel(field, fieldTypes[i].get('label'));
+                break;
             }
-        });
+        }
     },
 
     /**

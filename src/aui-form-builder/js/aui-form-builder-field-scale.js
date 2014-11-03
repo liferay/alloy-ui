@@ -65,15 +65,15 @@ A.FormBuilderFieldScale = A.Base.create('form-builder-field-scale', A.FormBuilde
 
         this._settings.push(
             {
-                attrName: 'range',
-                editor: new A.ScaleDataEditor({
-                    label: 'Scale'
-                })
-            },
-            {
                 attrName: 'required',
                 editor: new A.BooleanDataEditor({
                     label: 'Required'
+                })
+            },
+            {
+                attrName: 'range',
+                editor: new A.ScaleDataEditor({
+                    label: 'Scale'
                 })
             }
         );

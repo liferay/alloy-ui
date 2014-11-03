@@ -35,7 +35,7 @@ YUI.add('aui-form-builder-field-date-tests', function(Y) {
             Y.Assert.areEqual('', Y.one('.form-builder-field-date-to-time').getHTML());
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(0).simulate('click');
+            settings.all('input[type="checkbox"]').item(1).simulate('click');
             this._field.saveSettings();
             Y.Assert.areEqual('From: Month | Day | Year', Y.one('.form-builder-field-date-from-date').getHTML());
             Y.Assert.areEqual('', Y.one('.form-builder-field-date-from-time').getHTML());
@@ -43,36 +43,36 @@ YUI.add('aui-form-builder-field-date-tests', function(Y) {
             Y.Assert.areEqual('', Y.one('.form-builder-field-date-to-time').getHTML());
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(1).simulate('click');
+            settings.all('input[type="checkbox"]').item(2).simulate('click');
             this._field.saveSettings();
             Y.Assert.areEqual('From: Hour | Min | AM/PM', Y.one('.form-builder-field-date-from-time').getHTML());
             Y.Assert.isFalse(Y.one('.form-builder-field-date-to-date').hasClass());
             Y.Assert.areEqual('', Y.one('.form-builder-field-date-to-time').getHTML());
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(2).simulate('click');
+            settings.all('input[type="checkbox"]').item(3).simulate('click');
             this._field.saveSettings();
             Y.Assert.areEqual('To: Month | Day | Year', Y.one('.form-builder-field-date-to-date').getHTML());
             Y.Assert.areEqual('To: Hour | Min | AM/PM', Y.one('.form-builder-field-date-to-time').getHTML());
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(2).simulate('click');
+            settings.all('input[type="checkbox"]').item(3).simulate('click');
             this._field.saveSettings();
             Y.Assert.isFalse(Y.one('.form-builder-field-date-to-date').hasClass());
             Y.Assert.isFalse(Y.one('.form-builder-field-date-to-time').hasClass());
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(0).simulate('click');
             settings.all('input[type="checkbox"]').item(1).simulate('click');
             settings.all('input[type="checkbox"]').item(2).simulate('click');
             settings.all('input[type="checkbox"]').item(3).simulate('click');
             settings.all('input[type="checkbox"]').item(4).simulate('click');
+            settings.all('input[type="checkbox"]').item(5).simulate('click');
             this._field.saveSettings();
             Y.Assert.areEqual('To: Month | Day | Year', Y.one('.form-builder-field-date-to-date').getHTML());
             Y.Assert.areEqual('To: Hour | Min | AM/PM', Y.one('.form-builder-field-date-to-time').getHTML());
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(5).simulate('click');
+            settings.all('input[type="checkbox"]').item(0).simulate('click');
             this._field.saveSettings();
             Y.Assert.isTrue(this._field.get('required'));
         }

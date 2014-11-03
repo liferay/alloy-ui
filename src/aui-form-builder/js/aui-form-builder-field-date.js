@@ -185,6 +185,12 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
 
         this._settings.push(
             {
+                attrName: 'required',
+                editor: new A.BooleanDataEditor({
+                    label: 'Required'
+                })
+            },
+            {
                 attrName: 'yearToggleFrom',
                 editor: booleanYearToggleFrom
             },
@@ -203,12 +209,6 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
             {
                 attrName: 'timeToggleTo',
                 editor: booleanTimeToggleTo
-            },
-            {
-                attrName: 'required',
-                editor: new A.BooleanDataEditor({
-                    label: 'Required'
-                })
             }
         );
     },

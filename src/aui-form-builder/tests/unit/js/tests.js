@@ -23,6 +23,14 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
         createFormBuilder: function(config) {
             this._formBuilder = new Y.FormBuilder(Y.merge({
+                fieldTypes: [
+                    {
+                        fieldClass: Y.FormBuilderFieldSentence
+                    },
+                    {
+                        fieldClass: Y.FormBuilderFieldText
+                    }
+                ],
                 layout: new Y.Layout({
                     rows: [
                         new Y.LayoutRow({
@@ -265,19 +273,19 @@ YUI.add('aui-form-builder-tests', function(Y) {
             var fn1 = function() {},
                 fn2 = function() {};
 
-            this.createFormBuilder();
-
-            this._formBuilder.registerFieldTypes([
-                {
-                    fieldClass: fn1
-                },
-                {
-                    fieldClass: fn2
-                },
-                {
-                    fieldClass: fn1
-                }
-            ]);
+            this.createFormBuilder({
+                fieldTypes: [
+                    {
+                        fieldClass: fn1
+                    },
+                    {
+                        fieldClass: fn2
+                    },
+                    {
+                        fieldClass: fn1
+                    }
+                ]
+            });
 
             this._formBuilder.unregisterFieldTypes(fn1);
             Y.Assert.areEqual(1, this._formBuilder.get('fieldTypes').length);
@@ -296,20 +304,20 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 fieldClass: fn1
             });
 
-            this.createFormBuilder();
-
-            this._formBuilder.registerFieldTypes([
-                fieldType1,
-                {
-                    fieldClass: fn2
-                },
-                {
-                    fieldClass: fn2
-                },
-                {
-                    fieldClass: fn3
-                }
-            ]);
+            this.createFormBuilder({
+                fieldTypes: [
+                    fieldType1,
+                    {
+                        fieldClass: fn2
+                    },
+                    {
+                        fieldClass: fn2
+                    },
+                    {
+                        fieldClass: fn3
+                    }
+                ]
+            });
 
             this._formBuilder.unregisterFieldTypes([fn2, fieldType1]);
             Y.Assert.areEqual(1, this._formBuilder.get('fieldTypes').length);
@@ -525,15 +533,11 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should show field settings when clicked on editing button': function() {
-            this.createFormBuilder({
-                fieldTypes: [{
-                    fieldClass: Y.FormBuilderFieldText
-                }]
-            });
+            this.createFormBuilder();
 
             Y.one('.form-builder-empty-col-add-button').simulate('click');
 
-            Y.one('.field-type').simulate('click');
+            Y.all('.field-type').item(1).simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
             Y.one('.form-builder-field-configuration').simulate('click');

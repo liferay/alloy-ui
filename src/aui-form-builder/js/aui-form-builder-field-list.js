@@ -76,6 +76,12 @@ A.FormBuilderFieldList = A.Base.create('form-builder-field-list', A.FormBuilderF
 
         this._settings.push(
             {
+                attrName: 'required',
+                editor: new A.BooleanDataEditor({
+                    label: 'Required'
+                })
+            },
+            {
                 attrName: 'options',
                 editor: new A.OptionsDataEditor()
             },
@@ -83,12 +89,6 @@ A.FormBuilderFieldList = A.Base.create('form-builder-field-list', A.FormBuilderF
                 attrName: 'otherOption',
                 editor: new A.BooleanDataEditor({
                     label: 'Add "Other" option'
-                })
-            },
-            {
-                attrName: 'required',
-                editor: new A.BooleanDataEditor({
-                    label: 'Required'
                 })
             }
         );
