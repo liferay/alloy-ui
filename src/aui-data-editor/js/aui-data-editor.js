@@ -61,17 +61,15 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      * This should be overridden by subclasses.
      *
      * @method isEmpty
-     * @protected
      */
     isEmpty: function() {
         throw new Error('Subclasses should override isEmpty');
     },
 
     /**
-     * If the data editor is required and empty will returns false.
+     * If the data editor is required and empty this will return false.
      *
      * @method isValid
-     * @protected
      */
     isValid: function() {
 		if(!this.get('required')) {
@@ -213,12 +211,13 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
         },
 
         /**
-         * Defines if the daata editor is required or not.
+         * Defines if the data editor is required or not.
          *
          * @attribute required
          * @default false
          */
         required: {
+            validator: A.Lang.isBoolean,
             value: false
         },
 

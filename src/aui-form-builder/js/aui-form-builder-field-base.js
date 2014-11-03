@@ -177,23 +177,17 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
-     * Check all data editors used by this field.
+     * Saves the edited settings.
      *
-     * @method validateField
-     * @return {Boolean}
+     * @method saveSettings
      */
-    validateField: function() {
+    saveSettings: function() {
         var i,
             settings = this._getSettings();
 
-        
         for (i = 0; i < settings.length; i++) {
-            if (!settings[i].editor.isValid()) {
-            	return false;
-            }
+            this.set(settings[i].attrName, settings[i].editor.get('editedValue'));
         }
-
-        return true;
     },
 
     /**
@@ -220,17 +214,22 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
-     * Saves the edited settings.
+     * Validates all data editors used by this field's settings.
      *
-     * @method saveSettings
+     * @method validateSettings
+     * @return {Boolean}
      */
-    saveSettings: function() {
+    validateSettings: function() {
         var i,
             settings = this._getSettings();
 
         for (i = 0; i < settings.length; i++) {
-            this.set(settings[i].attrName, settings[i].editor.get('editedValue'));
+            if (!settings[i].editor.isValid()) {
+                return false;
+            }
         }
+
+        return true;
     },
 
     /**

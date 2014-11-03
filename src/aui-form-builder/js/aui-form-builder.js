@@ -690,8 +690,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _saveFieldSettings: function() {
-        if (this._fieldBeingEdited.validateField()) {
-                this._fieldBeingEdited.saveSettings();
+        if (this._fieldBeingEdited.validateSettings()) {
+            this._fieldBeingEdited.saveSettings();
 
             if (this._colAddingField) {
                 this._colAddingField.set('value', this._fieldBeingEdited);

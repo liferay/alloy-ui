@@ -26,7 +26,7 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
      * @protected
      */
     isEmpty: function() {
-        return !this.get('node').one('.form-control').get('value');
+        return !this.get('editedValue');
     },
 
     /**
