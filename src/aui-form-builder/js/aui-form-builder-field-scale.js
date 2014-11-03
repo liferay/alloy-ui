@@ -73,7 +73,8 @@ A.FormBuilderFieldScale = A.Base.create('form-builder-field-scale', A.FormBuilde
             {
                 attrName: 'range',
                 editor: new A.ScaleDataEditor({
-                    label: 'Scale'
+                    label: 'Scale',
+                    required: true
                 })
             }
         );

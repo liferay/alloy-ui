@@ -21,6 +21,18 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
 
             editor.get('node').one('input').set('value', 'new');
             Y.Assert.areEqual('new', editor.get('editedValue'));
+        },
+
+        'should check if the form is valid': function() {
+            var editor = new Y.TextDataEditor();
+
+            Y.Assert.isTrue(editor.isValid());
+
+            editor.set('required', true);
+            Y.Assert.isFalse(editor.isValid());
+
+            editor.get('node').one('input').set('value', 'Atari Force');
+            Y.Assert.isTrue(editor.isValid());
         }
     }));
 

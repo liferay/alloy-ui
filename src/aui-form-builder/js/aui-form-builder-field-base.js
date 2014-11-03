@@ -177,6 +177,26 @@ A.FormBuilderFieldBase = A.Base.create('form-builder-field-base', A.Base, [], {
     },
 
     /**
+     * Check all data editors used by this field.
+     *
+     * @method validateField
+     * @return {Boolean}
+     */
+    validateField: function() {
+        var i,
+            settings = this._getSettings();
+
+        
+        for (i = 0; i < settings.length; i++) {
+            if (!settings[i].editor.isValid()) {
+            	return false;
+            }
+        }
+
+        return true;
+    },
+
+    /**
      * Toggles the configuration button of Form Field Base by adding or
      * removing the active class name.
      *

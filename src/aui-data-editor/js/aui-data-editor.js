@@ -57,6 +57,30 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
     },
 
     /**
+     * Returns `true` if this edited value has no elements.
+     * This should be overridden by subclasses.
+     *
+     * @method isEmpty
+     * @protected
+     */
+    isEmpty: function() {
+        throw new Error('Subclasses should override isEmpty');
+    },
+
+    /**
+     * If the data editor is required and empty will returns false.
+     *
+     * @method isValid
+     * @protected
+     */
+    isValid: function() {
+		if(!this.get('required')) {
+			return true;
+		}
+        return !this.isEmpty();
+    },
+
+    /**
      * Updates the editor's UI to display the given value.
      * This should be overridden by subclasses.
      *
@@ -186,6 +210,16 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
          */
         originalValue: {
             value: null
+        },
+
+        /**
+         * Defines if the daata editor is required or not.
+         *
+         * @attribute required
+         * @default false
+         */
+        required: {
+            value: false
         },
 
         /**

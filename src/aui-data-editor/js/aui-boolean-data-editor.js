@@ -36,6 +36,16 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     },
 
     /**
+     * Always return false.
+     *
+     * @method isEmpty
+     * @protected
+     */
+    isEmpty: function() {
+        return false;
+    },
+
+    /**
      * Updates the editor's UI to display the given value.
      *
      * @method updateUiWithValue

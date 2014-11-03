@@ -690,17 +690,19 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _saveFieldSettings: function() {
-        this._fieldBeingEdited.saveSettings();
+        if (this._fieldBeingEdited.validateField()) {
+                this._fieldBeingEdited.saveSettings();
 
-        if (this._colAddingField) {
-            this._colAddingField.set('value', this._fieldBeingEdited);
-            this._colAddingField = null;
+            if (this._colAddingField) {
+                this._colAddingField.set('value', this._fieldBeingEdited);
+                this._colAddingField = null;
+            }
+
+            this._toggleUniqueDisabled(this._fieldBeingEdited, true);
+
+            this.hideFieldSettingsPanel();
+            this._fieldBeingEdited = null;
         }
-
-        this._toggleUniqueDisabled(this._fieldBeingEdited, true);
-
-        this.hideFieldSettingsPanel();
-        this._fieldBeingEdited = null;
     },
 
     /**

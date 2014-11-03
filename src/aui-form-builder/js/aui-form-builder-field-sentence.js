@@ -84,7 +84,8 @@ A.FormBuilderFieldSentence = A.Base.create('form-builder-field-sentece', A.FormB
             {
                 attrName: 'title',
                 editor: new A.TextDataEditor({
-                    label: 'Type your question here'
+                    label: 'Type your question here',
+                    required: true
                 })
             },
             {

@@ -89,13 +89,15 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
             {
                 attrName: 'columns',
                 editor: new A.OptionsDataEditor({
-                    label: 'Columns'
+                    label: 'Columns',
+                    required: true
                 })
             },
             {
                 attrName: 'rows',
                 editor: new A.OptionsDataEditor({
-                    label: 'Rows'
+                    label: 'Rows',
+                    required: true
                 })
             }
         );

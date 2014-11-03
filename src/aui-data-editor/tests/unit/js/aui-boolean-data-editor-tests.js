@@ -57,6 +57,17 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
             input.set('checked', true);
             input.simulate('change');
             Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+        },
+
+        'should check if the form is valid': function() {
+            var editor;
+
+            editor = new Y.BooleanDataEditor();
+
+            Y.Assert.isTrue(editor.isValid());
+
+            editor.set('required', true);
+            Y.Assert.isTrue(editor.isValid());
         }
     }));
 

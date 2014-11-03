@@ -37,6 +37,25 @@ YUI.add('aui-scale-data-editor-tests', function(Y) {
 
             editor.set('label', 'New Label');
             Y.Assert.areEqual('New Label', editor.get('node').one('label').get('text'));
+        },
+
+        'should check if the form is valid': function() {
+            var editor = new Y.ScaleDataEditor({
+                originalValue: [0, 1]
+            });
+
+            Y.Assert.isTrue(editor.isValid());
+
+            editor.set('required', true);
+            editor.get('node').one('.scale-data-editor-lower-value').set('value', '');
+            editor.get('node').one('.scale-data-editor-higher-value').set('value', '');
+            Y.Assert.isFalse(editor.isValid());
+
+            editor.get('node').one('.scale-data-editor-lower-value').set('value', '1982');
+            Y.Assert.isFalse(editor.isValid());
+
+            editor.get('node').one('.scale-data-editor-higher-value').set('value', '1986');
+            Y.Assert.isTrue(editor.isValid());
         }
     }));
 

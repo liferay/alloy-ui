@@ -20,6 +20,16 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
         '<input type="text" class="form-control"></input></div>',
 
     /**
+     * Returns `true` if this edited value has no elements.
+     *
+     * @method isEmpty
+     * @protected
+     */
+    isEmpty: function() {
+        return !this.get('node').one('.form-control').get('value');
+    },
+
+    /**
      * Updates the editor's UI to display the given value.
      *
      * @method updateUiWithValue

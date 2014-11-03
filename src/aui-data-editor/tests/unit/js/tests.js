@@ -41,6 +41,21 @@ YUI.add('aui-data-editor-tests', function(Y) {
             });
         },
 
+        'should check if the form is valid': function() {
+            var editor,
+                TestEditor = this._createTestEditorClass();
+
+            editor = new TestEditor();
+
+            Y.Assert.isTrue(editor.isValid());
+
+            editor.set('required', true);
+
+            Y.Assert.throwsError(Error, function() {
+                editor.isValid();
+            });
+        },
+
         'should remove node after editor is destroyed': function() {
             var editor,
                 TestEditor = this._createTestEditorClass();

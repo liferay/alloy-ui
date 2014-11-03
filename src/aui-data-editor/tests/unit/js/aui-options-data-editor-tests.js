@@ -147,6 +147,25 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
                 Y.Assert.areEqual('Drogon', editedValue[1]);
                 Y.Assert.areEqual('Rhaegal', editedValue[2]);
             });
+        },
+
+        'should check if the form is valid': function() {
+            var editor = new Y.OptionsDataEditor(),
+                optionNodes;
+
+            this._editor.destroy();
+
+            Y.one('#container').append(editor.get('node'));
+
+            Y.Assert.isTrue(editor.isValid());
+
+            editor.set('required', true);
+            Y.Assert.isFalse(editor.isValid());
+
+            editor.get('node').one('.options-data-editor-add').simulate('click');
+            optionNodes = editor.get('node').all('.options-data-editor-option');
+            optionNodes.item(0).one('input').set('value', 'Shazam');
+            Y.Assert.isTrue(editor.isValid());
         }
     }));
 

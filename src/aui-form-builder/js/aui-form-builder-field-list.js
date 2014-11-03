@@ -83,7 +83,9 @@ A.FormBuilderFieldList = A.Base.create('form-builder-field-list', A.FormBuilderF
             },
             {
                 attrName: 'options',
-                editor: new A.OptionsDataEditor()
+                editor: new A.OptionsDataEditor({
+                    required: true
+                })
             },
             {
                 attrName: 'otherOption',

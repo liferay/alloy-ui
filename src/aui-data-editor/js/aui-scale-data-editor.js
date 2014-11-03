@@ -23,6 +23,16 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
         '<input type="text" class="' + CSS_SCALE_DATA_EDITOR_HIGHER_VALUE + '"></input></div>',
 
     /**
+     * Returns `true` if this edited value array has no elements on 0 and 1 positions.
+     *
+     * @method isEmpty
+     * @protected
+     */
+    isEmpty: function() {
+        return !(this.get('editedValue')[0] && this.get('editedValue')[1]);
+    },
+
+    /**
      * Updates the editor's UI to display the given value.
      *
      * @method updateUiWithValue
