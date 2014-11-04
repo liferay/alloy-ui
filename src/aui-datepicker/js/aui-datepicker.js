@@ -246,16 +246,17 @@ A.mix(DatePickerBase.prototype, {
      */
     _afterCalendarSelectionChange: function(event) {
         var instance = this,
-            newDates = event.newSelection,
+            newDates,
+            newSelection = event.newSelection,
             prevDates = instance.getSelectedDates() || [];
 
-        newDates = newDates.concat(prevDates);
+        newDates = newSelection.concat(prevDates);
 
         newDates = A.Array.dedupe(newDates);
 
-        if (newDates.length !== prevDates.length || event.newSelection.length < prevDates.length) {
+        if (newDates.length !== prevDates.length || newSelection.length < prevDates.length) {
             instance.fire('selectionChange', {
-                newSelection: event.newSelection
+                newSelection: newSelection
             });
         }
     },
