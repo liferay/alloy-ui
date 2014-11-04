@@ -443,6 +443,17 @@ var TreeNode = A.Component.create(
 			/*
 			* Methods
 			*/
+
+			append: function(node) {
+				var instance = this;
+
+				instance.appendChild(node);
+			},
+
+			/*
+			* Methods
+			*/
+
 			appendChild: function() {
 				var instance = this;
 
