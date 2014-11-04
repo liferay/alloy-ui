@@ -39,6 +39,7 @@
 }
 
 .basecelleditor input[type="checkbox"], .basecelleditor input[type="radio"] {
+    position: inherit;
     margin-left: 0;
     margin-right: 5px;
 }
