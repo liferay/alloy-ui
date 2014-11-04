@@ -449,6 +449,10 @@ var TreeNode = A.Component.create(
 				instance.appendChild(node);
 			},
 
+			/*
+			* Methods
+			*/
+
 			appendChild: function() {
 				var instance = this;
 
