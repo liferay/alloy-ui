@@ -105,11 +105,13 @@ YUI({ filter:'raw' }).use(
             fieldTypes: [{
                 fieldClass: Y.FormBuilderFieldSentence,
                 icon:'glyphicon glyphicon-font',
-                label: 'Sentence'
+                label: 'Sentence',
+                unique: true
             },{
                 fieldClass: Y.FormBuilderFieldChoice,
                 icon:'glyphicon glyphicon-font',
-                label: 'Choice'
+                label: 'Choice',
+                disabled: true
             },{
                 fieldClass: Y.FormBuilderFieldList,
                 icon:'glyphicon glyphicon-font',
@@ -130,7 +132,8 @@ YUI({ filter:'raw' }).use(
             },{
                 fieldClass: Y.FormBuilderFieldScale,
                 icon:'glyphicon glyphicon-font',
-                label: 'Scale'
+                label: 'Scale',
+                unique: true
             },{
                 fieldClass: Y.FormBuilderFieldDate,
                 icon:'glyphicon glyphicon-font',
