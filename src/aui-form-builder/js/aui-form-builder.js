@@ -135,7 +135,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             this.after('layout-col:valueChange', this._afterLayoutColValueChange),
             boundingBox.delegate('mouseenter', this._onFieldMouseEnter, '.' + CSS_FIELD_CONTENT, this),
             boundingBox.delegate('mouseleave', this._onFieldMouseLeave, '.' + CSS_FIELD_CONTENT_TOOLBAR, this),
-            boundingBox.delegate('tap', this._onTapField, '.' + CSS_FIELD_CONTENT, this),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
             boundingBox.delegate('click', this._onClickConfigurationField, '.' + CSS_FIELD_CONFIGURATION, this),
             boundingBox.delegate('click', this._onClickEditField, '.' + CSS_FIELD_TOOLBAR_EDIT, this),
@@ -145,6 +144,10 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
             this._menu.after('itemSelected', A.bind(this._afterItemSelected, this))
         ];
+
+        if (A.UA.mobile) {
+            this._eventHandles.push(boundingBox.delegate('tap', this._onTapField, '.' + CSS_FIELD_CONTENT, this));
+        }
     },
 
     /**

@@ -9,7 +9,8 @@ YUI.add('aui-form-builder-tests', function(Y) {
             // Ignore the following tests in touch enabled browsers. They will
             // be tested properly in the tests for the aui-form-builder module.
             ignore: {
-                'should show the toolbar of field when touch on field': !Y.UA.touchEnabled
+                'should show the toolbar of field when touch on field': !Y.UA.mobile,
+                'should show the toolbar of field when touch on field in mobile device': Y.UA.mobile
             }
         },
 
@@ -530,6 +531,29 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-content').simulateGesture('tap', {}, function() {
                 instance.resume(function() {
                     Y.Assert.isFalse(Y.one('.form-builder-field-toolbar').hasClass('hide'));
+                });
+            });
+            this.wait();
+        },
+
+        'shouldn\'t show the toolbar of field when touch on field in not mobile device': function() {
+            var instance = this;
+
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText
+                }]
+            });
+
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
+
+            Y.one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            Y.one('.form-builder-field-content').simulateGesture('tap', {}, function() {
+                instance.resume(function() {
+                    Y.Assert.isTrue(Y.one('.form-builder-field-toolbar').hasClass('hide'));
                 });
             });
             this.wait();
