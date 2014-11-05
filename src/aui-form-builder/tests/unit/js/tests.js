@@ -10,7 +10,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             // be tested properly in the tests for the aui-form-builder module.
             ignore: {
                 'should show the toolbar of field when touch on field': !Y.UA.mobile,
-                'should show the toolbar of field when touch on field in mobile device': Y.UA.mobile
+                'shouldn\'t show the toolbar of field when touch on field in not mobile device': Y.UA.mobile
             }
         },
 
