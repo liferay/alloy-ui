@@ -64,7 +64,8 @@ A.LayoutBuilderResizeCol.prototype = {
         this._gridlineNodes = [];
 
         this._eventHandles.push(
-            this.after('enableResizeColsChange', this._afterEnableResizeColsChange)
+            this.after('enableResizeColsChange', this._afterEnableResizeColsChange),
+            this.after('columnModeChange', A.bind(this._afterResizeColColumnModeChange, this))
         );
 
         this._uiSetEnableResizeCols(this.get('enableResizeCols'));
@@ -81,6 +82,16 @@ A.LayoutBuilderResizeCol.prototype = {
         this._unbindResizeColEvents();
 
         this._removeGrid();
+    },
+
+    /**
+     * Fired after the `breakpoints` attribute changes.
+     *
+     * @method _afterBreakpointsChange
+     * @protected
+     */
+    _afterBreakpointsChange: function() {
+        this._insertGrid();
     },
 
     /**
@@ -162,22 +173,22 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
-     * Fired after the `breakpoints` attribute changes.
-     *
-     * @method _afterBreakpointsChange
-     * @protected
-     */
-    _afterBreakpointsChange: function() {
-        this._insertGrid();
-    },
-
-    /**
      * Fired after the `enableResizeCols` attribute changes.
      *
      * @method _afterEnableResizeColsChange
      * @protected
      */
     _afterEnableResizeColsChange: function() {
+        this._uiSetEnableResizeCols(this.get('enableResizeCols'));
+    },
+
+    /**
+     * Fired after the `columnMode` changes.
+     *
+     * @method _afterResizeColColumnModeChange
+     * @protected
+     */
+    _afterResizeColColumnModeChange: function() {
         this._uiSetEnableResizeCols(this.get('enableResizeCols'));
     },
 
@@ -536,7 +547,7 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _uiSetEnableResizeCols: function(enableResizeCols) {
-        if (enableResizeCols) {
+        if (enableResizeCols && this._isColumnModeEnabled) {
             this._syncDragHandles();
             this._insertGrid();
             this._bindResizeColEvents();

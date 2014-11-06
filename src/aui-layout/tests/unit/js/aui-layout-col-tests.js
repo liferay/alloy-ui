@@ -21,11 +21,11 @@ YUI.add('aui-layout-col-tests', function(Y) {
             var colTemplate = this.layoutCol.get('node'),
                 colSize = this.layoutCol.get('size');
 
-            Assert.isTrue(colTemplate.hasClass('col-sm-' + colSize));
+            Assert.isTrue(colTemplate.hasClass('col-md-' + colSize));
 
             this.layoutCol.set('size', 7);
-            Assert.isFalse(colTemplate.hasClass('col-sm-' + colSize));
-            Assert.isTrue(colTemplate.hasClass('col-sm-7'));
+            Assert.isFalse(colTemplate.hasClass('col-md-' + colSize));
+            Assert.isTrue(colTemplate.hasClass('col-md-7'));
         },
 
         'should set value using an instance of Base': function() {

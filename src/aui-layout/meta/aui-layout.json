@@ -19,6 +19,7 @@
             "aui-layout-builder-resize-col",
             "aui-node-base",
             "base-build",
+            "event-resize",
             "node-event-delegate",
             "node-screen",
             "node-style"

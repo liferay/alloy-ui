@@ -42,7 +42,7 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
 
             this._createLayoutBuilder();
 
-            col = Y.one('.col-sm-6');
+            col = Y.one('.col-md-6');
             deleteColButton = col.one('.layout-builder-remove-col-button');
             deleteColButton.simulate('click');
 
@@ -81,7 +81,7 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
                 enableRemoveCols: false
             });
 
-            col = Y.one('.col-sm-6');
+            col = Y.one('.col-md-6');
 
             deleteColButton = col.one('.layout-builder-remove-col-button');
             Y.Assert.isNull(deleteColButton);
@@ -93,7 +93,7 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
 
             this._createLayoutBuilder();
 
-            col = Y.one('.col-sm-6');
+            col = Y.one('.col-md-6');
 
             col.getData('layout-col').set('removable', false);
 
@@ -113,7 +113,7 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
 
             this._createLayoutBuilder();
 
-            col = Y.one('.col-sm-6');
+            col = Y.one('.col-md-6');
 
             this._layoutBuilder.set('enableRemoveCols', false);
 
@@ -144,6 +144,29 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
             removeColButton.simulate('keypress', { keyCode: 13 });
 
             Y.Assert.areEqual(1, row.getData('layout-row').get('cols').length);
+        },
+
+        'should remove the entire row when delete the last col in a row': function() {
+            var deleteColButton,
+                row = new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 12,
+                                value: { content: '12' }
+                            })
+                        ]
+                    });
+
+            this._createLayoutBuilder();
+
+            this._layoutBuilder.get('layout').set('rows', [row]);
+
+            Y.Assert.isNotNull(Y.one('.row'));
+
+            deleteColButton = Y.one('.layout-builder-remove-col-button');
+            deleteColButton.simulate('click');
+
+            Y.Assert.isNull(Y.one('.row'));
         }
     }));
 

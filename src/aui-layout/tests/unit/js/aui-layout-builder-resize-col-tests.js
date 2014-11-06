@@ -469,6 +469,19 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
             dragHandle.simulate('mousedown', { button: 0 });
             Assert.areEqual('block', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+        },
+
+        'should remove resize col feature on smartphones': function() {
+            var resizeColDraggable = Y.one('.layout-builder-resize-col-draggable');
+
+            Y.Assert.isNotNull(resizeColDraggable);
+
+            this._layoutBuilder._isColumnModeEnabled = false;
+            this._layoutBuilder.fire('columnModeChange');
+
+            resizeColDraggable = Y.one('.layout-builder-resize-col-draggable');
+
+            Y.Assert.isNull(resizeColDraggable);
         }
     }));
 

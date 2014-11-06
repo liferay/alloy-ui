@@ -160,7 +160,6 @@ YUI.add('aui-layout-builder-remove-row-tests', function(Y) {
             deleteRowButton = row.previous('.layout-builder-remove-row-button');
             Y.Assert.isNull(deleteRowButton);
 
-
             row.getData('layout-row').set('removable', true);
 
             deleteRowButton = row.previous('.layout-builder-remove-row-button');
@@ -172,6 +171,19 @@ YUI.add('aui-layout-builder-remove-row-tests', function(Y) {
 
             deleteRowButton = row.previous('.layout-builder-remove-row-button');
             Y.Assert.isNull(deleteRowButton);
+        },
+
+        'should remove remove row feature on smartphones': function() {
+            var removeRowButton = Y.one('.layout-builder-remove-row-button');
+
+            Y.Assert.isNotNull(removeRowButton);
+
+            this.layoutBuilder._isColumnModeEnabled = false;
+            this.layoutBuilder.fire('columnModeChange');
+
+            removeRowButton = Y.one('.layout-builder-remove-row-button');
+
+            Y.Assert.isNull(removeRowButton);
         }
     }));
 

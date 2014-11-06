@@ -16,7 +16,28 @@
     z-index: 1;
 }
 
-.layout-builder-add-row-area-fixed {
+.layout-builder-add-row-area.layout-builder-add-row-area-fixed {
     bottom: -30px;
+    position: fixed;
+}
+
+.layout-builder-add-row-small-screen {
+    background-color: #7ED321;
+    border: 3px solid #BCC9D2;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -o-border-radius: 50px;
+    border-radius: 50px;
+    height: 45px;
+    width: 45px;
+}
+
+.layout-builder-add-row-small-screen-area {
+    left: 40%;
+    position: relative;
+}
+
+.layout-builder-add-row-small-screen-area.layout-builder-add-row-area-fixed {
+    bottom: 0;
     position: fixed;
 }

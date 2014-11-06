@@ -6,6 +6,7 @@
 
 var CSS_REMOVE_COL = A.getClassName('layout', 'builder', 'remove', 'col', 'button'),
     SELECTOR_COL = '.col',
+    SELECTOR_ROW = '.row',
     TPL_REMOVE_COL = '<span class="glyphicon glyphicon-remove ' + CSS_REMOVE_COL + '" tabindex="7"></span>';
 
 /**
@@ -152,7 +153,7 @@ A.LayoutBuilderRemoveCol.prototype = {
      * @protected
      */
     _onKeyPressRemoveColEvent: function(event) {
-        this._removeCol(event);
+        this._removeCol(event.target.ancestor(SELECTOR_COL));
     },
 
     /**
@@ -163,19 +164,28 @@ A.LayoutBuilderRemoveCol.prototype = {
      * @protected
      */
     _onMouseClickRemoveColEvent: function(event) {
-        this._removeCol(event);
+        var colsSize,
+            row = event.target.ancestor(SELECTOR_ROW);
+
+        colsSize = row.all(SELECTOR_COL).size();
+
+        if (colsSize > 1) {
+            this._removeCol(event.target.ancestor(SELECTOR_COL));
+        }
+        else {
+            this.get('layout').removeRow(row.getData('layout-row'));
+        }
     },
 
     /**
      * Removes col from row.
      *
      * @method _removeCol
-     * @param {EventFacade} event
+     * @param {Node} col
      * @protected
      */
-    _removeCol: function(event) {
-        var col = event.target.ancestor(),
-            row = col.ancestor().getData('layout-row');
+    _removeCol: function(col) {
+        var row = col.ancestor().getData('layout-row');
 
         row.removeCol(col.getData('layout-col'));
     },

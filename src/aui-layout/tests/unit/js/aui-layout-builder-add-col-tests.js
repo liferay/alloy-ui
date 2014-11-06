@@ -61,7 +61,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             this._createLayoutBuilder();
 
-            col = Y.one('.col-sm-6');
+            col = Y.one('.col-md-6');
             addColButton = col.ancestor().one('.layout-builder-add-col');
             addColButton.simulate('click');
 
@@ -120,7 +120,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             this._createLayoutBuilder();
 
-            col = Y.one('.col-sm-3');
+            col = Y.one('.col-md-3');
 
             Y.Assert.isNull(col.one('.layout-builder-add-col'));
         },
@@ -133,7 +133,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
                 enableAddCols: false
             });
 
-            col = Y.one('.col-sm-6');
+            col = Y.one('.col-md-6');
 
             addColButton = col.one('.layout-builder-add-col');
             Y.Assert.isNull(addColButton);
@@ -146,7 +146,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             this._createLayoutBuilder();
 
-            col = Y.one('.col-sm-6');
+            col = Y.one('.col-md-6');
 
             this._layoutBuilder.set('enableAddCols', false);
 
@@ -209,6 +209,19 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             addColButton.simulate('keypress', { keyCode: 13 });
 
             Y.Assert.areEqual(3, row.getData('layout-row').get('cols').length);
+        },
+
+        'should remove add col feature on smartphones': function() {
+            var addColButton;
+
+            this._createLayoutBuilder();
+
+            this._layoutBuilder._isColumnModeEnabled = false;
+            this._layoutBuilder.fire('columnModeChange');
+
+            addColButton = Y.one('.layout-builder-add-col');
+
+            Y.Assert.isNull(addColButton);
         }
     }));
 

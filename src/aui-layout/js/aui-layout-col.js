@@ -4,7 +4,7 @@
  * @module aui-layout-col
  */
 
-var BOOTSTRAP_CLASS_PREFIX = 'col-sm-',
+var BOOTSTRAP_CLASS_PREFIX = 'col-md-',
     CSS_COL_CONTENT = A.getClassName('layout', 'col', 'content'),
     TPL_COL = '<div class="col"><div class="' + CSS_COL_CONTENT + '"></div></div>';
 

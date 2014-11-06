@@ -586,6 +586,17 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             Y.one('.row').getData('layout-row').set('cols', []);
 
             Y.Mock.verify(this.layoutBuilder);
+        },
+
+        'should not insert cut buttons on cols if columnMode is not enabled through responsiveness': function() {
+            var moveButton = Y.one('.layout-builder-move-button');
+
+            this.layoutBuilder._isColumnModeEnabled = false;
+            this.layoutBuilder.fire('columnModeChange');
+
+            moveButton.simulate('click');
+
+            Assert.isNull(Y.one('.layout-builder-move-cut-col-button'));
         }
     }));
 

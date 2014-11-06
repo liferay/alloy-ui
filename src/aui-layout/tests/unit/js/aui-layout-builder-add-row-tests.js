@@ -201,6 +201,45 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
             createNewRowButton.simulate('keypress', { keyCode: 13 });
 
             Assert.areEqual(2, layout.get('rows').length);
+        },
+
+        'should change add row area on smartphones': function() {
+            var addRowArea = Y.one('.layout-builder-add-row-area'),
+                addRowSmartphoneArea = Y.one('.layout-builder-add-row-smartphone-area');
+
+            Y.Assert.isNotNull(addRowArea);
+            Y.Assert.isNull(addRowSmartphoneArea);
+
+            layoutBuilder._isColumnModeEnabled = false;
+            layoutBuilder.fire('columnModeChange');
+
+            addRowArea = Y.one('.layout-builder-add-row-area');
+            addRowSmartphoneArea = Y.one('.layout-builder-add-row-smartphone-area');
+
+            Y.Assert.isNull(addRowArea);
+            Y.Assert.isNotNull(addRowSmartphoneArea);
+        },
+
+        'should not append add row area when change column mode if enableAddRows attribute is false': function() {
+            var addRowArea,
+                addRowSmartphoneArea;
+
+            layoutBuilder.set('enableAddRows', false);
+
+            addRowArea = Y.one('.layout-builder-add-row-area'),
+            addRowSmartphoneArea = Y.one('.layout-builder-add-row-smartphone-area');
+
+            Y.Assert.isNull(addRowArea);
+            Y.Assert.isNull(addRowSmartphoneArea);
+
+            layoutBuilder._isColumnModeEnabled = false;
+            layoutBuilder.fire('columnModeChange');
+
+            addRowArea = Y.one('.layout-builder-add-row-area');
+            addRowSmartphoneArea = Y.one('.layout-builder-add-row-smartphone-area');
+
+            Y.Assert.isNull(addRowArea);
+            Y.Assert.isNull(addRowSmartphoneArea);
         }
     }));
 

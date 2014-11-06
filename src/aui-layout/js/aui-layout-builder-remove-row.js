@@ -30,7 +30,8 @@ LayoutBuilderRemoveRow.prototype = {
         this._eventHandles.push(
             this.after('enableRemoveRowsChange', A.bind(this._afterEnableRemoveRowsChange, this)),
             this.after('layout:rowsChange', A.bind(this._afterRemoveRowRowsChange, this)),
-            this.after('layoutChange', A.bind(this._afterRemoveRowLayoutChange, this))
+            this.after('layoutChange', A.bind(this._afterRemoveRowLayoutChange, this)),
+            this.after('columnModeChange', A.bind(this._afterRemoveRowColumnModeChange, this))
         );
 
         this._uiSetEnableRemoveRows(this.get('enableRemoveRows'));
@@ -44,6 +45,16 @@ LayoutBuilderRemoveRow.prototype = {
      */
     destructor: function() {
         this._unbindRemoveRowEvents();
+    },
+
+    /**
+     * Fired after `columnModeChange` changes.
+     *
+     * @method _afterRemoveRowColumnModeChange
+     * @protected
+     */
+    _afterRemoveRowColumnModeChange: function() {
+        this._uiSetEnableRemoveRows(this.get('enableRemoveRows'));
     },
 
     /**
@@ -181,7 +192,7 @@ LayoutBuilderRemoveRow.prototype = {
     _uiSetEnableRemoveRows: function(enableRemoveRows) {
         this._removeRemoveButtonFromRows();
 
-        if (enableRemoveRows) {
+        if (enableRemoveRows && this._isColumnModeEnabled) {
             this._appendButtonToRows();
             this._bindRemoveRowEvents();
         }

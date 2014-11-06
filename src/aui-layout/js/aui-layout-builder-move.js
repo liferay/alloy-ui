@@ -457,7 +457,10 @@ LayoutBuilderMove.prototype = {
      */
     _insertCutButton: function(moveButton) {
         this._insertCutButtonOnRow(moveButton);
-        this._insertCutButtonOnCols(moveButton);
+
+        if (this._isColumnModeEnabled) {
+            this._insertCutButtonOnCols(moveButton);
+        }
     },
 
     /**

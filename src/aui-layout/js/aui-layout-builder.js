@@ -4,7 +4,14 @@
  * @module aui-layout-builder
  */
 
-var TPL_LAYOUT_CONTAINER = '<div class="layout-builder-layout-container"></div>';
+var RESPONSIVENESS_BREAKPOINT = 992,
+    TPL_LAYOUT_CONTAINER = '<div class="layout-builder-layout-container"></div>';
+
+/**
+ * Fired when the the responsive mode changes.
+ *
+ * @event columnModeChange
+ */
 
 /**
  * A base class for Layout Builder.
@@ -26,6 +33,15 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     A.LayoutBuilderRemoveRow,
     A.LayoutBuilderResizeCol
 ], {
+
+    /**
+     * Determines if columns should collapse.
+     *
+     * @property _isColumnModeEnabled
+     * @type {Boolean}
+     * @protected
+     */
+    _isColumnModeEnabled: null,
 
     /**
      * The node where the layout will be rendered.
@@ -54,8 +70,11 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
         this._layoutContainer.unselectable();
 
         this._eventHandles = [
-            this.after('layoutChange', A.bind(this._afterLayoutChange, this))
+            this.after('layoutChange', A.bind(this._afterLayoutChange, this)),
+            A.on('windowresize', A.bind(this._afterWindowResize, this))
         ];
+
+        this._handleResponsive(A.config.win.innerWidth);
     },
 
     /**
@@ -88,6 +107,19 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     },
 
     /**
+     * Fired after window resize.
+     *
+     * @method _afterWindowResize
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterWindowResize: function(event) {
+        var viewportSize = event.target.get('innerWidth');
+
+        this._handleResponsive(viewportSize);
+    },
+
+    /**
      * Create layout container node.
      *
      * @method _createLayoutContainer
@@ -97,6 +129,22 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     _createLayoutContainer: function(container) {
         this._layoutContainer = A.Node.create(TPL_LAYOUT_CONTAINER);
         container.append(this._layoutContainer);
+    },
+
+    /**
+     * Fires the `columnModeChange` event.
+     *
+     * @method _handleResponsive
+     * @param {Number} viewportSize
+     * @protected
+     */
+    _handleResponsive: function(viewportSize) {
+        var enableColumnMode = viewportSize >= RESPONSIVENESS_BREAKPOINT;
+
+        if (this._isColumnModeEnabled !== enableColumnMode) {
+            this._isColumnModeEnabled = enableColumnMode;
+            this.fire('columnModeChange');
+        }
     }
 }, {
     /**
