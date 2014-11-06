@@ -54,6 +54,17 @@ var CharCounter = A.Component.create({
         },
 
         /**
+         * Node or Selector for the input field. Required.
+         *
+         * @attribute input
+         * @default null
+         * @type {Node | String}
+         */
+        input: {
+            setter: A.one
+        },
+
+        /**
          * Max number of characters the [input](A.CharCounter.html#attr_input)
          * can have.
          *
@@ -66,19 +77,8 @@ var CharCounter = A.Component.create({
             setter: function(v) {
                 return this._setMaxLength(v);
             },
-            value: Infinity,
-            validator: isNumber
-        },
-
-        /**
-         * Node or Selector for the input field. Required.
-         *
-         * @attribute input
-         * @default null
-         * @type {Node | String}
-         */
-        input: {
-            setter: A.one
+            validator: isNumber,
+            value: Infinity
         }
     },
 
@@ -151,9 +151,9 @@ var CharCounter = A.Component.create({
             if (counter) {
                 var value = instance.get('input').val();
 
-                counter.html(
-                    instance.get('maxLength') - value.length
-                );
+                var counterValue = instance.get('maxLength') - instance._getNormalizedLength(value);
+
+                counter.html(counterValue);
             }
         },
 
@@ -183,30 +183,56 @@ var CharCounter = A.Component.create({
         checkLength: function() {
             var instance = this;
             var input = instance.get('input');
-            var maxLength = instance.get('maxLength');
 
-            if (!input) {
-                return false; // NOTE: return
+            if (input) {
+                var maxLength = instance.get('maxLength');
+                var value = input.val();
+
+                var normalizedLength = instance._getNormalizedLength(value);
+
+                if (normalizedLength > maxLength) {
+                    var scrollTop = input.get('scrollTop');
+                    var scrollLeft = input.get('scrollLeft');
+
+                    var trimLength = maxLength - (normalizedLength - value.length);
+
+                    value = value.substring(0, trimLength);
+
+                    input.val(value);
+
+                    input.set('scrollTop', scrollTop);
+                    input.set('scrollLeft', scrollLeft);
+                }
+
+                instance.syncUI();
+
+                if (normalizedLength >= maxLength) {
+                    instance.fire('maxLength');
+                }
+            }
+            else {
+                return false;
+            }
+        },
+
+        /**
+         * Normalize reported length between browsers.
+         *
+         * @method _getNormalizedLength
+         * @param {String} value.
+         * @protected
+         * @return {Number}
+         */
+        _getNormalizedLength: function(value) {
+            var newLines = value.match(/(\r\n|\n|\r)/g);
+
+            var newLinesCorrection = 0;
+
+            if (newLines !== null) {
+                newLinesCorrection = newLines.length;
             }
 
-            var value = input.val();
-            var scrollTop = input.get('scrollTop');
-            var scrollLeft = input.get('scrollLeft');
-
-            if (value.length > maxLength) {
-                input.val(
-                    value.substring(0, maxLength)
-                );
-            }
-
-            if (value.length === maxLength) {
-                instance.fire('maxLength');
-            }
-
-            input.set('scrollTop', scrollTop);
-            input.set('scrollLeft', scrollLeft);
-
-            instance.syncUI();
+            return value.length + newLinesCorrection;
         },
 
         /**

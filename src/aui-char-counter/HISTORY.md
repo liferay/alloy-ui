@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1715](https://issues.liferay.com/browse/AUI-1715) Character count for textarea element input in Char Counter is incorrectly calculated in Chrome
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
