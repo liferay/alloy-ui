@@ -122,12 +122,15 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _afterDragMouseDown: function(event) {
-        var dragNode = event.target.get('node'),
-            row = dragNode.ancestor(SELECTOR_ROW);
+        var dragNode,
+            row;
 
-        if (!event.target.validClick(event.ev)) {
+        if (event.ev.button > 1 || !event.target.validClick(event.ev)) {
             return;
         }
+
+        dragNode = event.target.get('node');
+        row = dragNode.ancestor(SELECTOR_ROW);
 
         this._showBreakpoints(row, dragNode);
     },
@@ -347,18 +350,17 @@ A.LayoutBuilderResizeCol.prototype = {
         var instance = this,
             breakpoints = this.get('breakpoints'),
             gridLine,
-            gridWidth,
-            node;
+            node,
+            nodeWidth;
 
         this._removeGrid();
         A.each(this.get('layout').get('rows'), function(row) {
             node = row.get('node').one(SELECTOR_ROW);
-
-            gridWidth = node.get(OFFSET_WIDTH) / MAX_SIZE;
+            nodeWidth = node.get(OFFSET_WIDTH);
 
             A.each(breakpoints, function(point) {
                 gridLine = A.Node.create(instance.TPL_RESIZE_COL_BREAKPOINT);
-                gridLine.setStyle('left', gridWidth * point);
+                gridLine.setStyle('left', ((point * 100) / MAX_SIZE) + '%');
                 gridLine.setData('layout-position', point);
                 gridLine.plug(A.Plugin.Drop, {
                     padding: '30px'

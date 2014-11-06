@@ -452,6 +452,23 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
             dragHandle.simulate('keypress', { keyCode: 13 });
             Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+        },
+
+        'should not show grid breakpoints when clicking drag handle with a button other than left': function() {
+            var dragHandle,
+                row = Y.all('.row').item(1);
+
+            dragHandle = row.one('.layout-builder-resize-col-draggable-handle');
+            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+
+            dragHandle.simulate('mousedown', { button: 1 });
+            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+
+            dragHandle.simulate('mousedown', { button: 2 });
+            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+
+            dragHandle.simulate('mousedown', { button: 0 });
+            Assert.areEqual('block', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
         }
     }));
 
