@@ -721,7 +721,11 @@ var SchedulerEventRecorder = A.Component.create({
                 node = node.item(0);
             }
 
-            instance.popover.set('align.node', node);
+            var align = instance.popover.get('align');
+            instance.popover.set('align', {
+                node: node,
+                points: align.points
+            });
 
             instance.popover.show();
         }
