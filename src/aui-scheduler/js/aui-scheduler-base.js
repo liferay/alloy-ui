@@ -146,15 +146,18 @@ A.mix(SchedulerEventSupport.prototype, {
      *
      * @method getEvents
      * @param filterFn
+     * @param {Boolean} skipSort
      */
-    getEvents: function(filterFn) {
+    getEvents: function(filterFn, skipSort) {
         var instance = this,
             events = instance._events;
 
         // TODO: Check why the items are not being sorted on add
-        events.sort({
-            silent: true
-        });
+        if (!skipSort) {
+            events.sort({
+                silent: true
+            });
+        }
 
         if (filterFn) {
             events = events.filter(filterFn);

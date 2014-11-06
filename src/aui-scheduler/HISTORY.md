@@ -4,4 +4,5 @@
 
 ## @VERSION@
 
+* [AUI-1772](https://issues.liferay.com/browse/AUI-1772) Improve performance of SchedulerTableView plotEvents method
 * [AUI-1370](https://issues.liferay.com/browse/AUI-1370) Add ability to set an event's border color, style, and width
