@@ -106,6 +106,28 @@ LayoutBuilderAddRow.prototype = {
         var numberOfCols = button.getData('numberOfCols');
 
         this.get('layout').addRowWithSpecifiedColNumber(numberOfCols);
+
+        window.scrollTo(0, A.DOM.region(this._layoutContainer._node).bottom);
+    },
+
+    /**
+     * Fired after the `rows` attribute changes.
+     *
+     * @method _afterAddRowRowsChange
+     * @protected
+     */
+    _afterAddRowRowsChange: function() {
+        this._setAddRowAreaPosition();
+    },
+
+    /**
+     * Fired after the window's resize.
+     *
+     * @method _afterAddRowWindowResize
+     * @protected
+     */
+    _afterAddRowWindowResize: function() {
+        this._setAddRowAreaPosition();
     },
 
     /**
@@ -148,6 +170,8 @@ LayoutBuilderAddRow.prototype = {
         this._addRowsEventHandles = [
             container.delegate('click', A.bind(this._onMouseClickAddRowEvent, this), '.' + CSS_ADD_ROW),
             container.delegate('key', A.bind(this._onKeyPressAddRowEvent, this), 'press:13', '.' + CSS_ADD_ROW),
+            this.after('layout:rowsChange', A.bind(this._afterAddRowRowsChange, this)),
+            A.on('windowresize', A.bind(this._afterAddRowWindowResize, this))
         ];
     },
 

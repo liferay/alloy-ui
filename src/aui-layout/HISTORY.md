@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1757](https://issues.liferay.com/browse/AUI-1757) Improvements to layout builder's button for adding rows
 * [AUI-1721](https://issues.liferay.com/browse/AUI-1721) Improve interactions for LayoutBuilder on smartphones
 * [AUI-1756](https://issues.liferay.com/browse/AUI-1756) The position of layout builder's breakpoint nodes should be fluid
 * [AUI-1727](https://issues.liferay.com/browse/AUI-1727) Add keyboard navigation to layout builder

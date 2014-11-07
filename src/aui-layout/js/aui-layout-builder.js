@@ -27,11 +27,12 @@ var RESPONSIVENESS_BREAKPOINT = 992,
  */
 A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     A.LayoutBuilderAddCol,
-    A.LayoutBuilderAddRow,
     A.LayoutBuilderMove,
     A.LayoutBuilderRemoveCol,
     A.LayoutBuilderRemoveRow,
-    A.LayoutBuilderResizeCol
+    A.LayoutBuilderResizeCol,
+    // It's necessary that A.LayoutBuilderAddRow is the last to be loaded.
+    A.LayoutBuilderAddRow
 ], {
 
     /**

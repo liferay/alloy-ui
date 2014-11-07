@@ -173,26 +173,6 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
             }, 100);
         },
 
-        'should ': function() {
-            var body = Y.config.doc.body,
-                instance = this,
-                topDistance;
-
-            createALotOfRows();
-
-            Y.config.win.scrollTo(0, body.getBoundingClientRect().height);
-
-            this.wait(function() {
-                topDistance = body.getBoundingClientRect().top;
-
-                instance.wait(function() {
-                    Y.config.win.scrollBy(0, - 10);
-                    Assert.areEqual(topDistance + 10, body.getBoundingClientRect().top);
-                }, 100);
-
-            }, 100);
-        },
-
         'should add a new row when key press on any option': function() {
             var createNewRowButton = Y.one('.layout-builder-add-row-choose-row');
 
@@ -240,6 +220,54 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
 
             Y.Assert.isNull(addRowArea);
             Y.Assert.isNull(addRowSmartphoneArea);
+        },
+
+        'should call _setAddRowAreaPosition method when change rows attribute': function() {
+            Y.Mock.expect(layoutBuilder, {
+                method: '_setAddRowAreaPosition'
+            });
+
+            layoutBuilder.get('layout').set('rows', []);
+
+            Y.Mock.verify(layoutBuilder);
+        },
+
+        'should call _setAddRowAreaPosition method when resize the window': function() {
+            var instance = this;
+
+            Y.Mock.expect(layoutBuilder, {
+                method: '_setAddRowAreaPosition'
+            });
+
+            if (Y.UA.ie === 8) {
+                // Can't simulate a resize on IE8's window object, so
+                // calling the function directly here.
+                layoutBuilder._setAddRowAreaPosition();
+            }
+            else {
+                Y.one(Y.config.win).set('innerHeight', 500);
+                Y.one(Y.config.win).simulate('resize');
+            }
+
+            this.wait(function() {
+                Y.Mock.verify(layoutBuilder);
+            }, Y.config.windowResizeDelay || 100);
+        },
+
+        'should scroll to layoutContainer\'s bottom when add a new row': function() {
+            var addNewRowOption,
+                body,
+                bodyTopBeforeScroll;
+
+            createALotOfRows();
+
+            addNewRowOption = container.one('.layout-builder-add-row-choose-row');
+            body = Y.one('body').getDOMNode();
+            bodyTopBeforeScroll = body.getBoundingClientRect().top;
+
+            addNewRowOption.simulate('click');
+
+            Assert.areNotEqual(bodyTopBeforeScroll, body.getBoundingClientRect().top);
         }
     }));
 
