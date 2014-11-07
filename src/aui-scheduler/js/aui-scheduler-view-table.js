@@ -691,6 +691,9 @@ var SchedulerTableView = A.Component.create({
             var displayDaysInterval = instance.get('displayDaysInterval');
             var weekDaysCount = Math.min(displayDaysInterval, WEEK_LENGTH);
 
+            var finalDate = DateMath.add(startDateRef, DateMath.DAY, (weekDaysCount * this.tableRows.size()) - 1);
+            instance._findIntersections(startDateRef, finalDate);
+
             instance.tableRows.each(function(rowNode, index) {
                 var rowStartDate = DateMath.add(startDateRef, DateMath.DAY, weekDaysCount * index);
                 var rowEndDate = DateMath.add(rowStartDate, DateMath.DAY, weekDaysCount - 1);
@@ -819,6 +822,64 @@ var SchedulerTableView = A.Component.create({
             var firstDayOfWeek = scheduler.get('firstDayOfWeek');
 
             return DateMath.getFirstDayOfWeek(date, firstDayOfWeek);
+        },
+
+        /**
+         * Finds the events that intersect each of the given dates, but without
+         * duplicating the event on different days. Events will show up on the
+         * day that first intersected with it.
+         *
+         * @method _findIntersections
+         * @param {Date} startDate
+         * @param {Date} endDate
+         * @protected
+         */
+        _findIntersections: function(startDate, endDate) {
+            var currentDate = startDate,
+                eventEndDate,
+                events = this.get('scheduler').getEvents(null, true),
+                eventStartDate,
+                i = 0,
+                key = String(currentDate.getTime());
+
+            // Sort events by start date (they are sorted in a different way
+            // by default).
+            events.sort(function(evt1, evt2) {
+                return evt1.getClearStartDate() - evt2.getClearStartDate();
+            });
+
+            this.evtDateStack[key] = [];
+
+            while (i < events.length) {
+                eventStartDate = events[i].getClearStartDate();
+                eventEndDate = events[i].getClearEndDate();
+
+                if (DateMath.after(currentDate, eventEndDate)) {
+                    // Ignore events that end before the current date.
+                    i++;
+                }
+                else if (DateMath.before(currentDate, eventStartDate)) {
+                    // This is the first event that starts after the current date.
+                    // Let's jump to the next date then.
+                    currentDate = DateMath.add(currentDate, DateMath.DAY, 1);
+                    if (DateMath.after(currentDate, endDate)) {
+                        // The current date is past the last date we want to find
+                        // intersections for. Exit the loop.
+                        break;
+                    }
+                    else {
+                        // Prepare this date's event stack and let it be compared
+                        // with the current event on the next iteration.
+                        key = String(currentDate.getTime());
+                        this.evtDateStack[key] = [];
+                    }
+                }
+                else {
+                    // The current date intersects this event, so store it.
+                    this.evtDateStack[key].push(events[i]);
+                    i++;
+                }
+            }
         },
 
         /**

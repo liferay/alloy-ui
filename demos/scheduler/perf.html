@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body>
+    <h1>AlloyUI - Scheduler Perf Test</h1>
+    <div id="scheduler"></div>
+    <script>
+    YUI({ filter: 'raw' }).use('aui-scheduler', function(Y) {
+        function generateMonthEvents(monthIndex) {
+            var events = [];
+
+            for (var day = 1; day < 28; day++) {
+                var amount = Math.ceil(Math.random()*6 + 6);
+
+                for (var i = 0; i < amount; i++) {
+                    var daysAmount = Math.min(
+                        Math.floor(Math.random()*4),
+                        28 - day
+                    );
+
+                    events.push({
+                        content: 'Event ' + monthIndex + ':' + day,
+                        endDate: new Date(2014, monthIndex, day + daysAmount, 14),
+                        startDate: new Date(2014, monthIndex, day, 12)
+                    });
+                }
+            }
+
+            return events;
+        }
+
+        var date = new Date();
+        var months = [date.getMonth() - 1, date.getMonth(), date.getMonth() + 1];
+        var items = [];
+        for (var m = 0; m < months.length; m++) {
+            items = items.concat(generateMonthEvents(months[m]));
+        }
+
+        var time = Date.now();
+
+        var monthView = new Y.SchedulerMonthView();
+        var scheduler = new Y.Scheduler({
+            activeView: monthView,
+            boundingBox: '#scheduler',
+            items: items,
+            views: [
+                new Y.SchedulerWeekView(),
+                new Y.SchedulerDayView(),
+                monthView,
+                new Y.SchedulerAgendaView()
+            ],
+            eventRecorder: new Y.SchedulerEventRecorder()
+        }).render();
+
+        scheduler.after('render', function() {
+            console.log('Scheduler Load Time', Date.now() - time);
+        });
+    });
+    </script>
+</body>
+</html>
