@@ -12,7 +12,6 @@ var CSS_RESIZE_COL_BREAKPOINT = A.getClassName('layout', 'builder', 'resize', 'c
     CSS_RESIZE_COL_DRAGGABLE_BORDER = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'border'),
     CSS_RESIZE_COL_DRAGGABLE_HANDLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'handle'),
     MAX_SIZE = 12,
-    OFFSET_WIDTH = 'offsetWidth',
     SELECTOR_ROW = '.row';
 
 /**
@@ -350,13 +349,11 @@ A.LayoutBuilderResizeCol.prototype = {
         var instance = this,
             breakpoints = this.get('breakpoints'),
             gridLine,
-            node,
-            nodeWidth;
+            node;
 
         this._removeGrid();
         A.each(this.get('layout').get('rows'), function(row) {
             node = row.get('node').one(SELECTOR_ROW);
-            nodeWidth = node.get(OFFSET_WIDTH);
 
             A.each(breakpoints, function(point) {
                 gridLine = A.Node.create(instance.TPL_RESIZE_COL_BREAKPOINT);
