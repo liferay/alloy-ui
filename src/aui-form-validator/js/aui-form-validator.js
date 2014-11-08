@@ -438,6 +438,25 @@ var FormValidator = A.Component.create({
     },
 
     /**
+     * Creates custom rules from user input.
+     *
+     * @method _setCustomRules
+     * @param object
+     * @protected
+     */
+    _setCustomRules: function(object) {
+        var instance = this;
+
+        A.each(
+            object,
+            function(rule, fieldName) {
+                A.config.FormValidator.RULES[fieldName] = rule.condition;
+                A.config.FormValidator.STRINGS[fieldName] = rule.errorMessage;
+            }
+        );
+    },
+
+    /**
      * Ability to add custom validation rules.
      *
      * @method customRules
@@ -447,27 +466,10 @@ var FormValidator = A.Component.create({
      */
     addCustomRules: function(object) {
         var instance = this;
+
         if (isObject(object)) {
             instance._setCustomRules(object);
         }
-    },
-
-    /**
-     * Creates custom rules from user input.
-     *
-     * @method _setCustomRules
-     * @param object
-     * @protected
-     */
-    _setCustomRules: function(object) {
-        var instance = this;
-        A.each(
-            object,
-            function(rule, fieldName) {
-                A.config.FormValidator.RULES[fieldName] = rule.condition;
-                A.config.FormValidator.STRINGS[fieldName] = rule.errorMessage;
-            }
-        );
     },
 
     /**
