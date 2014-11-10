@@ -14,7 +14,7 @@ var CSS_ADD_ROW = A.getClassName('layout', 'builder', 'add', 'row'),
     TPL_ADD_ROW_AREA = '<div class="' + [CSS_ADD_ROW_AREA, CSS_ADD_ROW_AREA_FIXED, CSS_ADD_ROW].join(' ') + '"></div>',
     TPL_ADD_ROW_CHOOSE_ROW = '<div class="' + CSS_ADD_ROW_CHOOSE_ROW + '" tabindex="6"></div>',
     TPL_ADD_ROW_SMALL_SCREEN_SIZE = '<div class="' + [CSS_ADD_ROW, CSS_ADD_ROW_SMALL_SCREEN_AREA].join(' ') +
-        '"><div class="' + CSS_ADD_ROW_SMALL_SCREEN + '"></div><div>Add Field</div></div>';
+        '" tabindex="6"><div class="' + CSS_ADD_ROW_SMALL_SCREEN + '"></div><div>Add Row</div></div>';
 
 /**
  * A base class for Layout Add Row.

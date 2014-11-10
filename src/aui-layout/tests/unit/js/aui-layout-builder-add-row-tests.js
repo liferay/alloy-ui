@@ -205,7 +205,7 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
 
         'should change add row area on smartphones': function() {
             var addRowArea = Y.one('.layout-builder-add-row-area'),
-                addRowSmartphoneArea = Y.one('.layout-builder-add-row-smartphone-area');
+                addRowSmartphoneArea = Y.one('.layout-builder-add-row-small-screen-area');
 
             Y.Assert.isNotNull(addRowArea);
             Y.Assert.isNull(addRowSmartphoneArea);
@@ -214,7 +214,7 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
             layoutBuilder.fire('columnModeChange');
 
             addRowArea = Y.one('.layout-builder-add-row-area');
-            addRowSmartphoneArea = Y.one('.layout-builder-add-row-smartphone-area');
+            addRowSmartphoneArea = Y.one('.layout-builder-add-row-small-screen-area');
 
             Y.Assert.isNull(addRowArea);
             Y.Assert.isNotNull(addRowSmartphoneArea);
