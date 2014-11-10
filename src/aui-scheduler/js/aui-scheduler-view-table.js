@@ -875,6 +875,7 @@ var SchedulerTableView = A.Component.create({
                 eventEndDate,
                 events = this.get('scheduler').getEvents(null, true),
                 eventStartDate,
+                filterFn = this.get('filterFn'),
                 i = 0,
                 key = String(currentDate.getTime());
 
@@ -911,8 +912,12 @@ var SchedulerTableView = A.Component.create({
                     }
                 }
                 else {
-                    // The current date intersects this event, so store it.
-                    this.evtDateStack[key].push(events[i]);
+                    if (!filterFn || filterFn(events[i])) {
+                        // The current date intersects this event and passes the
+                        // filter, so store it.
+                        this.evtDateStack[key].push(events[i]);
+                    }
+
                     i++;
                 }
             }
