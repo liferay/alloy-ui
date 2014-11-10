@@ -233,8 +233,6 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
         },
 
         'should call _setAddRowAreaPosition method when resize the window': function() {
-            var instance = this;
-
             Y.Mock.expect(layoutBuilder, {
                 method: '_setAddRowAreaPosition'
             });
