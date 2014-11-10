@@ -11,7 +11,7 @@ var CSS_PAGE_BREAK = A.getClassName('form', 'builder', 'page', 'break'),
 
     TPL_PAGE_BREAK = '<div class="' + CSS_PAGE_BREAK + '">' +
         '<p>Page <span class="' + CSS_PAGE_BREAK_INDEX +
-        '"></span> of <span class="' + CSS_PAGE_BREAK_QUANTITY + '"></span></p></div>';
+        '"></span>/<span class="' + CSS_PAGE_BREAK_QUANTITY + '"></span></p></div>';
 
 /**
  * A base class for Form Builder Page Break.

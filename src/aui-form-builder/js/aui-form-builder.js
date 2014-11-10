@@ -56,8 +56,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         'Add Page Break' +
         '</button>',
     TPL_EDIT_LAYOUT_BUTTON: '<div class="' + CSS_EDIT_LAYOUT_BUTTON + '">' +
-        '<span class="glyphicon glyphicon-pencil ' + CSS_EDIT_LAYOUT_BUTTON_ICON + '">' +
-        '</span><a>Edit Layout</a></div>',
+        '<a>Edit Layout</a></div>',
     TPL_EMPTY_COL: '<div class="' + CSS_EMPTY_COL + '">' +
         '<div class="' + CSS_EMPTY_COL_ADD_BUTTON + '">' +
         '<span class="glyphicon glyphicon-plus ' + CSS_EMPTY_COL_ICON + '"></span>' +

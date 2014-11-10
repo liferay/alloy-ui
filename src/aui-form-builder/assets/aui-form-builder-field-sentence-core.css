@@ -1,4 +1,12 @@
+.form-builder-field-sentence-title {
+    font-size: 13pt;
+    font-weight: normal;
+    margin-bottom: 24px;
+}
+
 .form-builder-field-sentence-help {
-    color: gray;
-    font-size: 12px;
+    color: #708091;
+    font-family: HelveticaNeue-LightItalic;
+    font-size: 11pt;
+    margin-bottom: 24px;
 }

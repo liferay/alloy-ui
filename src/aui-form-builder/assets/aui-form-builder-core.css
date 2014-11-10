@@ -52,8 +52,28 @@
 }
 
 .form-builder-menu .form-builder-menu-content {
-    background-color: #bbb;
+    background-color: #34495e;
+    font-family: HelveticaNeue-Thin;
+    font-size: 20px;
+    letter-spacing: 4pt;
     line-height: 15px;
+    margin-top: -1px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 320px;
+}
+
+.form-builder-menu .form-builder-menu-content .menu-item {
+    height: 50pt;
+    line-height: 50pt;
+}
+
+.form-builder-menu .form-builder-menu-content .menu-item:hover {
+    background-color: #546273;
+}
+
+.form-builder-menu .form-builder-menu-content .menu-item a:hover {
+    color: #fff;
 }
 
 .form-builder-edit-layout-button .form-builder-edit-layout-button-icon {
@@ -97,16 +117,20 @@
 }
 
 .form-builder-layout {
-    margin: 20px 73px;
+    margin: 24px 73px;
 }
 
 .form-builder-layout .layout-row-container-row + .form-builder-page-break-row {
-    margin-top: 10px;
+    margin-top: 40pt;
+}
+
+.form-builder-layout .layout-row {
+    border-top: 2px solid #ecedee;
 }
 
 .form-builder-layout .layout-row .col {
     background-color: #fff;
-    border-right: 3px solid #ecedee;
+    border-right: 2px solid #ecedee;
     border-left: none;
     min-height: 200px;
     padding: 0;
@@ -143,4 +167,10 @@
 
 .form-builder-add-page-break {
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    .form-builder-layout {
+        margin: 24px 30px;
+    }
 }

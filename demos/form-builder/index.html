@@ -30,8 +30,8 @@ YUI({ filter:'raw' }).use(
                         new Y.LayoutCol({
                             size: 12,
                             value: new Y.FormBuilderFieldText({
-                                help: 'Some help text here',
-                                title: 'My First Field'
+                                help: 'Type your full name here',
+                                title: 'What\'s your name?'
                             })
                         })
                     ]
@@ -39,38 +39,32 @@ YUI({ filter:'raw' }).use(
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            size: 4,
+                            size: 12,
                             value: new Y.FormBuilderFieldSentence({
-                                help: 'My Help',
                                 nestedFields: [
                                     new Y.FormBuilderFieldText({
-                                        help: 'First nested field',
-                                        nestedFields: [
-                                            new Y.FormBuilderFieldText({
-                                                help: 'Second level nested field',
-                                                title: 'Nested Field 1.1'
-                                            })
-                                        ],
-                                        title: 'Nested Field 1'
+                                        help: 'Type the full name of your school here',
+                                        title: 'Where did you go to school?'
                                     }),
-                                    new Y.FormBuilderFieldText({
-                                        help: 'Second nested field',
-                                        title: 'Nested Field 2'
+                                    new Y.FormBuilderFieldChoice({
+                                        help: 'Select the major you graduated with',
+                                        options: ['Computer Science', 'Design'],
+                                        otherOption: true,
+                                        title: 'What is your major?'
                                     })
                                 ],
-                                title: 'My Title'
+                                title: 'Regarding education:'
                             })
+                        })
+                    ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            size: 4
                         }),
                         new Y.LayoutCol({
-                            size: 4,
-                            value: new Y.FormBuilderFieldSentence({
-                                nestedFields: [
-                                    new Y.FormBuilderFieldText({
-                                        title: 'How many?'
-                                    })
-                                ],
-                                title: 'Do you have children?'
-                            })
+                            size: 4
                         }),
                         new Y.LayoutCol({
                             size: 4

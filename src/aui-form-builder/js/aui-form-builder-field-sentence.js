@@ -105,7 +105,10 @@ A.FormBuilderFieldSentence = A.Base.create('form-builder-field-sentece', A.FormB
      * @protected
      */
     _uiSetHelp: function(help) {
-        this.get('content').one('.' + CSS_FIELD_SENTENCE_HELP).set('text', help);
+        var helpNode = this.get('content').one('.' + CSS_FIELD_SENTENCE_HELP);
+
+        helpNode.set('text', help);
+        helpNode.toggleView(help !== '');
     },
 
     /**
@@ -136,6 +139,7 @@ A.FormBuilderFieldSentence = A.Base.create('form-builder-field-sentece', A.FormB
          * @type {String}
          */
         help: {
+            setter: A.Lang.trim,
             validator: A.Lang.isString,
             value: ''
         },

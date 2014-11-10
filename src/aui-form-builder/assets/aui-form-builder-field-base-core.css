@@ -1,5 +1,6 @@
 .form-builder-field {
-    padding: 20px 40px;
+    color: #5d6d7e;
+    padding: 32pt;
 }
 
 .form-builder-field .form-builder-field-nested .form-builder-field {
@@ -10,8 +11,12 @@
     position: relative;
 }
 
-.form-builder-field .form-builder-field-nested .form-builder-field-content {
-    margin-bottom: 10px;
+.form-builder-field .form-builder-field-content .form-group {
+    margin-bottom: 0;
+}
+
+.form-builder-field .form-builder-field-nested .form-builder-field {
+    margin-bottom: 24px;
 }
 
 .form-builder-field .form-builder-field-configuration,
@@ -30,5 +35,11 @@
         position: absolute;
         right: 0;
         top: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-builder-field {
+        padding: 20pt;
     }
 }
