@@ -150,7 +150,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 input = form.one('input'),
                 validator;
 
-            var gt50 = function(val, fieldNode, ruleValue) {
+            var gt50 = function(val) {
                 return (val >= 50);
             };
 

@@ -469,8 +469,6 @@ var FormValidator = A.Component.create({
      * @protected
      */
     _setCustomRules: function(object) {
-        var instance = this;
-
         A.each(
             object,
             function(rule, fieldName) {
