@@ -5,18 +5,17 @@
 .form-builder-header {
     background-color: #00a3ff;
     color: #fff;
+    font-family: HelveticaNeue-Light;
     font-size: 20px;
-    height: 56px;
-    line-height: 56px;
+    height: 56pt;
+    line-height: 56pt;
     text-align: center;
     vertical-align: middle;
 }
 
 @media (max-width: 768px) {
     .form-builder-header {
-        font-size: 14px;
-        height: 44px;
-        line-height: 44px;
+        font-size: 17px;
     }
 
     .form-builder-header .form-builder-header-back,
@@ -38,12 +37,12 @@
     cursor: pointer;
     visibility: hidden;
     float: left;
-    width: 56px;
+    width: 56pt;
 }
 
 .form-builder-header .form-builder-menu {
     float: right;
-    width: 56px;
+    width: 56pt;
 }
 
 .form-builder-menu .form-builder-menu-button {
@@ -138,8 +137,8 @@
 
 .form-builder-layout .form-builder-page-break-row .col {
     border-radius: 5px 5px 0 0;
-    height: 48px;
-    line-height: 48px;
+    height: 48pt;
+    line-height: 48pt;
     min-height: 0;
 }
 
