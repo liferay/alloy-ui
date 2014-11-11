@@ -31,7 +31,6 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_MENU = A.getClassName('form', 'builder', 'menu'),
     CSS_MENU_BUTTON = A.getClassName('form', 'builder', 'menu', 'button'),
     CSS_MENU_CONTENT = A.getClassName('form', 'builder', 'menu', 'content'),
-    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
 
     MODES = {
         LAYOUT: 'layout',
@@ -422,31 +421,10 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @return {A.LayoutRow}
      */
     _createPageBreakRow: function(nextPageBreakIndex) {
-        var pageBreak,
-            row;
-
-        pageBreak = new A.FormBuilderPageBreak({
+        return new A.FormBuilderPageBreak({
             index: nextPageBreakIndex,
             quantity: nextPageBreakIndex
         });
-
-        row = new A.LayoutRow({
-            cols: [
-                new A.LayoutCol({
-                    movableContent: false,
-                    removable: false,
-                    size: 12,
-                    value: pageBreak
-                })
-            ],
-            maximumCols: 1,
-            movable: nextPageBreakIndex > 1,
-            removable: nextPageBreakIndex > 1
-        });
-
-        row.get('node').addClass(CSS_PAGE_BREAK_ROW);
-
-        return row;
     },
 
     /**
@@ -715,13 +693,13 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _setLayout: function(val) {
-        var firstCol;
+        var firstRow;
 
         if (val.get('rows').length > 0) {
-            firstCol = val.get('rows')[0].get('cols')[0];
+            firstRow = val.get('rows')[0];
         }
 
-        if (!firstCol || !A.instanceOf(firstCol, A.FormBuilderPageBreak)) {
+        if (!firstRow || !A.instanceOf(firstRow, A.FormBuilderPageBreak)) {
             val.addRow(0, this._createPageBreakRow(1));
         }
     },
@@ -842,15 +820,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     _updatePageBreaks: function () {
         var index = 1,
-            pageBreak,
             quantity = this._getNumberOfPageBreaks();
 
         A.Array.each(this.get('layout').get('rows'), function (row) {
-            pageBreak = row.get('cols')[0].get('value');
-
-            if (A.instanceOf(pageBreak, A.FormBuilderPageBreak)) {
-                pageBreak.set('index', index++);
-                pageBreak.set('quantity', quantity);
+            if (A.instanceOf(row, A.FormBuilderPageBreak)) {
+                row.set('index', index++);
+                row.set('quantity', quantity);
             }
         });
     }

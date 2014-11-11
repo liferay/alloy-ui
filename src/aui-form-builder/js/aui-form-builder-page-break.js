@@ -8,6 +8,7 @@
 var CSS_PAGE_BREAK = A.getClassName('form', 'builder', 'page', 'break'),
     CSS_PAGE_BREAK_INDEX = A.getClassName('form', 'builder', 'page', 'break', 'index'),
     CSS_PAGE_BREAK_QUANTITY = A.getClassName('form', 'builder', 'page', 'break', 'quantity'),
+    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
 
     TPL_PAGE_BREAK = '<div class="' + CSS_PAGE_BREAK + '">' +
         '<p>Page <span class="' + CSS_PAGE_BREAK_INDEX +
@@ -17,14 +18,14 @@ var CSS_PAGE_BREAK = A.getClassName('form', 'builder', 'page', 'break'),
  * A base class for Form Builder Page Break.
  *
  * @class A.FormBuilderPageBreak
- * @extends A.Base
+ * @extends A.LayoutRow
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
 A.FormBuilderPageBreak = A.Base.create(
     'form-builder-page-break',
-    A.Base,
+    A.LayoutRow,
     [], {
 
         /**
@@ -39,6 +40,8 @@ A.FormBuilderPageBreak = A.Base.create(
 
             this.after('indexChange', this._afterIndexChange);
             this.after('quantityChange', this._afterQuantityChange);
+
+            this.get('node').addClass(CSS_PAGE_BREAK_ROW);
         },
 
         /**
@@ -62,6 +65,39 @@ A.FormBuilderPageBreak = A.Base.create(
         },
 
         /**
+         * Gets the node where this page break's content is rendered.
+         *
+         * @method _getContentNode
+         * @return {Node}
+         * @protected
+         */
+        _getContentNode: function() {
+            if (!this._contentNode) {
+                this._contentNode = A.Node.create(TPL_PAGE_BREAK);
+            }
+
+            return this._contentNode;
+        },
+
+        /**
+         * Gets the value of the `movable` attribute.
+         * @return {Boolean}
+         * @protected
+         */
+        _getMovable: function() {
+            return this.get('index') > 1;
+        },
+
+        /**
+         * Gets the value of the `removable` attribute.
+         * @return {Boolean}
+         * @protected
+         */
+        _getRemovable: function() {
+            return this.get('index') > 1;
+        },
+
+        /**
          * Updates the ui according to the value of the `index` attribute.
          *
          * @method _uiSetIndex
@@ -69,7 +105,7 @@ A.FormBuilderPageBreak = A.Base.create(
          * @protected
          */
         _uiSetIndex: function(index) {
-            this.get('content').one('.' + CSS_PAGE_BREAK_INDEX).set('text', index);
+            this._getContentNode().one('.' + CSS_PAGE_BREAK_INDEX).set('text', index);
         },
 
         /**
@@ -80,7 +116,7 @@ A.FormBuilderPageBreak = A.Base.create(
          * @protected
          */
         _uiSetQuantity: function(quantity) {
-            this.get('content').one('.' + CSS_PAGE_BREAK_QUANTITY).set('text', quantity);
+            this._getContentNode().one('.' + CSS_PAGE_BREAK_QUANTITY).set('text', quantity);
         }
     }, {
         /**
@@ -93,19 +129,23 @@ A.FormBuilderPageBreak = A.Base.create(
          */
         ATTRS: {
             /**
-             * Node containing the contents of this page break.
+             * Array containing `A.LayoutCol` objects
              *
-             * @attribute content
-             * @type Node
+             * @attribute cols
+             * @default []
+             * @type {Array}
              */
-            content: {
-                validator: function(val) {
-                    return A.instanceOf(val, A.Node);
-                },
+            cols: {
                 valueFn: function() {
-                    return A.Node.create(TPL_PAGE_BREAK);
-                },
-                writeOnce: 'initOnly'
+                    var col = new A.LayoutCol({
+                        movableContent: false,
+                        removable: false,
+                        size: 12,
+                        value: {content: this._getContentNode()}
+                    });
+
+                    return [col];
+                }
             },
 
             /**
@@ -119,6 +159,28 @@ A.FormBuilderPageBreak = A.Base.create(
             },
 
             /**
+             * Number to determine maximum cols on a row.
+             *
+             * @attribute maximumCols
+             * @default 1
+             * @type {Number}
+             */
+            maximumCols: {
+                value: 1
+            },
+
+            /**
+             * Determine if the row can move.
+             *
+             * @attribute movable
+             * @default true
+             * @type {Boolean}
+             */
+            movable: {
+                getter: '_getMovable'
+            },
+
+            /**
              * Total of page breaks.
              *
              * @attribute quantity
@@ -126,6 +188,17 @@ A.FormBuilderPageBreak = A.Base.create(
              */
             quantity: {
                 validator: A.Lang.isNumber
+            },
+
+            /**
+             * Determine if the row can be removed.
+             *
+             * @attribute removable
+             * @default true
+             * @type {Boolean}
+             */
+            removable: {
+                getter: '_getRemovable'
             }
         }
     }

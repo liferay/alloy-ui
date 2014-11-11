@@ -22,9 +22,14 @@ YUI({ filter:'raw' }).use(
     'aui-form-builder-field-text',
     'aui-form-builder-field-scale',
     'aui-form-builder-field-sentence',
+    'aui-form-builder-page-break',
     function(Y) {
         var layout = new Y.Layout({
             rows: [
+                new Y.FormBuilderPageBreak({
+                    index: 1,
+                    quantity: 2
+                }),
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
@@ -35,6 +40,23 @@ YUI({ filter:'raw' }).use(
                             })
                         })
                     ]
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            size: 4
+                        }),
+                        new Y.LayoutCol({
+                            size: 4
+                        }),
+                        new Y.LayoutCol({
+                            size: 4
+                        })
+                    ]
+                }),
+                new Y.FormBuilderPageBreak({
+                    index: 2,
+                    quantity: 2
                 }),
                 new Y.LayoutRow({
                     cols: [
@@ -55,19 +77,6 @@ YUI({ filter:'raw' }).use(
                                 ],
                                 title: 'Regarding education:'
                             })
-                        })
-                    ]
-                }),
-                new Y.LayoutRow({
-                    cols: [
-                        new Y.LayoutCol({
-                            size: 4
-                        }),
-                        new Y.LayoutCol({
-                            size: 4
-                        }),
-                        new Y.LayoutCol({
-                            size: 4
                         })
                     ]
                 })

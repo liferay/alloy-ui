@@ -100,6 +100,7 @@
     "aui-form-builder-page-break": {
         "requires": [
             "aui-classnamemanager",
+            "aui-layout-row",
             "base",
             "node-base"
         ],
