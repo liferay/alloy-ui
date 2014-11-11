@@ -68,11 +68,24 @@ YUI({ filter:'raw' }).use(
                                         help: 'Type the full name of your school here',
                                         title: 'Where did you go to school?'
                                     }),
+                                    new Y.FormBuilderFieldDate({
+                                        help: 'Select the start/end dates',
+                                        timeToggleFrom: true,
+                                        timeToggleTo: true,
+                                        title: 'When did you go to that school?',
+                                        toggleInterval: true,
+                                        yearToggleFrom: true,
+                                        yearToggleTo: true
+                                    }),
                                     new Y.FormBuilderFieldChoice({
-                                        help: 'Select the major you graduated with',
+                                        help: 'Select one of the options below',
                                         options: ['Computer Science', 'Design'],
                                         otherOption: true,
                                         title: 'What is your major?'
+                                    }),
+                                    new Y.FormBuilderFieldScale({
+                                        help: 'Slide the circle between the given range',
+                                        title: 'How would you rate it from 0 to 10?'
                                     })
                                 ],
                                 title: 'Regarding education:'

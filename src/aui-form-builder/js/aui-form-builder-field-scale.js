@@ -6,6 +6,7 @@
  */
 
 var CSS_FIELD_SCALE = A.getClassName('form', 'builder', 'field', 'scale'),
+    CSS_FIELD_SCALE_INPUT = A.getClassName('form', 'builder', 'field', 'scale', 'input'),
     CSS_FIELD_SCALE_INPUT_HIGHER_VALUE =
         A.getClassName('form', 'builder', 'field', 'scale', 'input', 'higher', 'value'),
     CSS_FIELD_SCALE_INPUT_LOWER_VALUE =
@@ -22,8 +23,9 @@ var CSS_FIELD_SCALE = A.getClassName('form', 'builder', 'field', 'scale'),
  * @constructor
  */
 A.FormBuilderFieldScale = A.Base.create('form-builder-field-scale', A.FormBuilderFieldSentence, [], {
-    TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_SCALE_RANGE + '">' +
+    TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_SCALE_RANGE + ' clearfix">' +
         '<div class="' + CSS_FIELD_SCALE_INPUT_LOWER_VALUE + '"><label></label></div>' +
+        '<div class="' + CSS_FIELD_SCALE_INPUT + '"></div>' +
         '<div class="' + CSS_FIELD_SCALE_INPUT_HIGHER_VALUE + '"><label></label></div>' +
         '</div>',
 

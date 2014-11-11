@@ -23,43 +23,56 @@ YUI.add('aui-form-builder-field-date-tests', function(Y) {
         },
 
         'should be able to edit settings': function() {
-            var settings = Y.one('#settings');
+            var fromDate,
+                fromTime,
+                settings = Y.one('#settings'),
+                toContainer,
+                toDate,
+                toTime;
 
             this._createField();
-
             this._field.renderSettingsPanel(settings);
             this._field.saveSettings();
-            Y.Assert.areEqual('From: Month | Day', Y.one('.form-builder-field-date-from-date').getHTML());
-            Y.Assert.areEqual('', Y.one('.form-builder-field-date-from-time').getHTML());
-            Y.Assert.isFalse(Y.one('.form-builder-field-date-to-date').hasClass());
-            Y.Assert.areEqual('', Y.one('.form-builder-field-date-to-time').getHTML());
+
+            fromDate = Y.one('.form-builder-field-date-from-date');
+            fromTime = Y.one('.form-builder-field-date-from-time');
+            toContainer = Y.one('.form-builder-field-date-to');
+            toDate = Y.one('.form-builder-field-date-to-date');
+            toTime = Y.one('.form-builder-field-date-to-time');
+
+            Y.Assert.isFalse(fromDate.hasClass('year'));
+            Y.Assert.areEqual('none', fromTime.getStyle('display'));
+            Y.Assert.areEqual('none', toContainer.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
             settings.all('input[type="checkbox"]').item(1).simulate('click');
             this._field.saveSettings();
-            Y.Assert.areEqual('From: Month | Day | Year', Y.one('.form-builder-field-date-from-date').getHTML());
-            Y.Assert.areEqual('', Y.one('.form-builder-field-date-from-time').getHTML());
-            Y.Assert.isFalse(Y.one('.form-builder-field-date-to-date').hasClass());
-            Y.Assert.areEqual('', Y.one('.form-builder-field-date-to-time').getHTML());
+            Y.Assert.isTrue(fromDate.hasClass('year'));
+            Y.Assert.areEqual('none', fromTime.getStyle('display'));
+            Y.Assert.areEqual('none', toContainer.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
             settings.all('input[type="checkbox"]').item(2).simulate('click');
             this._field.saveSettings();
-            Y.Assert.areEqual('From: Hour | Min | AM/PM', Y.one('.form-builder-field-date-from-time').getHTML());
-            Y.Assert.isFalse(Y.one('.form-builder-field-date-to-date').hasClass());
-            Y.Assert.areEqual('', Y.one('.form-builder-field-date-to-time').getHTML());
+            Y.Assert.isTrue(fromDate.hasClass('year'));
+            Y.Assert.areNotEqual('none', fromTime.getStyle('display'));
+            Y.Assert.areEqual('none', toContainer.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
             settings.all('input[type="checkbox"]').item(3).simulate('click');
             this._field.saveSettings();
-            Y.Assert.areEqual('To: Month | Day | Year', Y.one('.form-builder-field-date-to-date').getHTML());
-            Y.Assert.areEqual('To: Hour | Min | AM/PM', Y.one('.form-builder-field-date-to-time').getHTML());
+            Y.Assert.isTrue(fromDate.hasClass('year'));
+            Y.Assert.areNotEqual('none', fromTime.getStyle('display'));
+            Y.Assert.areNotEqual('none', toContainer.getStyle('display'));
+            Y.Assert.isTrue(toDate.hasClass('year'));
+            Y.Assert.areNotEqual('none', toTime.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
             settings.all('input[type="checkbox"]').item(3).simulate('click');
             this._field.saveSettings();
-            Y.Assert.isFalse(Y.one('.form-builder-field-date-to-date').hasClass());
-            Y.Assert.isFalse(Y.one('.form-builder-field-date-to-time').hasClass());
+            Y.Assert.isTrue(fromDate.hasClass('year'));
+            Y.Assert.areNotEqual('none', fromTime.getStyle('display'));
+            Y.Assert.areEqual('none', toContainer.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
             settings.all('input[type="checkbox"]').item(1).simulate('click');
@@ -68,8 +81,11 @@ YUI.add('aui-form-builder-field-date-tests', function(Y) {
             settings.all('input[type="checkbox"]').item(4).simulate('click');
             settings.all('input[type="checkbox"]').item(5).simulate('click');
             this._field.saveSettings();
-            Y.Assert.areEqual('To: Month | Day | Year', Y.one('.form-builder-field-date-to-date').getHTML());
-            Y.Assert.areEqual('To: Hour | Min | AM/PM', Y.one('.form-builder-field-date-to-time').getHTML());
+            Y.Assert.isFalse(fromDate.hasClass('year'));
+            Y.Assert.areEqual('none', fromTime.getStyle('display'));
+            Y.Assert.areNotEqual('none', toContainer.getStyle('display'));
+            Y.Assert.isTrue(toDate.hasClass('year'));
+            Y.Assert.areNotEqual('none', toTime.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
             settings.all('input[type="checkbox"]').item(0).simulate('click');
@@ -80,5 +96,5 @@ YUI.add('aui-form-builder-field-date-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['aui-form-builder-field-date', 'node-event-simulate', 'test']
+    requires: ['aui-form-builder', 'aui-form-builder-field-date', 'node-event-simulate', 'test']
 });

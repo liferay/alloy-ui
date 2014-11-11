@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1776](https://issues.liferay.com/browse/AUI-1776) Improve appearance of rendered fields
 * [AUI-1775](https://issues.liferay.com/browse/AUI-1775) Improve appearance of form builder's initial screen
 * [AUI-1737](https://issues.liferay.com/browse/AUI-1737) Handle required fields on field settings modal
 * [AUI-1723](https://issues.liferay.com/browse/AUI-1723) Field edition should have 2 columns on bigger screens

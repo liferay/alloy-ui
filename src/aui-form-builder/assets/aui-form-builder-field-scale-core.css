@@ -1,15 +1,19 @@
-.form-builder-field-scale-input-higher-value {
-    float: right;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(153, 153, 153, 0.44);
-    text-align: center;
+.form-builder-field-scale-range {
+    height: 50px;
+    line-height: 50px;
 }
 
+.form-builder-field-scale-input {
+    background: url(slider.png) no-repeat scroll center center transparent;
+    background-size: contain;
+    float: left;
+    height: 100%;
+    margin-top: 2px;
+    max-width: 80%;
+    width: 300px;
+}
+
+.form-builder-field-scale-input-higher-value,
 .form-builder-field-scale-input-lower-value {
     float: left;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(153, 153, 153, 0.44);
-    text-align: center;
 }

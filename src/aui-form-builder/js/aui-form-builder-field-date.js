@@ -6,9 +6,16 @@
  */
 
 var CSS_FIELD_DATE = A.getClassName('form', 'builder', 'field', 'date'),
+    CSS_FIELD_DATE_FROM = A.getClassName('form', 'builder', 'field', 'date', 'from'),
     CSS_FIELD_DATE_FROM_DATE = A.getClassName('form', 'builder', 'field', 'date', 'from', 'date'),
+    CSS_FIELD_DATE_FROM_LABEL = A.getClassName('form', 'builder', 'field', 'date', 'from', 'label'),
     CSS_FIELD_DATE_FROM_TIME = A.getClassName('form', 'builder', 'field', 'date', 'from', 'time'),
+    CSS_FIELD_DATE_INPUT = A.getClassName('form', 'builder', 'field', 'date', 'input'),
+    CSS_FIELD_DATE_INPUT_TIME = A.getClassName('form', 'builder', 'field', 'date', 'input', 'time'),
+    CSS_FIELD_DATE_TO = A.getClassName('form', 'builder', 'field', 'date', 'to'),
     CSS_FIELD_DATE_TO_DATE = A.getClassName('form', 'builder', 'field', 'date', 'to', 'date'),
+    CSS_FIELD_DATE_TO_ENABLED = A.getClassName('form', 'builder', 'field', 'date', 'to', 'enabled'),
+    CSS_FIELD_DATE_TO_LABEL = A.getClassName('form', 'builder', 'field', 'date', 'to', 'label'),
     CSS_FIELD_DATE_TO_TIME = A.getClassName('form', 'builder', 'field', 'date', 'to', 'time'),
     CSS_CHECKED_CONTENT_DATE = A.getClassName('checked', 'content', 'date'),
     CSS_CHECKED_CONTENT_TIME = A.getClassName('checked', 'content', 'time'),
@@ -31,10 +38,14 @@ var CSS_FIELD_DATE = A.getClassName('form', 'builder', 'field', 'date'),
  */
 A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderFieldSentence, [], {
     TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_DATE + '">' +
-        '<div class="' + CSS_FIELD_DATE_FROM_DATE + '"> Month | Day </div>' +
-        '<div class="' + CSS_FIELD_DATE_FROM_TIME + '"></div>' +
-        '<div class="' + CSS_FIELD_DATE_TO_DATE + '"></div>' +
-        '<div class="' + CSS_FIELD_DATE_TO_TIME + '"></div>' +
+        '<div class="' + CSS_FIELD_DATE_FROM + '">' +
+        '<div class="' + CSS_FIELD_DATE_FROM_LABEL + '">From</div>' +
+        '<div class="' + CSS_FIELD_DATE_FROM_DATE + ' ' + CSS_FIELD_DATE_INPUT + '"></div>' +
+        '<div class="' + CSS_FIELD_DATE_FROM_TIME + ' ' + CSS_FIELD_DATE_INPUT_TIME + '"></div></div>' +
+        '<div class="' + CSS_FIELD_DATE_TO + '">' +
+        '<div class="' + CSS_FIELD_DATE_TO_LABEL + '">To</div>' +
+        '<div class="' + CSS_FIELD_DATE_TO_DATE + ' ' + CSS_FIELD_DATE_INPUT + '"></div>' +
+        '<div class="' + CSS_FIELD_DATE_TO_TIME + ' ' + CSS_FIELD_DATE_INPUT_TIME + '"></div></div>' +
         '</div>',
 
     /**
@@ -223,12 +234,7 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
     _uiSetTimeToggleFrom: function(timeToggleFrom) {
         var timeContainer = this.get('content').one('.' + CSS_FIELD_DATE_FROM_TIME);
 
-        if (timeToggleFrom) {
-            timeContainer.setHTML('From: Hour | Min | AM/PM ');
-        }
-        else {
-            timeContainer.setHTML('');
-        }
+        timeContainer.toggleView(timeToggleFrom);
     },
 
     /**
@@ -241,12 +247,7 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
     _uiSetTimeToggleTo: function(timeToggleTo) {
         var timeContainer = this.get('content').one('.' + CSS_FIELD_DATE_TO_TIME);
 
-        if (timeToggleTo) {
-            timeContainer.setHTML('To: Hour | Min | AM/PM ');
-        }
-        else {
-            timeContainer.setHTML('');
-        }
+        timeContainer.toggleView(timeToggleTo);
     },
 
     /**
@@ -257,14 +258,7 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
      * @protected
      */
     _uiSetToggleInterval: function(toggleInterval) {
-        if (toggleInterval) {
-            this.get('content').one('.' + CSS_FIELD_DATE_TO_DATE).show();
-            this.get('content').one('.' + CSS_FIELD_DATE_TO_TIME).show();
-        }
-        else {
-            this.get('content').one('.' + CSS_FIELD_DATE_TO_DATE).hide();
-            this.get('content').one('.' + CSS_FIELD_DATE_TO_TIME).hide();
-        }
+        this.get('content').toggleClass(CSS_FIELD_DATE_TO_ENABLED, toggleInterval);
     },
 
     /**
@@ -277,12 +271,7 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
     _uiSetYearToggleFrom: function(yearToggleFrom) {
         var dateContainer = this.get('content').one('.' + CSS_FIELD_DATE_FROM_DATE);
 
-        if (yearToggleFrom) {
-            dateContainer.setHTML('From: Month | Day | Year ');
-        }
-        else {
-            dateContainer.setHTML('From: Month | Day ');
-        }
+        dateContainer.toggleClass('year', yearToggleFrom);
     },
 
     /**
@@ -295,12 +284,7 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
     _uiSetYearToggleTo: function(yearToggleTo) {
         var dateContainer = this.get('content').one('.' + CSS_FIELD_DATE_TO_DATE);
 
-        if (yearToggleTo) {
-            dateContainer.setHTML('To: Month | Day | Year');
-        }
-        else {
-            dateContainer.setHTML('To: Month | Day');
-        }
+        dateContainer.toggleClass('year', yearToggleTo);
     }
 }, {
     /**
