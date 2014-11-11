@@ -68,6 +68,22 @@ YUI.add('aui-form-builder-tests', function(Y) {
             return this._formBuilder;
         },
 
+        /**
+         * Creates a new row, clicking on the appropriate button.
+         *
+         * @method _clickAddRowButton
+         * @protected
+         */
+        _clickAddRowButton: function() {
+            var rowButton = Y.one('.layout-builder-add-row-choose-row');
+
+            if (!rowButton) {
+                rowButton = Y.one('.layout-builder-add-row-small-screen');
+            }
+
+            rowButton.simulate('click');
+        },
+
         'should have default empty layout': function() {
             this._formBuilder = new Y.FormBuilder().render('#container');
 
@@ -90,11 +106,11 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should hide empty layout message when layout gains rows': function() {
-            var formBuilder = this.createFormBuilder({
+            this.createFormBuilder({
                 layout: new Y.Layout()
             });
 
-            formBuilder.get('contentBox').one('.layout-builder-add-row-choose-row').simulate('click');
+            this._clickAddRowButton();
             Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
         },
 
@@ -224,7 +240,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.Assert.areEqual(2, Y.one('.form-builder-page-break-quantity').get('text'));
 
-            formBuilder.get('contentBox').one('.layout-builder-add-row-choose-row').simulate('click');
+            this._clickAddRowButton();
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
             Y.Assert.areEqual(4, Y.one('.form-builder-page-break-quantity').get('text'));
@@ -240,7 +256,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
 
             row = this._formBuilder.get('layout').get('rows')[2];
-            row.get('node').one('.layout-builder-remove-row-button').simulate('click');
+            this._formBuilder.get('layout').removeRow(row);
             Y.Assert.areEqual(2, Y.all('.form-builder-page-break').size());
 
             row = this._formBuilder.get('layout').get('rows')[2];

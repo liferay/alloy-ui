@@ -5,6 +5,19 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'AUI Form Builder Layout Builder Unit Tests',
 
+        init: function() {
+            var windowNode = Y.one(Y.config.win);
+
+            // Set the width to a big value so all layout buil
+            // guaranteed to be turned on.
+            this._originalWidth = windowNode.get('innerWidth');
+            windowNode.set('innerWidth', 1500);
+        },
+
+        destroy: function() {
+            Y.one(Y.config.win).set('innerWidth', this._originalWidth);
+        },
+
         tearDown: function() {
             if (this._formBuilder) {
                 this._formBuilder.destroy();
