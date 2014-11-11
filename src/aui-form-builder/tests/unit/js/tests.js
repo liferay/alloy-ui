@@ -9,8 +9,8 @@ YUI.add('aui-form-builder-tests', function(Y) {
             // Ignore the following tests in touch enabled browsers. They will
             // be tested properly in the tests for the aui-form-builder module.
             ignore: {
-                'should show the toolbar of field when touch on field': !Y.UA.mobile,
-                'shouldn\'t show the toolbar of field when touch on field in not mobile device': Y.UA.mobile
+                'shouldn\'t show the toolbar of field when touch on field in not mobile device': Y.UA.mobile,
+                'should show the toolbar of field when touch on field': !Y.UA.mobile
             }
         },
 
@@ -172,11 +172,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this.createFormBuilder({
                 layout: new Y.Layout({
                     rows: [
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.FormBuilderPageBreak()
-                            ]
-                        })
+                        new Y.FormBuilderPageBreak()
                     ]
                 })
             });
@@ -248,8 +244,8 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(2, Y.all('.form-builder-page-break').size());
 
             row = this._formBuilder.get('layout').get('rows')[2];
-            Y.Assert.areEqual(2, row.get('cols')[0].get('value').get('index'));
-            Y.Assert.areEqual(2, row.get('cols')[0].get('value').get('quantity'));
+            Y.Assert.areEqual(2, row.get('index'));
+            Y.Assert.areEqual(2, row.get('quantity'));
         },
 
         'should remove a field type from form': function() {
