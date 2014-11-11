@@ -402,7 +402,6 @@
     zoom: 1;
 }
 .button-holder {
-    overflow: hidden;
     display: block;
     clear: both;
 }
