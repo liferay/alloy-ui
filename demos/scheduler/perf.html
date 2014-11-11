@@ -44,7 +44,10 @@
 
         var time = Date.now();
 
-        var monthView = new Y.SchedulerMonthView();
+        var monthView = new Y.SchedulerMonthView({
+            displayRows: Infinity,
+            height: 'auto'
+        });
         var scheduler = new Y.Scheduler({
             activeView: monthView,
             boundingBox: '#scheduler',

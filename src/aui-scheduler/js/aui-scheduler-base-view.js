@@ -87,7 +87,7 @@ var SchedulerView = A.Component.create({
          * @type {Number}
          */
         height: {
-            value: 600
+            value: 650
         },
 
         /**

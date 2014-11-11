@@ -89,23 +89,30 @@
 
 .scheduler-view-table-row-container {
     background: #fff;
-    bottom: 0;
-    left: 0;
+    height: 100%;
     overflow: hidden;
-    position: absolute;
-    top: 0;
     width: 100%;
 }
 
 .scheduler-view-table-row {
     left: 0;
+    min-height: 100%;
     overflow: hidden;
-    position: absolute;
+    position: relative;
     width: 100%;
 }
 
-.scheduler-view-table-grid-first {
+.scheduler-view-table-grid-first .scheduler-view-table-grid {
     border-top: 0;
+}
+
+.scheduler-view-table-grid-container {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    table-layout: fixed;
+    top: 0;
 }
 
 .scheduler-view-table-grid {
