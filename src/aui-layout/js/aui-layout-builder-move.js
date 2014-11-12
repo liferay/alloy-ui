@@ -23,7 +23,7 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
     EVENT_REMOVE_COL_MOVE_TARGETS = 'removeColMoveTargets',
 
     SELECTOR_COL = '.col',
-    SELECTOR_ROW = '.row',
+    SELECTOR_ROW = '.layout-row',
 
     TPL_MOVE_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_MOVE_BUTTON + '" tabindex="1" type="button">' +
         '<span class="glyphicon glyphicon-sort"></span> <span class="' + CSS_MOVE_BUTTON_TEXT + '"> Move</span></button>',

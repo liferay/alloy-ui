@@ -12,7 +12,7 @@ var CSS_RESIZE_COL_BREAKPOINT = A.getClassName('layout', 'builder', 'resize', 'c
     CSS_RESIZE_COL_DRAGGABLE_BORDER = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'border'),
     CSS_RESIZE_COL_DRAGGABLE_HANDLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'handle'),
     MAX_SIZE = 12,
-    SELECTOR_ROW = '.row';
+    SELECTOR_ROW = '.layout-row';
 
 /**
  * LayoutBuilder extension, which can be used to add the funcionality of resizing

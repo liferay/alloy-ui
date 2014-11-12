@@ -5,6 +5,7 @@
  */
 
 var CSS_REMOVE_ROW = A.getClassName('layout', 'builder', 'remove', 'row', 'button'),
+    SELECTOR_ROW = '.layout-row',
     TPL_REMOVE_ROW_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_REMOVE_ROW + '" tabindex="4" type="button">' +
         '<span class="glyphicon glyphicon-trash"></span> Remove Row</button>';
 
@@ -96,7 +97,7 @@ LayoutBuilderRemoveRow.prototype = {
     _appendButtonToRows: function() {
         var instance = this,
             layoutRow,
-            rows = this._layoutContainer.all('.row');
+            rows = this._layoutContainer.all(SELECTOR_ROW);
 
         rows.each(function(row) {
             layoutRow = row.getData('layout-row');
@@ -124,7 +125,7 @@ LayoutBuilderRemoveRow.prototype = {
             removeRowButton.remove();
         }
         else {
-            this._insertRemoveButtonBeforeRow(layoutRow, containerRow.one('.row'));
+            this._insertRemoveButtonBeforeRow(layoutRow, containerRow.one(SELECTOR_ROW));
         }
     },
 

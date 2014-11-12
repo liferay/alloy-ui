@@ -6,7 +6,7 @@
 
 var CSS_REMOVE_COL = A.getClassName('layout', 'builder', 'remove', 'col', 'button'),
     SELECTOR_COL = '.col',
-    SELECTOR_ROW = '.row',
+    SELECTOR_ROW = '.layout-row',
     TPL_REMOVE_COL = '<span class="glyphicon glyphicon-remove ' + CSS_REMOVE_COL + '" tabindex="7"></span>';
 
 /**

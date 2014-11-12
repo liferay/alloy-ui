@@ -7,7 +7,7 @@
 var CSS_ADD_COL = A.getClassName('layout', 'builder', 'add', 'col'),
     CSS_ADD_COL_LEFT = A.getClassName('layout', 'builder', 'add', 'col', 'left'),
     CSS_ADD_COL_RIGHT = A.getClassName('layout', 'builder', 'add', 'col', 'right'),
-    SELECTOR_ROW = '.row',
+    SELECTOR_ROW = '.layout-row',
     TPL_ADD_COL = '<span class="glyphicon glyphicon-plus ' + CSS_ADD_COL + '" tabindex="5"></span>';
 
 /**

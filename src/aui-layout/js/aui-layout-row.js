@@ -5,7 +5,7 @@
  */
 
 var ALLOWED_SIZE = 12,
-    SELECTOR_ROW = '.row',
+    SELECTOR_ROW = '.layout-row',
     TPL_ROW = '<div class="layout-row-container-row"><div class="layout-row row"></div></div>';
 
 /**
