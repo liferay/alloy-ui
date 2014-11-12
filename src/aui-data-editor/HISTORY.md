@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1764](https://issues.liferay.com/browse/AUI-1764) Improve aui-options-data-editor's appearance
 * [AUI-1737](https://issues.liferay.com/browse/AUI-1737) Handle required fields on field settings modal
 * [AUI-1691](https://issues.liferay.com/browse/AUI-1691) Create date field
 * [AUI-1693](https://issues.liferay.com/browse/AUI-1693) Create scale field

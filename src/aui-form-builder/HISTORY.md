@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1764](https://issues.liferay.com/browse/AUI-1764) Improve aui-options-data-editor's appearance
 * [AUI-1776](https://issues.liferay.com/browse/AUI-1776) Improve appearance of rendered fields
 * [AUI-1775](https://issues.liferay.com/browse/AUI-1775) Improve appearance of form builder's initial screen
 * [AUI-1737](https://issues.liferay.com/browse/AUI-1737) Handle required fields on field settings modal

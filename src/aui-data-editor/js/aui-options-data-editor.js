@@ -24,7 +24,7 @@ var CSS_EDITOR = A.getClassName('options', 'data', 'editor'),
 A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
     TPL_EDITOR_CONTENT: '<div class="' + CSS_EDITOR + '">' +
         '<div class="' + CSS_EDITOR_OPTIONS + '"></div>' +
-        '<button class="' + CSS_EDITOR_ADD + '">Add Option</button></div>',
+        '<button class="' + CSS_EDITOR_ADD + '">Tap to add an option</button></div>',
     TPL_EDITOR_OPTION: '<div class="' + CSS_EDITOR_OPTION + '">' +
         '<span class="' + CSS_EDITOR_OPTION_HANDLE + ' glyphicon glyphicon-sort"></span>' +
         '<input class="' + CSS_EDITOR_OPTION_TEXT + ' type="text"" value="{text}"></input>' +

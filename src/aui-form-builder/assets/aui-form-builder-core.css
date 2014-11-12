@@ -29,6 +29,7 @@
 }
 
 .form-builder-field-settings .modal-body {
+    padding: 15px 0;
     min-height: 350px;
 }
 

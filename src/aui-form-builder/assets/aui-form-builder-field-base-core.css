@@ -26,6 +26,15 @@
     top: 0;
 }
 
+.form-builder-field-settings-panel-left {
+    border-bottom: 1px solid #ccc;
+    padding: 0 30px;
+}
+
+.form-builder-field-settings-panel-right {
+    padding: 10px 30px 0;
+}
+
 @media (min-width: 991px) {
     .form-builder-field-settings-panel-separator {
         border-left: 1px solid #ccc;
@@ -35,6 +44,10 @@
         position: absolute;
         right: 0;
         top: 0;
+    }
+
+    .form-builder-field-settings-panel-left {
+        border-bottom: none;
     }
 }
 
