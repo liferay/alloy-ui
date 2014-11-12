@@ -30,7 +30,7 @@ YUI.add('aui-datepicker-tests', function(Y) {
 
             this.datePicker = new Y.DatePicker({
                 on: {
-                    selectionChange: function(event) {
+                    selectionChange: function() {
                         selectionChangeCount++;
                     }
                 },
@@ -65,7 +65,7 @@ YUI.add('aui-datepicker-tests', function(Y) {
 
             this.datePicker = new Y.DatePicker({
                 on: {
-                    selectionChange: function(event) {
+                    selectionChange: function() {
                         selectionChangeCount++;
                     }
                 },
@@ -105,7 +105,7 @@ YUI.add('aui-datepicker-tests', function(Y) {
                 },
                 mask: '%a, %b %d, %Y',
                 on: {
-                    selectionChange: function(event) {
+                    selectionChange: function() {
                         selectionChangeCount++;
                     }
                 },
