@@ -6,11 +6,9 @@
  */
 
 var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
-    CSS_FIELD_LIST_OPTION = A.getClassName('form', 'builder', 'field', 'list', 'option'),
-    CSS_FIELD_LIST_OPTION_OTHER = A.getClassName('form', 'builder', 'field', 'list', 'option', 'other'),
-    CSS_FIELD_LIST_OPTIONS = A.getClassName('form', 'builder', 'field', 'list', 'options'),
-
-    TPL_FIELD_LIST_OPTION = '<option class="' + CSS_FIELD_LIST_OPTION + '" value="{value}">{value}</option>';
+    CSS_FIELD_LIST_CONTENT = A.getClassName('form', 'builder', 'field', 'list', 'content'),
+    CSS_FIELD_LIST_PLACEHOLDER = A.getClassName('form', 'builder', 'field', 'list', 'placeholder'),
+    CSS_FIELD_LIST_TOGGLE = A.getClassName('form', 'builder', 'field', 'list', 'toggle');
 
 /**
  * A base class for Form Builder Field List.
@@ -22,7 +20,10 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
  * @constructor
  */
 A.FormBuilderFieldList = A.Base.create('form-builder-field-list', A.FormBuilderFieldSentence, [], {
-    TPL_FIELD_CONTENT: '<div><select class="' + CSS_FIELD_LIST_OPTIONS + ' form-group"></select></div>',
+    TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_LIST_CONTENT + '">' +
+        '<div class="' + CSS_FIELD_LIST_TOGGLE + '">' +
+        '<span class="glyphicon glyphicon-chevron-down"></span></div>' +
+        '<div class="' + CSS_FIELD_LIST_PLACEHOLDER + '">Select an option</div></div>',
 
     /**
      * Constructor for the `A.FormBuilderFieldList`. Lifecycle.
@@ -34,34 +35,6 @@ A.FormBuilderFieldList = A.Base.create('form-builder-field-list', A.FormBuilderF
         var content = this.get('content');
 
         content.addClass(CSS_FIELD_LIST);
-
-        this._uiSetOptions(this.get('options'));
-        this._uiSetOtherOption(this.get('otherOption'));
-
-        this.after({
-            optionsChange: this._afterOptionsChange,
-            otherOptionChange: this._afterOtherOptionChange
-        });
-    },
-
-    /**
-     * Fired after the `options` attribute is set.
-     *
-     * @method _afterOptionsChange
-     * @protected
-     */
-    _afterOptionsChange: function() {
-        this._uiSetOptions(this.get('options'));
-    },
-
-    /**
-     * Fired after the `otherOption` attribute is set.
-     *
-     * @method _afterOtherOptionChange
-     * @protected
-     */
-    _afterOtherOptionChange: function() {
-        this._uiSetOtherOption(this.get('otherOption'));
     },
 
     /**
@@ -94,53 +67,6 @@ A.FormBuilderFieldList = A.Base.create('form-builder-field-list', A.FormBuilderF
                 })
             }
         );
-    },
-
-    /**
-     * Updates the ui according to the value of the `options` attribute.
-     *
-     * @method _uiSetOptions
-     * @param {Array} options
-     * @protected
-     */
-    _uiSetOptions: function(options) {
-        var optionsContainer = this.get('content').one('.' + CSS_FIELD_LIST_OPTIONS),
-            optionNode;
-
-        optionsContainer.empty();
-        A.Array.each(options, function(option) {
-            optionNode = A.Node.create(A.Lang.sub(TPL_FIELD_LIST_OPTION, {
-                value: option
-            }));
-            optionsContainer.appendChild(optionNode);
-        });
-    },
-
-    /**
-     * Updates the ui according to the value of the `otherOption` attribute.
-     *
-     * @method _uiSetOtherOption
-     * @param {Boolean} otherOption
-     * @protected
-     */
-    _uiSetOtherOption: function(otherOption) {
-        var optionsContainer = this.get('content').one('.' + CSS_FIELD_LIST_OPTIONS),
-            optionNode;
-
-        if (otherOption) {
-            optionNode = A.Node.create(A.Lang.sub(TPL_FIELD_LIST_OPTION, {
-                value: 'Other'
-            }));
-
-            optionNode.addClass(CSS_FIELD_LIST_OPTION_OTHER);
-            optionsContainer.append(optionNode);
-        }
-        else {
-            optionNode = this.get('content').one('.' + CSS_FIELD_LIST_OPTION_OTHER);
-            if (optionNode) {
-                optionNode.remove(true);
-            }
-        }
     }
 }, {
     /**

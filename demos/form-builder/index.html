@@ -44,7 +44,11 @@ YUI({ filter:'raw' }).use(
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            size: 4
+                            size: 4,
+                            value: new Y.FormBuilderFieldList({
+                                help: 'Choose one of the options in the list below',
+                                title: 'What\'s your gender?'
+                            })
                         }),
                         new Y.LayoutCol({
                             size: 4

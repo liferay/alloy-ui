@@ -43,33 +43,6 @@ YUI.add('aui-form-builder-field-list-tests', function(Y) {
             Y.Assert.areEqual('Option 2', this._field.get('options')[1]);
             Y.Assert.isTrue(this._field.get('otherOption'));
             Y.Assert.isTrue(this._field.get('required'));
-        },
-
-        'should render correctly': function() {
-            this._createField();
-
-            this._field.set('options', ['Option1', 'Option2']);
-            Y.Assert.areEqual(
-                2,
-                this._field.get('content').all('.form-builder-field-list-option').size()
-            );
-        },
-
-        'should render other option correctly': function() {
-            this._createField();
-
-            this._field.set('options', ['Option1', 'Option2']);
-            this._field.set('otherOption', true);
-            Y.Assert.areEqual(
-                3,
-                this._field.get('content').all('.form-builder-field-list-option').size()
-            );
-
-            this._field.set('otherOption', false);
-            Y.Assert.areEqual(
-                2,
-                this._field.get('content').all('.form-builder-field-list-option').size()
-            );
         }
     }));
 

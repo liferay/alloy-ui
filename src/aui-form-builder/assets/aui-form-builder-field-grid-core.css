@@ -1,4 +1,12 @@
+.form-builder-field-grid table {
+    width: 100%;
+}
+
 .form-builder-field-grid th,
 .form-builder-field-grid td {
-    border: 1px solid;
+    border: 2px solid #bcc9d2;
+    height: 32pt;
+    font-size: 12pt;
+    font-weight: normal;
+    padding-left: 10px;
 }

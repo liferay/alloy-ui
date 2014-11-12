@@ -6,12 +6,15 @@
  */
 
 var CSS_FIELD_CHOICE = A.getClassName('form', 'builder', 'field', 'choice'),
+    CSS_FIELD_CHOICE_MULTIPLE = A.getClassName('form', 'builder', 'field', 'choice', 'multiple'),
     CSS_FIELD_CHOICE_OPTION = A.getClassName('form', 'builder', 'field', 'choice', 'option'),
+    CSS_FIELD_CHOICE_OPTION_BUTTON = A.getClassName('form', 'builder', 'field', 'choice', 'option', 'button'),
     CSS_FIELD_CHOICE_OPTION_OTHER = A.getClassName('form', 'builder', 'field', 'choice', 'option', 'other'),
     CSS_FIELD_CHOICE_OPTIONS = A.getClassName('form', 'builder', 'field', 'choice', 'options'),
 
-    TPL_FIELD_CHOICE_OPTION = '<div><input class="' + CSS_FIELD_CHOICE_OPTION +
-        '" type="{type}"></input><label>{label}</label></div>';
+    TPL_FIELD_CHOICE_OPTION = '<div class="' + CSS_FIELD_CHOICE_OPTION + ' cleafix">' +
+        '<div class="' + CSS_FIELD_CHOICE_OPTION_BUTTON + '"></div>' +
+        '<label>{label}</label></div>';
 
 /**
  * A base class for Form Builder Field Choice.
@@ -36,6 +39,7 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
 
         content.addClass(CSS_FIELD_CHOICE);
 
+        this._uiSetMultiple(this.get('multiple'));
         this._uiSetOptions(this.get('options'));
         this._uiSetOtherOption(this.get('otherOption'));
 
@@ -115,18 +119,6 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
     },
 
     /**
-     * Gets the input type to be used by this field, according to if it should
-     * allow multiple choice or not.
-     *
-     * @method _getInputType
-     * @param {Boolean} multiple
-     * @protected
-     */
-    _getInputType: function(multiple) {
-        return multiple ? 'checkbox' : 'radio';
-    },
-
-    /**
      * Updates the ui according to the value of the `multiple` attribute.
      *
      * @method _uiSetMultiple
@@ -134,9 +126,7 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
      * @protected
      */
     _uiSetMultiple: function(multiple) {
-        var optionNodes = this.get('content').all('.' + CSS_FIELD_CHOICE_OPTION);
-
-        optionNodes.set('type', this._getInputType(multiple));
+        this.get('content').toggleClass(CSS_FIELD_CHOICE_MULTIPLE, multiple);
     },
 
     /**
@@ -147,18 +137,19 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
      * @protected
      */
     _uiSetOptions: function(options) {
-        var optionsContainer = this.get('content').all('.' + CSS_FIELD_CHOICE_OPTIONS),
-            optionNode,
-            type = this._getInputType(this.get('multiple'));
+        var optionsContainer = this.get('content').one('.' + CSS_FIELD_CHOICE_OPTIONS),
+            otherOptionNode = this.get('content').one('.' + CSS_FIELD_CHOICE_OPTION_OTHER),
+            optionNode;
 
         optionsContainer.empty();
         A.Array.each(options, function(option) {
             optionNode = A.Node.create(A.Lang.sub(TPL_FIELD_CHOICE_OPTION, {
-                label: option,
-                type: type
+                label: option
             }));
             optionsContainer.append(optionNode);
         });
+
+        optionsContainer.append(otherOptionNode);
     },
 
     /**
@@ -174,11 +165,9 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
 
         if (otherOption) {
             optionNode = A.Node.create(A.Lang.sub(TPL_FIELD_CHOICE_OPTION, {
-                label: 'Other',
-                type: this._getInputType(this.get('multiple'))
+                label: 'Other'
             }));
             optionNode.addClass(CSS_FIELD_CHOICE_OPTION_OTHER);
-            optionNode.append('<input type="text"></input>');
             optionsContainer.append(optionNode);
         }
         else {
