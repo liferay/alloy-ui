@@ -13,9 +13,11 @@ YUI.add('aui-tooltip-delegate-tests', function(Y) {
 
         'should show tooltips for all triggers': function() {
             var tooltip,
+            	tooltipClass = 'tooltip-class',
                 triggers = Y.all('.tooltip-btn');
 
             this._delegate = new Y.TooltipDelegate({
+            	cssClass: tooltipClass,
                 trigger: '.tooltip-btn'
             });
 
@@ -37,6 +39,15 @@ YUI.add('aui-tooltip-delegate-tests', function(Y) {
                     trigger.getAttribute('data-title'),
                     tooltip.get('contentBox').get('text'),
                     'Tooltip content should have been updated for this trigger'
+                );
+                Y.Assert.isTrue(
+                	tooltip.get('boundingBox').hasClass(tooltipClass),
+                	'Tooltip should have the class assigned in the constructor'
+                );
+                Y.Assert.areEqual(
+                    tooltipClass,
+                    tooltip.get('cssClass'),
+                    'Tooltip object should have the assigned \'cssClass\' attribute'
                 );
 
                 trigger.simulate('mouseout');
