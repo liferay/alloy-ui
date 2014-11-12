@@ -976,7 +976,7 @@ var FormBuilderField = A.Component.create({
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method _uiSetSelected
+         * @method _uiSetDisabled
          * @param val
          * @protected
          */
