@@ -926,7 +926,7 @@ var FormBuilderField = A.Component.create({
         /**
          * Set the `disabled` attribute on the UI.
          *
-         * @method _uiSetSelected
+         * @method _uiSetDisabled
          * @param val
          * @protected
          */
