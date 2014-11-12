@@ -190,6 +190,8 @@ var CharCounter = A.Component.create({
 
                 var normalizedLength = instance._getNormalizedLength(value);
 
+                var returnValue = true;
+
                 if (normalizedLength > maxLength) {
                     var scrollTop = input.get('scrollTop');
                     var scrollLeft = input.get('scrollLeft');
@@ -202,6 +204,8 @@ var CharCounter = A.Component.create({
 
                     input.set('scrollTop', scrollTop);
                     input.set('scrollLeft', scrollLeft);
+
+                    returnValue = value;
                 }
 
                 instance.syncUI();
@@ -209,6 +213,8 @@ var CharCounter = A.Component.create({
                 if (normalizedLength >= maxLength) {
                     instance.fire('maxLength');
                 }
+
+                return returnValue;
             }
             else {
                 return false;
