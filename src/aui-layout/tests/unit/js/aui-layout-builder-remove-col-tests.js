@@ -167,6 +167,25 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
             deleteColButton.simulate('click');
 
             Y.Assert.isNull(Y.one('.row'));
+        },
+
+        'should normalize height after remove a col': function() {
+            var deleteColButton,
+                layout;
+
+            this._createLayoutBuilder();
+
+            layout = this._layoutBuilder.get('layout');
+
+            Y.Mock.expect(layout, {
+                args: [Y.Mock.Value.Object],
+                method: '_normalizeColsHeight'
+            });
+
+            deleteColButton = Y.one('.layout-builder-remove-col-button');
+            deleteColButton.simulate('click');
+
+            Y.Mock.verify(layout);
         }
     }));
 

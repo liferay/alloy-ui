@@ -84,7 +84,7 @@ LayoutBuilderAddRow.prototype = {
     _addAppropriateAddRowArea: function() {
         var container = this.get('container');
 
-        if (this._isColumnModeEnabled) {
+        if (this.get('layout').get('isColumnMode')) {
             this._addRowAreaForSmallScreens.remove();
             container.append(this._addRowArea);
         }
@@ -130,12 +130,12 @@ LayoutBuilderAddRow.prototype = {
     },
 
     /**
-     * Fired after `columnModeChange` changes.
+     * Fired after `isColumnMode` changes.
      *
-     * @method _afterAddRowColumnModeChange
+     * @method _afterAddRowIsColumnModeChange
      * @protected
      */
-    _afterAddRowColumnModeChange: function() {
+    _afterAddRowIsColumnModeChange: function() {
         this._addAppropriateAddRowArea();
         this._setAddRowAreaPosition();
     },
@@ -171,7 +171,7 @@ LayoutBuilderAddRow.prototype = {
             container.delegate('click', A.bind(this._onMouseClickAddRowEvent, this), '.' + CSS_ADD_ROW),
             container.delegate('key', A.bind(this._onKeyPressAddRowEvent, this), 'press:13', '.' + CSS_ADD_ROW),
             this.after('layout:rowsChange', A.bind(this._afterAddRowRowsChange, this)),
-            this.after('columnModeChange', A.bind(this._afterAddRowColumnModeChange, this)),
+            this.after('layout:isColumnModeChange', A.bind(this._afterAddRowIsColumnModeChange, this)),
             A.on('windowresize', A.bind(this._afterAddRowWindowResize, this))
         ];
     },

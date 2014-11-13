@@ -396,8 +396,8 @@ LayoutBuilderMove.prototype = {
     _defClickColMoveTargetFn: function(event) {
         var row = event.moveTarget.ancestor(SELECTOR_ROW).getData('layout-row');
 
-        row.moveColContent(event.moveTarget.getData('col-index'), this._colToBeMoved);
         this._resetMoveUI();
+        row.moveColContent(event.moveTarget.getData('col-index'), this._colToBeMoved);
     },
 
     /**
@@ -458,7 +458,7 @@ LayoutBuilderMove.prototype = {
     _insertCutButton: function(moveButton) {
         this._insertCutButtonOnRow(moveButton);
 
-        if (this._isColumnModeEnabled) {
+        if (this.get('layout').get('isColumnMode')) {
             this._insertCutButtonOnCols(moveButton);
         }
     },

@@ -228,11 +228,206 @@ YUI.add('aui-layout-tests', function(Y) {
             rows = this.layout.get('rows');
 
             Assert.areEqual(0, rows.indexOf(row));
+        },
+
+        'should normalize column\'s height': function() {
+            var colOne,
+                cols,
+                colTwo,
+                container = Y.one(CONTAINER_CLASS),
+                layoutColOne = this.layout.get('rows')[0].get('cols')[0];
+
+            layoutColOne.get('node').appendChild(Y.Node.create('<div style="height:200px"></div>'));
+            this.layout.draw(container);
+
+            cols = Y.all('.col');
+            colOne = cols.item(0);
+            colTwo = cols.item(1);
+
+            Y.Assert.areEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
+
+            colOne.setStyle('height', '200px');
+
+            Y.Assert.areNotEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
+
+            this.layout._normalizeColsHeight([colOne.ancestor('.row')]);
+
+            Y.Assert.areEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
+        },
+
+        'should not normalize row cols\' height if equalHeight attribute is set to false': function() {
+            var colOne,
+                cols,
+                colTwo,
+                container = Y.one(CONTAINER_CLASS),
+                row;
+
+            this.layout.draw(container);
+
+            cols = Y.all('.col');
+            colOne = cols.item(0);
+            colTwo = cols.item(1);
+            row = Y.one('.row').getData('layout-row');
+            row.set('equalHeight', false);
+
+            Y.Assert.areEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
+
+            colOne.setStyle('height', '200px');
+
+            Y.Assert.areNotEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
+
+            this.layout._normalizeColsHeight([colOne.ancestor('.row')]);
+
+            Y.Assert.areNotEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
+        },
+
+        'should normalize row cols\' height after change a value for a row': function() {
+            var col,
+                container = Y.one(CONTAINER_CLASS);
+
+            Y.Mock.expect(this.layout, {
+                args: [Y.Mock.Value.Object],
+                callCount: 2,
+                method: '_normalizeColsHeight'
+            });
+
+            this.layout.draw(container);
+
+            col = Y.one('.col').getData('layout-col');
+            col.set('value', null);
+
+            Y.Mock.verify(this.layout);
+        },
+
+        'should normalize row cols\' height after cols change event': function() {
+            var container = Y.one(CONTAINER_CLASS),
+                row;
+
+            Y.Mock.expect(this.layout, {
+                args: [Y.Mock.Value.Object],
+                callCount: 2,
+                method: '_normalizeColsHeight'
+            });
+
+            this.layout.draw(container);
+
+            row = Y.one('.row').getData('layout-row');
+            row.set('cols', []);
+
+            Y.Mock.verify(this.layout);
+        },
+
+        'should call handle responsive after resize window': function() {
+            Y.Mock.expect(this.layout, {
+                args: [Y.Mock.Value.Number],
+                method: '_handleResponsive'
+            });
+
+            if (Y.UA.ie === 8) {
+                // Can't simulate a resize on IE8's window object, so
+                // calling the function directly here.
+                this.layoutBuilder._handleResponsive(1000);
+            }
+            else {
+                // 1000 is below the responsive breakpoint
+                Y.one(Y.config.win).set('innerWidth', 1000);
+                Y.one(Y.config.win).simulate('resize');
+            }
+
+            this.wait(function() {
+                Y.Mock.verify(this.layout);
+            }, Y.config.windowResizeDelay || 100);
+        },
+
+        'should not normalize col\'s height if column mode is disabled': function() {
+            var colOne,
+                container = Y.one(CONTAINER_CLASS),
+                row = this.layout.get('rows')[0];
+
+            colOne = row.get('cols')[0];
+
+            colOne.get('node').appendChild(Y.Node.create('<div style="height:200px"></div>'));
+
+            this.layout.draw(container);
+
+            if (Y.UA.ie === 8) {
+                // Can't simulate a resize on IE8's window object, so
+                // calling the function directly here.
+                this.layoutBuilder._handleResponsive(500);
+            }
+            else {
+                // 500 is below the responsive breakpoint
+                Y.one(Y.config.win).set('innerWidth', 500);
+                Y.one(Y.config.win).simulate('resize');
+            }
+
+            this.wait(function() {
+                Y.Assert.areNotEqual(
+                    Y.all('.col').item(0).get('clientHeight'),
+                    Y.all('.col').item(1).get('clientHeight')
+                );
+            }, Y.config.windowResizeDelay || 100);
+        },
+
+        'should change column mode when resize the window': function() {
+            var instance = this,
+                container = Y.one(CONTAINER_CLASS);
+
+            this.layout.draw(container);
+
+            if (Y.UA.ie === 8) {
+                // Can't simulate a resize on IE8's window object, so
+                // calling the function directly here.
+                this.layout._handleResponsive(Y.one(Y.config.win).get('innerWidth'));
+            }
+            else {
+                // 500 is lower than responsive breakpoint
+                Y.one(Y.config.win).set('innerWidth', 500);
+                Y.one(Y.config.win).simulate('resize');
+            }
+
+            this.wait(function() {
+                Assert.isFalse(instance.layout.get('isColumnMode'));
+
+                // 1000 is greater than responsive breakpoint
+                Y.one(Y.config.win).set('innerWidth', 1000);
+                Y.one(Y.config.win).simulate('resize');
+
+                this.wait(function() {
+                    Assert.isTrue(instance.layout.get('isColumnMode'));
+                }, Y.config.windowResizeDelay || 100);
+            }, Y.config.windowResizeDelay || 100);
+        },
+
+        'should not change column mode if the resize difference is not enough': function() {
+            var instance = this;
+
+            if (Y.UA.ie === 8) {
+                // Can't simulate a resize on IE8's window object, so
+                // calling the function directly here.
+                this.layout._handleResponsive(1000);
+            }
+            else {
+                // 1000 is below the responsive breakpoint
+                Y.one(Y.config.win).set('innerWidth', 1000);
+                Y.one(Y.config.win).simulate('resize');
+            }
+
+            this.wait(function() {
+                Assert.isTrue(instance.layout.get('isColumnMode'));
+
+                Y.one(Y.config.win).set('innerWidth', 1001);
+                Y.one(Y.config.win).simulate('resize');
+
+                this.wait(function() {
+                    Assert.isTrue(instance.layout.get('isColumnMode'));
+                }, Y.config.windowResizeDelay || 100);
+            }, Y.config.windowResizeDelay || 100);
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test', 'aui-layout', 'aui-layout-col', 'aui-layout-row']
+    requires: ['test', 'aui-layout', 'aui-layout-col', 'aui-layout-row', 'node-event-simulate']
 });

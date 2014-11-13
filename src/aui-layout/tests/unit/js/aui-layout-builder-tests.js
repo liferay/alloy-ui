@@ -132,69 +132,6 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             rowsSize = this.layoutBuilder.get('layout').get('rows').length;
 
             Assert.areEqual(rowsSize, 2);
-        },
-
-        'should change column mode when resize the window': function() {
-            var instance = this;
-
-            if (Y.UA.ie === 8) {
-                // Can't simulate a resize on IE8's window object, so
-                // calling the function directly here.
-                this.layoutBuilder._handleResponsive(Y.one(Y.config.win).get('innerWidth'));
-            }
-            else {
-                // 500 is lower than responsive breakpoint
-                Y.one(Y.config.win).set('innerWidth', 500);
-                Y.one(Y.config.win).simulate('resize');
-            }
-
-            this.layoutBuilder.on('columnModeChange', function() {
-                instance.resume(function() {
-                    Assert.isFalse(instance.layoutBuilder._isColumnModeEnabled);
-
-                    instance.layoutBuilder.detachAll();
-
-                    // 1000 is greater than responsive breakpoint
-                    Y.one(Y.config.win).set('innerWidth', 1000);
-                    Y.one(Y.config.win).simulate('resize');
-
-                    instance.layoutBuilder.on('columnModeChange', function() {
-                        instance.resume(function() {
-                            Assert.isTrue(instance.layoutBuilder._isColumnModeEnabled);
-                        });
-                    });
-
-                    instance.wait();
-                });
-            });
-
-            this.wait();
-        },
-
-        'should not change column mode if the resize difference is not enough': function() {
-            var instance = this;
-
-            if (Y.UA.ie === 8) {
-                // Can't simulate a resize on IE8's window object, so
-                // calling the function directly here.
-                this.layoutBuilder._handleResponsive(1000);
-            }
-            else {
-                // 1000 is below the responsive breakpoint
-                Y.one(Y.config.win).set('innerWidth', 1000);
-                Y.one(Y.config.win).simulate('resize');
-            }
-
-            this.wait(function() {
-                Assert.isTrue(instance.layoutBuilder._isColumnModeEnabled);
-
-                Y.one(Y.config.win).set('innerWidth', 1001);
-                Y.one(Y.config.win).simulate('resize');
-
-                this.wait(function() {
-                    Assert.isTrue(instance.layoutBuilder._isColumnModeEnabled);
-                }, Y.config.windowResizeDelay || 100);
-            }, Y.config.windowResizeDelay || 100);
         }
     }));
 

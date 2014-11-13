@@ -178,8 +178,7 @@ YUI.add('aui-layout-builder-remove-row-tests', function(Y) {
 
             Y.Assert.isNotNull(removeRowButton);
 
-            this.layoutBuilder._isColumnModeEnabled = false;
-            this.layoutBuilder.fire('columnModeChange');
+            layout._set('isColumnMode', false);
 
             removeRowButton = Y.one('.layout-builder-remove-row-button');
 

@@ -190,8 +190,7 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
             Y.Assert.isNotNull(addRowArea);
             Y.Assert.isNull(addRowSmartphoneArea);
 
-            layoutBuilder._isColumnModeEnabled = false;
-            layoutBuilder.fire('columnModeChange');
+            layout._set('isColumnMode', false);
 
             addRowArea = Y.one('.layout-builder-add-row-area');
             addRowSmartphoneArea = Y.one('.layout-builder-add-row-small-screen-area');
@@ -212,8 +211,7 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
             Y.Assert.isNull(addRowArea);
             Y.Assert.isNull(addRowSmartphoneArea);
 
-            layoutBuilder._isColumnModeEnabled = false;
-            layoutBuilder.fire('columnModeChange');
+            layout._set('isColumnMode', false);
 
             addRowArea = Y.one('.layout-builder-add-row-area');
             addRowSmartphoneArea = Y.one('.layout-builder-add-row-smartphone-area');

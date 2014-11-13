@@ -4,7 +4,12 @@
  * @module aui-layout
  */
 
-var MAXIMUM_COLS_PER_ROW = 12;
+var MAXIMUM_COLS_PER_ROW = 12,
+
+    RESPONSIVENESS_BREAKPOINT = 992,
+
+    SELECTOR_COL = '.col',
+    SELECTOR_ROW = '.row';
 
 /**
  * A base class for Layout.
@@ -25,7 +30,10 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      */
     initializer: function() {
         this._eventHandles = [
-            this.after('rowsChange', A.bind(this._afterRowsChange, this))
+            this.after('rowsChange', A.bind(this._afterRowsChange, this)),
+            this.after('layout-row:colsChange', A.bind(this._afterLayoutColsChange, this)),
+            this.after('layout-col:valueChange', A.bind(this._afterLayoutValueChange, this)),
+            A.on('windowresize', A.bind(this._afterLayoutWindowResize, this))
         ];
 
         A.Array.invoke(this.get('rows'), 'addTarget', this);
@@ -98,7 +106,10 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @param {Node} container The container to draw the layout on.
      **/
     draw: function(container) {
-        container.setHTML(this.get('node'));
+        var node = this.get('node');
+
+        container.setHTML(node);
+        this._handleResponsive(A.config.win.innerWidth);
     },
 
     /**
@@ -129,6 +140,36 @@ A.Layout = A.Base.create('layout', A.Base, [], {
     },
 
     /**
+     * Fires after `layout-row:colsChange` event.
+     *
+     * @method _afterLayoutColsChange
+     * @protected
+     */
+    _afterLayoutColsChange: function(event) {
+        var row = event.target;
+        this._normalizeColsHeight([row.get('node').one(SELECTOR_ROW)]);
+    },
+
+    /**
+     * Fires after cols' valueChange event.
+     *
+     * @method _afterLayoutValueChange
+     * @protected
+     */
+    _afterLayoutValueChange: function(event) {
+        var col = event.target,
+            targets;
+
+        targets = A.Array.filter(col.getTargets(), function(target) {
+            if (target.name === 'layout-row') {
+                return target;
+            }
+        });
+
+        this._normalizeColsHeight([targets[0].get('node').one(SELECTOR_ROW)]);
+    },
+
+    /**
      * Fires after rows changes.
      *
      * @method _afterRowsChange
@@ -140,6 +181,71 @@ A.Layout = A.Base.create('layout', A.Base, [], {
         A.Array.invoke(event.newVal, 'addTarget', this);
 
         this._uiSetRows(this.get('rows'));
+    },
+
+    /**
+     * Fires after window's resize.
+     *
+     * @method _afterLayoutWindowResize
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterLayoutWindowResize: function(event) {
+        var viewportSize = event.target.get('innerWidth');
+        this._handleResponsive(viewportSize);
+    },
+
+    /**
+     * Calculates column mode.
+     *
+     * @method _handleResponsive
+     * @param {Number} viewportSize
+     * @protected
+     */
+    _handleResponsive: function(viewportSize) {
+        var enableColumnMode = viewportSize >= RESPONSIVENESS_BREAKPOINT;
+
+        if (this.get('isColumnMode') !== enableColumnMode) {
+            this._set('isColumnMode', enableColumnMode);
+
+            this._normalizeColsHeight(this.get('node').all(SELECTOR_ROW).get('nodes'));
+        }
+    },
+
+    /**
+     * Normalize all cols' height for each row.
+     *
+     * @method _normalizeColsHeight
+     * @param {Array} rows Rows to normalize cols' height.
+     **/
+    _normalizeColsHeight: function(rows) {
+        var instance = this,
+            colClientHeight,
+            cols,
+            highestCol = 0;
+
+        A.Array.each(rows, function(row) {
+            cols = row.all(SELECTOR_COL);
+
+            if (instance.get('isColumnMode')) {
+                if (row.getData('layout-row').get('equalHeight')) {
+                    A.Array.invoke(cols, 'setStyle', 'height', 'auto');
+                    cols.each(function(col) {
+                        colClientHeight = col.get('clientHeight');
+
+                        if (colClientHeight > highestCol) {
+                            highestCol = colClientHeight;
+                        }
+                    });
+
+                    A.Array.invoke(cols, 'setStyle', 'height', highestCol + 'px');
+                    highestCol = 0;
+                }
+            }
+            else {
+                A.Array.invoke(cols, 'setStyle', 'height', 'auto');
+            }
+        });
     },
 
     /**
@@ -200,6 +306,19 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @static
      */
     ATTRS: {
+        /**
+         * Determines if columns should collapse.
+         *
+         * @property isColumnMode
+         * @type {Boolean}
+         * @protected
+         */
+        isColumnMode: {
+            readOnly: true,
+            validator: A.Lang.isBoolean,
+            value: false
+        },
+
         /**
          * The node where this column will be rendered.
          *

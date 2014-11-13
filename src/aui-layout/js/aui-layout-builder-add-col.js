@@ -44,7 +44,7 @@ A.LayoutBuilderAddCol.prototype = {
 
         this._eventHandles.push(
             this.after('enableAddColsChange', this._afterEnableAddColsChange),
-            this.after('columnModeChange', A.bind(this._afterAddColColumnModeChange, this))
+            this.after('layout:isColumnModeChange', A.bind(this._afterAddColIsColumnModeChange, this))
         );
 
         this._uiSetEnableAddCols(this.get('enableAddCols'));
@@ -80,12 +80,12 @@ A.LayoutBuilderAddCol.prototype = {
     },
 
     /**
-     * Fired after `columnModeChange` changes.
+     * Fired after `isColumnMode` changes.
      *
-     * @method _afterAddColColumnModeChange
+     * @method _afterAddColIsColumnModeChange
      * @protected
      */
-    _afterAddColColumnModeChange: function() {
+    _afterAddColIsColumnModeChange: function() {
         this._uiSetEnableAddCols(this.get('enableAddCols'));
     },
 
@@ -209,7 +209,7 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     _uiSetEnableAddCols: function(enableAddCols) {
-        if (enableAddCols && this._isColumnModeEnabled) {
+        if (enableAddCols && this.get('layout').get('isColumnMode')) {
             this._appendAddColButtonToRows();
             this._bindAddColEvents();
         }

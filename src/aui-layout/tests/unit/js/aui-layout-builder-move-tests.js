@@ -591,8 +591,7 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
         'should not insert cut buttons on cols if columnMode is not enabled through responsiveness': function() {
             var moveButton = Y.one('.layout-builder-move-button');
 
-            this.layoutBuilder._isColumnModeEnabled = false;
-            this.layoutBuilder.fire('columnModeChange');
+            layout._set('isColumnMode', false);
 
             moveButton.simulate('click');
 

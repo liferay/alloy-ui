@@ -212,16 +212,37 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
         },
 
         'should remove add col feature on smartphones': function() {
-            var addColButton;
+            var addColButton,
+                layout;
 
             this._createLayoutBuilder();
 
-            this._layoutBuilder._isColumnModeEnabled = false;
-            this._layoutBuilder.fire('columnModeChange');
+            layout = this._layoutBuilder.get('layout');
+
+            layout._set('isColumnMode', false);
 
             addColButton = Y.one('.layout-builder-add-col');
 
             Y.Assert.isNull(addColButton);
+        },
+
+        'should normalize cols height after add a new col': function() {
+            var addColButton,
+                layout;
+
+            this._createLayoutBuilder();
+
+            layout = this._layoutBuilder.get('layout');
+
+            Y.Mock.expect(layout, {
+                args: [Y.Mock.Value.Object],
+                method: '_normalizeColsHeight'
+            });
+
+            addColButton = Y.one('.layout-builder-add-col');
+            addColButton.simulate('click');
+
+            Y.Mock.verify(layout);
         }
     }));
 

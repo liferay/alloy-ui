@@ -4,7 +4,8 @@
             "aui-layout-col",
             "aui-layout-row",
             "aui-node-base",
-            "base-build"
+            "base-build",
+            "event-resize"
         ]
     },
     "aui-layout-builder": {
@@ -19,7 +20,6 @@
             "aui-layout-builder-resize-col",
             "aui-node-base",
             "base-build",
-            "event-resize",
             "node-event-delegate",
             "node-screen",
             "node-style"

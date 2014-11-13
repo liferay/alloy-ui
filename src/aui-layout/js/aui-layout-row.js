@@ -244,6 +244,18 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
         },
 
         /**
+         * Determines if cols should have the same height.
+         *
+         * @attribute equalHeight
+         * @default true
+         * @type {Boolean}
+         */
+        equalHeight: {
+            validator: A.Lang.isBoolean,
+            value: true
+        },
+
+        /**
          * Number to determine maximum cols on a row.
          *
          * @attribute maximumCols

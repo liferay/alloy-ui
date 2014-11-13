@@ -5,7 +5,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
         CSS_RESIZE_COL_BREAKPOINT = Y.getClassName('layout', 'builder', 'resize', 'col', 'breakpoint'),
         CSS_RESIZE_COL_DRAGGABLE = Y.getClassName('layout', 'builder', 'resize', 'col', 'draggable'),
         CSS_RESIZE_COL_DRAGGABLE_HANDLE = Y.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'handle'),
-        suite = new Y.Test.Suite('aui-layout-builder');
+        suite = new Y.Test.Suite('aui-layout-builder-resize-col');
 
     Content = Y.Base.create('content', Y.Base, [], {}, {
         ATTRS: {
@@ -472,12 +472,12 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
         },
 
         'should remove resize col feature on smartphones': function() {
-            var resizeColDraggable = Y.one('.layout-builder-resize-col-draggable');
+            var layout = this._layoutBuilder.get('layout'),
+                resizeColDraggable = Y.one('.layout-builder-resize-col-draggable');
 
             Y.Assert.isNotNull(resizeColDraggable);
 
-            this._layoutBuilder._isColumnModeEnabled = false;
-            this._layoutBuilder.fire('columnModeChange');
+            layout._set('isColumnMode', false);
 
             resizeColDraggable = Y.one('.layout-builder-resize-col-draggable');
 

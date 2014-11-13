@@ -65,7 +65,7 @@ A.LayoutBuilderResizeCol.prototype = {
 
         this._eventHandles.push(
             this.after('enableResizeColsChange', this._afterEnableResizeColsChange),
-            this.after('columnModeChange', A.bind(this._afterResizeColColumnModeChange, this))
+            this.after('layout:isColumnModeChange', A.bind(this._afterResizeColIsColumnModeChange, this))
         );
 
         this._uiSetEnableResizeCols(this.get('enableResizeCols'));
@@ -183,12 +183,12 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
-     * Fired after the `columnMode` changes.
+     * Fired after the `isColumnMode` changes.
      *
-     * @method _afterResizeColColumnModeChange
+     * @method _afterResizeColIsColumnModeChange
      * @protected
      */
-    _afterResizeColColumnModeChange: function() {
+    _afterResizeColIsColumnModeChange: function() {
         this._uiSetEnableResizeCols(this.get('enableResizeCols'));
     },
 
@@ -547,7 +547,7 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _uiSetEnableResizeCols: function(enableResizeCols) {
-        if (enableResizeCols && this._isColumnModeEnabled) {
+        if (enableResizeCols && this.get('layout').get('isColumnMode')) {
             this._syncDragHandles();
             this._insertGrid();
             this._bindResizeColEvents();

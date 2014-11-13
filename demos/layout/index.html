@@ -10,7 +10,7 @@
         .col {
             background-color: #ddd;
             border: 1px solid #ccc;
-            height: 62px;
+            min-height: 62px;
             padding-top: 20px;
         }
         .container {
@@ -30,113 +30,152 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-    YUI({ filter:'raw' }).use('aui-layout-builder', function(Y) {
-        var Content = Y.Base.create('content', Y.Base, [], {}, {
-            ATTRS: {
-                content: {
-                    value: 'foo'
+    YUI({ filter:'raw' }).use(
+        'aui-layout-builder',
+        'aui-form-builder',
+        'aui-form-builder-field-choice',
+        'aui-form-builder-field-date',
+        'aui-form-builder-field-list',
+        'aui-form-builder-field-grid',
+        'aui-form-builder-field-text',
+        'aui-form-builder-field-scale',
+        'aui-form-builder-field-sentence',
+        function(Y) {
+            var Content = Y.Base.create('content', Y.Base, [], {}, {
+                ATTRS: {
+                    content: {
+                        value: 'foo'
+                    }
                 }
-            }
-        });
+            });
 
-        var layout = new Y.Layout({
-            rows: [
-                new Y.LayoutRow({
-                    cols: [
-                        new Y.LayoutCol({
-                            value: new Content({ content: '3' }),
-                            size: 3
-                        }),
-                        new Y.LayoutCol({
-                            value: new Content({ content: '3' }),
-                            size: 3
-                        }),
-                        new Y.LayoutCol({
-                            value: new Content({ content: '3' }),
-                            size: 3
-                        }),
-                        new Y.LayoutCol({
-                            size: 3,
-                            value: new Content({ content: '3' })
-                        })
-                    ]
-                }),
-                new Y.LayoutRow({
-                    cols: [
-                        new Y.LayoutCol({
-                            size: 6,
-                            value: new Content({ content: '6' })
-                        }),
-                        new Y.LayoutCol({
-                            size: 6,
-                            value: new Content({ content: '6' })
-                        })
-                    ]
-                }),
-                new Y.LayoutRow({
-                    cols: [
-                        new Y.LayoutCol({
-                            size: 9,
-                            value: new Content({ content: '9' })
-                        }),
-                        new Y.LayoutCol({
-                            size: 3,
-                            value: new Content({ content: '3' })
-                        })
-                    ]
-                }),
-                new Y.LayoutRow({
-                    cols: [
-                        new Y.LayoutCol({
-                            size: 8,
-                            value: new Content({ content: '8' })
-                        }),
-                        new Y.LayoutCol({
-                            size: 4,
-                            value: new Content({ content: '4' })
-                        })
-                    ]
-                }),
-                new Y.LayoutRow({
-                    cols: [
-                        new Y.LayoutCol({
-                            value: new Content({ content: '4' }),
-                            size: 4
-                        }),
-                        new Y.LayoutCol({
-                            value: new Content({ content: '4' }),
-                            size: 4
-                        }),
-                        new Y.LayoutCol({
-                            value: new Content({ content: '4' }),
-                            size: 4
-                        })
-                    ]
-                }),
-                new Y.LayoutRow({
-                    cols: [
-                        new Y.LayoutCol({
-                            value: new Content({ content: '3' }),
-                            size: 3
-                        }),
-                        new Y.LayoutCol({
-                            value: new Content({ content: '3' }),
-                            size: 3
-                        }),
-                        new Y.LayoutCol({
-                            value: new Content({ content: '6' }),
-                            size: 6
-                        })
-                    ]
-                })
-            ]
-        });
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: new Y.FormBuilderFieldSentence({
+                                    help: 'My Help',
+                                    nestedFields: [
+                                        new Y.FormBuilderFieldText({
+                                            help: 'First nested field',
+                                            nestedFields: [
+                                                new Y.FormBuilderFieldText({
+                                                    help: 'Second level nested field',
+                                                    title: 'Nested Field 1.1'
+                                                })
+                                            ],
+                                            title: 'Nested Field 1'
+                                        }),
+                                        new Y.FormBuilderFieldText({
+                                            help: 'Second nested field',
+                                            title: 'Nested Field 2'
+                                        })
+                                    ],
+                                    title: 'My Title'
+                                })
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: new Content({ content: '3' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: new Content({ content: '6' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: new Content({ content: '6' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 9,
+                                value: new Content({ content: '9' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: new Content({ content: '3' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 8,
+                                value: new Content({ content: '8' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 4,
+                                value: new Y.FormBuilderFieldSentence({
+                                    help: 'My Help',
+                                    nestedFields: [
+                                        new Y.FormBuilderFieldText({
+                                            help: 'Second nested field',
+                                            title: 'Nested Field 2'
+                                        })
+                                    ],
+                                    title: 'My Second Title'
+                                })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                value: new Content({ content: '4' }),
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '4' }),
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '4' }),
+                                size: 4
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '6' }),
+                                size: 6
+                            })
+                        ]
+                    })
+                ]
+            });
 
-        new Y.LayoutBuilder({
-            container: '.container',
-            layout: layout
-        });
-    });
+            new Y.LayoutBuilder({
+                container: '.container',
+                layout: layout
+            });
+        }
+    );
 </script>
 </body>
 </html>
