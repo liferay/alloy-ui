@@ -59,8 +59,7 @@ LayoutBuilderAddRow.prototype = {
         this._bodyNode = A.one('body');
 
         this._eventHandles.push(
-            this.after('enableAddRowsChange', this._afterEnableAddRowsChange),
-            this.after('columnModeChange', A.bind(this._afterAddRowColumnModeChange, this))
+            this.after('enableAddRowsChange', this._afterEnableAddRowsChange)
         );
 
         this._uiSetEnableAddRows(this.get('enableAddRows'));
@@ -137,7 +136,8 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     _afterAddRowColumnModeChange: function() {
-        this._uiSetEnableAddRows(this.get('enableAddRows'));
+        this._addAppropriateAddRowArea();
+        this._setAddRowAreaPosition();
     },
 
     /**
@@ -171,6 +171,7 @@ LayoutBuilderAddRow.prototype = {
             container.delegate('click', A.bind(this._onMouseClickAddRowEvent, this), '.' + CSS_ADD_ROW),
             container.delegate('key', A.bind(this._onKeyPressAddRowEvent, this), 'press:13', '.' + CSS_ADD_ROW),
             this.after('layout:rowsChange', A.bind(this._afterAddRowRowsChange, this)),
+            this.after('columnModeChange', A.bind(this._afterAddRowColumnModeChange, this)),
             A.on('windowresize', A.bind(this._afterAddRowWindowResize, this))
         ];
     },

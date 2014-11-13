@@ -1,4 +1,5 @@
 .layout-builder-remove-col-button {
+    cursor: pointer;
     position: absolute;
     left: 50%;
     top: 35%;
