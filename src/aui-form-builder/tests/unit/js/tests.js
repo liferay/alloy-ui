@@ -924,6 +924,30 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(Y.one('.modal-header').getHTML(), 'Text');
         },
 
+        'should disable adding unique field already used by creating one': function() {
+            this.createFormBuilder({
+                fieldTypes: [{
+                    defaultConfig: {
+                        title: 'Title'
+                    },
+                    fieldClass: Y.FormBuilderFieldSentence,
+                    unique: true
+                }],
+                layout: new Y.Layout({
+                    rows: [new Y.LayoutRow()]
+                })
+            });
+
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
+
+            Y.all('.field-type').item(0).simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            this._formBuilder.showFieldsPanel();
+            Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
+        },
+
         'should disable adding unique field already used when creating a new Form Builder': function() {
             var formBuilderModal;
 
@@ -976,6 +1000,23 @@ YUI.add('aui-form-builder-tests', function(Y) {
                             cols: [
                                 new Y.LayoutCol({
                                     size: 4,
+                                    value: new Y.FormBuilderFieldSentence({
+                                        nestedFields: [
+                                            new Y.FormBuilderFieldSentence({
+                                                title: 'Title Nested'
+                                            })
+                                        ],
+                                        title: 'Title'
+                                    })
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: new Y.FormBuilderFieldSentence({
+                                        title: 'Title 2'
+                                    })
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
                                     value: new Y.FormBuilderFieldText({
                                         help: 'I need somebody',
                                         title: 'Duque'
@@ -1021,10 +1062,15 @@ YUI.add('aui-form-builder-tests', function(Y) {
                                 value: new Y.FormBuilderFieldSentence({
                                     help: 'not just anybody',
                                     nestedFields: [
-                                    new Y.FormBuilderFieldText({
-                                        title: 'How many?'
-                                    })
-                                ],
+                                        new Y.FormBuilderFieldSentence({
+                                            nestedFields: [
+                                                new Y.FormBuilderFieldText({
+                                                    title: 'How many?'
+                                                })
+                                            ],
+                                            title: 'How many?'
+                                        })
+                                    ],
                                     title: 'Monarch'
                                 })
                             })

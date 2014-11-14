@@ -489,7 +489,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     _hasFieldTypeOnNested: function(fieldTypeClass, field) {
         var nestedFields = field.get('nestedFields');
 
-        if (!nestedFields) {
+        if (nestedFields.length === 0) {
             return false;
         }
 
