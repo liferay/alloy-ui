@@ -145,8 +145,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         if (A.UA.mobile) {
             this._eventHandles.push(boundingBox.delegate('tap', this._onTapField, '.' + CSS_FIELD_CONTENT, this));
         }
-
-        this._updateUniqueFieldType();
     },
 
     /**
@@ -157,6 +155,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     syncUI: function() {
         this._syncLayoutRows();
+
+        this._updateUniqueFieldType();
     },
 
     /**

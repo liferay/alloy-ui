@@ -924,7 +924,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(Y.one('.modal-header').getHTML(), 'Text');
         },
 
-        'should disabled adding unique field already used when create a a new Form Builder': function() {
+        'should disable adding unique field already used when creating a new Form Builder': function() {
             var formBuilderModal;
 
             this.createFormBuilder({
@@ -948,7 +948,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isFalse(Y.one('.field-type').hasClass('field-type-disabled'));
         },
 
-        'should disabled adding unique field already used when set a new layout': function() {
+        'should disable adding unique field already used when setting a new layout': function() {
             var formBuilderModal;
 
             this.createFormBuilder({
@@ -969,7 +969,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             formBuilderModal.one('.close').simulate('mousemove');
             formBuilderModal.one('.close').simulate('click');
 
-            this._formBuilder.set('layout', 
+            this._formBuilder.set('layout',
                 new Y.Layout({
                     rows: [
                         new Y.LayoutRow({
@@ -991,7 +991,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
         },
 
-        'should disabled adding unique field already used when set a new column': function() {
+        'should disable adding unique field already used when setting a new column': function() {
             var formBuilderModal;
 
             this.createFormBuilder({
@@ -1012,7 +1012,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             formBuilderModal.one('.close').simulate('mousemove');
             formBuilderModal.one('.close').simulate('click');
 
-            this._formBuilder.get('layout').set('rows', 
+            this._formBuilder.get('layout').set('rows',
                 [
                     new Y.LayoutRow({
                         cols: [
@@ -1037,7 +1037,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
         },
 
-        'should disabled adding unique field already used when set a new row': function() {
+        'should disable adding unique field already used when setting a new row': function() {
             var formBuilderModal;
 
             this.createFormBuilder({
