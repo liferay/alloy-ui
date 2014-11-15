@@ -205,9 +205,7 @@ TableSortable.prototype = {
     _afterCaptionVisibleChange: function() {
         var instance = this;
 
-        instance._toggleScreenReaderClass({
-            force: event.newVal
-        });
+        instance._toggleScreenReaderClass();
     },
 
     /**
@@ -233,12 +231,11 @@ TableSortable.prototype = {
      * @param {Object} options
      * @protected
      */
-    _toggleScreenReaderClass: function(options) {
+    _toggleScreenReaderClass: function() {
         var instance = this,
-            caption = instance._getCaption(),
-            toggle = options ? options.force : !instance.get('captionVisible');
+            caption = instance._getCaption();
 
-        caption.toggleClass(instance.get('screenReaderClass'), toggle);
+        caption.toggleClass(instance.get('screenReaderClass'), !instance.get('captionVisible'));
     },
 
     /**
