@@ -11,6 +11,12 @@
             "jsfiles": [
                 "js/aui-button-search-cancel.js"
             ]
+        },
+
+        "aui-button-switch": {
+            "jsfiles": [
+                "js/aui-button-switch.js"
+            ]
         }
     }
 }
