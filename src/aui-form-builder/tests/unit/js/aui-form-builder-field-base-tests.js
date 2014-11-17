@@ -3,7 +3,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-form-builder-field-base'),
         TestField;
 
-    TestField = Y.Base.create('test-field', Y.FormBuilderFieldBase, [], {
+    TestField = Y.Base.create('test-field', Y.FormField, [Y.FormBuilderFieldBase], {
         _fillSettings: function() {
             this._settings = [
                 {
@@ -59,11 +59,12 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             }
         },
 
-        'should throw error when using abstract class directly': function() {
+        'should throw error when _fillSettings is not overridden': function() {
             var instance = this,
-                container = Y.Node.create('<div></div>');
+                container = Y.Node.create('<div></div>'),
+                WrongTestField = Y.Base.create('wrong-test-field', Y.FormField, [Y.FormBuilderFieldBase]);
 
-            this._field = new Y.FormBuilderFieldBase();
+            this._field = new WrongTestField();
 
             Y.Assert.throwsError(Error, function() {
                 instance._field.renderSettingsPanel(container);
@@ -201,42 +202,6 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             Y.Assert.areEqual('Attr1New', this._field.get('attr1'));
         },
 
-        'should return field content': function() {
-            this._field = new TestField();
-
-            Y.Assert.isNotNull(this._field.get('content'));
-            Y.Assert.isTrue(this._field.get('content').hasClass('form-builder-field'));
-        },
-
-        'should only allow array of fields as the nestedFields attribute': function() {
-            this._field = new TestField();
-
-            Y.Assert.areEqual(0, this._field.get('nestedFields').length);
-
-            this._field.set('nestedFields', 1);
-            Y.Assert.areEqual(0, this._field.get('nestedFields').length);
-
-            this._field.set('nestedFields', [1, 2]);
-            Y.Assert.areEqual(0, this._field.get('nestedFields').length);
-
-            this._field.set('nestedFields', [1, new TestField()]);
-            Y.Assert.areEqual(0, this._field.get('nestedFields').length);
-
-            this._field.set('nestedFields', [new TestField(), new TestField()]);
-            Y.Assert.areEqual(2, this._field.get('nestedFields').length);
-        },
-
-        'should render nested fields inside content': function() {
-            this._field = new TestField({
-                nestedFields: [new TestField(), new TestField()]
-            });
-
-            Y.Assert.areEqual(2, this._field.get('content').all('.form-builder-field').size());
-
-            this._field.set('nestedFields', [new TestField()]);
-            Y.Assert.areEqual(1, this._field.get('content').all('.form-builder-field').size());
-        },
-
         'should render nested fields move targets': function() {
             this._field = new TestField({
                 nestedFields: [new TestField(), new TestField()]
@@ -249,36 +214,6 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             this._field.set('nestedFields', []);
             Y.Assert.areEqual(1, this._field.get('content').all('.form-builder-field-move-target').size());
-        },
-
-        'should remove nested fields': function() {
-            var nestedField = new TestField();
-
-            this._field = new TestField({
-                nestedFields: [nestedField, new TestField()]
-            });
-            Y.one('#container').append(this._field.get('content'));
-
-            this._field.removeNestedField(nestedField);
-            Y.Assert.areEqual(1, this._field.get('nestedFields').length);
-            Y.Assert.areEqual(1, this._field.get('content').all('.form-builder-field').size());
-
-            this._field.removeNestedField(new TestField());
-            Y.Assert.areEqual(1, this._field.get('nestedFields').length);
-            Y.Assert.areEqual(1, this._field.get('content').all('.form-builder-field').size());
-        },
-
-        'should add nested fields': function() {
-            var nestedField = new TestField();
-
-            this._field = new TestField({
-                nestedFields: [new TestField(), new TestField()]
-            });
-            Y.one('#container').append(this._field.get('content'));
-
-            this._field.addNestedField(1, nestedField);
-            Y.Assert.areEqual(3, this._field.get('nestedFields').length);
-            Y.Assert.areSame(nestedField, this._field.get('nestedFields')[1]);
         }
     }));
 
@@ -287,6 +222,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
     requires: [
         'aui-boolean-data-editor',
         'aui-form-builder-field-base',
+        'aui-form-field',
         'aui-options-data-editor',
         'aui-text-data-editor',
         'node-event-simulate',

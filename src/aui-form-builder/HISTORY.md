@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1770](https://issues.liferay.com/browse/AUI-1770) Field rendering should be separate from field editing
 * [AUI-1738](https://issues.liferay.com/browse/AUI-1738) Update unique field types when fields change
 * [AUI-1764](https://issues.liferay.com/browse/AUI-1764) Improve aui-options-data-editor's appearance
 * [AUI-1776](https://issues.liferay.com/browse/AUI-1776) Improve appearance of rendered fields

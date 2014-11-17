@@ -1,0 +1,26 @@
+.form-field {
+    color: #5d6d7e;
+    padding: 32pt;
+}
+
+.form-field .form-field-nested .form-field {
+    padding: 5px 0 0 20px;
+}
+
+.form-field .form-field-content-toolbar {
+    position: relative;
+}
+
+.form-field .form-field-content .form-group {
+    margin-bottom: 0;
+}
+
+.form-field .form-field-nested .form-field {
+    margin-bottom: 24pt;
+}
+
+@media (max-width: 768px) {
+    .form-field {
+        padding: 20pt;
+    }
+}

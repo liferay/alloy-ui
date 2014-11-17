@@ -15,9 +15,9 @@
     "aui-form-builder-field-base": {
         "requires": [
             "aui-classnamemanager",
-            "aui-modal",
             "aui-node-base",
             "base",
+            "event-outside",
             "node-base"
         ],
         "skinnable": true
@@ -67,6 +67,7 @@
     "aui-form-builder-field-sentence": {
         "requires": [
             "aui-form-builder-field-base",
+            "aui-form-field",
             "aui-text-data-editor"
         ],
         "skinnable": true

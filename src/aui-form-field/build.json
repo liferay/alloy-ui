@@ -1,0 +1,10 @@
+{
+    "name": "aui-form-field",
+    "builds": {
+        "aui-form-field": {
+            "jsfiles": [
+                "js/aui-form-field.js"
+            ]
+        }
+    }
+}

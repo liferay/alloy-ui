@@ -21,12 +21,13 @@ var CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
  * A base class for Form Builder Field Text.
  *
  * @class A.FormBuilderFieldSentence
- * @extends A.FormBuilderFieldBase
+ * @extends A.FormField
+ * @uses A.FormBuilderFieldBase
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-A.FormBuilderFieldSentence = A.Base.create('form-builder-field-sentece', A.FormBuilderFieldBase, [], {
+A.FormBuilderFieldSentence = A.Base.create('form-builder-field-sentence', A.FormField, [A.FormBuilderFieldBase], {
     TPL_FIELD_CONTENT: '<div></div>',
 
     /**

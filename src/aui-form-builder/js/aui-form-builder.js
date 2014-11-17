@@ -229,7 +229,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * Shows the settings panel for the given field.
      *
      * @method showFieldSettingsPanel
-     * @param {A.FormBuilderFieldBase} field
+     * @param {A.FormField} field
      * @param {String} typeName The name of the field type.
      */
     showFieldSettingsPanel: function(field, typeName) {
@@ -396,7 +396,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     _afterLayoutColValueChange: function(event) {
         var col = event.target;
 
-        if (A.instanceOf(event.newVal, A.FormBuilderFieldBase)) {
+        if (A.instanceOf(event.newVal, A.FormField)) {
             col.set('movableContent', true);
         }
         else if (!event.newVal) {
@@ -464,7 +464,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             cols = rows[row].get('cols');
             for (col = 0; col < cols.length; col++) {
                 field = cols[col].get('value');
-                if (field && (field instanceof A.FormBuilderFieldBase)) {
+                if (field && (field instanceof A.FormField)) {
                     if (field.constructor === fieldType.get('fieldClass')) {
                         return true;
                     }
@@ -482,7 +482,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * Check all nested Field created if there is a someone of the same
      * type of the parameter.
      * @param  {A.FormBuilderFieldType} fieldTypeClass
-     * @param  {A.FormBuilderFieldBase} field
+     * @param  {A.FormField} field
      * @return {Boolean}
      * @protected
      */
@@ -800,7 +800,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * field is an instance of.
      *
      * @method _toggleUniqueDisabled
-     * @param {A.FormBuilderFieldBase} field
+     * @param {A.FormField} field
      * @param {Boolean} disabled
      * @protected
      */
