@@ -1,6 +1,7 @@
 {
     "aui-boolean-data-editor": {
         "requires": [
+            "aui-button-switch",
             "aui-data-editor"
         ]
     },

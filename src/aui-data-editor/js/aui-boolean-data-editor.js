@@ -5,7 +5,8 @@
  */
 
 var CSS_BOOLEAN_DATA_EDITOR = A.getClassName('boolean', 'data', 'editor'),
-    CSS_BOOLEAN_DATA_EDITOR_CONTENT = A.getClassName('boolean', 'data', 'editor', 'content');
+    CSS_BOOLEAN_DATA_EDITOR_CONTENT = A.getClassName('boolean', 'data', 'editor', 'content'),
+    CSS_BOOLEAN_DATA_EDITOR_SWITCH_BUTTON = A.getClassName('boolean', 'data', 'editor', 'switch', 'button');
 
 /**
  * A base class for Boolean Data Editor.
@@ -19,7 +20,7 @@ var CSS_BOOLEAN_DATA_EDITOR = A.getClassName('boolean', 'data', 'editor'),
 A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     TPL_EDITOR_CONTENT: '<div class="' + CSS_BOOLEAN_DATA_EDITOR + '">' +
         '<div class="form-group"><div class="' + CSS_BOOLEAN_DATA_EDITOR_CONTENT + '"></div>' +
-        '<input type="checkbox"></input></div></div>',
+        '<div class="' + CSS_BOOLEAN_DATA_EDITOR_SWITCH_BUTTON + '"></div></div></div>',
 
     /**
      * Constructor for the `A.BooleanDataEditor`. Lifecycle.
@@ -30,9 +31,10 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     initializer: function() {
         this._uiSetEditedValue(this.get('editedValue'));
 
-        this.get('node').one('input').after('change', A.bind(this._afterClickCheckbox, this));
-
+        this._getSwitchButton().on('activatedChange', A.bind(this._afterButtonSwitchActivatedChange, this));
         this.after('editedValueChange', this._afterEditedValueChange);
+        this.after('innerLabelLeftChange', this._afterInnerLabelLeftChange);
+        this.after('innerLabelRightChange', this._afterInnerLabelRightChange);
     },
 
     /**
@@ -53,19 +55,19 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * @param {Boolean} value
      */
     updateUiWithValue: function(value) {
-        this.get('node').one('input').set('checked', value);
+        this._getSwitchButton().set('activated', value);
         this.set('editedValue', value);
     },
 
     /**
      * Fired after the checkbox is clicked.
      *
-     * @method _afterClickCheckbox
+     * @method _afterButtonSwitchActivatedChange
      * @param {CustomEvent} event The fired event
      * @protected
      */
-    _afterClickCheckbox: function(event) {
-        this.set('editedValue', event.currentTarget.get('checked'));
+    _afterButtonSwitchActivatedChange: function(event) {
+        this.set('editedValue', event.newVal);
     },
 
     /**
@@ -77,6 +79,48 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      */
     _afterEditedValueChange: function() {
         this._uiSetEditedValue(this.get('editedValue'));
+    },
+
+    /**
+     * Fired after the `innerLabelLeft` attribute is set.
+     *
+     * @method _afterInnerLabelLeftChange
+     * @param {CustomEvent} event The fired event
+     * @protected
+     */
+    _afterInnerLabelLeftChange: function(event) {
+        this._getSwitchButton().set('innerLabelLeft', event.newVal);
+    },
+
+    /**
+     * Fired after the `innerLabelRight` attribute is set.
+     *
+     * @method _afterInnerLabelRightChange
+     * @param {CustomEvent} event The fired event
+     * @protected
+     */
+    _afterInnerLabelRightChange: function(event) {
+        this._getSwitchButton().set('innerLabelRight', event.newVal);
+    },
+
+    /**
+     * Returns the switch button instance.
+     *
+     * @method _getSwitchButton
+     * @return {Object}
+     * @protected
+     */
+    _getSwitchButton: function () {
+        var instance = this;
+
+        if (!this._buttonSwitch) {
+            this._buttonSwitch = new A.ButtonSwitch({
+                innerLabelLeft: instance.get('innerLabelLeft'),
+                innerLabelRight: instance.get('innerLabelRight')
+            }).render(instance.get('node').one('.' + CSS_BOOLEAN_DATA_EDITOR_SWITCH_BUTTON));
+        }
+        
+        return this._buttonSwitch;
     },
 
     /**
@@ -175,6 +219,28 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
          */
         editedValue: {
             value: false
+        },
+
+        /**
+         * The label to be used on button left side.
+         *
+         * @attribute innerLabelLeft
+         * @type String
+         */
+        innerLabelLeft: {
+            validator: A.Lang.isString,
+            value: ''
+        },
+
+        /**
+         * The label to be used on button right side.
+         *
+         * @attribute innerLabelRight
+         * @type String
+         */
+        innerLabelRight: {
+            validator: A.Lang.isString,
+            value: ''
         },
 
         /**

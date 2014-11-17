@@ -19,8 +19,8 @@ YUI.add('aui-form-builder-field-text-tests', function(Y) {
 
             this._field.renderSettingsPanel(settings);
 
-            settings.all('input[type="checkbox"]').item(0).simulate('click');
-            settings.all('input[type="checkbox"]').item(1).simulate('click');
+            settings.all('.button-switch').item(0).simulate('click');
+            settings.all('.button-switch').item(1).simulate('click');
 
             this._field.saveSettings();
 

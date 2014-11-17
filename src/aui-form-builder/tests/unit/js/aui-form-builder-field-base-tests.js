@@ -101,8 +101,8 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             input = container.all('input[type="text"]').item(3);
             Y.Assert.areEqual('Attr3', input.get('value'));
 
-            input = container.one('input[type="checkbox"]');
-            Y.Assert.isTrue(input.get('checked'));
+            input = container.one('.button-switch');
+            Y.Assert.isTrue(input.hasClass('activated'));
         },
 
         'should toggle the toolbar': function() {

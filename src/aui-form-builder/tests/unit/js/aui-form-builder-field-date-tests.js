@@ -45,21 +45,21 @@ YUI.add('aui-form-builder-field-date-tests', function(Y) {
             Y.Assert.areEqual('none', toContainer.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(1).simulate('click');
+            settings.all('.button-switch').item(1).simulate('click');
             this._field.saveSettings();
             Y.Assert.isTrue(fromDate.hasClass('year'));
             Y.Assert.areEqual('none', fromTime.getStyle('display'));
             Y.Assert.areEqual('none', toContainer.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(2).simulate('click');
+            settings.all('.button-switch').item(2).simulate('click');
             this._field.saveSettings();
             Y.Assert.isTrue(fromDate.hasClass('year'));
             Y.Assert.areNotEqual('none', fromTime.getStyle('display'));
             Y.Assert.areEqual('none', toContainer.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(3).simulate('click');
+            settings.all('.button-switch').item(3).simulate('click');
             this._field.saveSettings();
             Y.Assert.isTrue(fromDate.hasClass('year'));
             Y.Assert.areNotEqual('none', fromTime.getStyle('display'));
@@ -68,18 +68,18 @@ YUI.add('aui-form-builder-field-date-tests', function(Y) {
             Y.Assert.areNotEqual('none', toTime.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(3).simulate('click');
+            settings.all('.button-switch').item(3).simulate('click');
             this._field.saveSettings();
             Y.Assert.isTrue(fromDate.hasClass('year'));
             Y.Assert.areNotEqual('none', fromTime.getStyle('display'));
             Y.Assert.areEqual('none', toContainer.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(1).simulate('click');
-            settings.all('input[type="checkbox"]').item(2).simulate('click');
-            settings.all('input[type="checkbox"]').item(3).simulate('click');
-            settings.all('input[type="checkbox"]').item(4).simulate('click');
-            settings.all('input[type="checkbox"]').item(5).simulate('click');
+            settings.all('.button-switch').item(1).simulate('click');
+            settings.all('.button-switch').item(2).simulate('click');
+            settings.all('.button-switch').item(3).simulate('click');
+            settings.all('.button-switch').item(4).simulate('click');
+            settings.all('.button-switch').item(5).simulate('click');
             this._field.saveSettings();
             Y.Assert.isFalse(fromDate.hasClass('year'));
             Y.Assert.areEqual('none', fromTime.getStyle('display'));
@@ -88,7 +88,7 @@ YUI.add('aui-form-builder-field-date-tests', function(Y) {
             Y.Assert.areNotEqual('none', toTime.getStyle('display'));
 
             this._field.renderSettingsPanel(settings);
-            settings.all('input[type="checkbox"]').item(0).simulate('click');
+            settings.all('.button-switch').item(0).simulate('click');
             this._field.saveSettings();
             Y.Assert.isTrue(this._field.get('required'));
         }

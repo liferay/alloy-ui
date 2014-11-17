@@ -5,57 +5,113 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'AUI Boolean Data Editor Unit Tests',
 
-        'should set original value on the ui': function() {
-            var editor = new Y.BooleanDataEditor({
-                originalValue: true
-            });
+        init: function() {
+            this._container = Y.one('#container');
+        },
 
-            Y.Assert.isTrue(editor.get('node').one('input').get('checked'));
-            Y.Assert.isTrue(editor.get('editedValue'));
+        setUp: function() {
+            this.createBooleanDataEditor({
+                originalValue: 'original',
+                checkedContent: 'Editor Checked',
+                uncheckedContent: 'Editor Unchecked'
+            });
+        },
+
+        tearDown: function() {
+            this._booleanDataEditor && this._booleanDataEditor.destroy();
+        },
+
+        createBooleanDataEditor: function(config) {
+            var content = Y.Node.create('<div id="content"></div>');
+            this._booleanDataEditor = new Y.BooleanDataEditor(config);
+
+            content.append(this._booleanDataEditor.get('node'));
+            this._container.append(content);
+        },
+
+        'should set the inner labels': function () {
+            var editor = this._booleanDataEditor;
+
+            Y.Assert.areEqual(editor.get('node').one('.button-switch-inner-label-left').getHTML(), '');
+            Y.Assert.areEqual(editor.get('node').one('.button-switch-inner-label-right').getHTML(), '');
+
+            editor.set('innerLabelLeft', 'left');
+            editor.set('innerLabelRight', 'right');
+
+            Y.Assert.areEqual(editor.get('node').one('.button-switch-inner-label-left').getHTML(), 'left');
+            Y.Assert.areEqual(editor.get('node').one('.button-switch-inner-label-right').getHTML(), 'right');
+        },
+
+        'should set valid content to checkedContent': function () {
+            var editor = this._booleanDataEditor;
+
+            editor.set('checkedContent', 'Editor Checked');
+            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+
+            editor.set('checkedContent', Y.Node.create('<label>Editor Checked</label>'));
+            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+
+            editor.set('checkedContent', 42);
+            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+
+        },
+
+        'should set valid content to uncheckedContent': function () {
+            var editor = this._booleanDataEditor;
+
+            Y.one('.button-switch').simulate('click');
+
+            editor.set('uncheckedContent', Y.Node.create('Editor Unchecked'));
+            Y.Assert.areEqual('Editor Unchecked', editor.get('node').get('text'));
+
+            editor.set('uncheckedContent', '<label>Editor Unchecked</label>');
+            Y.Assert.areEqual('Editor Unchecked', editor.get('node').get('text'));
+
+            editor.set('uncheckedContent', 42);
+            Y.Assert.areEqual('Editor Unchecked', editor.get('node').get('text'));
+        },
+
+        'should set original value on the ui': function() {
+            var editor = this._booleanDataEditor;
 
             editor.set('originalValue', false);
-            Y.Assert.isFalse(editor.get('node').one('input').get('checked'));
+            Y.Assert.isTrue(editor.get('node').one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isFalse(editor.get('node').one('.button-switch-inner-label-right').hasClass('hide'));
             Y.Assert.isFalse(editor.get('editedValue'));
+
+            editor.set('originalValue', true);
+            Y.Assert.isFalse(editor.get('node').one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isTrue(editor.get('node').one('.button-switch-inner-label-right').hasClass('hide'));
+            Y.Assert.isTrue(editor.get('editedValue'));
         },
 
         'should get edited value from the ui': function() {
-            var editor,
-                input;
+            var editor = this._booleanDataEditor,
+                button;
 
-            editor = new Y.BooleanDataEditor({
-                originalValue: 'original'
-            });
-            input = editor.get('node').one('input');
+            button = Y.one('.button-switch');
 
-            input.set('checked', true);
-            input.simulate('change');
-            Y.Assert.isTrue(editor.get('editedValue'));
-
-            input.set('checked', false);
-            input.simulate('change');
+            button.simulate('click');
             Y.Assert.isFalse(editor.get('editedValue'));
+
+            button.simulate('click');
+            Y.Assert.isTrue(editor.get('editedValue'));
         },
 
         'should show content related to the checked state of the editor': function() {
-            var editor,
-                input;
+            var editor = this._booleanDataEditor,
+                button;
 
-            editor = new Y.BooleanDataEditor({
-                checkedContent: 'Editor Checked',
-                originalValue: 'original',
-                uncheckedContent: Y.Node.create('<div class="unchecked">Editor Unchecked</div>')
-            });
-            input = editor.get('node').one('input');
+            editor.set('checkedContent', 'Editor Checked');
+            editor.set('uncheckedContent', 'Editor Unchecked');
 
+            button = Y.one('.button-switch');
             Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
 
-            input.set('checked', false);
-            input.simulate('change');
+            button.simulate('click');
             Y.Assert.areEqual('Editor Unchecked', editor.get('node').get('text'));
-            Y.Assert.isNotNull(editor.get('node').one('.unchecked'));
 
-            input.set('checked', true);
-            input.simulate('change');
+            button.simulate('click');
             Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
         },
 

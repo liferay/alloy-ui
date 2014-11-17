@@ -441,8 +441,8 @@ YUI.add('aui-form-builder-tests', function(Y) {
             settingsPane = Y.one('.form-builder-field-settings');
             settingsPane.all('input[type="text"]').item(0).set('value', 'My Title');
             settingsPane.all('input[type="text"]').item(1).set('value', 'My Help');
-            settingsPane.all('input[type="checkbox"]').item(0).simulate('click');
-            settingsPane.all('input[type="checkbox"]').item(1).simulate('click');
+            settingsPane.all('.button-switch').item(0).simulate('click');
+            settingsPane.all('.button-switch').item(1).simulate('click');
 
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');

@@ -28,7 +28,7 @@ YUI.add('aui-form-builder-field-scale-tests', function(Y) {
             this._createField();
             this._field.renderSettingsPanel(settings);
 
-            settings.all('input[type="checkbox"]').item(0).simulate('click');
+            settings.all('.button-switch').item(0).simulate('click');
 
             settings.one('.scale-data-editor').one('.scale-data-editor-lower-value').set('value', 0);
             settings.one('.scale-data-editor').one('.scale-data-editor-higher-value').set('value', 1);
