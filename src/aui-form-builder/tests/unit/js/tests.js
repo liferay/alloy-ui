@@ -1129,6 +1129,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 }, '', {
     requires: [
         'aui-form-builder',
+        'aui-form-builder-field-sentence',
         'aui-form-builder-field-text',
         'node-event-simulate',
         'test'

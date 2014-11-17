@@ -175,13 +175,6 @@
     }
 }
 
-.form-builder-field-text-input input[type="text"],
-.form-builder-field-text-input textarea {
-    border: 2pt solid #bcc9d2;
-    font-size: 12pt;
-    height: 32pt;
-}
-
 .form-builder-field-list-content {
     border: 2pt solid #bcc9d2;
     border-radius: 5px;
