@@ -75,6 +75,40 @@ YUI.add('aui-form-field-tests', function(Y) {
             this._field.addNestedField(1, nestedField);
             Y.Assert.areEqual(3, this._field.get('nestedFields').length);
             Y.Assert.areSame(nestedField, this._field.get('nestedFields')[1]);
+        },
+
+        'should render title and help text': function() {
+            var helpNode,
+                titleNode;
+
+            this._field = new Y.FormField({
+                help: 'Help 1',
+                title: 'Title 1'
+            });
+            helpNode = this._field.get('content').one('.form-field-help');
+            titleNode = this._field.get('content').one('.form-field-title');
+
+            Y.Assert.areEqual('Help 1', helpNode.get('text'));
+            Y.Assert.areEqual('Title 1', titleNode.get('text'));
+        },
+
+        'should render title and help text when they are updated': function() {
+            var helpNode,
+                titleNode;
+
+            this._field = new Y.FormField({
+                help: 'Help 1',
+                title: 'Title 1'
+            });
+
+            this._field.set('help', 'Help 2');
+            this._field.set('title', 'Title 2');
+
+            helpNode = this._field.get('content').one('.form-field-help');
+            titleNode = this._field.get('content').one('.form-field-title');
+
+            Y.Assert.areEqual('Help 2', helpNode.get('text'));
+            Y.Assert.areEqual('Title 2', titleNode.get('text'));
         }
     }));
 

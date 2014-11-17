@@ -77,8 +77,6 @@ A.FormBuilderFieldGrid = A.Base.create('form-builder-field-grid', A.FormBuilderF
      * @protected
      */
     _fillSettings: function() {
-        A.FormBuilderFieldGrid.superclass._fillSettings.apply(this, arguments);
-
         this._settings.push(
             {
                 attrName: 'required',

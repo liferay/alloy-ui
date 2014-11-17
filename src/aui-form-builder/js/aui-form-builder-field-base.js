@@ -200,17 +200,6 @@ A.FormBuilderFieldBase.prototype = {
     },
 
     /**
-     * Fills the settings array with the information for this field.
-     * Subclasses should override this.
-     *
-     * @method _fillSettings
-     * @protected
-     */
-    _fillSettings: function() {
-        throw new Error('Subclasses should override _fillSettings');
-    },
-
-    /**
      * Gets the list of settings for this field. Safer then calling the property
      * directly, as this will lazy load the settings if they're not ready yet.
      * Each setting should be an object with the following keys: attrName and
@@ -222,7 +211,25 @@ A.FormBuilderFieldBase.prototype = {
      */
     _getSettings: function() {
         if (!this._settings) {
-            this._fillSettings();
+            this._settings = [
+                {
+                    attrName: 'title',
+                    editor: new A.TextDataEditor({
+                        label: 'Type your question here',
+                        required: true
+                    })
+                },
+                {
+                    attrName: 'help',
+                    editor: new A.TextDataEditor({
+                        label: 'Help text...'
+                    })
+                }
+            ];
+
+            if (this._fillSettings) {
+                this._fillSettings();
+            }
         }
 
         return this._settings;

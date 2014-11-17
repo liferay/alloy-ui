@@ -45,8 +45,6 @@ A.FormBuilderFieldList = A.Base.create('form-builder-field-list', A.FormBuilderF
      * @protected
      */
     _fillSettings: function() {
-        A.FormBuilderFieldList.superclass._fillSettings.apply(this, arguments);
-
         this._settings.push(
             {
                 attrName: 'required',

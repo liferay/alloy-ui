@@ -63,8 +63,6 @@ A.FormBuilderFieldScale = A.Base.create('form-builder-field-scale', A.FormBuilde
      * @protected
      */
     _fillSettings: function() {
-        A.FormBuilderFieldScale.superclass._fillSettings.apply(this, arguments);
-
         this._settings.push(
             {
                 attrName: 'required',

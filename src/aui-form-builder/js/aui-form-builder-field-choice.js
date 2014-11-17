@@ -88,8 +88,6 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormBuil
      * @protected
      */
     _fillSettings: function() {
-        A.FormBuilderFieldChoice.superclass._fillSettings.apply(this, arguments);
-
         this._settings.push(
             {
                 attrName: 'required',

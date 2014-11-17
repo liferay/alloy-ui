@@ -157,8 +157,6 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormBuilderF
             booleanYearToggleTo,
             booleanTimeToggleTo;
 
-        A.FormBuilderFieldDate.superclass._fillSettings.apply(this, arguments);
-
         booleanYearToggleFrom = new A.BooleanDataEditor({
             checkedContent: TPL_CHECKED_CONTENT_DATE,
             uncheckedContent: TPL_UNCHECKED_CONTENT_DATE

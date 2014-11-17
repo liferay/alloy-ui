@@ -58,8 +58,6 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormBuilderF
      * @protected
      */
     _fillSettings: function() {
-        A.FormBuilderFieldText.superclass._fillSettings.apply(this, arguments);
-
         this._settings.push(
             {
                 attrName: 'required',

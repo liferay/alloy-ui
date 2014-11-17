@@ -19,6 +19,19 @@
     margin-bottom: 24pt;
 }
 
+.form-field-title {
+    font-size: 13pt;
+    font-weight: normal;
+    margin-bottom: 24pt;
+}
+
+.form-field-help {
+    color: #708091;
+    font-family: HelveticaNeue-LightItalic;
+    font-size: 11pt;
+    margin-bottom: 24pt;
+}
+
 @media (max-width: 768px) {
     .form-field {
         padding: 20pt;

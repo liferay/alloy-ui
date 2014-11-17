@@ -5,7 +5,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
     TestField = Y.Base.create('test-field', Y.FormField, [Y.FormBuilderFieldBase], {
         _fillSettings: function() {
-            this._settings = [
+            this._settings.push(
                 {
                     attrName: 'attr1',
                     editor: new Y.TextDataEditor({
@@ -31,7 +31,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
                         label: 'Attribute Options'
                     })
                 }
-            ];
+            );
         }
     }, {
         ATTRS: {
@@ -59,30 +59,46 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             }
         },
 
-        'should throw error when _fillSettings is not overridden': function() {
-            var instance = this,
-                container = Y.Node.create('<div></div>'),
-                WrongTestField = Y.Base.create('wrong-test-field', Y.FormField, [Y.FormBuilderFieldBase]);
-
-            this._field = new WrongTestField();
-
-            Y.Assert.throwsError(Error, function() {
-                instance._field.renderSettingsPanel(container);
-            });
-        },
-
         'should render settings modal correctly': function() {
             var container = Y.Node.create('<div></div>'),
-                input;
+                input,
+                TestField2 = Y.Base.create('test-field2', Y.FormField, [Y.FormBuilderFieldBase]);
 
-            this._field = new TestField();
+            this._field = new TestField2({
+                help: 'Help',
+                title: 'Title'
+            });
 
             this._field.renderSettingsPanel(container);
 
-            input = container.one('input[type="text"]');
-            Y.Assert.areEqual('Attr1', input.get('value'));
+            input = container.all('input[type="text"]').item(0);
+            Y.Assert.areEqual('Title', input.get('value'));
 
             input = container.all('input[type="text"]').item(1);
+            Y.Assert.areEqual('Help', input.get('value'));
+        },
+
+        'should render settings modal for extensions correctly': function() {
+            var container = Y.Node.create('<div></div>'),
+                input;
+
+            this._field = new TestField({
+                help: 'Help',
+                title: 'Title'
+            });
+
+            this._field.renderSettingsPanel(container);
+
+            input = container.all('input[type="text"]').item(0);
+            Y.Assert.areEqual('Title', input.get('value'));
+
+            input = container.all('input[type="text"]').item(1);
+            Y.Assert.areEqual('Help', input.get('value'));
+
+            input = container.all('input[type="text"]').item(2);
+            Y.Assert.areEqual('Attr1', input.get('value'));
+
+            input = container.all('input[type="text"]').item(3);
             Y.Assert.areEqual('Attr3', input.get('value'));
 
             input = container.one('input[type="checkbox"]');
@@ -165,7 +181,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             Y.Assert.isFalse(container.hasClass('modal-dialog-hidden'));
 
-            input = container.one('input[type="text"]');
+            input = container.all('input[type="text"]').item(2);
             Y.Assert.areEqual('Attr1New', input.get('value'));
         },
 
@@ -173,12 +189,15 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             var container = Y.Node.create('<div></div>'),
                 input;
 
-            this._field = new TestField();
+            this._field = new TestField({
+                help: 'Help',
+                title: 'Title'
+            });
 
             this._field.renderSettingsPanel(container);
             Y.Assert.isTrue(this._field.validateSettings());
 
-            input = container.one('input[type="text"]');
+            input = container.all('input[type="text"]').item(2);
             input.set('value', '');
             Y.Assert.isFalse(this._field.validateSettings());
 
@@ -193,7 +212,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             this._field = new TestField();
 
             this._field.renderSettingsPanel(container);
-            input = container.one('input[type="text"]');
+            input = container.all('input[type="text"]').item(2);
             input.set('value', 'Attr1New');
 
             Y.Assert.areEqual('Attr1', this._field.get('attr1'));

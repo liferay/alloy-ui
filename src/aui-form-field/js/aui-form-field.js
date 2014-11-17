@@ -6,7 +6,10 @@
 
 var CSS_FIELD = A.getClassName('form', 'field'),
     CSS_FIELD_CONTENT = A.getClassName('form', 'field', 'content'),
-    CSS_FIELD_NESTED = A.getClassName('form', 'field', 'nested');
+    CSS_FIELD_CONTENT_INNER = A.getClassName('form', 'field', 'content', 'inner'),
+    CSS_FIELD_HELP = A.getClassName('form', 'field', 'help'),
+    CSS_FIELD_NESTED = A.getClassName('form', 'field', 'nested'),
+    CSS_FIELD_TITLE = A.getClassName('form', 'field', 'title');
 
 /**
  * A base class for `A.FormField`. All form fields should extend from this.
@@ -22,6 +25,12 @@ A.FormField = A.Base.create('form-field', A.Base, [], {
         '<div class="' + CSS_FIELD_CONTENT + '"></div>' +
         '<div class="' + CSS_FIELD_NESTED + '"></div>' +
         '</div>',
+    TPL_FIELD_CONTENT_MAIN: '<div class="form-group">' +
+        '<label class="' + CSS_FIELD_TITLE + '"></label>' +
+        '<div class="' + CSS_FIELD_HELP + '"></div>' +
+        '<div class="' + CSS_FIELD_CONTENT_INNER + '">{innerContent}</div>' +
+        '</div>',
+    TPL_FIELD_CONTENT: '<div></div>',
 
     /**
      * Construction logic executed during the `A.FormField`
@@ -33,13 +42,22 @@ A.FormField = A.Base.create('form-field', A.Base, [], {
     initializer: function() {
         var content = this.get('content');
 
+        content.one('.' + CSS_FIELD_CONTENT).setHTML(A.Lang.sub(this.TPL_FIELD_CONTENT_MAIN, {
+            innerContent: this.TPL_FIELD_CONTENT
+        }));
         content.setData('field-instance', this);
 
         this._fieldEventHandles = [
-            this.after('nestedFieldsChange', this._afterNestedFieldsChange)
+            this.after({
+                helpChange: this._afterHelpChange,
+                nestedFieldsChange: this._afterNestedFieldsChange,
+                titleChange: this._afterTitleChange
+            })
         ];
 
+        this._uiSetHelp(this.get('help'));
         this._uiSetNestedFields(this.get('nestedFields'));
+        this._uiSetTitle(this.get('title'));
     },
 
     /**
@@ -89,6 +107,16 @@ A.FormField = A.Base.create('form-field', A.Base, [], {
     },
 
     /**
+     * Fired after the `help` attribute is set.
+     *
+     * @method _afterHelpChange
+     * @protected
+     */
+    _afterHelpChange: function() {
+        this._uiSetHelp(this.get('help'));
+    },
+
+    /**
      * Fired after the `nestedFields` attribute is set.
      *
      * @method _afterNestedFieldsChange
@@ -96,6 +124,30 @@ A.FormField = A.Base.create('form-field', A.Base, [], {
      */
     _afterNestedFieldsChange: function() {
         this._uiSetNestedFields(this.get('nestedFields'));
+    },
+
+    /**
+     * Fired after the `title` attribute is set.
+     *
+     * @method _afterTitleChange
+     * @protected
+     */
+    _afterTitleChange: function() {
+        this._uiSetTitle(this.get('title'));
+    },
+
+    /**
+     * Updates the ui according to the value of the `help` attribute.
+     *
+     * @method _uiSetHelp
+     * @param {String} help
+     * @protected
+     */
+    _uiSetHelp: function(help) {
+        var helpNode = this.get('content').one('.' + CSS_FIELD_HELP);
+
+        helpNode.set('text', help);
+        helpNode.toggleView(help !== '');
     },
 
     /**
@@ -112,6 +164,17 @@ A.FormField = A.Base.create('form-field', A.Base, [], {
         A.Array.each(nestedFields, function(nestedField) {
             nestedFieldsNode.append(nestedField.get('content'));
         });
+    },
+
+    /**
+     * Updates the ui according to the value of the `title` attribute.
+     *
+     * @method _uiSetTitle
+     * @param {String} title
+     * @protected
+     */
+    _uiSetTitle: function(title) {
+        this.get('content').one('.' + CSS_FIELD_TITLE).set('text', title);
     },
 
     /**
@@ -164,6 +227,19 @@ A.FormField = A.Base.create('form-field', A.Base, [], {
         },
 
         /**
+         * Help text.
+         *
+         * @attribute help
+         * @default ''
+         * @type {String}
+         */
+        help: {
+            setter: A.Lang.trim,
+            validator: A.Lang.isString,
+            value: ''
+        },
+
+        /**
          * The fields that are nested inside this field.
          *
          * @attribute nestedFields
@@ -173,6 +249,18 @@ A.FormField = A.Base.create('form-field', A.Base, [], {
         nestedFields: {
             validator: '_validateNestedFields',
             value: []
+        },
+
+        /**
+         * The title of this field.
+         *
+         * @attribute title
+         * @default ''
+         * @type {String}
+         */
+        title: {
+            validator: A.Lang.isString,
+            value: ''
         }
     }
 });

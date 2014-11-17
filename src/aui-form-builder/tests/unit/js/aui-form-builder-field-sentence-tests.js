@@ -3,7 +3,7 @@ YUI.add('aui-form-builder-field-sentence-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-form-builder-field-sentence');
 
     suite.add(new Y.Test.Case({
-        name: 'Form Builder Field Text Tests',
+        name: 'Form Builder Field Sentence Tests',
 
         tearDown: function() {
             if (this._field) {
