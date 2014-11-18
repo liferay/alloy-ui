@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body class="yui3-skin-sam">
+    <h1>AlloyUI - Form Field</h1>
+
+    <h2>Text</h2>
+    <div id="fieldText"></div>
+
+<script type="text/javascript" charset="utf-8">
+YUI({ filter:'raw' }).use('aui-form-field-text', function(Y) {
+    var field = new Y.FormFieldText({
+        help: 'Type your full name below',
+        title: 'What\'s your name?'
+    });
+    Y.one('#fieldText').append(field.get('content'));
+});
+</script>
+
+</body>
+</html>
