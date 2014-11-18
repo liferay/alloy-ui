@@ -39,9 +39,7 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
      * @return {Boolean}
      */
     isValid: function() {
-        var instance = this;
-
-        if (A.ScaleDataEditor.superclass.isValid.call(instance)) {
+        if (A.ScaleDataEditor.superclass.isValid.call(this)) {
             return this._filterInt(this.get('editedValue')[0]) <
                 this._filterInt(this.get('editedValue')[1]);
         }
@@ -78,7 +76,7 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
 
     /**
      * Stricter way to parse int values.
-     * 
+     *
      * @param  {String | Number} value
      * @return {Number}
      * @protected

@@ -63,9 +63,9 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
      */
     isValid: function() {
         var instance = this,
+            i,
             options = this.get('editedValue'),
-            optionsLength = options.length,
-            i;
+            optionsLength = options.length;
 
         if (A.OptionsDataEditor.superclass.isValid.call(instance)) {
             for (i = 0; i < optionsLength; i++) {

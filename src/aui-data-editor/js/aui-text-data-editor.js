@@ -36,9 +36,7 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
      * @return {Boolean}
      */
     isValid: function() {
-        var instance = this;
-
-        if (A.TextDataEditor.superclass.isValid.call(instance)) {
+        if (A.TextDataEditor.superclass.isValid.call(this)) {
             return A.Lang.isString(this.get('editedValue'));
         }
 
