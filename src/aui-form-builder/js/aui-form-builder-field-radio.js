@@ -153,8 +153,6 @@ var FormBuilderRadioField = A.Component.create({
             instance.optionNodes = A.NodeList.create(buffer.join(''));
 
             templateNode.setContent(instance.optionNodes);
-
-            instance.get('builder').editField(instance);
         },
 
         /**

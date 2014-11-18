@@ -50,6 +50,7 @@ var Lang = A.Lang,
     CSS_SVT_TABLE_DATA_EVENT_RIGHT = getCN('scheduler-view', 'table', 'data', 'event', 'right'),
     CSS_SVT_TABLE_DATA_FIRST = getCN('scheduler-view', 'table', 'data', 'first'),
     CSS_SVT_TABLE_GRID = getCN('scheduler-view', 'table', 'grid'),
+    CSS_SVT_TABLE_GRID_CONTAINER = getCN('scheduler-view', 'table', 'grid', 'container'),
     CSS_SVT_TABLE_GRID_FIRST = getCN('scheduler-view', 'table', 'grid', 'first'),
 
     TPL_SVT_CONTAINER = '<div class="' + CSS_SVT_CONTAINER + '">' +
@@ -73,17 +74,18 @@ var Lang = A.Lang,
 
     TPL_SVT_MORE = '<a href="javascript:;" class="' + CSS_SVT_MORE + '">{labelPrefix} {count} {labelSuffix}</a>',
 
-    TPL_SVT_ROW = '<div class="' + CSS_SVT_ROW + '" style="top: {top}%; height: {height}%;"></div>',
+    TPL_SVT_ROW = '<div class="' + CSS_SVT_ROW + '"></div>',
 
     TPL_SVT_TABLE_DATA = '<table cellspacing="0" cellpadding="0" class="' + CSS_SVT_TABLE_DATA + '">' +
         '<tbody></tbody>' +
         '</table>',
 
-    TPL_SVT_TABLE_GRID = '<table cellspacing="0" cellpadding="0" class="' + CSS_SVT_TABLE_GRID + '">' +
+    TPL_SVT_TABLE_GRID = '<div class="' + CSS_SVT_TABLE_GRID_CONTAINER + '">' +
+        '<table cellspacing="0" cellpadding="0" class="' + CSS_SVT_TABLE_GRID + '">' +
         '<tbody>' +
         '<tr></tr>' +
         '</tbody>' +
-        '</table>',
+        '</table></div>',
 
     TPL_SVT_EV_ICON_LEFT = '<span class="' + [CSS_ICON, CSS_ICON_ARROWSTOP_LEFT].join(' ') + '"></span>',
     TPL_SVT_EV_ICON_RIGHT = '<span class="' + [CSS_ICON, CSS_ICON_ARROWSTOP_RIGHT].join(' ') + '"></span>',
@@ -394,6 +396,8 @@ var SchedulerTableView = A.Component.create({
             var rowRenderedColumns = 0;
             var rowNode = A.Node.create(TPL_SVT_TABLE_DATA_ROW);
 
+            var renderedEvents = false;
+
             instance.loopDates(rowStartDate, rowEndDate, function(celDate, index) {
                 var key = String(celDate.getTime());
 
@@ -417,7 +421,7 @@ var SchedulerTableView = A.Component.create({
                 var evtColNode = A.Node.create(TPL_SVT_TABLE_DATA_COL);
                 var evtNodeContainer = evtColNode.one('div');
 
-                if ((evtRenderedStack.length < events.length) && (rowDisplayIndex === (displayRows - 1))) {
+                if ((evtRenderedStack.length < events.length) && displayRows && (rowDisplayIndex === (displayRows - 1))) {
                     var strings = instance.get('strings');
 
                     var showMoreEventsLink = A.Node.create(
@@ -433,6 +437,7 @@ var SchedulerTableView = A.Component.create({
                     showMoreEventsLink.setData('events', events);
 
                     evtNodeContainer.append(showMoreEventsLink);
+                    renderedEvents = true;
                 }
                 else if (evt) {
                     var evtSplitInfo = instance._getEvtSplitInfo(evt, celDate, rowStartDate, rowEndDate);
@@ -445,6 +450,7 @@ var SchedulerTableView = A.Component.create({
                     instance._syncEventNodeUI(evt, evtNodeContainer, celDate);
 
                     evtRenderedStack.push(evt);
+                    renderedEvents = true;
                 }
 
                 rowRenderedColumns++;
@@ -452,7 +458,7 @@ var SchedulerTableView = A.Component.create({
                 rowNode.append(evtColNode);
             });
 
-            return rowNode;
+            return renderedEvents ? rowNode : null;
         },
 
         /**
@@ -466,10 +472,11 @@ var SchedulerTableView = A.Component.create({
         buildEventsTable: function(rowStartDate, rowEndDate) {
             var instance = this,
                 displayRows = instance.get('displayRows'),
+                end = false,
                 intervalStartDate = DateMath.clearTime(instance._findCurrentIntervalStart()),
                 cacheKey = String(intervalStartDate.getTime()).concat(rowStartDate.getTime()).concat(rowEndDate.getTime()),
                 rowDataTableNode = instance.rowDataTableStack[cacheKey],
-                rowDisplayIndex;
+                rowDisplayIndex = 0;
 
             if (!rowDataTableNode) {
                 rowDataTableNode = A.Node.create(TPL_SVT_TABLE_DATA);
@@ -479,10 +486,20 @@ var SchedulerTableView = A.Component.create({
 
                 tableBody.append(titleRowNode);
 
-                for (rowDisplayIndex = 0; rowDisplayIndex < displayRows; rowDisplayIndex++) {
+                while (!end) {
                     var rowNode = instance.buildEventsRow(rowStartDate, rowEndDate, rowDisplayIndex);
 
-                    tableBody.append(rowNode);
+                    if (rowNode) {
+                        tableBody.append(rowNode);
+
+                        rowDisplayIndex++;
+                        if (displayRows && rowDisplayIndex >= displayRows) {
+                            end = true;
+                        }
+                    }
+                    else {
+                        end = true;
+                    }
                 }
 
                 instance.rowDataTableStack[cacheKey] = rowDataTableNode;
@@ -542,18 +559,9 @@ var SchedulerTableView = A.Component.create({
         buildGridRowNode: function(rowIndex) {
             var instance = this;
 
-            var displayRowsCount = instance._getDisplayRowsCount();
-            var rowRelativeHeight = 100 / displayRowsCount;
             var tableGridNode = instance._getTableGridNode(rowIndex);
 
-            var rowNode = A.Node.create(
-                Lang.sub(
-                    TPL_SVT_ROW, {
-                        height: rowRelativeHeight,
-                        top: rowRelativeHeight * rowIndex
-                    }
-                )
-            );
+            var rowNode = A.Node.create(TPL_SVT_ROW);
 
             rowNode.append(
                 tableGridNode.toggleClass(CSS_SVT_TABLE_GRID_FIRST, (rowIndex === 0))
@@ -574,6 +582,23 @@ var SchedulerTableView = A.Component.create({
             instance.evtDateStack = {};
             instance.evtRenderedStack = {};
             instance.rowDataTableStack = {};
+        },
+
+        /**
+         * Returns the date interval in which this view shows events for.
+         *
+         * @method getDateInterval
+         * @return {Object} Object with 2 keys: startDate and endDate. Undefined
+         *   keys are interpreted as unlimited sides of the interval.
+         */
+        getDateInterval: function() {
+            var daysAmount = this.getWeekDaysCount() * this._getDisplayRowsCount() - 1,
+                startDate = this._findCurrentIntervalStart();
+
+            return {
+                endDate: DateMath.toLastHour(DateMath.add(startDate, DateMath.DAY, daysAmount)),
+                startDate: DateMath.toMidnight(startDate)
+            };
         },
 
         /**
@@ -636,6 +661,18 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
+         * Get the number of days that should be shown in the week.
+         *
+         * @method getWeekDaysCount
+         * @return {Number}
+         */
+        getWeekDaysCount: function() {
+            var displayDaysInterval = this.get('displayDaysInterval');
+
+            return Math.min(displayDaysInterval, WEEK_LENGTH);
+        },
+
+        /**
          * Hides this `SchedulerViewTable` event's `overlay` component.
          *
          * @method hideEventsOverlay
@@ -688,8 +725,7 @@ var SchedulerTableView = A.Component.create({
 
             instance.bodyNode.all('.' + CSS_SVT_TABLE_DATA).remove();
 
-            var displayDaysInterval = instance.get('displayDaysInterval');
-            var weekDaysCount = Math.min(displayDaysInterval, WEEK_LENGTH);
+            var weekDaysCount = this.getWeekDaysCount();
 
             var finalDate = DateMath.add(startDateRef, DateMath.DAY, (weekDaysCount * this.tableRows.size()) - 1);
             instance._findIntersections(startDateRef, finalDate);
@@ -839,6 +875,7 @@ var SchedulerTableView = A.Component.create({
                 eventEndDate,
                 events = this.get('scheduler').getEvents(null, true),
                 eventStartDate,
+                filterFn = this.get('filterFn'),
                 i = 0,
                 key = String(currentDate.getTime());
 
@@ -875,8 +912,12 @@ var SchedulerTableView = A.Component.create({
                     }
                 }
                 else {
-                    // The current date intersects this event, so store it.
-                    this.evtDateStack[key].push(events[i]);
+                    if (!filterFn || filterFn(events[i])) {
+                        // The current date intersects this event and passes the
+                        // filter, so store it.
+                        this.evtDateStack[key].push(events[i]);
+                    }
+
                     i++;
                 }
             }

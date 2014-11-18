@@ -87,7 +87,7 @@ var SchedulerView = A.Component.create({
          * @type {Number}
          */
         height: {
-            value: 600
+            value: 650
         },
 
         /**
@@ -276,6 +276,20 @@ var SchedulerView = A.Component.create({
          * @method flushViewCache
          */
         flushViewCache: function() {},
+
+        /**
+         * Returns the date interval in which this view shows events for.
+         *
+         * @method getDateInterval
+         * @return {Object} Object with 2 keys: startDate and endDate. Undefined
+         *   keys are interpreted as unlimited sides of the interval.
+         */
+        getDateInterval: function() {
+            return {
+                endDate: DateMath.toLastHour(DateMath.subtract(this.getNextDate(), DateMath.DAY, 1)),
+                startDate: this.getAdjustedViewDate(this.get('scheduler').get('viewDate'))
+            };
+        },
 
         /**
          * Returns the value of the date that follows the view's current

@@ -13,92 +13,100 @@
 </head>
 <body class="yui3-skin-sam">
 
-    <div id="logger"></div>
+  <div id="logger"></div>
 
-    <form id="myForm">
-
-      <div class="form-group">
-        <label class="control-label" for="name">Name:</label>
-        <div class="controls">
-          <input name="name" id="name" type="text">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label class="control-label" for="picture">Picture:</label>
-        <div class="controls">
-          <input name="picture" id="picture" type="file">
-        </div>
-      </div>
-
-       <div class="form-group">
-            <label class="control-label" for="age">Age:</label>
-
-            <select name="age" id="age">
-                <option value=""></option>
-                <option value="18">18</option>
-                <option value="20">20</option>
-            </select>
-        </div>
-
-
+  <form id="myForm">
     <div class="form-group">
-         <label class="control-label">Gender:</label>
+      <label class="control-label" for="name">Name:</label>
 
-        <div class="radio">
-          <label class="control-label"><input type="radio" name="gender" value="male" /> Male</label>
-        </div>
-
-        <div class="radio">
-          <label class="control-label"><input type="radio" name="gender" value="female" /> Female</label>
-        </div>
+      <div class="controls">
+        <input name="name" id="name" type="text" />
+      </div>
     </div>
 
-      <div class="form-group">
-        <label class="control-label" for="email">E-mail:</label>
-        <div class="controls">
-          <input name="email" id="email" type="text">
-        </div>
+    <div class="form-group">
+      <label class="control-label" for="picture">Picture:</label>
+
+      <div class="controls">
+        <input name="picture" id="picture" type="file" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label" for="age">Age:</label>
+
+      <select name="age" id="age">
+        <option value=""></option>
+        <option value="18">18</option>
+        <option value="20">20</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Gender:</label>
+
+      <div class="radio">
+        <label class="control-label"><input type="radio" name="gender" value="male" /> Male</label>
       </div>
 
-      <div class="form-group">
-        <label class="control-label" for="emailConfirmation">Confirm e-mail:</label>
-        <div class="controls">
-          <input name="emailConfirmation" id="emailConfirmation" type="text">
-        </div>
+      <div class="radio">
+        <label class="control-label"><input type="radio" name="gender" value="female" /> Female</label>
       </div>
+    </div>
 
-      <div class="form-group">
-        <label class="control-label" for="url">Site URL:</label>
-        <div class="controls">
-          <input name="url" id="url" type="text">
-        </div>
+    <div class="form-group">
+      <label class="control-label" for="email">E-mail:</label>
+
+      <div class="controls">
+        <input name="email" id="email" type="text" />
       </div>
+    </div>
 
-      <div class="form-group">
+    <div class="form-group">
+      <label class="control-label" for="emailConfirmation">Confirm e-mail:</label>
 
-        <div class="checkbox">
-          <label class="control-label" for="read"><input type="checkbox" name="read" id="read" value="true" />I have read and understood this form</label>
-        </div>
-
+      <div class="controls">
+        <input name="emailConfirmation" id="emailConfirmation" type="text" />
       </div>
+    </div>
 
-      <input class="btn btn-info" type="submit" value="Submit">
-      <input class="btn btn-primary" type="reset" value="Reset">
+    <div class="form-group">
+      <label class="control-label" for="url">Site URL:</label>
 
-    </form>
+      <div class="controls">
+        <input name="url" id="url" type="text" />
+      </div>
+    </div>
 
-    <script>
-        YUI({
-            coverage: ['aui-form-validator'],
-            filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-        }).use('aui-form-validator', 'test-console', 'test', 'aui-form-validator-tests', function(Y) {
+    <div class="form-group">
+      <label class="control-label" for="image-url">Picture URL</label>
 
-            (new Y.Test.Console()).render('#logger');
+      <div class="controls">
+        <input name="image-url" id="image-url" class="form-control" type="text" />
+      </div>
+    </div>
 
-            Y.Test.Runner.setName('aui-form-validator');
-            Y.Test.Runner.run();
-        });
-    </script>
+    <div class="form-group">
+      <div class="checkbox">
+        <label class="control-label" for="read"><input type="checkbox" name="read" id="read" value="true" />I have read and understood this form</label>
+      </div>
+    </div>
+
+    <input class="btn btn-info" type="submit" value="Submit" />
+    <input class="btn btn-primary" type="reset" value="Reset" />
+  </form>
+
+  <script>
+    YUI({
+        coverage: ['aui-form-validator'],
+        filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+    }).use('aui-form-validator', 'test-console', 'test', 'aui-form-validator-tests', function(Y) {
+
+        (new Y.Test.Console()).render('#logger');
+
+        Y.Test.Runner.setName('aui-form-validator');
+        Y.Test.Runner.run();
+    });
+  </script>
 </body>
 </html>

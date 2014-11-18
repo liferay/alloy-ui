@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-998](https://issues.liferay.com/browse/AUI-998) TooltipDelegate appears to ignore cssClass option
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 

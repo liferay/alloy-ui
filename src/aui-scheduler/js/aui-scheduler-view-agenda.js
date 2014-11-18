@@ -294,6 +294,19 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
+         * Returns the date interval in which this view shows events for.
+         *
+         * @method getDateInterval
+         * @return {Object} Object with 2 keys: startDate and endDate. Undefined
+         *   keys are interpreted as unlimited sides of the interval.
+         */
+        getDateInterval: function() {
+            var interval = SchedulerAgendaView.superclass.getDateInterval.apply(this);
+            delete interval.endDate;
+            return interval;
+        },
+
+        /**
          * Returns the value of the date that follows the agenda view's current
          * date.
          *
