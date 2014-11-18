@@ -23,10 +23,26 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
      * Returns `true` if this edited value has no elements.
      *
      * @method isEmpty
-     * @protected
+     * @return {Boolean}
      */
     isEmpty: function() {
-        return !this.get('editedValue');
+        return !A.Lang.trim(this.get('editedValue'));
+    },
+
+    /**
+     * If the Text Data Editor has a String on text field this will return true.
+     *
+     * @method isValid
+     * @return {Boolean}
+     */
+    isValid: function() {
+        var instance = this;
+
+        if (A.TextDataEditor.superclass.isValid.call(instance)) {
+            return A.Lang.isString(this.get('editedValue'));
+        }
+
+        return false;
     },
 
     /**

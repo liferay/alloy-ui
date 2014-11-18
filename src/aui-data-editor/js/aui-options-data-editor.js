@@ -31,16 +31,6 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
         '<button class="' + CSS_EDITOR_OPTION_REMOVE + '">X</button></div>',
 
     /**
-     * Returns `true` if this edited value has no elements.
-     *
-     * @method isEmpty
-     * @protected
-     */
-    isEmpty: function() {
-        return !this.get('editedValue').length;
-    },
-
-    /**
      * Constructor for the `A.OptionsDataEditor`. Lifecycle.
      *
      * @method initializer
@@ -53,6 +43,41 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
         node.delegate('click', A.bind(this._onClickRemoveButton, this), '.' + CSS_EDITOR_OPTION_REMOVE);
 
         this._setUpDrag();
+    },
+
+    /**
+     * Returns `true` if this edited value has no elements.
+     *
+     * @method isEmpty
+     * @return {Boolean}
+     */
+    isEmpty: function() {
+        return !this.get('editedValue').length;
+    },
+
+    /**
+     * If the Option Data Editor has a String in each option field  this will return true.
+     *
+     * @method isValid
+     * @return {Boolean}
+     */
+    isValid: function() {
+        var instance = this,
+            options = this.get('editedValue'),
+            optionsLength = options.length,
+            i;
+
+        if (A.OptionsDataEditor.superclass.isValid.call(instance)) {
+            for (i = 0; i < optionsLength; i++) {
+                if (!A.Lang.trim(options[i])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
     },
 
     /**

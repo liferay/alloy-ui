@@ -39,6 +39,7 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * Always return false.
      *
      * @method isEmpty
+     * @return {Boolean}
      * @protected
      */
     isEmpty: function() {

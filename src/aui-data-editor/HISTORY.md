@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1761](https://github.com/mairatma/alloy-ui/pull/108) Validate edited values on field settings modal
 * [AUI-1764](https://issues.liferay.com/browse/AUI-1764) Improve aui-options-data-editor's appearance
 * [AUI-1737](https://issues.liferay.com/browse/AUI-1737) Handle required fields on field settings modal
 * [AUI-1691](https://issues.liferay.com/browse/AUI-1691) Create date field

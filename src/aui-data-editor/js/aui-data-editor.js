@@ -70,11 +70,12 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      * If the data editor is required and empty this will return false.
      *
      * @method isValid
+     * @return {Boolean}
      */
     isValid: function() {
-		if(!this.get('required')) {
-			return true;
-		}
+        if(!this.get('required')) {
+            return true;
+        }
         return !this.isEmpty();
     },
 

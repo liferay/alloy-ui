@@ -31,6 +31,9 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
             editor.set('required', true);
             Y.Assert.isFalse(editor.isValid());
 
+            editor.get('node').one('input').set('value', '   ');
+            Y.Assert.isFalse(editor.isValid());
+
             editor.get('node').one('input').set('value', 'Atari Force');
             Y.Assert.isTrue(editor.isValid());
         }

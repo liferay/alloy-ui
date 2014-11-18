@@ -51,10 +51,30 @@ YUI.add('aui-scale-data-editor-tests', function(Y) {
             editor.get('node').one('.scale-data-editor-higher-value').set('value', '');
             Y.Assert.isFalse(editor.isValid());
 
+            editor.get('node').one('.scale-data-editor-lower-value').set('value', 'II');
+            editor.get('node').one('.scale-data-editor-higher-value').set('value', 'IX');
+            Y.Assert.isFalse(editor.isValid());
+
+            editor.get('node').one('.scale-data-editor-lower-value').set('value', 1985);
+            editor.get('node').one('.scale-data-editor-higher-value').set('value', 1955);
+            Y.Assert.isFalse(editor.isValid());
+
+            editor.get('node').one('.scale-data-editor-lower-value').set('value', 'Mark1');
+            editor.get('node').one('.scale-data-editor-higher-value').set('value', 'Mark8');
+            Y.Assert.isFalse(editor.isValid());
+
+            editor.get('node').one('.scale-data-editor-lower-value').set('value', '60°53');
+            editor.get('node').one('.scale-data-editor-higher-value').set('value', '101°53');
+            Y.Assert.isFalse(editor.isValid());
+
             editor.get('node').one('.scale-data-editor-lower-value').set('value', '1982');
             Y.Assert.isFalse(editor.isValid());
 
             editor.get('node').one('.scale-data-editor-higher-value').set('value', '1986');
+            Y.Assert.isTrue(editor.isValid());
+
+            editor.get('node').one('.scale-data-editor-lower-value').set('value', '-Infinity');
+            editor.get('node').one('.scale-data-editor-higher-value').set('value', '+Infinity');
             Y.Assert.isTrue(editor.isValid());
         },
 

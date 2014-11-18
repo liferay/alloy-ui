@@ -164,6 +164,10 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
 
             editor.get('node').one('.options-data-editor-add').simulate('click');
             optionNodes = editor.get('node').all('.options-data-editor-option');
+
+            optionNodes.item(0).one('input').set('value', '');
+            Y.Assert.isFalse(editor.isValid());
+
             optionNodes.item(0).one('input').set('value', 'Shazam');
             Y.Assert.isTrue(editor.isValid());
         }

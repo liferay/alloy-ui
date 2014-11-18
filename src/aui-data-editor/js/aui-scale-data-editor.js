@@ -26,10 +26,27 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
      * Returns `true` if this edited value array has no elements on 0 and 1 positions.
      *
      * @method isEmpty
-     * @protected
+     * @return {Boolean}
      */
     isEmpty: function() {
         return !(this.get('editedValue')[0] && this.get('editedValue')[1]);
+    },
+
+    /**
+     * If the Scale Data Editor has Numbers on both inputs this will return true.
+     *
+     * @method isValid
+     * @return {Boolean}
+     */
+    isValid: function() {
+        var instance = this;
+
+        if (A.ScaleDataEditor.superclass.isValid.call(instance)) {
+            return this._filterInt(this.get('editedValue')[0]) <
+                this._filterInt(this.get('editedValue')[1]);
+        }
+
+        return false;
     },
 
     /**
@@ -59,6 +76,19 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
         return [lower, higher];
     },
 
+    /**
+     * Stricter way to parse int values.
+     * 
+     * @param  {String | Number} value
+     * @return {Number}
+     * @protected
+     */
+    _filterInt: function (value) {
+        if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value)){
+            return Number(value);
+        }
+        return NaN;
+    },
     /**
      * Sets the `originalValue` attribute.
      * Makes sure `originalValue` is an array of at least 2 positions.
