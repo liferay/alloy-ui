@@ -225,7 +225,7 @@ TableSortable.prototype = {
     },
 
     /**
-     * Toggles the screen reader css class.
+     * Toggles the screen reader CSS class.
      *
      * @method _toggleScreenReaderClass
      * @param {Object} options
@@ -240,7 +240,7 @@ TableSortable.prototype = {
 
     /**
      * Returns a reference to the `captionNode`, and accomplishes
-     * neccessary setup to prepare the element for screen readers.
+     * necessary setup to prepare the element for screen readers.
      *
      * @method _getCaption
      * @protected
