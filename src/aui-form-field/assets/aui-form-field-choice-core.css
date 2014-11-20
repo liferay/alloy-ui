@@ -1,0 +1,25 @@
+.form-field-choice-option {
+    height: 32pt;
+    line-height: 32pt;
+}
+
+.form-field-choice-option-button {
+    background: url(circle.png) no-repeat scroll center center transparent;
+    background-size: contain;
+    cursor: pointer;
+    float: left;
+    height: 100%;
+    width: 32pt;
+}
+
+.form-field-choice-multiple .form-field-choice-option-button {
+    background: url(square.png) no-repeat scroll center center transparent;
+    background-size: contain;
+}
+
+.form-field-choice-options label {
+    font-family: HelveticaNeue-Light;
+    font-size: 12pt;
+    font-weight: normal;
+    margin: 0 10px;
+}

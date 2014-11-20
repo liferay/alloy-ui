@@ -8,6 +8,13 @@
         "skinnable": true
     },
 
+    "aui-form-field-choice": {
+        "requires": [
+            "aui-form-field"
+        ],
+        "skinnable": true
+    },
+
     "aui-form-field-text": {
         "requires": [
             "aui-classnamemanager",

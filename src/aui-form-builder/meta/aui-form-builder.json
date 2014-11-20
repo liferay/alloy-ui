@@ -27,8 +27,9 @@
     "aui-form-builder-field-choice": {
         "requires": [
             "aui-boolean-data-editor",
-            "aui-form-builder-field-sentence",
-            "aui-options-data-editor"
+            "aui-options-data-editor",
+            "aui-form-builder-field-base",
+            "aui-form-field-choice"
         ]
     },
 

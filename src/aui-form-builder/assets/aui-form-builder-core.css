@@ -199,32 +199,6 @@
     width: 32pt;
 }
 
-.form-builder-field-choice-option {
-    height: 32pt;
-    line-height: 32pt;
-}
-
-.form-builder-field-choice-option-button {
-    background: url(circle.png) no-repeat scroll center center transparent;
-    background-size: contain;
-    cursor: pointer;
-    float: left;
-    height: 100%;
-    width: 32pt;
-}
-
-.form-builder-field-choice-multiple .form-builder-field-choice-option-button {
-    background: url(square.png) no-repeat scroll center center transparent;
-    background-size: contain;
-}
-
-.form-builder-field-choice-options label {
-    font-family: HelveticaNeue-Light;
-    font-size: 12pt;
-    font-weight: normal;
-    margin: 0 10px;
-}
-
 .form-builder-field-date-input-time {
     background: url(time.png) no-repeat scroll left center transparent;
     background-size: contain;

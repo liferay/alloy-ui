@@ -53,7 +53,7 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
             this._field.set('options', ['Option1', 'Option2']);
             Y.Assert.areEqual(
                 2,
-                this._field.get('content').all('.form-builder-field-choice-option').size()
+                this._field.get('content').all('.form-field-choice-option').size()
             );
         },
 
@@ -64,13 +64,13 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
             this._field.set('otherOption', true);
             Y.Assert.areEqual(
                 3,
-                this._field.get('content').all('.form-builder-field-choice-option').size()
+                this._field.get('content').all('.form-field-choice-option').size()
             );
 
             this._field.set('otherOption', false);
             Y.Assert.areEqual(
                 2,
-                this._field.get('content').all('.form-builder-field-choice-option').size()
+                this._field.get('content').all('.form-field-choice-option').size()
             );
         }
     }));
