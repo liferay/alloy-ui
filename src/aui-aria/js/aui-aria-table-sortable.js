@@ -2,7 +2,7 @@
  * The Aria Component.
  *
  * @module aui-aria
- * @submodule aui-aria-tablesortable
+ * @submodule aui-aria-table-sortable
  */
 
 var Lang = A.Lang;
@@ -12,8 +12,7 @@ var Lang = A.Lang;
  * screen-reader-friendly `caption` element for the table that
  * has sortable headers.
  *
- * @class A.Plugin.Aria.TableSortable
- * @extends A.Plugin.Aria
+ * @class TableSortable
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -22,7 +21,7 @@ var Lang = A.Lang;
 function TableSortable() {}
 
 /**
- * configuration for TableSortable.
+ * Configuration for TableSortable.
  *
  * @property ATTRS
  * @type Object
@@ -55,7 +54,7 @@ TableSortable.ATTRS = {
     },
 
     /**
-     * The value of the 'aria-live' attribute.
+     * The caption node in the table.
      *
      * @attribute captionNode
      * @type Node
@@ -116,8 +115,7 @@ TableSortable.ATTRS = {
     },
 
     /**
-     * The class to used to hide the caption element but
-     * leave readable for screen readers.
+     * Object containing strings stating how the table is sorted.
      *
      * @attribute stringsSortable
      * @default {
@@ -175,7 +173,6 @@ TableSortable.prototype = {
      * column and its sort direction.
      *
      * @method syncCaption
-     * @public
      * @param {String} columnName
      * @param {Boolean} ascending
      */
@@ -225,20 +222,6 @@ TableSortable.prototype = {
     },
 
     /**
-     * Toggles the screen reader CSS class.
-     *
-     * @method _toggleScreenReaderClass
-     * @param {Object} options
-     * @protected
-     */
-    _toggleScreenReaderClass: function() {
-        var instance = this,
-            caption = instance._getCaption();
-
-        caption.toggleClass(instance.get('screenReaderClass'), !instance.get('captionVisible'));
-    },
-
-    /**
      * Returns a reference to the `captionNode`, and accomplishes
      * necessary setup to prepare the element for screen readers.
      *
@@ -259,6 +242,19 @@ TableSortable.prototype = {
         }
 
         return caption;
+    },
+
+    /**
+     * Toggles the screen reader css class.
+     *
+     * @method _toggleScreenReaderClass
+     * @protected
+     */
+    _toggleScreenReaderClass: function() {
+        var instance = this,
+            caption = instance._getCaption();
+
+        caption.toggleClass(instance.get('screenReaderClass'), !instance.get('captionVisible'));
     }
 };
 
