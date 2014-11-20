@@ -45,10 +45,7 @@
 
     "aui-form-field-text": {
         "requires": [
-            "aui-classnamemanager",
-            "aui-form-field",
-            "aui-node-base",
-            "base-build"
+            "aui-form-field"
         ],
         "skinnable": true
     }
