@@ -31,6 +31,12 @@
             ]
         },
 
+        "aui-form-field-scale": {
+            "jsfiles": [
+                "js/aui-form-field-scale.js"
+            ]
+        },
+
         "aui-form-field-text": {
             "jsfiles": [
                 "js/aui-form-field-text.js"

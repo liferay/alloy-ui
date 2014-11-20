@@ -1,9 +1,9 @@
-.form-builder-field-scale-range {
+.form-field-scale-range {
     height: 50px;
     line-height: 50px;
 }
 
-.form-builder-field-scale-input {
+.form-field-scale-input {
     background: url(slider.png) no-repeat scroll center center transparent;
     background-size: contain;
     float: left;
@@ -13,7 +13,7 @@
     width: 300px;
 }
 
-.form-builder-field-scale-input-higher-value,
-.form-builder-field-scale-input-lower-value {
+.form-field-scale-input-higher-value,
+.form-field-scale-input-lower-value {
     float: left;
 }

@@ -22,12 +22,15 @@
     <h2>List</h2>
     <div id="fieldList"></div>
 
+    <h2>Scale</h2>
+    <div id="fieldScale"></div>
+
     <h2>Text</h2>
     <div id="fieldText"></div>
 
 <script type="text/javascript" charset="utf-8">
 YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-form-field-grid',
-    'aui-form-field-list', 'aui-form-field-text', function(Y) {
+    'aui-form-field-list', 'aui-form-field-scale', 'aui-form-field-text', function(Y) {
     var fieldChoice = new Y.FormFieldChoice({
         help: 'Remember all I\'m offering is the truth',
         title: 'This is your last chance',
@@ -59,6 +62,12 @@ YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-f
         title: 'The Best Maíra Quotes'
     });
     Y.one('#fieldList').append(fieldList.get('content'));
+
+    var fieldScale = new Y.FormFieldScale({
+        help: 'Slide the circle between the given range',
+        title: 'How would you rate it from 0 to 10?'
+    });
+    Y.one('#fieldScale').append(fieldScale.get('content'));
 
     var fieldText = new Y.FormFieldText({
         help: 'Type your full name below',

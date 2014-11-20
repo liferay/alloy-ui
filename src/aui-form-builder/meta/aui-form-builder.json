@@ -62,10 +62,10 @@
     "aui-form-builder-field-scale": {
         "requires": [
             "aui-boolean-data-editor",
-            "aui-form-builder-field-sentence",
+            "aui-form-builder-field-base",
+            "aui-form-field-scale",
             "aui-scale-data-editor"
-        ],
-        "skinnable": true
+        ]
     },
 
     "aui-form-builder-field-sentence": {
