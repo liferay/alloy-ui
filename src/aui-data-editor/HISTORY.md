@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1724](https://issues.liferay.com/browse/AUI-1724) Improve aui-boolean-data-editor's appearance
 * [AUI-1761](https://issues.liferay.com/browse/AUI-1761) Validate edited values on field settings modal
 * [AUI-1764](https://issues.liferay.com/browse/AUI-1764) Improve aui-options-data-editor's appearance
 * [AUI-1737](https://issues.liferay.com/browse/AUI-1737) Handle required fields on field settings modal
