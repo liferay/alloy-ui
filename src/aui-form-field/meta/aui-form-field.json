@@ -29,6 +29,13 @@
         "skinnable": true
     },
 
+    "aui-form-field-list": {
+        "requires": [
+            "aui-form-field"
+        ],
+        "skinnable": true
+    },
+
     "aui-form-field-text": {
         "requires": [
             "aui-classnamemanager",

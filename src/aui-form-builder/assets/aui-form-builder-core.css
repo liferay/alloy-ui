@@ -174,27 +174,3 @@
         margin: 24px 30px;
     }
 }
-
-.form-builder-field-list-content {
-    border: 2pt solid #bcc9d2;
-    border-radius: 5px;
-    height: 32pt;
-    line-height: 32pt;
-}
-
-.form-builder-field-list-placeholder {
-    color: #bcc9d2;
-    font-family: HelveticaNeue-Light;
-    font-size: 12pt;
-    margin-left: 10px;
-}
-
-.form-builder-field-list-toggle {
-    background-color: #bcc9d2;
-    color: #fff;
-    cursor: pointer;
-    float: right;
-    height: 100%;
-    text-align: center;
-    width: 32pt;
-}

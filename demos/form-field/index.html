@@ -19,12 +19,15 @@
     <h2>Grid</h2>
     <div id="fieldGrid"></div>
 
+    <h2>List</h2>
+    <div id="fieldList"></div>
+
     <h2>Text</h2>
     <div id="fieldText"></div>
 
 <script type="text/javascript" charset="utf-8">
 YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-form-field-grid',
-    'aui-form-field-text', function(Y) {
+    'aui-form-field-list', 'aui-form-field-text', function(Y) {
     var fieldChoice = new Y.FormFieldChoice({
         help: 'Remember all I\'m offering is the truth',
         title: 'This is your last chance',
@@ -51,6 +54,11 @@ YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-f
         rows: ['A', 'B', 'C', ,'D', 'E', 'F', 'G', 'H', 'I', 'J']
     });
     Y.one('#fieldGrid').append(fieldGrid.get('content'));
+
+    var fieldList = new Y.FormFieldList({
+        title: 'The Best Maíra Quotes'
+    });
+    Y.one('#fieldList').append(fieldList.get('content'));
 
     var fieldText = new Y.FormFieldText({
         help: 'Type your full name below',
