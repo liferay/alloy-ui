@@ -19,6 +19,12 @@
             ]
         },
 
+        "aui-form-field-grid": {
+            "jsfiles": [
+                "js/aui-form-field-grid.js"
+            ]
+        },
+
         "aui-form-field-text": {
             "jsfiles": [
                 "js/aui-form-field-text.js"

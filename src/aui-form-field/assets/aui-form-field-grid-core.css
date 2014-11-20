@@ -1,9 +1,9 @@
-.form-builder-field-grid table {
+.form-field-grid table {
     width: 100%;
 }
 
-.form-builder-field-grid th,
-.form-builder-field-grid td {
+.form-field-grid th,
+.form-field-grid td {
     border: 2px solid #bcc9d2;
     height: 32pt;
     font-size: 12pt;

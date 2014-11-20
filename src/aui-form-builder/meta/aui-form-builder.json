@@ -52,10 +52,10 @@
     "aui-form-builder-field-grid": {
         "requires": [
             "aui-boolean-data-editor",
-            "aui-form-builder-field-sentence",
-            "aui-options-data-editor"
-        ],
-        "skinnable": true
+            "aui-options-data-editor",
+            "aui-form-builder-field-base",
+            "aui-form-field-grid"
+        ]
     },
 
     "aui-form-builder-field-scale": {
