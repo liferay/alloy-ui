@@ -15,6 +15,13 @@
         "skinnable": true
     },
 
+    "aui-form-field-date": {
+        "requires": [
+            "aui-form-field"
+        ],
+        "skinnable": true
+    },
+
     "aui-form-field-text": {
         "requires": [
             "aui-classnamemanager",

@@ -1,0 +1,34 @@
+.form-field-date-input-time {
+    background: url(time.png) no-repeat scroll left center transparent;
+    background-size: contain;
+    height: 51px;
+    margin-left: -5px;
+    max-width: 100%;
+}
+
+.form-field-date-input {
+    background: url(date-mm-dd.png) no-repeat scroll left center transparent;
+    background-size: contain;
+    height: 50px;
+    margin-left: -3px;
+    max-width: 100%;
+}
+
+.form-field-date-input.year {
+    background: url(date-mm-dd-yyyy.png) no-repeat scroll left center transparent;
+    background-size: contain;
+}
+
+.form-field-date-to {
+    margin-top: 20px;
+}
+
+.form-field-date-from-label,
+.form-field-date-to {
+    display: none;
+}
+
+.form-field-date-to-enabled .form-field-date-from-label,
+.form-field-date-to-enabled .form-field-date-to {
+    display: block;
+}

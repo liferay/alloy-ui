@@ -34,11 +34,11 @@ YUI.add('aui-form-builder-field-date-tests', function(Y) {
             this._field.renderSettingsPanel(settings);
             this._field.saveSettings();
 
-            fromDate = Y.one('.form-builder-field-date-from-date');
-            fromTime = Y.one('.form-builder-field-date-from-time');
-            toContainer = Y.one('.form-builder-field-date-to');
-            toDate = Y.one('.form-builder-field-date-to-date');
-            toTime = Y.one('.form-builder-field-date-to-time');
+            fromDate = Y.one('.form-field-date-from-date');
+            fromTime = Y.one('.form-field-date-from-time');
+            toContainer = Y.one('.form-field-date-to');
+            toDate = Y.one('.form-field-date-to-date');
+            toTime = Y.one('.form-field-date-to-time');
 
             Y.Assert.isFalse(fromDate.hasClass('year'));
             Y.Assert.areEqual('none', fromTime.getStyle('display'));

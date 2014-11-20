@@ -13,6 +13,9 @@
     <h2>Choice</h2>
     <div id="fieldChoice"></div>
 
+    <h2>Date</h2>
+    <div id="fieldDate"></div>
+
     <h2>Text</h2>
     <div id="fieldText"></div>
 
@@ -25,6 +28,17 @@ YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-text', functi
         otherOption: true
     });
     Y.one('#fieldChoice').append(fieldChoice.get('content'));
+
+    var fieldDate = new Y.FormFieldDate({
+        help: 'Please select your destination',
+        title: 'Welcome to Delorean Lines',
+        yearToggleFrom: true,
+        timeToggleFrom: true,
+        toggleInterval: true,
+        yearToggleTo: true,
+        timeToggleTo: true
+    });
+    Y.one('#fieldDate').append(fieldDate.get('content'));
 
     var fieldText = new Y.FormFieldText({
         help: 'Type your full name below',
