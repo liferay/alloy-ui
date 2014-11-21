@@ -55,6 +55,12 @@
             ]
         },
 
+        "aui-form-builder-field-time": {
+            "jsfiles": [
+                "js/aui-form-builder-field-time.js"
+            ]
+        },
+
         "aui-form-builder-field-type": {
             "jsfiles": [
                 "js/aui-form-builder-field-type.js"

@@ -83,6 +83,14 @@
         ]
     },
 
+    "aui-form-builder-field-time": {
+        "requires": [
+            "aui-boolean-data-editor",
+            "aui-form-builder-field-base",
+            "aui-form-field-time"
+        ]
+    },
+
     "aui-form-builder-field-type": {
         "requires": [
             "base",
