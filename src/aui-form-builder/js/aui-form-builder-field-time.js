@@ -25,12 +25,6 @@ A.FormBuilderFieldTime = A.Base.create('form-builder-field-time', A.FormFieldTim
      * @protected
      */
     _fillSettings: function() {
-        var booleanFromTo;
-
-        booleanFromTo = new A.BooleanDataEditor({
-            label: 'Enable "From/To" Format'
-        });
-
         this._settings.push(
             {
                 attrName: 'required',
@@ -40,7 +34,9 @@ A.FormBuilderFieldTime = A.Base.create('form-builder-field-time', A.FormFieldTim
             },
             {
                 attrName: 'toggleInterval',
-                editor: booleanFromTo
+                editor: new A.BooleanDataEditor({
+                    label: 'Enable "From/To" Format'
+                })
             }
         );
     }
