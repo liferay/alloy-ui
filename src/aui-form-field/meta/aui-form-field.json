@@ -48,5 +48,12 @@
             "aui-form-field"
         ],
         "skinnable": true
+    },
+
+    "aui-form-field-time": {
+        "requires": [
+            "aui-form-field"
+        ],
+        "skinnable": true
     }
 }

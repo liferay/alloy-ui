@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <title>AUI Form Field Time Unit tests</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-form-field-time-tests.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+<div id="container"></div>
+
+<script>
+YUI({
+    coverage: ['aui-form-field-time'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-form-field-time-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-form-field-time');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

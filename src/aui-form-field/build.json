@@ -41,6 +41,12 @@
             "jsfiles": [
                 "js/aui-form-field-text.js"
             ]
+        },
+
+        "aui-form-field-time": {
+            "jsfiles": [
+                "js/aui-form-field-time.js"
+            ]
         }
     }
 }

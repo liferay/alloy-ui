@@ -28,9 +28,13 @@
     <h2>Text</h2>
     <div id="fieldText"></div>
 
+    <h2>Time</h2>
+    <div id="fieldTime"></div>
+
 <script type="text/javascript" charset="utf-8">
 YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-form-field-grid',
-    'aui-form-field-list', 'aui-form-field-scale', 'aui-form-field-text', function(Y) {
+    'aui-form-field-list', 'aui-form-field-scale', 'aui-form-field-time', 'aui-form-field-text',
+    function(Y) {
     var fieldChoice = new Y.FormFieldChoice({
         help: 'Remember all I\'m offering is the truth',
         title: 'This is your last chance',
@@ -74,6 +78,13 @@ YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-f
         title: 'What\'s your name?'
     });
     Y.one('#fieldText').append(fieldText.get('content'));
+
+    var fieldTime = new Y.FormFieldTime({
+        help: 'Choose your destiny',
+        title: 'Time Machine',
+        toggleInterval: true
+    });
+    Y.one('#fieldTime').append(fieldTime.get('content'));
 });
 </script>
 

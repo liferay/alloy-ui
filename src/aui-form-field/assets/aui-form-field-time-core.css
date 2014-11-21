@@ -1,0 +1,11 @@
+.form-field-time-input {
+    background: url(time.png) no-repeat scroll left center transparent;
+    background-size: contain;
+    height: 50px;
+    margin-left: -3px;
+    max-width: 100%;
+}
+
+.form-field-time-to {
+    margin-top: 20px;
+}
