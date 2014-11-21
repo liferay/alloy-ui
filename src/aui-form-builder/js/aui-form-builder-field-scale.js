@@ -9,7 +9,8 @@
  * A base class for Form Builder Field Scale.
  *
  * @class A.FormBuilderFieldScale
- * @extends A.FormBuilderFieldBase
+ * @extends A.FormFieldScale
+ * @uses A.FormBuilderFieldBase
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor

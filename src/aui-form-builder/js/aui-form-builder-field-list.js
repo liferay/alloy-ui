@@ -9,7 +9,7 @@
  * A base class for Form Builder Field List.
  *
  * @class A.FormBuilderFieldList
- * @extends A.FormField
+ * @extends A.FormFieldList
  * @uses A.FormBuilderFieldBase
  * @param {Object} config Object literal specifying widget configuration
  *     properties.

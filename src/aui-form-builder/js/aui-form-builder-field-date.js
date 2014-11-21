@@ -19,7 +19,7 @@ var CSS_CHECKED_CONTENT_DATE = A.getClassName('checked', 'content', 'date'),
  * A base class for Form Builder Field Date.
  *
  * @class A.FormBuilderFieldDate
- * @extends A.FormField
+ * @extends A.FormFieldDate
  * @uses A.FormBuilderFieldBase
  * @param {Object} config Object literal specifying widget configuration
  *     properties.

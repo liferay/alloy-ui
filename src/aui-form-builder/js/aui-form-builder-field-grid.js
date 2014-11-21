@@ -9,7 +9,7 @@
  * A base class for Form Builder Field Grid.
  *
  * @class A.FormBuilderFieldGrid
- * @extends A.FormField
+ * @extends A.FormFieldGrid
  * @uses A.FormBuilderFieldBase
  * @param {Object} config Object literal specifying widget configuration
  *     properties.

@@ -9,7 +9,7 @@
  * A base class for Form Builder Field Choice.
  *
  * @class A.FormBuilderFieldChoice
- * @extends A.FormField
+ * @extends A.FormFieldChoice
  * @uses A.FormBuilderFieldBase
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
