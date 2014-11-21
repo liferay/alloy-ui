@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1724](https://issues.liferay.com/browse/AUI-1724) Improve aui-boolean-data-editor's appearance
 * [AUI-1784](https://issues.liferay.com/browse/AUI-1784) Convert existing form builder fields to separate rendering from edition logic
 * [AUI-1770](https://issues.liferay.com/browse/AUI-1770) Field rendering should be separate from field editing
 * [AUI-1738](https://issues.liferay.com/browse/AUI-1738) Update unique field types when fields change
