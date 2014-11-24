@@ -116,13 +116,19 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
         },
 
         'should not append addCol button if row alreay has the maximum number of cols': function() {
-            var col;
+            var cols,
+                firstRow;
 
             this._createLayoutBuilder();
 
-            col = Y.one('.col-md-3');
+            firstRow = this._layoutBuilder.get('layout').get('rows')[0];
+            cols = firstRow.get('cols');
 
-            Y.Assert.isNull(col.one('.layout-builder-add-col'));
+            while (firstRow.get('cols').length < firstRow.get('maximumCols')) {
+                firstRow.addCol();
+            }
+
+            Y.Assert.isNull(firstRow.get('node').one('.layout-builder-add-col'));
         },
 
         'should not add col if enableAddCol is false': function() {
@@ -185,14 +191,14 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             container = this._layoutBuilder.get('container');
             addColButtons = container.all('.layout-builder-add-col');
 
-            Y.Assert.areEqual(2, addColButtons.size());
+            Y.Assert.areEqual(4, addColButtons.size());
 
             addRowArea = container.one('.layout-builder-add-row-choose-row');
             addRowArea.simulate('click');
 
             addColButtons = container.all('.layout-builder-add-col');
 
-            Y.Assert.areEqual(4, addColButtons.size());
+            Y.Assert.areEqual(6, addColButtons.size());
         },
 
         'should add a col when press enter on add col button': function() {

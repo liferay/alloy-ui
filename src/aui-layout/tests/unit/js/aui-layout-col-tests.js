@@ -45,10 +45,18 @@ YUI.add('aui-layout-col-tests', function(Y) {
             Assert.areEqual(12, layoutCol.get('size'));
         },
 
+        'should set minimum size if it\'s size is lower than the minimum': function() {
+            var layoutCol = new Y.LayoutCol({
+                size: -1
+            });
+
+            Assert.areEqual(1, layoutCol.get('size'));
+        },
+
         'should set minimum size if size is not passed through constructor': function() {
             var layoutCol = new Y.LayoutCol();
 
-            Assert.areEqual(3, layoutCol.get('size'));
+            Assert.areEqual(1, layoutCol.get('size'));
         },
 
         'should set value using a regular object': function() {

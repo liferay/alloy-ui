@@ -4,7 +4,8 @@
  * @module aui-layout-builder-resize-col
  */
 
-var CSS_RESIZE_COL_BREAKPOINT = A.getClassName('layout', 'builder', 'resize', 'col', 'breakpoint'),
+var BREAKPOINTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    CSS_RESIZE_COL_BREAKPOINT = A.getClassName('layout', 'builder', 'resize', 'col', 'breakpoint'),
     CSS_RESIZE_COL_BREAKPOINT_LINE = A.getClassName('layout', 'builder', 'resize', 'col', 'breakpoint', 'line'),
     CSS_RESIZE_COL_BREAKPOINT_OVER = A.getClassName('layout', 'builder', 'resize', 'col', 'breakpoint', 'over'),
     CSS_RESIZE_COL_ENABLED = A.getClassName('layout', 'builder', 'resize', 'col', 'enabled'),
@@ -82,16 +83,6 @@ A.LayoutBuilderResizeCol.prototype = {
         this._unbindResizeColEvents();
 
         this._removeGrid();
-    },
-
-    /**
-     * Fired after the `breakpoints` attribute changes.
-     *
-     * @method _afterBreakpointsChange
-     * @protected
-     */
-    _afterBreakpointsChange: function() {
-        this._insertGrid();
     },
 
     /**
@@ -234,7 +225,6 @@ A.LayoutBuilderResizeCol.prototype = {
      */
     _bindResizeColEvents: function() {
         this._resizeColsEventHandles = [
-            this.after('breakpointsChange', this._afterBreakpointsChange),
             this.after('layoutChange', this._afterResizeColLayoutChange),
             this.after('layout:rowsChange', this._afterResizeColLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterResizeColLayoutColsChange),
@@ -256,12 +246,11 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _canDrag: function(dragNode) {
-        var breakpoints = this.get('breakpoints'),
-            index;
+        var index;
 
-        for (index = 0; index < breakpoints.length; index++) {
-            if (breakpoints[index] !== dragNode.getData('layout-position') &&
-                this._canDrop(dragNode, breakpoints[index])) {
+        for (index = 0; index < BREAKPOINTS.length; index++) {
+            if (BREAKPOINTS[index] !== dragNode.getData('layout-position') &&
+                this._canDrop(dragNode, BREAKPOINTS[index])) {
                 return true;
             }
         }
@@ -358,15 +347,16 @@ A.LayoutBuilderResizeCol.prototype = {
      */
     _insertGrid: function() {
         var instance = this,
-            breakpoints = this.get('breakpoints'),
             gridLine,
-            node;
+            node,
+            rows = this.get('layout').get('rows');
 
         this._removeGrid();
-        A.each(this.get('layout').get('rows'), function(row) {
+
+        A.each(rows, function(row) {
             node = row.get('node').one(SELECTOR_ROW);
 
-            A.each(breakpoints, function(point) {
+            A.each(BREAKPOINTS, function(point) {
                 gridLine = A.Node.create(instance.TPL_RESIZE_COL_BREAKPOINT);
                 gridLine.setStyle('left', ((point * 100) / MAX_SIZE) + '%');
                 gridLine.setData('layout-position', point);
@@ -456,7 +446,7 @@ A.LayoutBuilderResizeCol.prototype = {
     /**
      * Resizes cols after a resize event.
      *
-     * @method _syncRowDragHandles
+     * @method _resize
      * @param {Node} dragNode
      * @param {Node} row
      * @protected
@@ -584,17 +574,6 @@ A.LayoutBuilderResizeCol.prototype = {
  * @static
  */
 A.LayoutBuilderResizeCol.ATTRS = {
-    /**
-     * Array of breakpoints.
-     *
-     * @attribute breakpoints
-     * @type {Array}
-     */
-    breakpoints: {
-        validator: A.Lang.isArray,
-        value: [3, 4, 6, 8, 9]
-    },
-
     /**
      * Flag indicating if the feature of resizing layout columns is enabled or
      * not.

@@ -157,12 +157,32 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _resizeCols: function(cols) {
-        var length = cols.length,
-            size = ALLOWED_SIZE / length;
+        var colsLength = cols.length,
+            colSize = ALLOWED_SIZE / colsLength,
+            difference = 0,
+            i = 0,
+            lastSize,
+            totalSize = colsLength * colSize;
+
+        if (!A.Lang.isInteger(colSize)) {
+            colSize = Math.round(colSize);
+            totalSize = colsLength * colSize;
+
+            if (totalSize > ALLOWED_SIZE) {
+                difference = totalSize - ALLOWED_SIZE;
+            }
+        }
 
         A.each(cols, function(col) {
-            col.set('size', size);
+            col.set('size', colSize);
         });
+
+        for (i = 0; i < difference; i++) {
+            cols[i].set('size', cols[i].get('size') - 1);
+        }
+
+        lastSize = ALLOWED_SIZE - (totalSize - colSize - difference);
+        cols[cols.length - 1].set('size', lastSize);
 
         return cols;
     },
@@ -210,9 +230,10 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _validateCols: function(cols) {
-        var size = this._getSize(cols);
+        var maximumCols = this.get('maximumCols'),
+            size = this._getSize(cols);
 
-        if (size > ALLOWED_SIZE || size < 0 || !A.Lang.isArray(cols) || cols.length > this.get('maximumCols')) {
+        if (size > ALLOWED_SIZE || size < 0 || !A.Lang.isArray(cols) || cols.length > maximumCols) {
             return false;
         }
 
@@ -259,14 +280,14 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
          * Number to determine maximum cols on a row.
          *
          * @attribute maximumCols
-         * @default 4
+         * @default 12
          * @type {Number}
          */
         maximumCols: {
             validator: function(val) {
                 return val > 0 && val <= 12;
             },
-            value: 4
+            value: 12
         },
 
         /**

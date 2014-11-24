@@ -110,10 +110,14 @@ YUI.add('aui-layout-row-tests', function(Y) {
         },
 
         'should not add col if max is reached': function() {
-            this.layoutRow.addCol();
-            this.layoutRow.addCol();
+            var currentColsSize = this.layoutRow.get('cols').length,
+                maximumCols = this.layoutRow.get('maximumCols');
 
-            Assert.areEqual(4, this.layoutRow.get('cols').length);
+            for (var i = currentColsSize; i <= maximumCols; i++) {
+                this.layoutRow.addCol();
+            }
+
+            Assert.areEqual(maximumCols, this.layoutRow.get('cols').length);
         },
 
         'should remove a col by index': function() {

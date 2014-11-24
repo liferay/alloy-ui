@@ -137,7 +137,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
          * @type {Number}
          */
         minSize: {
-            value: 3
+            value: 1
         },
 
         /**
