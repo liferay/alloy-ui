@@ -305,9 +305,15 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
                     this._onClickFieldType,
                     '.field-type',
                     this
+                ),
+                A.getDoc().on(
+                    'key',
+                    this._onEscKey,
+                    'esc',
+                    this
                 )
             );
-        }
+   }
 
         this._fieldTypesModal.show();
     },
@@ -503,6 +509,16 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         }
 
         return false;
+    },
+
+    /**
+     * Fires when the esc key is pressed
+     *
+     * @method _onEscKey
+     * @protected
+     */
+    _onEscKey: function() {
+        this._colAddingField = null;
     },
 
     /**

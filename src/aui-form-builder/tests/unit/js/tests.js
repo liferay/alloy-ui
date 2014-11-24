@@ -453,6 +453,56 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(field.get('required'));
         },
 
+        'should edit field and save correctly': function() {
+            var row;
+
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText,
+                    label: 'Text'
+                }],
+                layout: new Y.Layout({
+                    rows: [
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 4
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4
+                                }),
+                                new Y.LayoutCol({
+                                    size: 4,
+                                    value: new Y.FormBuilderFieldText({
+                                        help: 'help',
+                                        title: 'Title'
+                                    })
+                                })
+                            ]
+                        })
+                    ]
+                })
+            });
+
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
+            Y.one('body').simulate('keydown', {
+                keyCode: 27
+            });
+
+            row = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
+            Y.Assert.isNotNull(row.get('node').all('.form-builder-empty-col').item(0));
+
+            Y.one('.form-builder-field-configuration').simulate('click');
+            Y.one('.form-builder-field-toolbar-edit').simulate('click');
+
+            Y.one('.form-builder-field-settings-content').all('input[type="text"]').item(0).set('value', 'My Title');
+
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+   
+            Y.Assert.isNotNull(row.get('node').all('.form-builder-empty-col').item(0));
+        },
+
         'shouldn\'t save a disabled field': function() {
             this.createFormBuilder({
                 fieldTypes: [{
