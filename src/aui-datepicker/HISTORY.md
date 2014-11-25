@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1795](https://issues.liferay.com/browse/AUI-1795) DatePicker throws "Uncaught TypeError" when getPopover() is called and anything other than trigger is clicked
 * [AUI-1205](https://issues.liferay.com/browse/AUI-1205) datePicker fires selectionChange event when trigger is clicked
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
