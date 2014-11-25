@@ -10,21 +10,11 @@ YUI.add('aui-button-switch-tests', function(Y) {
         },
 
         setUp: function() {
-            this.createButtonSwitch({
-                srcNode: '#content'
-            });
+            this._buttonSwitch = new Y.ButtonSwitch().render('#container');
         },
 
         tearDown: function() {
             this._buttonSwitch && this._buttonSwitch.destroy();
-        },
-
-        createButtonSwitch: function(config) {
-            var content = Y.Node.create('<div id="content"></div>');
-
-            this._container.append(content);
-
-            this._buttonSwitch = new Y.ButtonSwitch(config).render();
         },
 
         'should set the inner labels': function () {
@@ -54,6 +44,37 @@ YUI.add('aui-button-switch-tests', function(Y) {
             Y.Assert.isTrue(buttonSwitch.get('activated'));
             Y.Assert.isFalse(content.one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
+        },
+
+        'should deactivate on click when the switch button start as activated': function () {
+            var content;
+
+            this._buttonSwitch = new Y.ButtonSwitch({activated: true}).render('#container');
+            content = this._buttonSwitch.get('content');
+
+            Y.Assert.isTrue(this._buttonSwitch.get('activated'));
+            Y.Assert.isFalse(content.one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isTrue(content.one('.button-switch-inner-label-right').hasClass('hide'));
+
+            content.simulate('click');
+            
+            Y.Assert.isFalse(this._buttonSwitch.get('activated'));
+            Y.Assert.isTrue(content.one('.button-switch-inner-label-left').hasClass('hide'));
+            Y.Assert.isFalse(content.one('.button-switch-inner-label-right').hasClass('hide'));
+        },
+
+        'should set the position of inner circle even when the container not visible': function () {
+            var buttonSwitch = this._buttonSwitch,
+                content = buttonSwitch.get('content');
+
+            this._container.addClass('hide');
+            buttonSwitch.set('activated', true);
+            Y.Assert.isFalse(content.one('.button-switch-inner-circle').hasClass('button-switch-left'));
+            Y.Assert.isTrue(content.one('.button-switch-inner-circle').hasClass('button-switch-right'));
+
+            buttonSwitch.set('activated', false);
+            Y.Assert.isTrue(content.one('.button-switch-inner-circle').hasClass('button-switch-left'));
+            Y.Assert.isFalse(content.one('.button-switch-inner-circle').hasClass('button-switch-right'));
         },
 
         'should active on key enter interaction': function () {

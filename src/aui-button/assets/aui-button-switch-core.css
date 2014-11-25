@@ -37,3 +37,12 @@
     z-index: 2;
     font-weight: normal;
 }
+
+.button-switch-left {
+    left: 2px;
+}
+
+.button-switch-right {
+    right: 2px;
+    left: initial;
+}

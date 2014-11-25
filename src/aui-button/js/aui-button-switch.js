@@ -5,6 +5,8 @@
  */
 
 var CSS_BUTTON_SWITCH = A.getClassName('button', 'switch'),
+    CSS_BUTTON_SWITCH_LEFT = A.getClassName('button', 'switch', 'left'),
+    CSS_BUTTON_SWITCH_RIGHT = A.getClassName('button', 'switch', 'right'),
     CSS_INNER_CIRCLE = A.getClassName('button', 'switch', 'inner', 'circle'),
     CSS_INNER_LABEL_LEFT = A.getClassName('button', 'switch', 'inner', 'label', 'left'),
     CSS_INNER_LABEL_RIGHT = A.getClassName('button', 'switch', 'inner', 'label', 'right'),
@@ -57,8 +59,6 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
         this._uiSetActivate(this.get('activated'));
         this._uiSetInnerLabelLeft(this.get('innerLabelLeft'));
         this._uiSetInnerLabelRight(this.get('innerLabelRight'));
-
-        content.one('.' + CSS_INNER_LABEL_LEFT).addClass('hide');
     },
 
     /**
@@ -153,17 +153,47 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
         content.one('.' + CSS_INNER_LABEL_LEFT).toggleClass('hide', !activated);
         content.toggleClass('activated', activated);
 
-        if (activated) {
-            this._getInnerCircle().transition({
-                duration: 0.6,
-                left: buttonSwitchWidth - innerCircleWidth - INNER_CIRCLE_THRESHOLD + 'px'
-            });
+        if (!innerCircleWidth) {
+            this._setInnerCirclePosition(activated);
         }
         else {
-            this._getInnerCircle().transition({
-                duration: 0.6,
-                left: INNER_CIRCLE_THRESHOLD + 'px'
-            });
+            innerCircle.removeClass(CSS_BUTTON_SWITCH_LEFT);
+            innerCircle.removeClass(CSS_BUTTON_SWITCH_RIGHT);
+
+            if (activated) {
+                innerCircle.setStyle('left', INNER_CIRCLE_THRESHOLD + 'px');
+                innerCircle.transition({
+                    duration: 0.6,
+                    left: buttonSwitchWidth - innerCircleWidth - INNER_CIRCLE_THRESHOLD + 'px'
+                });
+            }
+            else {
+                innerCircle.setStyle('left', buttonSwitchWidth - innerCircleWidth - INNER_CIRCLE_THRESHOLD + 'px');
+                innerCircle.transition({
+                    duration: 0.6,
+                    left: INNER_CIRCLE_THRESHOLD + 'px'
+                });
+            }
+        }
+    },
+
+    /**
+     * Updates Inner Circle position with CSS classes.
+     *
+     * @method _setInnerCirclePosition
+     * @param {Boolean} activated
+     * @protected
+     */
+    _setInnerCirclePosition: function(activated) {
+        var innerCircle = this._getInnerCircle();
+
+        if (activated) {
+            innerCircle.removeClass(CSS_BUTTON_SWITCH_LEFT);
+            innerCircle.addClass(CSS_BUTTON_SWITCH_RIGHT);
+        }
+        else {
+            innerCircle.removeClass(CSS_BUTTON_SWITCH_RIGHT);
+            innerCircle.addClass(CSS_BUTTON_SWITCH_LEFT);
         }
     },
 
@@ -189,6 +219,15 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
         return this.get('content').one('.' + CSS_INNER_LABEL_RIGHT).set('text', label);
     }
 }, {
+
+    /**
+     * Static property used to define the default attribute configuration for
+     * the ButtonSwitch.
+     *
+     * @property ATTRS
+     * @type {Object}
+     * @static
+     */
     ATTRS: {
 
         /**
