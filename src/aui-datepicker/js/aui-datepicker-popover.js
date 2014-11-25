@@ -160,7 +160,7 @@ A.mix(DatePickerPopover.prototype, {
             target = event.target,
             activeInput = instance.get(ACTIVE_INPUT);
 
-        if (!instance._isActiveInputFocused() && !activeInput.contains(target)) {
+        if (activeInput && (!instance._isActiveInputFocused() && !activeInput.contains(target))) {
 
             instance.hide();
         }
