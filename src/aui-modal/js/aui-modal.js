@@ -62,7 +62,7 @@ A.Modal = A.Base.create('modal', A.Widget, [
 
         eventHandles = [
             A.after(instance._afterFillHeight, instance, 'fillHeight'),
-            A.after('windowresize', A.bind(instance._afterWindowResize, instance)),
+            A.after('windowresize', A.bind('_afterWindowResize', instance)),
             instance.after('render', instance._afterRender),
             instance.after('draggableChange', instance._afterDraggableChange),
             instance.after('visibleChange', instance._afterVisibleChange)
