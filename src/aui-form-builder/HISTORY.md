@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1792](https://issues.liferay.com/browse/AUI-1792) Fix bug when canceling field creation followed by editing a field
 * [AUI-1750](https://issues.liferay.com/browse/AUI-1750) Create time field
 * [AUI-1724](https://issues.liferay.com/browse/AUI-1724) Improve aui-boolean-data-editor's appearance
 * [AUI-1784](https://issues.liferay.com/browse/AUI-1784) Convert existing form builder fields to separate rendering from edition logic

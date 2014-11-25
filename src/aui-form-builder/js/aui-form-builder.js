@@ -313,7 +313,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
                     this
                 )
             );
-   }
+        }
 
         this._fieldTypesModal.show();
     },

@@ -453,7 +453,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(field.get('required'));
         },
 
-        'should edit field and save correctly': function() {
+        'should edit field and save correctly after closing modal through esc': function() {
             var row;
 
             this.createFormBuilder({
@@ -499,7 +499,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
-   
+
             Y.Assert.isNotNull(row.get('node').all('.form-builder-empty-col').item(0));
         },
 
