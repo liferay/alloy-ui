@@ -34,17 +34,27 @@ A.FormFieldGrid = A.Base.create('form-field-grid', A.FormField, [], {
      * @protected
      */
     initializer: function() {
+        this.after({
+            columnsChange: this._afterColumnsChange,
+            rowsChange: this._afterRowsChange
+        });
+    },
+
+    /**
+     * Create the DOM structure for the `A.FormFieldGrid`. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
         var content = this.get('content');
+
+        A.FormFieldGrid.superclass.renderUI.call(this);
 
         content.addClass(CSS_FIELD_GRID);
 
         this._uiSetColumns(this.get('columns'));
         this._uiSetRows(this.get('rows'));
-
-        this.after({
-            columnsChange: this._afterColumnsChange,
-            rowsChange: this._afterRowsChange
-        });
     },
 
     /**

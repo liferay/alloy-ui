@@ -35,13 +35,25 @@ A.FormFieldScale = A.Base.create('form-field-scale', A.FormField, [], {
      * @protected
      */
     initializer: function() {
-        this.get('content').addClass(CSS_FIELD_SCALE);
-
-        this._uiSetRange(this.get('range'));
-
         this.after({
             rangeChange: this._afterRangeChange
         });
+    },
+
+    /**
+     * Create the DOM structure for the `A.FormFieldScale`. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
+        var content = this.get('content');
+
+        A.FormFieldScale.superclass.renderUI.call(this);
+        
+        content.addClass(CSS_FIELD_SCALE);
+
+        this._uiSetRange(this.get('range'));
     },
 
     /**

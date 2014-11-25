@@ -28,15 +28,25 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [], {
      * @protected
      */
     initializer: function() {
+        this.after({
+            multilineChange: this._afterMultilineChange
+        });
+    },
+
+    /**
+     * Create the DOM structure for the `A.FormFieldText`. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
         var content = this.get('content');
+
+        A.FormFieldText.superclass.renderUI.call(this);
 
         content.addClass(CSS_FIELD_TEXT);
 
         this._uiSetMultiline(this.get('multiline'));
-
-        this.after({
-            multilineChange: this._afterMultilineChange
-        });
     },
 
     /**

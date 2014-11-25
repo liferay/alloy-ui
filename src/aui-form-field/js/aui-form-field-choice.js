@@ -34,7 +34,23 @@ A.FormFieldChoice = A.Base.create('form-field-choice', A.FormField, [], {
      * @protected
      */
     initializer: function() {
+        this.after({
+            multipleChange: this._afterMultipleChange,
+            optionsChange: this._afterOptionsChange,
+            otherOptionChange: this._afterOtherOptionChange
+        });
+    },
+
+    /**
+     * Create the DOM structure for the `A.FormFieldChoice`. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
         var content = this.get('content');
+
+        A.FormFieldChoice.superclass.renderUI.call(this);
 
         content.addClass(CSS_FIELD_CHOICE);
 
@@ -42,11 +58,7 @@ A.FormFieldChoice = A.Base.create('form-field-choice', A.FormField, [], {
         this._uiSetOptions(this.get('options'));
         this._uiSetOtherOption(this.get('otherOption'));
 
-        this.after({
-            multipleChange: this._afterMultipleChange,
-            optionsChange: this._afterOptionsChange,
-            otherOptionChange: this._afterOtherOptionChange
-        });
+
     },
 
     /**

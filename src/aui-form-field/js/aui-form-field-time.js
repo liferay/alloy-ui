@@ -39,15 +39,25 @@ A.FormFieldTime = A.Base.create('form-field-time', A.FormField, [], {
      * @protected
      */
     initializer: function() {
+        this.after({
+            toggleIntervalChange: this._afterToggleIntervalChange
+        });
+    },
+
+    /**
+     * Create the DOM structure for the `A.FormFieldTime`. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
         var content = this.get('content');
+
+        A.FormFieldTime.superclass.renderUI.call(this);
 
         content.addClass(CSS_FIELD_TIME);
 
         this._uiSetToggleInterval(this.get('toggleInterval'));
-
-        this.after({
-            toggleIntervalChange: this._afterToggleIntervalChange
-        });
     },
 
     /**

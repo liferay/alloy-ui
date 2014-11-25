@@ -25,13 +25,15 @@ A.FormFieldList = A.Base.create('form-field-list', A.FormField, [], {
         '<div class="' + CSS_FIELD_LIST_PLACEHOLDER + '">Select an option</div></div>',
 
     /**
-     * Constructor for the `A.FormFieldList`. Lifecycle.
+     * Create the DOM structure for the `A.FormFieldList`. Lifecycle.
      *
-     * @method initializer
+     * @method renderUI
      * @protected
      */
-    initializer: function() {
+    renderUI: function() {
         var content = this.get('content');
+
+        A.FormFieldList.superclass.renderUI.call(this);
 
         content.addClass(CSS_FIELD_LIST);
     }

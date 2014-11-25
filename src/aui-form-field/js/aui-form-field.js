@@ -42,9 +42,8 @@ A.FormField = A.Base.create('form-field', A.Base, [], {
     initializer: function() {
         var content = this.get('content');
 
-        content.one('.' + CSS_FIELD_CONTENT).setHTML(A.Lang.sub(this.TPL_FIELD_CONTENT_MAIN, {
-            innerContent: this.TPL_FIELD_CONTENT
-        }));
+        this.renderUI();
+
         content.setData('field-instance', this);
 
         this._fieldEventHandles = [
@@ -54,6 +53,20 @@ A.FormField = A.Base.create('form-field', A.Base, [], {
                 titleChange: this._afterTitleChange
             })
         ];
+    },
+
+    /**
+     * Create the DOM structure for the `A.FormField`. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
+        var content = this.get('content');
+
+        content.one('.' + CSS_FIELD_CONTENT).setHTML(A.Lang.sub(this.TPL_FIELD_CONTENT_MAIN, {
+            innerContent: this.TPL_FIELD_CONTENT
+        }));
 
         this._uiSetHelp(this.get('help'));
         this._uiSetNestedFields(this.get('nestedFields'));

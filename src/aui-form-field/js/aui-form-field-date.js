@@ -45,7 +45,25 @@ A.FormFieldDate = A.Base.create('form-field-date', A.FormField, [], {
      * @protected
      */
     initializer: function() {
+        this.after({
+            yearToggleFromChange: this._afterYearToggleFromChange,
+            toggleIntervalChange: this._afterToggleIntervalChange,
+            timeToggleFromChange: this._afterTimeToggleFromChange,
+            yearToggleToChange: this._afterYearToggleToChange,
+            timeToggleToChange: this._afterTimeToggleToChange
+        });
+    },
+
+    /**
+     * Create the DOM structure for the `A.FormFieldDate`. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
         var content = this.get('content');
+
+        A.FormFieldDate.superclass.renderUI.call(this);
 
         content.addClass(CSS_FIELD_DATE);
 
@@ -54,14 +72,6 @@ A.FormFieldDate = A.Base.create('form-field-date', A.FormField, [], {
         this._uiSetToggleInterval(this.get('toggleInterval'));
         this._uiSetYearToggleTo(this.get('yearToggleTo'));
         this._uiSetTimeToggleTo(this.get('timeToggleTo'));
-
-        this.after({
-            yearToggleFromChange: this._afterYearToggleFromChange,
-            toggleIntervalChange: this._afterToggleIntervalChange,
-            timeToggleFromChange: this._afterTimeToggleFromChange,
-            yearToggleToChange: this._afterYearToggleToChange,
-            timeToggleToChange: this._afterTimeToggleToChange
-        });
     },
 
     /**
