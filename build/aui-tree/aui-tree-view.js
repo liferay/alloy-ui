@@ -192,6 +192,18 @@ var TreeView = A.Component.create(
 			_afterSetChildren: function(event) {
 				var instance = this;
 
+            var paginator = instance.get('paginator');
+
+            if (paginator && paginator.total) {
+                var increment = -1;
+
+                if (event.newVal.length > event.prevVal.length) {
+                    increment = 1;
+                }
+
+                paginator.total += increment;
+            }
+
 				instance._syncPaginatorUI();
 			},
 
