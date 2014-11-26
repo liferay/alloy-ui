@@ -183,22 +183,15 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     _createAddRowArea: function() {
-        var colWidth,
-            index,
-            maximumColsForNewRows = this.get('maximumColsForNewRows'),
-            rowArea = A.Node.create(TPL_ADD_ROW_AREA),
+        var rowArea = A.Node.create(TPL_ADD_ROW_AREA),
             rowOption;
 
-        colWidth = (100 / maximumColsForNewRows) + '%';
+        rowOption = A.Node.create(TPL_ADD_ROW_CHOOSE_ROW);
+        rowOption.setData('numberOfCols', 1);
+        rowOption.setStyle('width', '100%');
+        rowOption.set('text', 'Add Row');
 
-        for (index = 1; index <= maximumColsForNewRows; index++) {
-            rowOption = A.Node.create(TPL_ADD_ROW_CHOOSE_ROW);
-            rowOption.setData('numberOfCols', index);
-            rowOption.setStyle('width', colWidth);
-            rowOption.set('text', 'Add ' + index + (index !== 1 ? ' cols' : ' col'));
-
-            rowArea.append(rowOption);
-        }
+        rowArea.append(rowOption);
 
         return rowArea;
     },
@@ -333,19 +326,6 @@ LayoutBuilderAddRow.ATTRS = {
     enableAddRows: {
         validator: A.Lang.isBoolean,
         value: true
-    },
-
-    /**
-     * Flag indicating the maximum number of cols for new rows.
-     *
-     * @attribute
-     * @default 4
-     * @type {Number}
-     */
-    maximumColsForNewRows: {
-        validator: A.Lang.isNumber,
-        value: 4,
-        writeOnce: 'initOnly'
     }
 };
 

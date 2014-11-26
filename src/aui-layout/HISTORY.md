@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1788](https://issues.liferay.com/browse/AUI-1788) Button for adding new rows should always add a single column
 * [AUI-1758](https://issues.liferay.com/browse/AUI-1758) LayoutBuilder should allow all breakpoints and should not have a min width
 * [AUI-1754](https://issues.liferay.com/browse/AUI-1754) Layout should have option to keep all columns in a row with the same height
 * [AUI-1780](https://issues.liferay.com/browse/AUI-1780) Fix bug with button for adding rows adding multiple rows on each click

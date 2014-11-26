@@ -64,12 +64,12 @@ A.LayoutBuilderAddCol.prototype = {
      * Add a col to row.
      *
      * @method _addCol
-     * @param {EventFacace} event
+     * @param {Node} currentTarget
      * @protected
      */
-    _addCol: function(event) {
-        var addButton = A.one(event.currentTarget),
-            row = event.currentTarget.ancestor(SELECTOR_ROW).getData('layout-row');
+    _addCol: function(currentTarget) {
+        var addButton = A.one(currentTarget),
+            row = currentTarget.ancestor(SELECTOR_ROW).getData('layout-row');
 
         if (addButton.hasClass(CSS_ADD_COL_LEFT)) {
             row.addCol(0);
@@ -187,7 +187,7 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     _onKeyPressAddColEvent: function(event) {
-       this._addCol(event);
+       this._addCol(event.currentTarget);
     },
 
     /**
@@ -198,7 +198,7 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     _onMouseClickAddColEvent: function(event) {
-       this._addCol(event);
+       this._addCol(event.currentTarget);
     },
 
     /**

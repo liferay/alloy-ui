@@ -124,16 +124,11 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
         },
 
         'should create an area to select the new row': function() {
-            var addRowArea = container.one('.layout-builder-add-row-area');
+            var addRowArea = container.one('.layout-builder-add-row-area'),
+                addRowOption = container.one('.layout-builder-add-row-choose-row');
 
             Assert.isNotNull(addRowArea);
-        },
-
-        'should create add row options depending on maximumColsForNewRows attribute': function() {
-            var addRowArea = container.all('.layout-builder-add-row-choose-row'),
-                maximumColsForNewRows = layoutBuilder.get('maximumColsForNewRows');
-
-            Assert.areEqual(maximumColsForNewRows, addRowArea.size());
+            Assert.isNotNull(addRowOption);
         },
 
         'should be able to have diffent cols\' size options for new rows': function() {
