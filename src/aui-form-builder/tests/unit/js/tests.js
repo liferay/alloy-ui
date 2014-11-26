@@ -84,6 +84,50 @@ YUI.add('aui-form-builder-tests', function(Y) {
             rowButton.simulate('click');
         },
 
+        'should resizing the the row when remove a field in nested': function() {
+            var heightAfterMode,
+                heightBeforeMode,
+                settingsPane;
+
+            this.createFormBuilder();
+
+            heightAfterMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
+
+            Y.all('.form-builder-field-toolbar-edit').item(1).simulate('click');
+
+            settingsPane = Y.one('.form-builder-field-settings');
+            settingsPane.all('.button-switch').item(1).simulate('click');
+
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
+
+            Y.Assert.isTrue(heightAfterMode < heightBeforeMode);
+        },
+
+        'should resizing the the row when edit a field in nested': function() {
+            var heightAfterMode,
+                heightBeforeMode,
+                settingsPane;
+
+            this.createFormBuilder();
+
+            heightAfterMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
+
+            Y.all('.form-builder-field-toolbar-edit').item(1).simulate('click');
+
+            settingsPane = Y.one('.form-builder-field-settings');
+            settingsPane.all('.button-switch').item(1).simulate('click');
+
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
+
+            Y.Assert.isTrue(heightAfterMode < heightBeforeMode);
+        },
+
         'should have default empty layout': function() {
             this._formBuilder = new Y.FormBuilder().render('#container');
 
@@ -432,7 +476,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            this._formBuilder.showFieldsPanel();
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
             Y.one('.field-type').simulate('click');
 
             field = this._formBuilder._fieldBeingEdited;

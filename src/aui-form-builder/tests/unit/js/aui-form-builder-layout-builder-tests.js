@@ -67,6 +67,21 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             }
         },
 
+
+        'should the row height adjust on form builder mode change': function() {
+            var height;
+
+            this._createFormBuilder();
+
+            height = Y.all('.layout-row-container-row').item(1).getStyle('height');
+            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
+            Y.Assert.isTrue(parseInt(Y.all('.layout-row-container-row').item(1).getStyle('height')) > parseInt(height));
+
+            height = Y.all('.layout-row-container-row').item(1).getStyle('height');
+            this._formBuilder.set('mode', Y.FormBuilder.MODES.REGULAR);
+            Y.Assert.isFalse(parseInt(Y.all('.layout-row-container-row').item(1).getStyle('height')) > parseInt(height));
+        },
+
         'should be able to add rows on both regular and layout mode': function() {
             var button;
 
@@ -327,6 +342,36 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             row.get('node').one('.layout-builder-move-button').simulate('click');
             row.get('node').all('.form-builder-field-move-button').item(1).simulate('click');
             cols[2].get('node').one('.layout-builder-move-col-target').simulate('click');
+
+            Y.Assert.areEqual(1, cols[0].get('value').get('nestedFields').length);
+            Y.Assert.areNotEqual(field, cols[0].get('value').get('nestedFields')[0]);
+
+            Y.Assert.areEqual(1, cols[2].get('value').get('nestedFields').length);
+            Y.Assert.areEqual(field, cols[2].get('value').get('nestedFields')[0]);
+        },
+
+        'should resizing the the row when move a nested field to other col': function() {
+            var cols,
+                field,
+                heightAfterMode,
+                heightBeforeMode,
+                row;
+
+            this._createFormBuilder({
+                mode: Y.FormBuilder.MODES.LAYOUT
+            });
+
+            row = this._formBuilder.get('layout').get('rows')[1];
+            cols = row.get('cols');
+            field = cols[0].get('value').get('nestedFields')[0];
+
+            heightAfterMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
+
+            row.get('node').one('.layout-builder-move-button').simulate('click');
+            row.get('node').all('.form-builder-field-move-button').item(1).simulate('click');
+            cols[2].get('node').one('.layout-builder-move-col-target').simulate('click');
+
+            heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
 
             Y.Assert.areEqual(1, cols[0].get('value').get('nestedFields').length);
             Y.Assert.areNotEqual(field, cols[0].get('value').get('nestedFields')[0]);

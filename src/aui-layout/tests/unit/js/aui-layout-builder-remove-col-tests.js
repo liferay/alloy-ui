@@ -179,7 +179,7 @@ YUI.add('aui-layout-builder-remove-col-tests', function(Y) {
 
             Y.Mock.expect(layout, {
                 args: [Y.Mock.Value.Object],
-                method: '_normalizeColsHeight'
+                method: 'normalizeColsHeight'
             });
 
             deleteColButton = Y.one('.layout-builder-remove-col-button');

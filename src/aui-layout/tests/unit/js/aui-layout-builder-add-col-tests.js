@@ -242,7 +242,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             Y.Mock.expect(layout, {
                 args: [Y.Mock.Value.Object],
-                method: '_normalizeColsHeight'
+                method: 'normalizeColsHeight'
             });
 
             addColButton = Y.one('.layout-builder-add-col');

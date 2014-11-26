@@ -75,7 +75,10 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _afterLayoutBuilderModeChange: function() {
+        var layout = this.get('layout');
+
         this._uiSetLayoutBuilderMode(this.get('mode'));
+        layout.normalizeColsHeight(layout.get('node').all('.row').get('nodes'));
     },
 
     /**
@@ -234,6 +237,8 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         if (parentFieldNode) {
             parentFieldNode.getData('field-instance').removeNestedField(this._fieldBeingMoved);
+
+            this.get('layout').normalizeColsHeight([this.getFieldRow(parentFieldNode.getData('field-instance'))]);
         }
         else {
             this._fieldBeingMovedCol.set('value', null);
@@ -244,6 +249,8 @@ A.FormBuilderLayoutBuilder.prototype = {
                 moveTarget.getData('nested-field-index'),
                 this._fieldBeingMoved
             );
+
+            this.get('layout').normalizeColsHeight([this.getFieldRow(targetNestedParent)]);
         }
         else {
             moveTarget.getData('col').set('value', this._fieldBeingMoved);

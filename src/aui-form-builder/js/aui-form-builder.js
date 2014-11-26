@@ -186,6 +186,17 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
+     * Returns the `fieldInstance`'s row.
+     *
+     * @method getFieldRow
+     * @param {A.FormField} fieldInstance
+     * @return {Node} The row where is the field parameter
+     */
+    getFieldRow: function(fieldInstance) {
+        return fieldInstance.get('content').ancestor('.layout-row');
+    },
+
+    /**
      * Hides the settings panel for the given field.
      *
      * @method hideFieldSettingsPanel
@@ -699,6 +710,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
             parentField = nestedFieldsNode.ancestor('.form-builder-field').getData('field-instance');
             parentField.removeNestedField(field);
+
+            this.get('layout').normalizeColsHeight([this.getFieldRow(parentField)]);
         }
         else {
             col = event.currentTarget.ancestor('.col').getData('layout-col');
@@ -794,6 +807,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             if (this._colAddingField) {
                 this._colAddingField.set('value', this._fieldBeingEdited);
                 this._colAddingField = null;
+            }
+            else {
+                this.get('layout').normalizeColsHeight([this._fieldBeingEdited.get('content').ancestor('.layout-row')]);
             }
 
             this._toggleUniqueDisabled(this._fieldBeingEdited, true);

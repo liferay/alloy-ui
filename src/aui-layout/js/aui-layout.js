@@ -125,6 +125,42 @@ A.Layout = A.Base.create('layout', A.Base, [], {
     },
 
     /**
+     * Normalize all cols' height for each row.
+     *
+     * @method normalizeColsHeight
+     * @param {Array} rows Rows to normalize cols' height.
+     **/
+    normalizeColsHeight: function(rows) {
+        var instance = this,
+            colClientHeight,
+            cols,
+            highestCol = 0;
+
+        A.Array.each(rows, function(row) {
+            cols = row.all(SELECTOR_COL);
+
+            if (instance.get('isColumnMode')) {
+                if (row.getData('layout-row').get('equalHeight')) {
+                    A.Array.invoke(cols, 'setStyle', 'height', 'auto');
+                    cols.each(function(col) {
+                        colClientHeight = col.get('clientHeight');
+
+                        if (colClientHeight > highestCol) {
+                            highestCol = colClientHeight;
+                        }
+                    });
+
+                    A.Array.invoke(cols, 'setStyle', 'height', highestCol + 'px');
+                    highestCol = 0;
+                }
+            }
+            else {
+                A.Array.invoke(cols, 'setStyle', 'height', 'auto');
+            }
+        });
+    },
+
+    /**
      * Removes a row from this layout.
      *
      * @method removeRow
@@ -147,7 +183,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      */
     _afterLayoutColsChange: function(event) {
         var row = event.target;
-        this._normalizeColsHeight([row.get('node').one(SELECTOR_ROW)]);
+        this.normalizeColsHeight([row.get('node').one(SELECTOR_ROW)]);
     },
 
     /**
@@ -166,7 +202,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
             }
         });
 
-        this._normalizeColsHeight([targets[0].get('node').one(SELECTOR_ROW)]);
+        this.normalizeColsHeight([targets[0].get('node').one(SELECTOR_ROW)]);
     },
 
     /**
@@ -208,44 +244,8 @@ A.Layout = A.Base.create('layout', A.Base, [], {
         if (this.get('isColumnMode') !== enableColumnMode) {
             this._set('isColumnMode', enableColumnMode);
 
-            this._normalizeColsHeight(this.get('node').all(SELECTOR_ROW).get('nodes'));
+            this.normalizeColsHeight(this.get('node').all(SELECTOR_ROW).get('nodes'));
         }
-    },
-
-    /**
-     * Normalize all cols' height for each row.
-     *
-     * @method _normalizeColsHeight
-     * @param {Array} rows Rows to normalize cols' height.
-     **/
-    _normalizeColsHeight: function(rows) {
-        var instance = this,
-            colClientHeight,
-            cols,
-            highestCol = 0;
-
-        A.Array.each(rows, function(row) {
-            cols = row.all(SELECTOR_COL);
-
-            if (instance.get('isColumnMode')) {
-                if (row.getData('layout-row').get('equalHeight')) {
-                    A.Array.invoke(cols, 'setStyle', 'height', 'auto');
-                    cols.each(function(col) {
-                        colClientHeight = col.get('clientHeight');
-
-                        if (colClientHeight > highestCol) {
-                            highestCol = colClientHeight;
-                        }
-                    });
-
-                    A.Array.invoke(cols, 'setStyle', 'height', highestCol + 'px');
-                    highestCol = 0;
-                }
-            }
-            else {
-                A.Array.invoke(cols, 'setStyle', 'height', 'auto');
-            }
-        });
     },
 
     /**
