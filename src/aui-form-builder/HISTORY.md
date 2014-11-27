@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1791](https://issues.liferay.com/browse/AUI-1791) Changing a field's content should update its row height
 * [AUI-1806](https://issues.liferay.com/browse/AUI-1806) Add button to cancel editing/creating a field
 * [AUI-1792](https://issues.liferay.com/browse/AUI-1792) Fix bug when canceling field creation followed by editing a field
 * [AUI-1750](https://issues.liferay.com/browse/AUI-1750) Create time field
