@@ -984,7 +984,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(Y.FormBuilder.MODES.REGULAR, this._formBuilder.get('mode'));
         },
 
-        'souhld show corret label when open settings editor': function() {
+        'should show corret label when open settings editor': function() {
             var col;
 
             this.createFormBuilder({
