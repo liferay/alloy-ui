@@ -547,6 +547,36 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isFalse(settingsPane.hasClass('modal-dialog-hidden'));
         },
 
+        'should close the field settings editor when clicked on cancel button': function() {
+            var field = new Y.FormBuilderFieldText(),
+                settingsPane;
+
+            this.createFormBuilder();
+            Y.Assert.isNull(Y.one('.form-builder-field-settings'));
+
+            this._formBuilder.showFieldSettingsPanel(field);
+            settingsPane = Y.one('.form-builder-field-settings');
+
+            Y.one('.form-builder-field-settings-cancel').simulate('mousemove');
+            Y.one('.form-builder-field-settings-cancel').simulate('click');
+            Y.Assert.isTrue(settingsPane.hasClass('modal-dialog-hidden'));
+        },
+
+        'should close the field settings editor when clicked on close button': function() {
+            var field = new Y.FormBuilderFieldText(),
+                settingsPane;
+
+            this.createFormBuilder();
+            Y.Assert.isNull(Y.one('.form-builder-field-settings'));
+
+            this._formBuilder.showFieldSettingsPanel(field);
+            settingsPane = Y.one('.form-builder-field-settings');
+
+            Y.one('.form-builder-field-settings-content').one('.close').simulate('mousemove');
+            Y.one('.form-builder-field-settings-content').one('.close').simulate('click');
+            Y.Assert.isTrue(settingsPane.hasClass('modal-dialog-hidden'));
+        },
+
         'should show the toolbar of field when clicked on configuration button of field': function() {
             this.createFormBuilder({
                 fieldTypes: [{
@@ -971,7 +1001,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-settings-save').simulate('click');
             Y.one('.form-builder-field-toolbar-edit').simulate('click');
 
-            Y.Assert.areEqual(Y.one('.modal-header').getHTML(), 'Text');
+            Y.Assert.areEqual(Y.one('.form-builder-field-settings-label').getHTML(), 'Text');
         },
 
         'should disable adding unique field already used by creating one': function() {

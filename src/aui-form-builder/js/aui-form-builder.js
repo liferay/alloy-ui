@@ -17,6 +17,9 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
+    CSS_FIELD_SETTINGS_CANCEL =
+        A.getClassName('form', 'builder', 'field', 'settings', 'cancel'),
+    CSS_FIELD_SETTINGS_LABEL = A.getClassName('form', 'builder', 'field', 'settings', 'label'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
     CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
@@ -190,6 +193,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     hideFieldSettingsPanel: function() {
         if (this._fieldSettingsModal) {
             this._fieldSettingsModal.hide();
+            this._colAddingField = null;
         }
     },
 
@@ -244,7 +248,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         bodyNode.empty();
         field.renderSettingsPanel(bodyNode);
 
-        this._fieldSettingsModal.setStdModContent(A.WidgetStdMod.HEADER, typeName);
+        this._fieldSettingsModal.get('boundingBox').one('.' + CSS_FIELD_SETTINGS_LABEL).set('text', typeName);
 
         this._fieldSettingsModal.show();
         this._fieldSettingsModal.align();
@@ -731,16 +735,43 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _renderFieldSettingsModal: function() {
+        var instance = this;
+
         this._fieldSettingsModal = new A.Modal({
             centered: true,
             cssClass: CSS_FIELD_SETTINGS,
             draggable: false,
             modal: true,
+            headerContent: '<div class="' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
             resizable: false,
+            toolbars: {
+                header: [
+                    {
+                        cssClass: 'close',
+                        label: '\u00D7',
+                        on: {
+                            click: function() {
+                                instance.hideFieldSettingsPanel();
+                            }
+                        },
+                        render: true
+                    }
+                ]
+            },
             zIndex: 2
         }).render();
 
         this._fieldSettingsModal.addToolbar([{
+            cssClass: CSS_FIELD_SETTINGS_CANCEL,
+            label: 'Cancel',
+            on: {
+                click: function() {
+                    instance.hideFieldSettingsPanel();
+                }
+            },
+            render: true
+        },
+        {
             cssClass: CSS_FIELD_SETTINGS_SAVE,
             label: 'Save',
             on: {
@@ -768,7 +799,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             this._toggleUniqueDisabled(this._fieldBeingEdited, true);
 
             this.hideFieldSettingsPanel();
-            this._fieldBeingEdited = null;
         }
     },
 
