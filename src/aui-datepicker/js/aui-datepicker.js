@@ -276,28 +276,17 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
-    * TODO. Wanna help? Please send a Pull Request.
-    *
-    * @method _fireEnterKey
-    * @protected
-    */
-    _fireEnterKey: function() {
-        var instance = this;
-
-        instance.fire('enterKey');
-    },
-
-    /**
     * Handles keydown events
     *
     * @method _handleKeydownEvent
+    * @param event
     * @protected
     */
     _handleKeydownEvent: function(event) {
         var instance = this;
 
-        if (event.isKey('ENTER')) {
-            instance._fireEnterKey();
+        if (event.isKey('enter')) {
+            instance.fire('enterKey');
         }
     },
 
