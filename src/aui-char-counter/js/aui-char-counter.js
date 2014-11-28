@@ -179,7 +179,9 @@ var CharCounter = A.Component.create({
          * [_onInputChange](A.CharCounter.html#method__onInputChange).
          *
          * @method checkLength
-         * @return {Boolean} or {Number} if the value gets trimmed
+         * @return {Boolean | String} Returns the final value if it was changed.
+         *   Otherwise returns either true, when the input value was checked, or
+         *   false if there was no input to check the value for.
          */
         checkLength: function() {
             var instance = this;
