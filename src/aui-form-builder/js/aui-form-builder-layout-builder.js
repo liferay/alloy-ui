@@ -245,12 +245,11 @@ A.FormBuilderLayoutBuilder.prototype = {
         }
 
         if (targetNestedParent) {
-            targetNestedParent.addNestedField(
-                moveTarget.getData('nested-field-index'),
-                this._fieldBeingMoved
+            this._addNestedField(
+                targetNestedParent,
+                this._fieldBeingMoved,
+                moveTarget.getData('nested-field-index')
             );
-
-            this.get('layout').normalizeColsHeight([this.getFieldRow(targetNestedParent)]);
         }
         else {
             moveTarget.getData('col').set('value', this._fieldBeingMoved);

@@ -358,16 +358,17 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
-     * Adds into field nested list a field and normalize the columns height.
+     * Adds a field into field's nested list and normalizes the columns height.
      *
      * @method _addNestedField
      * @param {A.FormField} field The Field with nested list that will receive the field
      * @param {A.FormField} nested Field to add as nested
+     * @param {Number} index The position where the nested field should be added
      * @protected
      */
-    _addNestedField: function(field, nested) {
-        field.addNestedField(field.get('nestedFields').length, nested);
-        this.get('layout').normalizeColsHeight([nested.get('content').ancestor('.layout-row')]);
+    _addNestedField: function(field, nested, index) {
+        field.addNestedField(index, nested);
+        this.get('layout').normalizeColsHeight([this.getFieldRow(nested)]);
     },
 
     /**
@@ -591,7 +592,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
-     * Fired when the button for add a field in nested is clicked.
+     * Fired when the button for adding a field in nested is clicked.
      *
      * @method _onClickAddNestedField
      * @param {EventFacade} event
@@ -837,7 +838,11 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
                     this._newFieldContainer.set('value', this._fieldBeingEdited);
                 }
                 else if (A.instanceOf(this._newFieldContainer, A.FormField)) {
-                    this._addNestedField(this._newFieldContainer, this._fieldBeingEdited);
+                    this._addNestedField(
+                        this._newFieldContainer,
+                        this._fieldBeingEdited,
+                        this._newFieldContainer.get('nestedFields').length
+                    );
                 }
                 this._newFieldContainer = null;
             }
