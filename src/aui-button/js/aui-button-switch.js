@@ -103,7 +103,7 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
             this._innerCircle = A.Node.create(TPL_INNER_CIRCLE);
             this.get('content').append(this._innerCircle);
         }
-        
+
         return this._innerCircle;
     },
 
@@ -186,6 +186,9 @@ A.ButtonSwitch = A.Base.create('button-switch', A.Widget, [], {
      */
     _setInnerCirclePosition: function(activated) {
         var innerCircle = this._getInnerCircle();
+
+        // Clear the styling, as it has higher precedence than css classes.
+        innerCircle.setStyle('left', '');
 
         if (activated) {
             innerCircle.removeClass(CSS_BUTTON_SWITCH_LEFT);

@@ -109,7 +109,8 @@ A.FormBuilderFieldBase.prototype = {
      * @param {Node} container The container where the panel should be rendered.
      */
     renderSettingsPanel: function(container) {
-        var currentNode,
+        var attrValue,
+            currentNode,
             i,
             settings = this._getSettings();
 
@@ -121,7 +122,10 @@ A.FormBuilderFieldBase.prototype = {
                 currentNode = container.one('.' + CSS_FIELD_SETTINGS_PANEL_RIGHT);
             }
 
-            settings[i].editor.set('originalValue', this.get(settings[i].attrName));
+            attrValue = this.get(settings[i].attrName);
+            settings[i].editor.set('originalValue', attrValue);
+            settings[i].editor.updateUiWithValue(attrValue);
+
             currentNode.append(this.renderSetting(settings[i]));
         }
     },

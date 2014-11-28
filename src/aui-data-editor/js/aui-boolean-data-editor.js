@@ -119,7 +119,7 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
                 innerLabelRight: instance.get('innerLabelRight')
             }).render(instance.get('node').one('.' + CSS_BOOLEAN_DATA_EDITOR_SWITCH_BUTTON));
         }
-        
+
         return this._buttonSwitch;
     },
 
