@@ -18,6 +18,7 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_SETTINGS_PANEL_RIGHT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'right'),
     CSS_FIELD_SETTINGS_PANEL_SEPARATOR = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'separator'),
     CSS_FIELD_TOOLBAR = A.getClassName('form', 'builder', 'field', 'toolbar'),
+    CSS_FIELD_TOOLBAR_ADD_NESTED = A.getClassName('form', 'builder', 'field', 'toolbar', 'add', 'nested'),
     CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
     CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'field', 'toolbar', 'edit'),
     CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'field', 'toolbar', 'remove'),
@@ -42,6 +43,7 @@ A.FormBuilderFieldBase.prototype = {
         '<div class="' + CSS_FIELD_CONTENT + ' form-field-content"></div>' +
         '<div class="' + CSS_FIELD_MOVE_BUTTON + ' layout-builder-move-cut-button"></div>' +
         '<div class="btn-group ' + CSS_FIELD_TOOLBAR + ' hide">' +
+        '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_ADD_NESTED + '"><span class="glyphicon glyphicon-plus"></span></button>' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_EDIT + '"><span class="glyphicon glyphicon-wrench"></span></button>' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_REMOVE + '"><span class="glyphicon glyphicon-trash"></span></button>' +
         '<button class="btn btn-default ' + CSS_FIELD_TOOLBAR_CLOSE + '"><span class="glyphicon glyphicon-remove"></span></button>' +

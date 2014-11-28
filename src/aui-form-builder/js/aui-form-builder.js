@@ -22,6 +22,7 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_SETTINGS_LABEL = A.getClassName('form', 'builder', 'field', 'settings', 'label'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
+    CSS_FIELD_TOOLBAR_ADD_NESTED = A.getClassName('form', 'builder', 'field', 'toolbar', 'add', 'nested'),
     CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
     CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'field', 'toolbar', 'edit'),
     CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'field', 'toolbar', 'remove'),
@@ -136,6 +137,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             boundingBox.delegate('mouseenter', this._onFieldMouseEnter, '.' + CSS_FIELD_CONTENT, this),
             boundingBox.delegate('mouseleave', this._onFieldMouseLeave, '.' + CSS_FIELD_CONTENT_TOOLBAR, this),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
+            boundingBox.delegate('click', this._onClickAddNestedField, '.' + CSS_FIELD_TOOLBAR_ADD_NESTED, this),
             boundingBox.delegate('click', this._onClickConfigurationField, '.' + CSS_FIELD_CONFIGURATION, this),
             boundingBox.delegate('click', this._onClickEditField, '.' + CSS_FIELD_TOOLBAR_EDIT, this),
             boundingBox.delegate('click', this._onClickCloseField, '.' + CSS_FIELD_TOOLBAR_CLOSE, this),
@@ -204,7 +206,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     hideFieldSettingsPanel: function() {
         if (this._fieldSettingsModal) {
             this._fieldSettingsModal.hide();
-            this._colAddingField = null;
+            this._newFieldContainer = null;
         }
     },
 
@@ -301,7 +303,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
                             on: {
                                 click: function() {
                                     instance.hideFieldsPanel();
-                                    instance._colAddingField = null;
+                                    instance._newFieldContainer = null;
                                 }
                             },
                             render: true
@@ -353,6 +355,19 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         });
 
         this.set('fieldTypes', this.get('fieldTypes'));
+    },
+
+    /**
+     * Adds into field nested list a field and normalize the columns height.
+     *
+     * @method _addNestedField
+     * @param {A.FormField} field The Field with nested list that will receive the field
+     * @param {A.FormField} nested Field to add as nested
+     * @protected
+     */
+    _addNestedField: function(field, nested) {
+        field.addNestedField(field.get('nestedFields').length, nested);
+        this.get('layout').normalizeColsHeight([nested.get('content').ancestor('.layout-row')]);
     },
 
     /**
@@ -533,7 +548,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _onEscKey: function() {
-        this._colAddingField = null;
+        this._newFieldContainer = null;
     },
 
     /**
@@ -555,7 +570,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _onClickAddField: function(event) {
-        this._colAddingField = event.currentTarget.ancestor('.col').getData('layout-col');
+        this._newFieldContainer = event.currentTarget.ancestor('.col').getData('layout-col');
 
         this.showFieldsPanel();
     },
@@ -573,6 +588,19 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         row = this._createPageBreakRow(this._getNumberOfPageBreaks() + 1);
 
         this.get('layout').addRow(newRowIndex, row);
+    },
+
+    /**
+     * Fired when the button for add a field in nested is clicked.
+     *
+     * @method _onClickAddNestedField
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickAddNestedField: function (event) {
+        this._newFieldContainer = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
+
+        this.showFieldsPanel();
     },
 
     /**
@@ -804,9 +832,14 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         if (this._fieldBeingEdited.validateSettings()) {
             this._fieldBeingEdited.saveSettings();
 
-            if (this._colAddingField) {
-                this._colAddingField.set('value', this._fieldBeingEdited);
-                this._colAddingField = null;
+            if (this._newFieldContainer) {
+                if (A.instanceOf(this._newFieldContainer, A.LayoutCol)) {
+                    this._newFieldContainer.set('value', this._fieldBeingEdited);
+                }
+                else if (A.instanceOf(this._newFieldContainer, A.FormField)) {
+                    this._addNestedField(this._newFieldContainer, this._fieldBeingEdited);
+                }
+                this._newFieldContainer = null;
             }
             else {
                 this.get('layout').normalizeColsHeight([this._fieldBeingEdited.get('content').ancestor('.layout-row')]);

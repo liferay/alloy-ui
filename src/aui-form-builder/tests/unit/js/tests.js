@@ -712,6 +712,33 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isFalse(Y.one('.form-builder-field-settings').hasClass('modal-dialog-hidden'));
         },
 
+        'should add a field in nested on click add nested button': function() {
+            var nestedField,
+                nestedFieldLenght;
+
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText,
+                    label: 'Text'
+                }]
+            });
+
+            nestedField = this._formBuilder.get('layout').get('rows')[1].get('cols')[2].get('value').get('nestedFields');
+            nestedFieldLenght = nestedField.length;
+
+            Y.one('.form-builder-field-configuration').simulate('click');
+            Y.one('.form-builder-field-toolbar-add-nested').simulate('click');
+
+            Y.one('.form-builder-modal').one('.field-type').simulate('click');
+            Y.one('.form-builder-field-settings').one('input[type="text"]').set('value', 'Nested Field 3');
+
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            Y.Assert.isTrue(nestedField.length > nestedFieldLenght);
+            Y.Assert.areEqual(nestedField[2].get('title'), 'Nested Field 3');
+        },
+
         'should show a configuration button when mouse enter on field region': function() {
             this.createFormBuilder({
                 fieldTypes: [{
