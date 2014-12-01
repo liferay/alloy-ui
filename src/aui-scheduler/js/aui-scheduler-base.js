@@ -51,11 +51,13 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
     TPL_SCHEDULER_TODAY = '<button aria-label="{ariaLabel}" role="button" type="button" class="' +
         [CSS_SCHEDULER_TODAY, CSS_BTN, CSS_BTN_DEFAULT].join(' ') + '">{today}</button>',
-    TPL_SCHEDULER_VIEW = '<option aria-label="{ariaLabel}" aria-pressed="false" class="' +
+    TPL_SCHEDULER_VIEW_BUTTON = '<button aria-label="{ariaLabel}" aria-pressed="false" type="button" class="hidden-xs ' +
+        [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') + '{name}" data-view-name="{name}">{label}</button>',
+    TPL_SCHEDULER_VIEW_LIST = '<option aria-label="{ariaLabel}" aria-pressed="false" class="' +
         [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') + '{name}" data-view-name="{name}">{label}</option>',
     TPL_SCHEDULER_VIEW_DATE = '<div class="' + CSS_SCHEDULER_VIEW_DATE + '"></div>',
-    TPL_SCHEDULER_VIEWS = '<div class="col-xs-5 form-inline ' + CSS_SCHEDULER_VIEWS + '"><label class="hidden-xs">View:</label></div>',
-    TPL_SCHEDULER_VIEWS_SELECT = '<select class="form-control"></select>';
+    TPL_SCHEDULER_VIEWS = '<div class="col-xs-5 form-inline ' + CSS_SCHEDULER_VIEWS + '"></div>',
+    TPL_SCHEDULER_VIEWS_SELECT = '<select class="form-control visible-xs"></select>';
 
 /**
  * A base class for `SchedulerEvents`.
@@ -966,6 +968,24 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+         * Renders a new `ButtonGroup` and attaches it to the `Scheduler`
+         * instances as a property `instance.buttonGroup`. It is rendered under
+         * the `Scheduler` instance's `viewsNode`.
+         *
+         * @method renderButtonGroup
+         */
+        renderButtonGroup: function() {
+            var instance = this;
+
+            instance.buttonGroup = new A.ButtonGroup({
+                boundingBox: instance.viewsNode,
+                on: {
+                    selectionChange: A.bind(instance._onButtonGroupSelectionChange, instance)
+                }
+            }).render();
+        },
+
+        /**
          * Renders a dropdown list under the `Scheduler` instance's `viewsNode`.
          *
          * @method renderDropdownList
@@ -992,7 +1012,8 @@ var SchedulerBase = A.Component.create({
             instance.controlsNode.append(instance.navNode);
 
             A.Array.each(views, function(view) {
-                instance.selectNode.append(instance._createViewTriggerNode(view));
+                instance.selectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
+                instance.viewsNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
             });
 
             instance.viewsNode.append(instance.selectNode);
@@ -1045,6 +1066,7 @@ var SchedulerBase = A.Component.create({
                 activeView = instance.get('activeView');
 
             instance.renderView(activeView);
+            instance.renderButtonGroup();
             instance.renderDropdownList();
 
             instance._uiSetDate(instance.get('date'));
@@ -1074,26 +1096,24 @@ var SchedulerBase = A.Component.create({
          *
          * @method _createViewTriggerNode
          * @param {A.SchedulerView} view
+         * @param {String} tpl
          * @protected
          * @return {Node} The `SchedulerView`'s trigger `Node`.
          */
-        _createViewTriggerNode: function(view) {
+        _createViewTriggerNode: function(view, tpl) {
             var instance = this;
+            var name = view.get('name');
 
-            if (!view.get('triggerNode')) {
-                var name = view.get('name');
-
-                view.set(
-                    'triggerNode',
-                    A.Node.create(
-                        A.Lang.sub(TPL_SCHEDULER_VIEW, {
-                            name: name,
-                            label: (instance.getString(name) || name),
-                            ariaLabel: instance.getAriaLabel(name)
-                        })
-                    )
-                );
-            }
+            view.set(
+                'triggerNode',
+                A.Node.create(
+                    A.Lang.sub(tpl, {
+                        name: name,
+                        label: (instance.getString(name) || name),
+                        ariaLabel: instance.getAriaLabel(name)
+                    })
+                )
+            );
 
             return view.get('triggerNode');
         },
@@ -1125,6 +1145,24 @@ var SchedulerBase = A.Component.create({
             }
 
             return date;
+        },
+
+        /**
+         * Handles `buttonGroupSelectionChange` events.
+         *
+         * @method _onButtonGroupSelectionChange
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onButtonGroupSelectionChange: function(event) {
+            var instance = this,
+                viewName = event.originEvent.target.attr('data-view-name');
+
+            instance.set('activeView', instance.getViewByName(viewName));
+
+            instance.selectNode.one('[data-view-name=' + viewName + ']').set('selected', true);
+
+            event.preventDefault();
         },
 
         /**
@@ -1184,7 +1222,7 @@ var SchedulerBase = A.Component.create({
         /**
          * Handles select's change events.
          *
-         * @method _onButtonGroupSelectionChange
+         * @method _onSelectionChange
          * @param {EventFacade} event
          * @protected
          */
