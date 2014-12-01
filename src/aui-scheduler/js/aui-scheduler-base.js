@@ -806,6 +806,24 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+         * Renders a new `ButtonGroup` and attaches it to the `Scheduler`
+         * instances as a property `instance.buttonGroup`. It is rendered under
+         * the `Scheduler` instance's `viewsNode`.
+         *
+         * @method renderButtonGroup
+         */
+        renderButtonGroup: function() {
+            var instance = this;
+
+            instance.buttonGroup = new A.ButtonGroup({
+                boundingBox: instance.viewsNode,
+                on: {
+                    selectionChange: A.bind(instance._onButtonGroupSelectionChange, instance)
+                }
+            }).render();
+        },
+
+        /**
          * Renders a dropdown list under the `Scheduler` instance's `viewsNode`.
          *
          * @method renderDropdownList
@@ -832,7 +850,8 @@ var SchedulerBase = A.Component.create({
             instance[CONTROLS_NODE].append(instance[NAV_NODE]);
 
             A.Array.each(views, function(view) {
-                instance.selectNode.append(instance._createViewTriggerNode(view));
+                instance.selectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
+                instance[VIEWS_NODE].append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
             });
 
             instance.viewsNode.append(instance.selectNode);
@@ -885,6 +904,7 @@ var SchedulerBase = A.Component.create({
                 activeView = instance.get(ACTIVE_VIEW);
 
             instance.renderView(activeView);
+            instance.renderButtonGroup();
             instance.renderDropdownList();
 
             instance._uiSetDate(instance.get(DATE));
@@ -911,25 +931,24 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _createViewTriggerNode
-         * @param view
+         * @param {A.SchedulerView} view
+         * @param {String} tpl
          * @protected
+         * @return {Node} The `SchedulerView`'s trigger `Node`.
          */
-        _createViewTriggerNode: function(view) {
+        _createViewTriggerNode: function(view, tpl) {
             var instance = this;
+            var name = view.get(NAME);
 
-            if (!view.get(TRIGGER_NODE)) {
-                var name = view.get(NAME);
-
-                view.set(
-                    TRIGGER_NODE,
-                    A.Node.create(
-                        Lang.sub(TPL_SCHEDULER_VIEW, {
-                            name: name,
-                            label: (instance.getString(name) || name)
-                        })
-                    )
-                );
-            }
+            view.set(
+                TRIGGER_NODE,
+                A.Node.create(
+                    A.Lang.sub(tpl, {
+                        name: name,
+                        label: (instance.getString(name) || name)
+                    })
+                )
+            );
 
             return view.get(TRIGGER_NODE);
         },
@@ -963,7 +982,25 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Handles `buttonGroupSelectionChange` events.
+         *
+         * @method _onButtonGroupSelectionChange
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onButtonGroupSelectionChange: function(event) {
+            var instance = this,
+                viewName = event.originEvent.target.attr('data-view-name');
+
+            instance.set(ACTIVE_VIEW, instance.getViewByName(viewName));
+
+            instance.selectNode.one('[data-view-name=' + viewName + ']').set('selected', true);
+
+            event.preventDefault();
+        },
+
+        /**
+         * Handles `clickToday` events.
          *
          * @method _onClickToday
          * @param event
@@ -1019,8 +1056,8 @@ var SchedulerBase = A.Component.create({
         /**
          * Handles select's change events.
          *
-         * @method _onButtonGroupSelectionChange
-         * @param event
+         * @method _onSelectionChange
+         * @param {EventFacade} event
          * @protected
          */
         _onSelectionChange: function(event) {
