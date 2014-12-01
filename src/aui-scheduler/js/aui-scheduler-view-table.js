@@ -471,7 +471,11 @@ var SchedulerTableView = A.Component.create({
                     return;
                 }
 
-                var events = instance.getIntersectEvents(celDate);
+                var events = instance.evtDateStack[key];
+                if (!events) {
+                    events = [];
+                }
+
                 var evt = instance._getRenderableEvent(events, rowStartDate, rowEndDate, celDate);
 
                 var evtColNode = A.Node.create(TPL_SVT_TABLE_DATA_COL);
@@ -854,6 +858,49 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
+         * Adds the given event to the stack for all dates between the given
+         * range.
+         *
+         * @method _addEventToAllDates
+         * @param {A.SchedulerEvent} event
+         * @param {Date} firstDate
+         * @param {Date} lastDate
+         * @protected
+         */
+        _addEventToAllDates: function(event, firstDate, lastDate) {
+            var currentDate = firstDate,
+                eventEndDate = event.getClearEndDate();
+
+            if (DateMath.after(lastDate, eventEndDate)) {
+                lastDate = eventEndDate;
+            }
+
+            while (!DateMath.after(currentDate, lastDate)) {
+                this._addToEvtDateStack(
+                    String(currentDate.getTime()),
+                    event
+                );
+
+                currentDate = DateMath.add(currentDate, DateMath.DAY, 1);
+            }
+        },
+
+        /**
+         * Adds the given event to the stack for the given date key.
+         *
+         * @method _addToEvtDateStack
+         * @param {String} key String representation of a date
+         * @param {A.SchedulerEvent} event
+         * @protected
+         */
+        _addToEvtDateStack: function(key, event) {
+            if (!this.evtDateStack[key]) {
+                this.evtDateStack[key] = [];
+            }
+            this.evtDateStack[key].push(event);
+        },
+
+        /**
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _findCurrentIntervalEnd
@@ -912,16 +959,13 @@ var SchedulerTableView = A.Component.create({
                 events = this.get('scheduler').getEvents(null, true),
                 eventStartDate,
                 filterFn = this.get('filterFn'),
-                i = 0,
-                key = String(currentDate.getTime());
+                i = 0;
 
             // Sort events by start date (they are sorted in a different way
             // by default).
             events.sort(function(evt1, evt2) {
                 return evt1.getClearStartDate() - evt2.getClearStartDate();
             });
-
-            this.evtDateStack[key] = [];
 
             while (i < events.length) {
                 eventStartDate = events[i].getClearStartDate();
@@ -940,18 +984,10 @@ var SchedulerTableView = A.Component.create({
                         // intersections for. Exit the loop.
                         break;
                     }
-                    else {
-                        // Prepare this date's event stack and let it be compared
-                        // with the current event on the next iteration.
-                        key = String(currentDate.getTime());
-                        this.evtDateStack[key] = [];
-                    }
                 }
                 else {
                     if (!filterFn || filterFn(events[i])) {
-                        // The current date intersects this event and passes the
-                        // filter, so store it.
-                        this.evtDateStack[key].push(events[i]);
+                        this._addEventToAllDates(events[i], currentDate, endDate);
                     }
 
                     i++;
