@@ -38,15 +38,25 @@ YUI.add('aui-form-field-choice-tests', function(Y) {
             Y.Assert.isNull(fieldNode.one('.form-field-choice-option-other'));
         },
 
-        'should render input according to multiline attribute': function() {
+        'should render input according to type attribute': function() {
             var fieldNode;
 
             this._field = new Y.FormFieldChoice();
             fieldNode = this._field.get('content');
 
-            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-multiple'));
-            this._field.set('multiple', true);
-            Y.Assert.isTrue(fieldNode.hasClass('form-field-choice-multiple'));
+            Y.Assert.isTrue(fieldNode.hasClass('form-field-choice-radio'));
+            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-checkbox'));
+            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-dropdown'));
+
+            this._field.set('type', Y.FormFieldChoice.TYPES.CHECKBOX);
+            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-radio'));
+            Y.Assert.isTrue(fieldNode.hasClass('form-field-choice-checkbox'));
+            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-dropdown'));
+
+            this._field.set('type', Y.FormFieldChoice.TYPES.DROPDOWN);
+            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-radio'));
+            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-checkbox'));
+            Y.Assert.isTrue(fieldNode.hasClass('form-field-choice-dropdown'));
         }
     }));
 

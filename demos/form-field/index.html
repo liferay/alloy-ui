@@ -11,16 +11,18 @@
     <h1>AlloyUI - Form Field</h1>
 
     <h2>Choice</h2>
-    <div id="fieldChoice"></div>
+    <h3>Radio</h3>
+    <div id="fieldChoiceRadio"></div>
+    <h3>Checkbox</h3>
+    <div id="fieldChoiceCheckbox"></div>
+    <h3>Dropdown</h3>
+    <div id="fieldChoiceDropdown"></div>
 
     <h2>Date</h2>
     <div id="fieldDate"></div>
 
     <h2>Grid</h2>
     <div id="fieldGrid"></div>
-
-    <h2>List</h2>
-    <div id="fieldList"></div>
 
     <h2>Scale</h2>
     <div id="fieldScale"></div>
@@ -33,15 +35,28 @@
 
 <script type="text/javascript" charset="utf-8">
 YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-form-field-grid',
-    'aui-form-field-list', 'aui-form-field-scale', 'aui-form-field-time', 'aui-form-field-text',
+    'aui-form-field-scale', 'aui-form-field-time', 'aui-form-field-text',
     function(Y) {
-    var fieldChoice = new Y.FormFieldChoice({
+    var fieldChoiceRadio = new Y.FormFieldChoice({
         help: 'Remember all I\'m offering is the truth',
         title: 'This is your last chance',
         options: ['Red Pill', 'Blue Pill'],
         otherOption: true
     });
-    Y.one('#fieldChoice').append(fieldChoice.get('content'));
+    Y.one('#fieldChoiceRadio').append(fieldChoiceRadio.get('content'));
+
+    var fieldChoiceCheckbox = new Y.FormFieldChoice({
+        title: 'What are your favorite colors?',
+        options: ['Red', 'Blue', 'Yellow'],
+        type: Y.FormFieldChoice.TYPES.CHECKBOX
+    });
+    Y.one('#fieldChoiceCheckbox').append(fieldChoiceCheckbox.get('content'));
+
+    var fieldChoiceDropdown = new Y.FormFieldChoice({
+        title: 'The Best Maíra Quotes',
+        type: Y.FormFieldChoice.TYPES.DROPDOWN
+    });
+    Y.one('#fieldChoiceDropdown').append(fieldChoiceDropdown.get('content'));
 
     var fieldDate = new Y.FormFieldDate({
         help: 'Please select your destination',
@@ -61,11 +76,6 @@ YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-f
         rows: ['A', 'B', 'C', ,'D', 'E', 'F', 'G', 'H', 'I', 'J']
     });
     Y.one('#fieldGrid').append(fieldGrid.get('content'));
-
-    var fieldList = new Y.FormFieldList({
-        title: 'The Best Maíra Quotes'
-    });
-    Y.one('#fieldList').append(fieldList.get('content'));
 
     var fieldScale = new Y.FormFieldScale({
         help: 'Slide the circle between the given range',

@@ -25,12 +25,6 @@
             ]
         },
 
-        "aui-form-field-list": {
-            "jsfiles": [
-                "js/aui-form-field-list.js"
-            ]
-        },
-
         "aui-form-field-scale": {
             "jsfiles": [
                 "js/aui-form-field-scale.js"
