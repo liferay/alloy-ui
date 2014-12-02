@@ -72,16 +72,23 @@ YUI.add('aui-data-editor-tests', function(Y) {
 
         'should set label': function() {
             var editor,
+                labelNode,
                 TestEditor = this._createTestEditorClass();
 
             editor = new TestEditor({
                 label: 'My Label'
             });
+            labelNode = editor.get('node').one('label');
 
-            Y.Assert.areEqual('My Label', editor.get('node').one('label').get('text'));
+            Y.Assert.areNotEqual('none', labelNode.getStyle('display'));
+            Y.Assert.areEqual('My Label', labelNode.get('text'));
 
             editor.set('label', 'New Label');
-            Y.Assert.areEqual('New Label', editor.get('node').one('label').get('text'));
+            Y.Assert.areNotEqual('none', labelNode.getStyle('display'));
+            Y.Assert.areEqual('New Label', labelNode.get('text'));
+
+            editor.set('label', '   ');
+            Y.Assert.areEqual('none', labelNode.getStyle('display'));
         },
 
         'should show/hide editor when requested': function() {

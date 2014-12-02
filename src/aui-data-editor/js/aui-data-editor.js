@@ -127,7 +127,10 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      * @protected
      */
     _uiSetLabel: function(label) {
-        return this.get('node').one('label').set('text', label);
+        var labelNode = this.get('node').one('label');
+
+        labelNode.set('text', label);
+        labelNode.toggleView(A.Lang.trim(label) !== '');
     },
 
     /**
