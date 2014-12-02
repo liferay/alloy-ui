@@ -179,16 +179,23 @@ var CharCounter = A.Component.create({
          * [_onInputChange](A.CharCounter.html#method__onInputChange).
          *
          * @method checkLength
+         * @return {Boolean | String} Returns the final value if it was changed.
+         *   Otherwise returns either true, when the input value was checked, or
+         *   false if there was no input to check the value for.
          */
         checkLength: function() {
             var instance = this;
             var input = instance.get('input');
+
+            var returnValue = false;
 
             if (input) {
                 var maxLength = instance.get('maxLength');
                 var value = input.val();
 
                 var normalizedLength = instance._getNormalizedLength(value);
+
+                returnValue = true;
 
                 if (normalizedLength > maxLength) {
                     var scrollTop = input.get('scrollTop');
@@ -202,6 +209,8 @@ var CharCounter = A.Component.create({
 
                     input.set('scrollTop', scrollTop);
                     input.set('scrollLeft', scrollLeft);
+
+                    returnValue = value;
                 }
 
                 instance.syncUI();
@@ -210,9 +219,8 @@ var CharCounter = A.Component.create({
                     instance.fire('maxLength');
                 }
             }
-            else {
-                return false;
-            }
+
+            return returnValue;
         },
 
         /**

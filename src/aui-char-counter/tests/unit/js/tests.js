@@ -124,6 +124,27 @@ YUI.add('aui-char-counter-tests', function(Y) {
             Y.Assert.isFalse(this.inputCharCounter.checkLength());
         },
 
+        'should return truthy if input is defined': function() {
+            this.inputCharCounter = new Y.CharCounter({
+                input: this.input,
+                maxLength: 1
+            });
+
+            Y.Assert.isTrue(this.inputCharCounter.checkLength());
+        },
+
+        'should return trimmed value length if input is trimmed': function() {
+            this.inputCharCounter = new Y.CharCounter({
+                input: this.input,
+                maxLength: 1
+            });
+
+            this.changeInputContent('12');
+
+            Y.Assert.areEqual('1', this.inputCharCounter.checkLength());
+        },
+
+
         'should render remaining char count': function() {
             this.inputCharCounter = new Y.CharCounter({
                 input: this.input,

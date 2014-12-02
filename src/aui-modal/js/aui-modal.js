@@ -62,6 +62,7 @@ A.Modal = A.Base.create('modal', A.Widget, [
 
         eventHandles = [
             A.after(instance._afterFillHeight, instance, 'fillHeight'),
+            A.after('windowresize', A.bind('_afterWindowResize', instance)),
             instance.after('render', instance._afterRender),
             instance.after('draggableChange', instance._afterDraggableChange),
             instance.after('visibleChange', instance._afterVisibleChange)
@@ -160,6 +161,20 @@ A.Modal = A.Base.create('modal', A.Widget, [
         }
 
         A.all('body,html').toggleClass(CSS_MODAL_OPEN, event.newVal);
+    },
+
+    /**
+     * Fires after the 'windowresize' event.
+     *
+     * @method _afterWindowResize
+     * @param event
+     */
+    _afterWindowResize: function() {
+        var instance = this;
+
+        if (instance.get('centered')) {
+            instance.align();
+        }
     },
 
     /**
