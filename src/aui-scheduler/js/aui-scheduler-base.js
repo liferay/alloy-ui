@@ -27,6 +27,7 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     getCN = A.getClassName,
 
     CSS_SCHEDULER_NAV = getCN('scheduler-base', 'nav'),
+    CSS_SCHEDULER_NAV_DATE = getCN('scheduler-base', 'nav', 'date'),
     CSS_SCHEDULER_CONTROLS = getCN('scheduler-base', 'controls'),
     CSS_SCHEDULER_HD = getCN('scheduler-base', 'hd'),
     CSS_SCHEDULER_ICON_NEXT = getCN('scheduler-base', 'icon', 'next'),
@@ -49,13 +50,14 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     TPL_SCHEDULER_ICON_PREV = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_SCHEDULER_ICON_PREV, CSS_BTN,
         CSS_BTN_DEFAULT].join(' ') + '"><span class="' + [CSS_ICON, CSS_ICON_CHEVRON_LEFT].join(' ') + '"></span></button>',
     TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
+    TPL_SCHEDULER_NAV_DATE = '<div class="' + CSS_SCHEDULER_NAV_DATE + ' hidden-xs"></div>',
     TPL_SCHEDULER_TODAY = '<button aria-label="{ariaLabel}" role="button" type="button" class="' +
         [CSS_SCHEDULER_TODAY, CSS_BTN, CSS_BTN_DEFAULT].join(' ') + '">{today}</button>',
     TPL_SCHEDULER_VIEW_BUTTON = '<button aria-label="{ariaLabel}" aria-pressed="false" type="button" class="hidden-xs ' +
         [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') + '{name}" data-view-name="{name}">{label}</button>',
     TPL_SCHEDULER_VIEW_LIST = '<option aria-label="{ariaLabel}" aria-pressed="false" class="' +
         [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(' ') + '{name}" data-view-name="{name}">{label}</option>',
-    TPL_SCHEDULER_VIEW_DATE = '<div class="' + CSS_SCHEDULER_VIEW_DATE + '"></div>',
+    TPL_SCHEDULER_VIEW_DATE = '<div class="' + CSS_SCHEDULER_VIEW_DATE + ' visible-xs"></div>',
     TPL_SCHEDULER_VIEWS = '<div class="col-xs-5 form-inline ' + CSS_SCHEDULER_VIEWS + '"></div>',
     TPL_SCHEDULER_VIEWS_SELECT = '<select class="form-control visible-xs"></select>';
 
@@ -727,6 +729,12 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        navDateNode: {
+            valueFn: function() {
+                return A.Node.create(TPL_SCHEDULER_NAV_DATE);
+            }
+        },
+
         selectNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEWS_SELECT);
@@ -780,6 +788,7 @@ var SchedulerBase = A.Component.create({
         iconNextNode: '.' + CSS_SCHEDULER_ICON_NEXT,
         iconPrevNode: '.' + CSS_SCHEDULER_ICON_PREV,
         navNode: '.' + CSS_SCHEDULER_NAV,
+        navDateNode: '.' + CSS_SCHEDULER_NAV_DATE,
         todayNode: '.' + CSS_SCHEDULER_TODAY,
         viewsNode: '.' + CSS_SCHEDULER_VIEWS
     },
@@ -823,6 +832,7 @@ var SchedulerBase = A.Component.create({
             instance.iconNextNode = instance.get('iconNextNode');
             instance.iconPrevNode = instance.get('iconPrevNode');
             instance.navNode = instance.get('navNode');
+            instance.navDateNode = instance.get('navDateNode');
             instance.selectNode = instance.get('selectNode');
             instance.todayNode = instance.get('todayNode');
             instance.viewsNode = instance.get('viewsNode');
@@ -1010,6 +1020,7 @@ var SchedulerBase = A.Component.create({
             instance.navNode.append(instance.iconNextNode);
 
             instance.controlsNode.append(instance.navNode);
+            instance.controlsNode.append(instance.navDateNode);
 
             A.Array.each(views, function(view) {
                 instance.selectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
@@ -1359,6 +1370,7 @@ var SchedulerBase = A.Component.create({
                     navigationTitle = formatter.call(activeView, date);
                 }
 
+                instance.navDateNode.html(navigationTitle);
                 instance.viewDateNode.html(navigationTitle);
 
                 instance.syncEventsUI();
