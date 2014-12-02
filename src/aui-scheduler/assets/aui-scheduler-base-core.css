@@ -10,6 +10,11 @@
     font-weight: bold;
 }
 
+.scheduler-base-controls .scheduler-base-nav-date {
+    display: inline-block;
+    margin-left: 10px;
+}
+
 .scheduler-base-content .scheduler-base-views {
     white-space: normal;
 }
@@ -23,7 +28,7 @@
 }
 
 .scheduler-base-view-date {
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 13px;
     text-align: center;
 }

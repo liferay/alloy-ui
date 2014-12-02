@@ -1,6 +1,13 @@
 .scheduler-view-agenda {
     font-weight: 300;
 }
+
+@media (max-width: 767px) {
+    .scheduler-view-agenda {
+        margin-top: -13px;
+    }
+}
+
 .scheduler-view-agenda-info-container {
     border-bottom: 1px solid #e4e4e4;
     color: #6a6a6a;
