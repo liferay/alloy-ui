@@ -21,6 +21,11 @@
                 "js/aui-scale-data-editor.js"
             ]
         },
+        "aui-tabs-data-editor": {
+            "jsfiles": [
+                "js/aui-tabs-data-editor.js"
+            ]
+        },
         "aui-text-data-editor": {
             "jsfiles": [
                 "js/aui-text-data-editor.js"

@@ -50,10 +50,7 @@ YUI.add('aui-data-editor-tests', function(Y) {
             Y.Assert.isTrue(editor.isValid());
 
             editor.set('required', true);
-
-            Y.Assert.throwsError(Error, function() {
-                editor.isValid();
-            });
+            Y.Assert.isTrue(editor.isValid());
         },
 
         'should remove node after editor is destroyed': function() {

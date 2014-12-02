@@ -29,6 +29,12 @@
             "aui-data-editor"
         ]
     },
+    "aui-tabs-data-editor": {
+        "requires": [
+            "aui-data-editor",
+            "aui-tabview"
+        ]
+    },
     "aui-text-data-editor": {
         "requires": [
             "aui-data-editor"

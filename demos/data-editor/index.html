@@ -14,19 +14,47 @@
 <div id="optionsEditor"></div>
 <button id="optionsEditorValue">Print Values</button>
 
+<h2>Tabs Editor</h2>
+<div id="tabsEditor"></div>
+<div id="weaponsPanel">Out of weapons</div>
+<div id="armorPanel">Out of armor</div>
+<div id="accessoriesPanel">Out of accessories</div>
+
 <script type="text/javascript" charset="utf-8">
 YUI({ filter:'raw' }).use(
     'aui-data-editor',
     'aui-options-data-editor',
+    'aui-tabs-data-editor',
     function(Y) {
         var optionsEditor = new Y.OptionsDataEditor({
             originalValue: ['Drogon', 'Visirion', 'Rhaegal']
         });
         Y.one('#optionsEditor').append(optionsEditor.get('node'));
-
         Y.one('#optionsEditorValue').on('click', function() {
             console.log(optionsEditor.get('editedValue'));
         });
+
+        var tabsEditor = new Y.TabsDataEditor({
+            originalValue: 'inventory-armor',
+            tabs: [
+                {
+                    label: 'Weapons',
+                    panelNode: Y.one('#weaponsPanel'),
+                    value: 'inventory-weapon'
+                },
+                {
+                    label: 'Armor',
+                    panelNode: Y.one('#armorPanel'),
+                    value: 'inventory-armor'
+                },
+                {
+                    label: 'Accessories',
+                    panelNode: Y.one('#accessoriesPanel'),
+                    value: 'inventory-accessory'
+                }
+            ]
+        });
+        Y.one('#tabsEditor').append(tabsEditor.get('node'));
     }
 );
 </script>

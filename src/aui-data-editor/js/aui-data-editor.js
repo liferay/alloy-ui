@@ -58,12 +58,12 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
 
     /**
      * Returns `true` if this edited value has no elements.
-     * This should be overridden by subclasses.
+     * This should be overridden by subclasses, otherwise it always returns `false`.
      *
      * @method isEmpty
      */
     isEmpty: function() {
-        throw new Error('Subclasses should override isEmpty');
+        return false;
     },
 
     /**
