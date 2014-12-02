@@ -24,12 +24,40 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormFiel
      * @protected
      */
     _fillSettings: function() {
+        var multipleEditor = new A.BooleanDataEditor({
+            label: 'Enable multiple selection'
+        });
+
         this._settings.push(
             {
                 attrName: 'required',
                 editor: new A.BooleanDataEditor({
                     label: 'Required'
                 })
+            },
+            {
+                attrName: 'type',
+                editor: new A.TabsDataEditor({
+                    tabs: [
+                        {
+                            label: 'Radio button',
+                            value: A.FormFieldChoice.TYPES.RADIO
+                        },
+                        {
+                            label: 'Checkbox',
+                            value: A.FormFieldChoice.TYPES.CHECKBOX
+                        },
+                        {
+                            label: 'List Select',
+                            panelNode: multipleEditor.get('node'),
+                            value: A.FormFieldChoice.TYPES.DROPDOWN
+                        }
+                    ]
+                })
+            },
+            {
+                attrName: 'multiple',
+                editor: multipleEditor
             },
             {
                 attrName: 'options',
@@ -40,13 +68,7 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormFiel
             {
                 attrName: 'otherOption',
                 editor: new A.BooleanDataEditor({
-                    label: 'Add "Other" option'
-                })
-            },
-            {
-                attrName: 'multiple',
-                editor: new A.BooleanDataEditor({
-                    label: 'Activate multiple choice'
+                    label: 'Add an option called "Other"'
                 })
             }
         );

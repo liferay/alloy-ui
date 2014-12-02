@@ -17,7 +17,6 @@ YUI({ filter:'raw' }).use(
     'aui-form-builder',
     'aui-form-builder-field-choice',
     'aui-form-builder-field-date',
-    'aui-form-builder-field-list',
     'aui-form-builder-field-grid',
     'aui-form-builder-field-text',
     'aui-form-builder-field-time',
@@ -46,10 +45,11 @@ YUI({ filter:'raw' }).use(
                     cols: [
                         new Y.LayoutCol({
                             size: 4,
-                            value: new Y.FormBuilderFieldList({
+                            value: new Y.FormBuilderFieldChoice({
                                 help: 'Choose one of the options in the list below',
                                 options: ['Male', 'Female'],
-                                title: 'What\'s your gender?'
+                                title: 'What\'s your gender?',
+                                type: Y.FormFieldChoice.TYPES.DROPDOWN
                             })
                         }),
                         new Y.LayoutCol({
@@ -110,12 +110,7 @@ YUI({ filter:'raw' }).use(
             },{
                 fieldClass: Y.FormBuilderFieldChoice,
                 icon:'glyphicon glyphicon-font',
-                label: 'Choice',
-                unique: true
-            },{
-                fieldClass: Y.FormBuilderFieldList,
-                icon:'glyphicon glyphicon-font',
-                label: 'List'
+                label: 'Choice'
             },{
                 fieldClass: Y.FormBuilderFieldText,
                 icon:'glyphicon glyphicon-font',

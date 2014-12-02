@@ -32,6 +32,8 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
             settings.all('.button-switch').item(1).simulate('click');
             settings.all('.button-switch').item(2).simulate('click');
 
+            settings.all('.tab').item(1).simulate('click');
+
             settings.one('.options-data-editor-add').simulate('click');
             settings.one('.options-data-editor-add').simulate('click');
             settings.all('.options-data-editor-option').item(0).one('input').set('value', 'Option 1');
@@ -39,12 +41,15 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
 
             this._field.saveSettings();
 
+            Y.Assert.isTrue(this._field.get('required'));
+            Y.Assert.isTrue(this._field.get('multiple'));
+            Y.Assert.isTrue(this._field.get('otherOption'));
+
+            Y.Assert.areEqual(Y.FormFieldChoice.TYPES.CHECKBOX, this._field.get('type'));
+
             Y.Assert.areEqual(2, this._field.get('options').length);
             Y.Assert.areEqual('Option 1', this._field.get('options')[0]);
             Y.Assert.areEqual('Option 2', this._field.get('options')[1]);
-            Y.Assert.isTrue(this._field.get('otherOption'));
-            Y.Assert.isTrue(this._field.get('multiple'));
-            Y.Assert.isTrue(this._field.get('required'));
         },
 
         'should render correctly': function() {

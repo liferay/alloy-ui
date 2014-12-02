@@ -9,6 +9,20 @@
     top: 0;
 }
 
+.form-builder-field-settings-content .modal-body {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.form-builder-field-settings-panel .tab-pane {
+    display: none;
+}
+
+.form-builder-field-settings-panel .tab-pane.active {
+    display: block;
+    margin-top: 20px;
+}
+
 .form-builder-field-settings-panel-left {
     border-bottom: 1px solid #ccc;
     padding: 0 30px;
