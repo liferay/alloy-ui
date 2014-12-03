@@ -125,11 +125,9 @@ A.FormBuilderLayoutBuilder.prototype = {
     _enterLayoutMode: function() {
         if (this._layoutBuilder) {
             this._layoutBuilder.setAttrs({
-                enableAddCols: true,
                 enableMove: true,
                 enableRemoveCols: true,
-                enableRemoveRows: true,
-                enableResizeCols: true
+                enableRemoveRows: true
             });
         }
 
@@ -145,11 +143,9 @@ A.FormBuilderLayoutBuilder.prototype = {
     _exitLayoutMode: function() {
         if (this._layoutBuilder) {
             this._layoutBuilder.setAttrs({
-                enableAddCols: false,
                 enableMove: false,
                 enableRemoveCols: false,
                 enableRemoveRows: false,
-                enableResizeCols: false
             });
         }
 

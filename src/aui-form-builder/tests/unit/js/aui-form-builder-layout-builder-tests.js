@@ -111,13 +111,13 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areNotEqual('none', button.getStyle('display'));
         },
 
-        'should not be able to add cols on regular mode': function() {
+        'should be able to add cols on both regular and layout mode': function() {
             var button;
 
             this._createFormBuilder();
 
             button = this._formBuilder.get('contentBox').one('.layout-builder-add-col');
-            Y.Assert.isNull(button);
+            Y.Assert.isNotNull(button);
 
             this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
             button = this._formBuilder.get('contentBox').one('.layout-builder-add-col');
@@ -150,13 +150,13 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.isNotNull(button);
         },
 
-        'should not be able to resize cols on regular mode': function() {
+        'should be able to resize cols on both regular and layout mode': function() {
             var draggable;
 
             this._createFormBuilder();
 
             draggable = this._formBuilder.get('contentBox').one('.layout-builder-resize-col-draggable');
-            Y.Assert.isNull(draggable);
+            Y.Assert.isNotNull(draggable);
 
             this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
             draggable = this._formBuilder.get('contentBox').one('.layout-builder-resize-col-draggable');
