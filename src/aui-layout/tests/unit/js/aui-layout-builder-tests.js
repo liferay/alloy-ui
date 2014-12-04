@@ -132,6 +132,15 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             rowsSize = this.layoutBuilder.get('layout').get('rows').length;
 
             Assert.areEqual(rowsSize, 2);
+        },
+
+        'should create an empty layout if one is not passed through constructor': function() {
+            var layoutBuilder = new Y.LayoutBuilder({
+                container: '.container'
+            });
+
+            Assert.isNotNull(layoutBuilder.get('layout'));
+            Assert.isNotNull(Y.one('.container').one('.layout-builder-layout-container'));
         }
     }));
 

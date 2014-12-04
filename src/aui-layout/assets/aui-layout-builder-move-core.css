@@ -7,6 +7,7 @@
 
 .layout-builder-move-cut-button {
     background-image: url(cut.png);
+    cursor: pointer;
     display: inline-block;
     height: 20px;
     margin-bottom: -7px;

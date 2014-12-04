@@ -5,6 +5,7 @@
             "aui-layout-row",
             "aui-node-base",
             "base-build",
+            "datatype-number-parse",
             "event-resize"
         ]
     },

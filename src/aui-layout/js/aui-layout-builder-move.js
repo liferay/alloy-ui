@@ -674,6 +674,8 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _uiSetEnableMove: function(enableMove) {
+        this._removeMoveButtonFromRows();
+
         if (enableMove) {
             this._appendMoveButtonToRows();
             this._bindMoveEvents();

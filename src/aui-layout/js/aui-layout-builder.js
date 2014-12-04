@@ -4,7 +4,9 @@
  * @module aui-layout-builder
  */
 
-var TPL_LAYOUT_CONTAINER = '<div class="layout-builder-layout-container"></div>';
+var CSS_LAYOUT_BUILDER_LAYOUT_CONTAINER = A.getClassName('layout', 'builder', 'layout', 'container'),
+
+    TPL_LAYOUT_CONTAINER = '<div class="' + CSS_LAYOUT_BUILDER_LAYOUT_CONTAINER + '"></div>';
 
 /**
  * A base class for Layout Builder.
@@ -97,8 +99,12 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
      * @protected
      */
     _createLayoutContainer: function(container) {
-        this._layoutContainer = A.Node.create(TPL_LAYOUT_CONTAINER);
-        container.append(this._layoutContainer);
+        this._layoutContainer = container.one('.' + CSS_LAYOUT_BUILDER_LAYOUT_CONTAINER);
+
+        if (!this._layoutContainer) {
+            this._layoutContainer = A.Node.create(TPL_LAYOUT_CONTAINER);
+            container.prepend(this._layoutContainer);
+        }
     }
 }, {
     /**
@@ -134,6 +140,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
         layout: {
             validator: function(val) {
                 return A.instanceOf(val, A.Layout);
+            },
+            valueFn: function() {
+                return new A.Layout();
             }
         }
     }

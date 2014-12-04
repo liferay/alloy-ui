@@ -423,6 +423,21 @@ YUI.add('aui-layout-tests', function(Y) {
                     Assert.isTrue(instance.layout.get('isColumnMode'));
                 }, Y.config.windowResizeDelay || 100);
             }, Y.config.windowResizeDelay || 100);
+        },
+
+        'should use progressive enhancement when construct a layout without rows': function() {
+            var container = Y.one('.container-progressive-enhancement'),
+                layout = new Y.Layout(),
+                layoutNode;
+
+            Assert.isTrue(layout._useProgressiveEnhancement);
+
+            layout.draw(container);
+
+            layoutNode = container.one('.layout-node'),
+
+            Assert.areEqual(layoutNode, layout.get('node'));
+            Assert.areEqual(container.all('.row').size(), layout.get('rows').length);
         }
     }));
 

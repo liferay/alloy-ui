@@ -4,11 +4,15 @@
  * @module aui-layout
  */
 
-var MAXIMUM_COLS_PER_ROW = 12,
+var CSS_LAYOUT_NODE = A.getClassName('layout', 'node'),
+
+    MAXIMUM_COLS_PER_ROW = 12,
 
     RESPONSIVENESS_BREAKPOINT = 992,
 
     SELECTOR_COL = '.col',
+    SELECTOR_LAYOUT_COL_CONTENT = '.layout-col-content',
+    SELECTOR_LAYOUT_ROW_CONTAINER_ROW = '.layout-row-container-row',
     SELECTOR_ROW = '.row';
 
 /**
@@ -23,12 +27,26 @@ var MAXIMUM_COLS_PER_ROW = 12,
 A.Layout = A.Base.create('layout', A.Base, [], {
 
     /**
+     * Determines if progressive enhancement mode will be used.
+     *
+     * @property _useProgressiveEnhancement
+     * @type {Boolean}
+     * @protected
+     */
+    _useProgressiveEnhancement: false,
+
+    /**
      * Construction logic executed during Layout instantiation. Lifecycle.
      *
      * @method initializer
      * @protected
      */
-    initializer: function() {
+    initializer: function(config) {
+
+        if (!config || !config.rows) {
+            this._useProgressiveEnhancement = true;
+        }
+
         this._eventHandles = [
             this.after('rowsChange', A.bind(this._afterRowsChange, this)),
             this.after('layout-row:colsChange', A.bind(this._afterLayoutColsChange, this)),
@@ -106,9 +124,17 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @param {Node} container The container to draw the layout on.
      **/
     draw: function(container) {
-        var node = this.get('node');
+        var layoutNode = container.one('.' + CSS_LAYOUT_NODE),
+            node = this.get('node');
 
-        container.setHTML(node);
+        if (this._useProgressiveEnhancement) {
+            this._set('node', layoutNode);
+            this._setProgressiveEnhancementLayout(container);
+        }
+        else {
+            container.setHTML(node);
+        }
+
         this._handleResponsive(A.config.win.innerWidth);
     },
 
@@ -231,6 +257,34 @@ A.Layout = A.Base.create('layout', A.Base, [], {
         this._handleResponsive(viewportSize);
     },
 
+
+    /**
+     * Create LayoutCol objects to use with progressive enhancement
+     *
+     * @method _createLayoutCols
+     * @param {Array} cols
+     * @protected
+     */
+    _createLayoutCols: function(cols) {
+        var bootstrapClassRegex = /col-\w+-\d+/,
+            colClass,
+            colSizeRegex = /\d$/,
+            layoutCols = [];
+
+        cols.each(function(col) {
+            colClass = col.get('className').match(bootstrapClassRegex)[0];
+
+            layoutCols.push(new A.LayoutCol(
+                {
+                    size: A.Number.parse(colClass.match(colSizeRegex)[0]),
+                    value: { content: col.one(SELECTOR_LAYOUT_COL_CONTENT).getHTML() }
+                }
+            ));
+        });
+
+        return layoutCols;
+    },
+
     /**
      * Calculates column mode.
      *
@@ -281,6 +335,38 @@ A.Layout = A.Base.create('layout', A.Base, [], {
     },
 
     /**
+     * Builds layout through progressive enhancement
+     *
+     * @method _setProgressiveEnhancementLayout
+     * @param {Node} container Node to append the layout
+     * @protected
+     */
+    _setProgressiveEnhancementLayout: function(container) {
+        var instance = this,
+            layoutCols = [],
+            layoutRow,
+            layoutRows = [],
+            rows = container.all(SELECTOR_ROW);
+
+        rows.each(function(row) {
+            layoutCols = instance._createLayoutCols(row.all(SELECTOR_COL));
+
+            layoutRow = new A.LayoutRow(
+                {
+                    cols: layoutCols,
+                    node: row.ancestor(SELECTOR_LAYOUT_ROW_CONTAINER_ROW)
+                }
+            );
+
+            layoutCols = [];
+
+            layoutRows.push(layoutRow);
+        });
+
+        this.set('rows', layoutRows);
+    },
+
+    /**
      * Updates the UI according to the value of the `rows` attribute.
      *
      * @method _uiSetRows
@@ -328,7 +414,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
         node: {
             validator: A.Lang.isNode,
             valueFn: function() {
-                return A.Node.create('<div></div>');
+                return A.Node.create('<div class="' + CSS_LAYOUT_NODE + '"></div>');
             },
             writeOnce: 'initOnly'
         },
