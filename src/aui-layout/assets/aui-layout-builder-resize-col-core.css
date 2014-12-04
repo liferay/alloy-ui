@@ -27,10 +27,9 @@
 .layout-builder-resize-col-draggable-handle {
     cursor: col-resize;
     font-size: 18px;
-    margin-left: 1px;
-    margin-top: 20px;
+    margin-top: -9px;
     position: absolute;
-    top: 0;
+    top: 50%;
 }
 
 .layout-builder-resize-col-dragging .layout-builder-resize-col-breakpoint {

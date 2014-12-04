@@ -2,5 +2,6 @@
     cursor: pointer;
     position: absolute;
     left: 50%;
-    top: 35%;
+    margin: -7px 0 0 -7px;
+    top: 50%;
 }

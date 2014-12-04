@@ -7,8 +7,12 @@
 var CSS_ADD_COL = A.getClassName('layout', 'builder', 'add', 'col'),
     CSS_ADD_COL_LEFT = A.getClassName('layout', 'builder', 'add', 'col', 'left'),
     CSS_ADD_COL_RIGHT = A.getClassName('layout', 'builder', 'add', 'col', 'right'),
+    CSS_ADD_COL_TEXT = A.getClassName('layout', 'builder', 'add', 'col', 'text'),
     SELECTOR_ROW = '.layout-row',
-    TPL_ADD_COL = '<span class="glyphicon glyphicon-plus ' + CSS_ADD_COL + '" tabindex="5"></span>';
+    TPL_ADD_COL = '<div class="' + CSS_ADD_COL + '" tabindex="5">' +
+        '<span class="glyphicon glyphicon-th-large"></span>' +
+        '<span class="' + CSS_ADD_COL_TEXT + '">Add Column</span>' +
+        '</div>';
 
 /**
  * LayoutBuilder extension, which can be used to add the funcionality of adding
@@ -24,15 +28,6 @@ A.LayoutBuilderAddCol = function() {};
 
 A.LayoutBuilderAddCol.prototype = {
     /**
-     * Button to add a col.
-     *
-     * @property _addColButton
-     * @type {Node}
-     * @protected
-     */
-    _addColButton: null,
-
-    /**
      * Construction logic executed during `A.LayoutBuilderAddCol` instantiation.
      * Lifecycle.
      *
@@ -40,8 +35,6 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     initializer: function() {
-        this._addColButton = A.Node.create(TPL_ADD_COL);
-
         this._eventHandles.push(
             this.after('enableAddColsChange', this._afterEnableAddColsChange),
             this.after('layout:isColumnModeChange', A.bind(this._afterAddColIsColumnModeChange, this))
