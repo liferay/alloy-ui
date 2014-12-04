@@ -261,7 +261,7 @@ var SchedulerAgendaView = A.Component.create({
          * @type {Function}
          */
         navigationDateFormatter: {
-            value: function(date) {
+            value: function() {
                 return '';
             },
             validator: isFunction
