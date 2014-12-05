@@ -687,18 +687,37 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        /**
+         * Contains the node that displays `Scheduler`'s current date in the `SchedulerView`.
+         * This node is only visible on mobile.
+         *
+         * @attribute viewDateNode
+         * @type {Node}
+         */
         viewDateNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEW_DATE);
             }
         },
 
+        /**
+         * Contains `Scheduler`'s header node.
+         *
+         * @attribute headerNode
+         * @type {Node}
+         */
         headerNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_HD);
             }
         },
 
+        /**
+         * Contains the node that goes to the next date in the `activeView`.
+         *
+         * @attribute iconNextNode
+         * @type {Node}
+         */
         iconNextNode: {
             valueFn: function() {
                 var instance = this;
@@ -711,6 +730,12 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        /**
+         * Contains the node that goes to the previous date in the `activeView`.
+         *
+         * @attribute iconPrevNode
+         * @type {Node}
+         */
         iconPrevNode: {
             valueFn: function() {
                 var instance = this;
@@ -723,19 +748,39 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        /**
+         * Contains `Scheduler`'s header navigation node.
+         *
+         * @attribute navNode
+         * @type {Node}
+         */
         navNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_NAV);
             }
         },
 
+        /**
+         * Contains the node that displays `Scheduler`'s current date in `Scheduler`'s header.
+         * This node is hidden on mobile.
+         *
+         * @attribute navDateNode
+         * @type {Node}
+         */
         navDateNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_NAV_DATE);
             }
         },
 
-        selectNode: {
+        /**
+         * Contains the node for the select dropdown for `Scheduler`'s views.
+         * This node is only visible on mobile.
+         *
+         * @attribute viewsSelectNode
+         * @type {Node}
+         */
+        viewsSelectNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEWS_SELECT);
             }
@@ -754,6 +799,12 @@ var SchedulerBase = A.Component.create({
             validator: isDate
         },
 
+        /**
+         * Contains the node that goes to today date in the `activeView`.
+         *
+         * @attribute todayNode
+         * @type {Node}
+         */
         todayNode: {
             valueFn: function() {
                 var instance = this;
@@ -766,6 +817,13 @@ var SchedulerBase = A.Component.create({
             }
         },
 
+        /**
+         * Contains the node container that holds the nodes to change `Scheduler`'s
+         * `activeView`.
+         *
+         * @attribute viewsNode
+         * @type {Node}
+         */
         viewsNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEWS);
@@ -833,7 +891,7 @@ var SchedulerBase = A.Component.create({
             instance.iconPrevNode = instance.get('iconPrevNode');
             instance.navNode = instance.get('navNode');
             instance.navDateNode = instance.get('navDateNode');
-            instance.selectNode = instance.get('selectNode');
+            instance.viewsSelectNode = instance.get('viewsSelectNode');
             instance.todayNode = instance.get('todayNode');
             instance.viewsNode = instance.get('viewsNode');
 
@@ -1003,7 +1061,7 @@ var SchedulerBase = A.Component.create({
         renderDropdownList: function() {
             var instance = this;
 
-            instance.selectNode.on('change', A.bind(instance._onSelectionChange, instance));
+            instance.viewsSelectNode.on('change', A.bind(instance._onSelectionChange, instance));
         },
 
         /**
@@ -1023,11 +1081,11 @@ var SchedulerBase = A.Component.create({
             instance.controlsNode.append(instance.navDateNode);
 
             A.Array.each(views, function(view) {
-                instance.selectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
+                instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
                 instance.viewsNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
             });
 
-            instance.viewsNode.append(instance.selectNode);
+            instance.viewsNode.append(instance.viewsSelectNode);
 
             instance.header.append(instance.controlsNode);
             instance.header.append(instance.viewsNode);
@@ -1171,7 +1229,7 @@ var SchedulerBase = A.Component.create({
 
             instance.set('activeView', instance.getViewByName(viewName));
 
-            instance.selectNode.one('[data-view-name=' + viewName + ']').set('selected', true);
+            instance.viewsSelectNode.one('[data-view-name=' + viewName + ']').set('selected', true);
 
             event.preventDefault();
         },
@@ -1231,7 +1289,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Handles select's change events.
+         * Handles select tag's change events.
          *
          * @method _onSelectionChange
          * @param {EventFacade} event
