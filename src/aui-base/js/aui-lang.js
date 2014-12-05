@@ -77,6 +77,14 @@
             return String(id).indexOf(A.Env._guidp) === 0;
         },
 
+        isNode: function(val) {
+            return A.instanceOf(val, A.Node);
+        },
+
+        isNodeList: function(val) {
+            return A.instanceOf(val, A.NodeList);
+        },
+
         toFloat: function(value, defaultValue) {
             return parseFloat(value) || defaultValue || 0;
         },

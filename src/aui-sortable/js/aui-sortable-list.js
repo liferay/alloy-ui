@@ -8,11 +8,7 @@ var L = A.Lang,
     isString = L.isString,
     isFunction = L.isFunction,
 
-    DDM = A.DD.DDM,
-
-    isNodeList = function(v) {
-        return (v instanceof A.NodeList);
-    };
+    DDM = A.DD.DDM;
 
 /**
  * A base class for SortableList, providing:
@@ -499,7 +495,7 @@ var SortableList = A.Component.create({
          * @return {NodeList}
          */
         _setNodes: function(v) {
-            if (isNodeList(v)) {
+            if (A.Lang.isNodeList(v)) {
                 return v;
             }
             else if (isString(v)) {

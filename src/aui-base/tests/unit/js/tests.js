@@ -562,6 +562,24 @@ YUI.add('aui-base-tests', function(Y) {
             for (var i = 0; i < caseStringsUpper.length; i++) {
                 Assert.areEqual(Y.Lang.String.toLowerCase(caseStringsUpper[i]), caseStringsLower[i]);
             }
+        },
+
+        'should check if some value is an instance of Node': function() {
+            Assert.isTrue(Y.Lang.isNode(Y.Node.create('<div></div>')));
+
+            Assert.isFalse(Y.Lang.isNode(1));
+            Assert.isFalse(Y.Lang.isNode('foo'));
+            Assert.isFalse(Y.Lang.isNode(true));
+            Assert.isFalse(Y.Lang.isNode(Y.all('*')));
+        },
+
+        'should check if some value is an instance of NodeList': function() {
+            Assert.isTrue(Y.Lang.isNodeList(Y.all('*')));
+
+            Assert.isFalse(Y.Lang.isNodeList(1));
+            Assert.isFalse(Y.Lang.isNodeList('foo'));
+            Assert.isFalse(Y.Lang.isNodeList(true));
+            Assert.isFalse(Y.Lang.isNodeList(Y.Node.create('<div></div>')));
         }
     }));
 

@@ -1,9 +1,5 @@
 var PropertyBuilderAvailableField,
 
-    isNode = function(val) {
-        return A.instanceOf(val, A.Node);
-    },
-
     CSS_PROPERTY_BUILDER_FIELD = A.getClassName('property', 'builder', 'field'),
     CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE = A.getClassName('property', 'builder', 'field', 'draggable'),
     CSS_PROPERTY_BUILDER_FIELD_ICON = A.getClassName('property', 'builder', 'field', 'icon'),
@@ -95,7 +91,7 @@ PropertyBuilderAvailableField = A.Component.create({
             valueFn: function(val) {
                 var instance = this;
 
-                if (!isNode(val)) {
+                if (!A.Lang.isNode(val)) {
                     val = A.Node.create(
                         A.Lang.sub(
                             instance.FIELD_ITEM_TEMPLATE, {
@@ -109,7 +105,7 @@ PropertyBuilderAvailableField = A.Component.create({
 
                 return val;
             },
-            validator: isNode,
+            validator: A.Lang.isNode,
             writeOnce: true
         },
 
@@ -168,7 +164,7 @@ PropertyBuilderAvailableField = A.Component.create({
     getAvailableFieldByNode: function(node) {
         node = A.one(node);
 
-        if (isNode(node)) {
+        if (A.Lang.isNode(node)) {
             return node.getData('availableField');
         }
 
