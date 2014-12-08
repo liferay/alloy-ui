@@ -7,13 +7,9 @@ YUI.add('module-tests', function(Y) {
 
         'enterKey event should fire when enter key is pressed in the active input': function() {
             var enterKeydownCount = 0,
-                triggers = [
-                    '#inputTriggerA',
-                    '#inputTriggerB',
-                    '#inputTriggerC',
-                    '#inputTriggerB',
-                    '#inputTriggerA'
-                ];
+                triggerA = Y.one('#inputTriggerA'),
+                triggerB = Y.one('#inputTriggerB'),
+                triggerC = Y.one('#inputTriggerC');
 
             this.datePicker = new Y.DatePicker({
                 on: {
@@ -21,18 +17,34 @@ YUI.add('module-tests', function(Y) {
                         enterKeydownCount++;
                     }
                 },
-                trigger: triggers.join()
+                trigger: '#inputTriggerA, #inputTriggerB, #inputTriggerC'
             });
 
-            triggers.forEach(function(trigger) {
-                trigger = Y.one(trigger);
-
+            var keypress = function(trigger) {
                 trigger.focus();
 
                 trigger.simulate('keydown', {
                     keyCode: 13
                 });
-            });
+            };
+
+            keypress(triggerA);
+
+            Y.Assert.areEqual(1, enterKeydownCount);
+
+            keypress(triggerB);
+
+            Y.Assert.areEqual(2, enterKeydownCount);
+
+            keypress(triggerC);
+
+            Y.Assert.areEqual(3, enterKeydownCount);
+
+            keypress(triggerB);
+
+            Y.Assert.areEqual(4, enterKeydownCount);
+
+            keypress(triggerA);
 
             Y.Assert.areEqual(5, enterKeydownCount);
         }
