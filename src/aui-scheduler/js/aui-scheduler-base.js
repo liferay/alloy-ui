@@ -828,6 +828,24 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+         * Returns the trigger node for the given `SchedulerView`.
+         *
+         * @method getViewTriggerNode
+         * @param {A.SchedulerView} view
+         * @return {Node} The `SchedulerView`'s trigger `Node`.
+         */
+        getViewTriggerNode: function(view) {
+            var instance = this;
+            var name = view.get('name');
+
+            if (A.DOM.winWidth() >= 768) {
+                return instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
+            }
+
+            return instance.viewsSelectNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
+        },
+
+        /**
          * Returns this `Scheduler`'s `strings` attribute value.
          *
          * @method getStrings
@@ -1039,17 +1057,12 @@ var SchedulerBase = A.Component.create({
             var instance = this;
             var name = view.get(NAME);
 
-            view.set(
-                TRIGGER_NODE,
-                A.Node.create(
-                    A.Lang.sub(tpl, {
-                        name: name,
-                        label: (instance.getString(name) || name)
-                    })
-                )
+            return A.Node.create(
+                A.Lang.sub(tpl, {
+                    name: name,
+                    label: (instance.getString(name) || name)
+                })
             );
-
-            return view.get(TRIGGER_NODE);
         },
 
         /**
