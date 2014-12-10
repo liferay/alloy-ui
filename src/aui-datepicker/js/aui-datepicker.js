@@ -6,9 +6,17 @@
 
 var Lang = A.Lang,
 
+    EVENT_ENTER_KEY = 'enterKey',
+
     clamp = function(value, min, max) {
         return Math.min(Math.max(value, min), max);
     };
+
+/**
+ * Fired when then enter key is pressed on an input node.
+ *
+ * @event enterKey
+ */
 
 /**
  * A base class for `DatePickerBase`.
@@ -292,7 +300,7 @@ A.mix(DatePickerBase.prototype, {
         var instance = this;
 
         if (event.isKey('enter')) {
-            instance.fire('enterKey');
+            instance.fire(EVENT_ENTER_KEY);
         }
     },
 
