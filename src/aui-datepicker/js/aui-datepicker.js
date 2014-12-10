@@ -196,14 +196,16 @@ A.mix(DatePickerBase.prototype, {
         var instance = this,
             popover = instance.getPopover();
 
+        if (instance.get(ACTIVE_INPUT)) {
+            instance.get(ACTIVE_INPUT).detach('keydown', instance._handleKeydownEvent, instance);
+        }
+
         popover.set(TRIGGER, node);
         instance.set(ACTIVE_INPUT, node);
 
         instance.alignTo(node);
 
         if (node) {
-            node.detach('keydown', instance._handleKeydownEvent);
-
             node.on('keydown', instance._handleKeydownEvent, instance);
         }
 
