@@ -6,6 +6,8 @@
 
 var Lang = A.Lang,
 
+    EVENT_ENTER_KEY = 'enterKey',
+
     clamp = function(value, min, max) {
         return Math.min(Math.max(value, min), max);
     },
@@ -22,7 +24,13 @@ var Lang = A.Lang,
     TRIGGER = 'trigger';
 
 /**
- * A base class for DatePickerBase.
+ * Fired when then enter key is pressed on an input node.
+ *
+ * @event enterKey
+ */
+
+/**
+ * A base class for `DatePickerBase`.
  *
  * @class A.DatePickerBase
  * @param config {Object} Object literal specifying widget configuration properties.
@@ -267,7 +275,7 @@ A.mix(DatePickerBase.prototype, {
         var instance = this;
 
         if (event.isKey('enter')) {
-            instance.fire('enterKey');
+            instance.fire(EVENT_ENTER_KEY);
         }
     },
 
