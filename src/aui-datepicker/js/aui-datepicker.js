@@ -6,8 +6,6 @@
 
 var Lang = A.Lang,
 
-    EVENT_ENTER_KEY = 'enterKey',
-
     clamp = function(value, min, max) {
         return Math.min(Math.max(value, min), max);
     },
@@ -22,12 +20,6 @@ var Lang = A.Lang,
     SELECTION_CHANGE = 'selectionChange',
     SELECTION_MODE = 'selectionMode',
     TRIGGER = 'trigger';
-
-/**
- * Fired when then enter key is pressed on an input node.
- *
- * @event enterKey
- */
 
 /**
  * A base class for `DatePickerBase`.
@@ -204,18 +196,10 @@ A.mix(DatePickerBase.prototype, {
         var instance = this,
             popover = instance.getPopover();
 
-        if (instance.get(ACTIVE_INPUT)) {
-            instance.get(ACTIVE_INPUT).detach('keydown', instance._handleKeydownEvent, instance);
-        }
-
         popover.set(TRIGGER, node);
         instance.set(ACTIVE_INPUT, node);
 
         instance.alignTo(node);
-
-        if (node) {
-            node.on('keydown', instance._handleKeydownEvent, instance);
-        }
 
         instance.clearSelection(true);
         instance.selectDates(instance.getParsedDatesFromInputValue());
@@ -262,21 +246,6 @@ A.mix(DatePickerBase.prototype, {
         var instance = this;
 
         instance._setCalendarToFirstSelectedDate();
-    },
-
-    /**
-    * Handles keydown events
-    *
-    * @method _handleKeydownEvent
-    * @param event
-    * @protected
-    */
-    _handleKeydownEvent: function(event) {
-        var instance = this;
-
-        if (event.isKey('enter')) {
-            instance.fire(EVENT_ENTER_KEY);
-        }
     },
 
     /**

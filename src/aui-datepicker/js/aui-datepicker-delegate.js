@@ -7,6 +7,8 @@
 
 var Lang = A.Lang,
     isString = Lang.isString,
+    
+    EVENT_ENTER_KEY = 'enterKey',
 
     _DOCUMENT = A.one(A.config.doc),
 
@@ -92,6 +94,10 @@ DatePickerDelegate.prototype = {
                 A.bind('_handleTabKeyEvent', instance), 'tab', trigger)
 
         ];
+
+        instance.on(
+            'activeInputChange',
+            A.bind('_handleActiveInputChangeEvent', instance));
 
         instance.publish(
             SELECTION_CHANGE, {
@@ -193,13 +199,38 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-    * Handles tab key events
+    * Fires when the 'activeInput' attribute changes.  The keydown listener is
+    * removed from the old active input and is attached to the new one.
     *
-    * @method _handleTabKeyEvent
+    * @method _handleActiveInputChangeEvent
     * @protected
     */
-    _handleTabKeyEvent: function() {
-        this.hide();
+    _handleActiveInputChangeEvent: function(event) {
+        var instance = this;
+
+        if (event.prevVal) {
+            event.prevVal.detach(
+                'keydown', instance._handleKeydownEvent, instance);
+        }
+
+        if (event.newVal) {
+            event.newVal.on('keydown', instance._handleKeydownEvent, instance);
+        }
+    },
+
+    /**
+    * Handles keydown events
+    *
+    * @method _handleKeydownEvent
+    * @param event
+    * @protected
+    */
+    _handleKeydownEvent: function(event) {
+        var instance = this;
+
+        if (event.isKey('enter')) {
+            instance.fire(EVENT_ENTER_KEY);
+        }
     },
 
     /**
