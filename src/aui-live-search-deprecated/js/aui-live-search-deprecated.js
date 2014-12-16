@@ -379,7 +379,20 @@ var LiveSearch = A.Component.create({
             var instance = this;
 
             if (event.SRC == UI_SRC) {
-                instance.get(INPUT).val(event.newVal);
+                var input = instance.get(INPUT);
+
+                input.val(event.newVal);
+
+                instance.fire(
+                    'search',
+                    {
+                        liveSearch: {
+                            inputEvent: {
+                                currentTarget: input
+                            }
+                        }
+                    }
+                );
             }
         },
 
