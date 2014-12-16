@@ -12,11 +12,22 @@
 <body class="yui3-skin-sam">
 <div id="logger"></div>
 
+<div>
+    <input id="myInput" type="text" value="">
+
+    <ul id="myList">
+        <li>foo</li>
+        <li>bar</li>
+        <li>baz</li>
+        <li>qux</li>
+    </ul>
+</div>
+
 <script>
 YUI({
     coverage: ['aui-live-search-deprecated'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'module-tests', function(Y) {
+}).use('test-console', 'test', 'aui-live-search-tests', function(Y) {
 
     (new Y.Test.Console()).render('#logger');
 
