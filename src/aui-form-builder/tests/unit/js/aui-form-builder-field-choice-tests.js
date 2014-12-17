@@ -52,6 +52,19 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
             Y.Assert.areEqual('Option 2', this._field.get('options')[1]);
         },
 
+        'should be able to edit advanced settings': function() {
+            var settings = Y.one('#settings');
+
+            this._createField();
+            this._field.renderSettingsPanel(settings);
+
+            settings.all('.form-builder-field-settings-panel-advanced').item(0).one('input').set('value', 'advanced 1');
+
+            this._field.saveSettings();
+
+            Y.Assert.areEqual('advanced 1', this._field.get('name'));
+        },
+
         'should render correctly': function() {
             this._createField();
 

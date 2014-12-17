@@ -39,5 +39,24 @@ A.FormBuilderFieldTime = A.Base.create('form-builder-field-time', A.FormFieldTim
                 })
             }
         );
+    },
+
+    /**
+     * Fills the advanced settings array with the information for this field.
+     *
+     * @method _fillAdvancedSettings
+     * @override
+     * @protected
+     */
+    _fillAdvancedSettings: function() {
+        this._advancedSettings = [
+            {
+                attrName: 'name',
+                footerLabel: 'Name',
+                editor: new A.TextDataEditor({
+                    label: 'Name'
+                })
+            }
+        ];
     }
 });

@@ -8,11 +8,12 @@ YUI.add('aui-form-builder-field-sentence-tests', function(Y) {
         tearDown: function() {
             if (this._field) {
                 this._field.destroy();
+                Y.one('#container').empty();
             }
         },
 
         'should be able to edit settings': function() {
-            var container = Y.Node.create('<div></div>');
+            var container = Y.one('#container');
 
             this._field = new Y.FormBuilderFieldSentence();
             this._field.renderSettingsPanel(container);

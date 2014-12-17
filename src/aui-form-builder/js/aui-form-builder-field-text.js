@@ -38,5 +38,24 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormFieldTex
                 })
             }
         );
+    },
+
+    /**
+     * Fills the advanced settings array with the information for this field.
+     *
+     * @method _fillAdvancedSettings
+     * @override
+     * @protected
+     */
+    _fillAdvancedSettings: function() {
+        this._advancedSettings.push(
+            {
+                attrName: 'name',
+                footerLabel: 'Name',
+                editor: new A.TextDataEditor({
+                    label: 'Name'
+                })
+            }
+        );
     }
 });

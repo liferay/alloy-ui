@@ -38,6 +38,19 @@ YUI.add('aui-form-builder-field-scale-tests', function(Y) {
             Y.Assert.areEqual(0, this._field.get('range')[0]);
             Y.Assert.areEqual(1, this._field.get('range')[1]);
             Y.Assert.isTrue(this._field.get('required'));
+        },
+
+        'should be able to edit advanced settings': function() {
+            var settings = Y.one('#settings');
+
+            this._createField();
+            this._field.renderSettingsPanel(settings);
+
+            settings.all('.form-builder-field-settings-panel-advanced').item(0).one('input').set('value', 'advanced 1');
+
+            this._field.saveSettings();
+
+            Y.Assert.areEqual('advanced 1', this._field.get('name'));
         }
     }));
 

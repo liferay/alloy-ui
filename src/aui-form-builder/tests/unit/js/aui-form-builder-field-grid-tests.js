@@ -68,6 +68,19 @@ YUI.add('aui-form-builder-field-grid-tests', function(Y) {
                 4,
                 this._field.get('content').one('.form-field-grid-table').all('tr').size()
             );
+        },
+
+        'should be able to edit advanced settings': function() {
+            var settings = Y.one('#settings');
+
+            this._createField();
+            this._field.renderSettingsPanel(settings);
+
+            settings.all('.form-builder-field-settings-panel-advanced').item(0).one('input').set('value', 'advanced 1');
+
+            this._field.saveSettings();
+
+            Y.Assert.areEqual('advanced 1', this._field.get('name'));
         }
     }));
 
