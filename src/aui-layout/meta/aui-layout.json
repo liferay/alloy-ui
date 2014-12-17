@@ -56,7 +56,8 @@
             "aui-classnamemanager",
             "aui-node-base",
             "base-build"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-layout-row": {
         "requires": [

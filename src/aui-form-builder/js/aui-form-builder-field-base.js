@@ -8,15 +8,23 @@
 var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
+    CSS_FIELD_CONTENT_FOOTER = A.getClassName('form', 'builder', 'field', 'content', 'footer'),
     CSS_FIELD_CONTENT_TOOLBAR = A.getClassName('form', 'builder', 'field', 'content', 'toolbar'),
+    CSS_FIELD_FOOTER_CONTENT = A.getClassName('form', 'builder', 'field', 'footer', 'content'),
     CSS_FIELD_MOVE_BUTTON = A.getClassName('form', 'builder', 'field', 'move', 'button'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_NESTED = A.getClassName('form', 'builder', 'field', 'nested'),
     CSS_FIELD_OVERLAY = A.getClassName('form', 'builder', 'field', 'overlay'),
     CSS_FIELD_SETTINGS_PANEL = A.getClassName('form', 'builder', 'field', 'settings', 'panel'),
+    CSS_FIELD_SETTINGS_PANEL_ADVANCED = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'advanced'),
+    CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT =
+        A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'advanced', 'content'),
     CSS_FIELD_SETTINGS_PANEL_LEFT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'left'),
     CSS_FIELD_SETTINGS_PANEL_RIGHT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'right'),
+    CSS_FIELD_SETTINGS_PANEL_RIGHT_CONTENT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'right', 'content'),
     CSS_FIELD_SETTINGS_PANEL_SEPARATOR = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'separator'),
+    CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED =
+        A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'toggler', 'advanced'),
     CSS_FIELD_TOOLBAR = A.getClassName('form', 'builder', 'field', 'toolbar'),
     CSS_FIELD_TOOLBAR_ADD_NESTED = A.getClassName('form', 'builder', 'field', 'toolbar', 'add', 'nested'),
     CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
@@ -50,6 +58,7 @@ A.FormBuilderFieldBase.prototype = {
         '</div></div>' +
         '<div class="' + CSS_FIELD_NESTED + ' form-field-nested"></div>' +
         '<div class="' + CSS_FIELD_OVERLAY + '"></div>' +
+        '<div class="' + CSS_FIELD_CONTENT_FOOTER + '"></div>' +
         '</div>',
     TPL_FIELD_CONFIGURATION: '<button class="btn btn-default ' + CSS_FIELD_CONFIGURATION + ' hide">' +
         '<span class="glyphicon glyphicon-cog"></span>' +
@@ -60,8 +69,17 @@ A.FormBuilderFieldBase.prototype = {
     TPL_FIELD_SETTINGS_PANEL: '<div class="' + CSS_FIELD_SETTINGS_PANEL + ' clearfix">' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_SEPARATOR + '"></div>' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_LEFT + ' col-md-6"></div>' +
-        '<div class="' + CSS_FIELD_SETTINGS_PANEL_RIGHT + ' col-md-6"></div>' +
+        '<div class="' + CSS_FIELD_SETTINGS_PANEL_RIGHT + ' col-md-6">' +
+        '<div class="' + CSS_FIELD_SETTINGS_PANEL_RIGHT_CONTENT + '">' +
+        '</div>' +
+        '<div class="' + CSS_FIELD_SETTINGS_PANEL_ADVANCED + '">' +
+        '<a class="' + CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED +
+        '" href="javascript:void(0)">Advanced options</a>' +
+        '<div class="' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT + '"></div>' +
+        '</div>' +
+        '</div>' +
         '</div>',
+    TPL_FIELD_FOOTER_CONTENT: '<div class="' + CSS_FIELD_FOOTER_CONTENT + '"></div>',
 
     /**
      * Constructor for the `A.FormBuilderFieldBase` component. Lifecycle.
@@ -70,16 +88,30 @@ A.FormBuilderFieldBase.prototype = {
      * @protected
      */
     initializer: function() {
-        var content = this.get('content');
+        var advancedSettings,
+            content = this.get('content'),
+            i;
 
         if (!A.UA.mobile) {
             this._configurationButton = A.Node.create(this.TPL_FIELD_CONFIGURATION);
             content.one('.' + CSS_FIELD_CONTENT_TOOLBAR).append(this._configurationButton);
         }
 
+        this._fieldSettingsPanel = A.Node.create(this.TPL_FIELD_SETTINGS_PANEL);
+
         this._fieldEventHandles = [
             content.on('clickoutside', this._onClickOutsideField, this)
         ];
+
+        advancedSettings = this._getAdvancedSettings();
+
+        for (i = 0; i < advancedSettings.length; i++) {
+            if (advancedSettings[i].footerLabel) {
+                this.after(advancedSettings[i].attrName + 'Change', this._afterAdvancedSettingsChange);
+            }
+        }
+
+        this._updateAdvancedSettingsChange();
     },
 
     /**
@@ -93,15 +125,63 @@ A.FormBuilderFieldBase.prototype = {
     },
 
     /**
+     * Renders the advanced settings on panel.
+     *
+     * @method renderAdvancedSettings
+     */
+    renderAdvancedSettings: function() {
+        var advancedSettings = this._getAdvancedSettings(),
+            currentNode,
+            i;
+
+        if (advancedSettings.length) {
+            currentNode = this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT);
+
+            for (i = 0; i < advancedSettings.length; i++) {
+                this.renderSetting(advancedSettings[i], currentNode);
+            }
+        }
+
+        if (!advancedSettings.length) {
+            this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED).addClass(CSS_HIDE);
+        }
+    },
+
+    /**
+     * Renders the basic settings on panel.
+     *
+     * @method renderBasicSettings
+     */
+    renderBasicSettings: function() {
+        var currentNode,
+            i,
+            settings = this._getSettings();
+
+        currentNode = this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_LEFT);
+
+        for (i = 0; i < settings.length; i++) {
+            if (i === this.SETTINGS_DIVIDER_POSITION) {
+                currentNode = this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_RIGHT_CONTENT);
+            }
+
+            this.renderSetting(settings[i], currentNode);
+        }
+    },
+
+    /**
      * Renders a single field setting to be edited.
      *
      * @method renderSetting
      * @param {Object} setting
-     * @return {Node}
+     * @param {Object} targetNode
      * @protected
      */
-    renderSetting: function(setting) {
-        return setting.editor.get('node');
+    renderSetting: function(setting, targetNode) {
+        var attrValue = this.get(setting.attrName);
+
+        setting.editor.set('originalValue', attrValue);
+        setting.editor.updateUiWithValue(attrValue);
+        targetNode.append(setting.editor.get('node'));
     },
 
     /**
@@ -111,24 +191,14 @@ A.FormBuilderFieldBase.prototype = {
      * @param {Node} container The container where the panel should be rendered.
      */
     renderSettingsPanel: function(container) {
-        var attrValue,
-            currentNode,
-            i,
-            settings = this._getSettings();
+        this.renderBasicSettings();
 
-        container.setHTML(this.TPL_FIELD_SETTINGS_PANEL);
-        currentNode = container.one('.' + CSS_FIELD_SETTINGS_PANEL_LEFT);
+        this.renderAdvancedSettings();
 
-        for (i = 0; i < settings.length; i++) {
-            if (i === this.SETTINGS_DIVIDER_POSITION) {
-                currentNode = container.one('.' + CSS_FIELD_SETTINGS_PANEL_RIGHT);
-            }
+        container.setHTML(this._fieldSettingsPanel);
 
-            attrValue = this.get(settings[i].attrName);
-            settings[i].editor.set('originalValue', attrValue);
-            settings[i].editor.updateUiWithValue(attrValue);
-
-            currentNode.append(this.renderSetting(settings[i]));
+        if (!this._advancedSettingsToggler) {
+            this._createAdvancedSettingsToggler();
         }
     },
 
@@ -138,11 +208,16 @@ A.FormBuilderFieldBase.prototype = {
      * @method saveSettings
      */
     saveSettings: function() {
-        var i,
+        var advancedSettings = this._getAdvancedSettings(),
+            i,
             settings = this._getSettings();
 
         for (i = 0; i < settings.length; i++) {
             this.set(settings[i].attrName, settings[i].editor.get('editedValue'));
+        }
+
+        for (i = 0; i < advancedSettings.length; i++) {
+            this.set(advancedSettings[i].attrName, advancedSettings[i].editor.get('editedValue'));
         }
     },
 
@@ -189,6 +264,31 @@ A.FormBuilderFieldBase.prototype = {
     },
 
     /**
+     * Fired after the a advanced settings change.
+     *
+     * @method _afterAdvancedSettingsChange
+     * @protected
+     */
+    _afterAdvancedSettingsChange: function() {
+        this._updateAdvancedSettingsChange();
+    },
+
+    /**
+     * Create a Toggler with the advanced settings.
+     *
+     * @method _createAdvancedSettingsToggler
+     * @protected
+     */
+    _createAdvancedSettingsToggler: function() {
+        this._advancedSettingsToggler = new A.Toggler({
+            animated: true,
+            content: '.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT,
+            header: '.' + CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED,
+            expanded: this.get('content').one('.' + CSS_FIELD_CONTENT_FOOTER).hasChildNodes()
+        });
+    },
+
+    /**
      * Creates a move target node.
      *
      * @method _createMoveTarget
@@ -203,6 +303,25 @@ A.FormBuilderFieldBase.prototype = {
         targetNode.setData('nested-field-parent', this);
 
         return targetNode;
+    },
+
+    /**
+     * Gets the list of advanced settings for this field.
+     *
+     * @method _getAdvancedSettings
+     * @return {Array}
+     * @protected
+     */
+    _getAdvancedSettings: function() {
+        if (!this._advancedSettings) {
+            this._advancedSettings = [];
+
+            if (this._fillAdvancedSettings) {
+                this._fillAdvancedSettings();
+            }
+        }
+
+        return this._advancedSettings;
     },
 
     /**
@@ -274,6 +393,29 @@ A.FormBuilderFieldBase.prototype = {
      */
     _toggleToolbar: function(visible) {
         this.get('content').one('.' + CSS_FIELD_TOOLBAR).toggleClass(CSS_HIDE, !visible);
+    },
+
+    /**
+     * Updates the UI according to the values of the Advanced Settings.
+     *
+     * @method _updateAdvancedSettingsChange
+     * @protected
+     */
+    _updateAdvancedSettingsChange: function() {
+        var advancedSettings = this._getAdvancedSettings(),
+            footerNode,
+            i;
+
+        this.get('content').one('.' + CSS_FIELD_CONTENT_FOOTER).empty();
+
+        for (i = 0; i < advancedSettings.length; i++) {
+            if (advancedSettings[i].footerLabel && this.get(advancedSettings[i].attrName)) {
+                footerNode = A.Node.create(this.TPL_FIELD_FOOTER_CONTENT);
+                footerNode.set('text', advancedSettings[i].footerLabel +
+                    ': ' + this.get(advancedSettings[i].attrName));
+                this.get('content').one('.' + CSS_FIELD_CONTENT_FOOTER).append(footerNode);
+            }
+        }
     },
 
     /**

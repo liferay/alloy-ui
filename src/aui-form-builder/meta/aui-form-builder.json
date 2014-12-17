@@ -17,6 +17,7 @@
             "aui-classnamemanager",
             "aui-node-base",
             "aui-text-data-editor",
+            "aui-toggler",
             "base",
             "event-outside",
             "node-base"

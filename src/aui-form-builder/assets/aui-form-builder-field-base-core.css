@@ -1,3 +1,7 @@
+.form-field {
+    position: relative;
+}
+
 .form-field .form-builder-field-content-toolbar {
     position: relative;
 }
@@ -7,6 +11,15 @@
     position: absolute;
     right: 0;
     top: 0;
+}
+
+.form-builder-field-footer-content {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 6px 30px;
+    background-color: #ccc;
 }
 
 .form-builder-field-settings-content .modal-body {

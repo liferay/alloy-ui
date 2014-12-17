@@ -32,6 +32,24 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
                     })
                 }
             );
+        },
+
+        _fillAdvancedSettings: function() {
+            this._advancedSettings.push(
+                {
+                    attrName: 'name1',
+                    footerLabel: 'Footer',
+                    editor: new Y.TextDataEditor({
+                        label: 'Name'
+                    })
+                },
+                {
+                    attrName: 'name2',
+                    editor: new Y.TextDataEditor({
+                        label: 'Name2'
+                    })
+                }
+            );
         }
     }, {
         ATTRS: {
@@ -43,6 +61,12 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             },
             attr3: {
                 value: 'Attr3'
+            },
+            name1: {
+                value: ''
+            },
+            name2: {
+                value: ''
             },
             attrBool: {
                 value: true
@@ -56,11 +80,12 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
         tearDown: function() {
             if (this._field) {
                 this._field.destroy();
+                Y.one('#container').empty();
             }
         },
 
         'should render settings modal correctly': function() {
-            var container = Y.Node.create('<div></div>'),
+            var container = Y.one('#container'),
                 input,
                 TestField2 = Y.Base.create('test-field2', Y.FormField, [Y.FormBuilderFieldBase]);
 
@@ -78,8 +103,50 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             Y.Assert.areEqual('Help', input.get('value'));
         },
 
+        'should render advanced settings modal correctly': function() {
+            var advancedSetting,
+                container = Y.one('#container'),
+                input;
+
+            this._field = new TestField({
+                help: 'Help',
+                title: 'Title',
+                name1: 'Name'
+            });
+
+            this._field.renderSettingsPanel(container);
+            this._field.saveSettings();
+
+            advancedSetting = this._field._advancedSettings[0];
+            input = container.all('input[type="text"]').item(4);
+            Y.Assert.areEqual('Name', input.get('value'));
+
+            Y.Assert.areEqual(this._field.get('content').one('.form-builder-field-footer-content').getHTML(),
+                advancedSetting.footerLabel + ': ' + this._field.get(advancedSetting.attrName));
+        },
+
+        'shouldn\'t render advanced without footerLabel': function() {
+            var advancedSetting,
+                container = Y.one('#container'),
+                input;
+
+            this._field = new TestField({
+                help: 'Help',
+                title: 'Title',
+                name2: 'Name2'
+            });
+
+            this._field.renderSettingsPanel(container);
+            this._field.saveSettings();
+
+            advancedSetting = this._field._advancedSettings[0];
+            input = container.all('input[type="text"]').item(5);
+            Y.Assert.areEqual('Name2', input.get('value'));
+            Y.Assert.isNull(this._field.get('content').one('.form-builder-field-footer-content'));
+        },
+
         'should render settings modal for extensions correctly': function() {
-            var container = Y.Node.create('<div></div>'),
+            var container = Y.one('#container'),
                 input;
 
             this._field = new TestField({
@@ -169,7 +236,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
         },
 
         'should update settings modal correctly': function() {
-            var container = Y.Node.create('<div></div>'),
+            var container = Y.one('#container'),
                 input;
 
             this._field = new TestField();
@@ -186,7 +253,7 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
         },
 
         'should validate edited settings': function() {
-            var container = Y.Node.create('<div></div>'),
+            var container = Y.one('#container'),
                 input;
 
             this._field = new TestField({
@@ -206,19 +273,52 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
         },
 
         'should save edited settings': function() {
-            var container = Y.Node.create('<div></div>'),
-                input;
+            var container = Y.one('#container'),
+                input,
+                TestField2 = Y.Base.create('test-field2', Y.FormField, [Y.FormBuilderFieldBase]);
 
-            this._field = new TestField();
+            this._field = new TestField2({
+                title: 'Attr1'
+            });
 
             this._field.renderSettingsPanel(container);
-            input = container.all('input[type="text"]').item(2);
+
+            input = container.all('input[type="text"]').item(0);
             input.set('value', 'Attr1New');
 
-            Y.Assert.areEqual('Attr1', this._field.get('attr1'));
+            Y.Assert.areEqual('Attr1', this._field.get('title'));
 
             this._field.saveSettings();
-            Y.Assert.areEqual('Attr1New', this._field.get('attr1'));
+            Y.Assert.areEqual('Attr1New', this._field.get('title'));
+        },
+
+        'should save advanced edited settings': function() {
+            var advancedSetting,
+                container = Y.one('#container'),
+                input;
+
+            this._field = new TestField({
+                name1: 'Name',
+                name2: 'Name2'
+            });
+
+            this._field.renderSettingsPanel(container);
+            advancedSetting = this._field._advancedSettings;
+            
+            this._field.saveSettings();
+            Y.Assert.areEqual('Name', this._field.get(advancedSetting[0].attrName));
+            Y.Assert.areEqual('Name2', this._field.get(advancedSetting[1].attrName));
+
+
+            this._field.renderSettingsPanel(container);
+            input = container.all('input[type="text"]').item(4);
+            input.set('value', 'NameNew');
+            input = container.all('input[type="text"]').item(5);
+            input.set('value', 'NameNew2');
+            
+            this._field.saveSettings();
+            Y.Assert.areEqual('NameNew', this._field.get(advancedSetting[0].attrName));
+            Y.Assert.areEqual('NameNew2', this._field.get(advancedSetting[1].attrName));
         },
 
         'should render nested fields move targets': function() {
