@@ -595,6 +595,7 @@ var SchedulerBase = A.Component.create({
                 agenda: 'Agenda',
                 day: 'Day',
                 month: 'Month',
+                table: 'Table',
                 today: 'Today',
                 week: 'Week',
                 year: 'Year'
