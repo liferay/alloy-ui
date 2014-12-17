@@ -101,6 +101,18 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [], {
         },
 
         /**
+         * Id to reference form data after a form is submitted.
+         *
+         * @attribute name
+         * @default ''
+         * @type String
+         */
+        name: {
+            validator: A.Lang.isString,
+            value: ''
+        },
+
+        /**
          * Flag indicating if this field is required.
          *
          * @attribute required

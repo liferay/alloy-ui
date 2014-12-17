@@ -197,6 +197,18 @@ A.FormFieldDate = A.Base.create('form-field-date', A.FormField, [], {
      */
     ATTRS: {
         /**
+         * Id to reference form data after a form is submitted.
+         *
+         * @attribute name
+         * @default ''
+         * @type String
+         */
+        name: {
+            validator: A.Lang.isString,
+            value: ''
+        },
+
+        /**
          * Flag indicating if this field is required.
          *
          * @attribute required
