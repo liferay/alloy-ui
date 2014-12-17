@@ -149,7 +149,7 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     },
 
     /**
-     * Resizes cols size.
+     * Resizes cols.
      *
      * @method _resizeCols
      * @param {Array} cols Columns to be resized.

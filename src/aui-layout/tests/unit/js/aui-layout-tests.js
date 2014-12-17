@@ -434,7 +434,7 @@ YUI.add('aui-layout-tests', function(Y) {
 
             layout.draw(container);
 
-            layoutNode = container.one('.layout-node'),
+            layoutNode = container.one('.layout-node');
 
             Assert.areEqual(layoutNode, layout.get('node'));
             Assert.areEqual(container.all('.row').size(), layout.get('rows').length);

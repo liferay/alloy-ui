@@ -490,6 +490,24 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             resizeColDraggable = Y.one('.layout-builder-resize-col-draggable');
 
             Y.Assert.isNull(resizeColDraggable);
+        },
+
+        'should normalize cols\' height after resize a column': function() {
+            var breakpoint,
+                dragHandle,
+                layout = this._layoutBuilder.get('layout'),
+                row = this._layoutBuilder.get('layout').get('rows')[1];
+
+            Y.Mock.expect(layout, {
+                args: [Y.Mock.Value.Object],
+                method: 'normalizeColsHeight'
+            });
+
+            dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
+            breakpoint = row.get('node').one('.' + CSS_RESIZE_COL_BREAKPOINT);
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint);
+
+            Y.Mock.verify(layout);
         }
     }));
 
