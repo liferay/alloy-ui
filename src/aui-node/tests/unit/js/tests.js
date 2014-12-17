@@ -45,14 +45,16 @@ YUI.add('aui-node-tests', function(Y) {
         },
 
         'hide animated': function() {
-            var node = createNewNode(true);
+            var test = this,
+                node = createNewNode(true);
 
-            node.hide(true);
-
-            this.wait(function() {
-                Y.Assert.areSame(true, node.hasClass(CSS_HIDE));
-                Y.Assert.areSame('none', node.getStyle('display'));
-            }, 1000);
+            node.hide(true, {}, function() {
+                test.resume(function() {
+                    Y.Assert.areSame(true, node.hasClass(CSS_HIDE));
+                    Y.Assert.areSame('none', node.getStyle('display'));
+                });
+            });
+            this.wait();
         },
 
         'show unanimated': function() {
@@ -65,14 +67,17 @@ YUI.add('aui-node-tests', function(Y) {
         },
 
         'show animated': function() {
-            var node = createNewNode(false);
+            var test = this,
+                node = createNewNode(false);
 
-            node.show(true);
+            node.show(true, {}, function() {
+                test.resume(function() {
+                    Y.Assert.areSame(false, node.hasClass(CSS_HIDE));
+                    Y.Assert.areNotSame('none', node.getStyle('display'));
+                });
+            });
 
-            this.wait(function() {
-                Y.Assert.areSame(false, node.hasClass(CSS_HIDE));
-                Y.Assert.areNotSame('none', node.getStyle('display'));
-            }, 1000);
+            this.wait();
         }
     }));
 

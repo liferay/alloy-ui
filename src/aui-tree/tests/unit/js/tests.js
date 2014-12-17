@@ -456,7 +456,7 @@ YUI.add('aui-tree-tests', function(Y) {
                 treeViewComponent.remove();
             }, lazyRenderTimeout);
 
-            test.wait(lazyRenderTimeout);
+            test.wait();
         },
 
         // Tests: AUI-1156

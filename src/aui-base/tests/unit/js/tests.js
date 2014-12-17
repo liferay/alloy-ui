@@ -298,7 +298,7 @@ YUI.add('aui-base-tests', function(Y) {
                         dashCount++;
                     }
 
-                    if (capitalIndices.indexOf(k - dashCount) === -1) {
+                    if (Y.Array.indexOf(capitalIndices, k - dashCount) === -1) {
                         Assert.areSame(character.toLowerCase(), character);
                     }
                     else {

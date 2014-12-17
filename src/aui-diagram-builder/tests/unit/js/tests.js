@@ -118,7 +118,7 @@ YUI.add('aui-diagram-builder-tests', function(Y) {
             this.wait(function() {
                 Y.Assert.isFalse(calledXSS, 'XSS function should not be called.');
 
-                delete window.callXSS;
+                window.callXSS = null;
             }, 500);
         }
     }));
