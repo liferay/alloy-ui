@@ -6,7 +6,9 @@ YUI.add('module-tests', function(Y) {
         name: 'Datepicker Tests',
 
         'enterKey event should fire when enter key is pressed in the active input': function() {
-            var enterKeydownCount = 0,
+            var test = this,
+                enterKeydownCount = 0,
+                keypress,
                 triggerA = Y.one('#inputTriggerA'),
                 triggerB = Y.one('#inputTriggerB'),
                 triggerC = Y.one('#inputTriggerC');
@@ -20,11 +22,16 @@ YUI.add('module-tests', function(Y) {
                 trigger: '#inputTriggerA, #inputTriggerB, #inputTriggerC'
             });
 
-            var keypress = function(trigger) {
-                trigger.focus();
-
-                trigger.simulate('keydown', {
-                    keyCode: 13
+            keypress = function(trigger) {
+                // Ideally we should focus and simulate a keydown event here, but
+                // Yeti currently has a problem with tests that try to focus elements,
+                // so we need to call the handler function directly here to test its
+                // behavior.
+                test.datePicker.set('activeInput', trigger);
+                test.datePicker._handleKeydownEvent({
+                    isKey: function() {
+                        return true;
+                    }
                 });
             };
 

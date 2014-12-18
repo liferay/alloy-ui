@@ -95,9 +95,9 @@ DatePickerDelegate.prototype = {
 
         ];
 
-        instance.on(
+        instance.after(
             'activeInputChange',
-            A.bind('_handleActiveInputChangeEvent', instance));
+            A.bind('_afterActiveInputChange', instance));
 
         instance.publish(
             SELECTION_CHANGE, {
@@ -165,7 +165,28 @@ DatePickerDelegate.prototype = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+    * Fires when the 'activeInput' attribute changes.  The keydown listener is
+    * removed from the old active input and is attached to the new one.
+    *
+    * @method _afterActiveInputChange
+    * @param {EventFacade} event
+    * @protected
+    */
+    _afterActiveInputChange: function(event) {
+        var instance = this;
+
+        if (event.prevVal) {
+            event.prevVal.detach(
+                'keydown', instance._handleKeydownEvent, instance);
+        }
+
+        if (event.newVal) {
+            event.newVal.on('keydown', instance._handleKeydownEvent, instance);
+        }
+    },
+
+    /**
+     * Default behavior for selection change.
      *
      * @method _defSelectionChangeFn
      * @param event
@@ -196,26 +217,6 @@ DatePickerDelegate.prototype = {
         return A.Date.format(date, {
             format: mask
         });
-    },
-
-    /**
-    * Fires when the 'activeInput' attribute changes.  The keydown listener is
-    * removed from the old active input and is attached to the new one.
-    *
-    * @method _handleActiveInputChangeEvent
-    * @protected
-    */
-    _handleActiveInputChangeEvent: function(event) {
-        var instance = this;
-
-        if (event.prevVal) {
-            event.prevVal.detach(
-                'keydown', instance._handleKeydownEvent, instance);
-        }
-
-        if (event.newVal) {
-            event.newVal.on('keydown', instance._handleKeydownEvent, instance);
-        }
     },
 
     /**
