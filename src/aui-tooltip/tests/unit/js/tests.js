@@ -80,8 +80,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         'should be hidden when mouseout on #triggerTooltipHelp': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip'),
+            var tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
             triggerTooltipHelp.simulate('mouseover');
@@ -97,8 +96,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         'should be visible when mouseover on #triggerTooltipHelp': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip'),
+            var tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
             triggerTooltipHelp.simulate('mouseover');
@@ -113,8 +111,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         'should be visible when mouse moves from #triggerTooltipHelp to .tooltip': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip'),
+            var tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
                 triggerTooltipHelp.simulate('mouseout');
@@ -130,8 +127,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         'should be hidden when mouseout of .tooltip': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip');
+            var tooltip = Y.one('.tooltip');
 
             tooltip.simulate('mouseout');
 
@@ -145,8 +141,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         'should remain visible when mouse moves from .tooltip to #triggerTooltipHelp': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip'),
+            var tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
             triggerTooltipHelp.simulate('mouseover');
@@ -166,8 +161,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
 
         // Tests: AUI-1092
         'should not cover button #triggerBottom': function() {
-            var test = this,
-                condition,
+            var condition,
                 tooltipLeft = Y.one('.tooltip.left'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
