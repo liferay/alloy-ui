@@ -926,18 +926,36 @@ DiagramNode = A.Component.create({
          */
         prepareTransition: function(val) {
             var instance = this;
+            var transition;
 
-            var transition = {
-                source: instance.get('name'),
-                target: null,
-                uid: A.guid()
-            };
+            A.Array.some(
+                instance.get('transitions').values(),
+                function(t) {
+                    var target = val;
 
-            if (A.Lang.isString(val)) {
-                transition.target = val;
-            }
-            else if (A.Lang.isObject(val)) {
-                transition = A.merge(transition, val);
+                    if (A.Lang.isObject(val)) {
+                        target = val.target
+                    }
+
+                    transition = (target === t.target) ? t : null;
+
+                    return transition;
+                }
+            );
+
+            if (!transition) {
+                transition = {
+                    source: instance.get('name'),
+                    target: null,
+                    uid: A.guid()
+                };
+
+                if (A.Lang.isString(val)) {
+                    transition.target = val;
+                }
+                else if (A.Lang.isObject(val)) {
+                    transition = A.merge(transition, val);
+                }
             }
 
             return transition;

@@ -120,6 +120,19 @@ YUI.add('aui-diagram-builder-tests', function(Y) {
 
                 window.callXSS = null;
             }, 500);
+        },
+
+        /**
+         * @tests AUI-997
+         */
+        'test preventing duplicated connectors': function() {
+            var fields = diagramBuilder.get('fields'),
+                startNode = fields.item(0),
+                endNode = fields.item(1);
+
+            startNode.connect(endNode.get('name'));
+
+            Y.Assert.areEqual(startNode.get('connectors').size(), 1);
         }
     }));
 
