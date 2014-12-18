@@ -184,6 +184,18 @@ var TreeView = A.Component.create({
         },
 
         /**
+         * Fires after a key event is dispatched.
+         *
+         * @method _afterKeyNodeEl
+         * @param {EventFacade} event
+         * @protected
+         */
+        _afterKeyNodeEl: function(event) {
+            event.preventDefault();
+            this._toggleTreeContent(event);
+        },
+
+        /**
          * Fire after set children.
          *
          * @method _afterSetChildren
@@ -313,6 +325,8 @@ var TreeView = A.Component.create({
             // expand/collapse delegations
             boundingBox.delegate('click', A.bind(instance._onClickNodeEl, instance), '.' +
                 CSS_TREE_NODE_CONTENT);
+            boundingBox.delegate('key', A.bind(instance._afterKeyNodeEl, instance), 'down:enter,space',
+             '.' + CSS_TREE_NODE_CONTENT);
             boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), '.' + CSS_TREE_ICON);
             boundingBox.delegate('dblclick', A.bind(instance._onClickHitArea, instance), '.' + CSS_TREE_LABEL);
             // other delegations
@@ -323,37 +337,14 @@ var TreeView = A.Component.create({
         },
 
         /**
-         * Fire on click the TreeView (i.e. set the select/unselect state).
+         * Fire on click the TreeView.
          *
          * @method _onClickNodeEl
          * @param {EventFacade} event
          * @protected
          */
         _onClickNodeEl: function(event) {
-            var instance = this;
-
-            var treeNode = instance.getNodeByChild(event.currentTarget);
-
-            if (treeNode) {
-                if (event.target.test('.' + CSS_TREE_HITAREA)) {
-                    treeNode.toggle();
-
-                    if (!instance.get('selectOnToggle')) {
-                        return;
-                    }
-                }
-
-                if (!treeNode.isSelected()) {
-                    var lastSelected = instance.get('lastSelected');
-
-                    // select drag node
-                    if (lastSelected) {
-                        lastSelected.unselect();
-                    }
-
-                    treeNode.select();
-                }
-            }
+            this._toggleTreeContent(event);
         },
 
         /**
@@ -401,6 +392,38 @@ var TreeView = A.Component.create({
 
             if (treeNode) {
                 treeNode.toggle();
+            }
+        },
+
+        /**
+         * Toggles the display of the 'A.TreeView' content (i.e. set the select/unselect state).
+         *
+         * @method _toggleTreeContent
+         * @param {EventFacade} event
+         * @protected
+         */
+        _toggleTreeContent: function(event) {
+            var treeNode = this.getNodeByChild(event.currentTarget);
+
+            if (treeNode) {
+                if (event.target.test('.' + CSS_TREE_HITAREA)) {
+                    treeNode.toggle();
+
+                    if (!this.get('selectOnToggle')) {
+                        return;
+                    }
+                }
+
+                if (!treeNode.isSelected()) {
+                    var lastSelected = this.get('lastSelected');
+
+                    // select drag node
+                    if (lastSelected) {
+                        lastSelected.unselect();
+                    }
+
+                    treeNode.select();
+                }
             }
         }
     }

@@ -43,7 +43,7 @@ var Lang = A.Lang,
     CSS_ICON_OK_SIGN = getCN('glyphicon', 'ok', 'sign'),
     CSS_ICON_CHECK = getCN('glyphicon', 'check'),
 
-    HIT_AREA_TPL = '<span class="' + CSS_TREE_HITAREA + '"></span>',
+    HIT_AREA_TPL = '<span tabindex="0" class="' + CSS_TREE_HITAREA + '"></span>',
     ICON_TPL = '<span class="' + CSS_TREE_ICON + '"></span>',
     LABEL_TPL = '<span class="' + CSS_TREE_LABEL + '"></span>',
     NODE_CONTAINER_TPL = '<ul></ul>',

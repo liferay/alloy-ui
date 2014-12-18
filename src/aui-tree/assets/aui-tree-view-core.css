@@ -22,6 +22,7 @@
 .tree-node-content .tree-hitarea {
     cursor: pointer;
     margin-right: 3px;
+    outline-width: thin;
 }
 
 .tree-node-content .tree-hitarea.tree-node-hidden-hitarea {

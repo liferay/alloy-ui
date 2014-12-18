@@ -33,7 +33,8 @@
             "querystring-stringify",
             "aui-tree-data",
             "aui-tree-io",
-            "aui-tree-paginator"
+            "aui-tree-paginator",
+            "event-key"
         ]
     },
 
