@@ -768,7 +768,7 @@ YUI.add('aui-tree-tests', function(Y) {
 
         'should fire expandedChange event on click': function() {
             var treeView,
-            expanded = false;
+                expanded = false;
 
             treeView = new Y.TreeView({
                 children: [
@@ -789,17 +789,16 @@ YUI.add('aui-tree-tests', function(Y) {
                         ],
                         id: 'one'
                     }
-                ]
+                ],
+                lazyLoad: false
             }).render();
 
             treeView.after('tree-node:expandedChange', function () {
                 expanded = true;
             });
 
-            setTimeout(function () {
-                Y.one('.tree-hitarea').simulate('click');
-                Y.Assert.isTrue(expanded);
-            }, 100); 
+            Y.one('.tree-hitarea').simulate('click');
+            Y.Assert.isTrue(expanded);
         }
     }));
 
