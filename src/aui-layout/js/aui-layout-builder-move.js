@@ -4,10 +4,7 @@
  * @module aui-layout-move
  */
 
-var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
-    CSS_MOVE_BUTTON_TEXT = A.getClassName('layout', 'builder', 'move', 'button', 'text'),
-    CSS_MOVE_CANCEL_BUTTON = A.getClassName('layout', 'builder', 'move', 'cancel', 'targets'),
-    CSS_MOVE_COL_TARGET = A.getClassName('layout', 'builder', 'move', 'col', 'target'),
+var CSS_MOVE_COL_TARGET = A.getClassName('layout', 'builder', 'move', 'col', 'target'),
     CSS_MOVE_CUT_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'button'),
     CSS_MOVE_CUT_ROW_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'row', 'button'),
     CSS_MOVE_CUT_COL_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'col', 'button'),
@@ -25,8 +22,6 @@ var CSS_MOVE_BUTTON = A.getClassName('layout', 'builder', 'move', 'button'),
     SELECTOR_COL = '.col',
     SELECTOR_ROW = '.layout-row',
 
-    TPL_MOVE_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_MOVE_BUTTON + '" tabindex="1" type="button">' +
-        '<span class="glyphicon glyphicon-sort"></span> <span class="' + CSS_MOVE_BUTTON_TEXT + '"> Move</span></button>',
     TPL_MOVE_CUT = '<div class="' + CSS_MOVE_CUT_BUTTON + '" tabindex="2"></div>',
     TPL_MOVE_TARGET = '<div class="' + CSS_MOVE_TARGET + '" tabindex="3">Move</div>';
 
@@ -113,7 +108,9 @@ LayoutBuilderMove.prototype = {
         this._eventHandles.push(
             this.after('enableMoveChange', A.bind(this._afterEnableMoveChange, this)),
             this.after('layout-row:colsChange', A.bind(this._afterMoveColsChange, this)),
+            this.after('layout-row:movableChange', A.bind(this._afterMoveMovableChange, this)),
             this.after('layout:rowsChange', A.bind(this._afterMoveRowsChange, this)),
+            this.after('layout:isColumnModeChange', A.bind(this._afterMoveIsColumnModeChange, this)),
             this.after('layoutChange', A.bind(this._afterMoveLayoutChange, this))
         );
 
@@ -171,6 +168,24 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
+    * Fired after `layout-row:movable` attribute changes.
+    *
+    * @method _afterMoveMovableChange
+    * @param {EventFacade} event
+    * @protected
+    */
+    _afterMoveMovableChange: function(event) {
+        var row = event.target.get('node');
+
+        if (event.newVal) {
+            this._insertCutButtonOnRow(row.one(SELECTOR_ROW));
+        }
+        else {
+            this._removeCutButtonFromRow(row);
+        }
+    },
+
+    /**
      * Fired after `cols` attribute changes.
      *
      * @method _afterMoveColsChange
@@ -178,6 +193,29 @@ LayoutBuilderMove.prototype = {
      */
     _afterMoveColsChange: function() {
         this._resetMoveUI();
+    },
+
+    /**
+    * Fired after `layout:isColumnMode` attribute changes.
+    *
+    * @method _afterMoveIsColumnModeChange
+    * @param {EventFacade} event
+    * @protected
+    */
+    _afterMoveIsColumnModeChange: function(event) {
+        var instance = this,
+            rows = this._layoutContainer.all(SELECTOR_ROW);
+
+        if (event.newVal) {
+            rows.each(function(row) {
+                if (instance._hasAnythingMovable(row)) {
+                    instance._insertCutButtonOnCols(row);
+                }
+            });
+        }
+        else {
+            this.fire(EVENT_REMOVE_COL_MOVE_BUTTONS);
+        }
     },
 
     /**
@@ -208,16 +246,12 @@ LayoutBuilderMove.prototype = {
      */
     _appendMoveButtonToRows: function() {
         var instance = this,
-            layoutContainer = this._layoutContainer,
-            moveButton,
-            rows = layoutContainer.all(SELECTOR_ROW);
+            rows = this._layoutContainer.all(SELECTOR_ROW);
 
         rows.each(function(row) {
             if (instance._hasAnythingMovable(row)) {
-                moveButton = A.Node.create(TPL_MOVE_BUTTON);
-                moveButton.setData('layout-row', row.getData('layout-row'));
-                moveButton.setData('node-row', row);
-                layoutContainer.insertBefore(moveButton, row);
+                instance._insertCutButtonOnRow(row);
+                instance._insertCutButtonOnCols(row);
             }
         });
     },
@@ -229,10 +263,7 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _bindMoveEvents: function() {
-        var container = this.get('container');
-
         this._moveEventHandles = [
-            container.delegate('click', A.bind(this._onMouseClickMoveEvent, this), '.' + CSS_MOVE_BUTTON + ', .' + CSS_MOVE_CANCEL_BUTTON),
             this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveCutButton, this), '.' + CSS_MOVE_CUT_BUTTON),
             this._layoutContainer.delegate('key', A.bind(this._onKeyPressOnMoveCutButton, this), 'press:13', '.' + CSS_MOVE_CUT_BUTTON),
             this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveTarget, this), '.' + CSS_MOVE_TARGET),
@@ -241,30 +272,21 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
-     * Change button text to cancel and add cancel class.
-     *
-     * @method _changeButtonToCancel
-     * @param {Node} button
-     * @protected
-     */
-    _changeButtonToCancel: function(button) {
-        button.one('.' + CSS_MOVE_BUTTON_TEXT).set('text', 'Cancel');
-
-        button.removeClass(CSS_MOVE_BUTTON);
-        button.addClass(CSS_MOVE_CANCEL_BUTTON);
-    },
-
-    /**
-     * Create target areas.
+     * Starts or cancels movement of rows and cols.
      *
      * @method _clickOnCutButton
-     * @param {EventFacade} event
+     * @param {Node} cutButton
      * @protected
      */
-    _clickOnCutButton: function(event) {
-        var cutButton = event.currentTarget;
+    _clickOnCutButton: function(cutButton) {
+        this._rowToBeMoved = cutButton.getData('layout-row');
 
-        this._removeAllCutButton();
+        this._removeAllCutButton(cutButton);
+
+        if (this._layoutContainer.one('.' + CSS_MOVE_ROW_TARGET + ', .' + CSS_MOVE_COL_TARGET)) {
+            this.cancelMove();
+            return;
+        }
 
         if (cutButton.hasClass(CSS_MOVE_CUT_ROW_BUTTON)) {
             this._createRowTargetArea();
@@ -406,8 +428,14 @@ LayoutBuilderMove.prototype = {
      * @method _defRemoveColMoveButtonsFn
      * @protected
      */
-    _defRemoveColMoveButtonsFn: function() {
-        this._layoutContainer.all('.' + CSS_MOVE_CUT_COL_BUTTON).remove();
+    _defRemoveColMoveButtonsFn: function(event) {
+        var cutButtons = this._layoutContainer.all('.' + CSS_MOVE_CUT_COL_BUTTON);
+
+        cutButtons.each(function(cutButton) {
+            if (cutButton !== event.clickedButton) {
+                cutButton.remove();
+            }
+        });
     },
 
     /**
@@ -449,35 +477,23 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
-     * Inserts cut buttons on row and cols.
-     *
-     * @method _insertCutButton
-     * @param {Node} moveButton
-     * @protected
-     */
-    _insertCutButton: function(moveButton) {
-        this._insertCutButtonOnRow(moveButton);
-
-        if (this.get('layout').get('isColumnMode')) {
-            this._insertCutButtonOnCols(moveButton);
-        }
-    },
-
-    /**
      * Inserts cut buttons on cols.
      *
      * @method _insertCutButtonOnCols
      * @param {Node} moveButton
      * @protected
      */
-    _insertCutButtonOnCols: function(moveButton) {
+    _insertCutButtonOnCols: function(row) {
         var instance = this,
             cols,
             layoutCol,
-            row = moveButton.getData('node-row'),
             rows = this._layoutContainer.all(SELECTOR_ROW);
 
         cols = row.all(SELECTOR_COL);
+
+        if (!this.get('layout').get('isColumnMode')) {
+            return;
+        }
 
         if (cols.size() === 1 && rows.size() === 1) {
             return;
@@ -499,12 +515,12 @@ LayoutBuilderMove.prototype = {
      * Inserts cut button on a row.
      *
      * @method _insertCutButtonOnRow
-     * @param {Node} moveButton
+     * @param {Node} row
      * @protected
      */
-    _insertCutButtonOnRow: function(moveButton) {
+    _insertCutButtonOnRow: function(row) {
         var cutButton = A.Node.create(TPL_MOVE_CUT),
-            layoutRow = moveButton.getData('layout-row'),
+            layoutRow = row.getData('layout-row'),
             rows = this._layoutContainer.all(SELECTOR_ROW);
 
         if (rows.size() === 1) {
@@ -516,11 +532,10 @@ LayoutBuilderMove.prototype = {
         }
 
         cutButton.addClass(CSS_MOVE_CUT_ROW_BUTTON);
-        cutButton.setData('node-row', moveButton.getData('node-row'));
+        cutButton.setData('node-row', row);
+        cutButton.setData('layout-row', layoutRow);
 
-        this._rowToBeMoved = layoutRow;
-
-        this._layoutContainer.insertBefore(cutButton, moveButton);
+        this._layoutContainer.insertBefore(cutButton, row);
     },
 
     /**
@@ -552,27 +567,7 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _onKeyPressOnMoveCutButton: function(event) {
-        this._clickOnCutButton(event);
-    },
-
-    /**
-     * Fires after click on move button.
-     *
-     * @method _onMouseClickMoveEvent
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onMouseClickMoveEvent: function(event) {
-        var moveButton = event.currentTarget;
-
-        if (moveButton.hasClass(CSS_MOVE_BUTTON)) {
-            this._changeButtonToCancel(moveButton);
-            this._removeMoveButtonFromRows(moveButton);
-            this._insertCutButton(moveButton);
-        }
-        else {
-            this.cancelMove();
-        }
+        this._clickOnCutButton(event.currentTarget);
     },
 
     /**
@@ -583,7 +578,7 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _onMouseClickOnMoveCutButton: function(event) {
-        this._clickOnCutButton(event);
+        this._clickOnCutButton(event.currentTarget);
     },
 
     /**
@@ -614,31 +609,29 @@ LayoutBuilderMove.prototype = {
      * @method _removeAllCutButton
      * @protected
      */
-    _removeAllCutButton: function() {
-        this.fire(EVENT_REMOVE_COL_MOVE_BUTTONS);
-        this._layoutContainer.all('.' + CSS_MOVE_CUT_ROW_BUTTON).remove();
+    _removeAllCutButton: function(cutButton) {
+        var cutRowButtons = this._layoutContainer.all('.' + CSS_MOVE_CUT_ROW_BUTTON);
+
+        this.fire(EVENT_REMOVE_COL_MOVE_BUTTONS, {
+            clickedButton: cutButton
+        });
+
+        cutRowButtons.each(function(cutRowButton) {
+            if (cutRowButton !== cutButton) {
+                cutRowButton.remove();
+            }
+        });
     },
 
     /**
-     * Removes all move row buttons.
-     *
-     * @method _removeMoveButtonFromRows
-     * @protected
-     */
-    _removeMoveButtonFromRows: function(button) {
-        var buttons = this.get('container').all('.' + CSS_MOVE_BUTTON + ', .' + CSS_MOVE_CANCEL_BUTTON);
-
-        if (button) {
-            buttons.each(function(currentButton) {
-                if (currentButton !== button) {
-                    currentButton.detachAll();
-                    currentButton.remove();
-                }
-            });
-        }
-        else {
-            buttons.remove();
-        }
+    * Removes cut button from row.
+    *
+    * @method _removeCutButtonFromRow
+    * @param {Node} row
+    * @protected
+    */
+    _removeCutButtonFromRow: function(row) {
+        row.one('.' + CSS_MOVE_CUT_ROW_BUTTON).remove();
     },
 
     /**
@@ -660,7 +653,6 @@ LayoutBuilderMove.prototype = {
      */
     _resetMoveUI: function() {
         this._removeAllCutButton();
-        this._removeMoveButtonFromRows();
         this._removeTargetArea();
         this._unbindMoveEvents();
         this._uiSetEnableMove(this.get('enableMove'));
@@ -674,14 +666,11 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _uiSetEnableMove: function(enableMove) {
-        this._removeMoveButtonFromRows();
-
         if (enableMove) {
             this._appendMoveButtonToRows();
             this._bindMoveEvents();
         }
         else {
-            this._removeMoveButtonFromRows();
             this._unbindMoveEvents();
         }
     },

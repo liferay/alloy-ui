@@ -16,7 +16,12 @@
 }
 
 .layout-builder-move-cut-col-button {
+    display: none;
     left: 10px;
     position: absolute;
     top: 0;
+}
+
+.col:hover .layout-builder-move-cut-col-button {
+    display: block;
 }

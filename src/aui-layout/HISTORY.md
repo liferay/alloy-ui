@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1805](https://issues.liferay.com/browse/AUI-1805) Moving rows and columns should be 2 separate features
 * [AUI-1807](https://issues.liferay.com/browse/AUI-1807) Update layout row height when columns are resized
 * [AUI-1731](https://issues.liferay.com/browse/AUI-1731) Make LayoutBuilder use progressive enhancement
 * [AUI-1803](https://issues.liferay.com/browse/AUI-1803) Should be able to add and resize columns on main mode

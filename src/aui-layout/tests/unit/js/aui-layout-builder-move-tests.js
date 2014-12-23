@@ -83,42 +83,31 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             this.layoutBuilder.destroy();
         },
 
-        'should show cut button when click on move button': function() {
-            var cutColButton,
-                cutRowButton,
-                moveButton = container.one('.layout-builder-move-button'),
-                row = layout.get('rows')[0];
+        'should show cut row button if row is movable': function() {
+            var firstRow = Y.one('.row');
 
-            moveButton.simulate('click');
-
-            cutRowButton = container.all('.layout-builder-move-cut-row-button');
-            cutColButton = container.all('.layout-builder-move-cut-col-button');
-
-            Assert.areEqual(1, cutRowButton.size());
-            Assert.areEqual(row.get('cols').length, cutColButton.size());
+            Assert.isNotNull(firstRow.previous('.layout-builder-move-cut-row-button'));
         },
 
         'should not show cut row button if row is not movable': function() {
             var firstRow = Y.one('.row'),
-                firstLayoutRow = firstRow.getData('layout-row'),
-                moveButton;
+                firstLayoutRow = firstRow.getData('layout-row');
 
             firstLayoutRow.set('movable', false);
-
-            moveButton = Y.one('.layout-builder-move-button');
-            moveButton.simulate('click');
-
             Assert.isNull(firstRow.previous('.layout-builder-move-cut-row-button'));
+
+            firstLayoutRow.set('movable', true);
+            Assert.isNotNull(firstRow.previous('.layout-builder-move-cut-row-button'));
         },
 
         'should fire preventable event for adding col move buttons': function() {
-            var cutColButton,
-                moveButton = container.one('.layout-builder-move-button');
+            var cutColButton;
 
             this.layoutBuilder.on('addColMoveButton', function(event) {
                 event.preventDefault();
             });
-            moveButton.simulate('click');
+
+            this.layoutBuilder.set('layout', layout);
 
             cutColButton = container.all('.layout-builder-move-cut-col-button');
             Assert.areEqual(0, cutColButton.size());
@@ -126,13 +115,10 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
         'should change row\'s position': function() {
             var cutButton,
-                moveButton = container.all('.layout-builder-move-button').last(),
                 rows = this.layoutBuilder.get('layout').get('rows'),
                 target;
 
             Assert.areEqual(3, rows[1].get('cols').length);
-
-            moveButton.simulate('click');
 
             cutButton = container.one('.layout-builder-move-cut-button');
             cutButton.simulate('click');
@@ -147,47 +133,45 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
         'should be able to cancel the move action': function() {
             var cutButton,
-                cancelButton,
-                moveButton = container.one('.layout-builder-move-button');
+                target;
 
-            moveButton.simulate('click');
-
-            cutButton = container.one('.layout-builder-move-cut-button');
+            cutButton = container.one('.layout-builder-move-cut-row-button');
+            cutButton.simulate('click');
 
             Assert.isNotNull(cutButton);
 
-            cancelButton = container.one('.layout-builder-move-cancel-targets');
-            cancelButton.simulate('click');
+            target = container.one('.layout-builder-move-row-target');
+            Assert.isNotNull(target);
 
-            cutButton = container.one('.layout-builder-move-cut-button');
+            cutButton.simulate('click');
 
-            Assert.isNull(cutButton);
+            target = container.one('.layout-builder-move-row-target');
+            Assert.isNull(target);
         },
 
         'should fire preventable event for removing col move buttons': function() {
-            var cutColButton,
-                moveButton = container.one('.layout-builder-move-button');
+            var cutColButton;
 
             this.layoutBuilder.on('removeColMoveButtons', function(event) {
                 event.preventDefault();
             });
-            moveButton.simulate('click');
-            moveButton.simulate('click');
+
+            this.layoutBuilder.fire('removeColMoveButtons');
 
             cutColButton = container.all('.layout-builder-move-cut-col-button');
-            Assert.areEqual(4, cutColButton.size());
+            Assert.areEqual(10, cutColButton.size());
         },
 
         'should hide move row button if disable enableMove attribute': function() {
-            var button = container.one('.layout-builder-move-button');
+            var cutButton = container.one('.layout-builder-move-cut-row-button');
 
-            Assert.isNotNull(button);
+            Assert.isNotNull(cutButton);
 
             this.layoutBuilder.set('enableMove', false);
 
-            button = container.one('.layout-builder-move-button');
+            cutButton = container.one('.layout-builder-move-cut-row-button');
 
-            Assert.isNull(button);
+            Assert.isNull(cutButton);
         },
 
         'should not add move row button on rows that hasn\'t anything to move': function() {
@@ -235,8 +219,7 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
         },
 
         'should not add cut row button if layout has only one row': function() {
-            var button,
-                cutRow;
+            var cutRow;
 
             layout = new Y.Layout({
                 rows: [
@@ -265,17 +248,13 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             this.layoutBuilder.set('layout', layout);
 
-            button = this.layoutBuilder._layoutContainer.one('.layout-builder-move-button');
-            button.simulate('click');
-
             cutRow = this.layoutBuilder._layoutContainer.one('.layout-builder-cut-row-button');
 
             Assert.isNull(cutRow);
         },
 
         'should not add cut col button if layout has 1 row and 1 col only': function() {
-            var button,
-                container = this.layoutBuilder._layoutContainer,
+            var container = this.layoutBuilder._layoutContainer,
                 cutCol;
 
             layout = new Y.Layout({
@@ -293,28 +272,19 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             this.layoutBuilder.set('layout', layout);
 
-            button = container.one('.layout-builder-move-button');
-            button.simulate('click');
-
             cutCol = container.one('.layout-builder-move-cut-col-button');
             Assert.isNull(cutCol);
         },
 
         'should not add targets around clicked row': function() {
-            var buttons,
-                button,
-                cutButton,
+            var cutButton,
                 rows,
                 row0,
                 row1;
 
-            buttons = this.layoutBuilder._layoutContainer.all('.layout-builder-move-button');
-            button = Y.one(buttons._nodes[1]);
             rows = container.all('.row');
             row0 = Y.one(rows._nodes[0]);
             row1 = Y.one(rows._nodes[1]);
-
-            button.simulate('click');
 
             cutButton = container.one('.layout-builder-move-cut-button');
             cutButton.simulate('click');
@@ -382,20 +352,16 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
                         })
                     ]
                 }),
-                moveButton,
                 targetArea;
 
             this.layoutBuilder.set('layout', layout);
 
-            moveButton = container.all('.layout-builder-move-button').last();
-            moveButton.simulate('click');
-
-            cutButton = container.one('.layout-builder-move-cut-button');
+            cutButton = container.one('.layout-builder-move-cut-row-button');
             cutButton.simulate('click');
 
             targetArea = container.one('.layout-builder-move-target');
 
-            Assert.areEqual(1, targetArea.getData('row-index'));
+            Assert.areEqual(2, targetArea.getData('row-index'));
         },
 
         'should not add target after the row to be moved and the unmovable row': function() {
@@ -457,13 +423,9 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
                         })
                     ]
                 }),
-                moveButton,
                 targetArea;
 
             this.layoutBuilder.set('layout', layout);
-
-            moveButton = Y.one(container.all('.layout-builder-move-button')._nodes[1]);
-            moveButton.simulate('click');
 
             cutButton = container.one('.layout-builder-move-cut-button');
             cutButton.simulate('click');
@@ -474,15 +436,8 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
         },
 
         'should add targets on cols': function() {
-            var button,
-                buttons,
-                buttonCutCol,
+            var buttonCutCol,
                 row = container.one('.row');
-
-            buttons = this.layoutBuilder._layoutContainer.all('.layout-builder-move-button');
-            button = Y.one(buttons._nodes[0]);
-
-            button.simulate('click');
 
             buttonCutCol = row.one('.layout-builder-move-cut-col-button');
             buttonCutCol.simulate('click');
@@ -491,16 +446,9 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
         },
 
         'should move col': function() {
-            var buttons,
-                button,
-                col,
+            var col,
                 colTarget,
                 cutColButton;
-
-            buttons = container.all('.layout-builder-move-button');
-            button = buttons.first();
-
-            button.simulate('click');
 
             col = container.one('.col');
             Assert.areEqual('foo', col.getData('layout-col').get('value').content);
@@ -519,15 +467,12 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             var cutRowButton,
                 firstRow = Y.one('.row'),
                 lastRow,
-                lastTarget,
-                moveButton = Y.one('.layout-builder-move-button');
+                lastTarget;
 
             Assert.areEqual(4, firstRow.all('.col').size());
 
             lastRow = Y.all('.row').last();
             Assert.areEqual(1, lastRow.all('.col').size());
-
-            moveButton.simulate('click');
 
             cutRowButton = Y.one('.layout-builder-move-cut-row-button');
             cutRowButton.simulate('keypress', { keyCode: 13 });
@@ -548,8 +493,7 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
                 firstLayoutCol,
                 firstRow = Y.one('.row'),
                 lastLayoutCol,
-                lastTarget,
-                moveButton = Y.one('.layout-builder-move-button');
+                lastTarget;
 
             firstLayoutCol = firstRow.one('.col').getData('layout-col');
 
@@ -560,8 +504,6 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             secondCall = firstRow.all('.col').item(1);
             secondCall.getData('layout-col').set('movableContent', false);
-
-            moveButton.simulate('click');
 
             Assert.isNull(secondCall.one('.layout-builder-move-col-target'));
 
@@ -589,13 +531,14 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
         },
 
         'should not insert cut buttons on cols if columnMode is not enabled through responsiveness': function() {
-            var moveButton = Y.one('.layout-builder-move-button');
+            debugger;
 
             layout._set('isColumnMode', false);
-
-            moveButton.simulate('click');
-
             Assert.isNull(Y.one('.layout-builder-move-cut-col-button'));
+
+            layout._set('isColumnMode', true);
+            Assert.isNotNull(Y.one('.layout-builder-move-cut-col-button'));
+
         }
     }));
 
