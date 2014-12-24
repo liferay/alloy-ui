@@ -314,7 +314,6 @@ LayoutBuilderMove.prototype = {
      * Create target area to move the row to one direction.
      *
      * @method _createRowTargetAreaInOneDirection
-     * @param {A.LayoutRow} rowToBeMoved
      * @param {String} direction Should be either 'before' or 'after'.
      * @protected
      */
@@ -426,6 +425,7 @@ LayoutBuilderMove.prototype = {
      * Default behavior for the `removeColMoveButtons` event.
      *
      * @method _defRemoveColMoveButtonsFn
+     * @param {EventFacade} event
      * @protected
      */
     _defRemoveColMoveButtonsFn: function(event) {
@@ -480,7 +480,7 @@ LayoutBuilderMove.prototype = {
      * Inserts cut buttons on cols.
      *
      * @method _insertCutButtonOnCols
-     * @param {Node} moveButton
+     * @param {Node} row
      * @protected
      */
     _insertCutButtonOnCols: function(row) {
@@ -607,6 +607,7 @@ LayoutBuilderMove.prototype = {
      * Removes all cut buttons.
      *
      * @method _removeAllCutButton
+     * @param {Node} cutButton
      * @protected
      */
     _removeAllCutButton: function(cutButton) {
