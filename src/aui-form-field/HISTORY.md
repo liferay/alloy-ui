@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1802](https://issues.liferay.com/browse/AUI-1802) Add name as an advanced field setting
 * [AUI-1785](https://issues.liferay.com/browse/AUI-1785) Merge list and choice fields into a single field type
 * [AUI-1794](https://issues.liferay.com/browse/AUI-1794) Refactor the rendering logic of each field into a render function
 * [AUI-1750](https://issues.liferay.com/browse/AUI-1750) Create time field
