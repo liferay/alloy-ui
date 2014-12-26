@@ -925,18 +925,17 @@ DiagramNode = A.Component.create({
          * @param val
          */
         prepareTransition: function(val) {
-            var instance = this;
-            var transition;
+            var instance = this,
+                target = val,
+                transition;
+
+            if (A.Lang.isObject(val)) {
+                target = val.target;
+            }
 
             A.Array.some(
                 instance.get('transitions').values(),
                 function(t) {
-                    var target = val;
-
-                    if (A.Lang.isObject(val)) {
-                        target = val.target
-                    }
-
                     transition = (target === t.target) ? t : null;
 
                     return transition;
