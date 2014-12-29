@@ -10,9 +10,9 @@ YUI.add('aui-tree-tests', function(Y) {
                 '<span>Fruits</span><ul><li><span>Tomato</span></li></ul></li></ul></div>'),
                 originalListElements,
                 originalListElementsCount,
-                treeView,
                 treeNodes,
-                treeNodesCount;
+                treeNodesCount,
+                treeView;
 
             Y.one('#container').append(content);
 
@@ -42,7 +42,7 @@ YUI.add('aui-tree-tests', function(Y) {
                 }
             });
 
-           content.remove(); 
+           content.remove();
         },
 
         'TreeView constructor should work without a config object': function() {
