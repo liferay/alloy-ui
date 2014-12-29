@@ -3,7 +3,7 @@
 > Documentation and test modifications are not included in this changelog. For more details, see [full commit history](https://github.com/liferay/alloy-ui/commits/master/src/aui-form-builder).
 
 ## @VERSION@
-
+* [AUI-1824](https://issues.liferay.com/browse/AUI-1824) Change move col from events to attributes
 * [AUI-1803](https://issues.liferay.com/browse/AUI-1803) Should be able to add and resize columns on main mode
 * [AUI-1785](https://issues.liferay.com/browse/AUI-1785) Merge list and choice fields into a single field type
 * [AUI-1800](https://issues.liferay.com/browse/AUI-1800) Add option on field toolbar to add a nested field

@@ -100,19 +100,6 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             Assert.isNotNull(firstRow.previous('.layout-builder-move-cut-row-button'));
         },
 
-        'should fire preventable event for adding col move buttons': function() {
-            var cutColButton;
-
-            this.layoutBuilder.on('addColMoveButton', function(event) {
-                event.preventDefault();
-            });
-
-            this.layoutBuilder.set('layout', layout);
-
-            cutColButton = container.all('.layout-builder-move-cut-col-button');
-            Assert.areEqual(0, cutColButton.size());
-        },
-
         'should change row\'s position': function() {
             var cutButton,
                 rows = this.layoutBuilder.get('layout').get('rows'),
@@ -147,19 +134,6 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             target = container.one('.layout-builder-move-row-target');
             Assert.isNull(target);
-        },
-
-        'should fire preventable event for removing col move buttons': function() {
-            var cutColButton;
-
-            this.layoutBuilder.on('removeColMoveButtons', function(event) {
-                event.preventDefault();
-            });
-
-            this.layoutBuilder.fire('removeColMoveButtons');
-
-            cutColButton = container.all('.layout-builder-move-cut-col-button');
-            Assert.areEqual(10, cutColButton.size());
         },
 
         'should hide move row button if disable enableMove attribute': function() {
@@ -537,6 +511,32 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             layout._set('isColumnMode', true);
             Assert.isNotNull(Y.one('.layout-builder-move-cut-col-button'));
 
+        },
+
+        'should not insert cut buttons on col is layout is created with isColumnMode attribute set to false': function() {
+            Y.config.win.innerWidth = 200;
+
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: { content: 'foo' }
+                            }),
+                            new Y.LayoutCol({
+                                size: 9,
+                                value: { content: 'foo' }
+                            })
+                        ],
+                        movable: false
+                    })
+                ]
+            });
+
+            this.layoutBuilder.set('layout', layout);
+
+            Assert.isNull(Y.one('.layout-builder-move-cut-col-button'));
         }
     }));
 
