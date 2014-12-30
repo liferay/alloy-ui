@@ -773,8 +773,8 @@ var SchedulerBase = A.Component.create({
             instance[ICON_NEXT_NODE] = instance.get(ICON_NEXT_NODE);
             instance[ICON_PREV_NODE] = instance.get(ICON_PREV_NODE);
             instance[NAV_NODE] = instance.get(NAV_NODE);
-            instance.navDateNode = instance.get('navDateNode');
-            instance.viewsSelectNode = instance.get('viewsSelectNode');
+            instance[NAV_DATE_NODE] = instance.get(NAV_DATE_NODE);
+            instance[VIEWS_SELECT_NODE] = instance.get(VIEWS_SELECT_NODE);
             instance[TODAY_NODE] = instance.get(TODAY_NODE);
             instance[VIEWS_NODE] = instance.get(VIEWS_NODE);
 
@@ -843,7 +843,7 @@ var SchedulerBase = A.Component.create({
                 return instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
             }
 
-            return instance.viewsSelectNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
+            return instance[VIEWS_SELECT_NODE].one('.' + CSS_SCHEDULER_VIEW_ + name);
         },
 
         /**
@@ -948,7 +948,7 @@ var SchedulerBase = A.Component.create({
         renderDropdownList: function() {
             var instance = this;
 
-            instance.viewsSelectNode.on('change', A.bind(instance._onSelectionChange, instance));
+            instance[VIEWS_SELECT_NODE].on('change', A.bind(instance._onSelectionChange, instance));
         },
 
         /**
@@ -965,14 +965,14 @@ var SchedulerBase = A.Component.create({
             instance[NAV_NODE].append(instance[ICON_NEXT_NODE]);
 
             instance[CONTROLS_NODE].append(instance[NAV_NODE]);
-            instance.controlsNode.append(instance.navDateNode);
+            instance[CONTROLS_NODE].append(instance[NAV_DATE_NODE]);
 
             A.Array.each(views, function(view) {
-                instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
+                instance[VIEWS_SELECT_NODE].append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
                 instance[VIEWS_NODE].append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
             });
 
-            instance.viewsNode.append(instance.viewsSelectNode);
+            instance.viewsNode.append(instance[VIEWS_SELECT_NODE]);
 
             instance.header.append(instance[CONTROLS_NODE]);
             instance.header.append(instance[VIEWS_NODE]);
@@ -1108,7 +1108,7 @@ var SchedulerBase = A.Component.create({
 
             instance.set(ACTIVE_VIEW, instance.getViewByName(viewName));
 
-            instance.viewsSelectNode.one('[data-view-name=' + viewName + ']').set('selected', true);
+            instance[VIEWS_SELECT_NODE].one('[data-view-name=' + viewName + ']').set('selected', true);
 
             event.preventDefault();
         },
