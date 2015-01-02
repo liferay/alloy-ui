@@ -14,6 +14,9 @@
 <div id="optionsEditor"></div>
 <button id="optionsEditorValue">Print Values</button>
 
+<h2>Radio Groups Editor</h2>
+<div id="radioGroupEditor"></div>
+
 <h2>Tabs Editor</h2>
 <div id="tabsEditor"></div>
 <div id="weaponsPanel">Out of weapons</div>
@@ -24,6 +27,7 @@
 YUI({ filter:'raw' }).use(
     'aui-data-editor',
     'aui-options-data-editor',
+    'aui-radio-group-data-editor',
     'aui-tabs-data-editor',
     function(Y) {
         var optionsEditor = new Y.OptionsDataEditor({
@@ -33,6 +37,12 @@ YUI({ filter:'raw' }).use(
         Y.one('#optionsEditorValue').on('click', function() {
             console.log(optionsEditor.get('editedValue'));
         });
+
+        var radioGroupEditor = new Y.RadioGroupDataEditor({
+            originalValue: 2,
+            radioLabels: ['Squirtle', 'Charmander', 'Bulbasaur']
+        });
+        Y.one('#radioGroupEditor').append(radioGroupEditor.get('node'));
 
         var tabsEditor = new Y.TabsDataEditor({
             originalValue: 'inventory-armor',

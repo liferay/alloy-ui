@@ -23,6 +23,12 @@
         ],
         "skinnable": true
     },
+    "aui-radio-group-data-editor": {
+        "requires": [
+            "aui-data-editor",
+            "node-event-delegate"
+        ]
+    },
     "aui-scale-data-editor": {
         "requires": [
             "aui-classnamemanager",

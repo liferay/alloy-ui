@@ -16,6 +16,11 @@
                 "js/aui-options-data-editor.js"
             ]
         },
+        "aui-radio-group-data-editor": {
+            "jsfiles": [
+                "js/aui-radio-group-data-editor.js"
+            ]
+        },
         "aui-scale-data-editor": {
             "jsfiles": [
                 "js/aui-scale-data-editor.js"
