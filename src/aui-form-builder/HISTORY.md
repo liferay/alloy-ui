@@ -3,8 +3,10 @@
 > Documentation and test modifications are not included in this changelog. For more details, see [full commit history](https://github.com/liferay/alloy-ui/commits/master/src/aui-form-builder).
 
 ## @VERSION@
+* [AUI-1811](https://issues.liferay.com/browse/AUI-1811) Change text field's multiline option to radio buttons instead of a button switch
 * [AUI-1812](https://issues.liferay.com/browse/AUI-1812) Fix layout builder bug on IE
 * [AUI-1802](https://issues.liferay.com/browse/AUI-1802) Add name as an advanced field setting
+
 * [AUI-1824](https://issues.liferay.com/browse/AUI-1824) Change move col from events to attributes
 * [AUI-1803](https://issues.liferay.com/browse/AUI-1803) Should be able to add and resize columns on main mode
 * [AUI-1785](https://issues.liferay.com/browse/AUI-1785) Merge list and choice fields into a single field type
