@@ -618,19 +618,6 @@ LayoutBuilderMove.prototype = {
  */
 LayoutBuilderMove.ATTRS = {
     /**
-     * Flag indicating if the feature of moving rows and cols from layout is
-     * enabled or not.
-     *
-     * @attribute enableMove
-     * @default true
-     * @type {Boolean}
-     */
-    enableMove: {
-        validator: A.Lang.isBoolean,
-        value: true
-    },
-
-    /**
      * Default function to add move button to cols.
      *
      * @attribute addColMoveButton
@@ -680,6 +667,19 @@ LayoutBuilderMove.ATTRS = {
         valueFn: function() {
             return A.bind(this._clickColMoveTarget, this);
         }
+    },
+
+    /**
+     * Flag indicating if the feature of moving rows and cols from layout is
+     * enabled or not.
+     *
+     * @attribute enableMove
+     * @default true
+     * @type {Boolean}
+     */
+    enableMove: {
+        validator: A.Lang.isBoolean,
+        value: true
     },
 
     /**

@@ -513,7 +513,7 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
         },
 
-        'should not insert cut buttons on col is layout is created with isColumnMode attribute set to false': function() {
+        'should not insert cut buttons on col if layout is created with isColumnMode attribute set to false': function() {
             Y.config.win.innerWidth = 200;
 
             var layout = new Y.Layout({
