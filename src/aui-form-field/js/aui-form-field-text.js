@@ -29,7 +29,7 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [], {
      */
     initializer: function() {
         this.after({
-            multilineChange: this._afterMultilineChange
+            typeChange: this._afterTypeChange
         });
     },
 
@@ -46,36 +46,38 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [], {
 
         content.addClass(CSS_FIELD_TEXT);
 
-        this._uiSetMultiline(this.get('multiline'));
+        this._uiSetType(this.get('type'));
     },
 
     /**
-     * Fired after the `multiline` attribute is set.
+     * Fired after the `type` attribute is set.
      *
-     * @method _afterMultilineChange
+     * @method _afterTypeChange
      * @protected
      */
-    _afterMultilineChange: function() {
-        this._uiSetMultiline(this.get('multiline'));
+    _afterTypeChange: function() {
+        this._uiSetType(this.get('type'));
     },
 
     /**
-     * Updates the ui according to the value of the `multiline` attribute.
+     * Updates the ui according to the value of the `type` attribute.
      *
-     * @method _uiSetMultiline
-     * @param {String} multiline
+     * @method _uiSetType
+     * @param {String} type
      * @protected
      */
-    _uiSetMultiline: function(multiline) {
+    _uiSetType: function(type) {
         var inputNode = this.get('content').one('.' + CSS_FIELD_TEXT_INPUT);
 
         inputNode.empty();
 
-        if (multiline) {
-            inputNode.append(TPL_MULTILINE);
-        }
-        else {
-            inputNode.append(TPL_SINGLE_LINE);
+        switch (type) {
+            case 0:
+                inputNode.append(TPL_SINGLE_LINE);
+                break;
+            case 1:
+                inputNode.append(TPL_MULTILINE);
+                break;
         }
     }
 }, {
@@ -89,15 +91,15 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [], {
      */
     ATTRS: {
         /**
-         * Flag indicating if the text input will allow multiple lines.
+         * Determine the type of text input.
          *
-         * @attribute multiline
-         * @default false
-         * @type {Boolean}
+         * @attribute type
+         * @default 0
+         * @type {Number}
          */
-        multiline: {
-            validator: A.Lang.isBoolean,
-            value: false
+        type: {
+            validator: A.Lang.isNumber,
+            value: 0
         },
 
         /**

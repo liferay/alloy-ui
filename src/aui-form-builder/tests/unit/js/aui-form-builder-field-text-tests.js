@@ -20,12 +20,12 @@ YUI.add('aui-form-builder-field-text-tests', function(Y) {
 
             this._field.renderSettingsPanel(settings);
 
-            settings.all('.button-switch').item(0).simulate('click');
-            settings.all('.button-switch').item(1).simulate('click');
+            settings.one('.button-switch').simulate('click');
+            settings.all('.radio-group-data-editor-button').item(1).simulate('click');
 
             this._field.saveSettings();
 
-            Y.Assert.isTrue(this._field.get('multiline'));
+            Y.Assert.areEqual(this._field.get('multiline'), 1);
             Y.Assert.isTrue(this._field.get('required'));
         },
 

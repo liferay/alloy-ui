@@ -11,7 +11,7 @@ YUI.add('aui-form-field-text-tests', function(Y) {
             }
         },
 
-        'should render input according to multiline attribute': function() {
+        'should render input according to type attribute': function() {
             var fieldNode;
 
             this._field = new Y.FormFieldText();
@@ -20,7 +20,7 @@ YUI.add('aui-form-field-text-tests', function(Y) {
             Y.Assert.isNotNull(fieldNode.one('input[type="text"]'));
             Y.Assert.isNull(fieldNode.one('textarea'));
 
-            this._field.set('multiline', true);
+            this._field.set('type', 1);
             Y.Assert.isNull(fieldNode.one('input[type="text"]'));
             Y.Assert.isNotNull(fieldNode.one('textarea'));
         }

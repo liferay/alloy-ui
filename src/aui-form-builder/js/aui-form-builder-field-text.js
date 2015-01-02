@@ -32,9 +32,10 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormFieldTex
                 })
             },
             {
-                attrName: 'multiline',
-                editor: new A.BooleanDataEditor({
-                    label: 'Multiline'
+                attrName: 'type',
+                editor: new A.RadioGroupDataEditor({
+                    radioLabels: ['Singleline', 'Multiline'],
+                    label: 'My text field type is:'
                 })
             }
         );
