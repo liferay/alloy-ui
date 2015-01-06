@@ -961,7 +961,7 @@ var SchedulerBase = A.Component.create({
             var views = instance.get(VIEWS);
 
             instance[NAV_NODE].append(instance[ICON_PREV_NODE]);
-            instance[CONTROLS_NODE].append(instance[TODAY_NODE]);
+            instance[NAV_NODE].append(instance[TODAY_NODE]);
             instance[NAV_NODE].append(instance[ICON_NEXT_NODE]);
 
             instance[CONTROLS_NODE].append(instance[NAV_NODE]);
