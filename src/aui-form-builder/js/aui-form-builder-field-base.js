@@ -140,9 +140,7 @@ A.FormBuilderFieldBase.prototype = {
             for (i = 0; i < advancedSettings.length; i++) {
                 this.renderSetting(advancedSettings[i], currentNode);
             }
-        }
-
-        if (!advancedSettings.length) {
+        } else {
             this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED).addClass(CSS_HIDE);
         }
     },
@@ -173,7 +171,7 @@ A.FormBuilderFieldBase.prototype = {
      *
      * @method renderSetting
      * @param {Object} setting
-     * @param {Object} targetNode
+     * @param {Node} targetNode
      * @protected
      */
     renderSetting: function(setting, targetNode) {
