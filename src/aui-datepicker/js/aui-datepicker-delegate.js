@@ -196,15 +196,10 @@ DatePickerDelegate.prototype = {
     * Handles tab key events
     *
     * @method _handleTabKeyEvent
-    * @param event
     * @protected
     */
-    _handleTabKeyEvent: function(event) {
-        var instance = this;
-
-        if (event.isKey('tab')) {
-            instance.hide();
-        }
+    _handleTabKeyEvent: function() {
+        this.hide();
     },
 
     /**
