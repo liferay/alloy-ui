@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1813](https://issues.liferay.com/browse/AUI-1813) Show asterisk beside required fields title
 * [AUI-1811](https://issues.liferay.com/browse/AUI-1811) Change text field's multiline option to radio buttons instead of a button switch
 * [AUI-1802](https://issues.liferay.com/browse/AUI-1802) Add name as an advanced field setting
 * [AUI-1785](https://issues.liferay.com/browse/AUI-1785) Merge list and choice fields into a single field type
