@@ -35,7 +35,7 @@ var CSS_FIELD_CHOICE = A.getClassName('form', 'field', 'choice'),
  *     properties.
  * @constructor
  */
-A.FormFieldChoice = A.Base.create('form-field-choice', A.FormField, [], {
+A.FormFieldChoice = A.Base.create('form-field-choice', A.FormField, [A.FormFieldRequired], {
     TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_CHOICE_OPTIONS + ' form-group"></div>' +
         '<div class="' + CSS_FIELD_CHOICE_DROPDOWN_CONTENT + '">' +
         '<div class="' + CSS_FIELD_CHOICE_DROPDOWN_TOGGLE + '">' +
@@ -238,18 +238,6 @@ A.FormFieldChoice = A.Base.create('form-field-choice', A.FormField, [], {
          * @type Boolean
          */
         otherOption: {
-            validator: A.Lang.isBoolean,
-            value: false
-        },
-
-        /**
-         * Flag indicating if this field is required.
-         *
-         * @attribute required
-         * @default false
-         * @type Boolean
-         */
-        required: {
             validator: A.Lang.isBoolean,
             value: false
         },

@@ -21,7 +21,7 @@ var CSS_FIELD_SCALE = A.getClassName('form', 'field', 'scale'),
  *     properties.
  * @constructor
  */
-A.FormFieldScale = A.Base.create('form-field-scale', A.FormField, [], {
+A.FormFieldScale = A.Base.create('form-field-scale', A.FormField, [A.FormFieldRequired], {
     TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_SCALE_RANGE + ' clearfix">' +
         '<div class="' + CSS_FIELD_SCALE_INPUT_LOWER_VALUE + '"><label></label></div>' +
         '<div class="' + CSS_FIELD_SCALE_INPUT + '"></div>' +
@@ -113,18 +113,6 @@ A.FormFieldScale = A.Base.create('form-field-scale', A.FormField, [], {
         range: {
             validator: A.Lang.isArray,
             value: [1, 10]
-        },
-
-        /**
-         * Flag indicating if this field is required.
-         *
-         * @attribute required
-         * @default false
-         * @type {Boolean}
-         */
-        required: {
-            validator: A.Lang.isBoolean,
-            value: false
         }
     }
 });

@@ -10,21 +10,21 @@
 
     "aui-form-field-choice": {
         "requires": [
-            "aui-form-field"
+            "aui-form-field-required"
         ],
         "skinnable": true
     },
 
     "aui-form-field-date": {
         "requires": [
-            "aui-form-field"
+            "aui-form-field-required"
         ],
         "skinnable": true
     },
 
     "aui-form-field-grid": {
         "requires": [
-            "aui-form-field"
+            "aui-form-field-required"
         ],
         "skinnable": true
     },
@@ -37,21 +37,21 @@
 
     "aui-form-field-scale": {
         "requires": [
-            "aui-form-field"
+            "aui-form-field-required"
         ],
         "skinnable": true
     },
 
     "aui-form-field-text": {
         "requires": [
-            "aui-form-field"
+            "aui-form-field-required"
         ],
         "skinnable": true
     },
 
     "aui-form-field-time": {
         "requires": [
-            "aui-form-field"
+            "aui-form-field-required"
         ],
         "skinnable": true
     }

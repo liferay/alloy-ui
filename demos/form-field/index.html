@@ -85,7 +85,8 @@ YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-f
 
     var fieldText = new Y.FormFieldText({
         help: 'Type your full name below',
-        title: 'What\'s your name?'
+        title: 'What\'s your name?',
+        required: true
     });
     Y.one('#fieldText').append(fieldText.get('content'));
 

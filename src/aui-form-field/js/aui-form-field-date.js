@@ -26,7 +26,7 @@ var CSS_FIELD_DATE = A.getClassName('form', 'field', 'date'),
  *     properties.
  * @constructor
  */
-A.FormFieldDate = A.Base.create('form-field-date', A.FormField, [], {
+A.FormFieldDate = A.Base.create('form-field-date', A.FormField, [A.FormFieldRequired], {
     TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_DATE + '">' +
         '<div class="' + CSS_FIELD_DATE_FROM + '">' +
         '<div class="' + CSS_FIELD_DATE_FROM_LABEL + '">From</div>' +
@@ -206,18 +206,6 @@ A.FormFieldDate = A.Base.create('form-field-date', A.FormField, [], {
         name: {
             validator: A.Lang.isString,
             value: ''
-        },
-
-        /**
-         * Flag indicating if this field is required.
-         *
-         * @attribute required
-         * @default false
-         * @type {Boolean}
-         */
-        required: {
-            validator: A.Lang.isBoolean,
-            value: false
         },
 
         /**

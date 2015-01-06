@@ -22,7 +22,7 @@ var CSS_FIELD_GRID = A.getClassName('form', 'field', 'grid'),
  *     properties.
  * @constructor
  */
-A.FormFieldGrid = A.Base.create('form-field-grid', A.FormField, [], {
+A.FormFieldGrid = A.Base.create('form-field-grid', A.FormField, [A.FormFieldRequired], {
     TPL_FIELD_CONTENT: '<table class="' + CSS_FIELD_GRID_TABLE + '">' +
         '<tr class="' + CSS_FIELD_GRID_COLUMNS + '"></tr>' +
         '</table>',
@@ -158,18 +158,6 @@ A.FormFieldGrid = A.Base.create('form-field-grid', A.FormField, [], {
         name: {
             validator: A.Lang.isString,
             value: ''
-        },
-
-        /**
-         * Flag indicating if this field is required.
-         *
-         * @attribute required
-         * @default false
-         * @type Boolean
-         */
-        required: {
-            validator: A.Lang.isBoolean,
-            value: false
         },
 
         /**

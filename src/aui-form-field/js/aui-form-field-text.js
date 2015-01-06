@@ -18,7 +18,7 @@ var CSS_FIELD_TEXT = A.getClassName('form', 'builder', 'field', 'text'),
  *     properties.
  * @constructor
  */
-A.FormFieldText = A.Base.create('form-field-text', A.FormField, [], {
+A.FormFieldText = A.Base.create('form-field-text', A.FormField, [A.FormFieldRequired], {
     TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_TEXT_INPUT + '"></div>',
 
     /**
@@ -91,18 +91,6 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [], {
      */
     ATTRS: {
         /**
-         * Determine the type of text input.
-         *
-         * @attribute type
-         * @default 0
-         * @type {Number}
-         */
-        type: {
-            validator: A.Lang.isNumber,
-            value: 0
-        },
-
-        /**
          * Id to reference form data after a form is submitted.
          *
          * @attribute name
@@ -115,15 +103,15 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [], {
         },
 
         /**
-         * Flag indicating if this field is required.
+         * Determine the type of text input.
          *
-         * @attribute required
-         * @default false
-         * @type {Boolean}
+         * @attribute type
+         * @default 0
+         * @type {Number}
          */
-        required: {
-            validator: A.Lang.isBoolean,
-            value: false
+        type: {
+            validator: A.Lang.isNumber,
+            value: 0
         }
     }
 });

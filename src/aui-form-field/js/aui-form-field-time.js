@@ -22,7 +22,7 @@ var CSS_FIELD_TIME = A.getClassName('form', 'field', 'time'),
  *     properties.
  * @constructor
  */
-A.FormFieldTime = A.Base.create('form-field-time', A.FormField, [], {
+A.FormFieldTime = A.Base.create('form-field-time', A.FormField, [A.FormFieldRequired], {
     TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_TIME + '">' +
         '<div class="' + CSS_FIELD_TIME_FROM + '">' +
         '<div class="' + CSS_FIELD_TIME_FROM_LABEL + '">From</div>' +
@@ -100,18 +100,6 @@ A.FormFieldTime = A.Base.create('form-field-time', A.FormField, [], {
         name: {
             validator: A.Lang.isString,
             value: ''
-        },
-
-        /**
-         * Flag indicating if this field is required.
-         *
-         * @attribute required
-         * @default false
-         * @type {Boolean}
-         */
-        required: {
-            validator: A.Lang.isBoolean,
-            value: false
         },
 
         /**
