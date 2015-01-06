@@ -25,6 +25,12 @@
             ]
         },
 
+        "aui-form-field-required": {
+            "jsfiles": [
+                "js/aui-form-field-required.js"
+            ]
+        },
+
         "aui-form-field-scale": {
             "jsfiles": [
                 "js/aui-form-field-scale.js"
