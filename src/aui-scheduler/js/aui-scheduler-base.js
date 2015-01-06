@@ -1294,8 +1294,8 @@ var SchedulerBase = A.Component.create({
                     navigationTitle = formatter.call(activeView, val);
                 }
 
+                instance[NAV_DATE_NODE].html(navigationTitle);
                 instance[VIEW_DATE_NODE].html(navigationTitle);
-                instance.viewDateNode.html(navigationTitle);
 
                 instance.syncEventsUI();
             }
