@@ -96,7 +96,7 @@ A.LayoutBuilderResizeCol.prototype = {
             row = dragNode.ancestor(SELECTOR_ROW);
 
         this._resize(dragNode, row);
-        this.get('layout').normalizeColsHeight([row]);
+        this.get('layout').normalizeColsHeight(new A.NodeList(row));
     },
 
     /**

@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1812](https://issues.liferay.com/browse/AUI-1812) Fix layout builder bug on IE
 * [AUI-1802](https://issues.liferay.com/browse/AUI-1802) Add name as an advanced field setting
 * [AUI-1824](https://issues.liferay.com/browse/AUI-1824) Change move col from events to attributes
 * [AUI-1805](https://issues.liferay.com/browse/AUI-1805) Moving rows and columns should be 2 separate features

@@ -250,7 +250,7 @@ YUI.add('aui-layout-tests', function(Y) {
 
             Y.Assert.areNotEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
 
-            this.layout.normalizeColsHeight([colOne.ancestor('.row')]);
+            this.layout.normalizeColsHeight(new Y.NodeList(colOne.ancestor('.row')));
 
             Y.Assert.areEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
         },
@@ -276,7 +276,7 @@ YUI.add('aui-layout-tests', function(Y) {
 
             Y.Assert.areNotEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
 
-            this.layout.normalizeColsHeight([colOne.ancestor('.row')]);
+            this.layout.normalizeColsHeight(new Y.NodeList(colOne.ancestor('.row')));
 
             Y.Assert.areNotEqual(colOne.get('clientHeight'), colTwo.get('clientHeight'));
         },

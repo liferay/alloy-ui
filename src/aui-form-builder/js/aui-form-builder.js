@@ -368,7 +368,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     _addNestedField: function(field, nested, index) {
         field.addNestedField(index, nested);
-        this.get('layout').normalizeColsHeight([this.getFieldRow(nested)]);
+        this.get('layout').normalizeColsHeight(new A.NodeList(this.getFieldRow(nested)));
     },
 
     /**
@@ -740,7 +740,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             parentField = nestedFieldsNode.ancestor('.form-builder-field').getData('field-instance');
             parentField.removeNestedField(field);
 
-            this.get('layout').normalizeColsHeight([this.getFieldRow(parentField)]);
+            this.get('layout').normalizeColsHeight(new A.NodeList(this.getFieldRow(parentField)));
         }
         else {
             col = event.currentTarget.ancestor('.col').getData('layout-col');
@@ -847,7 +847,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
                 this._newFieldContainer = null;
             }
             else {
-                this.get('layout').normalizeColsHeight([this._fieldBeingEdited.get('content').ancestor('.layout-row')]);
+                this.get('layout').normalizeColsHeight(new A.NodeList(this._fieldBeingEdited.get('content').ancestor('.layout-row')));
             }
 
             this._toggleUniqueDisabled(this._fieldBeingEdited, true);

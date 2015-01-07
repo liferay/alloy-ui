@@ -154,7 +154,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * Normalize all cols' height for each row.
      *
      * @method normalizeColsHeight
-     * @param {Array} rows Rows to normalize cols' height.
+     * @param {NodeList} rows Rows to normalize cols' height.
      **/
     normalizeColsHeight: function(rows) {
         var instance = this,
@@ -162,7 +162,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
             cols,
             highestCol = 0;
 
-        A.Array.each(rows, function(row) {
+        rows.each(function(row) {
             cols = row.all(SELECTOR_COL);
 
             if (instance.get('isColumnMode')) {
@@ -209,7 +209,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      */
     _afterLayoutColsChange: function(event) {
         var row = event.target;
-        this.normalizeColsHeight([row.get('node').one(SELECTOR_ROW)]);
+        this.normalizeColsHeight(new A.NodeList(row.get('node').one(SELECTOR_ROW)));
     },
 
     /**
@@ -228,7 +228,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
             }
         });
 
-        this.normalizeColsHeight([targets[0].get('node').one(SELECTOR_ROW)]);
+        this.normalizeColsHeight(new A.NodeList(targets[0].get('node').one(SELECTOR_ROW)));
     },
 
     /**
@@ -298,7 +298,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
         if (this.get('isColumnMode') !== enableColumnMode) {
             this._set('isColumnMode', enableColumnMode);
 
-            this.normalizeColsHeight(this.get('node').all(SELECTOR_ROW).get('nodes'));
+            this.normalizeColsHeight(this.get('node').all(SELECTOR_ROW));
         }
     },
 

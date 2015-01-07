@@ -113,7 +113,7 @@ A.FormBuilderLayoutBuilder.prototype = {
         var layout = this.get('layout');
 
         this._uiSetLayoutBuilderMode(this.get('mode'));
-        layout.normalizeColsHeight(layout.get('node').all('.row').get('nodes'));
+        layout.normalizeColsHeight(layout.get('node').all('.row'));
     },
 
     /**
@@ -188,7 +188,7 @@ A.FormBuilderLayoutBuilder.prototype = {
         if (parentFieldNode) {
             parentFieldNode.getData('field-instance').removeNestedField(this._fieldBeingMoved);
 
-            this.get('layout').normalizeColsHeight([this.getFieldRow(parentFieldNode.getData('field-instance'))]);
+            this.get('layout').normalizeColsHeight(new A.NodeList(this.getFieldRow(parentFieldNode.getData('field-instance'))));
         }
         else {
             this._fieldBeingMovedCol.set('value', null);
