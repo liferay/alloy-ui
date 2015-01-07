@@ -425,7 +425,7 @@ YUI.add('aui-tree-tests', function(Y) {
                 treeViewComponent.remove();
             }, lazyRenderTimeout);
 
-            test.wait(lazyRenderTimeout);
+            test.wait();
         },
 
         'TreeNodeView created from HTML Markup should display glyphicon-plus when collapsed': function() {
