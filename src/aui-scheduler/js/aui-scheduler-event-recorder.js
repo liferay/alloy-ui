@@ -12,10 +12,6 @@ var Lang = A.Lang,
 
     _serialize = A.IO.prototype._serialize,
 
-    isNodeList = function(v) {
-        return (v instanceof A.NodeList);
-    },
-
     DateMath = A.DataType.DateMath,
 
     getCN = A.getClassName,
@@ -381,7 +377,7 @@ var SchedulerEventRecorder = A.Component.create({
                 }
             }
 
-            if (isNodeList(node)) {
+            if (A.Lang.isNodeList(node)) {
                 node = node.item(0);
             }
 

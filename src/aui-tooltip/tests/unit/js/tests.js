@@ -19,6 +19,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
 
         'should have tooltip on top': function() {
             new Y.Tooltip({
+                animated: false,
                 position: 'top',
                 trigger: '#triggerTop'
             }).render();
@@ -30,6 +31,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
 
         'should have tooltip on right': function() {
             new Y.Tooltip({
+                animated: false,
                 position: 'right',
                 trigger: '#triggerRight'
             }).render();
@@ -41,6 +43,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
 
         'should have tooltip on bottom': function() {
             new Y.Tooltip({
+                animated: false,
                 position: 'bottom',
                 trigger: '#triggerBottom'
             }).render();
@@ -52,6 +55,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
 
         'should have tooltip on left': function() {
             new Y.Tooltip({
+                animated: false,
                 position: 'left',
                 trigger: '#triggerLeft'
             }).render();
@@ -63,6 +67,7 @@ YUI.add('aui-tooltip-tests', function(Y) {
 
         'should display tooltip with class tooltip-help': function() {
             new Y.Tooltip({
+                animated: false,
                 cssClass: 'tooltip-help',
                 position: 'right',
                 stickDuration: 25,
@@ -75,167 +80,102 @@ YUI.add('aui-tooltip-tests', function(Y) {
         },
 
         'should be hidden when mouseout on #triggerTooltipHelp': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip'),
+            var tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            triggerTooltipHelp.once('mouseout', function() {
-                setTimeout(function() {
-                    test.resume(function() {
-                        Y.Assert.isFalse(
-                            tooltip.getStyle('opacity') > 0,
-                            '.tooltip is not hidden.');
+            triggerTooltipHelp.simulate('mouseover');
+            triggerTooltipHelp.simulate('mouseout');
 
-                        Y.Assert.isTrue(
-                            tooltip.hasClass('tooltip-hidden'),
-                            '.tooltip does not have class tooltip-hidden');
-                    });
-                }, 800);
-            });
+            Y.Assert.isFalse(
+                tooltip.getStyle('opacity') > 0,
+                '.tooltip is not hidden.');
 
-            setTimeout(function() {
-                triggerTooltipHelp.simulate('mouseover');
-                triggerTooltipHelp.simulate('mouseout');
-            }, 0);
-
-            test.wait(1000);
+            Y.Assert.isTrue(
+                tooltip.hasClass('tooltip-hidden'),
+                '.tooltip does not have class tooltip-hidden');
         },
 
         'should be visible when mouseover on #triggerTooltipHelp': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip'),
+            var tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            triggerTooltipHelp.once('mouseover', function() {
-                setTimeout(function() {
-                    test.resume(function() {
-                        Y.Assert.isTrue(
-                            tooltip.getStyle('opacity') > 0,
-                            '.tooltip is hidden.');
+            triggerTooltipHelp.simulate('mouseover');
 
-                        Y.Assert.isFalse(
-                            tooltip.hasClass('tooltip-hidden'),
-                            '.tooltip should not have class tooltip-hidden');
-                    });
-                }, 800);
-            });
+            Y.Assert.isTrue(
+                tooltip.getStyle('opacity') > 0,
+                '.tooltip is hidden.');
 
-            setTimeout(function() {
-                triggerTooltipHelp.simulate('mouseover');
-            }, 0);
-
-            test.wait(1000);
+            Y.Assert.isFalse(
+                tooltip.hasClass('tooltip-hidden'),
+                '.tooltip should not have class tooltip-hidden');
         },
 
         'should be visible when mouse moves from #triggerTooltipHelp to .tooltip': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip'),
+            var tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            tooltip.once('mouseover', function() {
-                setTimeout(function() {
-                    test.resume(function() {
-                        Y.Assert.isTrue(
-                            Y.one('.tooltip').getStyle('opacity') > 0,
-                            '.tooltip is visible.');
-
-                        Y.Assert.isFalse(
-                            Y.one('.tooltip').hasClass('tooltip-hidden'),
-                            '.tooltip should not have class tooltip-hidden');
-                    });
-                }, 800);
-            });
-
-            setTimeout(function() {
                 triggerTooltipHelp.simulate('mouseout');
                 tooltip.simulate('mouseover');
-            }, 0);
 
-            test.wait(1000);
+            Y.Assert.isTrue(
+                Y.one('.tooltip').getStyle('opacity') > 0,
+                '.tooltip is visible.');
+
+            Y.Assert.isFalse(
+                Y.one('.tooltip').hasClass('tooltip-hidden'),
+                '.tooltip should not have class tooltip-hidden');
         },
 
         'should be hidden when mouseout of .tooltip': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip');
+            var tooltip = Y.one('.tooltip');
 
-            tooltip.once('mouseout', function() {
-                setTimeout(function() {
-                    test.resume(function() {
-                        Y.Assert.isFalse(
-                            Y.one('.tooltip').getStyle('opacity') > 0,
-                            '.tooltip is visible.');
+            tooltip.simulate('mouseout');
 
-                        Y.Assert.isTrue(
-                            Y.one('.tooltip').hasClass('tooltip-hidden'),
-                            '.tooltip does not have class tooltip-hidden');
-                    });
-                }, 800);
-            });
+            Y.Assert.isFalse(
+                Y.one('.tooltip').getStyle('opacity') > 0,
+                '.tooltip is visible.');
 
-            setTimeout(function() {
-                tooltip.simulate('mouseout');
-            }, 0);
-
-            test.wait(1000);
+            Y.Assert.isTrue(
+                Y.one('.tooltip').hasClass('tooltip-hidden'),
+                '.tooltip does not have class tooltip-hidden');
         },
 
         'should remain visible when mouse moves from .tooltip to #triggerTooltipHelp': function() {
-            var test = this,
-                tooltip = Y.one('.tooltip'),
+            var tooltip = Y.one('.tooltip'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            tooltip.once('mouseout', function() {
-                setTimeout(function() {
-                    test.resume(function() {
-                        Y.Assert.isTrue(
-                            Y.one('.tooltip').getStyle('opacity') > 0,
-                            '.tooltip is hidden.');
+            triggerTooltipHelp.simulate('mouseover');
+            triggerTooltipHelp.simulate('mouseout');
+            tooltip.simulate('mouseover');
+            tooltip.simulate('mouseout');
+            triggerTooltipHelp.simulate('mouseover');
 
-                        Y.Assert.isFalse(
-                            Y.one('.tooltip').hasClass('tooltip-hidden'),
-                            '.tooltip should not have class tooltip-hidden');
-                    });
-                }, 800);
-            });
+            Y.Assert.isTrue(
+                Y.one('.tooltip').getStyle('opacity') > 0,
+                '.tooltip is hidden.');
 
-            setTimeout(function() {
-                triggerTooltipHelp.simulate('mouseover');
-                triggerTooltipHelp.simulate('mouseout');
-                tooltip.simulate('mouseover');
-                tooltip.simulate('mouseout');
-                triggerTooltipHelp.simulate('mouseover');
-            }, 0);
-
-            test.wait(1000);
+            Y.Assert.isFalse(
+                Y.one('.tooltip').hasClass('tooltip-hidden'),
+                '.tooltip should not have class tooltip-hidden');
         },
 
         // Tests: AUI-1092
         'should not cover button #triggerBottom': function() {
-            var test = this,
+            var condition,
                 tooltipLeft = Y.one('.tooltip.left'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            tooltipLeft.once('mouseout', function() {
-                setTimeout(function() {
-                    test.resume(function() {
-                        var condition = (tooltipLeft === null ||
-                            tooltipLeft.getStyle('zIndex') < 0 || tooltipLeft.getComputedStyle(
-                                'zIndex') < 0);
+            triggerTooltipHelp.simulate('mouseout');
+            tooltipLeft.simulate('mouseover');
+            tooltipLeft.simulate('mouseout');
 
-                        Y.Assert.isTrue(
-                            condition,
-                            '.tooltip.left does not have a z-index less than 0');
-                    });
-                }, 800);
-            });
+            condition = (tooltipLeft === null ||
+                tooltipLeft.getStyle('zIndex') < 0 || tooltipLeft.getComputedStyle(
+                    'zIndex') < 0);
 
-            setTimeout(function() {
-                triggerTooltipHelp.simulate('mouseout');
-                tooltipLeft.simulate('mouseover');
-                tooltipLeft.simulate('mouseout');
-            });
-
-            test.wait(1000);
+            Y.Assert.isTrue(
+                condition,
+                '.tooltip.left does not have a z-index less than 0');
         },
 
         'should format the content as requested': function() {

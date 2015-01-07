@@ -10,13 +10,6 @@ var Lang = A.Lang,
     isNumber = Lang.isNumber,
     isString = Lang.isString,
 
-    isNodeList = function(v) {
-        return (v instanceof A.NodeList);
-    },
-
-    isNode = function(v) {
-        return (v instanceof A.Node);
-    },
     ENTER = 13,
 
     getCN = A.getClassName,
@@ -131,7 +124,7 @@ var Rating = A.Component.create({
          * @type NodeList
          */
         elements: {
-            validator: isNodeList
+            validator: A.Lang.isNodeList
         },
 
         /**
@@ -142,7 +135,7 @@ var Rating = A.Component.create({
          * @type Node
          */
         hiddenInput: {
-            validator: isNode
+            validator: A.Lang.isNode
         },
 
         /**
@@ -183,7 +176,7 @@ var Rating = A.Component.create({
             valueFn: function() {
                 return A.Node.create(TPL_LABEL);
             },
-            validator: isNode
+            validator: A.Lang.isNode
         },
 
         /**

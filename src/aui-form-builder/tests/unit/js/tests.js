@@ -1,9 +1,5 @@
 YUI.add('aui-form-builder-tests', function(Y) {
 
-    var isNode = function(v) {
-        return (v instanceof Y.Node);
-    };
-
     var suite = new Y.Test.Suite('aui-form-builder');
 
     var radioField = new Y.FormBuilderRadioField({
@@ -61,7 +57,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             var checkedNode = templateNode.one('input[type=radio]:checked');
 
-            Y.Assert.areEqual(true, isNode(checkedNode), 'There should be a checked input.');
+            Y.Assert.areEqual(true, Y.Lang.isNode(checkedNode), 'There should be a checked input.');
 
             Y.Assert.areEqual(value, checkedNode.attr('value'), 'The value should be equal to "' + value + '".');
         }

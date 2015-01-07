@@ -75,9 +75,9 @@
 }
 
 .scheduler-view-table-header-col .scheduler-view-table-header-day div {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
-    padding: 6px;
+    padding: 6px 2px 0 0;
 }
 
 .scheduler-view-table-container {
@@ -157,7 +157,7 @@
     color: #666;
     line-height: 16px;
     overflow: hidden;
-    padding-right: 2px;
+    padding: 3px 4px 0 0;
     text-align: right;
 }
 

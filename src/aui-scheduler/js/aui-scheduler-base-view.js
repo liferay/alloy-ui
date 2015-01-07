@@ -206,6 +206,7 @@ var SchedulerView = A.Component.create({
          * @attribute triggerNode
          */
         triggerNode: {
+            getter: '_getTriggerNode',
             setter: A.one
         },
 
@@ -400,6 +401,16 @@ var SchedulerView = A.Component.create({
             instance._uiSetScrollable(
                 instance.get('scrollable')
             );
+        },
+
+        /**
+         * Returns the `Node` that triggers.
+         *
+         * @method _getTriggerNode
+         * @protected
+         */
+        _getTriggerNode: function() {
+            return this.get('scheduler').getViewTriggerNode(this);
         },
 
         /**

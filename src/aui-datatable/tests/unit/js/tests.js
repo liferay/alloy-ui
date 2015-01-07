@@ -531,7 +531,8 @@ YUI.add('aui-datatable-tests', function(Y) {
 
             //simulate click cancel button
 
-            cancelBtn.focus().simulate('click');
+            cancelBtn.simulate('mousemove');
+            cancelBtn.simulate('click');
 
             Y.Assert.areEqual(cell.html(), originalVal);
             Y.Assert.isFalse(editor.get('visible'), 'editor should be hidden');
@@ -578,7 +579,8 @@ YUI.add('aui-datatable-tests', function(Y) {
 
             textArea.val(newVal);
 
-            saveBtn.focus().simulate('click');
+            saveBtn.simulate('mousemove');
+            saveBtn.simulate('click');
 
             Y.Assert.areEqual(cell.html(), newVal);
             Y.Assert.isFalse(editor.get('visible'), 'editor should be hidden');
@@ -601,7 +603,8 @@ YUI.add('aui-datatable-tests', function(Y) {
             editor = Y.Widget.getByNode(editorNode);
             cancelBtn = editorNode.all('button').item(1);
 
-            cancelBtn.focus().simulate('click');
+            cancelBtn.simulate('mousemove');
+            cancelBtn.simulate('click');
 
             //simulate press down key to change active cell after CANCEL
 
@@ -630,7 +633,8 @@ YUI.add('aui-datatable-tests', function(Y) {
             editor = Y.Widget.getByNode(editorNode);
             saveBtn = editorNode.all('button').item(0);
 
-            saveBtn.focus().simulate('click');
+            saveBtn.simulate('mousemove');
+            saveBtn.simulate('click');
 
             //simulate press down key to change active cell after SAVE
 
@@ -640,47 +644,6 @@ YUI.add('aui-datatable-tests', function(Y) {
 
             Y.ArrayAssert.itemsAreSame(testCoords, coords);
             Y.Assert.isFalse(editor.get('visible'), 'editor should be hidden');
-        },
-
-        'calendar editor gains focus after invoke': function() {
-            var boundingBox = this._dataTable.get('boundingBox'),
-                calendar,
-                coords = [0,8],
-                date,
-                dateEditorNode,
-                node;
-
-            this._dataTable.set('activeCoord', coords);
-            this._dataTable.set('selection', coords);
-
-            this._simulateKey(boundingBox, 13);
-
-            dateEditorNode = Y.one('.datecelleditor');
-            Y.Assert.isNotNull(dateEditorNode, 'editor was not created');
-
-            this.wait(
-                function() {
-                    calendar = Y.Widget.getByNode(dateEditorNode).calendar;
-                    node = Y.one(document.activeElement);
-
-                    //simulate changing selected date with the keyboard
-                    //simulate press enter, down, enter
-
-                    this._simulateKey(node, 13);
-                    this._simulateKey(node, 40);
-                    this._simulateKey(node, 13);
-
-                    date = calendar.get('selectedDates')[0];
-
-                    Y.Assert.areEqual(
-                        new Date(2013, 0, 8, 12, 0, 0).getTime(),
-                        new Date(date).getTime(),
-                        'date did not change'
-                    );
-
-                    Y.Widget.getByNode(dateEditorNode).fire('cancel');
-                },
-            50);
         },
 
         'fields sorted on caret click': function() {

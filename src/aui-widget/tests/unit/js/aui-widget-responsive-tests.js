@@ -181,25 +181,6 @@ YUI.add('aui-widget-responsive-tests', function(Y) {
             );
         },
 
-        'should reset the ratio when requested': function() {
-            var images;
-
-            this._container.setStyle('width', '940px');
-
-            this._createWidget();
-
-            images = this._widget.get('contentBox').all('img');
-            images.item(0).hide();
-            images.item(1).show();
-            this._widget.updateDimensionsWithNewRatio();
-
-            Y.Assert.areEqual(
-                '626px',
-                this._widget.get('boundingBox').getStyle('height'),
-                'Height should have been updated to match the ratio'
-            );
-        },
-
         'should make the widget fit in the viewport': function() {
             this._container.setStyle('width', '940px');
             this._viewportWidth = 470;

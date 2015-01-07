@@ -456,7 +456,7 @@ YUI.add('aui-tree-tests', function(Y) {
                 treeViewComponent.remove();
             }, lazyRenderTimeout);
 
-            test.wait(lazyRenderTimeout);
+            test.wait();
         },
 
         // Tests: AUI-1156
@@ -764,6 +764,41 @@ YUI.add('aui-tree-tests', function(Y) {
                     Y.Assert.isTrue(content.hasClass('tree-collapsed'));
                 }
             });
+        },
+
+        'should fire expandedChange event on click': function() {
+            var treeView,
+                expanded = false;
+
+            treeView = new Y.TreeView({
+                children: [
+                    {
+                        children: [
+                            {
+                                id: 'one-one'
+                            },
+                            {
+                                id: 'one-two'
+                            },
+                            {
+                                id: 'one-three'
+                            },
+                            {
+                                id: 'one-four'
+                            }
+                        ],
+                        id: 'one'
+                    }
+                ],
+                lazyLoad: false
+            }).render();
+
+            treeView.after('tree-node:expandedChange', function () {
+                expanded = true;
+            });
+
+            Y.one('.tree-hitarea').simulate('click');
+            Y.Assert.isTrue(expanded);
         }
     }));
 

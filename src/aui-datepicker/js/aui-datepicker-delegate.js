@@ -8,7 +8,15 @@
 var Lang = A.Lang,
     isString = Lang.isString,
 
+    EVENT_ENTER_KEY = 'enterKey',
+
     _DOCUMENT = A.one(A.config.doc);
+
+/**
+ * Fired when then enter key is pressed on an input node.
+ *
+ * @event enterKey
+ */
 
 /**
  * A base class for `DatePickerDelegate`.
@@ -75,6 +83,10 @@ DatePickerDelegate.prototype = {
                 'click',
                 A.bind('_onceUserInteractionRelease', instance), trigger)
         ];
+
+        instance.after(
+            'activeInputChange',
+            A.bind('_afterActiveInputChange', instance));
 
         instance.publish(
             'selectionChange', {
@@ -144,6 +156,27 @@ DatePickerDelegate.prototype = {
     },
 
     /**
+    * Fires when the 'activeInput' attribute changes.  The keydown listener is
+    * removed from the old active input and is attached to the new one.
+    *
+    * @method _afterActiveInputChange
+    * @param {EventFacade} event
+    * @protected
+    */
+    _afterActiveInputChange: function(event) {
+        var instance = this;
+
+        if (event.prevVal) {
+            event.prevVal.detach(
+                'keydown', instance._handleKeydownEvent, instance);
+        }
+
+        if (event.newVal) {
+            event.newVal.on('keydown', instance._handleKeydownEvent, instance);
+        }
+    },
+
+    /**
      * Default behavior for selection change.
      *
      * @method _defSelectionChangeFn
@@ -176,6 +209,21 @@ DatePickerDelegate.prototype = {
         return A.Date.format(date, {
             format: mask
         });
+    },
+
+    /**
+    * Handles keydown events
+    *
+    * @method _handleKeydownEvent
+    * @param event
+    * @protected
+    */
+    _handleKeydownEvent: function(event) {
+        var instance = this;
+
+        if (event.isKey('enter')) {
+            instance.fire(EVENT_ENTER_KEY);
+        }
     },
 
     /**

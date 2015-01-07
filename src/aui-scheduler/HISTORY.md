@@ -4,8 +4,15 @@
 
 ## @VERSION@
 
+* [AUI-1673](https://issues.liferay.com/browse/AUI-1673) Scheduler button for table-view is lowercase and inconsistent with the other view buttons
+* [AUI-1653](https://issues.liferay.com/browse/AUI-1653) Clean up wrong A.Lang.isNode calls
 * [AUI-1809](https://issues.liferay.com/browse/AUI-1809) Events with duration longer than a week don't render correctly on month view
 * [AUI-1640](https://issues.liferay.com/browse/AUI-1640) Scheduler should create SchedulerEvent instances lazily
+* [AUI-1652](https://issues.liferay.com/browse/AUI-1652) Update Scheduler Agenda View
+* [AUI-1656](https://issues.liferay.com/browse/AUI-1656) Uniform styling for week and month headers
+* [AUI-1651](https://issues.liferay.com/browse/AUI-1651) Group Scheduler Controls Into One Bar
+* [AUI-1671](https://issues.liferay.com/browse/AUI-1671) Convert scheduler 'view' buttons into a dropdown list
+* [AUI-1660](https://issues.liferay.com/browse/AUI-1660) Move scheduler date down into the calendar views
 * [AUI-1771](https://issues.liferay.com/browse/AUI-1771) Display all events in scheduler's month view
 * [AUI-1772](https://issues.liferay.com/browse/AUI-1772) Improve performance of SchedulerTableView plotEvents method
 
