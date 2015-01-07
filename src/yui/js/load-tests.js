@@ -45,3 +45,9 @@ add('load', '4', {
     "trigger": "aui-node",
     "ua": "ie"
 });
+// aui-scheduler-touch
+add('load', '5', {
+    "name": "aui-scheduler-touch",
+    "trigger": "aui-scheduler",
+    "ua": "touchEnabled"
+});
