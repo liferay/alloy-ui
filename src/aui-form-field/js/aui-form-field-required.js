@@ -66,6 +66,14 @@ A.FormFieldRequired.prototype = {
 };
 
 
+/**
+ * Static property used to define the default attribute configuration
+ * for the `A.FormFieldRequired`.
+ *
+ * @property ATTRS
+ * @type Object
+ * @static
+ */
 A.FormFieldRequired.ATTRS = {
     /**
      * Flag indicating if this field is required.
