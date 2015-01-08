@@ -6,8 +6,8 @@
 
 var CSS_EDITOR = A.getClassName('radio', 'group', 'data', 'editor'),
     CSS_EDITOR_RADIO_BUTTON = A.getClassName('radio', 'group', 'data', 'editor', 'button'),
-    CSS_EDITOR_RADIO_ELEMENT = A.getClassName('radio', 'group', 'data', 'editor', 'element'),
-    CSS_EDITOR_RADIO_GROUP_CONTENT = A.getClassName('radio', 'group', 'data', 'editor', 'content');
+    CSS_EDITOR_RADIO_CONTENT = A.getClassName('radio', 'group', 'data', 'editor', 'content'),
+    CSS_EDITOR_RADIO_ELEMENT = A.getClassName('radio', 'group', 'data', 'editor', 'element');
 
 /**
  * A base class for Radio Group Data Editor.
@@ -20,7 +20,7 @@ var CSS_EDITOR = A.getClassName('radio', 'group', 'data', 'editor'),
  */
 A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, [], {
     TPL_EDITOR_CONTENT: '<div class="' + CSS_EDITOR + '">' +
-        '<div class="' + CSS_EDITOR_RADIO_GROUP_CONTENT + '"></div>' +
+        '<div class="' + CSS_EDITOR_RADIO_CONTENT + '"></div>' +
         '</div>',
     TPL_EDITOR_RADIO: '<div class="' + CSS_EDITOR_RADIO_ELEMENT + ' radio">' +
         '<label><input class="' + CSS_EDITOR_RADIO_BUTTON + '" type="radio">{label}</label>' +
@@ -95,7 +95,7 @@ A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, 
      */
     _onClickRadioButton: function(event) {
         this.set('editedValue', this.get('node').one('.' +
-            CSS_EDITOR_RADIO_GROUP_CONTENT).all('input').indexOf(event.target));
+            CSS_EDITOR_RADIO_CONTENT).all('input').indexOf(event.target));
     },
 
     /**
@@ -106,7 +106,7 @@ A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, 
      * @protected
      */
     _uiSetEditedValue: function(editedValue) {
-        var radioGroupContent = this.get('node').one('.' + CSS_EDITOR_RADIO_GROUP_CONTENT).all('input');
+        var radioGroupContent = this.get('node').one('.' + CSS_EDITOR_RADIO_CONTENT).all('input');
 
         radioGroupContent.each(function(radio) {
             radio.set('checked', false);
@@ -124,7 +124,7 @@ A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, 
      */
     _uiSetRadioLabels: function(value) {
         var instance = this,
-            radioGroupContainer = this.get('node').one('.' + CSS_EDITOR_RADIO_GROUP_CONTENT);
+            radioGroupContainer = this.get('node').one('.' + CSS_EDITOR_RADIO_CONTENT);
 
         radioGroupContainer.empty();
 

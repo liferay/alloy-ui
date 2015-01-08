@@ -25,7 +25,7 @@ YUI.add('aui-form-builder-field-text-tests', function(Y) {
 
             this._field.saveSettings();
 
-            Y.Assert.areEqual(this._field.get('multiline'), 1);
+            Y.Assert.areEqual(this._field.get('type'), 1);
             Y.Assert.isTrue(this._field.get('required'));
         },
 
