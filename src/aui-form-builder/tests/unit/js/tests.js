@@ -465,6 +465,41 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Mock.verify(mock);
         },
 
+        'should add/remove has-error class on data-editr when clicked on save button': function() {
+            var settingsPane;
+
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: Y.FormBuilderFieldText,
+                    label: 'Text'
+                }]
+            });
+
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
+            Y.one('.field-type').simulate('click');
+
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            Y.Assert.isTrue(Y.all('.data-editor').item(0).hasClass('has-error'));
+
+            settingsPane = Y.one('.form-builder-field-settings');
+            settingsPane.all('input[type="text"]').item(0).set('value', 'My Title');
+
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            Y.one('.form-builder-field-configuration').simulate('click');
+            Y.one('.form-builder-field-toolbar-edit').simulate('click');
+
+            Y.Assert.isFalse(Y.all('.data-editor').item(0).hasClass('has-error'));
+            
+            settingsPane.all('input[type="text"]').item(0).set('value', '');
+
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+        },
+
         'should save the edited settings of the chosen new field': function() {
             var field,
                 settingsPane;

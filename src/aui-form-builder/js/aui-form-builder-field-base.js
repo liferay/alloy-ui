@@ -177,6 +177,7 @@ A.FormBuilderFieldBase.prototype = {
     renderSetting: function(setting, targetNode) {
         var attrValue = this.get(setting.attrName);
 
+        setting.editor.get('node').removeClass('has-error');
         setting.editor.set('originalValue', attrValue);
         setting.editor.updateUiWithValue(attrValue);
         targetNode.append(setting.editor.get('node'));
@@ -250,15 +251,17 @@ A.FormBuilderFieldBase.prototype = {
      */
     validateSettings: function() {
         var i,
+            result = true,
             settings = this._getSettings();
 
         for (i = 0; i < settings.length; i++) {
             if (!settings[i].editor.isValid()) {
-                return false;
+                settings[i].editor.get('node').addClass('has-error');
+                result = false;
             }
         }
 
-        return true;
+        return result;
     },
 
     /**

@@ -46,13 +46,14 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
             var editor = this._booleanDataEditor;
 
             editor.set('checkedContent', 'Editor Checked');
-            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+
+            Y.Assert.areEqual('Editor Checked', editor.get('node').one('.boolean-data-editor-content').getHTML());
 
             editor.set('checkedContent', Y.Node.create('<label>Editor Checked</label>'));
-            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+            Y.Assert.areEqual('Editor Checked', editor.get('node').one('.boolean-data-editor-content').getHTML());
 
             editor.set('checkedContent', 42);
-            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+            Y.Assert.areEqual('Editor Checked', editor.get('node').one('.boolean-data-editor-content').getHTML());
 
         },
 
@@ -62,13 +63,13 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
             Y.one('.button-switch').simulate('click');
 
             editor.set('uncheckedContent', Y.Node.create('Editor Unchecked'));
-            Y.Assert.areEqual('Editor Unchecked', editor.get('node').get('text'));
+            Y.Assert.areEqual('Editor Unchecked', editor.get('node').one('.boolean-data-editor-content').getHTML());
 
             editor.set('uncheckedContent', '<label>Editor Unchecked</label>');
-            Y.Assert.areEqual('Editor Unchecked', editor.get('node').get('text'));
+            Y.Assert.areEqual('Editor Unchecked', editor.get('node').one('.boolean-data-editor-content').getHTML());
 
             editor.set('uncheckedContent', 42);
-            Y.Assert.areEqual('Editor Unchecked', editor.get('node').get('text'));
+            Y.Assert.areEqual('Editor Unchecked', editor.get('node').one('.boolean-data-editor-content').getHTML());
         },
 
         'should set original value on the ui': function() {
@@ -106,13 +107,13 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
             editor.set('uncheckedContent', 'Editor Unchecked');
 
             button = Y.one('.button-switch');
-            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+            Y.Assert.areEqual('Editor Checked', editor.get('node').one('.boolean-data-editor-content').getHTML());
 
             button.simulate('click');
-            Y.Assert.areEqual('Editor Unchecked', editor.get('node').get('text'));
+            Y.Assert.areEqual('Editor Unchecked', editor.get('node').one('.boolean-data-editor-content').getHTML());
 
             button.simulate('click');
-            Y.Assert.areEqual('Editor Checked', editor.get('node').get('text'));
+            Y.Assert.areEqual('Editor Checked', editor.get('node').one('.boolean-data-editor-content').getHTML());
         },
 
         'should check if the form is valid': function() {

@@ -6,8 +6,12 @@
 
 var CSS_EDITOR = A.getClassName('data', 'editor'),
     CSS_EDITOR_CONTENT_INNER = A.getClassName('data', 'editor', 'content', 'inner'),
+    CSS_EDITOR_LABEL = A.getClassName('data', 'editor', 'label'),
+    CSS_EDITOR_REQUIRED_LABEL = A.getClassName('data', 'editor', 'required', 'label'),
 
-    TPL_EDITOR = '<div class="' + CSS_EDITOR + '"><label></label>' +
+    TPL_EDITOR = '<div class="' + CSS_EDITOR + '">' +
+        '<div><label class="' + CSS_EDITOR_LABEL + '"></label>' +
+        '<label class="' + CSS_EDITOR_REQUIRED_LABEL + ' control-label">REQUIRED</label></div>' +
         '<div class="' + CSS_EDITOR_CONTENT_INNER + '"></div>' +
         '</div>';
 
@@ -36,11 +40,13 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
 
         this._uiSetOriginalValue(this.get('originalValue'));
         this._uiSetLabel(this.get('label'));
+        this._uiSetRequired(this.get('required'));
         this._uiSetVisible(this.get('visible'));
 
         this.after({
             originalValueChange: this._afterOriginalValueChange,
             labelChange: this._afterLabelChange,
+            requiredChange: this._afterRequiredChange,
             visibleChange: this._afterVisibleChange
         });
     },
@@ -110,6 +116,16 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
     },
 
     /**
+     * Fired after the `required` attribute is set.
+     *
+     * @method _afterRequiredChange
+     * @protected
+     */
+    _afterRequiredChange: function() {
+        this._uiSetRequired(this.get('required'));
+    },
+
+    /**
      * Fired after the `visible` attribute is set.
      *
      * @method _afterVisibleChange
@@ -141,6 +157,27 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      */
     _uiSetOriginalValue: function(originalValue) {
         this.updateUiWithValue(originalValue);
+    },
+
+    /**
+     * Updates the ui according to the value of the `required` attribute.
+     *
+     * @method _uiSetRequired
+     * @param required
+     * @protected
+     */
+    _uiSetRequired: function(required) {
+        var labelNode = this.get('node').one('.' + CSS_EDITOR_LABEL),
+            requiredNode = this.get('node').one('.' + CSS_EDITOR_REQUIRED_LABEL);
+
+        if (required) {
+            labelNode.addClass('control-label');
+            requiredNode.show();
+        }
+        else {
+            labelNode.removeClass('control-label');
+            requiredNode.hide();
+        }
     },
 
     /**

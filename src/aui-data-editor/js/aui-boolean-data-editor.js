@@ -19,7 +19,7 @@ var CSS_BOOLEAN_DATA_EDITOR = A.getClassName('boolean', 'data', 'editor'),
  */
 A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     TPL_EDITOR_CONTENT: '<div class="' + CSS_BOOLEAN_DATA_EDITOR + '">' +
-        '<div class="form-group"><div class="' + CSS_BOOLEAN_DATA_EDITOR_CONTENT + '"></div>' +
+        '<div><div class="' + CSS_BOOLEAN_DATA_EDITOR_CONTENT + '"></div>' +
         '<div class="' + CSS_BOOLEAN_DATA_EDITOR_SWITCH_BUTTON + '"></div></div></div>',
 
     /**

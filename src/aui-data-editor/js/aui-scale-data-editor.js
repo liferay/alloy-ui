@@ -18,9 +18,9 @@ var CSS_SCALE_DATA_EDITOR = A.getClassName('scale', 'data', 'editor'),
  * @constructor
  */
 A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
-    TPL_EDITOR_CONTENT: '<div class="' + CSS_SCALE_DATA_EDITOR + '"><label></label>' +
-        '<input type="text" class="' + CSS_SCALE_DATA_EDITOR_LOWER_VALUE + '"></input> - ' +
-        '<input type="text" class="' + CSS_SCALE_DATA_EDITOR_HIGHER_VALUE + '"></input></div>',
+    TPL_EDITOR_CONTENT: '<div class="' + CSS_SCALE_DATA_EDITOR + ' form-inline row">' +
+        '<input type="text" class="' + CSS_SCALE_DATA_EDITOR_LOWER_VALUE + ' form-control"></input> - ' +
+        '<input type="text" class="' + CSS_SCALE_DATA_EDITOR_HIGHER_VALUE + ' form-control"></input></div>',
 
     /**
      * Returns `true` if this edited value array has no elements on 0 and 1 positions.
