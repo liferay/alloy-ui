@@ -60,7 +60,7 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormFieldTex
             {
             attrName: 'placeholder',
             editor: new A.TextDataEditor({
-                label: 'Predefined Value'
+                label: 'Placeholder'
             })
         }
         );

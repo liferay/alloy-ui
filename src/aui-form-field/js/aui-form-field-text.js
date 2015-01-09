@@ -7,8 +7,9 @@
 var CSS_FIELD_TEXT = A.getClassName('form', 'builder', 'field', 'text'),
     CSS_FIELD_TEXT_CONTENT = A.getClassName('form', 'builder', 'field', 'text', 'content'),
     CSS_FIELD_TEXT_INPUT = A.getClassName('form', 'builder', 'field', 'text', 'input'),
-    TPL_SINGLE_LINE = '<input type="text" class="' + CSS_FIELD_TEXT_INPUT + ' form-control">',
-    TPL_MULTILINE = '<textarea class="' + CSS_FIELD_TEXT_INPUT + ' form-control" rows="3" placeholder="">';
+
+    TPL_MULTILINE = '<textarea class="' + CSS_FIELD_TEXT_INPUT + ' form-control" rows="3">',
+    TPL_SINGLE_LINE = '<input type="text" class="' + CSS_FIELD_TEXT_INPUT + ' form-control">';
 
 /**
  * A base class for `A.FormFieldText`.
@@ -84,8 +85,6 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [A.FormFieldRequ
         var inputNode = this.get('content').one('.' + CSS_FIELD_TEXT_INPUT);
 
         inputNode.setAttribute('placeholder', placeholder);
-        inputNode.setAttribute('onfocus', 'this.placeholder=""');
-        inputNode.setAttribute('onblur', 'this.placeholder="' + placeholder + '"');
     },
 
     /**
