@@ -74,7 +74,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      *
      * @method addRowWithSpecifiedColNumber
      * @param {Number} numberOfCols Number of cols to create the row with.
-     **/
+     */
     addRowWithSpecifiedColNumber: function(numberOfCols) {
         var cols = [],
             i,
@@ -100,7 +100,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @method addRow
      * @param {Number} index Position to insert the new row.
      * @param {Node} row A brand new row.
-     **/
+     */
     addRow: function(index, row) {
         var rows = this.get('rows').concat();
 
@@ -122,12 +122,12 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      *
      * @method draw
      * @param {Node} container The container to draw the layout on.
-     **/
+     */
     draw: function(container) {
         var layoutNode = container.one('.' + CSS_LAYOUT_NODE),
             node = this.get('node');
 
-        if (this._useProgressiveEnhancement) {
+        if (this._useProgressiveEnhancement && layoutNode) {
             this._set('node', layoutNode);
             this._setProgressiveEnhancementLayout(container);
         }
@@ -144,7 +144,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      * @method moveRow
      * @param {Number} index The new position of the row.
      * @param {Node} row Row to change the position.
-     **/
+     */
     moveRow: function(index, row) {
         this.removeRow(row);
         this.addRow(index, row);
@@ -155,7 +155,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      *
      * @method normalizeColsHeight
      * @param {NodeList} rows Rows to normalize cols' height.
-     **/
+     */
     normalizeColsHeight: function(rows) {
         var instance = this,
             colClientHeight,

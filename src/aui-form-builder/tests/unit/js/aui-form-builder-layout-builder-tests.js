@@ -67,7 +67,6 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             }
         },
 
-
         'should the row height adjust on form builder mode change': function() {
             var height;
 

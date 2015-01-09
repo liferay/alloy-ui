@@ -85,6 +85,8 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
         var newLayout = event.newVal,
             prevLayout = event.prevVal;
 
+        this._layoutContainer.empty();
+
         prevLayout.removeTarget(this);
 
         newLayout.addTarget(this);
