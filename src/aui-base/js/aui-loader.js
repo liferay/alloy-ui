@@ -1345,7 +1345,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "querystring-stringify",
             "aui-tree-data",
             "aui-tree-io",
-            "aui-tree-paginator"
+            "aui-tree-paginator",
+            "event-key"
         ]
     },
     "aui-tree-paginator": {
@@ -1454,4 +1455,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '7112ab6c404800e50fb018f690207892';
+YUI.Env[Y.version].md5 = '1bb0919ab9706a98417427ad64e8ad5e';
