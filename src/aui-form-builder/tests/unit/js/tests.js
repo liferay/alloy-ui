@@ -84,7 +84,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             rowButton.simulate('click');
         },
 
-        'should resizing the the row when remove a field in nested': function() {
+        'should resize the row when a nested field is added': function() {
             var heightAfterMode,
                 heightBeforeMode,
                 settingsPane;
@@ -96,7 +96,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.all('.form-builder-field-toolbar-edit').item(1).simulate('click');
 
             settingsPane = Y.one('.form-builder-field-settings');
-            settingsPane.all('.button-switch').item(1).simulate('click');
+            settingsPane.all('.radio-group-data-editor-button').item(1).simulate('click');
 
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
@@ -106,7 +106,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(heightAfterMode < heightBeforeMode);
         },
 
-        'should resizing the the row when edit a field in nested': function() {
+        'should resize the row when a nested field is edited': function() {
             var heightAfterMode,
                 heightBeforeMode,
                 settingsPane;
@@ -118,7 +118,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.all('.form-builder-field-toolbar-edit').item(1).simulate('click');
 
             settingsPane = Y.one('.form-builder-field-settings');
-            settingsPane.all('.button-switch').item(1).simulate('click');
+            settingsPane.all('.radio-group-data-editor-button').item(1).simulate('click');
 
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
@@ -521,14 +521,14 @@ YUI.add('aui-form-builder-tests', function(Y) {
             settingsPane.all('input[type="text"]').item(0).set('value', 'My Title');
             settingsPane.all('input[type="text"]').item(1).set('value', 'My Help');
             settingsPane.all('.button-switch').item(0).simulate('click');
-            settingsPane.all('.button-switch').item(1).simulate('click');
+            settingsPane.all('.radio-group-data-editor-button').item(1).simulate('click');
 
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
 
             Y.Assert.areEqual('My Title', field.get('title'));
             Y.Assert.areEqual('My Help', field.get('help'));
-            Y.Assert.isTrue(field.get('multiline'));
+            Y.Assert.areEqual(1, field.get('type'));
             Y.Assert.isTrue(field.get('required'));
         },
 
