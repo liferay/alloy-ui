@@ -5,9 +5,10 @@
  */
 
 var CSS_FIELD_TEXT = A.getClassName('form', 'builder', 'field', 'text'),
+    CSS_FIELD_TEXT_CONTENT = A.getClassName('form', 'builder', 'field', 'text', 'content'),
     CSS_FIELD_TEXT_INPUT = A.getClassName('form', 'builder', 'field', 'text', 'input'),
-    TPL_SINGLE_LINE = '<input type="text" class="form-control"></input>',
-    TPL_MULTILINE = '<textarea class="form-control" rows="3"></textarea>';
+    TPL_SINGLE_LINE = '<input type="text" class="' + CSS_FIELD_TEXT_INPUT + ' form-control">',
+    TPL_MULTILINE = '<textarea class="' + CSS_FIELD_TEXT_INPUT + ' form-control" rows="3" placeholder="">';
 
 /**
  * A base class for `A.FormFieldText`.
@@ -19,7 +20,7 @@ var CSS_FIELD_TEXT = A.getClassName('form', 'builder', 'field', 'text'),
  * @constructor
  */
 A.FormFieldText = A.Base.create('form-field-text', A.FormField, [A.FormFieldRequired], {
-    TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_TEXT_INPUT + '"></div>',
+    TPL_FIELD_CONTENT: '<div class="' + CSS_FIELD_TEXT_CONTENT + '"></div>',
 
     /**
      * Constructor for the `A.FormFieldText`. Lifecycle.
@@ -28,7 +29,10 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [A.FormFieldRequ
      * @protected
      */
     initializer: function() {
+        this._uiSetPlaceholder(this.get('placeholder'));
+
         this.after({
+            placeholderChange: this._afterPlaceholderChange,
             typeChange: this._afterTypeChange
         });
     },
@@ -50,6 +54,16 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [A.FormFieldRequ
     },
 
     /**
+     * Fired after the `placeholder` attribute is set.
+     *
+     * @method _afterPlaceholderChange
+     * @protected
+     */
+    _afterPlaceholderChange: function() {
+        this._uiSetPlaceholder(this.get('placeholder'));
+    },
+
+    /**
      * Fired after the `type` attribute is set.
      *
      * @method _afterTypeChange
@@ -60,6 +74,21 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [A.FormFieldRequ
     },
 
     /**
+     * Updates the ui according to the value of the `placeholder` attribute.
+     *
+     * @method _uiSetPlaceholder
+     * @param {String} placeholder
+     * @protected
+     */
+    _uiSetPlaceholder: function(placeholder) {
+        var inputNode = this.get('content').one('.' + CSS_FIELD_TEXT_INPUT);
+
+        inputNode.setAttribute('placeholder', placeholder);
+        inputNode.setAttribute('onfocus', 'this.placeholder=""');
+        inputNode.setAttribute('onblur', 'this.placeholder="' + placeholder + '"');
+    },
+
+    /**
      * Updates the ui according to the value of the `type` attribute.
      *
      * @method _uiSetType
@@ -67,18 +96,20 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [A.FormFieldRequ
      * @protected
      */
     _uiSetType: function(type) {
-        var inputNode = this.get('content').one('.' + CSS_FIELD_TEXT_INPUT);
+        var contentNode = this.get('content').one('.' + CSS_FIELD_TEXT_CONTENT);
 
-        inputNode.empty();
+        contentNode.empty();
 
         switch (type) {
             case 0:
-                inputNode.append(TPL_SINGLE_LINE);
+                contentNode.append(TPL_SINGLE_LINE);
                 break;
             case 1:
-                inputNode.append(TPL_MULTILINE);
+                contentNode.append(TPL_MULTILINE);
                 break;
         }
+
+        this._uiSetPlaceholder(this.get('placeholder'));
     }
 }, {
     /**
@@ -98,6 +129,18 @@ A.FormFieldText = A.Base.create('form-field-text', A.FormField, [A.FormFieldRequ
          * @type String
          */
         name: {
+            validator: A.Lang.isString,
+            value: ''
+        },
+
+        /**
+         * Predefined value to text input.
+         *
+         * @attribute placeholder
+         * @default ''
+         * @type String
+         */
+        placeholder: {
             validator: A.Lang.isString,
             value: ''
         },

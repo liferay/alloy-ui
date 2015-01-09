@@ -56,7 +56,13 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormFieldTex
                 editor: new A.TextDataEditor({
                     label: 'Name'
                 })
-            }
+            },
+            {
+            attrName: 'placeholder',
+            editor: new A.TextDataEditor({
+                label: 'Predefined Value'
+            })
+        }
         );
     }
 });
