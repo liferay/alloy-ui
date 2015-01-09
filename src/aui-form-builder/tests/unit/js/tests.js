@@ -244,7 +244,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             var formBuilder = this.createFormBuilder();
 
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-            Y.Assert.areEqual(2, Y.all('.form-builder-page-break').size());
+            Y.Assert.areEqual(2, Y.all('.form-builder-page-break-row').size());
         },
 
         'should make page breaks columns unmovable and unremovable': function() {
@@ -301,7 +301,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             row = this._formBuilder.get('layout').get('rows')[2];
             this._formBuilder.get('layout').removeRow(row);
-            Y.Assert.areEqual(2, Y.all('.form-builder-page-break').size());
+            Y.Assert.areEqual(2, Y.all('.form-builder-page-break-row').size());
 
             row = this._formBuilder.get('layout').get('rows')[2];
             Y.Assert.areEqual(2, row.get('index'));
@@ -493,7 +493,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-toolbar-edit').simulate('click');
 
             Y.Assert.isFalse(Y.all('.data-editor').item(0).hasClass('has-error'));
-            
+
             settingsPane.all('input[type="text"]').item(0).set('value', '');
 
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
