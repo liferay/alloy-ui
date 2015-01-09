@@ -10,7 +10,7 @@ var CSS_EDITOR = A.getClassName('data', 'editor'),
     CSS_EDITOR_REQUIRED_LABEL = A.getClassName('data', 'editor', 'required', 'label'),
 
     TPL_EDITOR = '<div class="' + CSS_EDITOR + '">' +
-        '<div><label class="' + CSS_EDITOR_LABEL + '"></label>' +
+        '<div><label class="' + CSS_EDITOR_LABEL + ' control-label"></label>' +
         '<label class="' + CSS_EDITOR_REQUIRED_LABEL + ' control-label">REQUIRED</label></div>' +
         '<div class="' + CSS_EDITOR_CONTENT_INNER + '"></div>' +
         '</div>';
@@ -167,15 +167,12 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      * @protected
      */
     _uiSetRequired: function(required) {
-        var labelNode = this.get('node').one('.' + CSS_EDITOR_LABEL),
-            requiredNode = this.get('node').one('.' + CSS_EDITOR_REQUIRED_LABEL);
+        var requiredNode = this.get('node').one('.' + CSS_EDITOR_REQUIRED_LABEL);
 
         if (required) {
-            labelNode.addClass('control-label');
             requiredNode.show();
         }
         else {
-            labelNode.removeClass('control-label');
             requiredNode.hide();
         }
     },
