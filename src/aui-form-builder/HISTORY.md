@@ -3,6 +3,7 @@
 > Documentation and test modifications are not included in this changelog. For more details, see [full commit history](https://github.com/liferay/alloy-ui/commits/master/src/aui-form-builder).
 
 ## @VERSION@
+* [AUI-1826](https://issues.liferay.com/browse/AUI-1826) Rename FormBuilderPageBreak to FormBuilderPageBreakRow
 * [AUI-1825](https://issues.liferay.com/browse/AUI-1825) Show asterisks beside each field's required setting
 * [AUI-1811](https://issues.liferay.com/browse/AUI-1811) Change text field's multiline option to radio buttons instead of a button switch
 * [AUI-1812](https://issues.liferay.com/browse/AUI-1812) Fix layout builder bug on IE
