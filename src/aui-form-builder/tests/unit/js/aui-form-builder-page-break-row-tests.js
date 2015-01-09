@@ -1,12 +1,12 @@
-YUI.add('aui-form-builder-page-break-tests', function(Y) {
+YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-form-builder-page-break');
+    var suite = new Y.Test.Suite('aui-form-builder-page-break-row');
 
     suite.add(new Y.Test.Case({
-        name: 'Form Builder Page Break Tests',
+        name: 'Form Builder Page Break Row Tests',
 
         'should render index': function() {
-            var row = new Y.FormBuilderPageBreak({
+            var row = new Y.FormBuilderPageBreakRow({
                 index: 10
             });
 
@@ -15,7 +15,7 @@ YUI.add('aui-form-builder-page-break-tests', function(Y) {
         },
 
         'should update index': function() {
-            var row = new Y.FormBuilderPageBreak({
+            var row = new Y.FormBuilderPageBreakRow({
                 index: 10
             });
             row.set('index', 20);
@@ -24,7 +24,7 @@ YUI.add('aui-form-builder-page-break-tests', function(Y) {
         },
 
         'should render quantity': function() {
-            var row = new Y.FormBuilderPageBreak({
+            var row = new Y.FormBuilderPageBreakRow({
                 quantity: 10
             });
 
@@ -32,7 +32,7 @@ YUI.add('aui-form-builder-page-break-tests', function(Y) {
         },
 
         'should update quantity': function() {
-            var row = new Y.FormBuilderPageBreak({
+            var row = new Y.FormBuilderPageBreakRow({
                 quantity: 10
             });
             row.set('quantity', 20);
@@ -41,7 +41,7 @@ YUI.add('aui-form-builder-page-break-tests', function(Y) {
         },
 
         'should make first page break unmovable': function() {
-            var row = new Y.FormBuilderPageBreak({
+            var row = new Y.FormBuilderPageBreakRow({
                 index: 1,
                 quantity: 2
             });
@@ -59,7 +59,7 @@ YUI.add('aui-form-builder-page-break-tests', function(Y) {
         },
 
         'should make first page break unremovable': function() {
-            var row = new Y.FormBuilderPageBreak({
+            var row = new Y.FormBuilderPageBreakRow({
                 index: 1,
                 quantity: 2
             });
@@ -79,5 +79,5 @@ YUI.add('aui-form-builder-page-break-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['aui-form-builder-page-break', 'test']
+    requires: ['aui-form-builder-page-break-row', 'test']
 });

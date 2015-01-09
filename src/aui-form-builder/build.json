@@ -67,9 +67,9 @@
             ]
         },
 
-        "aui-form-builder-page-break": {
+        "aui-form-builder-page-break-row": {
             "jsfiles": [
-                "js/aui-form-builder-page-break.js"
+                "js/aui-form-builder-page-break-row.js"
             ]
         }
     }

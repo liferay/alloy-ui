@@ -232,7 +232,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this.createFormBuilder({
                 layout: new Y.Layout({
                     rows: [
-                        new Y.FormBuilderPageBreak()
+                        new Y.FormBuilderPageBreakRow()
                     ]
                 })
             });

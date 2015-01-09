@@ -22,11 +22,11 @@ YUI({ filter:'raw' }).use(
     'aui-form-builder-field-time',
     'aui-form-builder-field-scale',
     'aui-form-builder-field-sentence',
-    'aui-form-builder-page-break',
+    'aui-form-builder-page-break-row',
     function(Y) {
         var layout = new Y.Layout({
             rows: [
-                new Y.FormBuilderPageBreak({
+                new Y.FormBuilderPageBreakRow({
                     index: 1,
                     quantity: 2
                 }),
@@ -60,7 +60,7 @@ YUI({ filter:'raw' }).use(
                         })
                     ]
                 }),
-                new Y.FormBuilderPageBreak({
+                new Y.FormBuilderPageBreakRow({
                     index: 2,
                     quantity: 2
                 }),

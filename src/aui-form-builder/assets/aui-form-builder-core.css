@@ -120,7 +120,7 @@
     margin: 24px 73px;
 }
 
-.form-builder-layout .layout-row-container-row + .form-builder-page-break-row {
+.form-builder-layout .layout-row-container-row + .form-builder-page-break-row-container-row {
     margin-top: 40pt;
 }
 
@@ -136,7 +136,7 @@
     padding: 0;
 }
 
-.form-builder-layout .form-builder-page-break-row .col {
+.form-builder-layout .form-builder-page-break-row-container-row .col {
     border-radius: 5px 5px 0 0;
     height: 48pt;
     line-height: 48pt;

@@ -5,7 +5,7 @@
             "aui-layout",
             "aui-form-builder-field-type",
             "aui-form-builder-layout-builder",
-            "aui-form-builder-page-break",
+            "aui-form-builder-page-break-row",
             "aui-menu",
             "event-tap"
         ],
@@ -103,7 +103,7 @@
         "skinnable": true
     },
 
-    "aui-form-builder-page-break": {
+    "aui-form-builder-page-break-row": {
         "requires": [
             "aui-classnamemanager",
             "aui-layout-col",

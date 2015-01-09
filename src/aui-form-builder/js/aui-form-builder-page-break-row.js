@@ -1,35 +1,35 @@
 /**
- * The Form Builder Page Break Component
+ * The Form Builder Page Break Row Component
  *
  * @module aui-form-builder
- * @submodule aui-form-builder-page-break
+ * @submodule aui-form-builder-page-break-row
  */
 
-var CSS_PAGE_BREAK = A.getClassName('form', 'builder', 'page', 'break'),
-    CSS_PAGE_BREAK_INDEX = A.getClassName('form', 'builder', 'page', 'break', 'index'),
+var CSS_PAGE_BREAK_INDEX = A.getClassName('form', 'builder', 'page', 'break', 'index'),
     CSS_PAGE_BREAK_QUANTITY = A.getClassName('form', 'builder', 'page', 'break', 'quantity'),
     CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
+    CSS_PAGE_BREAK_ROW_CONTAINER_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row', 'container', 'row'),
 
-    TPL_PAGE_BREAK = '<div class="' + CSS_PAGE_BREAK + '">' +
+    TPL_PAGE_BREAK_ROW = '<div class="' + CSS_PAGE_BREAK_ROW + '">' +
         '<p>Page <span class="' + CSS_PAGE_BREAK_INDEX +
         '"></span>/<span class="' + CSS_PAGE_BREAK_QUANTITY + '"></span></p></div>';
 
 /**
- * A base class for Form Builder Page Break.
+ * A base class for Form Builder Page Break Row.
  *
- * @class A.FormBuilderPageBreak
+ * @class A.FormBuilderPageBreakRow
  * @extends A.LayoutRow
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-A.FormBuilderPageBreak = A.Base.create(
-    'form-builder-page-break',
+A.FormBuilderPageBreakRow = A.Base.create(
+    'form-builder-page-break-row',
     A.LayoutRow,
     [], {
 
         /**
-         * Constructor for the `A.FormBuilderPageBreak`. Lifecycle.
+         * Constructor for the `A.FormBuilderPageBreakRow`. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -41,7 +41,7 @@ A.FormBuilderPageBreak = A.Base.create(
             this.after('indexChange', this._afterIndexChange);
             this.after('quantityChange', this._afterQuantityChange);
 
-            this.get('node').addClass(CSS_PAGE_BREAK_ROW);
+            this.get('node').addClass(CSS_PAGE_BREAK_ROW_CONTAINER_ROW);
         },
 
         /**
@@ -73,7 +73,7 @@ A.FormBuilderPageBreak = A.Base.create(
          */
         _getContentNode: function() {
             if (!this._contentNode) {
-                this._contentNode = A.Node.create(TPL_PAGE_BREAK);
+                this._contentNode = A.Node.create(TPL_PAGE_BREAK_ROW);
             }
 
             return this._contentNode;
@@ -121,7 +121,7 @@ A.FormBuilderPageBreak = A.Base.create(
     }, {
         /**
          * Static property used to define the default attribute configuration
-         * for the `A.FormBuilderPageBreak`.
+         * for the `A.FormBuilderPageBreakRow`.
          *
          * @property ATTRS
          * @type Object

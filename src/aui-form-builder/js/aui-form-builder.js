@@ -34,6 +34,7 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_MENU = A.getClassName('form', 'builder', 'menu'),
     CSS_MENU_BUTTON = A.getClassName('form', 'builder', 'menu', 'button'),
     CSS_MENU_CONTENT = A.getClassName('form', 'builder', 'menu', 'content'),
+    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
 
     MODES = {
         LAYOUT: 'layout',
@@ -465,7 +466,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @return {A.LayoutRow}
      */
     _createPageBreakRow: function(nextPageBreakIndex) {
-        return new A.FormBuilderPageBreak({
+        return new A.FormBuilderPageBreakRow({
             index: nextPageBreakIndex,
             quantity: nextPageBreakIndex
         });
@@ -478,7 +479,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     _getNumberOfPageBreaks: function() {
-        return this.get('contentBox').all('.form-builder-page-break').size();
+        return this.get('contentBox').all('.' + CSS_PAGE_BREAK_ROW).size();
     },
 
     /**
@@ -870,7 +871,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             firstRow = val.get('rows')[0];
         }
 
-        if (!firstRow || !A.instanceOf(firstRow, A.FormBuilderPageBreak)) {
+        if (!firstRow || !A.instanceOf(firstRow, A.FormBuilderPageBreakRow)) {
             val.addRow(0, this._createPageBreakRow(1));
         }
     },
@@ -994,7 +995,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             quantity = this._getNumberOfPageBreaks();
 
         A.Array.each(this.get('layout').get('rows'), function (row) {
-            if (A.instanceOf(row, A.FormBuilderPageBreak)) {
+            if (A.instanceOf(row, A.FormBuilderPageBreakRow)) {
                 row.set('index', index++);
                 row.set('quantity', quantity);
             }
