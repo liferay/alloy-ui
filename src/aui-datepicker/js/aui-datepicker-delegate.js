@@ -81,7 +81,11 @@ DatePickerDelegate.prototype = {
 
             container.delegate(
                 'click',
-                A.bind('_onceUserInteractionRelease', instance), trigger)
+                A.bind('_onceUserInteractionRelease', instance), trigger),
+
+            container.delegate(
+                'key', A.bind('_handleTabKeyEvent', instance), 'tab', trigger)
+
         ];
 
         instance.after(
@@ -224,6 +228,16 @@ DatePickerDelegate.prototype = {
         if (event.isKey('enter')) {
             instance.fire(EVENT_ENTER_KEY);
         }
+    },
+
+    /**
+    * Handles tab key events
+    *
+    * @method _handleTabKeyEvent
+    * @protected
+    */
+    _handleTabKeyEvent: function() {
+        this.hide();
     },
 
     /**
