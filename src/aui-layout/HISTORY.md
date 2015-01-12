@@ -3,6 +3,7 @@
 > Documentation and test modifications are not included in this changelog. For more details, see [full commit history](https://github.com/liferay/alloy-ui/commits/master/src/aui-layout).
 
 ## @VERSION@
+* [AUI-1815](https://issues.liferay.com/browse/AUI-1815) Scroll shouldn't change while adding columns in layout builder
 * [AUI-1829](https://issues.liferay.com/browse/AUI-1829) Be able to change layout when using progressive enhancement
 * [AUI-1812](https://issues.liferay.com/browse/AUI-1812) Fix layout builder bug on IE
 * [AUI-1802](https://issues.liferay.com/browse/AUI-1802) Add name as an advanced field setting

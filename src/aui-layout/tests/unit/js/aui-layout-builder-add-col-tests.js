@@ -249,6 +249,35 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             addColButton.simulate('click');
 
             Y.Mock.verify(layout);
+        },
+
+        'should not scroll when add a new col': function() {
+            var addColButton,
+                layout,
+                scrollPositionAfter,
+                scrollPositionBefore,
+                win = Y.config.win;
+
+            this._createLayoutBuilder();
+
+            layout = this._layoutBuilder.get('layout');
+
+            for (var i = 0; i < 20; i++) {
+                layout.addRow();
+            }
+
+            win.scrollTo(0, Y.one('body').get('region').height);
+
+            this.wait(function() {
+                scrollPositionBefore = win.scrollY;
+
+                addColButton = Y.all('.layout-builder-add-col').last();
+                addColButton.simulate('click');
+
+                scrollPositionAfter = win.scrollY;
+
+                Y.Assert.areEqual(scrollPositionBefore, scrollPositionAfter);
+            }, 100);
         }
     }));
 

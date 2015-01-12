@@ -213,12 +213,17 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _uiSetCols: function(cols) {
-        var node = this.get('node').one(SELECTOR_ROW);
+        var nodeContainer = this.get('node'),
+            node = nodeContainer.one(SELECTOR_ROW);
+
+        nodeContainer.setStyle('height', nodeContainer.get('offsetHeight'));
 
         node.empty();
         A.each(cols, function(col) {
             node.append(col.get('node'));
         });
+
+        nodeContainer.setStyle('height', '');
     },
 
     /**

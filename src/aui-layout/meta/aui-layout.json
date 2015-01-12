@@ -64,7 +64,8 @@
             "array-invoke",
             "aui-node-base",
             "base-build"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-layout-builder-add-row": {
         "requires": [

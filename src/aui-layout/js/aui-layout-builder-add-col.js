@@ -180,7 +180,7 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     _onKeyPressAddColEvent: function(event) {
-       this._addCol(event.currentTarget);
+        this._addCol(event.currentTarget);
     },
 
     /**
@@ -191,7 +191,7 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     _onMouseClickAddColEvent: function(event) {
-       this._addCol(event.currentTarget);
+        this._addCol(event.currentTarget);
     },
 
     /**
