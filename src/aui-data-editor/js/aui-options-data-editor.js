@@ -10,7 +10,9 @@ var CSS_EDITOR = A.getClassName('options', 'data', 'editor'),
     CSS_EDITOR_OPTION_HANDLE = A.getClassName('options', 'data', 'editor', 'option', 'handle'),
     CSS_EDITOR_OPTION_REMOVE = A.getClassName('options', 'data', 'editor', 'option', 'remove'),
     CSS_EDITOR_OPTION_TEXT = A.getClassName('options', 'data', 'editor', 'option', 'text'),
-    CSS_EDITOR_OPTIONS = A.getClassName('options', 'data', 'editor', 'options');
+    CSS_EDITOR_OPTIONS = A.getClassName('options', 'data', 'editor', 'options'),
+
+    SOURCE_UI = 'ui';
 
 /**
  * A base class for Options Data Editor.
@@ -39,8 +41,12 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
     initializer: function() {
         var node = this.get('node');
 
+        this._uiSetEditedValue(this.get('editedValue'));
+
         node.one('.' + CSS_EDITOR_ADD).after('click', A.bind(this._afterClickAddButton, this));
         node.delegate('click', A.bind(this._onClickRemoveButton, this), '.' + CSS_EDITOR_OPTION_REMOVE);
+        node.delegate('valuechange', A.bind(this._onValueChange, this), '.' + CSS_EDITOR_OPTION_TEXT);
+        this.after('editedValueChange', this._afterEditedValueChange);
 
         this._setUpDrag();
     },
@@ -87,16 +93,7 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
      * @param {Array} value
      */
     updateUiWithValue: function(value) {
-        var instance = this,
-            optionsContainer = this.get('node').one('.' + CSS_EDITOR_OPTIONS);
-
-        optionsContainer.all('.' + CSS_EDITOR_OPTION).each(function(optionNode) {
-            instance._removeOptionNode(optionNode);
-        });
-
-        A.Array.each(value, function(option) {
-            optionsContainer.append(instance._createOptionNode(option));
-        });
+        this.set('editedValue', value);
     },
 
     /**
@@ -106,15 +103,35 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
      * @protected
      */
     _afterClickAddButton: function() {
-        var optionsContainer = this.get('node').one('.' + CSS_EDITOR_OPTIONS);
+        var editedValue = this.get('editedValue'),
+            optionsContainer = this.get('node').one('.' + CSS_EDITOR_OPTIONS);
 
         optionsContainer.append(this._createOptionNode(''));
+
+        editedValue.push('');
+        this.set('editedValue', editedValue, {
+            src: SOURCE_UI
+        });
+    },
+
+    /**
+     * Fired after the `editedValue` attribute is set.
+     *
+     * @method _afterEditedValueChange
+     * @param {CustomEvent} event The fired event
+     * @protected
+     */
+    _afterEditedValueChange: function(event) {
+        if (event.src !== SOURCE_UI) {
+            this._uiSetEditedValue(this.get('editedValue'));
+        }
     },
 
     /**
      * Creates an option node.
      *
      * @method _createOptionNode
+     * @param {String} text
      * @return {Node}
      * @protected
      */
@@ -128,20 +145,40 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
     },
 
     /**
-     * Gets the edited value of the data from the editor.
+     * Gets the option node's index in the options list.
      *
-     * @method _getEditedValue
+     * @method _getOptionNodeIndex
+     * @param {Node} node
      * @protected
      */
-    _getEditedValue: function() {
-        var editedValue = [],
-            options = this.get('node').all('.' + CSS_EDITOR_OPTION);
+    _getOptionNodeIndex: function(node) {
+        var optionNode = node.ancestor('.' + CSS_EDITOR_OPTION, true),
+            optionNodes = this.get('node').all('.' + CSS_EDITOR_OPTION);
 
-        options.each(function(optionNode) {
-            editedValue.push(optionNode.one('.' + CSS_EDITOR_OPTION_TEXT).get('value'));
+        return optionNodes.indexOf(optionNode);
+    },
+
+    /**
+     * Moves the item from an index to another in the items array.
+     *
+     * @method _moveItem
+     * @param {Number} from
+     * @param {Number} to
+     * @protected
+     */
+    _moveItem: function(from, to) {
+        var editedValue = this.get('editedValue'),
+            item = editedValue[from];
+
+        editedValue.splice(from, 1);
+        if (from < to) {
+            to--;
+        }
+        editedValue.splice(to, 0, item);
+
+        this.set('editedValue', editedValue, {
+            src: SOURCE_UI
         });
-
-        return editedValue;
     },
 
     /**
@@ -152,16 +189,40 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
      * @protected
      */
     _onClickRemoveButton: function(event) {
-        var optionNode = event.currentTarget.ancestor('.' + CSS_EDITOR_OPTION);
+        var editedValue = this.get('editedValue'),
+            index = this._getOptionNodeIndex(event.currentTarget),
+            optionNode = event.currentTarget.ancestor('.' + CSS_EDITOR_OPTION);
 
         this._removeOptionNode(optionNode);
+
+        editedValue.splice(index, 1);
+        this.set('editedValue', editedValue, {
+            src: SOURCE_UI
+        });
+    },
+
+    /**
+     * Fired when the value of one of the editors text fields changes.
+     *
+     * @method _onValueChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onValueChange: function(event) {
+        var editedValue = this.get('editedValue'),
+            index = this._getOptionNodeIndex(event.currentTarget);
+
+        editedValue[index] = event.currentTarget.get('value');
+        this.set('editedValue', editedValue, {
+            src: SOURCE_UI
+        });
     },
 
     /**
      * Fired after the `drag:drag` event is triggered.
      *
      * @method _onDrag
-     * @param  {EventFacade} event
+     * @param {EventFacade} event
      * @protected
      */
     _onDrag: function(event) {
@@ -178,21 +239,33 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
      * Fired after the `drag:over` event is triggered.
      *
      * @method _onDragOver
-     * @param  {EventFacade} event
+     * @param {EventFacade} event
      * @protected
      */
     _onDragOver: function(event) {
         var dragNode = event.drag.get('node'),
-            dropNode = event.drop.get('node');
+            dropNode = event.drop.get('node'),
+            indexDrag = this._getOptionNodeIndex(dragNode),
+            indexDrop;
 
         if (!this._draggingUp) {
             dropNode = dropNode.get('nextSibling');
         }
+        indexDrop = this._getOptionNodeIndex(dropNode);
 
         event.drop.get('node').get('parentNode').insertBefore(dragNode, dropNode);
         event.drop.sizeShim();
+
+        this._moveItem(indexDrag, indexDrop);
     },
 
+    /**
+     * Removes the given option node.
+     *
+     * @method _removeOptionNode
+     * @param {Node} optionNode
+     * @protected
+     */
     _removeOptionNode: function(optionNode) {
         optionNode.unplug(A.Plugin.Drop);
         optionNode.remove();
@@ -220,6 +293,26 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
 
         this._delegateDrag.after('drag:drag', A.bind(this._onDrag, this));
         this._delegateDrag.after('drag:over', A.bind(this._onDragOver, this));
+    },
+
+    /**
+     * Updates the ui according to the value of the `editedValue` attribute.
+     *
+     * @method _uiSetEditedValue
+     * @param {Array} editedValue
+     * @protected
+     */
+    _uiSetEditedValue: function(editedValue) {
+        var instance = this,
+            optionsContainer = this.get('node').one('.' + CSS_EDITOR_OPTIONS);
+
+        optionsContainer.all('.' + CSS_EDITOR_OPTION).each(function(optionNode) {
+            instance._removeOptionNode(optionNode);
+        });
+
+        A.Array.each(editedValue, function(option) {
+            optionsContainer.append(instance._createOptionNode(option));
+        });
     }
 }, {
     /**
@@ -239,7 +332,6 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
          * @type Boolean
          */
         editedValue: {
-            getter: '_getEditedValue',
             value: []
         },
 

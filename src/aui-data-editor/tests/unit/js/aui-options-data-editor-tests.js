@@ -6,6 +6,7 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
 
         setUp: function() {
             this._editor = new Y.OptionsDataEditor({
+                editedValue: ['Drogon', 'Visirion', 'Rhaegal'],
                 originalValue: ['Drogon', 'Visirion', 'Rhaegal']
             });
             Y.one('#container').append(this._editor.get('node'));
@@ -20,6 +21,7 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
         /**
          * Simulates dragging an option on top of another.
          *
+         * @method _simulateDrag
          * @param {Y.Test.Case} test
          * @param {Node} dragHandle
          * @param {Node} dropNode
@@ -57,6 +59,24 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
             }, Y.DD.DDM.get('clickTimeThresh') + 100);
         },
 
+        /**
+         * Simulates a `valuechange` event for the given input.
+         *
+         * @method _simulateInputChange
+         * @param {Node} input The input node to simulate the event for.
+         * @param {String} text The text that should be set as the input's final value.
+         * @param {Function} callback The function to be called when the simulation is
+         *   done.
+         * @protected
+         */
+        _simulateInputChange: function(input, text, callback) {
+            input.simulate('keydown');
+            input.set('value', text);
+            input.simulate('keydown');
+
+            this.wait(callback, Y.ValueChange.POLL_INTERVAL);
+        },
+
         'should set original value on the ui': function() {
             var optionNodes = this._editor.get('node').all('.options-data-editor-option');
 
@@ -73,37 +93,41 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
         },
 
         'should get edited value from the ui': function() {
-            var editedValue,
+            var instance = this,
+                input,
+                editedValue,
                 optionNodes = this._editor.get('node').all('.options-data-editor-option');
 
-            optionNodes.item(0).one('input').set('value', 'Saphira');
-            optionNodes.item(2).one('input').set('value', 'Smaug');
-
-            editedValue = this._editor.get('editedValue');
-            Y.Assert.areEqual(3, editedValue.length);
-            Y.Assert.areEqual('Saphira', editedValue[0]);
-            Y.Assert.areEqual('Visirion', editedValue[1]);
-            Y.Assert.areEqual('Smaug', editedValue[2]);
+            input = optionNodes.item(0).one('input');
+            this._simulateInputChange(input, 'Saphira', function() {
+                editedValue = instance._editor.get('editedValue');
+                Y.Assert.areEqual(3, editedValue.length);
+                Y.Assert.areEqual('Saphira', editedValue[0]);
+                Y.Assert.areEqual('Visirion', editedValue[1]);
+                Y.Assert.areEqual('Rhaegal', editedValue[2]);
+            });
         },
 
         'should add new options through button': function() {
-            var editedValue,
+            var instance = this,
+                editedValue,
+                input,
                 optionNodes;
 
             this._editor.get('node').one('.options-data-editor-add').simulate('click');
-            this._editor.get('node').one('.options-data-editor-add').simulate('click');
 
             optionNodes = this._editor.get('node').all('.options-data-editor-option');
-            optionNodes.item(3).one('input').set('value', 'Saphira');
-            optionNodes.item(4).one('input').set('value', 'Smaug');
+            Y.Assert.areEqual(4, optionNodes.size());
 
-            editedValue = this._editor.get('editedValue');
-            Y.Assert.areEqual(5, editedValue.length);
-            Y.Assert.areEqual('Drogon', editedValue[0]);
-            Y.Assert.areEqual('Visirion', editedValue[1]);
-            Y.Assert.areEqual('Rhaegal', editedValue[2]);
-            Y.Assert.areEqual('Saphira', editedValue[3]);
-            Y.Assert.areEqual('Smaug', editedValue[4]);
+            input = optionNodes.item(3).one('input');
+            this._simulateInputChange(input, 'Saphira', function() {
+                editedValue = instance._editor.get('editedValue');
+                Y.Assert.areEqual(4, editedValue.length);
+                Y.Assert.areEqual('Drogon', editedValue[0]);
+                Y.Assert.areEqual('Visirion', editedValue[1]);
+                Y.Assert.areEqual('Rhaegal', editedValue[2]);
+                Y.Assert.areEqual('Saphira', editedValue[3]);
+            });
         },
 
         'should removing options through buttons': function() {
@@ -112,13 +136,14 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
                 removeButtons = this._editor.get('node').all('.options-data-editor-option-remove');
 
             removeButtons.item(0).simulate('click');
-            removeButtons.item(2).simulate('click');
 
             optionNodes = this._editor.get('node').all('.options-data-editor-option');
+            Y.Assert.areEqual(2, optionNodes.size());
 
             editedValue = this._editor.get('editedValue');
-            Y.Assert.areEqual(1, editedValue.length);
+            Y.Assert.areEqual(2, editedValue.length);
             Y.Assert.areEqual('Visirion', editedValue[0]);
+            Y.Assert.areEqual('Rhaegal', editedValue[1]);
         },
 
         'should allow dragging options to lower positon': function() {
@@ -150,26 +175,23 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
         },
 
         'should check if the form is valid': function() {
-            var editor = new Y.OptionsDataEditor(),
-                optionNodes;
+            var items;
 
-            this._editor.destroy();
+            this._editor.set('editedValue', []);
 
-            Y.one('#container').append(editor.get('node'));
+            Y.Assert.isTrue(this._editor.isValid());
 
-            Y.Assert.isTrue(editor.isValid());
+            this._editor.set('required', true);
+            Y.Assert.isFalse(this._editor.isValid());
 
-            editor.set('required', true);
-            Y.Assert.isFalse(editor.isValid());
+            items = this._editor.get('editedValue');
+            items.push('');
+            this._editor.set('editedValue', items);
+            Y.Assert.isFalse(this._editor.isValid());
 
-            editor.get('node').one('.options-data-editor-add').simulate('click');
-            optionNodes = editor.get('node').all('.options-data-editor-option');
-
-            optionNodes.item(0).one('input').set('value', '');
-            Y.Assert.isFalse(editor.isValid());
-
-            optionNodes.item(0).one('input').set('value', 'Shazam');
-            Y.Assert.isTrue(editor.isValid());
+            items[0] = 'Shazam';
+            this._editor.set('editedValue', items);
+            Y.Assert.isTrue(this._editor.isValid());
         }
     }));
 
