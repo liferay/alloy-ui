@@ -29,9 +29,11 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * @protected
      */
     initializer: function() {
+        this._createSwitchButton();
+
         this._uiSetEditedValue(this.get('editedValue'));
 
-        this._getSwitchButton().on('activatedChange', A.bind(this._afterButtonSwitchActivatedChange, this));
+        this._buttonSwitch.on('activatedChange', A.bind(this._afterButtonSwitchActivatedChange, this));
 
         this.after({
             checkedContentChange: this._afterCheckedContentChange,
@@ -40,17 +42,6 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
             innerLabelRightChange: this._afterInnerLabelRightChange,
             uncheckedContentChange: this._afterUncheckedContentChange
         });
-    },
-
-    /**
-     * Updates the editor's UI to display the given value.
-     *
-     * @method updateUiWithValue
-     * @param {Boolean} value
-     */
-    updateUiWithValue: function(value) {
-        this._getSwitchButton().set('activated', value);
-        this.set('editedValue', value);
     },
 
     /**
@@ -95,7 +86,7 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * @protected
      */
     _afterInnerLabelLeftChange: function(event) {
-        this._getSwitchButton().set('innerLabelLeft', event.newVal);
+        this._buttonSwitch.set('innerLabelLeft', event.newVal);
     },
 
     /**
@@ -106,7 +97,7 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * @protected
      */
     _afterInnerLabelRightChange: function(event) {
-        this._getSwitchButton().set('innerLabelRight', event.newVal);
+        this._buttonSwitch.set('innerLabelRight', event.newVal);
     },
 
     /**
@@ -124,21 +115,15 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     /**
      * Returns the switch button instance.
      *
-     * @method _getSwitchButton
+     * @method _createSwitchButton
      * @return {Object}
      * @protected
      */
-    _getSwitchButton: function () {
-        var instance = this;
-
-        if (!this._buttonSwitch) {
-            this._buttonSwitch = new A.ButtonSwitch({
-                innerLabelLeft: instance.get('innerLabelLeft'),
-                innerLabelRight: instance.get('innerLabelRight')
-            }).render(instance.get('node').one('.' + CSS_BOOLEAN_DATA_EDITOR_SWITCH_BUTTON));
-        }
-
-        return this._buttonSwitch;
+    _createSwitchButton: function () {
+        this._buttonSwitch = new A.ButtonSwitch({
+            innerLabelLeft: this.get('innerLabelLeft'),
+            innerLabelRight: this.get('innerLabelRight')
+        }).render(this.get('node').one('.' + CSS_BOOLEAN_DATA_EDITOR_SWITCH_BUTTON));
     },
 
     /**
@@ -165,6 +150,8 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      * @protected
      */
     _uiSetEditedValue: function(editedValue) {
+        this._buttonSwitch.set('activated', editedValue);
+
         if (editedValue) {
             this._updateContent(this.get('checkedContent'));
         }

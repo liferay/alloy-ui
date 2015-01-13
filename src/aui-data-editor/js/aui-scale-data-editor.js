@@ -38,6 +38,7 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
         this.higherInput_.after('valuechange', A.bind(this._onHigherValueChange, this));
 
         this.after('editedValueChange', this._afterEditedValueChange);
+        this._uiSetEditedValue(this.get('editedValue'));
     },
 
     /**
@@ -63,16 +64,6 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
         }
 
         return false;
-    },
-
-    /**
-     * Updates the editor's UI to display the given value.
-     *
-     * @method updateUiWithValue
-     * @param originalValue
-     */
-    updateUiWithValue: function(originalValue) {
-        this._uiSetEditedValue(originalValue);
     },
 
     /**
@@ -154,10 +145,8 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
      * @protected
      */
     _uiSetEditedValue: function(editedValue) {
-        var node = this.get('node');
-
-        node.one('.' + CSS_SCALE_DATA_EDITOR_LOWER_VALUE).set('value', editedValue[0]);
-        node.one('.' + CSS_SCALE_DATA_EDITOR_HIGHER_VALUE).set('value', editedValue[1]);
+        this.lowerInput_.set('value', editedValue[0]);
+        this.higherInput_.set('value', editedValue[1]);
     }
 }, {
     /**

@@ -38,13 +38,11 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
 
         node.one('.' + CSS_EDITOR_CONTENT_INNER).setHTML(this.TPL_EDITOR_CONTENT);
 
-        this._uiSetOriginalValue(this.get('originalValue'));
         this._uiSetLabel(this.get('label'));
         this._uiSetRequired(this.get('required'));
         this._uiSetVisible(this.get('visible'));
 
         this.after({
-            originalValueChange: this._afterOriginalValueChange,
             labelChange: this._afterLabelChange,
             requiredChange: this._afterRequiredChange,
             visibleChange: this._afterVisibleChange
@@ -86,16 +84,6 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
     },
 
     /**
-     * Updates the editor's UI to display the given value.
-     * This should be overridden by subclasses.
-     *
-     * @method updateUiWithValue
-     */
-    updateUiWithValue: function() {
-        throw new Error('Subclasses should override updateUiWithValue');
-    },
-
-    /**
      * Fired after the `label` attribute is set.
      *
      * @method _afterLabelChange
@@ -103,16 +91,6 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      */
     _afterLabelChange: function() {
         this._uiSetLabel(this.get('label'));
-    },
-
-    /**
-     * Fired after the `originalValue` attribute is set.
-     *
-     * @method _afterOriginalValueChange
-     * @protected
-     */
-    _afterOriginalValueChange: function() {
-        this._uiSetOriginalValue(this.get('originalValue'));
     },
 
     /**
@@ -147,16 +125,6 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
 
         labelNode.set('text', label);
         labelNode.toggleView(A.Lang.trim(label) !== '');
-    },
-
-    /**
-     * Updates the ui according to the value of the `originalValue` attribute.
-     *
-     * @method _uiSetOriginalValue
-     * @protected
-     */
-    _uiSetOriginalValue: function(originalValue) {
-        this.updateUiWithValue(originalValue);
     },
 
     /**

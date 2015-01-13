@@ -94,6 +94,17 @@ YUI.add('aui-radio-group-data-editor-tests', function(Y) {
             Y.Assert.isFalse(buttonList.item(0).get('checked'));
             Y.Assert.isTrue(buttonList.item(1).get('checked'));
             Y.Assert.isFalse(buttonList.item(2).get('checked'));
+        },
+
+        'should only update originalValue with valid values': function() {
+            this._radioGroupDataEditor.set('originalValue', -1);
+            Y.Assert.areEqual(0, this._radioGroupDataEditor.get('originalValue'));
+
+            this._radioGroupDataEditor.set('originalValue', 11);
+            Y.Assert.areEqual(0, this._radioGroupDataEditor.get('originalValue'));
+
+            this._radioGroupDataEditor.set('originalValue', 2);
+            Y.Assert.areEqual(2, this._radioGroupDataEditor.get('originalValue'));
         }
     }));
 

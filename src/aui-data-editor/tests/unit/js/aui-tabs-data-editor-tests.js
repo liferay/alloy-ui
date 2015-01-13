@@ -27,6 +27,7 @@ YUI.add('aui-tabs-data-editor-tests', function(Y) {
             );
 
             var editor = new Y.TabsDataEditor(Y.merge({
+                editedValue: 'inventory-armor',
                 originalValue: 'inventory-armor',
                 tabs: [
                     {
@@ -70,11 +71,11 @@ YUI.add('aui-tabs-data-editor-tests', function(Y) {
             Y.Assert.areEqual('Weapons', selectedTab.get('text'));
         },
 
-        'should change the selected tab through method': function() {
+        'should change the selected tab when editedValue is updated': function() {
             var selectedTab;
 
             this._editor = this._createEditor();
-            this._editor.updateUiWithValue('inventory-weapon');
+            this._editor.set('editedValue', 'inventory-weapon');
 
             selectedTab = this._editor.get('node').one('.tab-selected');
             Y.Assert.areEqual('Weapons', selectedTab.get('text'));
@@ -84,7 +85,7 @@ YUI.add('aui-tabs-data-editor-tests', function(Y) {
             var selectedTab;
 
             this._editor = this._createEditor();
-            this._editor.updateUiWithValue('inventory-junk');
+            this._editor.set('editedValue', 'inventory-junk');
 
             selectedTab = this._editor.get('node').one('.tab-selected');
             Y.Assert.areEqual('Armor', selectedTab.get('text'));
@@ -102,7 +103,7 @@ YUI.add('aui-tabs-data-editor-tests', function(Y) {
             Y.Assert.areEqual('none', weaponsPanel.getStyle('display'));
             Y.Assert.areNotEqual('none', armorPanel.getStyle('display'));
 
-            this._editor.updateUiWithValue('inventory-weapon');
+            this._editor.set('editedValue', 'inventory-weapon');
             Y.Assert.areNotEqual('none', weaponsPanel.getStyle('display'));
             Y.Assert.areEqual('none', armorPanel.getStyle('display'));
         }

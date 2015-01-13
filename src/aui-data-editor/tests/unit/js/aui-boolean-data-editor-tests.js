@@ -114,15 +114,15 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
             Y.Assert.areEqual('Editor Unchecked', contentNode.get('text'));
         },
 
-        'should set original value on the ui': function() {
+        'should update the ui when the edited value is udpated': function() {
             var editor = this._booleanDataEditor;
 
-            editor.set('originalValue', false);
+            editor.set('editedValue', false);
             Y.Assert.isTrue(editor.get('node').one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isFalse(editor.get('node').one('.button-switch-inner-label-right').hasClass('hide'));
             Y.Assert.isFalse(editor.get('editedValue'));
 
-            editor.set('originalValue', true);
+            editor.set('editedValue', true);
             Y.Assert.isFalse(editor.get('node').one('.button-switch-inner-label-left').hasClass('hide'));
             Y.Assert.isTrue(editor.get('node').one('.button-switch-inner-label-right').hasClass('hide'));
             Y.Assert.isTrue(editor.get('editedValue'));

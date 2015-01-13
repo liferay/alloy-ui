@@ -77,7 +77,7 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
             this.wait(callback, Y.ValueChange.POLL_INTERVAL);
         },
 
-        'should set original value on the ui': function() {
+        'should update the ui according to the edited value': function() {
             var optionNodes = this._editor.get('node').all('.options-data-editor-option');
 
             Y.Assert.areEqual(3, optionNodes.size());
@@ -85,7 +85,7 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
             Y.Assert.areEqual('Visirion', optionNodes.item(1).one('input').get('value'));
             Y.Assert.areEqual('Rhaegal', optionNodes.item(2).one('input').get('value'));
 
-            this._editor.set('originalValue', ['Saphira', 'Smaug']);
+            this._editor.set('editedValue', ['Saphira', 'Smaug']);
             optionNodes = this._editor.get('node').all('.options-data-editor-option');
             Y.Assert.areEqual(2, optionNodes.size());
             Y.Assert.areEqual('Saphira', optionNodes.item(0).one('input').get('value'));

@@ -32,6 +32,7 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
         this.input_.after('valuechange', A.bind(this._onValueChange, this));
 
         this.after('editedValueChange', this._afterEditedValueChange);
+        this._uiSetEditedValue(this.get('editedValue'));
     },
 
     /**
@@ -56,16 +57,6 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
         }
 
         return false;
-    },
-
-    /**
-     * Updates the editor's UI to display the given value.
-     *
-     * @method updateUiWithValue
-     * @param originalValue
-     */
-    updateUiWithValue: function(originalValue) {
-        this._uiSetEditedValue(originalValue);
     },
 
     /**
@@ -96,7 +87,7 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
      * @protected
      */
     _uiSetEditedValue: function(editedValue) {
-        this.get('node').one('.form-control').set('value', editedValue);
+        this.input_.set('value', editedValue);
     }
 }, {
     /**

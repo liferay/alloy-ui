@@ -87,16 +87,6 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
     },
 
     /**
-     * Updates the editor's UI to display the given value.
-     *
-     * @method updateUiWithValue
-     * @param {Array} value
-     */
-    updateUiWithValue: function(value) {
-        this.set('editedValue', value);
-    },
-
-    /**
      * Fired after the button for adding options is clicked.
      *
      * @method _afterClickAddButton

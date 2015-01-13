@@ -18,29 +18,6 @@ YUI.add('aui-data-editor-tests', function(Y) {
             return TestEditor;
         },
 
-        'should set original value on init': function() {
-            var editor,
-                TestEditor = this._createTestEditorClass();
-
-            editor = new TestEditor();
-            Y.Assert.areEqual(1, editor._uiSetOriginalValue.callCount);
-        },
-
-        'should update ui when original value is set': function() {
-            var editor,
-                TestEditor = this._createTestEditorClass();
-
-            editor = new TestEditor();
-            editor.set('originalValue', 'other value');
-            Y.Assert.areEqual(2, editor._uiSetOriginalValue.callCount);
-        },
-
-        'should throw error when instantiating abstract class': function() {
-            Y.Assert.throwsError(Error, function() {
-                new Y.DataEditor();
-            });
-        },
-
         'should check if the form is valid': function() {
             var editor,
                 TestEditor = this._createTestEditorClass();

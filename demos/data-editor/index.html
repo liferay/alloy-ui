@@ -31,6 +31,7 @@ YUI({ filter:'raw' }).use(
     'aui-tabs-data-editor',
     function(Y) {
         var optionsEditor = new Y.OptionsDataEditor({
+            editedValue: ['Drogon', 'Visirion', 'Rhaegal'],
             originalValue: ['Drogon', 'Visirion', 'Rhaegal']
         });
         Y.one('#optionsEditor').append(optionsEditor.get('node'));
@@ -39,12 +40,14 @@ YUI({ filter:'raw' }).use(
         });
 
         var radioGroupEditor = new Y.RadioGroupDataEditor({
+            editedValue: 2,
             originalValue: 2,
             radioLabels: ['Squirtle', 'Charmander', 'Bulbasaur']
         });
         Y.one('#radioGroupEditor').append(radioGroupEditor.get('node'));
 
         var tabsEditor = new Y.TabsDataEditor({
+            editedValue: 'inventory-armor',
             originalValue: 'inventory-armor',
             tabs: [
                 {

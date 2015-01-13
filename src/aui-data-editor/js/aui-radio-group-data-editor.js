@@ -34,20 +34,11 @@ A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, 
      */
     initializer: function() {
         this._uiSetRadioLabels(this.get('radioLabels'));
+        this._uiSetEditedValue(this.get('editedValue'));
 
         this.after('editedValueChange', this._afterEditedValueChange);
         this.after('radioLabelsChange', this._afterRadioLabelsChange);
         this.get('node').delegate('click', A.bind(this._onClickRadioButton, this), '.' + CSS_EDITOR_RADIO_BUTTON);
-    },
-
-    /**
-     * Updates the editor's UI to display the given value.
-     *
-     * @method updateUiWithValue
-     * @param {Boolean} value
-     */
-    updateUiWithValue: function(value) {
-        this.set('editedValue', value);
     },
 
     /**

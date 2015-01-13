@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1831](https://issues.liferay.com/browse/AUI-1831) Change the way aui-data-editor updates the UI
 * [AUI-1825](https://issues.liferay.com/browse/AUI-1825) Show asterisks beside each field's required setting
 * [AUI-1811](https://issues.liferay.com/browse/AUI-1811) Change text field's multiline option to radio buttons instead of a button switch
 * [AUI-1785](https://issues.liferay.com/browse/AUI-1785) Merge list and choice fields into a single field type

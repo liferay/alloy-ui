@@ -21,6 +21,17 @@ A.TabsDataEditor = A.Base.create('tabs-data-editor', A.DataEditor, [], {
         '<div class="' + CSS_TABS_DATA_EDITOR_TABS + '"></div></div>',
 
     /**
+     * Constructor for the `A.TabsDataEditor`. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        this.after('editedValueChange', this._afterEditedValueChange);
+        this._uiSetEditedValue(this.get('editedValue'));
+    },
+
+    /**
      * Destructor lifecycle implementation for the `A.TabsDataEditor` class.
      * Lifecycle.
      *
@@ -32,17 +43,13 @@ A.TabsDataEditor = A.Base.create('tabs-data-editor', A.DataEditor, [], {
     },
 
     /**
-     * Updates the editor's UI to display the given value.
+     * Fired after the `editedValue` attribute is set.
      *
-     * @method updateUiWithValue
-     * @param {String} value
+     * @method _afterEditedValueChange
+     * @protected
      */
-    updateUiWithValue: function(value) {
-        var index = this._findTabIndexForValue(value);
-
-        if (index !== undefined) {
-            this._getTabView().selectChild(index);
-        }
+    _afterEditedValueChange: function() {
+        this._uiSetEditedValue(this.get('editedValue'));
     },
 
     /**
@@ -112,6 +119,21 @@ A.TabsDataEditor = A.Base.create('tabs-data-editor', A.DataEditor, [], {
         }
 
         return this._tabView;
+    },
+
+    /**
+     * Updates the ui according to the value of the `editedValue` attribute.
+     *
+     * @method _uiSetEditedValue
+     * @param {String} value
+     * @protected
+     */
+    _uiSetEditedValue: function(value) {
+        var index = this._findTabIndexForValue(value);
+
+        if (index !== undefined) {
+            this._getTabView().selectChild(index);
+        }
     }
 }, {
     /**
