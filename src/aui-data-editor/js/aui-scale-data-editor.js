@@ -23,6 +23,24 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
         '<input type="text" class="' + CSS_SCALE_DATA_EDITOR_HIGHER_VALUE + ' form-control"></input></div>',
 
     /**
+     * Constructor for the `A.ScaleDataEditor`. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        var node = this.get('node');
+
+        this.lowerInput_ = node.one('.' + CSS_SCALE_DATA_EDITOR_LOWER_VALUE);
+        this.lowerInput_.after('valuechange', A.bind(this._onLowerValueChange, this));
+
+        this.higherInput_ = node.one('.' + CSS_SCALE_DATA_EDITOR_HIGHER_VALUE);
+        this.higherInput_.after('valuechange', A.bind(this._onHigherValueChange, this));
+
+        this.after('editedValueChange', this._afterEditedValueChange);
+    },
+
+    /**
      * Returns `true` if this edited value array has no elements on 0 and 1 positions.
      *
      * @method isEmpty
@@ -54,29 +72,23 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
      * @param originalValue
      */
     updateUiWithValue: function(originalValue) {
-        var node = this.get('node');
-
-        node.one('.' + CSS_SCALE_DATA_EDITOR_LOWER_VALUE).set('value', originalValue[0]);
-        node.one('.' + CSS_SCALE_DATA_EDITOR_HIGHER_VALUE).set('value', originalValue[1]);
+        this._uiSetEditedValue(originalValue);
     },
 
     /**
-     * Gets the edited value of the data from the editor.
+     * Fired after the `editedValue` attribute is set.
      *
-     * @method _getEditedValue
+     * @method _afterEditedValueChange
      * @protected
      */
-    _getEditedValue: function() {
-        var node = this.get('node'),
-            lower = node.one('.' + CSS_SCALE_DATA_EDITOR_LOWER_VALUE).get('value'),
-            higher = node.one('.' + CSS_SCALE_DATA_EDITOR_HIGHER_VALUE).get('value');
-
-        return [lower, higher];
+    _afterEditedValueChange: function() {
+        this._uiSetEditedValue(this.get('editedValue'));
     },
 
     /**
      * Stricter way to parse int values.
      *
+     * @method _filterInt
      * @param  {String | Number} value
      * @return {Number}
      * @protected
@@ -87,16 +99,43 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
         }
         return NaN;
     },
+
     /**
-     * Sets the `originalValue` attribute.
-     * Makes sure `originalValue` is an array of at least 2 positions.
+     * Fired when the lower input's value changes.
      *
-     * @method _setOriginalValue
+     * @method _onHigherValueChange
+     * @protected
+     */
+    _onHigherValueChange: function() {
+        var editedValue = this.get('editedValue');
+
+        editedValue[1] = this.higherInput_.get('value');
+        this.set('editedValue', editedValue);
+    },
+
+    /**
+     * Fired when the lower input's value changes.
+     *
+     * @method _onLowerValueChange
+     * @protected
+     */
+    _onLowerValueChange: function() {
+        var editedValue = this.get('editedValue');
+
+        editedValue[0] = this.lowerInput_.get('value');
+        this.set('editedValue', editedValue);
+    },
+
+    /**
+     * Sets one of the range attributes (either `originalValue` or `editedValue`).
+     * Makes sure it's an array of at least 2 positions.
+     *
+     * @method _setRangeValue
      * @param {Array} val
      * @return {Array}
      * @protected
      */
-    _setOriginalValue: function(val) {
+    _setRangeValue: function(val) {
         if (val.length === 0) {
             val.push('', '');
         }
@@ -105,6 +144,20 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
         }
 
         return val;
+    },
+
+    /**
+     * Updates the ui according to the value of the `editedValue` attribute.
+     *
+     * @method _uiSetEditedValue
+     * @param {Array} editedValue
+     * @protected
+     */
+    _uiSetEditedValue: function(editedValue) {
+        var node = this.get('node');
+
+        node.one('.' + CSS_SCALE_DATA_EDITOR_LOWER_VALUE).set('value', editedValue[0]);
+        node.one('.' + CSS_SCALE_DATA_EDITOR_HIGHER_VALUE).set('value', editedValue[1]);
     }
 }, {
     /**
@@ -123,7 +176,7 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
          * @type Array
          */
         editedValue: {
-            getter: '_getEditedValue',
+            setter: '_setRangeValue',
             validator: A.Lang.isArray,
             value: []
         },
@@ -135,7 +188,7 @@ A.ScaleDataEditor = A.Base.create('scale-data-editor', A.DataEditor, [], {
          * @type Array
          */
         originalValue: {
-            setter: '_setOriginalValue',
+            setter: '_setRangeValue',
             validator: A.Lang.isArray,
             value: []
         }

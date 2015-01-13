@@ -34,7 +34,8 @@
     "aui-scale-data-editor": {
         "requires": [
             "aui-classnamemanager",
-            "aui-data-editor"
+            "aui-data-editor",
+            "event-valuechange"
         ]
     },
     "aui-tabs-data-editor": {
