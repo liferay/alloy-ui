@@ -11,7 +11,8 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
 
         setUp: function() {
             this.createBooleanDataEditor({
-                originalValue: 'original',
+                editedValue: true,
+                originalValue: true,
                 checkedContent: 'Editor Checked',
                 uncheckedContent: 'Editor Unchecked'
             });
@@ -42,34 +43,75 @@ YUI.add('aui-boolean-data-editor-tests', function(Y) {
             Y.Assert.areEqual(editor.get('node').one('.button-switch-inner-label-right').getHTML(), 'right');
         },
 
-        'should set valid content to checkedContent': function () {
-            var editor = this._booleanDataEditor;
+        'should update the ui according to the edited value': function() {
+            var contentNode = this._booleanDataEditor.get('node').one('.boolean-data-editor-content');
 
-            editor.set('checkedContent', 'Editor Checked');
-
-            Y.Assert.areEqual('Editor Checked', editor.get('node').one('.boolean-data-editor-content').getHTML());
-
-            editor.set('checkedContent', Y.Node.create('<label>Editor Checked</label>'));
-            Y.Assert.areEqual('Editor Checked', editor.get('node').one('.boolean-data-editor-content').getHTML());
-
-            editor.set('checkedContent', 42);
-            Y.Assert.areEqual('Editor Checked', editor.get('node').one('.boolean-data-editor-content').getHTML());
-
+            Y.Assert.areEqual('Editor Checked', contentNode.get('text'));
+            this._booleanDataEditor.set('editedValue', false);
+            Y.Assert.areEqual('Editor Unchecked', contentNode.get('text'));
+            this._booleanDataEditor.set('editedValue', true);
+            Y.Assert.areEqual('Editor Checked', contentNode.get('text'));
         },
 
-        'should set valid content to uncheckedContent': function () {
-            var editor = this._booleanDataEditor;
+        'should update the ui with checkedContent': function () {
+            var checkedNode,
+                contentNode = this._booleanDataEditor.get('node').one('.boolean-data-editor-content');
 
-            Y.one('.button-switch').simulate('click');
+            this._booleanDataEditor.set('checkedContent', 'Editor Checked 2');
+            Y.Assert.areEqual('Editor Checked 2', contentNode.get('text'));
 
-            editor.set('uncheckedContent', Y.Node.create('Editor Unchecked'));
-            Y.Assert.areEqual('Editor Unchecked', editor.get('node').one('.boolean-data-editor-content').getHTML());
+            checkedNode = Y.Node.create('<label class="myClass">Node Content</label>');
+            this._booleanDataEditor.set('checkedContent', checkedNode);
+            Y.Assert.isNotNull(contentNode.one('.myClass'));
+            Y.Assert.areEqual('Node Content', contentNode.get('text'));
+        },
 
-            editor.set('uncheckedContent', '<label>Editor Unchecked</label>');
-            Y.Assert.areEqual('Editor Unchecked', editor.get('node').one('.boolean-data-editor-content').getHTML());
+        'should not update the ui with checkedContent if editor is unchecked': function () {
+            var contentNode = this._booleanDataEditor.get('node').one('.boolean-data-editor-content');
 
-            editor.set('uncheckedContent', 42);
-            Y.Assert.areEqual('Editor Unchecked', editor.get('node').one('.boolean-data-editor-content').getHTML());
+            this._booleanDataEditor.set('editedValue', false);
+            this._booleanDataEditor.set('checkedContent', 'Editor Checked 2');
+
+            Y.Assert.areEqual('Editor Unchecked', contentNode.get('text'));
+        },
+
+        'should not update the ui with invalid checkedContent': function () {
+            var contentNode = this._booleanDataEditor.get('node').one('.boolean-data-editor-content');
+
+            this._booleanDataEditor.set('checkedContent', 42);
+            Y.Assert.areEqual('Editor Checked', contentNode.get('text'));
+        },
+
+        'should update the ui with uncheckedContent': function () {
+            var contentNode = this._booleanDataEditor.get('node').one('.boolean-data-editor-content'),
+                uncheckedNode;
+
+            this._booleanDataEditor.set('editedValue', false);
+
+            this._booleanDataEditor.set('uncheckedContent', Y.Node.create('Editor Unchecked 2'));
+            Y.Assert.areEqual('Editor Unchecked 2', contentNode.get('text'));
+
+            uncheckedNode = Y.Node.create('<label class="myClass">Node Content</label>');
+            this._booleanDataEditor.set('uncheckedContent', uncheckedNode);
+            Y.Assert.isNotNull(contentNode.one('.myClass'));
+            Y.Assert.areEqual('Node Content', contentNode.get('text'));
+        },
+
+        'should not update the ui with uncheckedContent if editor is checked': function () {
+            var contentNode = this._booleanDataEditor.get('node').one('.boolean-data-editor-content');
+
+            this._booleanDataEditor.set('uncheckedContent', 'Editor Unchecked 2');
+
+            Y.Assert.areEqual('Editor Checked', contentNode.get('text'));
+        },
+
+        'should not update the ui with invalid uncheckedContent': function () {
+            var contentNode = this._booleanDataEditor.get('node').one('.boolean-data-editor-content');
+
+            this._booleanDataEditor.set('editedValue', false);
+
+            this._booleanDataEditor.set('uncheckedContent', 42);
+            Y.Assert.areEqual('Editor Unchecked', contentNode.get('text'));
         },
 
         'should set original value on the ui': function() {

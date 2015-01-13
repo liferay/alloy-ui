@@ -32,9 +32,14 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
         this._uiSetEditedValue(this.get('editedValue'));
 
         this._getSwitchButton().on('activatedChange', A.bind(this._afterButtonSwitchActivatedChange, this));
-        this.after('editedValueChange', this._afterEditedValueChange);
-        this.after('innerLabelLeftChange', this._afterInnerLabelLeftChange);
-        this.after('innerLabelRightChange', this._afterInnerLabelRightChange);
+
+        this.after({
+            checkedContentChange: this._afterCheckedContentChange,
+            editedValueChange: this._afterEditedValueChange,
+            innerLabelLeftChange: this._afterInnerLabelLeftChange,
+            innerLabelRightChange: this._afterInnerLabelRightChange,
+            uncheckedContentChange: this._afterUncheckedContentChange
+        });
     },
 
     /**
@@ -57,6 +62,18 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      */
     _afterButtonSwitchActivatedChange: function(event) {
         this.set('editedValue', event.newVal);
+    },
+
+    /**
+     * Fired after the `checkedContent` attribute is set.
+     *
+     * @method _afterCheckedContentChange
+     * @protected
+     */
+    _afterCheckedContentChange: function() {
+        if (this.get('editedValue')) {
+            this._updateContent(this.get('checkedContent'));
+        }
     },
 
     /**
@@ -90,6 +107,18 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      */
     _afterInnerLabelRightChange: function(event) {
         this._getSwitchButton().set('innerLabelRight', event.newVal);
+    },
+
+    /**
+     * Fired after the `uncheckedContent` attribute is set.
+     *
+     * @method _afterUncheckedContentChange
+     * @protected
+     */
+    _afterUncheckedContentChange: function() {
+        if (!this.get('editedValue')) {
+            this._updateContent(this.get('uncheckedContent'));
+        }
     },
 
     /**
@@ -129,26 +158,6 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
     },
 
     /**
-     * Updates the ui according to the value of the `checkedContent` attribute.
-     *
-     * @method _setCheckedContent
-     * @protected
-     */
-    _setCheckedContent: function() {
-        this.get('node').one('.' + CSS_BOOLEAN_DATA_EDITOR_CONTENT).setHTML(this.get('checkedContent'));
-    },
-
-    /**
-     * Updates the ui according to the value of the `uncheckedContent` attribute.
-     *
-     * @method _setUncheckedContent
-     * @protected
-     */
-    _setUncheckedContent: function() {
-        this.get('node').one('.' + CSS_BOOLEAN_DATA_EDITOR_CONTENT).setHTML(this.get('uncheckedContent'));
-    },
-
-    /**
      * Updates the ui according to the value of the `editedValue` attribute.
      *
      * @method _uiSetEditedValue
@@ -157,11 +166,21 @@ A.BooleanDataEditor = A.Base.create('boolean-data-editor', A.DataEditor, [], {
      */
     _uiSetEditedValue: function(editedValue) {
         if (editedValue) {
-            this._setCheckedContent();
+            this._updateContent(this.get('checkedContent'));
         }
         else {
-            this._setUncheckedContent();
+            this._updateContent(this.get('uncheckedContent'));
         }
+    },
+
+    /**
+     * Updates the boolean data editor with the given content.
+     *
+     * @method _updateContent
+     * @protected
+     */
+    _updateContent: function(content) {
+        this.get('node').one('.' + CSS_BOOLEAN_DATA_EDITOR_CONTENT).setHTML(content);
     },
 
     /**
