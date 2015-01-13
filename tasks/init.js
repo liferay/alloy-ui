@@ -151,8 +151,23 @@ module.exports = function(grunt) {
         command.open(ROOT)
             .on('stdout', command.writeTo(process.stdout))
             .on('stderr', command.writeTo(process.stderr))
-            .exec('git', ['clone', dependency.repo, '-b', dependency.version, dependency.folder, '--progress'], {
+            .exec('git', ['clone', dependency.repo, '--progress', dependency.folder], {
                 cwd: ROOT
+            })
+            .then(function() {
+                exports._checkoutDependency(dependency, depCallback);
+            });
+    };
+
+    exports._checkoutDependency = function(dependency, depCallback) {
+        grunt.log.ok('Checking out: ' + dependency.repo +
+            ' [' + dependency.version + ']');
+
+        command.open(ROOT)
+            .on('stdout', command.writeTo(process.stdout))
+            .on('stderr', command.writeTo(process.stderr))
+            .exec('git', ['checkout', dependency.version, '-f'], {
+                cwd: dependency.folder
             })
             .then(function() {
                 depCallback();
