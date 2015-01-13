@@ -46,7 +46,8 @@
     },
     "aui-text-data-editor": {
         "requires": [
-            "aui-data-editor"
+            "aui-data-editor",
+            "event-valuechange"
         ]
     }
 }

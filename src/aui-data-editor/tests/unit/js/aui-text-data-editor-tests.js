@@ -5,8 +5,27 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'AUI Text Data Editor Unit Tests',
 
+        /**
+         * Simulates a `valuechange` event for the given input.
+         *
+         * @method _simulateInputChange
+         * @param {Node} input The input node to simulate the event for.
+         * @param {String} text The text that should be set as the input's final value.
+         * @param {Function} callback The function to be called when the simulation is
+         *   done.
+         * @protected
+         */
+        _simulateInputChange: function(input, text, callback) {
+            input.simulate('keydown');
+            input.set('value', text);
+            input.simulate('keydown');
+
+            this.wait(callback, Y.ValueChange.POLL_INTERVAL);
+        },
+
         'should set original value on the ui': function() {
             var editor = new Y.TextDataEditor({
+                editedValue: 'original',
                 originalValue: 'original'
             });
 
@@ -16,11 +35,13 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
 
         'should get edited value from the ui': function() {
             var editor = new Y.TextDataEditor({
+                editedValue: 'original',
                 originalValue: 'original'
             });
 
-            editor.get('node').one('input').set('value', 'new');
-            Y.Assert.areEqual('new', editor.get('editedValue'));
+            this._simulateInputChange(editor.get('node').one('input'), 'new', function() {
+                Y.Assert.areEqual('new', editor.get('editedValue'));
+            });
         },
 
         'should check if the form is valid': function() {
@@ -31,10 +52,10 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
             editor.set('required', true);
             Y.Assert.isFalse(editor.isValid());
 
-            editor.get('node').one('input').set('value', '   ');
+            editor.set('editedValue', '   ');
             Y.Assert.isFalse(editor.isValid());
 
-            editor.get('node').one('input').set('value', 'Atari Force');
+            editor.set('editedValue', 'Atari Force');
             Y.Assert.isTrue(editor.isValid());
         }
     }));
@@ -42,4 +63,4 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 
-},'', { requires: [ 'aui-text-data-editor' ] });
+},'', { requires: [ 'aui-text-data-editor', 'node-event-simulate' ] });

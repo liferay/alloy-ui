@@ -20,6 +20,21 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
         '<input type="text" class="form-control"></input></div>',
 
     /**
+     * Constructor for the `A.TextDataEditor`. Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        var node = this.get('node');
+
+        this.input_ = node.one('.form-control');
+        this.input_.after('valuechange', A.bind(this._onValueChange, this));
+
+        this.after('editedValueChange', this._afterEditedValueChange);
+    },
+
+    /**
      * Returns `true` if this edited value has no elements.
      *
      * @method isEmpty
@@ -50,17 +65,38 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
      * @param originalValue
      */
     updateUiWithValue: function(originalValue) {
-        this.get('node').one('.form-control').set('value', originalValue);
+        this._uiSetEditedValue(originalValue);
     },
 
     /**
-     * Gets the edited value of the data from the editor.
+     * Fired after the `editedValue` attribute is set.
      *
-     * @method _getEditedValue
+     * @method _afterEditedValueChange
      * @protected
      */
-    _getEditedValue: function() {
-        return this.get('node').one('.form-control').get('value');
+    _afterEditedValueChange: function() {
+        this._uiSetEditedValue(this.get('editedValue'));
+    },
+
+    /**
+     * Fired when the input's value changes.
+     *
+     * @method _onValueChange
+     * @protected
+     */
+    _onValueChange: function() {
+        this.set('editedValue', this.input_.get('value'));
+    },
+
+    /**
+     * Updates the ui according to the value of the `editedValue` attribute.
+     *
+     * @method _uiSetEditedValue
+     * @param {String} editedValue
+     * @protected
+     */
+    _uiSetEditedValue: function(editedValue) {
+        this.get('node').one('.form-control').set('value', editedValue);
     }
 }, {
     /**
@@ -80,7 +116,6 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
          * @type String
          */
         editedValue: {
-            getter: '_getEditedValue',
             value: ''
         },
 
