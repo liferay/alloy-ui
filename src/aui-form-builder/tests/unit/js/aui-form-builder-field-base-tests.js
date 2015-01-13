@@ -62,14 +62,17 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             attr3: {
                 value: 'Attr3'
             },
+            attrBool: {
+                value: true
+            },
+            attrOptions: {
+                value: []
+            },
             name1: {
                 value: ''
             },
             name2: {
                 value: ''
-            },
-            attrBool: {
-                value: true
             }
         }
     });
@@ -82,6 +85,30 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
                 this._field.destroy();
                 Y.one('#container').empty();
             }
+        },
+
+        /**
+         * Simulates a `valuechange` event for the given input.
+         *
+         * @method _simulateInputChange
+         * @param {Node} input The input node to simulate the event for.
+         * @param {String} text The text that should be set as the input's final value.
+         * @param {Function} callback The function to be called when the simulation is
+         *   done.
+         * @protected
+         */
+        _simulateInputChange: function(input, text, callback) {
+            var instance = this;
+
+            input.set('value', text + '-prev');
+            input.simulate('keydown');
+
+            this.wait(function() {
+                input.set('value', text);
+                input.simulate('keydown');
+
+                instance.wait(callback, Y.ValueChange.POLL_INTERVAL);
+            }, Y.ValueChange.POLL_INTERVAL);
         },
 
         'should render settings modal correctly': function() {
@@ -253,7 +280,8 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
         },
 
         'should validate edited settings': function() {
-            var container = Y.one('#container'),
+            var instance = this,
+                container = Y.one('#container'),
                 input;
 
             this._field = new TestField({
@@ -265,15 +293,18 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             Y.Assert.isTrue(this._field.validateSettings());
 
             input = container.all('input[type="text"]').item(2);
-            input.set('value', '');
-            Y.Assert.isFalse(this._field.validateSettings());
+            this._simulateInputChange(input, '', function() {
+                Y.Assert.isFalse(instance._field.validateSettings());
 
-            input.set('value', 'Attr1New');
-            Y.Assert.isTrue(this._field.validateSettings());
+                instance._simulateInputChange(input, 'Attr1New', function() {
+                    Y.Assert.isTrue(instance._field.validateSettings());
+                });
+            });
         },
 
         'should save edited settings': function() {
-            var container = Y.one('#container'),
+            var instance = this,
+                container = Y.one('#container'),
                 input,
                 TestField2 = Y.Base.create('test-field2', Y.FormField, [Y.FormBuilderFieldBase]);
 
@@ -284,16 +315,16 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             this._field.renderSettingsPanel(container);
 
             input = container.all('input[type="text"]').item(0);
-            input.set('value', 'Attr1New');
+            this._simulateInputChange(input, 'Attr1New', function() {
+                Y.Assert.areEqual('Attr1', instance._field.get('title'));
 
-            Y.Assert.areEqual('Attr1', this._field.get('title'));
-
-            this._field.saveSettings();
-            Y.Assert.areEqual('Attr1New', this._field.get('title'));
+                instance._field.saveSettings();
+                Y.Assert.areEqual('Attr1New', instance._field.get('title'));
+            });
         },
 
         'should save advanced edited settings': function() {
-            var advancedSetting,
+            var instance = this,
                 container = Y.one('#container'),
                 input;
 
@@ -302,23 +333,17 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
                 name2: 'Name2'
             });
 
-            this._field.renderSettingsPanel(container);
-            advancedSetting = this._field._advancedSettings;
-            
-            this._field.saveSettings();
-            Y.Assert.areEqual('Name', this._field.get(advancedSetting[0].attrName));
-            Y.Assert.areEqual('Name2', this._field.get(advancedSetting[1].attrName));
-
+            Y.Assert.areEqual('Name', this._field.get('name1'));
 
             this._field.renderSettingsPanel(container);
+
             input = container.all('input[type="text"]').item(4);
-            input.set('value', 'NameNew');
-            input = container.all('input[type="text"]').item(5);
-            input.set('value', 'NameNew2');
-            
-            this._field.saveSettings();
-            Y.Assert.areEqual('NameNew', this._field.get(advancedSetting[0].attrName));
-            Y.Assert.areEqual('NameNew2', this._field.get(advancedSetting[1].attrName));
+            this._simulateInputChange(input, 'NameNew', function() {
+                Y.Assert.areEqual('Name', this._field.get('name1'));
+
+                instance._field.saveSettings();
+                Y.Assert.areEqual('NameNew', this._field.get('name1'));
+            });
         },
 
         'should render nested fields move targets': function() {

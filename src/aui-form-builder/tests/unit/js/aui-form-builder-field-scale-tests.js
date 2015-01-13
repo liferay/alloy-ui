@@ -22,35 +22,46 @@ YUI.add('aui-form-builder-field-scale-tests', function(Y) {
             Y.one('#container').append(this._field.get('content'));
         },
 
+        /**
+         * Simulates a `valuechange` event for the given input.
+         *
+         * @method _simulateInputChange
+         * @param {Node} input The input node to simulate the event for.
+         * @param {String} text The text that should be set as the input's final value.
+         * @param {Function} callback The function to be called when the simulation is
+         *   done.
+         * @protected
+         */
+        _simulateInputChange: function(input, text, callback) {
+            input.simulate('keydown');
+            input.set('value', text);
+            input.simulate('keydown');
+
+            this.wait(callback, Y.ValueChange.POLL_INTERVAL);
+        },
+
         'should be able to edit settings': function() {
-            var settings = Y.one('#settings');
+            var instance = this,
+                higherInput,
+                lowerInput,
+                settings = Y.one('#settings');
 
             this._createField();
             this._field.renderSettingsPanel(settings);
 
             settings.all('.button-switch').item(0).simulate('click');
 
-            settings.one('.scale-data-editor').one('.scale-data-editor-lower-value').set('value', 0);
-            settings.one('.scale-data-editor').one('.scale-data-editor-higher-value').set('value', 1);
+            lowerInput = settings.one('.scale-data-editor-lower-value');
+            this._simulateInputChange(lowerInput, 0, function() {
+                higherInput = settings.one('.scale-data-editor-higher-value');
+                instance._simulateInputChange(higherInput, 1, function() {
+                    instance._field.saveSettings();
 
-            this._field.saveSettings();
-
-            Y.Assert.areEqual(0, this._field.get('range')[0]);
-            Y.Assert.areEqual(1, this._field.get('range')[1]);
-            Y.Assert.isTrue(this._field.get('required'));
-        },
-
-        'should be able to edit advanced settings': function() {
-            var settings = Y.one('#settings');
-
-            this._createField();
-            this._field.renderSettingsPanel(settings);
-
-            settings.all('.form-builder-field-settings-panel-advanced').item(0).one('input').set('value', 'advanced 1');
-
-            this._field.saveSettings();
-
-            Y.Assert.areEqual('advanced 1', this._field.get('name'));
+                    Y.Assert.areEqual(0, instance._field.get('range')[0]);
+                    Y.Assert.areEqual(1, instance._field.get('range')[1]);
+                    Y.Assert.isTrue(instance._field.get('required'));
+                });
+            });
         }
     }));
 

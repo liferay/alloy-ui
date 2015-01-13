@@ -27,21 +27,6 @@ YUI.add('aui-form-builder-field-text-tests', function(Y) {
 
             Y.Assert.areEqual(this._field.get('type'), 1);
             Y.Assert.isTrue(this._field.get('required'));
-        },
-
-        'should be able to edit advanced settings': function() {
-            var settings = Y.one('#settings');
-
-            this._field = new Y.FormBuilderFieldText();
-            Y.one('#container').append(this._field.get('content'));
-
-            this._field.renderSettingsPanel(settings);
-
-            settings.all('.form-builder-field-settings-panel-advanced').item(0).one('input').set('value', 'advanced 1');
-
-            this._field.saveSettings();
-
-            Y.Assert.areEqual('advanced 1', this._field.get('name'));
         }
     }));
 

@@ -22,8 +22,28 @@ YUI.add('aui-form-builder-field-grid-tests', function(Y) {
             Y.one('#container').append(this._field.get('content'));
         },
 
+        /**
+         * Simulates a `valuechange` event for the given input.
+         *
+         * @method _simulateInputChange
+         * @param {Node} input The input node to simulate the event for.
+         * @param {String} text The text that should be set as the input's final value.
+         * @param {Function} callback The function to be called when the simulation is
+         *   done.
+         * @protected
+         */
+        _simulateInputChange: function(input, text, callback) {
+            input.simulate('keydown');
+            input.set('value', text);
+            input.simulate('keydown');
+
+            this.wait(callback, Y.ValueChange.POLL_INTERVAL);
+        },
+
         'should be able to edit rows and columns': function() {
-            var settings = Y.one('#settings');
+            var instance = this,
+                optionNodes,
+                settings = Y.one('#settings');
 
             this._createField();
             this._field.renderSettingsPanel(settings);
@@ -31,15 +51,18 @@ YUI.add('aui-form-builder-field-grid-tests', function(Y) {
             settings.all('.button-switch').item(0).simulate('click');
 
             settings.all('.options-data-editor-add').item(0).simulate('click');
-            settings.all('.options-data-editor-option').item(0).one('input').set('value', 'Column 1');
             settings.all('.options-data-editor-add').item(1).simulate('click');
-            settings.all('.options-data-editor-option').item(1).one('input').set('value', 'Row 1');
 
-            this._field.saveSettings();
+            optionNodes = settings.all('.options-data-editor-option');
+            this._simulateInputChange(optionNodes.item(0).one('input'), 'Column 1', function() {
+                instance._simulateInputChange(optionNodes.item(1).one('input'), 'Row 1', function() {
+                    instance._field.saveSettings();
 
-            Y.Assert.isTrue(this._field.get('required'));
-            Y.Assert.areEqual('Row 1', this._field.get('rows')[0]);
-            Y.Assert.areEqual('Column 1', this._field.get('columns')[0]);
+                    Y.Assert.isTrue(instance._field.get('required'));
+                    Y.Assert.areEqual('Row 1', instance._field.get('rows')[0]);
+                    Y.Assert.areEqual('Column 1', instance._field.get('columns')[0]);
+                });
+            });
         },
 
         'should render correctly': function() {
@@ -68,19 +91,6 @@ YUI.add('aui-form-builder-field-grid-tests', function(Y) {
                 4,
                 this._field.get('content').one('.form-field-grid-table').all('tr').size()
             );
-        },
-
-        'should be able to edit advanced settings': function() {
-            var settings = Y.one('#settings');
-
-            this._createField();
-            this._field.renderSettingsPanel(settings);
-
-            settings.all('.form-builder-field-settings-panel-advanced').item(0).one('input').set('value', 'advanced 1');
-
-            this._field.saveSettings();
-
-            Y.Assert.areEqual('advanced 1', this._field.get('name'));
         }
     }));
 

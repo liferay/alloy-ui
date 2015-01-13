@@ -22,8 +22,28 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
             Y.one('#container').append(this._field.get('content'));
         },
 
+        /**
+         * Simulates a `valuechange` event for the given input.
+         *
+         * @method _simulateInputChange
+         * @param {Node} input The input node to simulate the event for.
+         * @param {String} text The text that should be set as the input's final value.
+         * @param {Function} callback The function to be called when the simulation is
+         *   done.
+         * @protected
+         */
+        _simulateInputChange: function(input, text, callback) {
+            input.simulate('keydown');
+            input.set('value', text);
+            input.simulate('keydown');
+
+            this.wait(callback, Y.ValueChange.POLL_INTERVAL);
+        },
+
         'should be able to edit settings': function() {
-            var settings = Y.one('#settings');
+            var instance = this,
+                optionNodes,
+                settings = Y.one('#settings');
 
             this._createField();
             this._field.renderSettingsPanel(settings);
@@ -36,33 +56,23 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
 
             settings.one('.options-data-editor-add').simulate('click');
             settings.one('.options-data-editor-add').simulate('click');
-            settings.all('.options-data-editor-option').item(0).one('input').set('value', 'Option 1');
-            settings.all('.options-data-editor-option').item(1).one('input').set('value', 'Option 2');
 
-            this._field.saveSettings();
+            optionNodes = settings.all('.options-data-editor-option');
+            this._simulateInputChange(optionNodes.item(0).one('input'), 'Option 1', function() {
+                instance._simulateInputChange(optionNodes.item(1).one('input'), 'Option 2', function() {
+                    instance._field.saveSettings();
 
-            Y.Assert.isTrue(this._field.get('required'));
-            Y.Assert.isTrue(this._field.get('multiple'));
-            Y.Assert.isTrue(this._field.get('otherOption'));
+                    Y.Assert.isTrue(instance._field.get('required'));
+                    Y.Assert.isTrue(instance._field.get('multiple'));
+                    Y.Assert.isTrue(instance._field.get('otherOption'));
 
-            Y.Assert.areEqual(Y.FormFieldChoice.TYPES.CHECKBOX, this._field.get('type'));
+                    Y.Assert.areEqual(Y.FormFieldChoice.TYPES.CHECKBOX, instance._field.get('type'));
 
-            Y.Assert.areEqual(2, this._field.get('options').length);
-            Y.Assert.areEqual('Option 1', this._field.get('options')[0]);
-            Y.Assert.areEqual('Option 2', this._field.get('options')[1]);
-        },
-
-        'should be able to edit advanced settings': function() {
-            var settings = Y.one('#settings');
-
-            this._createField();
-            this._field.renderSettingsPanel(settings);
-
-            settings.all('.form-builder-field-settings-panel-advanced').item(0).one('input').set('value', 'advanced 1');
-
-            this._field.saveSettings();
-
-            Y.Assert.areEqual('advanced 1', this._field.get('name'));
+                    Y.Assert.areEqual(2, instance._field.get('options').length);
+                    Y.Assert.areEqual('Option 1', instance._field.get('options')[0]);
+                    Y.Assert.areEqual('Option 2', instance._field.get('options')[1]);
+                });
+            });
         },
 
         'should render correctly': function() {

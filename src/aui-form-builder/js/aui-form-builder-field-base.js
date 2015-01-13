@@ -179,7 +179,7 @@ A.FormBuilderFieldBase.prototype = {
 
         setting.editor.get('node').removeClass('has-error');
         setting.editor.set('originalValue', attrValue);
-        setting.editor.updateUiWithValue(attrValue);
+        setting.editor.set('editedValue', attrValue);
         targetNode.append(setting.editor.get('node'));
     },
 

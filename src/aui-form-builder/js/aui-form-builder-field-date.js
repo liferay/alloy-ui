@@ -41,8 +41,8 @@ A.FormBuilderFieldDate = A.Base.create('form-builder-field-date', A.FormFieldDat
         booleanYearToggleTo.set('visible', event.newVal);
         booleanTimeToggleTo.set('visible', event.newVal);
 
-        booleanYearToggleTo.updateUiWithValue(booleanYearToggleFrom.get('editedValue'));
-        booleanTimeToggleTo.updateUiWithValue(booleanTimeToggleFrom.get('editedValue'));
+        booleanYearToggleTo.set('editedValue', booleanYearToggleFrom.get('editedValue'));
+        booleanTimeToggleTo.set('editedValue', booleanTimeToggleFrom.get('editedValue'));
     },
 
     /**

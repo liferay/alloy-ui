@@ -84,6 +84,24 @@ YUI.add('aui-form-builder-tests', function(Y) {
             rowButton.simulate('click');
         },
 
+        /**
+         * Simulates a `valuechange` event for the given input.
+         *
+         * @method _simulateInputChange
+         * @param {Node} input The input node to simulate the event for.
+         * @param {String} text The text that should be set as the input's final value.
+         * @param {Function} callback The function to be called when the simulation is
+         *   done.
+         * @protected
+         */
+        _simulateInputChange: function(input, text, callback) {
+            input.simulate('keydown');
+            input.set('value', text);
+            input.simulate('keydown');
+
+            this.wait(callback, Y.ValueChange.POLL_INTERVAL);
+        },
+
         'should resize the row when a nested field is added': function() {
             var heightAfterMode,
                 heightBeforeMode,
@@ -466,7 +484,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should add/remove has-error class on data-editr when clicked on save button': function() {
-            var settingsPane;
+            var inputs;
 
             this.createFormBuilder({
                 fieldTypes: [{
@@ -483,25 +501,23 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.Assert.isTrue(Y.all('.data-editor').item(0).hasClass('has-error'));
 
-            settingsPane = Y.one('.form-builder-field-settings');
-            settingsPane.all('input[type="text"]').item(0).set('value', 'My Title');
+            inputs = Y.one('.form-builder-field-settings').all('input[type="text"]');
+            this._simulateInputChange(inputs.item(0), 'My Title', function() {
+                Y.one('.form-builder-field-settings-save').simulate('mousemove');
+                Y.one('.form-builder-field-settings-save').simulate('click');
 
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
+                Y.one('.form-builder-field-configuration').simulate('click');
+                Y.one('.form-builder-field-toolbar-edit').simulate('click');
 
-            Y.one('.form-builder-field-configuration').simulate('click');
-            Y.one('.form-builder-field-toolbar-edit').simulate('click');
+                Y.Assert.isFalse(Y.all('.data-editor').item(0).hasClass('has-error'));
+            });
 
-            Y.Assert.isFalse(Y.all('.data-editor').item(0).hasClass('has-error'));
-
-            settingsPane.all('input[type="text"]').item(0).set('value', '');
-
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
         },
 
         'should save the edited settings of the chosen new field': function() {
-            var field,
+            var instance = this,
+                field,
+                inputs,
                 settingsPane;
 
             this.createFormBuilder({
@@ -518,18 +534,20 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNotNull(field);
 
             settingsPane = Y.one('.form-builder-field-settings');
-            settingsPane.all('input[type="text"]').item(0).set('value', 'My Title');
-            settingsPane.all('input[type="text"]').item(1).set('value', 'My Help');
             settingsPane.all('.button-switch').item(0).simulate('click');
             settingsPane.all('.radio-group-data-editor-button').item(1).simulate('click');
+            inputs = settingsPane.all('input[type="text"]');
+            this._simulateInputChange(inputs.item(0), 'My Title', function() {
+                instance._simulateInputChange(inputs.item(1), 'My Help', function() {
+                    Y.one('.form-builder-field-settings-save').simulate('mousemove');
+                    Y.one('.form-builder-field-settings-save').simulate('click');
 
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
-
-            Y.Assert.areEqual('My Title', field.get('title'));
-            Y.Assert.areEqual('My Help', field.get('help'));
-            Y.Assert.areEqual(1, field.get('type'));
-            Y.Assert.isTrue(field.get('required'));
+                    Y.Assert.areEqual('My Title', field.get('title'));
+                    Y.Assert.areEqual('My Help', field.get('help'));
+                    Y.Assert.areEqual(1, field.get('type'));
+                    Y.Assert.isTrue(field.get('required'));
+                });
+            });
         },
 
         'should edit field and save correctly after closing modal through esc': function() {
@@ -749,7 +767,8 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
         'should add a field in nested on click add nested button': function() {
             var nestedField,
-                nestedFieldLenght;
+                nestedFieldLenght,
+                titleInput;
 
             this.createFormBuilder({
                 fieldTypes: [{
@@ -763,15 +782,16 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.one('.form-builder-field-configuration').simulate('click');
             Y.one('.form-builder-field-toolbar-add-nested').simulate('click');
-
             Y.one('.form-builder-modal').one('.field-type').simulate('click');
-            Y.one('.form-builder-field-settings').one('input[type="text"]').set('value', 'Nested Field 3');
 
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
+            titleInput = Y.one('.form-builder-field-settings').one('input[type="text"]');
+            this._simulateInputChange(titleInput, 'Nested Field 3', function() {
+                Y.one('.form-builder-field-settings-save').simulate('mousemove');
+                Y.one('.form-builder-field-settings-save').simulate('click');
 
-            Y.Assert.isTrue(nestedField.length > nestedFieldLenght);
-            Y.Assert.areEqual(nestedField[2].get('title'), 'Nested Field 3');
+                Y.Assert.isTrue(nestedField.length > nestedFieldLenght);
+                Y.Assert.areEqual(nestedField[2].get('title'), 'Nested Field 3');
+            });
         },
 
         'should show a configuration button when mouse enter on field region': function() {
@@ -1045,11 +1065,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.one('.form-builder-field-settings-save').simulate('mousemove');
             Y.one('.form-builder-field-settings-save').simulate('click');
             Y.Assert.areNotEqual('none', settingsModal.getStyle('display'));
-
-            settingsModal.one('input[type="text"]').set('value', 'My Title');
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
-            Y.Assert.areEqual('none', settingsModal.getStyle('display'));
         },
 
         'should make field columns movable': function() {

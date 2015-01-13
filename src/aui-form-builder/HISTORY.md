@@ -3,6 +3,8 @@
 > Documentation and test modifications are not included in this changelog. For more details, see [full commit history](https://github.com/liferay/alloy-ui/commits/master/src/aui-form-builder).
 
 ## @VERSION@
+
+* [AUI-1831](https://issues.liferay.com/browse/AUI-1831) Change the way aui-data-editor updates the UI
 * [AUI-1816](https://issues.liferay.com/browse/AUI-1816) Add placeholder as an advanced field setting
 * [AUI-1826](https://issues.liferay.com/browse/AUI-1826) Rename FormBuilderPageBreak to FormBuilderPageBreakRow
 * [AUI-1825](https://issues.liferay.com/browse/AUI-1825) Show asterisks beside each field's required setting
