@@ -11,10 +11,6 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
     CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
     CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
-    CSS_FIELD = A.getClassName('form', 'builder', 'field'),
-    CSS_FIELD_CONTENT = A.getClassName('form', 'builder', 'field', 'content'),
-    CSS_FIELD_CONTENT_TOOLBAR = A.getClassName('form', 'builder', 'field', 'content', 'toolbar'),
-    CSS_FIELD_CONFIGURATION = A.getClassName('form', 'builder', 'field', 'configuration'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FIELD_SETTINGS_CANCEL =
@@ -22,10 +18,6 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_SETTINGS_LABEL = A.getClassName('form', 'builder', 'field', 'settings', 'label'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
-    CSS_FIELD_TOOLBAR_ADD_NESTED = A.getClassName('form', 'builder', 'field', 'toolbar', 'add', 'nested'),
-    CSS_FIELD_TOOLBAR_CLOSE = A.getClassName('form', 'builder', 'field', 'toolbar', 'close'),
-    CSS_FIELD_TOOLBAR_EDIT = A.getClassName('form', 'builder', 'field', 'toolbar', 'edit'),
-    CSS_FIELD_TOOLBAR_REMOVE = A.getClassName('form', 'builder', 'field', 'toolbar', 'remove'),
     CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list'),
     CSS_HEADER = A.getClassName('form', 'builder', 'header'),
     CSS_HEADER_BACK = A.getClassName('form', 'builder', 'header', 'back'),
@@ -99,6 +91,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         this._emptyLayoutMsg = contentBox.one('.' + CSS_EMPTY_LAYOUT);
 
         this.get('layout').addTarget(this);
+
+        this._fieldToolbar = new A.FormBuilderFieldToolbar(this.get('fieldToolbarConfig'));
     },
 
     /**
@@ -135,22 +129,11 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             this.after('layout:rowsChange', this._afterLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterLayoutColsChange),
             this.after('layout-col:valueChange', this._afterLayoutColValueChange),
-            boundingBox.delegate('mouseenter', this._onFieldMouseEnter, '.' + CSS_FIELD_CONTENT, this),
-            boundingBox.delegate('mouseleave', this._onFieldMouseLeave, '.' + CSS_FIELD_CONTENT_TOOLBAR, this),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
-            boundingBox.delegate('click', this._onClickAddNestedField, '.' + CSS_FIELD_TOOLBAR_ADD_NESTED, this),
-            boundingBox.delegate('click', this._onClickConfigurationField, '.' + CSS_FIELD_CONFIGURATION, this),
-            boundingBox.delegate('click', this._onClickEditField, '.' + CSS_FIELD_TOOLBAR_EDIT, this),
-            boundingBox.delegate('click', this._onClickCloseField, '.' + CSS_FIELD_TOOLBAR_CLOSE, this),
-            boundingBox.delegate('click', this._onClickRemoveField, '.' + CSS_FIELD_TOOLBAR_REMOVE, this),
             boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this),
             boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
             this._menu.after('itemSelected', A.bind(this._afterItemSelected, this))
         ];
-
-        if (A.UA.mobile) {
-            this._eventHandles.push(boundingBox.delegate('tap', this._onTapField, '.' + CSS_FIELD_CONTENT, this));
-        }
     },
 
     /**
@@ -186,6 +169,35 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         }
 
         (new A.EventHandle(this._eventHandles)).detach();
+    },
+
+    /**
+     * Adds a nested field to the given field.
+     *
+     * @method addNestedField
+     * @param {A.FormBuilderFieldBase} field
+     */
+    addNestedField: function (field) {
+        this._newFieldContainer = field;
+        this.showFieldsPanel();
+    },
+
+    /**
+     * Opens the settings panel for editing the given field.
+     *
+     * @method editField
+     * @param {A.FormBuilderFieldBase} field
+     */
+    editField: function (field) {
+        var fieldTypes = this.get('fieldTypes'),
+            i;
+
+        for (i = 0; i < fieldTypes.length; i++) {
+            if (field.constructor === fieldTypes[i].get('fieldClass')) {
+                this.showFieldSettingsPanel(field, fieldTypes[i].get('label'));
+                break;
+            }
+        }
     },
 
     /**
@@ -241,6 +253,31 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         });
 
         this.set('fieldTypes', fieldTypes);
+    },
+
+    /**
+     * Removes the given field from the form builder.
+     *
+     * @method removeField
+     * @param {A.FormBuilderFieldBase} field
+     */
+    removeField: function (field) {
+        var col,
+            parentField,
+            nestedFieldsNode = field.get('content').ancestor('.form-builder-field-nested');
+
+        if (nestedFieldsNode) {
+            parentField = nestedFieldsNode.ancestor('.form-builder-field').getData('field-instance');
+            parentField.removeNestedField(field);
+
+            this.get('layout').normalizeColsHeight(new A.NodeList(this.getFieldRow(parentField)));
+        }
+        else {
+            col = field.get('content').ancestor('.col').getData('layout-col');
+            this._makeColumnEmpty(col);
+        }
+
+        this._updateUniqueFieldType();
     },
 
     /**
@@ -593,67 +630,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
-     * Fired when the button for adding a field in nested is clicked.
-     *
-     * @method _onClickAddNestedField
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onClickAddNestedField: function (event) {
-        this._newFieldContainer = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
-
-        this.showFieldsPanel();
-    },
-
-    /**
-     * Fired when the button for configuration a field is clicked.
-     *
-     * @method _onClickConfigurationField
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onClickConfigurationField: function (event) {
-        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
-
-        field.toggleToolbar(true);
-    },
-
-    /**
-     * Fired when the button for closing a toolbar of field is clicked.
-     *
-     * @method _onClickCloseField
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onClickCloseField: function (event) {
-        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
-
-        field.toggleToolbar(false);
-    },
-
-    /**
-     * Fired when the button for editing a field is clicked.
-     *
-     * @method _onClickEditField
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onClickEditField: function (event) {
-        var field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance'),
-            fieldTypes = this.get('fieldTypes'),
-            i;
-
-        field.toggleToolbar(false);
-
-        for (i = 0; i < fieldTypes.length; i++) {
-            if (field.constructor === fieldTypes[i].get('fieldClass')) {
-                this.showFieldSettingsPanel(field, fieldTypes[i].get('label'));
-                break;
-            }
-        }
-    },
-
-    /**
      * Fired when the header back button is clicked.
      *
      * @method _onClickHeaderBack
@@ -661,47 +637,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     _onClickHeaderBack: function() {
         this.set('mode', A.FormBuilder.MODES.REGULAR);
-    },
-
-    /**
-     * Fires when mouse enters on field.
-     *
-     * @method _onFieldMouseEnter
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onFieldMouseEnter: function (event) {
-        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
-
-        if (!field.isToolbarVisible()) {
-            field.toggleConfigurationButton(true);
-        }
-    },
-
-    /**
-     * Fires when mouse leaves the field.
-     *
-     * @method _onFieldMouseLeave
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onFieldMouseLeave: function (event) {
-        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
-
-        field.toggleConfigurationButton(false);
-    },
-
-    /**
-     * Fired when a field is clicked.
-     *
-     * @method _onTapField
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onTapField: function (event) {
-        var field = event.currentTarget.ancestor('.' + CSS_FIELD).getData('field-instance');
-
-        field.toggleToolbar(true);
     },
 
     /**
@@ -721,35 +656,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
             this.showFieldSettingsPanel(field, fieldType.get('label'));
         }
-    },
-
-    /**
-     * Fired when the button for removing a field is clicked.
-     *
-     * @method _onClickRemoveField
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onClickRemoveField: function (event) {
-        var col,
-            field,
-            parentField,
-            nestedFieldsNode = event.currentTarget.ancestor('.form-builder-field-nested');
-
-        if (nestedFieldsNode) {
-            field = event.currentTarget.ancestor('.form-builder-field').getData('field-instance');
-            parentField = nestedFieldsNode.ancestor('.form-builder-field').getData('field-instance');
-            parentField.removeNestedField(field);
-
-            this.get('layout').normalizeColsHeight(new A.NodeList(this.getFieldRow(parentField)));
-        }
-        else {
-            col = event.currentTarget.ancestor('.col').getData('layout-col');
-            this._makeColumnEmpty(col);
-        }
-
-        this._updateUniqueFieldType();
-
     },
 
     /**
@@ -858,7 +764,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
-     * Sets the `val` attribute.
+     * Sets the `layout` attribute.
      *
      * @method _setLayout
      * @param {A.Layout} val
@@ -874,6 +780,18 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         if (!firstRow || !A.instanceOf(firstRow, A.FormBuilderPageBreakRow)) {
             val.addRow(0, this._createPageBreakRow(1));
         }
+    },
+
+    /**
+     * Sets the `fieldToolbar` attribute.
+     *
+     * @method _setFieldToolbarConfig
+     * @return {Object}
+     */
+    _setFieldToolbarConfig: function(val) {
+        return A.merge({
+            formBuilder: this
+        }, val);
     },
 
     /**
@@ -1028,6 +946,18 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @static
      */
     ATTRS: {
+        /**
+         * A configuration object for the creation of the `A.FormBuilderFieldToolbar`
+         * instance to be used for the form builder field toolbars.
+         *
+         * @attribute fieldToolbarConfig
+         * @type Object
+         */
+        fieldToolbarConfig: {
+            setter: '_setFieldToolbarConfig',
+            validator: A.Lang.isObject,
+            value: {}
+        },
 
         /**
          * The collection of field types that can be selected as fields for

@@ -6,13 +6,6 @@
     position: relative;
 }
 
-.form-field .form-builder-field-configuration,
-.form-field .form-builder-field-toolbar {
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
 .form-builder-field-footer-content {
     width: 100%;
     position: absolute;

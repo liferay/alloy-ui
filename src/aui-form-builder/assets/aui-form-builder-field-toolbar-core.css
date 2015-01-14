@@ -1,0 +1,14 @@
+.form-builder-field-toolbar-toggle,
+.form-builder-field-toolbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.form-builder-field-toolbar-items {
+    display: none;
+}
+
+.form-builder-field-toolbar.open .form-builder-field-toolbar-items {
+    display: block;
+}

@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1832](https://issues.liferay.com/browse/AUI-1832) Refactor aui-form-builder into smaller files
 * [AUI-1831](https://issues.liferay.com/browse/AUI-1831) Change the way aui-data-editor updates the UI
 * [AUI-1816](https://issues.liferay.com/browse/AUI-1816) Add placeholder as an advanced field setting
 * [AUI-1826](https://issues.liferay.com/browse/AUI-1826) Rename FormBuilderPageBreak to FormBuilderPageBreakRow
