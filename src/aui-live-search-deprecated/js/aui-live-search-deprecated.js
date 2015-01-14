@@ -383,16 +383,7 @@ var LiveSearch = A.Component.create({
 
                 input.val(event.newVal);
 
-                instance.fire(
-                    'search',
-                    {
-                        liveSearch: {
-                            inputEvent: {
-                                currentTarget: input
-                            }
-                        }
-                    }
-                );
+                instance.fire('search');
             }
         },
 
