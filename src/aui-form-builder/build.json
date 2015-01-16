@@ -67,6 +67,12 @@
             ]
         },
 
+        "aui-form-builder-field-types": {
+            "jsfiles": [
+                "js/aui-form-builder-field-types.js"
+            ]
+        },
+
         "aui-form-builder-layout-builder": {
             "jsfiles": [
                 "js/aui-form-builder-layout-builder.js"

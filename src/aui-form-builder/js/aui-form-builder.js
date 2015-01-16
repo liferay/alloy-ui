@@ -18,7 +18,6 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_SETTINGS_LABEL = A.getClassName('form', 'builder', 'field', 'settings', 'label'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
-    CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list'),
     CSS_HEADER = A.getClassName('form', 'builder', 'header'),
     CSS_HEADER_BACK = A.getClassName('form', 'builder', 'header', 'back'),
     CSS_HEADER_TITLE = A.getClassName('form', 'builder', 'header', 'title'),
@@ -38,12 +37,15 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
  *
  * @class A.FormBuilder
  * @extends A.Widget
- * @uses A.FormBuilderLayoutBuilder
+ * @uses A.FormBuilderFieldTypes, A.FormBuilderLayoutBuilder
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBuilder], {
+A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
+    A.FormBuilderFieldTypes,
+    A.FormBuilderLayoutBuilder
+], {
     TITLE_REGULAR: 'Build your form',
 
     TPL_BUTTON_ADD_PAGEBREAK: '<button class="btn-default btn ' + CSS_ADD_PAGE_BREAK + '">' +
@@ -93,6 +95,13 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
         this.get('layout').addTarget(this);
 
         this._fieldToolbar = new A.FormBuilderFieldToolbar(this.get('fieldToolbarConfig'));
+
+        this._eventHandles = [
+            this.after('layoutChange', this._afterLayoutChange),
+            this.after('layout:rowsChange', this._afterLayoutRowsChange),
+            this.after('layout-row:colsChange', this._afterLayoutColsChange),
+            this.after('layout-col:valueChange', this._afterLayoutColValueChange)
+        ];
     },
 
     /**
@@ -123,17 +132,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     bindUI: function() {
         var boundingBox = this.get('boundingBox');
 
-        this._eventHandles = [
-            this.after('fieldTypesChange', this._afterFieldTypesChange),
-            this.after('layoutChange', this._afterLayoutChange),
-            this.after('layout:rowsChange', this._afterLayoutRowsChange),
-            this.after('layout-row:colsChange', this._afterLayoutColsChange),
-            this.after('layout-col:valueChange', this._afterLayoutColValueChange),
+        this._eventHandles.push(
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
             boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this),
             boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
             this._menu.after('itemSelected', A.bind(this._afterItemSelected, this))
-        ];
+        );
     },
 
     /**
@@ -156,14 +160,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @protected
      */
     destructor: function() {
-        A.Array.each(this.get('fieldTypes'), function(field) {
-            field.destroy();
-        });
-
-        if (this._fieldTypesModal) {
-            this._fieldTypesModal.destroy();
-        }
-
         if (this._fieldSettingsModal) {
             this._fieldSettingsModal.destroy();
         }
@@ -189,15 +185,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      * @param {A.FormBuilderFieldBase} field
      */
     editField: function (field) {
-        var fieldTypes = this.get('fieldTypes'),
-            i;
-
-        for (i = 0; i < fieldTypes.length; i++) {
-            if (field.constructor === fieldTypes[i].get('fieldClass')) {
-                this.showFieldSettingsPanel(field, fieldTypes[i].get('label'));
-                break;
-            }
-        }
+        var fieldType = this.findTypeOfField(field);
+        this.showFieldSettingsPanel(field, fieldType.get('label'));
     },
 
     /**
@@ -221,38 +210,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             this._fieldSettingsModal.hide();
             this._newFieldContainer = null;
         }
-    },
-
-    /**
-     * Hides the fields modal.
-     *
-     * @method hideFieldsPanel
-     */
-    hideFieldsPanel: function() {
-        if (this._fieldTypesModal) {
-            this._fieldTypesModal.hide();
-        }
-    },
-
-    /**
-     * Adds a the given field types to this form builder.
-     *
-     * @method registerFieldTypes
-     * @param {Array | Object | A.FormBuilderFieldType} typesToAdd This can be
-     *   either an array of items or a single item. Each item should be either
-     *   an instance of `A.FormBuilderFieldType`, or the configuration object
-     *   to be used when instantiating one.
-     */
-    registerFieldTypes: function(typesToAdd) {
-        var fieldTypes = this.get('fieldTypes');
-
-        typesToAdd = A.Lang.isArray(typesToAdd) ? typesToAdd : [typesToAdd];
-
-        A.Array.each(typesToAdd, function(type) {
-            fieldTypes.push(type);
-        });
-
-        this.set('fieldTypes', fieldTypes);
     },
 
     /**
@@ -313,89 +270,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
-     * Shows the fields modal.
-     *
-     * @method showFieldsPanel
-     */
-    showFieldsPanel: function() {
-        var instance = this;
-
-        if (!this._fieldTypesPanel) {
-            this._fieldTypesPanel = A.Node.create(
-                '<div class="clearfix ' + CSS_FIELD_TYPES_LIST + '" role="main" />'
-            );
-
-            this._fieldTypesModal = new A.Modal({
-                bodyContent: this._fieldTypesPanel,
-                centered: true,
-                cssClass: 'form-builder-modal',
-                draggable: false,
-                headerContent: 'Add Field',
-                modal: true,
-                resizable: false,
-                toolbars: {
-                    header: [
-                        {
-                            cssClass: 'close',
-                            label: '\u00D7',
-                            on: {
-                                click: function() {
-                                    instance.hideFieldsPanel();
-                                    instance._newFieldContainer = null;
-                                }
-                            },
-                            render: true
-                        }
-                    ]
-                },
-                visible: false,
-                zIndex: 2
-            }).render();
-
-            this._uiSetFieldTypes(this.get('fieldTypes'));
-
-            this._eventHandles.push(
-                this._fieldTypesPanel.delegate(
-                    'click',
-                    this._onClickFieldType,
-                    '.field-type',
-                    this
-                ),
-                A.getDoc().on(
-                    'key',
-                    this._onEscKey,
-                    'esc',
-                    this
-                )
-            );
-        }
-
-        this._fieldTypesModal.show();
-    },
-
-    /**
-     * Removes the given field types from this form builder.
-     *
-     * @method unregisterFieldTypes
-     * @param {Array | String | A.FormBuilderFieldType} typesToRemove This can be
-     *   either an array of items, or a single one. For each item, if it's a
-     *   string, the form builder will remove all registered field types with
-     *   a field class that matches it. For items that are instances of
-     *   `A.FormBuilderFieldType`, only the same instances will be removed.
-     */
-    unregisterFieldTypes: function(typesToRemove) {
-        var instance = this;
-
-        typesToRemove = A.Lang.isArray(typesToRemove) ? typesToRemove : [typesToRemove];
-
-        A.Array.each(typesToRemove, function(type) {
-            instance._unregisterFieldType(type);
-        });
-
-        this.set('fieldTypes', this.get('fieldTypes'));
-    },
-
-    /**
      * Adds a field into field's nested list and normalizes the columns height.
      *
      * @method _addNestedField
@@ -407,16 +281,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     _addNestedField: function(field, nested, index) {
         field.addNestedField(index, nested);
         this.get('layout').normalizeColsHeight(new A.NodeList(this.getFieldRow(nested)));
-    },
-
-    /**
-     * Fired after the `fieldTypes` attribute is set.
-     *
-     * @method _afterFieldTypesChange
-     * @protected
-     */
-    _afterFieldTypesChange: function() {
-        this._uiSetFieldTypes(this.get('fieldTypes'));
     },
 
     /**
@@ -520,67 +384,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
-     * Check all Field created if there is a someone of the same type
-     * of the parameter.
-     *
-     * @method _hasFieldType
-     * @param {Object} fieldType
-     * @return {Boolean}
-     * @protected
-     */
-    _hasFieldType: function(fieldType) {
-        var col,
-            cols,
-            field,
-            row,
-            rows = this.get('layout').get('rows');
-
-        for (row = 0; row < rows.length; row++) {
-            cols = rows[row].get('cols');
-            for (col = 0; col < cols.length; col++) {
-                field = cols[col].get('value');
-                if (field && (field instanceof A.FormField)) {
-                    if (field.constructor === fieldType.get('fieldClass')) {
-                        return true;
-                    }
-                    else if (this._hasFieldTypeOnNested(fieldType.get('fieldClass'), field)) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
-    },
-
-    /**
-     * Check all nested Field created if there is a someone of the same
-     * type of the parameter.
-     * @param  {A.FormBuilderFieldType} fieldTypeClass
-     * @param  {A.FormField} field
-     * @return {Boolean}
-     * @protected
-     */
-    _hasFieldTypeOnNested: function(fieldTypeClass, field) {
-        var nestedFields = field.get('nestedFields');
-
-        if (nestedFields.length === 0) {
-            return false;
-        }
-
-        for (var i = 0; i < nestedFields.length; i++) {
-            if (nestedFields[i].constructor === fieldTypeClass) {
-                return true;
-            }
-            else if (this._hasFieldTypeOnNested(fieldTypeClass, nestedFields[i])) {
-                return true;
-            }
-        }
-
-        return false;
-    },
-
-    /**
      * Fires when the esc key is pressed
      *
      * @method _onEscKey
@@ -637,25 +440,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
      */
     _onClickHeaderBack: function() {
         this.set('mode', A.FormBuilder.MODES.REGULAR);
-    },
-
-    /**
-     * Fired when a field type is clicked.
-     *
-     * @method _onClickFieldType
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onClickFieldType: function(event) {
-        var field,
-            fieldType = event.currentTarget.getData('fieldType');
-
-        if (!fieldType.get('disabled')) {
-            this.hideFieldsPanel();
-
-            field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
-            this.showFieldSettingsPanel(field, fieldType.get('label'));
-        }
     },
 
     /**
@@ -757,7 +541,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
                 this.get('layout').normalizeColsHeight(new A.NodeList(this._fieldBeingEdited.get('content').ancestor('.layout-row')));
             }
 
-            this._toggleUniqueDisabled(this._fieldBeingEdited, true);
+            this.disableUniqueFieldType(this._fieldBeingEdited);
 
             this.hideFieldSettingsPanel();
         }
@@ -815,81 +599,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
     },
 
     /**
-     * Disables or enabled unique fields for the field class that the given
-     * field is an instance of.
-     *
-     * @method _toggleUniqueDisabled
-     * @param {A.FormField} field
-     * @param {Boolean} disabled
-     * @protected
-     */
-    _toggleUniqueDisabled: function (field, disabled) {
-        A.Array.each(this.get('fieldTypes'), function (fieldType) {
-            if (field.constructor === fieldType.get('fieldClass') && fieldType.get('unique')) {
-                fieldType.set('disabled', disabled);
-            }
-        });
-    },
-
-    /**
-     * Updates the ui according to the value of the `fieldTypes` attribute.
-     *
-     * @method _uiSetFieldTypes
-     * @param {Array} fieldTypes
-     * @protected
-     */
-    _uiSetFieldTypes: function(fieldTypes) {
-        var instance = this;
-
-        if (!this._fieldTypesPanel) {
-            return;
-        }
-
-        this._fieldTypesPanel.get('children').remove();
-        A.Array.each(fieldTypes, function(type) {
-            instance._fieldTypesPanel.append(type.get('node'));
-        });
-    },
-
-    /**
-     * Removes a single given field type from this form builder.
-     *
-     * @method _unregisterFieldType
-     * @param {String | A.FormBuilderFieldType} fieldType
-     * @protected
-     */
-    _unregisterFieldType: function(fieldType) {
-        var fieldTypes = this.get('fieldTypes');
-
-        if (A.Lang.isFunction(fieldType)) {
-            for (var i = fieldTypes.length - 1; i >= 0; i--) {
-                if (fieldTypes[i].get('fieldClass') === fieldType) {
-                    this._unregisterFieldTypeByIndex(i);
-                }
-            }
-        }
-        else {
-            this._unregisterFieldTypeByIndex(fieldTypes.indexOf(fieldType));
-        }
-    },
-
-    /**
-     * Unregisters the field type at the given index.
-     *
-     * @method _unregisterFieldTypeByIndex
-     * @param {Number} index
-     * @protected
-     */
-    _unregisterFieldTypeByIndex: function(index) {
-        var fieldTypes = this.get('fieldTypes');
-
-        if (index !== -1) {
-            fieldTypes[index].destroy();
-            fieldTypes.splice(index, 1);
-        }
-    },
-
-    /**
      * Updates the form builder header's title.
      *
      * @method _updateHeaderTitle
@@ -918,22 +627,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
                 row.set('quantity', quantity);
             }
         });
-    },
-
-    /**
-     * Enable or disable unique FieldTypes based on created Fields.
-     *
-     * @method _updateUniqueFieldType
-     * @protected
-     */
-    _updateUniqueFieldType: function() {
-        var instance = this;
-
-        A.Array.each(instance.get('fieldTypes'), function (fieldType) {
-            if (fieldType.get('unique')) {
-                fieldType.set('disabled', instance._hasFieldType(fieldType));
-            }
-        });
     }
 }, {
 
@@ -957,28 +650,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [A.FormBuilderLayoutBui
             setter: '_setFieldToolbarConfig',
             validator: A.Lang.isObject,
             value: {}
-        },
-
-        /**
-         * The collection of field types that can be selected as fields for
-         * this form builder.
-         *
-         * @attribute fieldTypes
-         * @default []
-         * @type Array
-         */
-        fieldTypes: {
-            setter: function(val) {
-                for (var i = 0; i < val.length; i++) {
-                    if (!A.instanceOf(val[i], A.FormBuilderFieldType)) {
-                        val[i] = new A.FormBuilderFieldType(val[i]);
-                    }
-                }
-
-                return val;
-            },
-            validator: A.Lang.isArray,
-            value: []
         },
 
         /**
