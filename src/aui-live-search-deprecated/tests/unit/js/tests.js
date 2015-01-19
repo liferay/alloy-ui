@@ -6,18 +6,24 @@ YUI.add('aui-live-search-tests', function(Y) {
         name: 'Live Search',
 
         'search() should update UI results': function() {
-            var liveSearch = new Y.LiveSearch(
+            var liveSearch,
+                nodes = Y.all('#myList > li'),
+                visibleItems = [];
+
+            liveSearch = new Y.LiveSearch(
                 {
                     input: '#myInput',
                     nodes: '#myList > li'
                 }
             );
-
             liveSearch.search('bar');
 
-            var visibleItems = Y.all('#myList > li:not([hidden])');
-
-            Y.Assert.areSame(1, visibleItems.size(), 'size() should return 1.');
+            for (var i = 0; i < nodes.size(); i++) {
+                if (nodes.item(i).getStyle('display') !== 'none') {
+                    visibleItems.push(nodes.item(i));
+                }
+            }
+            Y.Assert.areSame(1, visibleItems.length);
         }
     }));
 
