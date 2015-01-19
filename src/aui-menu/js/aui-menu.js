@@ -60,6 +60,8 @@ A.Menu = A.Base.create('menu', A.Dropdown, [
             }),
             A.on(this._onUISetXY, this, '_uiSetXY'),
             this.get('contentBox').delegate('click', this._onClickItem, MENU_ITEMS_SELECTOR, this),
+            this.get('contentBox').delegate('key', A.bind(this._onClickItem, this), 'press:13', MENU_ITEMS_SELECTOR),
+            this.get('contentBox').delegate('key', A.bind(this._onKeyPressMenu, this), 'press:13'),
             this.get('contentBox').delegate('mouseenter', this._onMouseEnterItem, MENU_ITEMS_SELECTOR, this),
             A.after('windowresize', A.bind(this._afterWindowResize, this))
         ];
@@ -304,6 +306,16 @@ A.Menu = A.Base.create('menu', A.Dropdown, [
         this._selectItem(item, event.type);
 
         event.stopPropagation();
+    },
+
+    /**
+     * Fired when bounding box is key pressed.
+     *
+     * @method _onKeyPressMenu
+     * @protected
+     */
+    _onKeyPressMenu: function() {
+        this.toggleContent();
     },
 
     /**

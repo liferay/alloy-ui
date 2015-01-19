@@ -672,6 +672,22 @@ YUI.add('aui-menu-tests', function(Y) {
 
             item.fire('shortcut');
             Y.Mock.verify(mock);
+        },
+
+        'should open menu on enter keypress': function() {
+            var boundingBox,
+                contentBox;
+
+            this._createMenu();
+
+            boundingBox = this._menu.get('boundingBox');
+            contentBox = this._menu.get('contentBox');
+
+            Y.Assert.isFalse(boundingBox.hasClass('open'));
+
+            contentBox.simulate('keypress', { keyCode: 13 });
+
+            Y.Assert.isTrue(boundingBox.hasClass('open'));
         }
     }));
 
