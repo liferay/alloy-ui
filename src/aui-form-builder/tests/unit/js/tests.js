@@ -13,14 +13,27 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this._formBuilder && this._formBuilder.destroy();
         },
 
+        /**
+         * Creates a new form builder instance with the given config.
+         *
+         * @method createFormBuilder
+         * @param {Object} config
+         * @return {Y.FormBuilder}
+         */
         createFormBuilder: function(config) {
             this._formBuilder = new Y.FormBuilder(Y.merge({
                 fieldTypes: [
                     {
+                        defaultConfig: {
+                            title: 'Title'
+                        },
                         fieldClass: Y.FormBuilderFieldSentence,
                         label: 'Sentence'
                     },
                     {
+                        defaultConfig: {
+                            title: 'Title'
+                        },
                         fieldClass: Y.FormBuilderFieldText,
                         label: 'Text'
                     }
@@ -78,6 +91,37 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         /**
+         * Clicks on the first button for creating a new field.
+         *
+         * @method_clickCreateNewField
+         * @protected
+         */
+        _clickCreateNewField: function() {
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
+        },
+
+        /**
+         * Clicks on the first field type in the field type modal.
+         *
+         * @method _clickFieldType
+         * @protected
+         */
+        _clickFieldType: function() {
+            Y.one('.field-type').simulate('click');
+        },
+
+        /**
+         * Clicks on the save button for the field settings modal.
+         *
+         * @method _clickFieldSettingsSaveButton
+         * @protected
+         */
+        _clickFieldSettingsSaveButton: function() {
+            Y.one('.form-builder-field-settings-save').simulate('mousemove');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+        },
+
+        /**
          * Simulates a `valuechange` event for the given input.
          *
          * @method _simulateInputChange
@@ -93,30 +137,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             input.simulate('keydown');
 
             this.wait(callback, Y.ValueChange.POLL_INTERVAL);
-        },
-
-        'should resize the row when a nested field is edited': function() {
-            var field,
-                heightAfterMode,
-                heightBeforeMode,
-                settingsPane;
-
-            this.createFormBuilder();
-
-            heightAfterMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
-
-            field = Y.one('.form-builder-field-nested .form-builder-field').getData('field-instance');
-            this._formBuilder.editField(field);
-
-            settingsPane = Y.one('.form-builder-field-settings');
-            settingsPane.all('.radio-group-data-editor-button').item(1).simulate('click');
-
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
-
-            heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
-
-            Y.Assert.isTrue(heightAfterMode < heightBeforeMode);
         },
 
         'should have default empty layout': function() {
@@ -263,18 +283,15 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            Y.one('.form-builder-empty-col-add-button').simulate('click');
-            Y.one('.field-type').simulate('click');
-
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
+            this._clickCreateNewField();
+            this._clickFieldType();
+            this._clickFieldSettingsSaveButton();
 
             Y.Assert.isTrue(Y.all('.data-editor').item(0).hasClass('has-error'));
 
             inputs = Y.one('.form-builder-field-settings').all('input[type="text"]');
             this._simulateInputChange(inputs.item(0), 'My Title', function() {
-                Y.one('.form-builder-field-settings-save').simulate('mousemove');
-                Y.one('.form-builder-field-settings-save').simulate('click');
+                instance._clickFieldSettingsSaveButton();
 
                 field = Y.one('.form-builder-field').getData('field-instance');
                 instance._formBuilder.editField(field);
@@ -296,8 +313,8 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            Y.one('.form-builder-empty-col-add-button').simulate('click');
-            Y.one('.field-type').simulate('click');
+            this._clickCreateNewField();
+            this._clickFieldType();
 
             field = this._formBuilder._fieldBeingEdited;
             Y.Assert.isNotNull(field);
@@ -351,7 +368,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 })
             });
 
-            Y.one('.form-builder-empty-col-add-button').simulate('click');
+            this._clickCreateNewField();
             Y.one('body').simulate('keydown', {
                 keyCode: 27
             });
@@ -364,8 +381,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.one('.form-builder-field-settings-content').all('input[type="text"]').item(0).set('value', 'My Title');
 
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
+            this._clickFieldSettingsSaveButton();
 
             Y.Assert.isNotNull(row.get('node').all('.form-builder-empty-col').item(0));
         },
@@ -422,25 +438,11 @@ YUI.add('aui-form-builder-tests', function(Y) {
         'should show field settings when editField method is called': function() {
             var field;
 
-            this.createFormBuilder({
-                fieldTypes: [
-                    {
-                        fieldClass: Y.FormBuilderFieldSentence
-                    },
-                    {
-                        defaultConfig: {
-                            title: 'Title'
-                        },
-                        fieldClass: Y.FormBuilderFieldText
-                    }
-                ]
-            });
+            this.createFormBuilder();
 
-            Y.one('.form-builder-empty-col-add-button').simulate('click');
-
-            Y.all('.field-type').item(1).simulate('click');
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
+            this._clickCreateNewField();
+            this._clickFieldType();
+            this._clickFieldSettingsSaveButton();
 
             field = Y.one('.form-builder-field').getData('field-instance');
             this._formBuilder.editField(field);
@@ -450,56 +452,30 @@ YUI.add('aui-form-builder-tests', function(Y) {
         'should add a field in nested when addNestedField method is called': function() {
             var field,
                 nestedField,
-                nestedFieldLength,
-                titleInput;
+                originalNestedFieldLength;
 
-            this.createFormBuilder({
-                fieldTypes: [{
-                    fieldClass: Y.FormBuilderFieldText,
-                    label: 'Text'
-                }]
-            });
+            this.createFormBuilder();
 
             nestedField = this._formBuilder.get('layout').get('rows')[1].get('cols')[2].get('value').get('nestedFields');
-            nestedFieldLength = nestedField.length;
+            originalNestedFieldLength = nestedField.length;
 
             field = Y.one('.form-builder-field').getData('field-instance');
             this._formBuilder.addNestedField(field);
-            Y.one('.form-builder-modal').one('.field-type').simulate('click');
+            this._clickFieldType();
+            this._clickFieldSettingsSaveButton();
 
-            titleInput = Y.one('.form-builder-field-settings').one('input[type="text"]');
-            this._simulateInputChange(titleInput, 'Nested Field 3', function() {
-                Y.one('.form-builder-field-settings-save').simulate('mousemove');
-                Y.one('.form-builder-field-settings-save').simulate('click');
-
-                Y.Assert.isTrue(nestedField.length > nestedFieldLength);
-                Y.Assert.areEqual(nestedField[2].get('title'), 'Nested Field 3');
-            });
+            Y.Assert.isTrue(nestedField.length > originalNestedFieldLength);
         },
 
         'should remove a field when removeField method is called': function() {
             var col,
                 field;
 
-            this.createFormBuilder({
-                fieldTypes: [{
-                    defaultConfig: {
-                        title: 'Title'
-                    },
-                    fieldClass: Y.FormBuilderFieldText
-                }]
-            });
-
-            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
-            col.get('node').one('.form-builder-empty-col-add-button').simulate('click');
-
-            Y.one('.field-type').simulate('click');
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
-            Y.Assert.isNull(col.get('node').one('.form-builder-empty-col'));
-            Y.Assert.isNotNull(col.get('node').one('.form-builder-field'));
+            this.createFormBuilder();
 
             field = Y.one('.form-builder-field').getData('field-instance');
+            col = field.get('content').ancestor('.col').getData('layout-col');
+
             this._formBuilder.removeField(field);
             Y.Assert.isNotNull(col.get('node').one('.form-builder-empty-col'));
             Y.Assert.isNull(col.get('node').one('.form-builder-field'));
@@ -519,6 +495,29 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             Y.Assert.isNull(col.get('node').one('.form-builder-empty-col'));
             Y.Assert.areEqual(1, col.get('value').get('nestedFields').length);
+        },
+
+        'should resize the row when a nested field is edited': function() {
+            var field,
+                heightAfterMode,
+                heightBeforeMode,
+                settingsPane;
+
+            this.createFormBuilder();
+
+            heightAfterMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
+
+            field = Y.one('.form-builder-field-nested .form-builder-field').getData('field-instance');
+            this._formBuilder.editField(field);
+
+            settingsPane = Y.one('.form-builder-field-settings');
+            settingsPane.all('.radio-group-data-editor-button').item(1).simulate('click');
+
+            this._clickFieldSettingsSaveButton();
+
+            heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
+
+            Y.Assert.isTrue(heightAfterMode < heightBeforeMode);
         },
 
         'should not throw error if hiding settings panel before rendered': function() {
@@ -639,34 +638,25 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isFalse(emptyCol.get('movableContent'));
         },
 
+        'should open field types modal': function() {
+            this.createFormBuilder();
+
+            this._clickCreateNewField();
+            Y.Assert.isNotNull(Y.one('.form-builder-modal'), 'Field types modal should have been opened');
+        },
+
         'should add a field to a column': function() {
-            var col,
-                colNode,
-                modal;
+            var col;
 
-            this.createFormBuilder({
-                fieldTypes: [{
-                    defaultConfig: {
-                        title: 'Title'
-                    },
-                    fieldClass: Y.FormBuilderFieldText,
-                    label: 'Text'
-                }]
-            });
-
-            colNode = Y.one('.form-builder-empty-col-add-button');
-            colNode.simulate('click');
-
-            modal = Y.one('.form-builder-modal');
-            Y.Assert.isNotNull(modal, 'Field types modal should have been opened');
-
-            modal.one('.field-type').simulate('click');
-
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
-
+            this.createFormBuilder();
             col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
-            Y.Assert.isTrue(Y.instanceOf(col.get('value'), Y.FormBuilderFieldText));
+            Y.Assert.isFalse(Y.instanceOf(col.get('value'), Y.FormBuilderFieldSentence));
+
+            this._clickCreateNewField();
+            this._clickFieldType();
+            this._clickFieldSettingsSaveButton();
+
+            Y.Assert.isTrue(Y.instanceOf(col.get('value'), Y.FormBuilderFieldSentence));
         },
 
         'should not allow creating fields without required data': function() {
@@ -679,37 +669,28 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 }]
             });
 
-            Y.one('.form-builder-empty-col-add-button').simulate('click');
-            Y.one('.form-builder-modal').one('.field-type').simulate('click');
+            this._clickCreateNewField();
+            this._clickFieldType();
 
             settingsModal = Y.one('.form-builder-field-settings');
             Y.Assert.isNotNull(settingsModal);
             Y.Assert.areNotEqual('none', settingsModal.getStyle('display'));
 
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
+            this._clickFieldSettingsSaveButton();
             Y.Assert.areNotEqual('none', settingsModal.getStyle('display'));
         },
 
         'should make field columns movable': function() {
             var col;
 
-            this.createFormBuilder({
-                fieldTypes: [{
-                    defaultConfig: {
-                        title: 'Title'
-                    },
-                    fieldClass: Y.FormBuilderFieldText,
-                    label: 'Text'
-                }]
-            });
+            this.createFormBuilder();
 
             col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
-            col.get('node').one('.form-builder-empty-col-add-button').simulate('click');
+            Y.Assert.isFalse(col.get('movableContent'));
 
-            Y.one('.form-builder-modal').one('.field-type').simulate('click');
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
+            this._clickCreateNewField();
+            this._clickFieldType();
+            this._clickFieldSettingsSaveButton();
 
             Y.Assert.isTrue(col.get('movableContent'));
         },
@@ -758,19 +739,16 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 })
             });
 
-            Y.one('.form-builder-empty-col-add-button').simulate('click');
-
-            Y.all('.field-type').item(0).simulate('click');
-            Y.one('.form-builder-field-settings-save').simulate('mousemove');
-            Y.one('.form-builder-field-settings-save').simulate('click');
+            this._clickCreateNewField();
+            this._clickFieldType();
+            this._clickFieldSettingsSaveButton();
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
         },
 
         'should enable unique type after its last instance is removed': function() {
-            var field,
-                formBuilderModal;
+            var field;
 
             this.createFormBuilder({
                 fieldTypes: [{
@@ -781,10 +759,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
-
-            formBuilderModal = Y.one('.form-builder-modal');
-            formBuilderModal.one('.close').simulate('mousemove');
-            formBuilderModal.one('.close').simulate('click');
+            this._formBuilder.hideFieldsPanel();
 
             field = Y.one('.form-builder-field').getData('field-instance');
             this._formBuilder.removeField(field);
@@ -794,25 +769,17 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should disable adding unique field already used when setting a new layout': function() {
-            var formBuilderModal;
-
             this.createFormBuilder({
                 fieldTypes: [{
-                    fieldClass: Y.FormBuilderFieldText
-                }]
+                    fieldClass: Y.FormBuilderFieldText,
+                    unique: true
+                }],
+                layout: new Y.Layout()
             });
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isFalse(Y.one('.field-type').hasClass('field-type-disabled'));
-
-            this._formBuilder.set('fieldTypes', [{
-                fieldClass: Y.FormBuilderFieldText,
-                unique: true
-            }]);
-
-            formBuilderModal = Y.one('.form-builder-modal');
-            formBuilderModal.one('.close').simulate('mousemove');
-            formBuilderModal.one('.close').simulate('click');
+            this._formBuilder.hideFieldsPanel();
 
             this._formBuilder.set('layout',
                 new Y.Layout({
@@ -821,26 +788,8 @@ YUI.add('aui-form-builder-tests', function(Y) {
                             cols: [
                                 new Y.LayoutCol({
                                     size: 4,
-                                    value: new Y.FormBuilderFieldSentence({
-                                        nestedFields: [
-                                            new Y.FormBuilderFieldSentence({
-                                                title: 'Title Nested'
-                                            })
-                                        ],
-                                        title: 'Title'
-                                    })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 4,
-                                    value: new Y.FormBuilderFieldSentence({
-                                        title: 'Title 2'
-                                    })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 4,
                                     value: new Y.FormBuilderFieldText({
-                                        help: 'I need somebody',
-                                        title: 'Duque'
+                                        title: 'Title'
                                     })
                                 })
                             ]
@@ -854,25 +803,17 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should disable adding unique field already used when setting a new column': function() {
-            var formBuilderModal;
-
             this.createFormBuilder({
                 fieldTypes: [{
-                    fieldClass: Y.FormBuilderFieldText
-                }]
+                    fieldClass: Y.FormBuilderFieldText,
+                    unique: true
+                }],
+                layout: new Y.Layout()
             });
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isFalse(Y.one('.field-type').hasClass('field-type-disabled'));
-
-            this._formBuilder.set('fieldTypes', [{
-                fieldClass: Y.FormBuilderFieldText,
-                unique: true
-            }]);
-
-            formBuilderModal = Y.one('.form-builder-modal');
-            formBuilderModal.one('.close').simulate('mousemove');
-            formBuilderModal.one('.close').simulate('click');
+            this._formBuilder.hideFieldsPanel();
 
             this._formBuilder.get('layout').set('rows',
                 [
@@ -880,18 +821,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                         cols: [
                             new Y.LayoutCol({
                                 size: 4,
-                                value: new Y.FormBuilderFieldSentence({
-                                    help: 'not just anybody',
-                                    nestedFields: [
-                                        new Y.FormBuilderFieldSentence({
-                                            nestedFields: [
-                                                new Y.FormBuilderFieldText({
-                                                    title: 'How many?'
-                                                })
-                                            ],
-                                            title: 'How many?'
-                                        })
-                                    ],
+                                value: new Y.FormBuilderFieldText({
                                     title: 'Monarch'
                                 })
                             })
@@ -905,30 +835,19 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should disable adding unique field already used when setting a new row': function() {
-            var formBuilderModal;
-
             this.createFormBuilder({
                 fieldTypes: [{
-                    fieldClass: Y.FormBuilderFieldText
-                }]
+                    fieldClass: Y.FormBuilderFieldText,
+                    unique: true
+                }],
+                layout: new Y.Layout({
+                    rows: [new Y.LayoutRow()]
+                })
             });
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isFalse(Y.one('.field-type').hasClass('field-type-disabled'));
-
-            this._formBuilder.set('fieldTypes', [{
-                fieldClass: Y.FormBuilderFieldText,
-                unique: true
-            }]);
-
-            formBuilderModal = Y.one('.form-builder-modal');
-            formBuilderModal.one('.close').simulate('mousemove');
-            formBuilderModal.one('.close').simulate('click');
-
-            this._formBuilder.set('fieldTypes', [{
-                    fieldClass: Y.FormBuilderFieldText,
-                    unique: true
-                }]);
+            this._formBuilder.hideFieldsPanel();
 
             this._formBuilder.get('layout').get('rows')[1].set('cols', [
                 new Y.LayoutCol({
@@ -946,7 +865,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
     }));
 
     Y.Test.Runner.add(suite);
-
 }, '', {
     requires: [
         'aui-form-builder',
