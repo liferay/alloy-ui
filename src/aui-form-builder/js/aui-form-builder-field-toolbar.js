@@ -76,6 +76,16 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
     },
 
     /**
+     * Adds the toolbar for the given field.
+     *
+     * @method addForField
+     * @param {A.FormBuilderFieldBase} field
+     */
+    addForField: function(field) {
+        field.get('content').one('.' + CSS_TOOLBAR_CONTAINER).append(this._toolbar);
+    },
+
+    /**
      * Closes the toolbar
      *
      * @method close
@@ -91,16 +101,6 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
      */
     open: function() {
         this._toolbar.addClass('open');
-    },
-
-    /**
-     * Adds the toolbar for the given field.
-     *
-     * @method addForField
-     * @param {A.FormBuilderFieldBase} field
-     */
-    addForField: function(field) {
-        field.get('content').one('.' + CSS_TOOLBAR_CONTAINER).append(this._toolbar);
     },
 
     /**
