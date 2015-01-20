@@ -109,6 +109,21 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 recorder.popover.get('visible'),
                 'Popover should be visible when event is clicked in agenda view'
             );
+        },
+
+        'views select dropdown should be set to active view': function() {
+            this._createScheduler({
+                activeView: this._monthView
+            });
+
+            var options = this._scheduler.viewsSelectNode.get('childNodes');
+            var selectedIndex = this._scheduler.viewsSelectNode.get('selectedIndex');
+
+            Y.Assert.areSame(
+                this._scheduler.get('activeView').get('name'),
+                options.item(selectedIndex).getAttribute('data-view-name'),
+                'The views select dropdown should be set to month view'
+            );
         }
     }));
 
