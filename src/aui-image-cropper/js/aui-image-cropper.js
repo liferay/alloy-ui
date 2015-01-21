@@ -289,6 +289,8 @@ var ImageCropper = A.Component.create({
 
             instance.cropNode.setStyle('backgroundImage', 'url(' + imageNode.attr('src') + ')');
 
+            instance.cropNode.setStyle('backgroundSize', imageNode.width() + 'px ' + imageNode.height() + 'px');
+
             instance._constrainValues();
             instance._syncXY();
 
