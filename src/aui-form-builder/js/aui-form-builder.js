@@ -130,7 +130,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
             boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this),
             boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
-            this._menu.after('itemSelected', A.bind(this._afterItemSelected, this))
+            this._menu.after('itemSelected', A.bind(this._afterItemSelected, this)),
+            A.getDoc().on('key', this._onEscKey, 'esc', this)
         );
     },
 
