@@ -297,6 +297,7 @@ A.LayoutBuilderResizeCol.prototype = {
         });
 
         this._delegateDrag.dd.plug(A.Plugin.DDConstrained, {
+            constrain: this._layoutContainer,
             stickX: true
         });
 
