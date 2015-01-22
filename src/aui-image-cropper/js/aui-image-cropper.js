@@ -329,39 +329,47 @@ var ImageCropper = A.Component.create({
             var imageWidth = imageNode.width();
             var imageHeight = imageNode.height();
 
-            // Find valid y
+            if (imageHeight > 0) {
+                // Find valid y
 
-            y = Math.max(y, 0);
+                y = Math.max(y, 0);
 
-            if (y + (cropHeight - yBorder) > imageHeight) {
-                y = Math.max(imageHeight - cropHeight, 0);
+                if (y + (cropHeight - yBorder) > imageHeight) {
+                    y = Math.max(imageHeight - cropHeight, 0);
+                }
+
+                // Find valid cropHeight
+
+                if (y + (cropHeight - yBorder) > imageHeight) {
+                    cropHeight = Math.max(imageHeight - y, 0);
+                }
             }
 
             instance.set('y', y);
 
-            // Find valid cropHeight
-
-            if (y + (cropHeight - yBorder) > imageHeight) {
-                cropHeight = Math.max(imageHeight - y, 0);
-            }
-
             instance.set('cropHeight', cropHeight);
 
-            // Find valid x
+            if (imageWidth > 0) {
+                // Find valid x
 
-            x = Math.max(x, 0);
+                x = Math.max(x, 0);
 
-            if (x + (cropWidth - xBorder) > imageWidth) {
-                x = Math.max(imageWidth - cropWidth, 0);
+                if (x + (cropWidth - xBorder) > imageWidth) {
+                    if (imageWidth != 0) {
+                        x = Math.max(imageWidth - cropWidth, 0);
+                    }
+                }
+
+                // Find valid cropWidth
+
+                if (x + (cropWidth - xBorder) > imageWidth) {
+                    if (imageWidth != 0) {
+                        cropWidth = Math.max(imageWidth - x, 0);
+                    }
+                }
             }
 
             instance.set('x', x);
-
-            // Find valid cropWidth
-
-            if (x + (cropWidth - xBorder) > imageWidth) {
-                cropWidth = Math.max(imageWidth - x, 0);
-            }
 
             instance.set('cropWidth', cropWidth);
         },
