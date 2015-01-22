@@ -271,35 +271,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(2, row.get('quantity'));
         },
 
-        'should add/remove has-error class on data-editor when clicked on save button': function() {
-            var instance = this,
-                field,
-                inputs;
-
-            this.createFormBuilder({
-                fieldTypes: [{
-                    fieldClass: Y.FormBuilderFieldText,
-                    label: 'Text'
-                }]
-            });
-
-            this._clickCreateNewField();
-            this._clickFieldType();
-            this._clickFieldSettingsSaveButton();
-
-            Y.Assert.isTrue(Y.all('.data-editor').item(0).hasClass('has-error'));
-
-            inputs = Y.one('.form-builder-field-settings').all('input[type="text"]');
-            this._simulateInputChange(inputs.item(0), 'My Title', function() {
-                instance._clickFieldSettingsSaveButton();
-
-                field = Y.one('.form-builder-field').getData('field-instance');
-                instance._formBuilder.editField(field);
-
-                Y.Assert.isFalse(Y.all('.data-editor').item(0).hasClass('has-error'));
-            });
-        },
-
         'should save the edited settings of the chosen new field': function() {
             var instance = this,
                 field,

@@ -239,6 +239,30 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             });
         },
 
+        'should show errors when invalid settings are detected': function() {
+            var container = Y.one('#container');
+
+            this._field = new TestField();
+            this._field.renderSettingsPanel(container);
+
+            Y.Assert.isFalse(container.one('.data-editor').hasClass('has-error'));
+            this._field.validateSettings();
+            Y.Assert.isTrue(container.one('.data-editor').hasClass('has-error'));
+        },
+
+        'should not show errors when no invalid settings are detected': function() {
+            var container = Y.one('#container');
+
+            this._field = new TestField({
+                help: 'Help',
+                title: 'Title'
+            });
+            this._field.renderSettingsPanel(container);
+
+            this._field.validateSettings();
+            Y.Assert.isFalse(container.one('.data-editor').hasClass('has-error'));
+        },
+
         'should save edited settings': function() {
             var instance = this,
                 container = Y.one('#container'),
