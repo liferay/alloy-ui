@@ -24,15 +24,6 @@
     }
 }
 
-.form-builder-field-settings {
-    width: 80%;
-}
-
-.form-builder-field-settings .modal-body {
-    padding: 15px 0;
-    min-height: 350px;
-}
-
 .form-builder-header .form-builder-header-back {
     color: #fff;
     cursor: pointer;

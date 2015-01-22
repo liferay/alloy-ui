@@ -83,6 +83,12 @@
             "jsfiles": [
                 "js/aui-form-builder-page-break-row.js"
             ]
+        },
+
+        "aui-form-builder-settings-modal": {
+            "jsfiles": [
+                "js/aui-form-builder-settings-modal.js"
+            ]
         }
     }
 }

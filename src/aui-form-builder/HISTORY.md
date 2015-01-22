@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1841](https://issues.liferay.com/browse/AUI-1841) Refactor field settings modal logic to separate file
 * [AUI-1832](https://issues.liferay.com/browse/AUI-1832) Refactor aui-form-builder into smaller files
 * [AUI-1831](https://issues.liferay.com/browse/AUI-1831) Change the way aui-data-editor updates the UI
 * [AUI-1816](https://issues.liferay.com/browse/AUI-1816) Add placeholder as an advanced field setting

@@ -12,12 +12,6 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
     CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
-    CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
-    CSS_FIELD_SETTINGS_CANCEL =
-        A.getClassName('form', 'builder', 'field', 'settings', 'cancel'),
-    CSS_FIELD_SETTINGS_LABEL = A.getClassName('form', 'builder', 'field', 'settings', 'label'),
-    CSS_FIELD_SETTINGS_SAVE =
-        A.getClassName('form', 'builder', 'field', 'settings', 'save'),
     CSS_HEADER = A.getClassName('form', 'builder', 'header'),
     CSS_HEADER_BACK = A.getClassName('form', 'builder', 'header', 'back'),
     CSS_HEADER_TITLE = A.getClassName('form', 'builder', 'header', 'title'),
@@ -201,18 +195,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Hides the settings panel for the given field.
-     *
-     * @method hideFieldSettingsPanel
-     */
-    hideFieldSettingsPanel: function() {
-        if (this._fieldSettingsModal) {
-            this._fieldSettingsModal.hide();
-            this._newFieldContainer = null;
-        }
-    },
-
-    /**
      * Removes the given field from the form builder.
      *
      * @method removeField
@@ -245,28 +227,13 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * @param {String} typeName The name of the field type.
      */
     showFieldSettingsPanel: function(field, typeName) {
-        var bodyNode,
-            firstInput;
-
         if (!this._fieldSettingsModal) {
-            this._renderFieldSettingsModal();
+            this._fieldSettingsModal = new A.FormBuilderSettingsModal();
+            this._fieldSettingsModal.after('hide', A.bind(this._afterFieldSettingsModalHide, this));
+            this._fieldSettingsModal.after('save', A.bind(this._afterFieldSettingsModalSave, this));
         }
 
-        bodyNode = this._fieldSettingsModal.getStdModNode(A.WidgetStdMod.BODY);
-        bodyNode.empty();
-        field.renderSettingsPanel(bodyNode);
-
-        this._fieldSettingsModal.get('boundingBox').one('.' + CSS_FIELD_SETTINGS_LABEL).set('text', typeName);
-
-        this._fieldSettingsModal.show();
-        this._fieldSettingsModal.align();
-
-        firstInput = bodyNode.one('input[type="text"]');
-        if (firstInput) {
-            firstInput.focus();
-        }
-
-        this._fieldBeingEdited = field;
+        this._fieldSettingsModal.show(field, typeName);
     },
 
     /**
@@ -281,6 +248,45 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
     _addNestedField: function(field, nested, index) {
         field.addNestedField(index, nested);
         this.get('layout').normalizeColsHeight(new A.NodeList(this.getFieldRow(nested)));
+    },
+
+    /**
+     * Fired when the field settings modal is hidden.
+     *
+     * @method _afterFieldSettingsModalHide
+     * @protected
+     */
+    _afterFieldSettingsModalHide: function() {
+        this._newFieldContainer = null;
+    },
+
+    /**
+     * Fired when the field settings modal is saved.
+     *
+     * @method _afterFieldSettingsModalSave
+     * @protected
+     */
+    _afterFieldSettingsModalSave: function(event) {
+        var field = event.field;
+
+        if (this._newFieldContainer) {
+            if (A.instanceOf(this._newFieldContainer, A.LayoutCol)) {
+                this._newFieldContainer.set('value', field);
+            }
+            else if (A.instanceOf(this._newFieldContainer, A.FormField)) {
+                this._addNestedField(
+                    this._newFieldContainer,
+                    field,
+                    this._newFieldContainer.get('nestedFields').length
+                );
+            }
+            this._newFieldContainer = null;
+        }
+        else {
+            this.get('layout').normalizeColsHeight(new A.NodeList(field.get('content').ancestor('.layout-row')));
+        }
+
+        this.disableUniqueFieldType(field);
     },
 
     /**
@@ -459,92 +465,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
                 }
             });
         });
-    },
-
-    /**
-     * Renders the field settings modal.
-     *
-     * @method _renderFieldSettingsModal
-     * @protected
-     */
-    _renderFieldSettingsModal: function() {
-        var instance = this;
-
-        this._fieldSettingsModal = new A.Modal({
-            centered: true,
-            cssClass: CSS_FIELD_SETTINGS,
-            draggable: false,
-            modal: true,
-            headerContent: '<div class="' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
-            resizable: false,
-            toolbars: {
-                header: [
-                    {
-                        cssClass: 'close',
-                        label: '\u00D7',
-                        on: {
-                            click: function() {
-                                instance.hideFieldSettingsPanel();
-                            }
-                        },
-                        render: true
-                    }
-                ]
-            },
-            zIndex: 2
-        }).render();
-
-        this._fieldSettingsModal.addToolbar([{
-            cssClass: CSS_FIELD_SETTINGS_CANCEL,
-            label: 'Cancel',
-            on: {
-                click: function() {
-                    instance.hideFieldSettingsPanel();
-                }
-            },
-            render: true
-        },
-        {
-            cssClass: CSS_FIELD_SETTINGS_SAVE,
-            label: 'Save',
-            on: {
-                click: A.bind(this._saveFieldSettings, this)
-            },
-            render: true
-        }], A.WidgetStdMod.FOOTER);
-    },
-
-    /**
-     * Saves the settings for the field currently being edited.
-     *
-     * @method _saveFieldSettings
-     * @protected
-     */
-    _saveFieldSettings: function() {
-        if (this._fieldBeingEdited.validateSettings()) {
-            this._fieldBeingEdited.saveSettings();
-
-            if (this._newFieldContainer) {
-                if (A.instanceOf(this._newFieldContainer, A.LayoutCol)) {
-                    this._newFieldContainer.set('value', this._fieldBeingEdited);
-                }
-                else if (A.instanceOf(this._newFieldContainer, A.FormField)) {
-                    this._addNestedField(
-                        this._newFieldContainer,
-                        this._fieldBeingEdited,
-                        this._newFieldContainer.get('nestedFields').length
-                    );
-                }
-                this._newFieldContainer = null;
-            }
-            else {
-                this.get('layout').normalizeColsHeight(new A.NodeList(this._fieldBeingEdited.get('content').ancestor('.layout-row')));
-            }
-
-            this.disableUniqueFieldType(this._fieldBeingEdited);
-
-            this.hideFieldSettingsPanel();
-        }
     },
 
     /**

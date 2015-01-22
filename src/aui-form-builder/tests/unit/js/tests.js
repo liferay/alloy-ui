@@ -271,42 +271,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(2, row.get('quantity'));
         },
 
-        'should save the edited settings of the chosen new field': function() {
-            var instance = this,
-                field,
-                inputs,
-                settingsPane;
-
-            this.createFormBuilder({
-                fieldTypes: [{
-                    fieldClass: Y.FormBuilderFieldText,
-                    label: 'Text'
-                }]
-            });
-
-            this._clickCreateNewField();
-            this._clickFieldType();
-
-            field = this._formBuilder._fieldBeingEdited;
-            Y.Assert.isNotNull(field);
-
-            settingsPane = Y.one('.form-builder-field-settings');
-            settingsPane.all('.button-switch').item(0).simulate('click');
-            settingsPane.all('.radio-group-data-editor-button').item(1).simulate('click');
-            inputs = settingsPane.all('input[type="text"]');
-            this._simulateInputChange(inputs.item(0), 'My Title', function() {
-                instance._simulateInputChange(inputs.item(1), 'My Help', function() {
-                    Y.one('.form-builder-field-settings-save').simulate('mousemove');
-                    Y.one('.form-builder-field-settings-save').simulate('click');
-
-                    Y.Assert.areEqual('My Title', field.get('title'));
-                    Y.Assert.areEqual('My Help', field.get('help'));
-                    Y.Assert.areEqual(1, field.get('type'));
-                    Y.Assert.isTrue(field.get('required'));
-                });
-            });
-        },
-
         'should edit field and save correctly after closing modal through esc': function() {
             var field,
                 row;
@@ -355,55 +319,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this._clickFieldSettingsSaveButton();
 
             Y.Assert.isNotNull(row.get('node').all('.form-builder-empty-col').item(0));
-        },
-
-        'should open and close the field settings editor': function() {
-            var field = new Y.FormBuilderFieldText(),
-                settingsPane;
-
-            this.createFormBuilder();
-            Y.Assert.isNull(Y.one('.form-builder-field-settings'));
-
-            this._formBuilder.showFieldSettingsPanel(field);
-            settingsPane = Y.one('.form-builder-field-settings');
-            Y.Assert.isNotNull(settingsPane);
-            Y.Assert.isFalse(settingsPane.hasClass('modal-dialog-hidden'));
-
-            this._formBuilder.hideFieldSettingsPanel(field);
-            Y.Assert.isTrue(settingsPane.hasClass('modal-dialog-hidden'));
-
-            this._formBuilder.showFieldSettingsPanel(field);
-            Y.Assert.isFalse(settingsPane.hasClass('modal-dialog-hidden'));
-        },
-
-        'should close the field settings editor when clicked on cancel button': function() {
-            var field = new Y.FormBuilderFieldText(),
-                settingsPane;
-
-            this.createFormBuilder();
-            Y.Assert.isNull(Y.one('.form-builder-field-settings'));
-
-            this._formBuilder.showFieldSettingsPanel(field);
-            settingsPane = Y.one('.form-builder-field-settings');
-
-            Y.one('.form-builder-field-settings-cancel').simulate('mousemove');
-            Y.one('.form-builder-field-settings-cancel').simulate('click');
-            Y.Assert.isTrue(settingsPane.hasClass('modal-dialog-hidden'));
-        },
-
-        'should close the field settings editor when clicked on close button': function() {
-            var field = new Y.FormBuilderFieldText(),
-                settingsPane;
-
-            this.createFormBuilder();
-            Y.Assert.isNull(Y.one('.form-builder-field-settings'));
-
-            this._formBuilder.showFieldSettingsPanel(field);
-            settingsPane = Y.one('.form-builder-field-settings');
-
-            Y.one('.form-builder-field-settings-content').one('.close').simulate('mousemove');
-            Y.one('.form-builder-field-settings-content').one('.close').simulate('click');
-            Y.Assert.isTrue(settingsPane.hasClass('modal-dialog-hidden'));
         },
 
         'should show field settings when editField method is called': function() {
@@ -489,13 +404,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
 
             Y.Assert.isTrue(heightAfterMode < heightBeforeMode);
-        },
-
-        'should not throw error if hiding settings panel before rendered': function() {
-            this.createFormBuilder();
-
-            this._formBuilder.hideFieldSettingsPanel();
-            Y.Assert.isNull(Y.one('.form-builder-field-settings'));
         },
 
         'should fill initial empty columns with content': function() {
@@ -630,27 +538,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isTrue(Y.instanceOf(col.get('value'), Y.FormBuilderFieldSentence));
         },
 
-        'should not allow creating fields without required data': function() {
-            var settingsModal;
-
-            this.createFormBuilder({
-                fieldTypes: [{
-                    fieldClass: Y.FormBuilderFieldText,
-                    label: 'Text'
-                }]
-            });
-
-            this._clickCreateNewField();
-            this._clickFieldType();
-
-            settingsModal = Y.one('.form-builder-field-settings');
-            Y.Assert.isNotNull(settingsModal);
-            Y.Assert.areNotEqual('none', settingsModal.getStyle('display'));
-
-            this._clickFieldSettingsSaveButton();
-            Y.Assert.areNotEqual('none', settingsModal.getStyle('display'));
-        },
-
         'should make field columns movable': function() {
             var col;
 
@@ -691,7 +578,8 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(Y.one('.form-builder-field-settings-label').getHTML(), 'Sentence');
 
             field = Y.all('.form-builder-field').item(1).getData('field-instance');
-            this._formBuilder.hideFieldSettingsPanel();
+            Y.one('.form-builder-field-settings-cancel').simulate('mousemove');
+            Y.one('.form-builder-field-settings-cancel').simulate('click');
             this._formBuilder.editField(field);
             Y.Assert.areEqual(Y.one('.form-builder-field-settings-label').getHTML(), 'Text');
         },

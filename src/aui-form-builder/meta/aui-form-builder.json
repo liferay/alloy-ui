@@ -8,6 +8,7 @@
             "aui-form-builder-field-types",
             "aui-form-builder-layout-builder",
             "aui-form-builder-page-break-row",
+            "aui-form-builder-settings-modal",
             "aui-menu",
             "event-tap"
         ],
@@ -128,6 +129,16 @@
             "aui-classnamemanager",
             "aui-layout-col",
             "aui-layout-row",
+            "base",
+            "node-base"
+        ],
+        "skinnable": true
+    },
+
+    "aui-form-builder-settings-modal": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-modal",
             "base",
             "node-base"
         ],
