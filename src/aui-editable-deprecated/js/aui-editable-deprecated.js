@@ -335,7 +335,7 @@ var Editable = A.Component.create({
 
             A.getDoc().after('click', instance._afterFocusedChangeEditable, instance);
 
-            A.getWin().on('resize', instance._afterFocusedChangeEditable, instance);
+            A.on('windowresize', A.bind(instance._afterFocusedChangeEditable, instance));
         },
 
         /**

@@ -3,7 +3,8 @@
         "requires": [
             "aui-base-deprecated",
             "aui-form-combobox-deprecated",
-            "escape"
+            "escape",
+            "event-resize"
         ],
         "skinnable": true
     }

@@ -12,11 +12,17 @@
 <body class="yui3-skin-sam">
 <div id="logger"></div>
 
+<div>
+    <div id="editable">
+        Testing
+    </div>
+</div>
+
 <script>
 YUI({
     coverage: ['aui-editable-deprecated'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'aui-editable-deprecated-tests',
+}).use('test-console', 'test', 'aui-editable-tests',
      function(Y) {
 
         (new Y.Test.Console()).render('#logger');

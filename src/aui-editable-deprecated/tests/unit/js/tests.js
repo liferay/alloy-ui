@@ -1,32 +1,45 @@
-YUI.add('aui-editable-deprecated-tests', function(Y) {
+YUI.add('aui-editable-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-editable-deprecated');
+
+    var editable = new Y.Editable({
+        node: '#editable'
+    });
 
     suite.add(new Y.Test.Case({
         name: 'Editable Tests',
 
-        setUp: function() {
-            Y.one('#logger').append('<div id="editable">Testing</div>');
-            this.editable = Y.one('#editable');
-            this.editableInstance = new Y.Editable({node: this.editable});
-        },
+        'editable should be available on click': function() {
+            var editableWrapper = Y.one('#editable'),
+                isEditable;
 
-        tearDown: function() {
-            this.editableInstance.destroy();
-            this.editable.remove();
-        },
+            editableWrapper.simulate('click');
 
-        'editable should open on click': function() {
-            this.editable.simulate('click');
-            this.editableOpen = Y.one('.editable');
-            Y.Assert.isObject(this.editableOpen);
+            isEditable = Y.one('.editable');
+
+            Y.Assert.areSame(editable.get('boundingBox'), isEditable);
         },
 
         'editable should be hidden on window resize': function() {
-            this.editable.simulate('click');
-            Y.getWin().simulate('resize');
-            this.editableHidden = Y.one('.editable-hidden');
-            Y.Assert.isObject(this.editableHidden);
+            var editableWrapper = Y.one('#editable');
+
+            editableWrapper.simulate('click');
+
+            if (Y.UA.ie === 8) {
+                // Can't simulate a resize on IE8's window object, so
+                // calling the function directly here.
+                editable._afterFocusedChangeEditable();
+            }
+            else {
+                Y.one(Y.config.win).simulate('resize');
+            }
+
+            this.wait(function() {
+                Y.Assert.isTrue(
+                    editable.get('boundingBox').hasClass('editable-hidden'),
+                    'editable should be hidden on window resize'
+                );
+            }, Y.config.windowResizeDelay || 100);
         }
     }));
 
