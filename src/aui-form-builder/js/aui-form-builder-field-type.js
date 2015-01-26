@@ -15,7 +15,7 @@
  * @constructor
  */
 A.FormBuilderFieldType = A.Base.create('form-builder-field-type', A.Base, [], {
-    TPL_FIELD_TYPE: '<div class="field-type"></div>',
+    TPL_FIELD_TYPE: '<div class="field-type" tabindex="0"></div>',
     TPL_FIELD_TYPE_CONTENT: '<div class="field-type-icon {icon}"></div>' +
         '<div class="field-type-label">{label}</div></div>',
 

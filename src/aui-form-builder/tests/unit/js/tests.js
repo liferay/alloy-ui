@@ -568,6 +568,21 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(Y.FormBuilder.MODES.REGULAR, this._formBuilder.get('mode'));
         },
 
+        'should change to layout mode when menu button is key pressed': function() {
+            var contentBox;
+
+            this.createFormBuilder();
+
+            contentBox = this._formBuilder.get('contentBox');
+            contentBox.one('.form-builder-menu-button').simulate('keypress', { keyCode: 13 });
+            contentBox.one('.form-builder-edit-layout-button').simulate('keypress', { keyCode: 13 });
+
+            Y.Assert.areEqual(Y.FormBuilder.MODES.LAYOUT, this._formBuilder.get('mode'));
+
+            contentBox.one('.form-builder-header-back').simulate('keypress', { keyCode: 13 });
+            Y.Assert.areEqual(Y.FormBuilder.MODES.REGULAR, this._formBuilder.get('mode'));
+        },
+
         'should show corret label when open settings editor': function() {
             var field;
 
@@ -720,6 +735,34 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
+        },
+
+        'should open new field type selection when key press on add field button': function() {
+            var addFieldButton;
+
+            this.createFormBuilder();
+
+            addFieldButton = Y.one('.form-builder-empty-col-add-button');
+            addFieldButton.focus();
+            addFieldButton.simulate('keydown', {
+                keyCode: 13
+            });
+
+            this._formBuilder._fieldTypesModal.get('visible');
+
+            Y.Assert.isTrue(this._formBuilder._fieldTypesModal.get('visible'));
+        },
+
+        'should show toolbar settings when focus on a field': function() {
+            var node;
+
+            this.createFormBuilder();
+
+            node = Y.one('.form-builder-field');
+
+            this._formBuilder._onFocus({ target: node });
+
+            Y.Assert.isNotNull(Y.one('.form-builder-field-toolbar'));
         }
     }));
 

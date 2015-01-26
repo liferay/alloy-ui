@@ -25,10 +25,10 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
  */
 A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, [], {
     TPL_TOOLBAR: '<div class="' + CSS_TOOLBAR + '">' +
-        '<button class="btn btn-default ' + CSS_TOOLBAR_TOGGLE + '">' +
+        '<button class="btn btn-default ' + CSS_TOOLBAR_TOGGLE + '" tabindex="9">' +
         '<span class="glyphicon glyphicon-cog"></span></button>' +
         '<div class="btn-group ' + CSS_TOOLBAR_ITEMS + '"></div></div>',
-    TPL_TOOLBAR_ITEM: '<button class="btn btn-default ' + CSS_TOOLBAR_ITEM + '">' +
+    TPL_TOOLBAR_ITEM: '<button class="btn btn-default ' + CSS_TOOLBAR_ITEM + '" tabindex="9">' +
         '<span class="{iconClass}"></span></button>',
 
     /**

@@ -5,7 +5,8 @@
  * @submodule aui-form-builder-field-types
  */
 
-var CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list');
+var CSS_FIELD_TYPE = A.getClassName('field', 'type'),
+    CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list');
 
 /**
  * `A.FormBuilder` extension, which is responsible for all the logic related
@@ -164,7 +165,9 @@ A.FormBuilderFieldTypes.prototype = {
      */
     _bindFieldTypesModalEvents: function() {
         this._eventHandles.push(
-            this._fieldTypesPanel.delegate('click', this._onClickFieldType, '.field-type', this)
+            this._fieldTypesPanel.delegate('click', this._onClickFieldType, '.' + CSS_FIELD_TYPE, this),
+            this._fieldTypesPanel.delegate('key', A.bind(this._onKeyPressFieldType, this), 'enter', '.' + CSS_FIELD_TYPE),
+            A.getDoc().on('key', this._onEscKey, 'esc', this)
         );
     },
 
@@ -303,6 +306,17 @@ A.FormBuilderFieldTypes.prototype = {
     _onFieldTypesModalCloseClick: function() {
         this.hideFieldsPanel();
         this._newFieldContainer = null;
+    },
+
+    /**
+     * Fired when a field type is keypressed.
+     *
+     * @method _onKeyPressFieldType
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onKeyPressFieldType: function(event) {
+        this._onClickFieldType(event);
     },
 
     /**

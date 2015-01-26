@@ -250,6 +250,30 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
             Y.Mock.verify(mock);
         },
 
+        'should open settings editor for the keypressed field type': function() {
+            var mock = new Y.Mock();
+
+            Y.Mock.expect(mock, {
+                args: [Y.Mock.Value.Object],
+                callCount: 1,
+                method: 'fieldClass'
+            });
+            mock.fieldClass.prototype.renderSettingsPanel = function() {};
+
+            this.createFormBuilder({
+                fieldTypes: [{
+                    fieldClass: mock.fieldClass,
+                    label: 'My Field'
+                }]
+            });
+
+            this._formBuilder.showFieldsPanel();
+
+            Y.one('.field-type').simulate('keydown', { keyCode: 13 });
+
+            Y.Mock.verify(mock);
+        },
+
         'should not be able to click on a disabled field': function() {
             this.createFormBuilder({
                 fieldTypes: [{

@@ -41,7 +41,7 @@ A.FormBuilderFieldBase = function() {};
 A.FormBuilderFieldBase.prototype = {
     SETTINGS_DIVIDER_POSITION: 3,
 
-    TPL_FIELD: '<div class="' + CSS_FIELD + ' form-field">' +
+    TPL_FIELD: '<div class="' + CSS_FIELD + ' form-field" tabindex="9">' +
         '<div class="' + CSS_FIELD_CONTENT_TOOLBAR + '">' +
         '<div class="' + CSS_FIELD_CONTENT + ' form-field-content"></div>' +
         '<div class="' + CSS_FIELD_MOVE_BUTTON + ' layout-builder-move-cut-button"></div>' +

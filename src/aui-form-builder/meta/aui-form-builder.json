@@ -10,6 +10,7 @@
             "aui-form-builder-page-break-row",
             "aui-form-builder-settings-modal",
             "aui-menu",
+            "event-focus",
             "event-tap"
         ],
         "skinnable": true

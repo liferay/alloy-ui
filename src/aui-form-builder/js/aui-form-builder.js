@@ -11,6 +11,7 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
     CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
     CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
+    CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_HEADER = A.getClassName('form', 'builder', 'header'),
     CSS_HEADER_BACK = A.getClassName('form', 'builder', 'header', 'back'),
@@ -42,14 +43,14 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
 ], {
     TITLE_REGULAR: 'Build your form',
 
-    TPL_BUTTON_ADD_PAGEBREAK: '<button class="btn-default btn ' + CSS_ADD_PAGE_BREAK + '">' +
+    TPL_BUTTON_ADD_PAGEBREAK: '<button class="btn-default btn ' + CSS_ADD_PAGE_BREAK + '" tabindex="1">' +
         '<span class="glyphicon glyphicon-th-list"></span>' +
         'Add Page Break' +
         '</button>',
     TPL_EDIT_LAYOUT_BUTTON: '<div class="' + CSS_EDIT_LAYOUT_BUTTON + '">' +
         '<a>Edit Layout</a></div>',
     TPL_EMPTY_COL: '<div class="' + CSS_EMPTY_COL + '">' +
-        '<div class="' + CSS_EMPTY_COL_ADD_BUTTON + '">' +
+        '<div class="' + CSS_EMPTY_COL_ADD_BUTTON + '" tabindex="9">' +
         '<span class="glyphicon glyphicon-plus ' + CSS_EMPTY_COL_ICON + '"></span>' +
         '<div class="' + CSS_EMPTY_COL_LABEL + '">Add Field</div></div>' +
         '<button class="' + CSS_FIELD_MOVE_TARGET +
@@ -60,9 +61,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         '<div>You don\'t have any question yet.</div>' +
         '<div>First for all let\'s create a new line?</div></div>',
     TPL_HEADER: '<div class="' + CSS_HEADER + '">' +
-        '<a class="' + CSS_HEADER_BACK + '"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
+        '<a class="' + CSS_HEADER_BACK + '" tabindex="1"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
         '<div class="' + CSS_MENU + '">' +
-        '<a class="dropdown-toggle ' + CSS_MENU_BUTTON + '" data-toggle="dropdown">' +
+        '<a class="dropdown-toggle ' + CSS_MENU_BUTTON + '" data-toggle="dropdown" tabindex="1">' +
         '<span class="glyphicon glyphicon-cog"></span></a>' +
         '<div class="' + CSS_MENU_CONTENT + ' dropdown-menu dropdown-menu-right"></div></div>' +
         '<div class="' + CSS_HEADER_TITLE + '"></div>' +
@@ -127,9 +128,13 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         var boundingBox = this.get('boundingBox');
 
         this._eventHandles.push(
+            this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
+
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
+            boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' + CSS_EMPTY_COL_ADD_BUTTON),
             boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this),
             boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
+            boundingBox.one('.' + CSS_HEADER_BACK).on('key', A.bind(this._onKeyPressHeaderBack, this), 'press:13'),
             this._menu.after('itemSelected', A.bind(this._afterItemSelected, this)),
             A.getDoc().on('key', this._onEscKey, 'esc', this)
         );
@@ -419,9 +424,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _onClickAddField: function(event) {
-        this._newFieldContainer = event.currentTarget.ancestor('.col').getData('layout-col');
-
-        this.showFieldsPanel();
+        this._openNewFieldPanel(event.currentTarget);
     },
 
     /**
@@ -447,6 +450,66 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      */
     _onClickHeaderBack: function() {
         this.set('mode', A.FormBuilder.MODES.REGULAR);
+    },
+
+    /**
+     * Fired when some node is focused inside content box.
+     *
+     * @method _onFocus
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onFocus: function(event) {
+        var fieldContainer,
+            target = event.target;
+
+        if (target.hasClass(CSS_FIELD)) {
+            fieldContainer = target;
+        }
+        else {
+            fieldContainer = target.ancestor('.' + CSS_FIELD);
+        }
+
+        if (fieldContainer) {
+            this._fieldToolbar.addForField(fieldContainer.getData('field-instance'));
+        }
+        else {
+            this._fieldToolbar.remove();
+        }
+    },
+
+    /**
+     * Fired when the add field button is pressed.
+     *
+     * @method _onKeyPressAddField
+     * @params {EventFacade} event
+     * @protected
+     */
+    _onKeyPressAddField: function(event) {
+        this._openNewFieldPanel(event.currentTarget);
+    },
+
+    /**
+     * Fired when the header back button is pressed.
+     *
+     * @method _onKeyPressHeaderBack
+     * @protected
+     */
+    _onKeyPressHeaderBack: function() {
+        this.set('mode', A.FormBuilder.MODES.REGULAR);
+    },
+
+    /**
+     * Opens a panel to select a new field type.
+     *
+     * @method _openNewFieldPanel
+     * @param {Node} target
+     * @protected
+     */
+    _openNewFieldPanel: function(target) {
+        this._newFieldContainer = target.ancestor('.col').getData('layout-col');
+
+        this.showFieldsPanel();
     },
 
     /**
