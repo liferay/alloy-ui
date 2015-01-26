@@ -19,8 +19,7 @@
             "aui-widget-trigger",
 	        "aui-widget-position-align-suggestion",
 	        "aui-component",
-            "aui-node-base",
-            "event-resize"
+            "aui-node-base"
         ],
         "skinnable": true
     }
