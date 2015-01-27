@@ -1220,8 +1220,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-trigger",
             "aui-widget-position-align-suggestion",
             "aui-component",
-            "aui-node-base",
-            "event-resize"
+            "aui-node-base"
         ],
         "skinnable": true
     },
@@ -1839,4 +1838,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'a1a5653b6034e1929930534610fa694c';
+YUI.Env[Y.version].md5 = '803e1f89d9c8b02ab056c313146c35fe';

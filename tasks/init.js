@@ -12,7 +12,7 @@ gulp.task('init', function(callback) {
 });
 
 gulp.task('init-bower', function(callback) {
-    var args = ['install'];
+    var args = ['install', '--allow-root'];
     var cmd = 'bower';
     var cwd = ROOT;
 

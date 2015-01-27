@@ -2,11 +2,11 @@
     "aui-popover": {
         "requires": [
             "event-resize",
-	        "widget",
-	        "widget-autohide",
-	        "widget-buttons",
-	        "widget-modality",
-	        "widget-position",
+            "widget",
+            "widget-autohide",
+            "widget-buttons",
+            "widget-modality",
+            "widget-position",
             "widget-position-align",
             "widget-position-constrain",
             "widget-stack",
@@ -17,10 +17,9 @@
             "aui-widget-toolbars",
             "aui-widget-transition",
             "aui-widget-trigger",
-	        "aui-widget-position-align-suggestion",
-	        "aui-component",
-            "aui-node-base",
-            "event-resize"
+            "aui-widget-position-align-suggestion",
+            "aui-component",
+            "aui-node-base"
         ],
         "skinnable": true
     }

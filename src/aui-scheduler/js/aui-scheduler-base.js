@@ -1413,6 +1413,7 @@ var SchedulerBase = A.Component.create({
 
                 if (activeNav) {
                     instance.viewsNode.all('button').removeClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', false);
+                    instance.viewsSelectNode.one('[data-view-name=' + activeView + ']').set('selected', true);
                     activeNav.addClass(CSS_SCHEDULER_VIEW_SELECTED).setAttribute('aria-pressed', true);
                 }
             }

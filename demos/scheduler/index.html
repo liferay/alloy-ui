@@ -57,15 +57,18 @@
             }
         ];
 
+        var schedulerViews = [
+            new Y.SchedulerWeekView(),
+            new Y.SchedulerDayView(),
+            new Y.SchedulerMonthView(),
+            new Y.SchedulerAgendaView()
+        ];
+
         new Y.Scheduler({
             boundingBox: '#scheduler',
             items: items,
-            views: [
-                new Y.SchedulerWeekView(),
-                new Y.SchedulerDayView(),
-                new Y.SchedulerMonthView(),
-                new Y.SchedulerAgendaView()
-            ],
+            views: schedulerViews,
+            activeView: schedulerViews[2],
             eventRecorder: new Y.SchedulerEventRecorder()
             // firstDayOfWeek: 1,
             // activeView: weekView,
