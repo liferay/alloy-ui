@@ -14,8 +14,7 @@
             "datatable-base",
             "event-key",
             "aui-event-base"
-        ],
-        "skinnable": true
+        ]
     },
 
     "aui-datatable-core": {

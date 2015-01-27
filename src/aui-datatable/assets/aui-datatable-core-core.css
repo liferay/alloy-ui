@@ -44,6 +44,10 @@
     overflow-y: hidden;
 }
 
+.table-x-scroller .table {
+    margin-bottom: 0;
+}
+
 .table-scrollable-y .table-y-scroller {
     position: relative;
     overflow-x: hidden;
