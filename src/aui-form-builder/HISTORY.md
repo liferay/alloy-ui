@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1755](https://issues.liferay.com/browse/AUI-1755) Button for adding page breaks should be on the left of the button to add rows
 * [AUI-1841](https://issues.liferay.com/browse/AUI-1841) Refactor field settings modal logic to separate file
 * [AUI-1832](https://issues.liferay.com/browse/AUI-1832) Refactor aui-form-builder into smaller files
 * [AUI-1831](https://issues.liferay.com/browse/AUI-1831) Change the way aui-data-editor updates the UI

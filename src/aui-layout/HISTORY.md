@@ -3,6 +3,7 @@
 > Documentation and test modifications are not included in this changelog. For more details, see [full commit history](https://github.com/liferay/alloy-ui/commits/master/src/aui-layout).
 
 ## @VERSION@
+* [AUI-1755](https://issues.liferay.com/browse/AUI-1755) Button for adding page breaks should be on the left of the button to add rows
 * [AUI-1842](https://issues.liferay.com/browse/AUI-1842) Fix column resize handlers allowing to drag outside the layout
 * [AUI-1815](https://issues.liferay.com/browse/AUI-1815) Scroll shouldn't change while adding columns in layout builder
 * [AUI-1829](https://issues.liferay.com/browse/AUI-1829) Be able to change layout when using progressive enhancement

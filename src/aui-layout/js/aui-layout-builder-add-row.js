@@ -30,11 +30,10 @@ LayoutBuilderAddRow.prototype = {
     /**
      * Area to choose a new type of row.
      *
-     * @property _addRowArea
+     * @property addRowArea
      * @type {Node}
-     * @protected
      */
-    _addRowArea: null,
+    addRowArea: null,
 
     /**
      * Body's node.
@@ -53,7 +52,7 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     initializer: function() {
-        this._addRowArea = this._createAddRowArea();
+        this.addRowArea = this._createAddRowArea();
         this._addRowAreaForSmallScreens = this._createAddRowAreaForSmallScreens();
 
         this._bodyNode = A.one('body');
@@ -86,10 +85,10 @@ LayoutBuilderAddRow.prototype = {
 
         if (this.get('layout').get('isColumnMode')) {
             this._addRowAreaForSmallScreens.remove();
-            container.append(this._addRowArea);
+            container.append(this.addRowArea);
         }
         else {
-            this._addRowArea.remove();
+            this.addRowArea.remove();
             container.append(this._addRowAreaForSmallScreens);
         }
     },
@@ -188,7 +187,6 @@ LayoutBuilderAddRow.prototype = {
 
         rowOption = A.Node.create(TPL_ADD_ROW_CHOOSE_ROW);
         rowOption.setData('numberOfCols', 1);
-        rowOption.setStyle('width', '100%');
         rowOption.set('text', 'Add Row');
 
         rowArea.append(rowOption);
@@ -229,6 +227,7 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     _onMouseClickAddRowEvent: function(event) {
+        console.log('aqui');
         this._addRow(event.target);
         this._setAddRowAreaPosition();
     },
@@ -240,7 +239,7 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     _removeAddRowTemplate: function() {
-        this._addRowArea.remove();
+        this.addRowArea.remove();
         this._addRowAreaForSmallScreens.remove();
     },
 
@@ -255,8 +254,8 @@ LayoutBuilderAddRow.prototype = {
             bodyBottom = this._bodyNode.scrollInfo.getScrollInfo().scrollBottom,
             layoutContainerBottom = this._layoutContainer.get('region').bottom;
 
-        if (this._addRowArea.get('parentNode')) {
-            addRowArea = this._addRowArea;
+        if (this.addRowArea.get('parentNode')) {
+            addRowArea = this.addRowArea;
         }
         else {
             addRowArea = this._addRowAreaForSmallScreens;

@@ -428,9 +428,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * Adds a new page break to `layout`.
      *
      * @method _onClickAddPageBreak
+     * @param {EventFacade} event
      * @protected
      */
-    _onClickAddPageBreak: function () {
+    _onClickAddPageBreak: function (event) {
+        event.stopPropagation();
+
         var newRowIndex = this.get('layout').get('rows').length,
             row;
 

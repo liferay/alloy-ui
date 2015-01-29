@@ -4,6 +4,7 @@
     float: left;
     height: 50px;
     text-align: center;
+    width: 100%;
 }
 
 .layout-builder-add-row-area {

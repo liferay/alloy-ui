@@ -67,6 +67,39 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             }
         },
 
+        'should put add page break in the same container of add row button': function() {
+            var layout;
+
+            this._createFormBuilder({
+                mode: Y.FormBuilder.MODES.LAYOUT
+            });
+
+            layout = this._formBuilder.get('layout');
+            Y.Assert.areEqual(2, Y.one('.layout-builder-add-row-area').get('children').size());
+
+            if (Y.UA.ie === 8) {
+                // Can't simulate a resize on IE8's window object, so
+                // calling the function directly here.
+                layout._handleResponsive(Y.one(Y.config.win).get('innerWidth'));
+            }
+            else {
+                // 500 is lower than responsive breakpoint
+                Y.one(Y.config.win).set('innerWidth', 500);
+                Y.one(Y.config.win).simulate('resize');
+            }
+
+            this.wait(function() {
+                Y.Assert.isNull(Y.one('.layout-builder-add-row-area'));
+
+                Y.one(Y.config.win).set('innerWidth', this._originalWidth);
+                Y.one(Y.config.win).simulate('resize');
+
+                this.wait(function() {
+                    Y.Assert.areEqual(2, Y.one('.layout-builder-add-row-area').get('children').size());
+                }, Y.config.windowResizeDelay || 100);
+            }, Y.config.windowResizeDelay || 100);
+        },
+
         'should the row height adjust on form builder mode change': function() {
             var height;
 
