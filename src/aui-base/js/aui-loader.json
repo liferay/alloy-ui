@@ -351,8 +351,7 @@
             "datatable-base",
             "event-key",
             "aui-event-base"
-        ],
-        "skinnable": true
+        ]
     },
     "aui-datatable-cell-editor-support": {
         "requires": [

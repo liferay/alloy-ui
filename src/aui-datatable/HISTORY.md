@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1839](https://issues.liferay.com/browse/AUI-1839) Update AUI Datatable CSS from overriding bootstrap table CSS.
 * [AUI-1769](https://issues.liferay.com/browse/AUI-1769) Fix datatable celleditor checkbox / radio position.
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
