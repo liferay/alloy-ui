@@ -272,8 +272,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "datatable-base",
             "event-key",
             "aui-event-base"
-        ],
-        "skinnable": true
+        ]
     },
     "aui-datatable-cell-editor-support": {
         "requires": [
@@ -1454,4 +1453,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '725170d165cc919f15155e4a37cd34a7';
+YUI.Env[Y.version].md5 = '371a234d5de3f7a4b548b3fe6cb5b272';
