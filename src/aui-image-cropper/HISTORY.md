@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1837](https://issues.liferay.com/browse/AUI-1837) Image cropper does not work correctly when image is centered
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
