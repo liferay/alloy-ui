@@ -79,7 +79,9 @@ YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-f
 
     var fieldScale = new Y.FormFieldScale({
         help: 'Slide the circle between the given range',
-        title: 'How would you rate it from 0 to 10?'
+        title: 'How would you rate it from 0 to 10?',
+        range: [0, 10],
+        value: 5
     });
     Y.one('#fieldScale').append(fieldScale.get('content'));
 

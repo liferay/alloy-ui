@@ -1,19 +1,46 @@
+.form-field-scale-input-lower-value {
+    float: left;
+}
+
+.form-field-scale-input-higher-value {
+    float: right;
+}
+
+.form-field-scale-rail {
+    background-color: #d3d3d3;
+    border: 1px solid #d3d3d3;
+    border-radius: 10px;
+    height: 10px;
+}
+
 .form-field-scale-range {
     height: 50px;
     line-height: 50px;
 }
 
-.form-field-scale-input {
-    background: url(slider.png) no-repeat scroll center center transparent;
-    background-size: contain;
-    float: left;
-    height: 100%;
-    margin-top: 2px;
-    max-width: 80%;
-    width: 300px;
+.form-field-scale-slider {
+    position: relative;
 }
 
-.form-field-scale-input-higher-value,
-.form-field-scale-input-lower-value {
-    float: left;
+.form-field-scale-thumb {
+    border-radius: 50%;
+    background-color: white;
+    border: 1px solid #d3d3d3;
+    cursor: move;
+    display: block;
+    height: 30px;
+    position: absolute;
+    top: -11px;
+    width: 30px;
+    margin-left: -15px;
+}
+
+.form-field-scale-thumb p {
+    text-align: center;
+    margin-top: -11px;
+}
+
+.form-field-scale-thumb-tooltip {
+    top: -33px;
+    left: 3px;
 }

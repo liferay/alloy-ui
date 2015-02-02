@@ -37,7 +37,9 @@
 
     "aui-form-field-scale": {
         "requires": [
-            "aui-form-field-required"
+            "aui-form-field-required",
+            "dd-constrain",
+            "dd-proxy"
         ],
         "skinnable": true
     },
