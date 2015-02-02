@@ -9,7 +9,8 @@ var SELECTOR = A.Selector,
     CSS_BOOTSTRAP_SR_ONLY = A.getClassName('sr-only'),
     CSS_HIDE = A.getClassName('hide'),
     REGEX_HIDDEN_CLASSNAMES = new RegExp(CSS_HIDE),
-    REGEX_SR_ONLY_CLASSNAMES = new RegExp(CSS_BOOTSTRAP_SR_ONLY);
+    REGEX_SR_ONLY_CLASSNAMES = new RegExp(CSS_BOOTSTRAP_SR_ONLY),
+    REGEX_CLIP_RECT_ZERO = new RegExp(/rect\((0(,|px| |)(,|, | |)){4}\)/i);
 
 SELECTOR._isNodeHidden = function(node) {
     var width = node.offsetWidth;
@@ -30,7 +31,7 @@ SELECTOR._isNodeHidden = function(node) {
     }
 
     hidden = hidden || (nodeStyle.display === 'none' || nodeStyle.visibility === 'hidden') ||
-        (nodeStyle.position === 'absolute' && (nodeStyle.clip === 'rect(0px 0px 0px 0px)' || nodeStyle.clip === 'rect(0px,0px,0px,0px)')) ||
+        (nodeStyle.position === 'absolute' && REGEX_CLIP_RECT_ZERO.test(nodeStyle.clip)) ||
         REGEX_HIDDEN_CLASSNAMES.test(className) || REGEX_SR_ONLY_CLASSNAMES.test(className);
 
     return hidden;
