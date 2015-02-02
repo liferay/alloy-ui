@@ -98,3 +98,8 @@
     text-align: center;
     width: 49%;
 }
+
+.layout-builder-add-row-area-fixed .form-builder-page-break-row-collapsed {
+    height: auto;
+    padding: 0;
+}

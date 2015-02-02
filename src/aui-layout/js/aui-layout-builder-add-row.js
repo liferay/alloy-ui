@@ -11,8 +11,8 @@ var CSS_ADD_ROW = A.getClassName('layout', 'builder', 'add', 'row'),
     CSS_ADD_ROW_AREA_FIXED = A.getClassName('layout', 'builder', 'add', 'row', 'area', 'fixed'),
     CSS_ADD_ROW_CHOOSE_ROW = A.getClassName('layout', 'builder', 'add', 'row', 'choose', 'row'),
 
-    TPL_ADD_ROW_AREA = '<div class="' + [CSS_ADD_ROW_AREA, CSS_ADD_ROW_AREA_FIXED, CSS_ADD_ROW].join(' ') + '"></div>',
-    TPL_ADD_ROW_CHOOSE_ROW = '<div class="' + CSS_ADD_ROW_CHOOSE_ROW + '" tabindex="6"></div>',
+    TPL_ADD_ROW_AREA = '<div class="' + [CSS_ADD_ROW_AREA, CSS_ADD_ROW_AREA_FIXED].join(' ') + '"></div>',
+    TPL_ADD_ROW_CHOOSE_ROW = '<div class="' + CSS_ADD_ROW_CHOOSE_ROW + ' ' + CSS_ADD_ROW + '" tabindex="6"></div>',
     TPL_ADD_ROW_SMALL_SCREEN_SIZE = '<div class="' + [CSS_ADD_ROW, CSS_ADD_ROW_SMALL_SCREEN_AREA].join(' ') +
         '" tabindex="6"><div class="' + CSS_ADD_ROW_SMALL_SCREEN + '"></div><div>Add Row</div></div>';
 
@@ -227,7 +227,6 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     _onMouseClickAddRowEvent: function(event) {
-        console.log('aqui');
         this._addRow(event.target);
         this._setAddRowAreaPosition();
     },

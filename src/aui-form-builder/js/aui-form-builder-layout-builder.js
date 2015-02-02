@@ -18,7 +18,6 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode'),
     CSS_PAGE_BREAK_ROW_COLLAPSED = A.getClassName('form', 'builder', 'page', 'break', 'row', 'collapsed'),
 
-    SELECTOR_LAYOUT_BUILDER_ADD_ROW_AREA = '.layout-builder-add-row-area',
     SELECTOR_LAYOUT_BUILDER_ADD_ROW_CHOOSE_ROW = '.layout-builder-add-row-choose-row';
 
 /**
@@ -331,7 +330,7 @@ A.FormBuilderLayoutBuilder.prototype = {
         addPageBreakButton = contentBox.one('.' + CSS_ADD_PAGE_BREAK);
         addRowContainer = this._layoutBuilder.addRowArea;
 
-        if (addRowContainer && isColumnMode) {
+        if (isColumnMode) {
             this._collapseAddPageBreakButton(addPageBreakButton, addRowContainer);
         }
         else {
