@@ -106,13 +106,22 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
         },
 
         'should hide modal when close button is clicked': function() {
-            var node;
+            var header,
+                node;
 
             this._modal.show(new Y.FormBuilderFieldText(), 'Text');
 
             node = Y.one('.form-builder-field-settings');
             node.one('.close').simulate('mousemove');
             node.one('.close').simulate('click');
+            Y.Assert.areEqual('none', node.getStyle('display'));
+
+            this._modal.show(new Y.FormBuilderFieldText(), 'Text');
+            Y.Assert.areEqual('block', node.getStyle('display'));
+
+            header = Y.one('.form-builder-field-settings-small-screen-header');
+            header.one('.form-builder-field-settings-small-screen-header-close').simulate('mousemove');
+            header.one('.form-builder-field-settings-small-screen-header-close').simulate('click');
             Y.Assert.areEqual('none', node.getStyle('display'));
         },
 
@@ -146,16 +155,29 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
 
         'should save modal when save button is clicked': function() {
             var field = new Y.FormBuilderFieldText(),
+                header,
                 node;
 
             this._modal.show(field, 'Text');
 
             node = Y.one('.form-builder-field-settings');
+            header = Y.one('.form-builder-field-settings-small-screen-header');
+
             this._simulateInputChange(node.one('input'), 'My Title', function() {
                 node.one('.form-builder-field-settings-save').simulate('mousemove');
                 node.one('.form-builder-field-settings-save').simulate('click');
 
                 Y.Assert.areEqual('My Title', field.get('title'));
+                Y.Assert.areEqual('none', node.getStyle('display'));
+            });
+
+            this._modal.show(field, 'Text');
+
+            this._simulateInputChange(node.one('input'), 'My Title 2', function() {
+                node.one('.form-builder-field-settings-small-screen-header-check').simulate('mousemove');
+                node.one('.form-builder-field-settings-small-screen-header-check').simulate('click');
+
+                Y.Assert.areEqual('My Title 2', field.get('title'));
                 Y.Assert.areEqual('none', node.getStyle('display'));
             });
         },
