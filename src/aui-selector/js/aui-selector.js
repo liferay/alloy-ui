@@ -8,9 +8,9 @@ var SELECTOR = A.Selector,
 
     CSS_BOOTSTRAP_SR_ONLY = A.getClassName('sr-only'),
     CSS_HIDE = A.getClassName('hide'),
+    REGEX_CLIP_RECT_ZERO = new RegExp(/rect\((0(px)?(,)?(\s)?){4}\)/i),
     REGEX_HIDDEN_CLASSNAMES = new RegExp(CSS_HIDE),
-    REGEX_SR_ONLY_CLASSNAMES = new RegExp(CSS_BOOTSTRAP_SR_ONLY),
-    REGEX_CLIP_RECT_ZERO = new RegExp(/rect\((0(,|px| |)(,|, | |)){4}\)/i);
+    REGEX_SR_ONLY_CLASSNAMES = new RegExp(CSS_BOOTSTRAP_SR_ONLY);
 
 SELECTOR._isNodeHidden = function(node) {
     var width = node.offsetWidth;
