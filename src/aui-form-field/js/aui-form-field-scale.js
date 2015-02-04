@@ -65,36 +65,13 @@ A.FormFieldScale = A.Base.create('form-field-scale', A.FormField, [A.FormFieldRe
         var content = this.get('content');
 
         A.FormFieldScale.superclass.renderUI.call(this);
-        
+
         content.addClass(CSS_FIELD_SCALE);
 
         this._uiSetRange(this.get('range'));
         this._uiSetValue(this.get('value'));
 
         this._renderDrag();
-    },
-
-    /**
-     * Fired when the `drag:start` event is triggered.
-     *
-     * @method _onDragStart
-     * @protected
-     */
-    _onDragStart: function(event) {
-        event.target.get('dragNode').hide();
-        this.get('content').all('.' + CSS_FIELD_SCALE_THUMB).one('p').hide();
-        this.get('content').all('.' + CSS_FIELD_SCALE_THUMB_TOOLTIP).setStyle('opacity', 1);
-    },
-
-    /**
-     * Fired when the `drag:end` event is triggered.
-     *
-     * @method _onDragEnd
-     * @protected
-     */
-    _onDragEnd: function() {
-        this.get('content').all('.' + CSS_FIELD_SCALE_THUMB).one('p').show();
-        this.get('content').all('.' + CSS_FIELD_SCALE_THUMB_TOOLTIP).setStyle('opacity', 0);
     },
 
     /**
@@ -118,20 +95,44 @@ A.FormFieldScale = A.Base.create('form-field-scale', A.FormField, [A.FormFieldRe
     },
 
     /**
-     * Sync the thumb position based on `value` attribute.
+     * Sync the thumb position by calculating the new `value` attribute.
      *
      * @method _onDrag
      * @param {EventFacade} event
      * @protected
      */
     _onDrag: function(event) {
-        var content = this.get('content'),
-            rail = content.one('.' + CSS_FIELD_SCALE_RAIL),
-            changeScale = (this.get('range')[1] - this.get('range')[0]) / rail.get('offsetWidth'),
+        var changeScale,
+            content = this.get('content'),
             lowerValue = this.get('range')[0],
+            rail = content.one('.' + CSS_FIELD_SCALE_RAIL),
             thumbX = (event.pageX - rail.getX());
 
+        changeScale = (this.get('range')[1] - this.get('range')[0]) / rail.get('offsetWidth');
         this.set('value', Math.round(thumbX * changeScale) + lowerValue);
+    },
+
+    /**
+     * Fired when the `drag:end` event is triggered.
+     *
+     * @method _onDragEnd
+     * @protected
+     */
+    _onDragEnd: function() {
+        this.get('content').all('.' + CSS_FIELD_SCALE_THUMB).one('p').show();
+        this.get('content').all('.' + CSS_FIELD_SCALE_THUMB_TOOLTIP).setStyle('opacity', 0);
+    },
+
+    /**
+     * Fired when the `drag:start` event is triggered.
+     *
+     * @method _onDragStart
+     * @protected
+     */
+    _onDragStart: function(event) {
+        event.target.get('dragNode').hide();
+        this.get('content').all('.' + CSS_FIELD_SCALE_THUMB).one('p').hide();
+        this.get('content').all('.' + CSS_FIELD_SCALE_THUMB_TOOLTIP).setStyle('opacity', 1);
     },
 
     /**
