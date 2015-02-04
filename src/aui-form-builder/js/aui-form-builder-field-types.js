@@ -166,8 +166,7 @@ A.FormBuilderFieldTypes.prototype = {
     _bindFieldTypesModalEvents: function() {
         this._eventHandles.push(
             this._fieldTypesPanel.delegate('click', this._onClickFieldType, '.' + CSS_FIELD_TYPE, this),
-            this._fieldTypesPanel.delegate('key', A.bind(this._onKeyPressFieldType, this), 'enter', '.' + CSS_FIELD_TYPE),
-            A.getDoc().on('key', this._onEscKey, 'esc', this)
+            this._fieldTypesPanel.delegate('key', A.bind(this._onKeyPressFieldType, this), 'enter', '.' + CSS_FIELD_TYPE)
         );
     },
 
