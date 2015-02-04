@@ -68,8 +68,8 @@ YUI.add('aui-image-cropper-tests', function(Y) {
         'assert image cropper works correctly when image is centered': function() {
             this.imageCropper.render();
 
-            var imageNode = this.imageCropper.get('srcNode'),
-                cropNode = this.imageCropper.cropNode,
+            var cropNode = this.imageCropper.cropNode,
+                imageNode = this.imageCropper.get('srcNode'),
                 inRegion = imageNode.intersect(cropNode).inRegion;
 
             Y.Assert.isTrue(inRegion);
