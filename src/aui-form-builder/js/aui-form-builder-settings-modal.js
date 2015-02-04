@@ -43,7 +43,7 @@ var CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
  * @constructor
  */
 A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base, [], {
-    TPL_SMALL_SCREEN_HEADER: '<div class="visible-xs ' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER + '">' + 
+    TPL_SMALL_SCREEN_HEADER: '<div class="visible-xs ' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER + '">' +
         '<button class="close ' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CLOSE + '" type="button">' +
         '<span class="glyphicon glyphicon-remove"></span></button>' +
         '<p></p>' +
@@ -133,7 +133,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
             cssClass: CSS_FIELD_SETTINGS,
             draggable: false,
             modal: true,
-            headerContent: '<div class="hidden-xs ' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
+            headerContent: '<div class="' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
             resizable: false,
             zIndex: 2
         }).render();
