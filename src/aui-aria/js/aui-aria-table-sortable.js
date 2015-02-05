@@ -214,10 +214,12 @@ TableSortable.prototype = {
      */
     _afterSort: function(event) {
         var instance = this,
-            sortBy = event.sortBy[0],
-            columnName = A.Object.keys(sortBy)[0],
-            ascending = (A.Object.values(sortBy)[0] > 0);
+            ascending,
+            columnName,
+            sortBy = event.sortBy[0];
 
+        columnName = A.Object.keys(sortBy)[0];
+        ascending = (A.Object.values(sortBy)[0] > 0);
         instance.syncCaption(columnName, ascending);
     },
 
