@@ -25,9 +25,10 @@ var CSS_CAPTION = A.getClassName('image', 'viewer', 'caption'),
  * Check the [live demo](http://alloyui.com/examples/image-viewer/).
  *
  * @class A.ImageViewer
- * @extends Widget
- * @uses WidgetStdMod, WidgetPosition, WidgetStack, WidgetPositionAlign,
- *     WidgetPositionConstrain, WidgetModality
+ * @extends A.ImageViewerBase
+ * @uses A.ImageViewerSlideshow, A.WidgetCssClass, WidgetStdMod, A.WidgetToggle,
+ *   WidgetPosition, WidgetStack, WidgetPositionAlign, WidgetPositionConstrain,
+ *   WidgetModality
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor

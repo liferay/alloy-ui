@@ -28,6 +28,7 @@ var CSS_CONTENT = A.getClassName('image', 'viewer', 'base', 'node', 'content'),
  *
  * @class A.ImageViewerBase
  * @extends A.Widget
+ * @uses A.WidgetResponsive
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
