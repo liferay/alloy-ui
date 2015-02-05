@@ -42,14 +42,17 @@ YUI.add('aui-image-cropper-tests', function(Y) {
 
             var bottomRightHandle = Y.one('.yui3-resize-handle-br'),
                 simulationEvent = 'mousedown',
+                simulationEndEvent = 'mouseup',
                 test = this;
 
             if (IE) {
                 if (IE === 10) {
                     simulationEvent = 'MSPointerDown';
+                    simulationEndEvent = 'MSPointerUp';
                 }
                 else if (IE > 10) {
                     simulationEvent = 'pointerdown';
+                    simulationEndEvent = 'pointerup';
                 }
             }
 
@@ -58,6 +61,8 @@ YUI.add('aui-image-cropper-tests', function(Y) {
             setTimeout(function() {
                 test.resume(function() {
                     Y.Assert.isFalse(this.imageCropper._isDragging(), 'Image should not be dragging');
+
+                    bottomRightHandle.simulate(simulationEndEvent);
                 });
             }, 2500);
 
@@ -76,13 +81,18 @@ YUI.add('aui-image-cropper-tests', function(Y) {
         },
 
         'assert cropNode dimensions are correct when image is hidden when rendered': function() {
-            var imageWrapper = Y.one('#imageWrapper');
+            var imageWrapper = Y.one('#imageWrapper'),
+                hideClass = 'hide';
 
-            imageWrapper.addClass('hide');
+            if (IE && IE < 9) {
+                hideClass = 'sr-only';
+            }
+
+            imageWrapper.addClass(hideClass);
 
             this.imageCropper.render();
 
-            imageWrapper.removeClass('hide');
+            imageWrapper.removeClass(hideClass);
 
             var cropNode = this.imageCropper.cropNode;
 
