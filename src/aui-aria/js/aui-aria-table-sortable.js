@@ -148,7 +148,7 @@ TableSortable.ATTRS = {
         valueFn: function() {
             return this.get('host').get('boundingBox').one('table');
         },
-        writeOnce: true,
+        writeOnce: true
     }
 };
 
@@ -245,7 +245,7 @@ TableSortable.prototype = {
     },
 
     /**
-     * Toggles the screen reader css class.
+     * Toggles the screen reader CSS class.
      *
      * @method _toggleScreenReaderClass
      * @protected

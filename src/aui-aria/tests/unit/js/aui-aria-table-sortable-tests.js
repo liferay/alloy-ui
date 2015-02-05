@@ -44,9 +44,9 @@ YUI.add('aui-aria-tests', function(Y) {
 
         'Caption can be toggled visible': function() {
             var ariaPlugin = this.dataTable.aria,
-                screenReaderClass = ariaPlugin.get('screenReaderClass'),
                 captionNode = ariaPlugin.get('captionNode'),
-                captionVisible = ariaPlugin.get('captionVisible');
+                captionVisible = ariaPlugin.get('captionVisible'),
+                screenReaderClass = ariaPlugin.get('screenReaderClass');
 
             ariaPlugin.set('captionVisible', !captionVisible);
 
