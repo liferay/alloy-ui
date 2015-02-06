@@ -307,6 +307,25 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
             });
         },
 
+        'should toggle advanced edited settings': function() {
+            var container = Y.one('#container');
+
+            this._field = new TestField({
+                name1: 'Name',
+                name2: 'Name2'
+            });
+
+            this._field.renderSettingsPanel(container);
+
+            Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-expanded'));
+
+            Y.one('.form-builder-field-settings-panel-advanced-button').simulate('click');
+            Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-collapsed'));
+
+            Y.one('.form-builder-field-settings-panel-advanced-button').simulate('click');
+            Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-expanded'));
+        },
+
         'should render nested fields move targets': function() {
             this._field = new TestField({
                 nestedFields: [new TestField(), new TestField()]
@@ -319,6 +338,26 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             this._field.set('nestedFields', []);
             Y.Assert.areEqual(1, this._field.get('content').all('.form-builder-field-move-target').size());
+        },
+
+        'should collapse advanced content after function collapseModalContent be called': function() {
+            var container = Y.one('#container');
+
+            this._field = new TestField({
+                name1: 'Name',
+                name2: 'Name2'
+            });
+
+            Y.Assert.areEqual('Name', this._field.get('name1'));
+
+            this._field.renderSettingsPanel(container);
+
+            this._field.collapseModalContent();
+
+            this.wait(function() {
+                Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-collapsed'));
+            }, 500);
+
         }
     }));
 

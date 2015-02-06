@@ -45,6 +45,21 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
             Y.Assert.areNotEqual('none', node.getStyle('display'));
         },
 
+        'should toggle modal components on toggle content': function() {
+            this._modal.show(new Y.FormBuilderFieldText(), 'Text');
+
+            Y.Assert.isTrue(Y.one('.form-builder-field-settings-small-screen-header-back').hasClass('hide'));
+            Y.Assert.isFalse(Y.one('.form-builder-field-settings-small-screen-header-close').hasClass('hide'));
+
+            Y.one('.form-builder-field-settings-panel-advanced-button').simulate('click');
+            Y.Assert.isFalse(Y.one('.form-builder-field-settings-small-screen-header-back').hasClass('hide'));
+            Y.Assert.isTrue(Y.one('.form-builder-field-settings-small-screen-header-close').hasClass('hidden'));
+
+            Y.one('.form-builder-field-settings-small-screen-header-back').simulate('click');
+            Y.Assert.isTrue(Y.one('.form-builder-field-settings-small-screen-header-back').hasClass('hide'));
+            Y.Assert.isFalse(Y.one('.form-builder-field-settings-small-screen-header-close').hasClass('hide'));
+        },
+
         'should not create multiple modals with multiple calls to "show"': function() {
             this._modal.show(new Y.FormBuilderFieldText(), 'Text');
             this._modal.show(new Y.FormBuilderFieldText(), 'Text');

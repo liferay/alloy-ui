@@ -21,11 +21,11 @@
 }
 
 .form-builder-field-settings-small-screen-header-check {
-    float: left;
-    margin: -30px 0px 0px 5px;
+    float: right;
+    margin: -30px 5px;
 }
 
-.form-builder-field-settings-small-screen-header-close {
-    float: right;
-    margin: 9px 5px;
+.form-builder-field-settings-small-screen-header-left {
+    float: left;
+    margin: 9px 0px 0px 5px;
 }

@@ -53,3 +53,9 @@
         border-bottom: none;
     }
 }
+
+.form-builder-field-settings-panel-advanced-button {
+    background-color: #C0C0C0;
+    display: block;
+    width: 100%;
+}

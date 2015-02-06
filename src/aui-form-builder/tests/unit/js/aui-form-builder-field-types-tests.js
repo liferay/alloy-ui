@@ -235,6 +235,7 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
                 method: 'fieldClass'
             });
             mock.fieldClass.prototype.renderSettingsPanel = function() {};
+            mock.fieldClass.prototype.on = function() {};
 
             this.createFormBuilder({
                 fieldTypes: [{
@@ -259,6 +260,7 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
                 method: 'fieldClass'
             });
             mock.fieldClass.prototype.renderSettingsPanel = function() {};
+            mock.fieldClass.prototype.on = function() {};
 
             this.createFormBuilder({
                 fieldTypes: [{
