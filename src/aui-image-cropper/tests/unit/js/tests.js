@@ -81,8 +81,8 @@ YUI.add('aui-image-cropper-tests', function(Y) {
         },
 
         'assert cropNode dimensions are correct when image is hidden when rendered': function() {
-            var imageWrapper = Y.one('#imageWrapper'),
-                hideClass = 'hide';
+            var hideClass = 'hide',
+                imageWrapper = Y.one('#imageWrapper');
 
             if (IE && IE < 9) {
                 hideClass = 'sr-only';
