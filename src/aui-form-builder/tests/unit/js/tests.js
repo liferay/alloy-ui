@@ -786,6 +786,70 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this.createFormBuilder(config);
             Y.Assert.isTrue(Y.instanceOf(this._formBuilder.get('layout'), Y.Layout));
+        },
+
+        'should fire create event after a new field has been created': function() {
+            var created = false,
+                field;
+
+            this.createFormBuilder();
+            this._formBuilder.on('create', function (event) {
+                field = event.field;
+                created = true;
+            });
+
+            this._clickCreateNewField();
+            Y.Assert.isFalse(created);
+
+            this._clickFieldType();
+            Y.Assert.isFalse(created);
+
+            this._clickFieldSettingsSaveButton();
+            Y.Assert.isTrue(created);
+
+            Y.Assert.areEqual(Y.one('.form-builder-field').getData('field-instance'), field);
+        },
+
+        'should fire edit event after a field has been edited': function() {
+            var edited = false,
+                field,
+                settingsPane;
+
+            this.createFormBuilder();
+            this._formBuilder.on('edit', function (event) {
+                Y.Assert.areEqual(field, event.field);
+                edited = true;
+            });
+
+            field = Y.one('.form-builder-field-nested .form-builder-field').getData('field-instance');
+            this._formBuilder.editField(field);
+            Y.Assert.isFalse(edited);
+
+            settingsPane = Y.one('.form-builder-field-settings');
+            settingsPane.all('.radio-group-data-editor-button').item(1).simulate('click');
+
+            Y.Assert.isFalse(edited);
+
+            this._clickFieldSettingsSaveButton();
+            Y.Assert.isTrue(edited);
+        },
+
+        'should fire remove event after a field has been removed': function() {
+            var col,
+                field,
+                removed = false;
+
+            this.createFormBuilder();
+            this._formBuilder.on('remove', function (event) {
+                Y.Assert.areEqual(field, event.field);
+                removed = true;
+            });
+
+            field = Y.one('.form-builder-field').getData('field-instance');
+            col = field.get('content').ancestor('.col').getData('layout-col');
+
+            this._formBuilder.removeField(field);
+            Y.Assert.isTrue(removed);
         }
     }));
 

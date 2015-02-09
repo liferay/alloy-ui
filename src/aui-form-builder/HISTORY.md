@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1844](https://issues.liferay.com/browse/AUI-1844) Trigger events for field creation/removal/edition
 * [AUI-1877](https://issues.liferay.com/browse/AUI-1877) Move some form builder fields to Liferay Portal
 * [AUI-1859](https://issues.liferay.com/browse/AUI-1859) User shouldn't be able to move a field inside another with movableContent false
 * [AUI-1858](https://issues.liferay.com/browse/AUI-1858) FormBuilder should be able to receive layout as a configuration object

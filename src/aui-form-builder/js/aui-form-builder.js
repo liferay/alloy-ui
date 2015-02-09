@@ -210,6 +210,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
             parentField,
             nestedFieldsNode = field.get('content').ancestor('.form-builder-field-nested');
 
+        this._handleRemoveEvent(field);
+
         if (nestedFieldsNode) {
             parentField = nestedFieldsNode.ancestor('.form-builder-field').getData('field-instance');
             parentField.removeNestedField(field);
@@ -269,12 +271,15 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * Fired when the field settings modal is saved.
      *
      * @method _afterFieldSettingsModalSave
+     * @param {EventFacade} event
      * @protected
      */
     _afterFieldSettingsModalSave: function(event) {
         var field = event.field;
 
         if (this._newFieldContainer) {
+            this._handleCreateEvent(field);
+
             if (A.instanceOf(this._newFieldContainer, A.LayoutCol)) {
                 this._newFieldContainer.set('value', field);
             }
@@ -288,6 +293,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
             this._newFieldContainer = null;
         }
         else {
+            this._handleEditEvent(field);
             this.get('layout').normalizeColsHeight(new A.NodeList(field.get('content').ancestor('.layout-row')));
         }
 
@@ -392,6 +398,45 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      */
     _getNumberOfPageBreaks: function() {
         return this.get('contentBox').all('.' + CSS_PAGE_BREAK_ROW).size();
+    },
+
+    /**
+     * Fire event of create a field.
+     *
+     * @method _handleCreateEvent
+     * @param {A.FormBuilderFieldBase} field
+     * @protected
+     */
+    _handleCreateEvent: function(field) {
+        this.fire('create', {
+            field: field
+        });
+    },
+
+    /**
+     * Fire event of edit a field.
+     *
+     * @method _handleEditEvent
+     * @param {A.FormBuilderFieldBase} field
+     * @protected
+     */
+    _handleEditEvent: function(field) {
+        this.fire('edit', {
+            field: field
+        });
+    },
+
+    /**
+     * Fire event of remove a field.
+     *
+     * @method _handleRemoveEvent
+     * @param {A.FormBuilderFieldBase} field
+     * @protected
+     */
+    _handleRemoveEvent: function(field) {
+        this.fire('remove', {
+            field: field
+        });
     },
 
     /**
