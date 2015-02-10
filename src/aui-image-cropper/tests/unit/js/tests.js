@@ -108,8 +108,8 @@ YUI.add('aui-image-cropper-tests', function(Y) {
                 image = imageCropper.get('srcNode');
 
             image.setStyles({
-                maxWidth: 400,
-                maxHeight: 400
+                maxHeight: 400,
+                maxWidth: 400
             });
 
             imageCropper.render();
