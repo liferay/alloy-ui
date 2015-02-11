@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1849](https://issues.liferay.com/browse/AUI-1849) XSS issue in AUI Diagram Builder node label
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
