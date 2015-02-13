@@ -104,9 +104,11 @@ YUI.add('aui-image-cropper-tests', function(Y) {
         },
 
         'assert image cropping is accurate when image node has max-height or max-width': function() {
-            var imageCropper = this.imageCropper,
-                image = imageCropper.get('srcNode');
+            var backgroundSize,
+                image,
+                imageCropper = this.imageCropper;
 
+            image = imageCropper.get('srcNode');
             image.setStyles({
                 maxHeight: 400,
                 maxWidth: 400
@@ -114,7 +116,7 @@ YUI.add('aui-image-cropper-tests', function(Y) {
 
             imageCropper.render();
 
-            var backgroundSize = imageCropper.cropNode.getComputedStyle('backgroundSize');
+            backgroundSize = imageCropper.cropNode.getComputedStyle('backgroundSize');
 
             Y.Assert.areSame(backgroundSize, image.outerWidth() + 'px ' + image.outerHeight() + 'px');
         }
