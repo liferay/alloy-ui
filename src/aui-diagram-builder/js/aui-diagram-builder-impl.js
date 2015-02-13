@@ -2654,7 +2654,7 @@ var DiagramNode = A.Component.create({
 
             instance.labelNode = A.Node.create(
                 Lang.sub(instance.LABEL_TEMPLATE, {
-                    label: instance.get('name')
+                    label: A.Escape.html(instance.get('name'))
                 })
             );
 
