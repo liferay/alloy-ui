@@ -11,7 +11,7 @@
     <h1>AlloyUI - Datatable</h1>
     <div id="simple" class="table-striped"></div>
     <script>
-    YUI({ filter: 'raw' }).use('aui-datatable', 'datatable-scroll', function(Y) {
+    YUI({ filter: 'raw' }).use('aui-datatable', 'aui-aria', 'aui-aria-table-sortable', 'datatable-scroll', function(Y) {
 
         var data = [
             { name: 'Joan B. Jones', address: '3271 Another Ave', city: 'New York', state: 'AL', amount: 3, active: 'no', colors: ['red','blue'], fruit: ['apple'], date: '2013-01-01' },
@@ -20,7 +20,7 @@
             { name: 'Joan E. Jones', address: '3217 Another Ave', city: 'New York', state: 'KY', amount: 3, active: 'no', colors: ['red','blue'], fruit: ['apple','cherry'], date: '2013-01-06' }
         ];
 
-        new Y.DataTable({
+        var dataTable = new Y.DataTable({
             cssClass: 'table-striped',
             boundingBox: '#simple',
             columns: [
@@ -128,6 +128,9 @@
             width: '100%'
         }).render();
 
+        dataTable.plug(Y.Plugin.Aria, {
+            tableNode: dataTable._tableNode
+        });
     });
     </script>
 </body>

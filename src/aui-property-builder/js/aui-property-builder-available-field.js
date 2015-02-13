@@ -301,7 +301,7 @@ PropertyBuilderAvailableField = A.Component.create({
             var instance = this;
 
             instance.get('node').attr('title', val);
-            instance.labelNode.setContent(val);
+            instance.labelNode.setContent(A.Escape.html(val));
         }
     }
 });

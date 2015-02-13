@@ -38,7 +38,8 @@ var Lang = A.Lang,
  * Check the [live demo](http://alloyui.com/examples/carousel/).
  *
  * @class A.Carousel
- * @extends A.Component
+ * @extends A.ImageViewerBase
+ * @uses A.ImageViewerSlideshow
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
