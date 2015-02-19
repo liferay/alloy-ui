@@ -1,6 +1,8 @@
 YUI.add('module-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-scheduler');
+    var DateMath = Y.DataType.DateMath;
+
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
 
@@ -77,11 +79,45 @@ YUI.add('module-tests', function(Y) {
                 recorder.popover.get('visible'),
                 'Popover should be visible when event is clicked in agenda view'
             );
+        },
+
+        'should display the first week of an event in month view': function() {
+            // Second Wednesday
+            var startDate = new Date(2013, 11, 11, 12, 1);
+
+            this._createScheduler({
+                activeView: this._monthView,
+                items: [
+                    {
+                        color: '#8D8',
+                        content: 'Many days',
+                        endDate: DateMath.add(startDate, DateMath.MONTH, 3),
+                        startDate: startDate
+                    }
+                ]
+            });
+
+            var rows = Y.all('.scheduler-view-table-row');
+
+            Y.Assert.areEqual(
+                0, rows.item(0).all('.scheduler-event').size(),
+                'There should be no event in the first row'
+            );
+
+            Y.Assert.areEqual(
+                1, rows.item(1).all('.scheduler-event').size(),
+                'There should be one event in the second row'
+            );
+
+            Y.Assert.areEqual(
+                1, rows.item(2).all('.scheduler-event').size(),
+                'There should be one event in the third row'
+            );
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['node-event-simulate', 'test', 'aui-scheduler']
+    requires: ['node-event-simulate', 'test', 'aui-scheduler', 'aui-datatype']
 });
