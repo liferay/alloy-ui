@@ -1712,7 +1712,6 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-tree-data": {
         "requires": [
-            "array-invoke",
             "aui-base-core",
             "aui-base-lang",
             "aui-node-base",
@@ -1842,4 +1841,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'b3e73962f3310909806b0d282506f51e';
+YUI.Env[Y.version].md5 = '531ec494e787b41a516116c29368112d';

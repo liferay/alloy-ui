@@ -100,8 +100,6 @@ A.mix(TreeData.prototype, {
     initializer: function() {
         var instance = this;
 
-        A.Array.invoke(this.get('children'), 'addTarget', this);
-
         // binding on initializer, needed before .render() phase
         instance.publish('move');
         instance.publish('append', {
@@ -110,8 +108,6 @@ A.mix(TreeData.prototype, {
         instance.publish('remove', {
             defaultFn: instance._removeChild
         });
-
-        instance.after('childrenChange', A.bind(instance._afterChildrenChange, instance));
     },
 
     /**
@@ -460,18 +456,6 @@ A.mix(TreeData.prototype, {
         var output = instance.getEventOutputMap(node);
 
         instance.bubbleEvent('append', output, cancelBubbling);
-    },
- 
-    /**
-     * Fires after children changes.
-     *
-     * @method _afterChildrenChange
-     * @param {EventFacade} event
-     * @protected
-     */
-    _afterChildrenChange: function(event) {
-        A.Array.invoke(event.prevVal, 'removeTarget', this);
-        A.Array.invoke(event.newVal, 'addTarget', this);
     },
 
     /**

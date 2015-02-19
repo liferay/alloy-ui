@@ -1684,7 +1684,6 @@
     },
     "aui-tree-data": {
         "requires": [
-            "array-invoke",
             "aui-base-core",
             "aui-base-lang",
             "aui-node-base",
