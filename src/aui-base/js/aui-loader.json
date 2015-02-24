@@ -996,7 +996,6 @@
     },
     "aui-scheduler": {
         "use": [
-            "event-gestures",
             "aui-scheduler-base",
             "aui-scheduler-event-recorder",
             "aui-scheduler-view-agenda",
@@ -1004,8 +1003,7 @@
             "aui-scheduler-view-month",
             "aui-scheduler-view-table-dd",
             "aui-scheduler-view-table",
-            "aui-scheduler-view-week",
-            "aui-viewport"
+            "aui-scheduler-view-week"
         ]
     },
     "aui-scheduler-base": {
@@ -1029,18 +1027,6 @@
             "overlay",
             "aui-scheduler-base",
             "aui-popover"
-        ],
-        "skinnable": true
-    },
-    "aui-scheduler-touch": {
-        "condition": {
-            "name": "aui-scheduler-touch",
-            "trigger": "aui-scheduler",
-            "ua": "touchEnabled"
-        },
-        "requires": [
-            "base-build",
-            "aui-scheduler"
         ],
         "skinnable": true
     },

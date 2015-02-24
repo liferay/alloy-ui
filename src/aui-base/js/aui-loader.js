@@ -1020,7 +1020,6 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-scheduler": {
         "use": [
-            "event-gestures",
             "aui-scheduler-base",
             "aui-scheduler-event-recorder",
             "aui-scheduler-view-agenda",
@@ -1028,8 +1027,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-scheduler-view-month",
             "aui-scheduler-view-table-dd",
             "aui-scheduler-view-table",
-            "aui-scheduler-view-week",
-            "aui-viewport"
+            "aui-scheduler-view-week"
         ]
     },
     "aui-scheduler-base": {
@@ -1053,18 +1051,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "overlay",
             "aui-scheduler-base",
             "aui-popover"
-        ],
-        "skinnable": true
-    },
-    "aui-scheduler-touch": {
-        "condition": {
-            "name": "aui-scheduler-touch",
-            "trigger": "aui-scheduler",
-            "ua": "touchEnabled"
-        },
-        "requires": [
-            "base-build",
-            "aui-scheduler"
         ],
         "skinnable": true
     },
@@ -1494,4 +1480,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '3b16a0903cc29d53551e942827b0751a';
+YUI.Env[Y.version].md5 = '61c8295230e4f1de4df2b86169983827';
