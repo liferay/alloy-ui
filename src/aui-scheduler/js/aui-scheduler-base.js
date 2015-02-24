@@ -764,7 +764,6 @@ var SchedulerBase = A.Component.create({
                         instance.setStdModContent(WidgetStdMod.BODY, _EMPTY_STR);
                     }
 
-                    instance.bodyNode.prepend(instance.viewDateNode);
                     view.render(instance.bodyNode);
                 }
             }
@@ -828,6 +827,7 @@ var SchedulerBase = A.Component.create({
 
             instance[CONTROLS_NODE].append(instance[TODAY_NODE]);
             instance[CONTROLS_NODE].append(instance[NAV_NODE]);
+            instance[CONTROLS_NODE].append(instance[VIEW_DATE_NODE]);
 
             A.Array.each(views, function(view) {
                 instance[VIEWS_NODE].append(instance._createViewTriggerNode(view));
