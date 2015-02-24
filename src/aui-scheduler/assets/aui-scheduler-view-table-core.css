@@ -49,9 +49,9 @@
     overflow: hidden;
     width: 200px;
 }
-.scheduler-view-table-content .scheduler-view-table-header-day {
+.scheduler-view-table-header-day {
     color: #abaaab;
-    text-align: right;
+    text-align: center;
 }
 .scheduler-view-table-header-table {
     table-layout: fixed;
@@ -63,15 +63,9 @@
     color: #555;
 }
 .scheduler-view-table-header-col .scheduler-view-table-header-day div {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
-    padding: 6px 2px 0 6px;
-}
-
-@media (max-width: 550px) {
-    .scheduler-view-table-header-col .scheduler-view-table-header-day div {
-        font-size: 10px;
-    }
+    padding: 6px;
 }
 .scheduler-view-table-container {
     height: 100%;
@@ -141,7 +135,7 @@
     color: #666;
     line-height: 16px;
     overflow: hidden;
-    padding: 3px 4px 0 0;
+    padding-right: 2px;
     text-align: right;
 }
 .scheduler-view-table-data-col-title-down {

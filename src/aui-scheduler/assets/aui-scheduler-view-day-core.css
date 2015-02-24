@@ -104,8 +104,8 @@
     width: 15px;
 }
 
-.scheduler-view-day .scheduler-view-day-header-day {
-    text-align: right;
+.scheduler-view-day-header-day {
+    text-align: center;
 }
 
 .view-lt480 .scheduler-view-day-header-day-weekday {
@@ -118,18 +118,16 @@
 }
 
 .scheduler-view-day-header-day a {
-    color: #ABAABA;
+    color: #555;
     display: block;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: normal;
     padding: 2px;
     text-decoration: none;
 }
 
-@media (max-width: 550px) {
-    .scheduler-view-day-header-day a {
-        font-size: 10px;
-    }
+.scheduler-view-day-header-day a .scheduler-view-day-header-day-number {
+    font-size: 20px;
 }
 
 .scheduler-view-day-header-view-label {
