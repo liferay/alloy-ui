@@ -1148,7 +1148,7 @@ var SchedulerDayView = A.Component.create({
          */
         _bindMouseEvents: function() {
             this.columnData.delegate(
-                'gesturemovestart', A.bind(this._onGestureMoveStartTableCol, this), _DOT +
+                'mousedown', A.bind(this._onMouseDownTableCol, this), _DOT +
                 CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
 
             this.columnData.delegate(
@@ -1158,17 +1158,11 @@ var SchedulerDayView = A.Component.create({
                 'mouseleave', A.bind(this._onMouseLeaveEvent, this), _DOT + CSS_SCHEDULER_EVENT);
 
             this.columnData.delegate(
-                'mouseleave', A.bind(this._onMouseLeaveEvent, this), _DOT + CSS_SCHEDULER_EVENT);
+                'mousemove', A.bind(this._onMouseMoveTableCol, this), _DOT +
+                CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY);
 
             this.columnData.delegate(
-                'gesturemove',
-                A.bind(this._onGestureMoveTableCol, this),
-                _DOT + CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY,
-                {standAlone: true}
-            );
-
-            this.columnData.delegate(
-                'gesturemoveend', A.bind(this._onGestureMoveEndTableCol, this), _DOT + CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
+                'mouseup', A.bind(this._onMouseUpTableCol, this), _DOT + CSS_SCHEDULER_VIEW_DAY_TABLE_COL);
         },
 
         /**
@@ -1405,40 +1399,13 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `gesturemoveend` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method _onGestureMoveEndTableCol
+         * @method _onMouseDownTableCol
+         * @param event
          * @protected
          */
-        _onGestureMoveEndTableCol: function() {
-            var instance = this;
-            var scheduler = instance.get(SCHEDULER);
-            var recorder = scheduler.get(EVENT_RECORDER);
-
-            if (recorder && !scheduler.get(DISABLED)) {
-                if (instance.creationStartDate) {
-                    instance.plotEvent(recorder);
-
-                    recorder.showPopover();
-                }
-            }
-
-            instance.creationStartDate = null;
-            instance.resizing = false;
-            instance.startXY = null;
-
-            instance._removeResizer();
-            instance.get(BOUNDING_BOX).selectable();
-        },
-
-        /**
-         * Handles `gestureMoveStart` events.
-         *
-         * @method _onGestureMoveStartTableCol
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onGestureMoveStartTableCol: function(event) {
+        _onMouseDownTableCol: function(event) {
             var instance = this;
             var target = event.target;
             var scheduler = instance.get(SCHEDULER);
@@ -1452,9 +1419,9 @@ var SchedulerDayView = A.Component.create({
                 }
                 else if (target.test(
                             [_DOT + CSS_SCHEDULER_VIEW_DAY_RESIZER,
-                             _DOT + CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON].join(','))) {
+                             _DOT + CSS_SCHEDULER_VIEW_DAY_RESIZER_ICON].join(_COMMA))) {
 
-                    instance.resizing = true;
+                    instance[RESIZING] = true;
                 }
             }
 
@@ -1462,13 +1429,45 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `gesturemove` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method _onGestureMoveTableCol
-         * @param {EventFacade} event
+         * @method _onMouseEnterEvent
+         * @param event
          * @protected
          */
-        _onGestureMoveTableCol: function(event) {
+        _onMouseEnterEvent: function(event) {
+            var instance = this;
+            var target = event.currentTarget;
+            var evt = target.getData(SCHEDULER_EVENT);
+
+            if (evt && !evt.get(DISABLED)) {
+                instance[RESIZER_NODE].appendTo(target);
+            }
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _onMouseLeaveEvent
+         * @param event
+         * @protected
+         */
+        _onMouseLeaveEvent: function() {
+            var instance = this;
+
+            if (!instance[RESIZING]) {
+                instance._removeResizer();
+            }
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _onMouseMoveTableCol
+         * @param event
+         * @protected
+         */
+        _onMouseMoveTableCol: function(event) {
             var instance = this;
             var activeColumn = this._findActiveColumn(event);
             var recorder = instance.get(SCHEDULER).get(EVENT_RECORDER);
@@ -1510,35 +1509,31 @@ var SchedulerDayView = A.Component.create({
         },
 
         /**
-         * Handles `mouseEnter` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method _onMouseEnterEvent
-         * @param {EventFacade} event
+         * @method _onMouseUpTableCol
+         * @param event
          * @protected
          */
-        _onMouseEnterEvent: function(event) {
+        _onMouseUpTableCol: function() {
             var instance = this;
-            var target = event.currentTarget;
-            var evt = target.getData(SCHEDULER_EVENT);
+            var scheduler = instance.get(SCHEDULER);
+            var recorder = scheduler.get(EVENT_RECORDER);
 
-            if (evt && !evt.get(DISABLED)) {
-                instance.resizerNode.appendTo(target);
+            if (recorder && !scheduler.get(DISABLED)) {
+                if (instance[CREATION_START_DATE]) {
+                    instance.plotEvent(recorder);
+
+                    recorder.showPopover();
+                }
             }
-        },
 
-        /**
-         * Handles `mouseLeave` events.
-         *
-         * @method _onMouseLeaveEvent
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onMouseLeaveEvent: function() {
-            var instance = this;
+            instance[CREATION_START_DATE] = null;
+            instance[RESIZING] = false;
+            instance[START_XY] = null;
 
-            if (!instance.resizing) {
-                instance._removeResizer();
-            }
+            instance._removeResizer();
+            instance.get(BOUNDING_BOX).selectable();
         },
 
         /**

@@ -65,7 +65,9 @@
                 new Y.SchedulerMonthView(),
                 new Y.SchedulerAgendaView()
             ],
-            eventRecorder: new Y.SchedulerEventRecorder()
+            eventRecorder: new Y.SchedulerEventRecorder({
+                duration: 30
+            })
             // firstDayOfWeek: 1,
             // activeView: weekView,
             // views: [dayView, weekView, monthView, agendaView]
