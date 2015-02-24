@@ -172,16 +172,17 @@ var Lang = A.Lang,
     TPL_SCHEDULER_ICON_PREV = '<button type="button" class="' + [CSS_SCHEDULER_ICON_PREV, CSS_BTN].join(_SPACE) +
         '"><i class="' + [CSS_ICON, CSS_ICON_CHEVRON_LEFT].join(_SPACE) + '"></i></button>',
     TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
-    TPL_SCHEDULER_NAV_DATE = '<div class="' + CSS_SCHEDULER_NAV_DATE + ' hidden-phone"></div>',
+    TPL_SCHEDULER_NAV_DATE = '<div class="' + CSS_SCHEDULER_NAV_DATE + ' hidden-xs"></div>',
     TPL_SCHEDULER_TODAY = '<button type="button" class="' + [CSS_SCHEDULER_TODAY, CSS_BTN].join(_SPACE) +
         '">{today}</button>',
-    TPL_SCHEDULER_VIEW_BUTTON = '<button type="button" class="hidden-phone ' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(_SPACE) + '{name}" data-view-name="{name}">{label}</button>',
+    TPL_SCHEDULER_VIEW_BUTTON = '<button aria-label="{ariaLabel}" aria-pressed="false" type="button" class="hidden-xs ' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(_SPACE) + '{name}" data-view-name="{name}">{label}</button>',
     TPL_SCHEDULER_VIEW = '<button type="button" class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(_SPACE) +
         '{name}" data-view-name="{name}">{label}</button>',
-    TPL_SCHEDULER_VIEW_LIST = '<option class="' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(_SPACE) + '{name}" data-view-name="{name}">{label}</option>',
-    TPL_SCHEDULER_VIEW_DATE = '<div class="' + CSS_SCHEDULER_VIEW_DATE + ' visible-phone"></div>',
+    TPL_SCHEDULER_VIEW_LIST = '<option aria-label="{ariaLabel}" aria-pressed="false" class="' +
+             [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(_SPACE) + '{name}" data-view-name="{name}">{label}</option>' + [CSS_SCHEDULER_VIEW, CSS_SCHEDULER_VIEW_].join(_SPACE) + '{name}" data-view-name="{name}">{label}</option>',
+    TPL_SCHEDULER_VIEW_DATE = '<div class="' + CSS_SCHEDULER_VIEW_DATE + '"></div>',
     TPL_SCHEDULER_VIEWS = '<div class="span5 ' + CSS_SCHEDULER_VIEWS + '"></div>',
-    TPL_SCHEDULER_VIEWS_SELECT = '<select class="form-control visible-phone"></select>';
+    TPL_SCHEDULER_VIEWS_SELECT = '<select class="form-control visible-xs"></select>';
 
 /**
  * A base class for SchedulerEvent.
