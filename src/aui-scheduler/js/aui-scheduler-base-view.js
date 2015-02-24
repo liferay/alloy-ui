@@ -171,7 +171,6 @@ var SchedulerView = A.Component.create({
          * @attribute triggerNode
          */
         triggerNode: {
-            getter: '_getTriggerNode',
             setter: A.one
         },
 
@@ -343,17 +342,7 @@ var SchedulerView = A.Component.create({
         },
 
         /**
-         * Returns the `Node` that triggers.
-         *
-         * @method _getTriggerNode
-         * @protected
-         */
-        _getTriggerNode: function() {
-            return this.get(SCHEDULER).getViewTriggerNode(this);
-        },
-
-        /**
-         * Sets this `SchedulerView`'s `scheduler` object to the given value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setScheduler
          * @param val
