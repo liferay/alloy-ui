@@ -589,12 +589,6 @@ var SchedulerBase = A.Component.create({
             }
         },
 
-        navDateNode: {
-            valueFn: function() {
-                return A.Node.create(TPL_SCHEDULER_NAV_DATE);
-            }
-        },
-
         selectNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEWS_SELECT);
@@ -643,7 +637,6 @@ var SchedulerBase = A.Component.create({
         iconNextNode: _DOT + CSS_SCHEDULER_ICON_NEXT,
         iconPrevNode: _DOT + CSS_SCHEDULER_ICON_PREV,
         navNode: _DOT + CSS_SCHEDULER_NAV,
-        navDateNode: _DOT + CSS_SCHEDULER_NAV_DATE,
         todayNode: _DOT + CSS_SCHEDULER_TODAY,
         viewsNode: _DOT + CSS_SCHEDULER_VIEWS
     },
@@ -686,7 +679,6 @@ var SchedulerBase = A.Component.create({
             instance[ICON_NEXT_NODE] = instance.get(ICON_NEXT_NODE);
             instance[ICON_PREV_NODE] = instance.get(ICON_PREV_NODE);
             instance[NAV_NODE] = instance.get(NAV_NODE);
-            instance.navDateNode = instance.get('navDateNode');
             instance.selectNode = instance.get('selectNode');
             instance[TODAY_NODE] = instance.get(TODAY_NODE);
             instance[VIEWS_NODE] = instance.get(VIEWS_NODE);
@@ -856,7 +848,6 @@ var SchedulerBase = A.Component.create({
             instance[NAV_NODE].append(instance[ICON_NEXT_NODE]);
 
             instance[CONTROLS_NODE].append(instance[NAV_NODE]);
-            instance.controlsNode.append(instance.navDateNode);
 
             A.Array.each(views, function(view) {
                 instance.selectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
@@ -1187,7 +1178,6 @@ var SchedulerBase = A.Component.create({
                 }
 
                 instance[VIEW_DATE_NODE].html(navigationTitle);
-                instance.viewDateNode.html(navigationTitle);
 
                 instance.syncEventsUI();
             }
