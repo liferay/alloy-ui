@@ -105,7 +105,7 @@
 }
 
 .scheduler-view-day-header-day {
-    text-align: center;
+    text-align: right;
 }
 
 .view-lt480 .scheduler-view-day-header-day-weekday {
