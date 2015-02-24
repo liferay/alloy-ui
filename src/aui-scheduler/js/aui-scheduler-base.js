@@ -835,11 +835,10 @@ var SchedulerBase = A.Component.create({
          * @return {Node} The `SchedulerView`'s trigger `Node`.
          */
         getViewTriggerNode: function(view) {
-            var instance = this,
-                name = view.get('name'),
-                viewportWidth = A.DOM.winWidth() + Y.DOM.getScrollbarWidth();
+            var instance = this;
+            var name = view.get('name');
 
-            if (viewportWidth >= 768) {
+            if (A.DOM.winWidth() >= 768) {
                 return instance.viewsNode.one('.' + CSS_SCHEDULER_VIEW_ + name);
             }
 
