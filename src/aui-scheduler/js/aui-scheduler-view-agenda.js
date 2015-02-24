@@ -318,20 +318,7 @@ var SchedulerAgendaView = A.Component.create({
         },
 
         /**
-         * Contains the function that formats the navigation date.
-         *
-         * @attribute navigationDateFormatter
-         * @type {Function}
-         */
-        navigationDateFormatter: {
-            value: function(date) {
-                return _EMPTY_STR;
-            },
-            validator: isFunction
-        },
-
-        /**
-         * Contains the collection of strings used to label elements of the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute strings
          */
