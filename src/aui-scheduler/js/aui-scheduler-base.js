@@ -28,13 +28,10 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
     },
 
     /**
-     * Compares the inputs of a start and end date to see if adding `1` to the
-     * start date time is larger than the difference between start and end date
-     * times.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method comparator
-     * @param {Object} model
-     * @return {Number}
+     * @param model
      */
     comparator: function(model) {
         var startDateTime = model.get(START_DATE),
@@ -134,10 +131,10 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `SchedulerEvents`.
+     * configuration for the SchedulerEvents.
      *
-     * @property ATTRS
-     * @type {Object}
+     * @property SchedulerEvents.ATTRS
+     * @type Object
      * @static
      */
     ATTRS: {
@@ -159,21 +156,20 @@ A.SchedulerEvents = A.Base.create('scheduler-events', A.ModelList, [], {
 });
 
 /**
- * A base class for `SchedulerEventSupport`.
+ * A base class for SchedulerEventSupport.
  *
  * @class A.SchedulerEventSupport
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
  */
 var SchedulerEventSupport = function() {};
 
 /**
  * Static property used to define the default attribute
- * configuration for the `SchedulerEventSupport`.
+ * configuration for the SchedulerEventSupport.
  *
- * @property ATTRS
- * @type {Object}
+ * @property SchedulerEventSupport.ATTRS
+ * @type Object
  * @static
  */
 SchedulerEventSupport.ATTRS = {};
@@ -186,8 +182,7 @@ A.mix(SchedulerEventSupport.prototype, {
     eventsModel: A.SchedulerEvents,
 
     /**
-     * Construction logic executed during `SchedulerEventSupport` instantiation.
-     * Lifecycle.
+     * Construction logic executed during SchedulerEventSupport instantiation. Lifecycle.
      *
      * @method initializer
      * @param config
@@ -212,11 +207,10 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Adds and returns the collection of events for this `Scheduler`.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method addEvents
-     * @param {Array | ModelList | Model | A.SchedulerEvent} models
-     * @return {A.SchedulerEvents}
+     * @param models
      */
     addEvents: function(models) {
         var instance = this,
@@ -226,11 +220,10 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Applies a `function` to the collection of `Scheduler` events.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method eachEvent
-     * @param {Function} fn
-     * @return {A.SchedulerEvents}
+     * @param fn
      */
     eachEvent: function(fn) {
         var instance = this;
@@ -239,7 +232,7 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Deletes each event in the collection of `Scheduler` events.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method flushEvents
      */
@@ -252,11 +245,10 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Returns the event by matching it's `clientId`.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getEventByClientId
-     * @param {String} clientId
-     * @return {Object}
+     * @param clientId
      */
     getEventByClientId: function(clientId) {
         var instance = this;
@@ -265,13 +257,11 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Gets a collection of events.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getEvents
-     * @param {Function} filterFn (optional) Filters `events` and returns a list
-     *     of events.
+     * @param filterFn
      * @param {Boolean} skipSort
-     * @return {Array}
      */
     getEvents: function(filterFn, skipSort) {
         var instance = this,
@@ -295,13 +285,11 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Gets a collection of events within a given day. It will filter
-     * overlapping events by default unless `includeOverlap` is true.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getEventsByDay
-     * @param {Date} date
-     * @param {Boolean} includeOverlap
-     * @return {Array}
+     * @param date
+     * @param includeOverlap
      */
     getEventsByDay: function(date, includeOverlap) {
         var instance = this;
@@ -315,12 +303,10 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Returns the list of all events that intersect with a given date. Events
-     * that are not visible are not included in this list.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method getIntersectEvents
-     * @param {Date} date
-     * @return {Array}
+     * @param date
      */
     getIntersectEvents: function(date) {
         var instance = this;
@@ -339,11 +325,10 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Removes given `SchedulerEvents` from the scheduler.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method removeEvents
-     * @param {Array | ModelList | Model | A.SchedulerEvent} models
-     * @return {A.SchedulerEvents} Removed SchedulerEvents.
+     * @param models
      */
     removeEvents: function(models) {
         var instance = this,
@@ -353,12 +338,10 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Completely replaces all `SchedulerEvents` in the list with the given
-     * `SchedulerEvents`.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method resetEvents
-     * @param {Array | ModelList | Model | A.SchedulerEvent} models
-     * @return {A.SchedulerEvents} Reset SchedulerEvents.
+     * @param models
      */
     resetEvents: function(models) {
         var instance = this,
@@ -368,10 +351,10 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Handles `add` events.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _afterAddEvent
-     * @param {EventFacade} event
+     * @param event
      * @protected
      */
     _afterAddEvent: function(event) {
@@ -381,12 +364,10 @@ A.mix(SchedulerEventSupport.prototype, {
     },
 
     /**
-     * Converts given values to `SchedulerEvents`.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _toSchedulerEvents
-     * @param {Array | ModelList | Model | A.SchedulerEvent} values Values to be
-     *     used or converted to `SchedulerEvent` instances.
-     * @return {A.SchedulerEvents} The values converted to `SchedulerEvents`.
+     * @param values
      * @protected
      */
     _toSchedulerEvents: function(values) {
@@ -426,43 +407,39 @@ A.SchedulerEventSupport = SchedulerEventSupport;
  */
 
 /**
- * A base class for `SchedulerBase`.
+ * A base class for SchedulerBase.
  *
  * @class A.SchedulerBase
  * @extends A.Component
- * @uses A.SchedulerEventSupport, WidgetStdMod
- * @param {Object} config Object literal specifying widget configuration
- *     properties.
+ * @param config {Object} Object literal specifying widget configuration properties.
  * @constructor
- * @include http://alloyui.com/examples/scheduler/basic-markup.html
- * @include http://alloyui.com/examples/scheduler/basic.js
  */
 var SchedulerBase = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
      *
-     * @property NAME
-     * @type {String}
+     * @property SchedulerBase.NAME
+     * @type String
      * @static
      */
     NAME: SCHEDULER_BASE,
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `SchedulerBase`.
+     * configuration for the SchedulerBase.
      *
-     * @property ATTRS
-     * @type {Object}
+     * @property SchedulerBase.ATTRS
+     * @type Object
      * @static
      */
     ATTRS: {
 
         /**
-         * Contains the active view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute activeView
-         * @type {A.SchedulerView}
+         * @type SchedulerView
          */
         activeView: {
             validator: isSchedulerView
@@ -483,17 +460,16 @@ var SchedulerBase = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute eventRecorder
-         * @type {A.SchedulerEventRecorder}
          */
         eventRecorder: {
             setter: '_setEventRecorder'
         },
 
         /**
-         * Contains the collection of strings used to label elements of the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute strings
-         * @type {Object}
+         * @type Object
          */
         strings: {
             value: {
@@ -507,11 +483,11 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Contains the function that formats the navigation date.
+         * The function to format the navigation header date.
          *
          * @attribute navigationDateFormatter
          * @default %A - %d %b %Y
-         * @type {Function}
+         * @type Function
          */
         navigationDateFormatter: {
             value: function(date) {
@@ -541,11 +517,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Contains the list of views belonging to this `Scheduler`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute views
          * @default []
-         * @type {Array}
          */
         views: {
             setter: '_setViews',
@@ -553,11 +528,9 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Contains the `Scheduler`'s current date. If there is an `activeView`,
-         * this attribute will contain the `activeView`'s current date.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute viewDate
-         * @type {Date}
          * @readOnly
          */
         viewDate: {
@@ -570,7 +543,7 @@ var SchedulerBase = A.Component.create({
          *
          * @attribute firstDayOfWeek
          * @default 0
-         * @type {Number}
+         * @type Number
          */
         firstDayOfWeek: {
             value: 0,
@@ -586,88 +559,43 @@ var SchedulerBase = A.Component.create({
             }
         },
 
-        /**
-         * Contains the node that displays `Scheduler`'s current date in the `SchedulerView`.
-         * This node is only visible on mobile.
-         *
-         * @attribute viewDateNode
-         * @type {Node}
-         */
         viewDateNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEW_DATE);
             }
         },
 
-        /**
-         * Contains `Scheduler`'s header node.
-         *
-         * @attribute headerNode
-         * @type {Node}
-         */
         headerNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_HD);
             }
         },
 
-        /**
-         * Contains the node that goes to the next date in the `activeView`.
-         *
-         * @attribute iconNextNode
-         * @type {Node}
-         */
         iconNextNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_ICON_NEXT);
             }
         },
 
-        /**
-         * Contains the node that goes to the previous date in the `activeView`.
-         *
-         * @attribute iconPrevNode
-         * @type {Node}
-         */
         iconPrevNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_ICON_PREV);
             }
         },
 
-        /**
-         * Contains `Scheduler`'s header navigation node.
-         *
-         * @attribute navNode
-         * @type {Node}
-         */
         navNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_NAV);
             }
         },
 
-        /**
-         * Contains the node that displays `Scheduler`'s current date in `Scheduler`'s header.
-         * This node is hidden on mobile.
-         *
-         * @attribute navDateNode
-         * @type {Node}
-         */
         navDateNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_NAV_DATE);
             }
         },
 
-        /**
-         * Contains the node for the select dropdown for `Scheduler`'s views.
-         * This node is only visible on mobile.
-         *
-         * @attribute viewsSelectNode
-         * @type {Node}
-         */
-        viewsSelectNode: {
+        selectNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEWS_SELECT);
             }
@@ -679,19 +607,13 @@ var SchedulerBase = A.Component.create({
          *
          * @attribute todayDate
          * @default new Date()
-         * @type {Date}
+         * @type Date
          */
         todayDate: {
             value: new Date(),
             validator: isDate
         },
 
-        /**
-         * Contains the node that goes to today date in the `activeView`.
-         *
-         * @attribute todayNode
-         * @type {Node}
-         */
         todayNode: {
             valueFn: function() {
                 return A.Node.create(
@@ -700,13 +622,6 @@ var SchedulerBase = A.Component.create({
             }
         },
 
-        /**
-         * Contains the node container that holds the nodes to change `Scheduler`'s
-         * `activeView`.
-         *
-         * @attribute viewsNode
-         * @type {Node}
-         */
         viewsNode: {
             valueFn: function() {
                 return A.Node.create(TPL_SCHEDULER_VIEWS);
@@ -715,11 +630,10 @@ var SchedulerBase = A.Component.create({
     },
 
     /**
-     * Contains an object hash, defining how attribute values are to be parsed
-     * from markup contained in the widget's bounding box.
+     * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property HTML_PARSER
-     * @type {Object}
+     * @property SchedulerBase.HTML_PARSER
+     * @type Object
      * @static
      */
     HTML_PARSER: {
@@ -735,19 +649,19 @@ var SchedulerBase = A.Component.create({
     },
 
     /**
-     * Static property used to define the UI attributes.
+     * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property UI_ATTRS
-     * @type {Array}
+     * @property SchedulerBase.UI_ATTRS
+     * @type Array
      * @static
      */
     UI_ATTRS: [DATE, ACTIVE_VIEW],
 
     /**
-     * Static property used to define the augmented classes.
+     * TODO. Wanna help? Please send a Pull Request.
      *
-     * @property AUGMENTS
-     * @type {Array}
+     * @property SchedulerBase.AUGMENTS
+     * @type Array
      * @static
      */
     AUGMENTS: [A.SchedulerEventSupport, A.WidgetStdMod],
@@ -756,8 +670,7 @@ var SchedulerBase = A.Component.create({
         viewStack: null,
 
         /**
-         * Construction logic executed during `SchedulerBase` instantiation.
-         * Lifecycle.
+         * Construction logic executed during SchedulerBase instantiation. Lifecycle.
          *
          * @method initializer
          * @protected
@@ -774,7 +687,7 @@ var SchedulerBase = A.Component.create({
             instance[ICON_PREV_NODE] = instance.get(ICON_PREV_NODE);
             instance[NAV_NODE] = instance.get(NAV_NODE);
             instance.navDateNode = instance.get('navDateNode');
-            instance.viewsSelectNode = instance.get('viewsSelectNode');
+            instance.selectNode = instance.get('selectNode');
             instance[TODAY_NODE] = instance.get(TODAY_NODE);
             instance[VIEWS_NODE] = instance.get(VIEWS_NODE);
 
@@ -791,7 +704,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Binds the events on the `SchedulerBase` UI. Lifecycle.
+         * Bind the events on the SchedulerBase UI. Lifecycle.
          *
          * @method bindUI
          * @protected
@@ -803,7 +716,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Syncs the `SchedulerBase` UI. Lifecycle.
+         * Sync the SchedulerBase UI. Lifecycle.
          *
          * @method syncUI
          * @protected
@@ -815,11 +728,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Returns the `SchedulerView` that belongs to a given name.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getViewByName
-         * @param {String} name
-         * @return {A.SchedulerView}
+         * @param name
          */
         getViewByName: function(name) {
             var instance = this;
@@ -828,10 +740,9 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Returns this `Scheduler`'s `strings` attribute value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getStrings
-         * @return {String}
          */
         getStrings: function() {
             var instance = this;
@@ -840,11 +751,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Returns the string that matches the `key` type.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method getString
-         * @param {String} key
-         * @return {String}
+         * @param key
          */
         getString: function(key) {
             var instance = this;
@@ -876,7 +786,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Plots all events for the current view.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method plotViewEvents
          * @param view
@@ -890,7 +800,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Plots the `activeView` events value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method syncEventsUI
          */
@@ -929,11 +839,11 @@ var SchedulerBase = A.Component.create({
         renderDropdownList: function() {
             var instance = this;
 
-            instance.viewsSelectNode.on('change', A.bind(instance._onSelectionChange, instance));
+            instance.selectNode.on('change', A.bind(instance._onSelectionChange, instance));
         },
 
         /**
-         * Sync `SchedulerBase` StdContent.
+         * Sync SchedulerBase StdContent.
          *
          * @method syncStdContent
          */
@@ -949,11 +859,11 @@ var SchedulerBase = A.Component.create({
             instance.controlsNode.append(instance.navDateNode);
 
             A.Array.each(views, function(view) {
-                instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
+                instance.selectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
                 instance[VIEWS_NODE].append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
             });
 
-            instance.viewsNode.append(instance.viewsSelectNode);
+            instance.viewsNode.append(instance.selectNode);
 
             instance.header.append(instance[CONTROLS_NODE]);
             instance.header.append(instance[VIEWS_NODE]);
@@ -962,10 +872,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Handles `activeView` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterActiveViewChange
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterActiveViewChange: function(event) {
@@ -992,10 +902,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Handles `render` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _afterRender
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _afterRender: function(event) {
@@ -1011,7 +921,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Binds click events to an event delegate.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _bindDelegate
          * @protected
@@ -1027,7 +937,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Creates the given `SchedulerView`'s trigger `Node`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _createViewTriggerNode
          * @param {A.SchedulerView} view
@@ -1063,11 +973,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Returns the `SchedulerView`'s `date`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _getViewDate
          * @protected
-         * @return {Date} The `SchedulerView`'s `date`.
          */
         _getViewDate: function() {
             var instance = this,
@@ -1094,7 +1003,7 @@ var SchedulerBase = A.Component.create({
 
             instance.set(ACTIVE_VIEW, instance.getViewByName(viewName));
 
-            instance.viewsSelectNode.one('[data-view-name=' + viewName + ']').set('selected', true);
+            instance.selectNode.one('[data-view-name=' + viewName + ']').set('selected', true);
 
             event.preventDefault();
         },
@@ -1103,7 +1012,7 @@ var SchedulerBase = A.Component.create({
          * Handles `clickToday` events.
          *
          * @method _onClickToday
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onClickToday: function(event) {
@@ -1118,10 +1027,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Handles `clickNextIcon` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onClickNextIcon
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onClickNextIcon: function(event) {
@@ -1136,10 +1045,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Handles `clickPrevIcon` events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onClickPrevIcon
-         * @param {EventFacade} event
+         * @param event
          * @protected
          */
         _onClickPrevIcon: function(event) {
@@ -1154,7 +1063,7 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Handles select tag's change events.
+         * Handles select's change events.
          *
          * @method _onSelectionChange
          * @param {EventFacade} event
@@ -1170,10 +1079,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Applies substitution to a given template.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _processTemplate
-         * @param {String} tpl
+         * @param tpl
          * @protected
          */
         _processTemplate: function(tpl) {
@@ -1183,12 +1092,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Replaces this `SchedulerBase`'s `eventRecorder` with the given
-         * `eventRecorder` value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setEventRecorder
-         * @param {A.SchedulerEventRecorder} val A `SchedulerEventRecorder`
-         *     instance.
+         * @param val
          * @protected
          */
         _setEventRecorder: function(val) {
@@ -1206,12 +1113,11 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Replaces this `SchedulerBase`'s `views` with the given `views` value.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _setViews
-         * @param {Array} val Array of `SchedulerView` instances.
+         * @param val
          * @protected
-         * @return {Array} The replaced `SchedulerBase`'s `views`.
          */
         _setViews: function(val) {
             var instance = this;
@@ -1237,10 +1143,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Sets `activeView` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetActiveView
-         * @param {SchedulerView} val A `SchedulerView` instance.
+         * @param val
          * @protected
          */
         _uiSetActiveView: function(val) {
@@ -1258,10 +1164,10 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Sets `date` on the UI.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _uiSetDate
-         * @param {Date} date
+         * @param val
          * @protected
          */
         _uiSetDate: function(val) {
