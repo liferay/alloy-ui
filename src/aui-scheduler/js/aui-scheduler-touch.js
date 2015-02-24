@@ -6,7 +6,7 @@
  */
 
 var CSS_SCHEDULER_EVENT = A.getClassName('scheduler-event'),
-    CSS_SCHEDULER_EVENT_ALL_DAY = A.getClassName('scheduler-event', 'all', 'day'),
+    CSS_SCHEDULER_EVENT_ALL_DAY =  A.getClassName('scheduler-event', 'all', 'day'),
     CSS_SCHEDULER_VIEW_DAY_RESIZER = A.getClassName('scheduler-view', 'day', 'resizer'),
     CSS_SCHEDULER_VIEW_DAY_TABLE_COL = A.getClassName('scheduler-view', 'day', 'table', 'col'),
     CSS_SCHEDULER_VIEW_DAY_TABLE_COLDAY = A.getClassName('scheduler-view', 'day', 'table', 'colday'),
