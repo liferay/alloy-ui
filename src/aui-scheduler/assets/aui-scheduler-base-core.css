@@ -51,7 +51,6 @@
 }
 .scheduler-view-scrollable {
     overflow-x: hidden;
-    overflow-y: auto;
     position: relative;
 }
 .scheduler-view-noscroll {
