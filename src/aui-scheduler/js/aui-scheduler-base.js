@@ -589,12 +589,6 @@ var SchedulerBase = A.Component.create({
             }
         },
 
-        selectNode: {
-            valueFn: function() {
-                return A.Node.create(TPL_SCHEDULER_VIEWS_SELECT);
-            }
-        },
-
         /**
          * Today date representation. This option allows the developer to
          * specify the date he wants to be used as the today date.
@@ -679,7 +673,6 @@ var SchedulerBase = A.Component.create({
             instance[ICON_NEXT_NODE] = instance.get(ICON_NEXT_NODE);
             instance[ICON_PREV_NODE] = instance.get(ICON_PREV_NODE);
             instance[NAV_NODE] = instance.get(NAV_NODE);
-            instance.selectNode = instance.get('selectNode');
             instance[TODAY_NODE] = instance.get(TODAY_NODE);
             instance[VIEWS_NODE] = instance.get(VIEWS_NODE);
 
@@ -806,14 +799,19 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Renders a dropdown list under the `Scheduler` instance's `viewsNode`.
+         * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method renderDropdownList
+         * @method renderButtonGroup
          */
-        renderDropdownList: function() {
+        renderButtonGroup: function() {
             var instance = this;
 
-            instance.selectNode.on('change', A.bind(instance._onSelectionChange, instance));
+            instance.buttonGroup = new A.ButtonGroup({
+                boundingBox: instance[VIEWS_NODE],
+                on: {
+                    selectionChange: A.bind(instance._onButtonGroupSelectionChange, instance)
+                }
+            }).render();
         },
 
         /**
@@ -832,13 +830,11 @@ var SchedulerBase = A.Component.create({
             instance[CONTROLS_NODE].append(instance[NAV_NODE]);
 
             A.Array.each(views, function(view) {
-                instance.selectNode.append(instance._createViewTriggerNode(view));
+                instance[VIEWS_NODE].append(instance._createViewTriggerNode(view));
             });
 
-            instance.viewsNode.append(instance.selectNode);
-
-            instance.header.append(instance[CONTROLS_NODE]);
-            instance.header.append(instance[VIEWS_NODE]);
+            instance[HEADER].append(instance[CONTROLS_NODE]);
+            instance[HEADER].append(instance[VIEWS_NODE]);
 
             instance.setStdModContent(WidgetStdMod.HEADER, instance[HEADER].getDOM());
         },
@@ -885,7 +881,7 @@ var SchedulerBase = A.Component.create({
                 activeView = instance.get(ACTIVE_VIEW);
 
             instance.renderView(activeView);
-            instance.renderDropdownList();
+            instance.renderButtonGroup();
 
             instance._uiSetDate(instance.get(DATE));
             instance._uiSetActiveView(activeView);
@@ -1017,19 +1013,19 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
-         * Handles select's change events.
+         * TODO. Wanna help? Please send a Pull Request.
          *
          * @method _onButtonGroupSelectionChange
          * @param event
          * @protected
          */
-        _onSelectionChange: function(event) {
+        _onButtonGroupSelectionChange: function(event) {
             var instance = this,
-                target = event.target,
-                index = target.get('selectedIndex'),
-                viewName = target.get('options').item(index).attr('data-view-name');
+                viewName = event.originEvent.target.attr(DATA_VIEW_NAME);
 
             instance.set(ACTIVE_VIEW, instance.getViewByName(viewName));
+
+            event.preventDefault();
         },
 
         /**
