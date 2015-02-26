@@ -1072,7 +1072,7 @@ var SchedulerDayView = A.Component.create({
             var group = [];
 
             A.Array.each(events, function(evtCmp) {
-                if (!evt._filtered && evtCmp.get('visible') && evt.intersectHours(evtCmp)) {
+                if (!evt._filtered && evtCmp.get('visible') && evt.intersects(evtCmp)) {
                     group.push(evtCmp);
                 }
             });
