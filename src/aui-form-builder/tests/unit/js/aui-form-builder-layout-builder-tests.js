@@ -31,6 +31,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                         new Y.LayoutRow({
                             cols: [
                                 new Y.LayoutCol({
+                                    movableContent: true,
                                     size: 4,
                                     value: new Y.FormBuilderFieldSentence({
                                         help: 'My Help',
@@ -64,6 +65,17 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             if (!skipRender) {
                 this._formBuilder.render('#container');
+            }
+        },
+
+        _openToolbar: function(fieldNode) {
+            fieldNode = fieldNode || Y.one('.form-builder-field-content-toolbar');
+
+            if (Y.UA.mobile) {
+                Y.one('.form-builder-field-content').simulate('click');
+            } else {
+                fieldNode.simulate('mouseover');
+                fieldNode.one('.form-builder-field-toolbar-toggle').simulate('click');
             }
         },
 
@@ -169,7 +181,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.isNotNull(button);
         },
 
-        'should not be able to move rows/cols on regular mode': function() {
+        'should not be able to move rows on regular mode': function() {
             var button,
                 contentBox;
 
@@ -183,6 +195,24 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
             button = contentBox.one('.layout-builder-move-cut-row-button');
             Y.Assert.isNotNull(button);
+        },
+
+        'should be able to move cols on regular mode': function() {
+            this._createFormBuilder();
+
+            this._toolbar = new Y.FormBuilderFieldToolbar({
+                formBuilder: this._formBuilder
+            });
+
+            this._openToolbar();
+            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
+
+            Y.Assert.isNotNull(Y.one('.form-builder-field-move-target'));
+
+            this._openToolbar();
+            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
+
+            Y.Assert.isNull(Y.one('.form-builder-choose-col-move .form-builder-field-move-target'));
         },
 
         'should be able to resize cols on both regular and layout mode': function() {
@@ -258,68 +288,65 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.isTrue(this._formBuilder.get('boundingBox').hasClass('form-builder-layout-mode'));
         },
 
-        'should add css class when choosing cols to be moved': function() {
-            var row;
-
-            this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.LAYOUT
-            });
-
-            row = this._formBuilder.get('layout').get('rows')[1];
-
-            Y.Assert.areEqual(2, row.get('node').all('.form-builder-choose-col-move').size());
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.REGULAR);
-
-            Y.Assert.areEqual(0, row.get('node').all('.form-builder-choose-col-move').size());
-        },
-
         'should show valid field move targets for root field': function() {
-            var row,
+            var moveItem,
+                row,
                 rowNode,
                 visibleTargets;
 
             this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.LAYOUT
+                mode: Y.FormBuilder.MODES.REGULAR
             });
+
+            this._toolbar = this._formBuilder._fieldToolbar;
+            this._openToolbar();
+
+            moveItem = this._toolbar._toolbar.one('.glyphicon-move').ancestor();
 
             row = this._formBuilder.get('layout').get('rows')[1];
             rowNode = row.get('node');
 
-            rowNode.one('.form-builder-field-move-button').simulate('click');
+            moveItem.simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('visibility') !== 'hidden';
             });
             Y.Assert.areEqual(2, visibleTargets.size());
 
-            rowNode.one('.form-builder-field-move-button').simulate('click');
+            moveItem.simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
-                return node.getStyle('visibility') !== 'hidden';
+                return node.getStyle('display') !== 'none';
             });
             Y.Assert.areEqual(0, visibleTargets.size());
         },
 
         'should show valid field move targets for nested field': function() {
-            var row,
+            var moveItem,
+                row,
                 rowNode,
                 visibleTargets;
 
             this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.LAYOUT
+                mode: Y.FormBuilder.MODES.REGULAR
             });
+
+            this._toolbar = this._formBuilder._fieldToolbar;
+
+            this._openToolbar(Y.all('.form-builder-field-content-toolbar').item(1));
+
+            moveItem = this._toolbar._toolbar.one('.glyphicon-move').ancestor();
 
             row = this._formBuilder.get('layout').get('rows')[1];
             rowNode = row.get('node');
 
-            rowNode.all('.form-builder-field-move-button').item(1).simulate('click');
+            moveItem.simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('visibility') !== 'hidden';
             });
             Y.Assert.areEqual(4, visibleTargets.size());
 
-            rowNode.all('.form-builder-field-move-button').item(1).simulate('click');
+            moveItem.simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
-                return node.getStyle('visibility') !== 'hidden';
+                return node.getStyle('display') !== 'none';
             });
             Y.Assert.areEqual(0, visibleTargets.size());
         },
@@ -328,17 +355,24 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             var col,
                 cols,
                 field,
+                moveItem,
                 row;
 
             this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.LAYOUT
+                mode: Y.FormBuilder.MODES.REGULAR
             });
+
+            this._toolbar = this._formBuilder._fieldToolbar;
+
+            this._openToolbar();
+
+            moveItem = this._toolbar._toolbar.one('.glyphicon-move').ancestor();
 
             row = this._formBuilder.get('layout').get('rows')[1];
             cols = row.get('cols');
             field = cols[0].get('value');
 
-            row.get('node').one('.form-builder-field-move-button').simulate('click');
+            moveItem.simulate('click');
             cols[1].get('node').one('.layout-builder-move-col-target').simulate('click');
 
             col = row.get('cols')[0];
@@ -356,14 +390,19 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 row;
 
             this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.LAYOUT
+                mode: Y.FormBuilder.MODES.REGULAR
             });
+
+            this._toolbar = this._formBuilder._fieldToolbar;
+
+            this._openToolbar(Y.all('.form-builder-field-content-toolbar').item(1));
 
             row = this._formBuilder.get('layout').get('rows')[1];
             cols = row.get('cols');
             field = cols[0].get('value').get('nestedFields')[0];
 
-            row.get('node').all('.form-builder-field-move-button').item(1).simulate('click');
+            this._toolbar._toolbar.one('.glyphicon-move').ancestor().simulate('click');
+
             cols[2].get('node').one('.layout-builder-move-col-target').simulate('click');
 
             Y.Assert.areEqual(1, cols[0].get('value').get('nestedFields').length);
@@ -373,7 +412,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areEqual(field, cols[2].get('value').get('nestedFields')[0]);
         },
 
-        'should resizing the the row when move a nested field to other col': function() {
+        'should resizing the row when move a nested field to another col': function() {
             var cols,
                 field,
                 heightAfterMode,
@@ -381,8 +420,12 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 row;
 
             this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.LAYOUT
+                mode: Y.FormBuilder.MODES.REGULAR
             });
+
+            this._toolbar = this._formBuilder._fieldToolbar;
+
+            this._openToolbar(Y.all('.form-builder-field-content-toolbar').item(1));
 
             row = this._formBuilder.get('layout').get('rows')[1];
             cols = row.get('cols');
@@ -390,7 +433,8 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             heightAfterMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
 
-            row.get('node').all('.form-builder-field-move-button').item(1).simulate('click');
+            this._toolbar._toolbar.one('.glyphicon-move').ancestor().simulate('click');
+
             cols[2].get('node').one('.layout-builder-move-col-target').simulate('click');
 
             heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
@@ -400,6 +444,20 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             Y.Assert.areEqual(1, cols[2].get('value').get('nestedFields').length);
             Y.Assert.areEqual(field, cols[2].get('value').get('nestedFields')[0]);
+        },
+
+        'should not have move item if col\'s content is not movable': function() {
+            this._createFormBuilder({
+                mode: Y.FormBuilder.MODES.REGULAR
+            });
+
+            this._formBuilder.get('layout').get('rows')[1].get('cols')[0].set('movableContent', false);
+
+            this._toolbar = this._formBuilder._fieldToolbar;
+            this._openToolbar();
+
+            Y.Assert.areEqual(5, this._toolbar.get('items').length);
+            Y.Assert.areEqual(4, Y.all('.form-builder-field-toolbar-item:not(.hidden)').size());
         }
     }));
 

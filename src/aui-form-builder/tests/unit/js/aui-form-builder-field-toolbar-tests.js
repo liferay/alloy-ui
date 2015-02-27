@@ -26,6 +26,14 @@ YUI.add('aui-form-builder-field-toolbar-tests', function(Y) {
             this._toolbar = new Y.FormBuilderFieldToolbar({
                 formBuilder: new FakeFormBuilder().render('#container')
             });
+
+            Y.one('#container').ancestor('.col').setData('layout-col', new Y.LayoutCol({
+                    movableContent: true,
+                    size: 12,
+                    value: { content: 'foo' }
+                })
+            );
+
         },
 
         tearDown: function() {
@@ -93,8 +101,8 @@ YUI.add('aui-form-builder-field-toolbar-tests', function(Y) {
 
         'should have default items': function() {
             this._openToolbar();
-            Y.Assert.areEqual(4, this._toolbar.get('items').length);
-            Y.Assert.areEqual(4, Y.all('.form-builder-field-toolbar-item').size());
+            Y.Assert.areEqual(5, this._toolbar.get('items').length);
+            Y.Assert.areEqual(5, Y.all('.form-builder-field-toolbar-item').size());
         },
 
         'should have default item for adding nested field': function() {
@@ -132,13 +140,13 @@ YUI.add('aui-form-builder-field-toolbar-tests', function(Y) {
             });
 
             this._openToolbar();
-            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
+            Y.all('.form-builder-field-toolbar-item').item(3).simulate('click');
             Y.Mock.verify(formBuilder);
         },
 
         'should have default item for closing the toolbar': function() {
             this._openToolbar();
-            Y.all('.form-builder-field-toolbar-item').item(3).simulate('click');
+            Y.all('.form-builder-field-toolbar-item').item(4).simulate('click');
             Y.Assert.isFalse(Y.one('.form-builder-field-toolbar').hasClass('open'));
         },
 
@@ -172,6 +180,14 @@ YUI.add('aui-form-builder-field-toolbar-tests', function(Y) {
             Y.one('.form-builder-field-toolbar-item').simulate('click');
 
             Y.Mock.verify(formBuilder);
+        },
+
+        'should return an item': function() {
+            var item = this._toolbar.getItem('.glyphicon');
+            Y.Assert.isNotNull(item);
+
+            item = this._toolbar.getItem('.foo-bar');
+            Y.Assert.isNull(item);
         }
     }));
 

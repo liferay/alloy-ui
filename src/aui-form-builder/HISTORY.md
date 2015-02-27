@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1830](https://issues.liferay.com/browse/AUI-1830) Button to move field should be inside the field's toolbar
 * [AUI-1840](https://issues.liferay.com/browse/AUI-1840) Field settings cancel and save buttons for mobile
 * [AUI-1820](https://issues.liferay.com/browse/AUI-1820) Form Builder is not keyboard-accessible
 * [AUI-1755](https://issues.liferay.com/browse/AUI-1755) Button for adding page breaks should be on the left of the button to add rows

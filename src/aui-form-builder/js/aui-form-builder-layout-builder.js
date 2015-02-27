@@ -15,6 +15,7 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_FIELD_MOVE_TARGET_INVALID = A.getClassName('form', 'builder', 'field', 'move', 'target', 'invalid'),
     CSS_FIELD_MOVING = A.getClassName('form', 'builder', 'field', 'moving'),
     CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
+    CSS_LAYOUT_BUILDER_MOVE_CANCEL = A.getClassName('layout', 'builder', 'move', 'cancel'),
     CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode'),
     CSS_PAGE_BREAK_ROW_COLLAPSED = A.getClassName('form', 'builder', 'page', 'break', 'row', 'collapsed'),
 
@@ -70,11 +71,8 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _addColMoveButton: function(colNode, rowNode) {
-        var targetNodes;
+        var targetNodes = colNode.all('.' + CSS_FIELD_MOVE_BUTTON);
 
-        colNode.addClass(CSS_CHOOSE_COL_MOVE);
-
-        targetNodes = colNode.all('.' + CSS_FIELD_MOVE_BUTTON);
         targetNodes.setData('node-col', colNode);
         targetNodes.setData('node-row', rowNode);
     },
@@ -84,11 +82,14 @@ A.FormBuilderLayoutBuilder.prototype = {
      *
      * @method _addColMoveTarget
      * @param {A.LayoutCol} col
+     * @param {Number} index
      * @protected
      */
     _addColMoveTarget: function(col) {
-        var colNode = col.get('node'),
+        var colNode,
             targetNodes;
+
+        colNode = col.get('node');
 
         colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
 
@@ -157,6 +158,12 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         this._layoutBuilder.get('layout').after('isColumnModeChange', A.bind(this._afterLayoutBuilderIsColumnModeChange, this));
         this._setPositionForPageBreakButton();
+
+        this._eventHandles.push(
+            this._fieldToolbar.on('onToolbarFieldMouseEnter', A.bind(this._onFormBuilderToolbarFieldMouseEnter, this))
+        );
+
+        this._removeLayoutCutColButtons();
     },
 
     /**
@@ -201,7 +208,12 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     _clickColMoveTarget: function(moveTarget) {
         var parentFieldNode = this._fieldBeingMoved.get('content').ancestor('.' + CSS_FIELD),
-            targetNestedParent = moveTarget.getData('nested-field-parent');
+            targetNestedParent = moveTarget.getData('nested-field-parent'),
+            toolbarMoveIconCancelMode = this._fieldToolbar.getItem('.' + CSS_LAYOUT_BUILDER_MOVE_CANCEL);
+
+        if (toolbarMoveIconCancelMode) {
+            toolbarMoveIconCancelMode.removeClass(CSS_LAYOUT_BUILDER_MOVE_CANCEL);
+        }
 
         if (parentFieldNode) {
             parentFieldNode.getData('field-instance').removeNestedField(this._fieldBeingMoved);
@@ -224,6 +236,7 @@ A.FormBuilderLayoutBuilder.prototype = {
         }
 
         this._layoutBuilder.cancelMove();
+        this._removeLayoutCutColButtons();
     },
 
     /**
@@ -251,7 +264,8 @@ A.FormBuilderLayoutBuilder.prototype = {
     _enterLayoutMode: function() {
         if (this._layoutBuilder) {
             this._layoutBuilder.setAttrs({
-                enableMove: true,
+                enableMoveCols: false,
+                enableMoveRows: true,
                 enableRemoveCols: true,
                 enableRemoveRows: true
             });
@@ -269,7 +283,8 @@ A.FormBuilderLayoutBuilder.prototype = {
     _exitLayoutMode: function() {
         if (this._layoutBuilder) {
             this._layoutBuilder.setAttrs({
-                enableMove: false,
+                enableMoveCols: true,
+                enableMoveRows: false,
                 enableRemoveCols: false,
                 enableRemoveRows: false,
             });
@@ -289,6 +304,17 @@ A.FormBuilderLayoutBuilder.prototype = {
     _expandAddPageBreakButton: function(addPageBreakButton, contentBox) {
         addPageBreakButton.removeClass(CSS_PAGE_BREAK_ROW_COLLAPSED);
         contentBox.append(addPageBreakButton);
+    },
+
+    /**
+     * Fired when mouse enters a toolbar's field.
+     *
+     * @method _onFormBuilderToolbarFieldMouseEnter
+     * @params {EventFacade} event
+     * @protected
+     */
+    _onFormBuilderToolbarFieldMouseEnter: function(event) {
+        this._toggleMoveColItem(event.colNode);
     },
 
     /**
@@ -316,6 +342,16 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
+     * Remove original layout cut col buttons.
+     *
+     * @method _removeLayoutCutColButtons
+     * @protected
+     */
+    _removeLayoutCutColButtons: function() {
+        this._layoutBuilder.get('removeColMoveButtons')();
+    },
+
+    /**
      * Sets the proper position for page break button.
      *
      * @method _setPositionForPageBreakButton
@@ -335,6 +371,27 @@ A.FormBuilderLayoutBuilder.prototype = {
         }
         else {
             this._expandAddPageBreakButton(addPageBreakButton, contentBox);
+        }
+    },
+
+    /**
+     * Show or hide move item in toolbar.
+     *
+     * @method _toggleMoveColItem
+     * @param {Node} colNode
+     * @protected
+     */
+    _toggleMoveColItem: function(colNode) {
+        var hasMovableContent = colNode.getData('layout-col').get('movableContent'),
+            moveItem = this._fieldToolbar.getItem('.glyphicon-move').ancestor();
+
+        if (!hasMovableContent) {
+            moveItem.addClass('hidden');
+        }
+        else {
+            moveItem.setData('layout-row', colNode.ancestor('.row').getData('layout-row'));
+            moveItem.setData('node-col', colNode);
+            moveItem.removeClass('hidden');
         }
     },
 

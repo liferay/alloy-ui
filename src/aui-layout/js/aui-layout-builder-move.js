@@ -58,7 +58,8 @@ LayoutBuilderMove.prototype = {
      */
     initializer: function() {
         this._eventHandles.push(
-            this.after('enableMoveChange', A.bind(this._afterEnableMoveChange, this)),
+            this.after('enableMoveColsChange', A.bind(this._afterEnableMoveColsChange, this)),
+            this.after('enableMoveRowsChange', A.bind(this._afterEnableMoveRowsChange, this)),
             this.after('layout-row:colsChange', A.bind(this._afterMoveColsChange, this)),
             this.after('layout-row:movableChange', A.bind(this._afterMoveMovableChange, this)),
             this.after('layout:rowsChange', A.bind(this._afterMoveRowsChange, this)),
@@ -66,7 +67,28 @@ LayoutBuilderMove.prototype = {
             this.after('layoutChange', A.bind(this._afterMoveLayoutChange, this))
         );
 
-        this._uiSetEnableMove(this.get('enableMove'));
+        this._uiSetEnableMoveRows(this.get('enableMoveRows'));
+        this._uiSetEnableMoveCols(this.get('enableMoveCols'));
+    },
+
+    /**
+     * Fired after the `enableMoveCols` attribute changes.
+     *
+     * @method _afterEnableMoveColsChange
+     * @protected
+     */
+    _afterEnableMoveColsChange: function() {
+        this._resetMoveUI();
+    },
+
+    /**
+     * Fired after the `enableMoveRows` attribute changes.
+     *
+     * @method _afterEnableMoveRowsChange
+     * @protected
+     */
+    _afterEnableMoveRowsChange: function() {
+        this._resetMoveUI();
     },
 
     /**
@@ -76,7 +98,8 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     destructor: function() {
-        this._unbindMoveEvents();
+        this._unbindMoveColEvents();
+        this._unbindMoveRowEvents();
     },
 
     /**
@@ -118,16 +141,6 @@ LayoutBuilderMove.prototype = {
         target.setData('col-index', index);
         target.addClass(CSS_MOVE_COL_TARGET);
         col.get('node').append(target);
-    },
-
-    /**
-     * Fired after the `enableMove` attribute changes.
-     *
-     * @method _afterEnableMoveChange
-     * @protected
-     */
-    _afterEnableMoveChange: function() {
-        this._resetMoveUI();
     },
 
     /**
@@ -214,23 +227,60 @@ LayoutBuilderMove.prototype = {
         rows.each(function(row) {
             if (instance._hasAnythingMovable(row)) {
                 instance._insertCutButtonOnRow(row);
+            }
+        });
+    },
+
+    /**
+     * Appends a move button for each col.
+     *
+     * @method _appendMoveButtonToCols
+     * @protected
+     */
+    _appendMoveButtonToCols: function() {
+        var instance = this,
+            rows = this._layoutContainer.all(SELECTOR_ROW);
+
+        rows.each(function(row) {
+            if (instance._hasAnythingMovable(row)) {
                 instance._insertCutButtonOnCols(row);
             }
         });
     },
 
     /**
-     * Binds the necessary events for the functionality of moving on layout.
+     * Binds the necessary events for the functionality of moving cols on layout.
      *
-     * @method _bindMoveEvents
+     * @method _bindMoveColsEvents
      * @protected
      */
-    _bindMoveEvents: function() {
-        this._moveEventHandles = [
-            this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveCutButton, this), '.' + CSS_MOVE_CUT_BUTTON),
-            this._layoutContainer.delegate('key', A.bind(this._onKeyPressOnMoveCutButton, this), 'press:13', '.' + CSS_MOVE_CUT_BUTTON),
-            this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveTarget, this), '.' + CSS_MOVE_TARGET),
-            this._layoutContainer.delegate('key', A.bind(this._onKeyPressOnMoveTarget, this), 'press:13', '.' + CSS_MOVE_TARGET)
+    _bindMoveColEvents: function() {
+        var colCutButtonSelector = '.' + CSS_MOVE_CUT_BUTTON + '.' + CSS_MOVE_CUT_COL_BUTTON,
+            colTargetSelector = '.' + CSS_MOVE_TARGET + '.' + CSS_MOVE_COL_TARGET;
+
+        this._moveColEventHandles = [
+            this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveCutButton, this), colCutButtonSelector),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressOnMoveCutButton, this), 'press:13', colCutButtonSelector),
+            this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveTarget, this), colTargetSelector),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressOnMoveTarget, this), 'press:13', colTargetSelector)
+        ];
+    },
+
+    /**
+     * Binds the necessary events for the functionality of moving rows on layout.
+     *
+     * @method _bindMoveRowEvents
+     * @protected
+     */
+    _bindMoveRowEvents: function() {
+        var rowCutButtonSelector = '.' + CSS_MOVE_CUT_BUTTON + '.' + CSS_MOVE_CUT_ROW_BUTTON,
+            rowTargetSelector = '.' + CSS_MOVE_TARGET + '.' + CSS_MOVE_ROW_TARGET;
+
+        this._moveRowEventHandles = [
+            this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveCutButton, this), rowCutButtonSelector),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressOnMoveCutButton, this), 'press:13', rowCutButtonSelector),
+            this._layoutContainer.delegate('click', A.bind(this._onMouseClickOnMoveTarget, this), rowTargetSelector),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressOnMoveTarget, this), 'press:13', rowTargetSelector)
         ];
     },
 
@@ -244,14 +294,14 @@ LayoutBuilderMove.prototype = {
      */
     _chooseColMoveTarget: function(cutButton, col) {
         var instance = this,
-        rows = this.get('layout').get('rows');
+            rows = this.get('layout').get('rows');
 
         this._colToBeMoved = col;
 
         A.Array.forEach(rows, function(row) {
             A.Array.forEach(row.get('cols'), function(col, index) {
                 if (col !== instance._colToBeMoved) {
-                    instance.get('addColMoveTarget')(col, index, row);
+                    instance.get('addColMoveTarget')(col, index);
                 }
             });
         });
@@ -407,6 +457,7 @@ LayoutBuilderMove.prototype = {
             }
         });
     },
+
     /**
      * Inserts cut button on a row.
      *
@@ -574,36 +625,68 @@ LayoutBuilderMove.prototype = {
     _resetMoveUI: function() {
         this._removeAllCutButton();
         this._removeTargetArea();
-        this._unbindMoveEvents();
-        this._uiSetEnableMove(this.get('enableMove'));
+        this._unbindMoveColEvents();
+        this._unbindMoveRowEvents();
+
+        this._uiSetEnableMoveCols(this.get('enableMoveCols'));
+        this._uiSetEnableMoveRows(this.get('enableMoveRows'));
     },
 
     /**
-     * Updates the UI according to the value of the `enableMove` attribute.
+     * Updates the UI according to the value of the `enableMoveCols` attribute.
      *
-     * @method _uiSetEnableMove
-     * @param {Boolean} enableMove
+     * @method _uiSetEnableMoveCols
+     * @param {Boolean} enableMoveCols
      * @protected
      */
-    _uiSetEnableMove: function(enableMove) {
-        if (enableMove) {
-            this._appendMoveButtonToRows();
-            this._bindMoveEvents();
+    _uiSetEnableMoveCols: function(enableMoveCols) {
+        if (enableMoveCols) {
+            this._appendMoveButtonToCols();
+            this._bindMoveColEvents();
         }
         else {
-            this._unbindMoveEvents();
+            this._unbindMoveColEvents();
+        }
+    },
+
+    /**
+     * Updates the UI according to the value of the `enableMoveRows` attribute.
+     *
+     * @method _uiSetEnableMoveRows
+     * @param {Boolean} enableMoveRows
+     * @protected
+     */
+    _uiSetEnableMoveRows: function(enableMoveRows) {
+        if (enableMoveRows) {
+            this._appendMoveButtonToRows();
+            this._bindMoveRowEvents();
+        }
+        else {
+            this._unbindMoveRowEvents();
+        }
+    },
+
+    /**
+     * Unbinds the events related to the functionality of moving cols from layout.
+     *
+     * @method _unbindMoveColEvents
+     * @protected
+     */
+    _unbindMoveColEvents: function() {
+        if (this._moveColEventHandles) {
+            (new A.EventHandle(this._moveColEventHandles)).detach();
         }
     },
 
     /**
      * Unbinds the events related to the functionality of moving rows from layout.
      *
-     * @method _unbindMoveEvents
+     * @method _unbindMoveRowEvents
      * @protected
      */
-    _unbindMoveEvents: function() {
-        if (this._moveEventHandles) {
-            (new A.EventHandle(this._moveEventHandles)).detach();
+    _unbindMoveRowEvents: function() {
+        if (this._moveRowEventHandles) {
+            (new A.EventHandle(this._moveRowEventHandles)).detach();
         }
     }
 };
@@ -670,20 +753,33 @@ LayoutBuilderMove.ATTRS = {
     },
 
     /**
-     * Flag indicating if the feature of moving rows and cols from layout is
+     * Flag indicating if the feature of moving cols from layout is
      * enabled or not.
      *
-     * @attribute enableMove
+     * @attribute enableMoveCols
      * @default true
      * @type {Boolean}
      */
-    enableMove: {
+    enableMoveCols: {
         validator: A.Lang.isBoolean,
         value: true
     },
 
     /**
-     * Default function to remoe move button from cols.
+     * Flag indicating if the feature of moving rows from layout is
+     * enabled or not.
+     *
+     * @attribute enableMoveRows
+     * @default true
+     * @type {Boolean}
+     */
+    enableMoveRows: {
+        validator: A.Lang.isBoolean,
+        value: true
+    },
+
+    /**
+     * Default function to remove move button from cols.
      *
      * @attribute removeColMoveButtons
      * @type {Function}

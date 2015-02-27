@@ -136,12 +136,12 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             Assert.isNull(target);
         },
 
-        'should hide move row button if disable enableMove attribute': function() {
+        'should hide move row button if disable enableMoveRows attribute': function() {
             var cutButton = container.one('.layout-builder-move-cut-row-button');
 
             Assert.isNotNull(cutButton);
 
-            this.layoutBuilder.set('enableMove', false);
+            this.layoutBuilder.set('enableMoveRows', false);
 
             cutButton = container.one('.layout-builder-move-cut-row-button');
 
@@ -174,22 +174,6 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             moveButton = Y.one('.layout-builder-move-button');
             Assert.isNull(moveButton);
-        },
-
-        'should disable enableMove attribute when creating the layout builder': function() {
-            var button;
-
-            this.layoutBuilder.destroy();
-
-            this.layoutBuilder = new Y.LayoutBuilder({
-                container: Y.one('.container'),
-                enableMove: false,
-                layout: layout
-            });
-
-            button = container.one('.layout-builder-move-button');
-
-            Assert.isNull(button);
         },
 
         'should not add cut row button if layout has only one row': function() {

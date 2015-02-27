@@ -129,7 +129,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
 
         this._eventHandles.push(
             this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
-
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
             boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' + CSS_EMPTY_COL_ADD_BUTTON),
             boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this),

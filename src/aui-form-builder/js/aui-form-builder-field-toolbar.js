@@ -28,7 +28,7 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
         '<button class="btn btn-default ' + CSS_TOOLBAR_TOGGLE + '" tabindex="9">' +
         '<span class="glyphicon glyphicon-cog"></span></button>' +
         '<div class="btn-group ' + CSS_TOOLBAR_ITEMS + '"></div></div>',
-    TPL_TOOLBAR_ITEM: '<button class="btn btn-default ' + CSS_TOOLBAR_ITEM + '" tabindex="9">' +
+    TPL_TOOLBAR_ITEM: '<button class="btn btn-default ' + CSS_TOOLBAR_ITEM + ' {buttonClass}" tabindex="9">' +
         '<span class="{iconClass}"></span></button>',
 
     /**
@@ -95,6 +95,16 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
     },
 
     /**
+     * Finds one toolbar's item using the selector
+     *
+     * @method getItem
+     * @param {String} selector
+     */
+    getItem: function(selector) {
+        return this._toolbar.one(selector);
+    },
+
+    /**
      * Opens the toolbar
      *
      * @method open
@@ -127,7 +137,7 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
      * Gets the form builder field from the event's target node.
      *
      * @method _getFieldFromEvent
-     * @param  {EventFacade} event
+     * @param {EventFacade} event
      * @return {A.FormBuilderFieldBase}
      * @protected
      */
@@ -139,7 +149,7 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
      * Gets the item object that represents the event's target node.
      *
      * @method _getItemFromEvent
-     * @param  {EventFacade} event
+     * @param {EventFacade} event
      * @return {Object}
      * @protected
      */
@@ -172,6 +182,10 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
      */
     _onFieldMouseEnter: function (event) {
         var field = this._getFieldFromEvent(event);
+
+        this.fire('onToolbarFieldMouseEnter', {
+            colNode: event.currentTarget.ancestor('.col')
+        });
 
         this.addForField(field);
     },
@@ -267,6 +281,7 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
                 return [
                     A.FormBuilderFieldToolbar.ITEM_ADD_NESTED,
                     A.FormBuilderFieldToolbar.ITEM_EDIT,
+                    A.FormBuilderFieldToolbar.ITEM_MOVE,
                     A.FormBuilderFieldToolbar.ITEM_REMOVE,
                     A.FormBuilderFieldToolbar.ITEM_CLOSE
                 ];
@@ -282,6 +297,7 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
  * @static
  */
 A.FormBuilderFieldToolbar.ITEM_ADD_NESTED = {
+    buttonClass: '',
     handler: 'addNestedField',
     iconClass: 'glyphicon glyphicon-plus'
 };
@@ -293,8 +309,20 @@ A.FormBuilderFieldToolbar.ITEM_ADD_NESTED = {
  * @static
  */
 A.FormBuilderFieldToolbar.ITEM_EDIT = {
+    buttonClass: '',
     handler: 'editField',
     iconClass: 'glyphicon glyphicon-wrench'
+};
+
+/**
+ * Pre built item for editing a field.
+ *
+ * @type {Object}
+ * @static
+ */
+A.FormBuilderFieldToolbar.ITEM_MOVE = {
+    buttonClass: 'layout-builder-move-cut-button layout-builder-move-cut-col-button',
+    iconClass: 'glyphicon glyphicon-move'
 };
 
 /**
@@ -304,6 +332,7 @@ A.FormBuilderFieldToolbar.ITEM_EDIT = {
  * @static
  */
 A.FormBuilderFieldToolbar.ITEM_REMOVE = {
+    buttonClass: '',
     handler: 'removeField',
     iconClass: 'glyphicon glyphicon-trash'
 };
@@ -315,5 +344,6 @@ A.FormBuilderFieldToolbar.ITEM_REMOVE = {
  * @static
  */
 A.FormBuilderFieldToolbar.ITEM_CLOSE = {
+    buttonClass: '',
     iconClass: 'glyphicon glyphicon-remove'
 };

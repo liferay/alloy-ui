@@ -73,6 +73,7 @@
 }
 
 .form-builder-choose-col-move-target .form-builder-field-move-target {
+    display: block;
     visibility: visible;
 }
 
