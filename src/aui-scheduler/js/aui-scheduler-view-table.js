@@ -1131,6 +1131,8 @@ var SchedulerTableView = A.Component.create({
             var eventsNodeList = A.NodeList.create();
 
             A.Array.each(events, function(evt) {
+                evt.syncNodeTitleUI();
+
                 var evtNode = evt.get('node').item(0).clone();
 
                 evtNode.setData('scheduler-event', evt);
