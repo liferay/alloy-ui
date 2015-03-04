@@ -26,14 +26,6 @@ YUI.add('aui-form-builder-field-toolbar-tests', function(Y) {
             this._toolbar = new Y.FormBuilderFieldToolbar({
                 formBuilder: new FakeFormBuilder().render('#container')
             });
-
-            Y.one('#container').ancestor('.col').setData('layout-col', new Y.LayoutCol({
-                    movableContent: true,
-                    size: 12,
-                    value: { content: 'foo' }
-                })
-            );
-
         },
 
         tearDown: function() {
