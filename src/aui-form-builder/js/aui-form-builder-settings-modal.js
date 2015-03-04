@@ -214,7 +214,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
     },
 
     /**
-     * Toggle back and close button on Small Screen.
+     * Toggle back and close button on small screen.
      *
      * @method _updateSmallScreenButtons
      * @protected

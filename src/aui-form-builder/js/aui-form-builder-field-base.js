@@ -244,6 +244,7 @@ A.FormBuilderFieldBase.prototype = {
      * Fired after the a Toggler of Advanced Settings change.
      *
      * @method _afterExpandedChange
+     * @param {EventFacade} event
      * @protected
      */
     _afterExpandedChange: function(event) {
