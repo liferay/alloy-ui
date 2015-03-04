@@ -241,7 +241,10 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
 
         itemsNode.empty();
         for (i = 0; i < items.length; i++) {
-            itemsNode.append(A.Node.create(A.Lang.sub(this.TPL_TOOLBAR_ITEM, items[i])));
+            itemsNode.append(A.Node.create(A.Lang.sub(this.TPL_TOOLBAR_ITEM, {
+                buttonClass: items[i].buttonClass || '',
+                iconClass: items[i].iconClass
+            })));
         }
     }
 }, {
@@ -297,7 +300,6 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
  * @static
  */
 A.FormBuilderFieldToolbar.ITEM_ADD_NESTED = {
-    buttonClass: '',
     handler: 'addNestedField',
     iconClass: 'glyphicon glyphicon-plus'
 };
@@ -309,13 +311,12 @@ A.FormBuilderFieldToolbar.ITEM_ADD_NESTED = {
  * @static
  */
 A.FormBuilderFieldToolbar.ITEM_EDIT = {
-    buttonClass: '',
     handler: 'editField',
     iconClass: 'glyphicon glyphicon-wrench'
 };
 
 /**
- * Pre built item for editing a field.
+ * Pre built item for moving a field.
  *
  * @type {Object}
  * @static
@@ -332,7 +333,6 @@ A.FormBuilderFieldToolbar.ITEM_MOVE = {
  * @static
  */
 A.FormBuilderFieldToolbar.ITEM_REMOVE = {
-    buttonClass: '',
     handler: 'removeField',
     iconClass: 'glyphicon glyphicon-trash'
 };
@@ -344,6 +344,5 @@ A.FormBuilderFieldToolbar.ITEM_REMOVE = {
  * @static
  */
 A.FormBuilderFieldToolbar.ITEM_CLOSE = {
-    buttonClass: '',
     iconClass: 'glyphicon glyphicon-remove'
 };
