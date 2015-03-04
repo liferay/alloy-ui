@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1857](https://issues.liferay.com/browse/AUI-1857) "Show x more" in scheduler monthly view shows events in wrong time format
 * [AUI-1854](https://issues.liferay.com/browse/AUI-1854) Calendar, Week View, Events at the and of every day are not displayed properly
 * [AUI-1809](https://issues.liferay.com/browse/AUI-1809) Events with duration longer than a week don't render correctly on month view
 * [AUI-1640](https://issues.liferay.com/browse/AUI-1640) Scheduler should create SchedulerEvent instances lazily
