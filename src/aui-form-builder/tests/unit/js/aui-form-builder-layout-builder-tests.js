@@ -458,6 +458,33 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             Y.Assert.areEqual(5, this._toolbar.get('items').length);
             Y.Assert.areEqual(4, Y.all('.form-builder-field-toolbar-item:not(.hidden)').size());
+        },
+
+        'should not have move target if col\'s content is not movable': function() {
+            var moveItem,
+                row,
+                rowNode,
+                visibleTargets;
+
+            this._createFormBuilder({
+                mode: Y.FormBuilder.MODES.REGULAR
+            });
+
+            this._formBuilder.get('layout').get('rows')[1].get('cols')[2].set('movableContent', false);
+
+            this._toolbar = this._formBuilder._fieldToolbar;
+            this._openToolbar();
+
+            moveItem = this._toolbar._toolbar.one('.glyphicon-move').ancestor();
+
+            row = this._formBuilder.get('layout').get('rows')[1];
+            rowNode = row.get('node');
+
+            moveItem.simulate('click');
+            visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
+                return node.getStyle('visibility') !== 'hidden' && node.getStyle('display') !== 'none';
+            });
+            Y.Assert.areEqual(1, visibleTargets.size());
         }
     }));
 

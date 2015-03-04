@@ -86,10 +86,15 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _addColMoveTarget: function(col) {
-        var colNode,
+        var cantReceiveMoveTarget,
+            colNode = col.get('node'),
             targetNodes;
 
-        colNode = col.get('node');
+        cantReceiveMoveTarget = !col.get('movableContent') && !colNode.one('.form-builder-empty-col');
+
+        if (cantReceiveMoveTarget) {
+            return;
+        }
 
         colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
 
