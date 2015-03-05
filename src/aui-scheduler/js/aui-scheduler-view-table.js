@@ -1245,6 +1245,7 @@ var SchedulerTableView = A.Component.create({
 
             var evtNode = evtNodeList.item(paddingNodeIndex);
 
+            evtNode.show();
             evtNode.setStyles({
                 height: 'auto',
                 left: 0,
