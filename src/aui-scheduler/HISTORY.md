@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1856](https://issues.liferay.com/browse/AUI-1856) Incorrect display of overnight events in monthly view
 * [AUI-1865](https://issues.liferay.com/browse/AUI-1865) In month view, events spanning into DST are not displayed in the last day of first DST week
 * [AUI-1864](https://issues.liferay.com/browse/AUI-1864) In month view, events spanning into DST are not displayed in the week the DST starts
 * [AUI-1857](https://issues.liferay.com/browse/AUI-1857) "Show x more" in scheduler monthly view shows events in wrong time format
