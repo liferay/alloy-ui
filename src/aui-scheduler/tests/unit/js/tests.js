@@ -166,6 +166,42 @@ YUI.add('module-tests', function(Y) {
                 1, rows.item(2).all('.scheduler-event').size(),
                 'There should be one event in the third row'
             );
+        },
+
+        'should display event in month view in the week DST begins': function() {
+            var dstDate = this._getLocalTimeZoneDSTFirstDay();
+
+            if (dstDate === null) {
+                Y.Assert.pass('The current machine time zone has no DSTs');
+
+                return;
+            }
+
+            var endDate = DateMath.add(dstDate, DateMath.MONTH, 1);
+            var startDate = DateMath.subtract(dstDate, DateMath.MONTH, 1);
+
+            this._createScheduler({
+                activeView: this._monthView,
+                date: dstDate,
+                firstDayOfWeek: DateMath.getFirstDayOfWeek(dstDate),
+                items: [
+                    {
+                        color: '#8D8',
+                        content: 'Many days',
+                        endDate: endDate,
+                        startDate: startDate
+                    }
+                ]
+            });
+
+            var rows = Y.all('.scheduler-view-table-row');
+
+            rows.each(function(row, index) {
+                Y.Assert.areEqual(
+                    1, row.all('.scheduler-event').size(),
+                    'There should be a event at row #'.concat(index)
+                );
+            });
         }
     }));
 
