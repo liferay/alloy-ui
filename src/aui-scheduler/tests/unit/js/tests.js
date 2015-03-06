@@ -3,8 +3,19 @@ YUI.add('module-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-scheduler');
     var DateMath = Y.DataType.DateMath;
 
+    var today = new Date();
+    var JANUARY_1 = DateMath.getJan1(today.getFullYear());
+    var JULY_1 = DateMath.getDate(today.getFullYear(), 6, 1);
+    var NO_DST_OFFSET = (JANUARY_1.getTimezoneOffset() === JULY_1.getTimezoneOffset());
+
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
+
+        _should: {
+            ignore: {
+                'should display event in month view in the week DST begins': NO_DST_OFFSET
+            }
+        },
 
         setUp: function() {
             this._agendaView = new Y.SchedulerAgendaView(),
@@ -44,17 +55,13 @@ YUI.add('module-tests', function(Y) {
         },
 
         _getLocalTimeZoneDSTFirstDay: function() {
-            var today = new Date();
-            var january1 = DateMath.getJan1(today.getFullYear());
-            var july1 = DateMath.getDate(today.getFullYear(), 6, 1);
-
-            if (january1.getTimezoneOffset() === july1.getTimezoneOffset()) {
+            if (NO_DST_OFFSET) {
                 return null;
             }
 
             var step;
-            var dstOffset = Math.min(january1.getTimezoneOffset(), july1.getTimezoneOffset());
-            var curDate = july1;
+            var dstOffset = Math.min(JANUARY_1.getTimezoneOffset(), JULY_1.getTimezoneOffset());
+            var curDate = JULY_1;
             var prevDate = DateMath.subtract(curDate, DateMath.DAY, 1);
 
             if (curDate.getTimezoneOffset() !== dstOffset) {
