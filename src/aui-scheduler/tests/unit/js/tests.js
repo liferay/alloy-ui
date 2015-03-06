@@ -43,6 +43,59 @@ YUI.add('aui-scheduler-tests', function(Y) {
             }, config));
         },
 
+        _getLocalTimeZoneDSTFirstDay: function() {
+            var today = new Date();
+            var january1 = DateMath.getJan1(today.getFullYear());
+            var july1 = DateMath.getDate(today.getFullYear(), 6, 1);
+
+            if (january1.getTimezoneOffset() === july1.getTimezoneOffset()) {
+                return null;
+            }
+
+            var step;
+            var dstOffset = Math.min(january1.getTimezoneOffset(), july1.getTimezoneOffset());
+            var curDate = july1;
+            var prevDate = DateMath.subtract(curDate, DateMath.DAY, 1);
+
+            if (curDate.getTimezoneOffset() !== dstOffset) {
+                // If current date is not under DST, go forward to find when
+                // DST will start.
+                step = 1;
+            }
+            else {
+                // If current date is under DST, go back to find when DST
+                // started.
+                step = -1;
+            }
+
+            while (prevDate.getTimezoneOffset() <= curDate.getTimezoneOffset()) {
+                prevDate = DateMath.add(prevDate, DateMath.DAY, step);
+                curDate = DateMath.add(curDate, DateMath.DAY, step);
+            }
+
+            // The returned date should satisfy some criteria. Here we check
+            // whether they are true. Since time zone rules are complex and
+            // prone to change, this ensures the test will fail if it cannot
+            // proceed.
+            Y.Assert.isFalse(
+                DateMath.isDayOverlap(prevDate, DateMath.subtract(curDate, DateMath.DAY, 1)),
+                'The previous date should be one day before the current one'
+            );
+
+            Y.Assert.areEqual(
+                curDate.getTimezoneOffset(),
+                dstOffset,
+                'The current date should have DST offset'
+            );
+
+            Y.Assert.isTrue(
+                curDate.getTimezoneOffset() < prevDate.getTimezoneOffset(),
+                'The previous date should have a smaller offset'
+            );
+
+            return curDate;
+        },
+
         'should be able to switch views': function() {
             this._createScheduler();
 
