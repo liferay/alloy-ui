@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1864](https://issues.liferay.com/browse/AUI-1864) In month view, events spanning into DST are not displayed in the week the DST starts
 * [AUI-1857](https://issues.liferay.com/browse/AUI-1857) "Show x more" in scheduler monthly view shows events in wrong time format
 * [AUI-1854](https://issues.liferay.com/browse/AUI-1854) Calendar, Week View, Events at the and of every day are not displayed properly
 * [AUI-1835](https://issues.liferay.com/browse/AUI-1835) Scheduler views select dropdown is not set to active view on render
