@@ -55,14 +55,18 @@ YUI.add('aui-scheduler-tests', function(Y) {
         },
 
         _getLocalTimeZoneDSTFirstDay: function() {
+            var curDate = JULY_1,
+                dstOffset = Math.min(JANUARY_1.getTimezoneOffset(), JULY_1.getTimezoneOffset()),
+                prevDate = DateMath.subtract(curDate, DateMath.DAY, 1),
+                step;
+
             if (NO_DST_OFFSET) {
                 return null;
             }
 
-            var step;
-            var dstOffset = Math.min(JANUARY_1.getTimezoneOffset(), JULY_1.getTimezoneOffset());
-            var curDate = JULY_1;
-            var prevDate = DateMath.subtract(curDate, DateMath.DAY, 1);
+            dstOffset = Math.min(JANUARY_1.getTimezoneOffset(), JULY_1.getTimezoneOffset());
+            curDate = JULY_1;
+            prevDate = DateMath.subtract(curDate, DateMath.DAY, 1);
 
             if (curDate.getTimezoneOffset() !== dstOffset) {
                 // If current date is not under DST, go forward to find when
@@ -222,7 +226,10 @@ YUI.add('aui-scheduler-tests', function(Y) {
         },
 
         'should display event in month view in the week DST begins': function() {
-            var dstDate = this._getLocalTimeZoneDSTFirstDay();
+            var dstDate = this._getLocalTimeZoneDSTFirstDay(),
+                endDate,
+                rows,
+                startDate;
 
             if (dstDate === null) {
                 Y.Assert.pass('The current machine time zone has no DSTs');
@@ -230,8 +237,8 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 return;
             }
 
-            var endDate = DateMath.add(dstDate, DateMath.MONTH, 1);
-            var startDate = DateMath.subtract(dstDate, DateMath.MONTH, 1);
+            endDate = DateMath.add(dstDate, DateMath.MONTH, 1);
+            startDate = DateMath.subtract(dstDate, DateMath.MONTH, 1);
 
             this._createScheduler({
                 activeView: this._monthView,
@@ -247,12 +254,12 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 ]
             });
 
-            var rows = Y.all('.scheduler-view-table-row');
+            rows = Y.all('.scheduler-view-table-row');
 
             rows.each(function(row, index) {
                 Y.Assert.areEqual(
                     1, row.all('.scheduler-event').size(),
-                    'There should be a event at row #'.concat(index)
+                    'There should be an event at row #'.concat(index)
                 );
             });
         }
