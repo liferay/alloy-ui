@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1858](https://issues.liferay.com/browse/AUI-1858) FormBuilder should be able to receive layout as a configuration object
 * [AUI-1810](https://issues.liferay.com/browse/AUI-1810) Form builder advanced field settings for mobile
 * [AUI-1830](https://issues.liferay.com/browse/AUI-1830) Button to move field should be inside the field's toolbar
 * [AUI-1840](https://issues.liferay.com/browse/AUI-1840) Field settings cancel and save buttons for mobile

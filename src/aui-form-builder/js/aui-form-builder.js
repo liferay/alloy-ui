@@ -374,7 +374,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * Creates a new page break row.
      *
      * @method _createPageBreakRow
-     * @param  {Number} nextPageBreakIndex The index of the next page break.
+     * @param {Number} nextPageBreakIndex The index of the next page break.
      * @return {A.LayoutRow}
      */
     _createPageBreakRow: function(nextPageBreakIndex) {
@@ -408,11 +408,11 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * Turns the given column into an empty form builder column.
      *
      * @method _makeColumnEmpty
-     * @param  {A.LayoutCol} col
+     * @param {A.LayoutCol} col
      * @protected
      */
     _makeColumnEmpty: function(col) {
-        col.set('value', {content: this.TPL_EMPTY_COL});
+        col.set('value', { content: this.TPL_EMPTY_COL });
     },
 
     /**
@@ -531,25 +531,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Sets the `layout` attribute.
-     *
-     * @method _setLayout
-     * @param {A.Layout} val
-     * @protected
-     */
-    _setLayout: function(val) {
-        var firstRow;
-
-        if (val.get('rows').length > 0) {
-            firstRow = val.get('rows')[0];
-        }
-
-        if (!firstRow || !A.instanceOf(firstRow, A.FormBuilderPageBreakRow)) {
-            val.addRow(0, this._createPageBreakRow(1));
-        }
-    },
-
-    /**
      * Sets the `fieldToolbar` attribute.
      *
      * @method _setFieldToolbarConfig
@@ -559,6 +540,31 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         return A.merge({
             formBuilder: this
         }, val);
+    },
+
+    /**
+     * Sets the `layout` attribute.
+     *
+     * @method _setLayout
+     * @param {A.Layout} val
+     * @protected
+     */
+    _setLayout: function(val) {
+        var firstRow;
+
+        if (!A.instanceOf(val, A.Layout)) {
+            val = new A.Layout(val);
+        }
+
+        if (val.get('rows').length > 0) {
+            firstRow = val.get('rows')[0];
+        }
+
+        if (!firstRow || !A.instanceOf(firstRow, A.FormBuilderPageBreakRow)) {
+            val.addRow(0, this._createPageBreakRow(1));
+        }
+
+        return val;
     },
 
     /**
@@ -644,7 +650,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         layout: {
             setter: '_setLayout',
             validator: function(val) {
-                return A.instanceOf(val, A.Layout);
+                return A.instanceOf(val, A.Layout) || A.Lang.isObject(val);
             },
             valueFn: function() {
                 return new A.Layout();

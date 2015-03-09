@@ -763,6 +763,29 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this._formBuilder._onFocus({ target: node });
 
             Y.Assert.isNotNull(Y.one('.form-builder-field-toolbar'));
+        },
+
+        'should be able to create a layout using an object instead of an instance of Layout': function() {
+            var config = {
+                layout: {
+                    rows: [
+                        new Y.FormBuilderPageBreakRow({
+                            index: 1,
+                            quantity: 2
+                        }),
+                        new Y.LayoutRow({
+                            cols: [
+                                new Y.LayoutCol({
+                                    size: 12
+                                })
+                            ]
+                        })
+                    ]
+                }
+            };
+
+            this.createFormBuilder(config);
+            Y.Assert.isTrue(Y.instanceOf(this._formBuilder.get('layout'), Y.Layout));
         }
     }));
 
