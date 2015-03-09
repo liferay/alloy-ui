@@ -438,6 +438,28 @@ YUI.add('aui-layout-tests', function(Y) {
 
             Assert.areEqual(layoutNode, layout.get('node'));
             Assert.areEqual(container.all('.row').size(), layout.get('rows').length);
+        },
+
+        'should be able to create a layout with rows attribute being an array of plain objects instead of an array of LayoutRow': function() {
+            var layout = new Y.Layout({
+                    rows: [
+                        {
+                            index: 1,
+                            quantity: 2
+                        },
+                        {
+                            cols: [
+                                new Y.LayoutCol({
+                                    movableContent: false,
+                                    size: 12
+                                })
+                            ]
+                        }
+                    ]
+                });
+
+            Assert.areEqual(2, layout.get('rows').length);
+            Assert.isTrue(Y.instanceOf(layout.get('rows')[0], Y.LayoutRow));
         }
     }));
 

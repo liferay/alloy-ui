@@ -367,6 +367,30 @@ A.Layout = A.Base.create('layout', A.Base, [], {
     },
 
     /**
+     * Sets the `row` attribute.
+     *
+     * @method _setRows
+     * @param {Array} val
+     * @protected
+     */
+    _setRows: function(val) {
+        var i,
+            newVal = [],
+            row;
+
+        for (i = 0; i < val.length; i++) {
+            row = val[i];
+            if (!A.instanceOf(row, A.LayoutRow)) {
+                row = new A.LayoutRow(row);
+            }
+
+            newVal.push(row);
+        }
+
+        return newVal;
+    },
+
+    /**
      * Updates the UI according to the value of the `rows` attribute.
      *
      * @method _uiSetRows
@@ -426,6 +450,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
          * @type {Array}
          */
         rows: {
+            setter: '_setRows',
             validator: A.Lang.isArray,
             value: []
         }
