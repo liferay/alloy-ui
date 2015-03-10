@@ -3,6 +3,7 @@
 > Documentation and test modifications are not included in this changelog. For more details, see [full commit history](https://github.com/liferay/alloy-ui/commits/master/src/aui-layout).
 
 ## @VERSION@
+* [AUI-1858](https://issues.liferay.com/browse/AUI-1858) LayoutRow should be able to receive cols as a configuration object
 * [AUI-1858](https://issues.liferay.com/browse/AUI-1858) Layout should be able to receive rows as a configuration object
 * [AUI-1830](https://issues.liferay.com/browse/AUI-1830) Button to move field should be inside the field's toolbar
 * [AUI-1755](https://issues.liferay.com/browse/AUI-1755) Button for adding page breaks should be on the left of the button to add rows

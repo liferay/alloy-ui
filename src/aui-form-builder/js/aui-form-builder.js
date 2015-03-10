@@ -645,7 +645,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
          * The layout where the form fields will be rendered.
          *
          * @attribute layout
-         * @type A.Layout
+         * @type A.Layout || Object
          */
         layout: {
             setter: '_setLayout',

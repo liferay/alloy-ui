@@ -112,8 +112,16 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @return {Number}
      */
     _getSize: function(cols) {
+        var size;
+
         return A.Array.reduce(cols, 0, function(prev, current) {
-            prev += current.get('size');
+            if (!A.instanceOf(current, A.LayoutCol)) {
+                size = current.size || 0;
+            }
+            else {
+                size = current.get('size');
+            }
+            prev += size;
             return prev;
         });
     },
@@ -196,7 +204,23 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @protected
      */
     _setCols: function(cols) {
-        var size = this._getSize(cols);
+        var col,
+            i,
+            newCols = [],
+            size;
+
+        for (i = 0; i < cols.length; i++) {
+            col = cols[i];
+            if (!A.instanceOf(col, A.LayoutCol)) {
+                col = new A.LayoutCol(col);
+            }
+
+            newCols.push(col);
+        }
+
+        cols = newCols;
+
+        size = this._getSize(cols);
 
         if (size < ALLOWED_SIZE) {
             cols.push(new A.LayoutCol({ size: ALLOWED_SIZE - size }));

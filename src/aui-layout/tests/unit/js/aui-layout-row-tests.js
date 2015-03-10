@@ -226,6 +226,29 @@ YUI.add('aui-layout-row-tests', function(Y) {
             });
 
             Assert.areEqual(1, layoutRow.get('cols').length);
+        },
+
+        'should be able to create a row with cols attribute being an array of plain objects instead of an array of LayoutCol': function() {
+            var layoutRow = new Y.LayoutRow({
+                    cols: [
+                        {
+                            size: 3,
+                            value: { content: 'foo' }
+                        },
+                        {
+                            size: 5,
+                            value: { content: 'bar' }
+                        },
+                        {
+                            size: 4,
+                            value: { content: 'baz' }
+                        }
+                    ]
+                });
+
+            Assert.areEqual(3, layoutRow.get('cols').length);
+            Assert.isTrue(Y.instanceOf(layoutRow.get('cols')[0], Y.LayoutCol));
+            Assert.areEqual('foo', layoutRow.get('cols')[0].get('value').content);
         }
     }));
 
