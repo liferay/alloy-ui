@@ -14,7 +14,8 @@ YUI.add('aui-scheduler-tests', function(Y) {
         _should: {
             ignore: {
                 'should display event in month view in the week DST begins': NO_DST_OFFSET,
-                'should display event in month view in the last day of first week under DST': NO_DST_OFFSET
+                'should display event in month view in the last day of first week under DST': NO_DST_OFFSET,
+                'should not display "Show n more" link with only two events': NO_DST_OFFSET
             }
         },
 
@@ -304,6 +305,46 @@ YUI.add('aui-scheduler-tests', function(Y) {
                     'Event column #'.concat(index).concat(' should fill row.')
                 );
             });
+        },
+
+        'should not display "Show n more" link with only two events': function() {
+            var dstDate = this._getLocalTimeZoneDSTFirstDay(),
+                endDate,
+                startDate;
+
+            if (dstDate === null) {
+                Y.Assert.pass('The current machine time zone has no DSTs');
+
+                return;
+            }
+
+            endDate = DateMath.add(dstDate, DateMath.MONTH, 2);
+            startDate = DateMath.subtract(dstDate, DateMath.MONTH, 2);
+
+            this._createScheduler({
+                activeView: this._monthView,
+                date: dstDate,
+                firstDayOfWeek: (DateMath.getFirstDayOfWeek(dstDate) - 1) % 7,
+                items: [
+                    {
+                        color: '#8D8',
+                        content: 'Event 1',
+                        endDate: endDate,
+                        startDate: startDate
+                    },
+                    {
+                        color: '#474',
+                        content: 'Event 2',
+                        endDate: endDate,
+                        startDate: startDate
+                    }
+                ]
+            });
+
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-view-table-more').size(),
+                '"Show n more" link should not be displayed.'
+            );
         }
     }));
 
