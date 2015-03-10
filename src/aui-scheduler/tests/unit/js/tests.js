@@ -3,8 +3,23 @@ YUI.add('aui-scheduler-tests', function(Y) {
     var suite = new Y.Test.Suite('aui-scheduler');
     var DateMath = Y.DataType.DateMath;
 
+    var today = new Date();
+    var JANUARY_1 = DateMath.getJan1(today.getFullYear());
+    var JULY_1 = DateMath.getDate(today.getFullYear(), 6, 1);
+    var NO_DST_OFFSET = (JANUARY_1.getTimezoneOffset() === JULY_1.getTimezoneOffset());
+    var WEEK_LENGTH = DateMath.WEEK_LENGTH;
+
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
+
+        _should: {
+            ignore: {
+                'should display event in month view in the week DST begins': NO_DST_OFFSET,
+                'should display event in month view in the last day of first week under DST': NO_DST_OFFSET,
+                'should not display "Show n more" link with only two events': NO_DST_OFFSET,
+                'should display last day of event spanning to DST from one week before': NO_DST_OFFSET
+            }
+        },
 
         setUp: function() {
             this._agendaView = new Y.SchedulerAgendaView(),
@@ -41,6 +56,59 @@ YUI.add('aui-scheduler-tests', function(Y) {
                     this._agendaView
                 ]
             }, config));
+        },
+
+        _getLocalTimeZoneDSTFirstDay: function() {
+            var curDate = JULY_1,
+                dstOffset = Math.min(JANUARY_1.getTimezoneOffset(), JULY_1.getTimezoneOffset()),
+                prevDate = DateMath.subtract(curDate, DateMath.DAY, 1),
+                step;
+
+            if (NO_DST_OFFSET) {
+                return null;
+            }
+
+            dstOffset = Math.min(JANUARY_1.getTimezoneOffset(), JULY_1.getTimezoneOffset());
+            curDate = JULY_1;
+            prevDate = DateMath.subtract(curDate, DateMath.DAY, 1);
+
+            if (curDate.getTimezoneOffset() !== dstOffset) {
+                // If current date is not under DST, go forward to find when
+                // DST will start.
+                step = 1;
+            }
+            else {
+                // If current date is under DST, go back to find when DST
+                // started.
+                step = -1;
+            }
+
+            while (prevDate.getTimezoneOffset() <= curDate.getTimezoneOffset()) {
+                prevDate = DateMath.add(prevDate, DateMath.DAY, step);
+                curDate = DateMath.add(curDate, DateMath.DAY, step);
+            }
+
+            // The returned date should satisfy some criteria. Here we check
+            // whether they are true. Since time zone rules are complex and
+            // prone to change, this ensures the test will fail if it cannot
+            // proceed.
+            Y.Assert.isFalse(
+                DateMath.isDayOverlap(prevDate, DateMath.subtract(curDate, DateMath.DAY, 1)),
+                'The previous date should be one day before the current one'
+            );
+
+            Y.Assert.areEqual(
+                curDate.getTimezoneOffset(),
+                dstOffset,
+                'The current date should have DST offset'
+            );
+
+            Y.Assert.isTrue(
+                curDate.getTimezoneOffset() < prevDate.getTimezoneOffset(),
+                'The previous date should have a smaller offset'
+            );
+
+            return curDate;
         },
 
         'should be able to switch views': function() {
@@ -158,6 +226,150 @@ YUI.add('aui-scheduler-tests', function(Y) {
             Y.Assert.areEqual(
                 1, rows.item(2).all('.scheduler-event').size(),
                 'There should be one event in the third row'
+            );
+        },
+
+        'should display event in month view in the week DST begins': function() {
+            var dstDate = this._getLocalTimeZoneDSTFirstDay(),
+                endDate,
+                firstDayOfWeek = DateMath.getFirstDayOfWeek(dstDate),
+                rows,
+                startDate;
+
+            endDate = DateMath.add(dstDate, DateMath.MONTH, 1);
+            startDate = DateMath.subtract(dstDate, DateMath.MONTH, 1);
+
+            this._createScheduler({
+                activeView: this._monthView,
+                date: dstDate,
+                firstDayOfWeek: firstDayOfWeek.getDay(),
+                items: [
+                    {
+                        color: '#8D8',
+                        content: 'Many days',
+                        endDate: endDate,
+                        startDate: startDate
+                    }
+                ]
+            });
+
+            rows = Y.all('.scheduler-view-table-row');
+
+            rows.each(function(row, index) {
+                Y.Assert.areEqual(
+                    1, row.all('.scheduler-event').size(),
+                    'There should be an event at row #'.concat(index)
+                );
+            });
+        },
+
+        'should display event in month view in the last day of first week under DST': function() {
+            var dstDate = this._getLocalTimeZoneDSTFirstDay(),
+                endDate,
+                events,
+                firstDayOfWeek = DateMath.getFirstDayOfWeek(dstDate),
+                startDate;
+
+            endDate = DateMath.add(dstDate, DateMath.MONTH, 2);
+            startDate = DateMath.subtract(dstDate, DateMath.MONTH, 2);
+
+            this._createScheduler({
+                activeView: this._monthView,
+                date: dstDate,
+                firstDayOfWeek: (firstDayOfWeek.getDay() - 1) % WEEK_LENGTH,
+                items: [
+                    {
+                        color: '#8D8',
+                        content: 'Event 1',
+                        endDate: endDate,
+                        startDate: startDate
+                    }
+                ]
+            });
+
+            events = Y.all('.scheduler-event');
+
+            events.each(function(event, index) {
+                var column = event.ancestor('.scheduler-view-table-data-col');
+
+                Y.Assert.areEqual(
+                    WEEK_LENGTH, column.getAttribute('colspan'),
+                    'Event column #'.concat(index).concat(' should fill row.')
+                );
+            });
+        },
+
+        'should not display "Show n more" link with only two events': function() {
+            var dstDate = this._getLocalTimeZoneDSTFirstDay(),
+                endDate,
+                firstDayOfWeek = DateMath.getFirstDayOfWeek(dstDate),
+                startDate;
+
+            endDate = DateMath.add(dstDate, DateMath.MONTH, 2);
+            startDate = DateMath.subtract(dstDate, DateMath.MONTH, 2);
+
+            this._createScheduler({
+                activeView: this._monthView,
+                date: dstDate,
+                firstDayOfWeek: (firstDayOfWeek.getDay() - 1) % WEEK_LENGTH,
+                items: [
+                    {
+                        color: '#8D8',
+                        content: 'Event 1',
+                        endDate: endDate,
+                        startDate: startDate
+                    },
+                    {
+                        color: '#474',
+                        content: 'Event 2',
+                        endDate: endDate,
+                        startDate: startDate
+                    }
+                ]
+            });
+
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-view-table-more').size(),
+                '"Show n more" link should not be displayed.'
+            );
+        },
+
+        'should display last day of event spanning to DST from one week before': function() {
+            var column,
+                dstDate = this._getLocalTimeZoneDSTFirstDay(),
+                endDate,
+                events,
+                startDate;
+
+            endDate = DateMath.subtract(dstDate, DateMath.DAY, 1);
+            startDate = DateMath.subtract(dstDate, DateMath.DAY, WEEK_LENGTH);
+
+            this._createScheduler({
+                activeView: this._monthView,
+                date: dstDate,
+                firstDayOfWeek: startDate.getDay(),
+                items: [
+                    {
+                        color: '#8D8',
+                        content: 'Event 1',
+                        endDate: endDate,
+                        startDate: startDate
+                    }
+                ]
+            });
+
+            events = Y.all('.scheduler-event');
+
+            Y.Assert.areEqual(
+                1, events.size(),
+                'Event should span through only one week'
+            );
+
+            column = events.item(0).ancestor('.scheduler-view-table-data-col');
+
+            Y.Assert.areEqual(
+                WEEK_LENGTH, column.getAttribute('colspan'),
+                'Event should fill entire week.'
             );
         }
     }));

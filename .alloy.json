@@ -1,6 +1,6 @@
 {
     "alloycore": [ "aui-base-core" ],
     "alloyregex": "(aui|yui(",
-    "yuiversion": "patched-v3.18.0",
-    "version": "3.0.0"
+    "yuiversion": "patched-v3.18.1",
+    "version": "3.0.1"
 }

@@ -1031,10 +1031,10 @@ var SchedulerTableView = A.Component.create({
             var startDate = evt.getClearStartDate();
             var endDate = evt.getClearEndDate();
 
-            var maxColspan = DateMath.getDayOffset(rowEndDate, celDate);
+            var maxColspan = DateMath.countDays(rowEndDate, celDate);
 
             var info = {
-                colspan: Math.min(DateMath.getDayOffset(endDate, celDate), maxColspan) + 1,
+                colspan: Math.min(DateMath.countDays(endDate, celDate), maxColspan) + 1,
                 left: DateMath.before(startDate, rowStartDate),
                 right: DateMath.after(endDate, rowEndDate)
             };
@@ -1233,7 +1233,7 @@ var SchedulerTableView = A.Component.create({
                 new Date(Math.max(startDate, intervalStartDate)),
                 firstDayOfWeek
             ));
-            var paddingNodeIndex = Math.floor(DateMath.getDayOffset(celDate, startDateFirstDayOfWeek) / WEEK_LENGTH);
+            var paddingNodeIndex = Math.floor(DateMath.countDays(celDate, startDateFirstDayOfWeek) / WEEK_LENGTH);
 
             if (evtNodeList.size() <= paddingNodeIndex) {
                 evt.addPaddingNode();
@@ -1245,6 +1245,7 @@ var SchedulerTableView = A.Component.create({
 
             var evtNode = evtNodeList.item(paddingNodeIndex);
 
+            evtNode.show();
             evtNode.setStyles({
                 height: 'auto',
                 left: 0,
