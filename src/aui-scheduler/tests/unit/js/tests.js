@@ -236,12 +236,6 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 rows,
                 startDate;
 
-            if (dstDate === null) {
-                Y.Assert.pass('The current machine time zone has no DSTs');
-
-                return;
-            }
-
             endDate = DateMath.add(dstDate, DateMath.MONTH, 1);
             startDate = DateMath.subtract(dstDate, DateMath.MONTH, 1);
 
@@ -275,12 +269,6 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 events,
                 firstDayOfWeek = DateMath.getFirstDayOfWeek(dstDate),
                 startDate;
-
-            if (dstDate === null) {
-                Y.Assert.pass('The current machine time zone has no DSTs');
-
-                return;
-            }
 
             endDate = DateMath.add(dstDate, DateMath.MONTH, 2);
             startDate = DateMath.subtract(dstDate, DateMath.MONTH, 2);
@@ -316,12 +304,6 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 endDate,
                 firstDayOfWeek = DateMath.getFirstDayOfWeek(dstDate),
                 startDate;
-
-            if (dstDate === null) {
-                Y.Assert.pass('The current machine time zone has no DSTs');
-
-                return;
-            }
 
             endDate = DateMath.add(dstDate, DateMath.MONTH, 2);
             startDate = DateMath.subtract(dstDate, DateMath.MONTH, 2);
