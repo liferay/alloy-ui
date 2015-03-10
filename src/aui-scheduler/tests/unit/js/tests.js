@@ -7,6 +7,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
     var JANUARY_1 = DateMath.getJan1(today.getFullYear());
     var JULY_1 = DateMath.getDate(today.getFullYear(), 6, 1);
     var NO_DST_OFFSET = (JANUARY_1.getTimezoneOffset() === JULY_1.getTimezoneOffset());
+    var WEEK_LENGTH = DateMath.WEEK_LENGTH;
 
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
@@ -15,7 +16,8 @@ YUI.add('aui-scheduler-tests', function(Y) {
             ignore: {
                 'should display event in month view in the week DST begins': NO_DST_OFFSET,
                 'should display event in month view in the last day of first week under DST': NO_DST_OFFSET,
-                'should not display "Show n more" link with only two events': NO_DST_OFFSET
+                'should not display "Show n more" link with only two events': NO_DST_OFFSET,
+                'should display last day of event spanning to DST from one week before': NO_DST_OFFSET
             }
         },
 
@@ -344,6 +346,45 @@ YUI.add('aui-scheduler-tests', function(Y) {
             Y.Assert.areEqual(
                 0, Y.all('.scheduler-view-table-more').size(),
                 '"Show n more" link should not be displayed.'
+            );
+        },
+
+        'should display last day of event spanning to DST from one week before': function() {
+            var column,
+                dstDate = this._getLocalTimeZoneDSTFirstDay(),
+                endDate,
+                events,
+                startDate;
+
+            endDate = DateMath.subtract(dstDate, DateMath.DAY, 1);
+            startDate = DateMath.subtract(dstDate, DateMath.DAY, WEEK_LENGTH);
+
+            this._createScheduler({
+                activeView: this._monthView,
+                date: dstDate,
+                firstDayOfWeek: startDate.getDay(),
+                items: [
+                    {
+                        color: '#8D8',
+                        content: 'Event 1',
+                        endDate: endDate,
+                        startDate: startDate
+                    }
+                ]
+            });
+
+            events = Y.all('.scheduler-event');
+
+            Y.Assert.areEqual(
+                1, events.size(),
+                'Event should span through only one week'
+            );
+
+            var column = events.item(0).ancestor('.scheduler-view-table-data-col');
+
+            Y.Assert.areEqual(
+                7, column.getAttribute('colspan'),
+                'Event should fill entire week.'
             );
         }
     }));
