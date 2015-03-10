@@ -1064,10 +1064,10 @@ var SchedulerTableView = A.Component.create({
             var startDate = evt.getClearStartDate();
             var endDate = evt.getClearEndDate();
 
-            var maxColspan = DateMath.getDayOffset(rowEndDate, celDate);
+            var maxColspan = DateMath.countDays(rowEndDate, celDate);
 
             var info = {
-                colspan: Math.min(DateMath.getDayOffset(endDate, celDate), maxColspan) + 1,
+                colspan: Math.min(DateMath.countDays(endDate, celDate), maxColspan) + 1,
                 left: DateMath.before(startDate, rowStartDate),
                 right: DateMath.after(endDate, rowEndDate)
             };
