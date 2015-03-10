@@ -186,6 +186,7 @@ YUI.add('module-tests', function(Y) {
         'should display event in month view in the week DST begins': function() {
             var dstDate = this._getLocalTimeZoneDSTFirstDay(),
                 endDate,
+                firstDayOfWeek = DateMath.getFirstDayOfWeek(dstDate),
                 rows,
                 startDate;
 
@@ -201,7 +202,7 @@ YUI.add('module-tests', function(Y) {
             this._createScheduler({
                 activeView: this._monthView,
                 date: dstDate,
-                firstDayOfWeek: DateMath.getFirstDayOfWeek(dstDate),
+                firstDayOfWeek: firstDayOfWeek.getDay(),
                 items: [
                     {
                         color: '#8D8',
@@ -226,6 +227,7 @@ YUI.add('module-tests', function(Y) {
             var dstDate = this._getLocalTimeZoneDSTFirstDay(),
                 endDate,
                 events,
+                firstDayOfWeek = DateMath.getFirstDayOfWeek(dstDate),
                 startDate;
 
             if (dstDate === null) {
@@ -240,7 +242,7 @@ YUI.add('module-tests', function(Y) {
             this._createScheduler({
                 activeView: this._monthView,
                 date: dstDate,
-                firstDayOfWeek: (DateMath.getFirstDayOfWeek(dstDate) - 1) % 7,
+                firstDayOfWeek: (firstDayOfWeek.getDay() - 1) % 7,
                 items: [
                     {
                         color: '#8D8',
@@ -266,6 +268,7 @@ YUI.add('module-tests', function(Y) {
         'should not display "Show n more" link with only two events': function() {
             var dstDate = this._getLocalTimeZoneDSTFirstDay(),
                 endDate,
+                firstDayOfWeek = DateMath.getFirstDayOfWeek(dstDate),
                 startDate;
 
             if (dstDate === null) {
@@ -280,7 +283,7 @@ YUI.add('module-tests', function(Y) {
             this._createScheduler({
                 activeView: this._monthView,
                 date: dstDate,
-                firstDayOfWeek: (DateMath.getFirstDayOfWeek(dstDate) - 1) % 7,
+                firstDayOfWeek: (firstDayOfWeek.getDay() - 1) % 7,
                 items: [
                     {
                         color: '#8D8',
