@@ -365,7 +365,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 'Event should span through only one week'
             );
 
-            var column = events.item(0).ancestor('.scheduler-view-table-data-col');
+            column = events.item(0).ancestor('.scheduler-view-table-data-col');
 
             Y.Assert.areEqual(
                 WEEK_LENGTH, column.getAttribute('colspan'),
