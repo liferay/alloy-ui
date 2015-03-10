@@ -276,7 +276,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
             this._createScheduler({
                 activeView: this._monthView,
                 date: dstDate,
-                firstDayOfWeek: (firstDayOfWeek.getDay() - 1) % 7,
+                firstDayOfWeek: (firstDayOfWeek.getDay() - 1) % WEEK_LENGTH,
                 items: [
                     {
                         color: '#8D8',
@@ -293,7 +293,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 var column = event.ancestor('.scheduler-view-table-data-col');
 
                 Y.Assert.areEqual(
-                    7, column.getAttribute('colspan'),
+                    WEEK_LENGTH, column.getAttribute('colspan'),
                     'Event column #'.concat(index).concat(' should fill row.')
                 );
             });
@@ -311,7 +311,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
             this._createScheduler({
                 activeView: this._monthView,
                 date: dstDate,
-                firstDayOfWeek: (firstDayOfWeek.getDay() - 1) % 7,
+                firstDayOfWeek: (firstDayOfWeek.getDay() - 1) % WEEK_LENGTH,
                 items: [
                     {
                         color: '#8D8',
@@ -368,7 +368,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
             var column = events.item(0).ancestor('.scheduler-view-table-data-col');
 
             Y.Assert.areEqual(
-                7, column.getAttribute('colspan'),
+                WEEK_LENGTH, column.getAttribute('colspan'),
                 'Event should fill entire week.'
             );
         }
