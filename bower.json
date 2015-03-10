@@ -15,7 +15,7 @@
   ],
   "license": "BSD",
   "dependencies": {
-    "yui3": "liferay/yui3#patched-v3.18.0"
+    "yui3": "liferay/yui3#patched-v3.18.1"
   },
   "devDependencies": {
     "ace-builds": "1.1.3",
