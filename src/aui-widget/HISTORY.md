@@ -4,6 +4,12 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
+
+No changes.
+
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
 * [AUI-1305](https://issues.liferay.com/browse/AUI-1305) Make aui-image-gallery responsive

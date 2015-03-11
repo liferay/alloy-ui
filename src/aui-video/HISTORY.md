@@ -6,6 +6,10 @@
 
 No registries yet.
 
+## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
+
+No changes.
+
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
 
 * [AUI-1661](https://issues.liferay.com/browse/AUI-1661) AUI Video does not throws error when ogvUrl is not specified in Firefox

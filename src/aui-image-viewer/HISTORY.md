@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
+
 * [AUI-1669](https://issues.liferay.com/browse/AUI-1669) Image Viewer Base throws error when no images or sources are provided
 
 ## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)

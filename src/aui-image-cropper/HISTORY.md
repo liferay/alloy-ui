@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
+
 * [AUI-1838](https://issues.liferay.com/browse/AUI-1838) Image cropper does not work correctly with max-width or max-height
 * [AUI-1837](https://issues.liferay.com/browse/AUI-1837) Image cropper does not work correctly when image is centered
 
