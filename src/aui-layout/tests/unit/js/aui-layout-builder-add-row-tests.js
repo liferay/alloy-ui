@@ -265,5 +265,8 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test', 'aui-layout-builder', 'aui-classnamemanager', 'node-event-simulate']
+    requires: ['test', 'aui-layout-builder', 'aui-classnamemanager', 'node-event-simulate'],
+    test: function(Y) {
+        return Y.UA.ie === 0 || Y.UA.ie > 8;
+    }
 });

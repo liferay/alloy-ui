@@ -371,5 +371,8 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
         'aui-text-data-editor',
         'node-event-simulate',
         'test'
-    ]
+    ],
+    test: function(Y) {
+        return Y.UA.ie === 0 || Y.UA.ie > 8;
+    }
 });

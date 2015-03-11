@@ -96,5 +96,8 @@ YUI.add('aui-layout-col-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['test', 'aui-layout-col']
+    requires: ['test', 'aui-layout-col'],
+    test: function(Y) {
+        return Y.UA.ie === 0 || Y.UA.ie > 8;
+    }
 });

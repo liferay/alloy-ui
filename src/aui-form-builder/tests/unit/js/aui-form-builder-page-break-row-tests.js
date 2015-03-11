@@ -79,5 +79,8 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['aui-form-builder-page-break-row', 'test']
+    requires: ['aui-form-builder-page-break-row', 'test'],
+    test: function(Y) {
+        return Y.UA.ie === 0 || Y.UA.ie > 8;
+    }
 });

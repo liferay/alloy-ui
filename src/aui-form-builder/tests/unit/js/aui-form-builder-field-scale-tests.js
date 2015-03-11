@@ -67,5 +67,8 @@ YUI.add('aui-form-builder-field-scale-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['aui-form-builder-field-scale', 'node-event-simulate', 'test']
+    requires: ['aui-form-builder-field-scale', 'node-event-simulate', 'test'],
+    test: function(Y) {
+        return Y.UA.ie === 0 || Y.UA.ie > 8;
+    }
 });

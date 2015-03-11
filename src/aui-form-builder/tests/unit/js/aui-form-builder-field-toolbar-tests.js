@@ -191,5 +191,8 @@ YUI.add('aui-form-builder-field-toolbar-tests', function(Y) {
         'aui-form-builder-field-toolbar',
         'node-event-simulate',
         'test'
-    ]
+    ],
+    test: function(Y) {
+        return Y.UA.ie === 0 || Y.UA.ie > 8;
+    }
 });

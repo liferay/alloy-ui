@@ -216,5 +216,8 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
         'aui-form-builder-field-text',
         'node-event-simulate',
         'test'
-    ]
+    ],
+    test: function(Y) {
+        return Y.UA.ie === 0 || Y.UA.ie > 8;
+    }
 });

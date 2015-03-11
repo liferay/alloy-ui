@@ -284,5 +284,8 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-layout-builder', 'node-event-simulate', 'test']
+    requires: ['aui-layout-builder', 'node-event-simulate', 'test'],
+    test: function(Y) {
+        return Y.UA.ie === 0 || Y.UA.ie > 8;
+    }
 });

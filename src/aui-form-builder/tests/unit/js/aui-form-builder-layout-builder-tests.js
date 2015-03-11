@@ -487,10 +487,15 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 
-}, '', {requires: [
-    'aui-form-builder',
-    'aui-form-builder-field-sentence',
-    'aui-form-builder-field-text',
-    'node-event-simulate',
-    'test'
-]});
+}, '', {
+    requires: [
+        'aui-form-builder',
+        'aui-form-builder-field-sentence',
+        'aui-form-builder-field-text',
+        'node-event-simulate',
+        'test'
+    ],
+    test: function(Y) {
+        return Y.UA.ie === 0 || Y.UA.ie > 8;
+    }
+});
