@@ -399,6 +399,58 @@ YUI.add('module-tests', function(Y) {
                 Y.one('.scheduler-event-recorder-date').get('text'),
                 'The recorder date should NOT display the event date'
             );
+        },
+
+        'should update popover (first click an empty day, then another)': function() {
+            var descriptionHint,
+                formattedFirstDay,
+                formattedSecondDay;
+
+            this._createScheduler({
+                activeView: this._monthView,
+                items: []
+            });
+
+            // Values to check
+            descriptionHint = this._eventRecorder.get('strings')['description-hint'];
+            formattedFirstDay = Y.DataType.Date.format(
+                new Date(2013, 11, 1),
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+            formattedSecondDay = Y.DataType.Date.format(
+                new Date(2013, 11, 2),
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+
+            this._clickColgrid(0);
+            Y.Assert.areEqual(
+                descriptionHint,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the default content'
+            );
+            Y.Assert.areEqual(
+                formattedFirstDay,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should display the first day'
+            );
+
+            this._clickColgrid(1);
+            Y.Assert.areEqual(
+                descriptionHint,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the default content'
+            );
+            Y.Assert.areEqual(
+                formattedSecondDay,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should NOT display the second day'
+            );
         }
     }));
 
