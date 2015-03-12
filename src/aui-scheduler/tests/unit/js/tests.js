@@ -35,6 +35,19 @@ YUI.add('aui-scheduler-tests', function(Y) {
             }
         },
 
+        _clickColgrid: function(index) {
+            var colgrid = Y.all('.scheduler-view-table-colgrid').item(index),
+                offsetXY = colgrid.getXY();
+
+            // "event-simulate" module does not support pageX/pageY values
+            this._monthView._onMouseDownGrid({
+                pageX: offsetXY[0]+1,
+                pageY: offsetXY[1]+1,
+                target: colgrid,
+            });
+            this._monthView._onMouseUpGrid();
+        },
+
         _createScheduler: function(config) {
             this._scheduler = new Y.Scheduler(Y.merge({
                 boundingBox: '#myScheduler',
@@ -56,6 +69,8 @@ YUI.add('aui-scheduler-tests', function(Y) {
                     this._agendaView
                 ]
             }, config));
+
+            this._eventRecorder = this._scheduler.get('eventRecorder');
         },
 
         _getLocalTimeZoneDSTFirstDay: function() {
