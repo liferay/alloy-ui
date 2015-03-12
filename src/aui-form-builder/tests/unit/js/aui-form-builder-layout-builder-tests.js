@@ -1,17 +1,20 @@
 YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-form-builder-layout-builder');
+    var desktopDefaultSize = 1500,
+        suite = new Y.Test.Suite('aui-form-builder-layout-builder'),
+        windowNode = Y.one(Y.config.win);
 
     suite.add(new Y.Test.Case({
         name: 'AUI Form Builder Layout Builder Unit Tests',
 
         init: function() {
-            var windowNode = Y.one(Y.config.win);
-
             // Set the width to a big value so all layout buil
             // guaranteed to be turned on.
             this._originalWidth = windowNode.get('innerWidth');
-            windowNode.set('innerWidth', 1500);
+        },
+
+        setUp: function() {
+            windowNode.set('innerWidth', desktopDefaultSize);
         },
 
         destroy: function() {
@@ -103,7 +106,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             this.wait(function() {
                 Y.Assert.isNull(Y.one('.layout-builder-add-row-area'));
 
-                Y.one(Y.config.win).set('innerWidth', this._originalWidth);
+                Y.one(Y.config.win).set('innerWidth', desktopDefaultSize);
                 Y.one(Y.config.win).simulate('resize');
 
                 this.wait(function() {
