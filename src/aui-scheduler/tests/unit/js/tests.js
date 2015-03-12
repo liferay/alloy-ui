@@ -386,6 +386,65 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 WEEK_LENGTH, column.getAttribute('colspan'),
                 'Event should fill entire week.'
             );
+        },
+
+        'should update popover (first click an event, then an empty day)': function() {
+            var descriptionHint,
+                event = {
+                    allDay: true,
+                    color: '#8D8',
+                    content: 'Existing event',
+                    endDate: new Date(2013, 11, 2),
+                    startDate: new Date(2013, 11, 2)
+                },
+                formattedEventStartDate,
+                formattedFirstDay;
+
+            this._createScheduler({
+                activeView: this._monthView,
+                items: [event]
+            });
+
+            // Values to check
+            descriptionHint = this._eventRecorder.get('strings')['description-hint'];
+            formattedEventStartDate = Y.DataType.Date.format(
+                event.startDate,
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+            formattedFirstDay = Y.DataType.Date.format(
+                new Date(2013, 11, 1),
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+
+            Y.one('.scheduler-event').simulate('click');
+            Y.Assert.areEqual(
+                event.content,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the event content'
+            );
+            Y.Assert.areEqual(
+                formattedEventStartDate,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should display the event date'
+            );
+
+            this._clickColgrid(0);
+            Y.Assert.areEqual(
+                descriptionHint,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the default content'
+            );
+            Y.Assert.areEqual(
+                formattedFirstDay,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should NOT display the event date'
+            );
         }
     }));
 
