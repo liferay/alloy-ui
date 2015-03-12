@@ -510,6 +510,8 @@ A.mix(A.SchedulerTableViewDD.prototype, {
             var endDate = new Date(Math.max(startPositionDate, endPositionDate));
             endDate.setHours(23, 59, 59);
 
+            recorder.hidePopover();
+
             recorder.setAttrs({
                 allDay: true,
                 endDate: endDate,
@@ -517,8 +519,6 @@ A.mix(A.SchedulerTableViewDD.prototype, {
             }, {
                 silent: true
             });
-
-            recorder.populateForm();
 
             recorder.showPopover(instance.lasso);
 

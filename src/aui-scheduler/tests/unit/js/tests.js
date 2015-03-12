@@ -35,6 +35,19 @@ YUI.add('aui-scheduler-tests', function(Y) {
             }
         },
 
+        _clickColgrid: function(index) {
+            var colgrid = Y.all('.scheduler-view-table-colgrid').item(index),
+                offsetXY = colgrid.getXY();
+
+            // "event-simulate" module does not support pageX/pageY values
+            this._monthView._onMouseDownGrid({
+                pageX: offsetXY[0]+1,
+                pageY: offsetXY[1]+1,
+                target: colgrid,
+            });
+            this._monthView._onMouseUpGrid();
+        },
+
         _createScheduler: function(config) {
             this._scheduler = new Y.Scheduler(Y.merge({
                 boundingBox: '#myScheduler',
@@ -56,6 +69,8 @@ YUI.add('aui-scheduler-tests', function(Y) {
                     this._agendaView
                 ]
             }, config));
+
+            this._eventRecorder = this._scheduler.get('eventRecorder');
         },
 
         _getLocalTimeZoneDSTFirstDay: function() {
@@ -370,6 +385,117 @@ YUI.add('aui-scheduler-tests', function(Y) {
             Y.Assert.areEqual(
                 WEEK_LENGTH, column.getAttribute('colspan'),
                 'Event should fill entire week.'
+            );
+        },
+
+        'should update popover (first click an event, then an empty day)': function() {
+            var descriptionHint,
+                event = {
+                    allDay: true,
+                    color: '#8D8',
+                    content: 'Existing event',
+                    endDate: new Date(2013, 11, 2),
+                    startDate: new Date(2013, 11, 2)
+                },
+                formattedEventStartDate,
+                formattedFirstDay;
+
+            this._createScheduler({
+                activeView: this._monthView,
+                items: [event]
+            });
+
+            // Values to check
+            descriptionHint = this._eventRecorder.get('strings')['description-hint'];
+            formattedEventStartDate = Y.DataType.Date.format(
+                event.startDate,
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+            formattedFirstDay = Y.DataType.Date.format(
+                new Date(2013, 11, 1),
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+
+            Y.one('.scheduler-event').simulate('click');
+            Y.Assert.areEqual(
+                event.content,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the event content'
+            );
+            Y.Assert.areEqual(
+                formattedEventStartDate,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should display the event date'
+            );
+
+            this._clickColgrid(0);
+            Y.Assert.areEqual(
+                descriptionHint,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the default content'
+            );
+            Y.Assert.areEqual(
+                formattedFirstDay,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should NOT display the event date'
+            );
+        },
+
+        'should update popover (first click an empty day, then another)': function() {
+            var descriptionHint,
+                formattedFirstDay,
+                formattedSecondDay;
+
+            this._createScheduler({
+                activeView: this._monthView,
+                items: []
+            });
+
+            // Values to check
+            descriptionHint = this._eventRecorder.get('strings')['description-hint'];
+            formattedFirstDay = Y.DataType.Date.format(
+                new Date(2013, 11, 1),
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+            formattedSecondDay = Y.DataType.Date.format(
+                new Date(2013, 11, 2),
+                {
+                    format: this._eventRecorder.get('dateFormat'),
+                    locale: this._scheduler.get('locale')
+                }
+            );
+
+            this._clickColgrid(0);
+            Y.Assert.areEqual(
+                descriptionHint,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the default content'
+            );
+            Y.Assert.areEqual(
+                formattedFirstDay,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should display the first day'
+            );
+
+            this._clickColgrid(1);
+            Y.Assert.areEqual(
+                descriptionHint,
+                Y.one('.scheduler-event-recorder-content').getAttribute('value'),
+                'The recorder content should be the default content'
+            );
+            Y.Assert.areEqual(
+                formattedSecondDay,
+                Y.one('.scheduler-event-recorder-date').get('text'),
+                'The recorder date should NOT display the second day'
             );
         }
     }));
