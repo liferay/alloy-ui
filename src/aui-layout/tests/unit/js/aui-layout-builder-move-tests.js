@@ -495,32 +495,6 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             layout._set('isColumnMode', true);
             Assert.isNotNull(Y.one('.layout-builder-move-cut-col-button'));
 
-        },
-
-        'should not insert cut buttons on col if layout is created with isColumnMode attribute set to false': function() {
-            Y.config.win.innerWidth = 200;
-
-            var layout = new Y.Layout({
-                rows: [
-                    new Y.LayoutRow({
-                        cols: [
-                            new Y.LayoutCol({
-                                size: 3,
-                                value: { content: 'foo' }
-                            }),
-                            new Y.LayoutCol({
-                                size: 9,
-                                value: { content: 'foo' }
-                            })
-                        ],
-                        movable: false
-                    })
-                ]
-            });
-
-            this.layoutBuilder.set('layout', layout);
-
-            Assert.isNull(Y.one('.layout-builder-move-cut-col-button'));
         }
     }));
 

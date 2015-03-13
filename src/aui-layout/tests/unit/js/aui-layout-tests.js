@@ -3,8 +3,12 @@ YUI.add('aui-layout-tests', function(Y) {
     var Assert = Y.Assert,
         CONTAINER_CLASS = '.container',
         Content,
+        originalWinGet,
         row,
-        suite = new Y.Test.Suite('aui-layout');
+        suite = new Y.Test.Suite('aui-layout'),
+        win = Y.one(Y.config.win);
+
+    originalWinGet = win.get;
 
     Content = Y.Base.create('content', Y.Base, [], {}, {
         ATTRS: {
@@ -88,6 +92,18 @@ YUI.add('aui-layout-tests', function(Y) {
 
         tearDown: function() {
             this.layout.destroy();
+        },
+
+        _mockWindowInnerWidth: function (size) {
+            Y.Mock.expect(win, {
+                args: ['innerWidth'],
+                method: 'get',
+                returns: size
+            });
+        },
+
+        _resetWindowGet: function () {
+            win.get = originalWinGet;
         },
 
         'should render rows and col inside container node': function() {
@@ -340,9 +356,14 @@ YUI.add('aui-layout-tests', function(Y) {
         },
 
         'should not normalize col\'s height if column mode is disabled': function() {
-            var colOne,
+            var instance = this,
+                colOne,
                 container = Y.one(CONTAINER_CLASS),
-                row = this.layout.get('rows')[0];
+                row = this.layout.get('rows')[0],
+                win = Y.one(Y.config.win);
+
+            // 500 is below the responsive breakpoint
+            instance._mockWindowInnerWidth(500);
 
             colOne = row.get('cols')[0];
 
@@ -356,9 +377,7 @@ YUI.add('aui-layout-tests', function(Y) {
                 this.layoutBuilder._handleResponsive(500);
             }
             else {
-                // 500 is below the responsive breakpoint
-                Y.one(Y.config.win).set('innerWidth', 500);
-                Y.one(Y.config.win).simulate('resize');
+                win.simulate('resize');
             }
 
             this.wait(function() {
@@ -366,35 +385,38 @@ YUI.add('aui-layout-tests', function(Y) {
                     Y.all('.col').item(0).get('clientHeight'),
                     Y.all('.col').item(1).get('clientHeight')
                 );
+                instance._resetWindowGet();
             }, Y.config.windowResizeDelay || 100);
         },
 
         'should change column mode when resize the window': function() {
             var instance = this,
-                container = Y.one(CONTAINER_CLASS);
+                container = Y.one(CONTAINER_CLASS),
+                win = Y.one(Y.config.win);
+
+            instance._mockWindowInnerWidth(500);
 
             this.layout.draw(container);
 
             if (Y.UA.ie === 8) {
                 // Can't simulate a resize on IE8's window object, so
                 // calling the function directly here.
-                this.layout._handleResponsive(Y.one(Y.config.win).get('innerWidth'));
+                this.layout._handleResponsive(win.get('innerWidth'));
             }
             else {
-                // 500 is lower than responsive breakpoint
-                Y.one(Y.config.win).set('innerWidth', 500);
-                Y.one(Y.config.win).simulate('resize');
+                win.simulate('resize');
             }
 
             this.wait(function() {
                 Assert.isFalse(instance.layout.get('isColumnMode'));
 
                 // 1000 is greater than responsive breakpoint
-                Y.one(Y.config.win).set('innerWidth', 1000);
-                Y.one(Y.config.win).simulate('resize');
+                instance._mockWindowInnerWidth(1000);
+                win.simulate('resize');
 
                 this.wait(function() {
                     Assert.isTrue(instance.layout.get('isColumnMode'));
+                    instance._resetWindowGet();
                 }, Y.config.windowResizeDelay || 100);
             }, Y.config.windowResizeDelay || 100);
         },

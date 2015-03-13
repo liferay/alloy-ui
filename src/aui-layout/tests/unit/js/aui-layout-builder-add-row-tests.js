@@ -12,7 +12,7 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
 
         layoutBuilder.destroy();
 
-        for (i = 0; i < 15; i++) {
+        for (i = 0; i < 30; i++) {
             rows.push(new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
@@ -165,7 +165,7 @@ YUI.add('aui-layout-builder-add-row-tests', function(Y) {
 
             this.wait(function() {
                 Assert.areEqual('relative', Y.one('.layout-builder-add-row-area').getStyle('position'));
-            }, 100);
+            }, 500);
         },
 
         'should add a new row when key press on any option': function() {

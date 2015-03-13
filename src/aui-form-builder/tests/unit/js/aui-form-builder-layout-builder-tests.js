@@ -1,8 +1,11 @@
 YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
     var desktopDefaultSize = 1500,
+        originalWinGet,
         suite = new Y.Test.Suite('aui-form-builder-layout-builder'),
         windowNode = Y.one(Y.config.win);
+
+    originalWinGet = windowNode.get;
 
     suite.add(new Y.Test.Case({
         name: 'AUI Form Builder Layout Builder Unit Tests',
@@ -18,7 +21,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
         },
 
         destroy: function() {
-            Y.one(Y.config.win).set('innerWidth', this._originalWidth);
+            windowNode.set('innerWidth', this._originalWidth);
         },
 
         tearDown: function() {
@@ -71,6 +74,14 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             }
         },
 
+        _mockWindowInnerWidth: function (size) {
+            Y.Mock.expect(windowNode, {
+                args: ['innerWidth'],
+                method: 'get',
+                returns: size
+            });
+        },
+
         _openToolbar: function(fieldNode) {
             fieldNode = fieldNode || Y.one('.form-builder-field-content-toolbar');
 
@@ -82,12 +93,19 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             }
         },
 
+        _resetWindowGet: function () {
+            windowNode.get = originalWinGet;
+        },
+
         'should put add page break in the same container of add row button': function() {
-            var layout;
+            var instance = this,
+                layout;
 
             this._createFormBuilder({
                 mode: Y.FormBuilder.MODES.LAYOUT
             });
+
+            this._mockWindowInnerWidth(500);
 
             layout = this._formBuilder.get('layout');
             Y.Assert.areEqual(2, Y.one('.layout-builder-add-row-area').get('children').size());
@@ -95,22 +113,21 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             if (Y.UA.ie === 8) {
                 // Can't simulate a resize on IE8's window object, so
                 // calling the function directly here.
-                layout._handleResponsive(Y.one(Y.config.win).get('innerWidth'));
+                layout._handleResponsive(windowNode).get('innerWidth');
             }
             else {
-                // 500 is lower than responsive breakpoint
-                Y.one(Y.config.win).set('innerWidth', 500);
-                Y.one(Y.config.win).simulate('resize');
+                windowNode.simulate('resize');
             }
 
             this.wait(function() {
                 Y.Assert.isNull(Y.one('.layout-builder-add-row-area'));
 
-                Y.one(Y.config.win).set('innerWidth', desktopDefaultSize);
-                Y.one(Y.config.win).simulate('resize');
+                instance._mockWindowInnerWidth(desktopDefaultSize);
+                windowNode.simulate('resize');
 
                 this.wait(function() {
                     Y.Assert.areEqual(2, Y.one('.layout-builder-add-row-area').get('children').size());
+                    instance._resetWindowGet();
                 }, Y.config.windowResizeDelay || 100);
             }, Y.config.windowResizeDelay || 100);
         },
