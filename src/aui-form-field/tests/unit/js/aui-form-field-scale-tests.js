@@ -69,24 +69,6 @@ YUI.add('aui-form-field-scale-tests', function(Y) {
             Y.Assert.areEqual(thumbNode.getStyle('left'), '100%');
         },
 
-        'should update `value` attribute on drag thumb': function() {
-            var instance = this,
-                thumbNode;
-
-            this._field = new Y.FormFieldScale({
-                range: [1, 3],
-                value: 1
-            });
-            Y.one('#container').append(this._field.get('content'));
-            
-            thumbNode = this._field.get('content').one('.form-field-scale-thumb');
-
-            this._simulateDrag(this, thumbNode, [80000, 0], function () {
-                Y.Assert.areEqual(instance._field.get('value'), 3);
-            });
-            
-        },
-
         'should update thumb position on `range` attribute change': function() {
             var thumbNode;
 

@@ -146,34 +146,6 @@ YUI.add('aui-options-data-editor-tests', function(Y) {
             Y.Assert.areEqual('Rhaegal', editedValue[1]);
         },
 
-        'should allow dragging options to lower positon': function() {
-            var instance = this,
-                editedValue,
-                optionNodes = this._editor.get('node').all('.options-data-editor-option');
-
-            this._simulateDrag(this, optionNodes.item(0), optionNodes.item(1), false, function() {
-                editedValue = instance._editor.get('editedValue');
-                Y.Assert.areEqual(3, editedValue.length);
-                Y.Assert.areEqual('Visirion', editedValue[0]);
-                Y.Assert.areEqual('Drogon', editedValue[1]);
-                Y.Assert.areEqual('Rhaegal', editedValue[2]);
-            });
-        },
-
-        'should allow dragging options to upper positon': function() {
-            var instance = this,
-                editedValue,
-                optionNodes = this._editor.get('node').all('.options-data-editor-option');
-
-            this._simulateDrag(this, optionNodes.item(1), optionNodes.item(0), true, function() {
-                editedValue = instance._editor.get('editedValue');
-                Y.Assert.areEqual(3, editedValue.length);
-                Y.Assert.areEqual('Visirion', editedValue[0]);
-                Y.Assert.areEqual('Drogon', editedValue[1]);
-                Y.Assert.areEqual('Rhaegal', editedValue[2]);
-            });
-        },
-
         'should check if the form is valid': function() {
             var items;
 
