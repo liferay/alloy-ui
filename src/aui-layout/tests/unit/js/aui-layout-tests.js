@@ -359,8 +359,7 @@ YUI.add('aui-layout-tests', function(Y) {
             var instance = this,
                 colOne,
                 container = Y.one(CONTAINER_CLASS),
-                row = this.layout.get('rows')[0],
-                win = Y.one(Y.config.win);
+                row = this.layout.get('rows')[0];
 
             // 500 is below the responsive breakpoint
             instance._mockWindowInnerWidth(500);
@@ -391,8 +390,7 @@ YUI.add('aui-layout-tests', function(Y) {
 
         'should change column mode when resize the window': function() {
             var instance = this,
-                container = Y.one(CONTAINER_CLASS),
-                win = Y.one(Y.config.win);
+                container = Y.one(CONTAINER_CLASS);
 
             instance._mockWindowInnerWidth(500);
 
