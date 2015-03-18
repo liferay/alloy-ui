@@ -185,7 +185,7 @@ A.mix(DatePickerPopover.prototype, {
             render: true,
             triggerShowEvent: 'click',
             triggerToggleEvent: null,
-            visible: false
+            visible: true
         }, val);
     }
 }, true);

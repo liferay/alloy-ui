@@ -99,6 +99,13 @@ DatePickerDelegate.prototype = {
     },
 
     /**
+     * Method not implemented.
+     *
+     * @method afterPopoverRenderOnce
+     */
+    focusCurrentTimeOnce: function() {},
+
+    /**
      * Gets the selected dates.
      *
      * @method getSelectedDates
@@ -251,6 +258,8 @@ DatePickerDelegate.prototype = {
         var instance = this;
 
         instance.useInputNodeOnce(event.currentTarget);
+
+        instance.focusCurrentTimeOnce();
 
         instance._userInteractionInProgress = true;
     },
