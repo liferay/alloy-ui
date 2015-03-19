@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1877](https://issues.liferay.com/browse/AUI-1877) Move some form builder fields to Liferay Portal
 * [AUI-1787](https://issues.liferay.com/browse/AUI-1787) Implement new scale field's behavior
 * [AUI-1816](https://issues.liferay.com/browse/AUI-1816) Add placeholder as an advanced field setting
 * [AUI-1813](https://issues.liferay.com/browse/AUI-1813) Show asterisk beside required fields title

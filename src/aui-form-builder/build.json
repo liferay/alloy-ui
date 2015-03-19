@@ -19,24 +19,6 @@
             ]
         },
 
-        "aui-form-builder-field-date": {
-            "jsfiles": [
-                "js/aui-form-builder-field-date.js"
-            ]
-        },
-
-        "aui-form-builder-field-grid": {
-            "jsfiles": [
-                "js/aui-form-builder-field-grid.js"
-            ]
-        },
-
-        "aui-form-builder-field-scale": {
-            "jsfiles": [
-                "js/aui-form-builder-field-scale.js"
-            ]
-        },
-
         "aui-form-builder-field-sentence": {
             "jsfiles": [
                 "js/aui-form-builder-field-sentence.js"
@@ -49,11 +31,6 @@
             ]
         },
 
-        "aui-form-builder-field-time": {
-            "jsfiles": [
-                "js/aui-form-builder-field-time.js"
-            ]
-        },
 
         "aui-form-builder-field-toolbar": {
             "jsfiles": [

@@ -18,87 +18,43 @@
     <h3>Dropdown</h3>
     <div id="fieldChoiceDropdown"></div>
 
-    <h2>Date</h2>
-    <div id="fieldDate"></div>
-
-    <h2>Grid</h2>
-    <div id="fieldGrid"></div>
-
-    <h2>Scale</h2>
-    <div id="fieldScale"></div>
-
     <h2>Text</h2>
     <div id="fieldText"></div>
 
-    <h2>Time</h2>
-    <div id="fieldTime"></div>
-
 <script type="text/javascript" charset="utf-8">
-YUI({ filter:'raw' }).use('aui-form-field-choice', 'aui-form-field-date', 'aui-form-field-grid',
-    'aui-form-field-scale', 'aui-form-field-time', 'aui-form-field-text',
-    function(Y) {
-    var fieldChoiceRadio = new Y.FormFieldChoice({
-        help: 'Remember all I\'m offering is the truth',
-        title: 'This is your last chance',
-        options: ['Red Pill', 'Blue Pill'],
-        otherOption: true
-    });
-    Y.one('#fieldChoiceRadio').append(fieldChoiceRadio.get('content'));
+    YUI({ filter:'raw' }).use(
+        'aui-form-field-choice',
+        'aui-form-field-text',
+        function(Y) {
+            var fieldChoiceRadio = new Y.FormFieldChoice({
+                help: 'Remember all I\'m offering is the truth',
+                title: 'This is your last chance',
+                options: ['Red Pill', 'Blue Pill'],
+                otherOption: true
+            });
+            Y.one('#fieldChoiceRadio').append(fieldChoiceRadio.get('content'));
 
-    var fieldChoiceCheckbox = new Y.FormFieldChoice({
-        title: 'What are your favorite colors?',
-        options: ['Red', 'Blue', 'Yellow'],
-        type: Y.FormFieldChoice.TYPES.CHECKBOX
-    });
-    Y.one('#fieldChoiceCheckbox').append(fieldChoiceCheckbox.get('content'));
+            var fieldChoiceCheckbox = new Y.FormFieldChoice({
+                title: 'What are your favorite colors?',
+                options: ['Red', 'Blue', 'Yellow'],
+                type: Y.FormFieldChoice.TYPES.CHECKBOX
+            });
+            Y.one('#fieldChoiceCheckbox').append(fieldChoiceCheckbox.get('content'));
 
-    var fieldChoiceDropdown = new Y.FormFieldChoice({
-        title: 'The Best Maíra Quotes',
-        type: Y.FormFieldChoice.TYPES.DROPDOWN
-    });
-    Y.one('#fieldChoiceDropdown').append(fieldChoiceDropdown.get('content'));
+            var fieldChoiceDropdown = new Y.FormFieldChoice({
+                title: 'The Best Maíra Quotes',
+                type: Y.FormFieldChoice.TYPES.DROPDOWN
+            });
+            Y.one('#fieldChoiceDropdown').append(fieldChoiceDropdown.get('content'));
 
-    var fieldDate = new Y.FormFieldDate({
-        help: 'Please select your destination',
-        title: 'Welcome to Delorean Lines',
-        yearToggleFrom: true,
-        timeToggleFrom: true,
-        toggleInterval: true,
-        yearToggleTo: true,
-        timeToggleTo: true
-    });
-    Y.one('#fieldDate').append(fieldDate.get('content'));
-
-    var fieldGrid = new Y.FormFieldGrid({
-        help: 'A Tactical Game of Survival',
-        title: 'Naval Battle',
-        columns: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
-        rows: ['A', 'B', 'C', ,'D', 'E', 'F', 'G', 'H', 'I', 'J']
-    });
-    Y.one('#fieldGrid').append(fieldGrid.get('content'));
-
-    var fieldScale = new Y.FormFieldScale({
-        help: 'Slide the circle between the given range',
-        title: 'How would you rate it from 0 to 10?',
-        range: [0, 10],
-        value: 5
-    });
-    Y.one('#fieldScale').append(fieldScale.get('content'));
-
-    var fieldText = new Y.FormFieldText({
-        help: 'Type your full name below',
-        title: 'What\'s your name?',
-        required: true
-    });
-    Y.one('#fieldText').append(fieldText.get('content'));
-
-    var fieldTime = new Y.FormFieldTime({
-        help: 'Choose your destiny',
-        title: 'Time Machine',
-        toggleInterval: true
-    });
-    Y.one('#fieldTime').append(fieldTime.get('content'));
-});
+            var fieldText = new Y.FormFieldText({
+                help: 'Type your full name below',
+                title: 'What\'s your name?',
+                required: true
+            });
+            Y.one('#fieldText').append(fieldText.get('content'));
+        }
+    );
 </script>
 
 </body>
