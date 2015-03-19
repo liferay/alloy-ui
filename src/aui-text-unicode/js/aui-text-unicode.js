@@ -4,8 +4,7 @@
  * @module aui-text
  */
 
-var Text = A.Text,
-    UData = A.Text.Data.Unicode;
+var UData = A.Text.Data.Unicode;
 
 var Unicode = {
     /**
@@ -51,4 +50,4 @@ var Unicode = {
     })
 };
 
-Text.Unicode = Unicode;
+A.Text.Unicode = Unicode;

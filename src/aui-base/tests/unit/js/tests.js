@@ -29,7 +29,7 @@ YUI.add('aui-base-tests', function(Y) {
             'defined'
         ],
         definitionStrings = [
-            ,
+            '',
             '',
             'defined'
         ],
