@@ -628,29 +628,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-form-field-choice"
         ]
     },
-    "aui-form-builder-field-date": {
-        "requires": [
-            "aui-boolean-data-editor",
-            "aui-form-builder-field-base",
-            "aui-form-field-date"
-        ]
-    },
-    "aui-form-builder-field-grid": {
-        "requires": [
-            "aui-boolean-data-editor",
-            "aui-options-data-editor",
-            "aui-form-builder-field-base",
-            "aui-form-field-grid"
-        ]
-    },
-    "aui-form-builder-field-scale": {
-        "requires": [
-            "aui-boolean-data-editor",
-            "aui-form-builder-field-base",
-            "aui-form-field-scale",
-            "aui-scale-data-editor"
-        ]
-    },
     "aui-form-builder-field-sentence": {
         "requires": [
             "aui-form-builder-field-base",
@@ -663,13 +640,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-radio-group-data-editor",
             "aui-form-builder-field-base",
             "aui-form-field-text"
-        ]
-    },
-    "aui-form-builder-field-time": {
-        "requires": [
-            "aui-boolean-data-editor",
-            "aui-form-builder-field-base",
-            "aui-form-field-time"
         ]
     },
     "aui-form-builder-field-toolbar": {
@@ -738,38 +708,12 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
-    "aui-form-field-date": {
-        "requires": [
-            "aui-form-field-required"
-        ],
-        "skinnable": true
-    },
-    "aui-form-field-grid": {
-        "requires": [
-            "aui-form-field-required"
-        ],
-        "skinnable": true
-    },
     "aui-form-field-required": {
         "requires": [
             "aui-form-field"
         ]
     },
-    "aui-form-field-scale": {
-        "requires": [
-            "aui-form-field-required",
-            "dd-constrain",
-            "dd-proxy"
-        ],
-        "skinnable": true
-    },
     "aui-form-field-text": {
-        "requires": [
-            "aui-form-field-required"
-        ],
-        "skinnable": true
-    },
-    "aui-form-field-time": {
         "requires": [
             "aui-form-field-required"
         ],
@@ -1706,4 +1650,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'c1916ac4363cefaa60e84bf8a2f1fc7a';
+YUI.Env[Y.version].md5 = '74afa2774972100f6a561835c1ee25f3';
