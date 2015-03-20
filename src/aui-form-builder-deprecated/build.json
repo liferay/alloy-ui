@@ -1,0 +1,76 @@
+{
+    "name": "aui-form-builder-deprecated",
+    "builds": {
+        "aui-form-builder-available-field-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-available-field-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-button-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-button-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-checkbox-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-checkbox-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-fieldset-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-fieldset-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-file-upload-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-file-upload-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-multiple-choice-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-multiple-choice-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-radio-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-radio-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-select-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-select-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-text-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-text-deprecated.js"
+            ]
+        },
+
+        "aui-form-builder-field-textarea-deprecated": {
+            "jsfiles": [
+                "js/aui-form-builder-field-textarea-deprecated.js"
+            ]
+        }
+    }
+}
