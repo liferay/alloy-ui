@@ -1,0 +1,64 @@
+{
+    "name": "aui-layout",
+    "builds": {
+        "aui-layout": {
+            "jsfiles": [
+                "js/aui-layout.js"
+            ]
+        },
+
+        "aui-layout-builder": {
+            "jsfiles": [
+                "js/aui-layout-builder.js"
+            ]
+        },
+
+        "aui-layout-builder-add-col": {
+            "jsfiles": [
+                "js/aui-layout-builder-add-col.js"
+            ]
+        },
+
+        "aui-layout-builder-remove-col": {
+            "jsfiles": [
+                "js/aui-layout-builder-remove-col.js"
+            ]
+        },
+
+        "aui-layout-builder-resize-col": {
+            "jsfiles": [
+                "js/aui-layout-builder-resize-col.js"
+            ]
+        },
+
+        "aui-layout-col": {
+            "jsfiles": [
+                "js/aui-layout-col.js"
+            ]
+        },
+
+        "aui-layout-row": {
+            "jsfiles": [
+                "js/aui-layout-row.js"
+            ]
+        },
+
+        "aui-layout-builder-add-row": {
+            "jsfiles": [
+                "js/aui-layout-builder-add-row.js"
+            ]
+        },
+
+        "aui-layout-builder-remove-row": {
+            "jsfiles": [
+                "js/aui-layout-builder-remove-row.js"
+            ]
+        },
+
+        "aui-layout-builder-move": {
+            "jsfiles": [
+                "js/aui-layout-builder-move.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,40 @@
+.form-field {
+    color: #5d6d7e;
+    height: 100%;
+    padding: 32pt;
+}
+
+.form-field .form-field-nested .form-field {
+    padding: 5px 0 0 20px;
+}
+
+.form-field .form-field-content-toolbar {
+    position: relative;
+}
+
+.form-field .form-field-content .form-group {
+    margin-bottom: 0;
+}
+
+.form-field .form-field-nested .form-field {
+    margin-bottom: 24pt;
+}
+
+.form-field-title {
+    font-size: 13pt;
+    font-weight: normal;
+    margin-bottom: 24pt;
+}
+
+.form-field-help {
+    color: #708091;
+    font-family: HelveticaNeue-LightItalic;
+    font-size: 11pt;
+    margin-bottom: 24pt;
+}
+
+@media (max-width: 768px) {
+    .form-field {
+        padding: 20pt;
+    }
+}

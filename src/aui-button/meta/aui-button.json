@@ -31,5 +31,16 @@
             "aui-classnamemanager",
             "aui-event-input"
         ]
+    },
+
+    "aui-button-switch": {
+        "requires": [
+            "aui-node-base",
+            "base-build",
+            "event-key",
+            "transition",
+            "widget"
+        ],
+        "skinnable": true
     }
 }

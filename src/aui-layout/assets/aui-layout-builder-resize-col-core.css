@@ -1,0 +1,54 @@
+.layout-builder-resize-col-enabled .layout-row {
+    position: relative;
+}
+
+.layout-builder-resize-col-enabled .col:not(:last-child) {
+    border-right: none;
+}
+
+.layout-builder-resize-col-enabled .col:not(:first-child) {
+    border-left: none;
+}
+
+.layout-builder-resize-col-draggable {
+    height: 100%;
+    margin-left: -10px;
+    position: absolute;
+    width: 20px;
+    z-index: 1;
+}
+
+.layout-builder-resize-col-draggable-border {
+    border-right: 1px dotted black;
+    height: 100%;
+    width: 10px;
+}
+
+.layout-builder-resize-col-draggable-handle {
+    cursor: col-resize;
+    font-size: 18px;
+    margin-top: -9px;
+    position: absolute;
+    top: 50%;
+}
+
+.layout-builder-resize-col-dragging .layout-builder-resize-col-breakpoint {
+    display: block;
+}
+
+.layout-builder-resize-col-breakpoint {
+    bottom: 0;
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+
+.layout-builder-resize-col-breakpoint-line {
+    border: 1px dashed #bbb;
+    height: 100%;
+}
+
+.layout-builder-resize-col-breakpoint-over .layout-builder-resize-col-breakpoint-line, .layout-builder-resize-col-breakpoint-line:focus {
+    border-color: red;
+}

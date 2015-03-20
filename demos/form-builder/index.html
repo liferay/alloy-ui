@@ -6,121 +6,109 @@
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
-    <style>
-	#wrapper {
-		margin: 10px 20px;
-	}
-	</style>
 </head>
-<body>
+<body class="yui3-skin-sam">
 <div id="wrapper">
-	<h1>FormBuilder Demo</h1>
-
-	<div id="formBuilder"></div>
+    <div id="formBuilder"></div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-YUI({ filter:'raw' }).use('aui-form-builder', function(Y) {
-	window.formBuilder = new Y.FormBuilder(
-		{
-			boundingBox: '#formBuilder',
-
-			availableFields:
-			[
-				{
-					iconClass: 'form-builder-field-icon form-builder-field-icon-text',
-					label: 'Text',
-					type: 'text',
-					unique: true,
-					id: 'uniqueTextField',
-					readOnlyAttributes: ['name']
-				},
-
-				{
-					iconClass: 'form-builder-field-icon form-builder-field-icon-textarea',
-					label: 'Textarea',
-					type: 'textarea',
-					hiddenAttributes: ['tip']
-				},
-
-				{
-					iconClass: 'form-builder-field-icon form-builder-field-icon-checkbox',
-					label: 'Checkbox',
-					type: 'checkbox'
-				},
-
-				{
-					iconClass: 'form-builder-field-icon form-builder-field-icon-button',
-					label: 'Button',
-					type: 'button'
-				},
-
-				{
-					iconClass: 'form-builder-field-icon form-builder-field-icon-select',
-					label: 'Select',
-					type: 'select'
-				},
-
-				{
-					iconClass: 'form-builder-field-icon form-builder-field-icon-radio',
-					label: 'Radio Buttons',
-					type: 'radio'
-				},
-
-				{
-					iconClass: 'form-builder-field-icon form-builder-field-icon-fileupload',
-					label: 'File Upload',
-					type: 'fileupload'
-				},
-
-				{
-					iconClass: 'form-builder-field-icon form-builder-field-icon-fieldset',
-					label: 'Fieldset',
-					type: 'fieldset'
-				}
-
-			],
-			fields:
-			[
-				{
-					id: 'uniqueTextField',
-					label: 'First name',
-					predefinedValue: 'Bruno',
-					unique: true,
-					type: 'text'
-				},
-				{
-					label: 'Colours',
-					type: 'radio',
-					options: [
-						{
-							label: 'Red',
-							value: 'red'
-						},
-						{
-							label: 'Green',
-							value: 'green'
-						},
-						{
-							label: 'Blue',
-							value: 'blue'
-						}
-					]
-				},
-                {
-                    label: 'Nested fieldset',
-                    type: 'fieldset',
-                    fields: [
-                        {
-                            label: 'Comments',
-                            type: 'textarea'
-                        }
+YUI({ filter:'raw' }).use(
+    'aui-form-builder',
+    'aui-form-builder-field-choice',
+    'aui-form-builder-field-text',
+    'aui-form-builder-field-sentence',
+    'aui-form-builder-page-break-row',
+    function(Y) {
+        var layout = new Y.Layout({
+            rows: [
+                new Y.FormBuilderPageBreakRow({
+                    index: 1,
+                    quantity: 2
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            movableContent: false,
+                            size: 12,
+                            value: new Y.FormBuilderFieldText({
+                                help: 'Type your full name here',
+                                title: 'What\'s your name?'
+                            })
+                        })
                     ]
-                }
-			]
-		}
-	).render();
-});
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            size: 4,
+                            value: new Y.FormBuilderFieldChoice({
+                                help: 'Choose one of the options in the list below',
+                                options: ['Male', 'Female'],
+                                title: 'What\'s your gender?',
+                                type: Y.FormFieldChoice.TYPES.DROPDOWN
+                            })
+                        }),
+                        new Y.LayoutCol({
+                            size: 4
+                        }),
+                        new Y.LayoutCol({
+                            size: 4
+                        })
+                    ]
+                }),
+                new Y.FormBuilderPageBreakRow({
+                    index: 2,
+                    quantity: 2
+                }),
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            size: 12,
+                            value: new Y.FormBuilderFieldSentence({
+                                nestedFields: [
+                                    new Y.FormBuilderFieldText({
+                                        help: 'Type the full name of your school here',
+                                        title: 'Where did you go to school?'
+                                    }),
+                                    new Y.FormBuilderFieldText({
+                                        help: 'Type the full name of your school here',
+                                        title: 'When did you go to that school?'
+                                    }),
+                                    new Y.FormBuilderFieldChoice({
+                                        help: 'Select one of the options below',
+                                        options: ['Computer Science', 'Design'],
+                                        otherOption: true,
+                                        title: 'What is your major?'
+                                    })
+                                ],
+                                title: 'Regarding education:'
+                            })
+                        })
+                    ]
+                })
+            ]
+        });
+
+        new Y.FormBuilder({
+            fieldTypes: [{
+                fieldClass: Y.FormBuilderFieldSentence,
+                icon:'glyphicon glyphicon-font',
+                label: 'Sentence'
+            },{
+                fieldClass: Y.FormBuilderFieldChoice,
+                icon:'glyphicon glyphicon-font',
+                label: 'Choice'
+            },{
+                fieldClass: Y.FormBuilderFieldText,
+                icon:'glyphicon glyphicon-font',
+                label: 'Text'
+            }],
+            layout: layout
+        }).render('#formBuilder');
+    }
+);
+
 </script>
 
 </body>

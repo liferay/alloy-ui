@@ -223,6 +223,36 @@ YUI.add('aui-dropdown-tests', function(Y) {
                 this._dropdown.get('open'),
                 'Dropdown should have been opened'
             );
+        },
+
+        'should toggle dropdown menu content when key press enter on it': function() {
+            this._createDropdown();
+
+            var trigger = this._dropdown.get('trigger');
+
+            trigger.simulate('keypress', { keyCode: 13 });
+            Y.Assert.isTrue(trigger.get('parentNode').hasClass('open'));
+
+            trigger.simulate('keypress', { keyCode: 13 });
+            Y.Assert.isFalse(trigger.get('parentNode').hasClass('open'));
+        },
+
+        'should dettach trigger\' when change it': function() {
+            this._createDropdown();
+
+            var trigger = this._dropdown.get('trigger');
+
+            trigger.simulate('keypress', { keyCode: 13 });
+            Y.Assert.isTrue(trigger.get('parentNode').hasClass('open'));
+
+            this._dropdown.set('trigger', null);
+
+            trigger.simulate('keypress', { keyCode: 13 });
+            Y.Assert.isTrue(trigger.get('parentNode').hasClass('open'));
+
+            this._dropdown.set('trigger', trigger);
+            trigger.simulate('keypress', { keyCode: 13 });
+            Y.Assert.isFalse(trigger.get('parentNode').hasClass('open'));
         }
     }));
 

@@ -77,6 +77,14 @@
             return String(id).indexOf(A.Env._guidp) === 0;
         },
 
+        isInteger: function(val) {
+            return typeof val === 'number' &&
+                isFinite(val) &&
+                val > -9007199254740992 &&
+                val < 9007199254740992 &&
+                Math.floor(val) === val;
+        },
+
         isNode: function(val) {
             return A.instanceOf(val, A.Node);
         },

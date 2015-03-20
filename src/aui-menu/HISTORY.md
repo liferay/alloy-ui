@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1820](https://issues.liferay.com/browse/AUI-1820) Form Builder is not keyboard-accessible
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
 

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+    <title>aui-layout-builder-resize-col</title>
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-layout-builder-resize-col-tests.js"></script>
+    <meta charset="utf-8" />
+    <style>
+    .col {
+        background-color: #ddd;
+        border: 1px solid #ccc;
+        height: 62px;
+    }
+    .container {
+        width: 1500px;
+        margin-left: 10px;
+    }
+    .row {
+        margin-bottom: 15px;
+    }
+    .last-row {
+        margin-bottom: 0px;
+    }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="logger"></div>
+
+<div class="container"></div>
+
+<script>
+YUI({
+    coverage: ['aui-layout-builder-resize-col'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-layout-builder-resize-col-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-layout-builder-resize-col');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

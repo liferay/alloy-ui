@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<h1>Data Editors Demo</h1>
+
+<h2>Options Editor</h2>
+<div id="optionsEditor"></div>
+<button id="optionsEditorValue">Print Values</button>
+
+<h2>Radio Groups Editor</h2>
+<div id="radioGroupEditor"></div>
+
+<h2>Tabs Editor</h2>
+<div id="tabsEditor"></div>
+<div id="weaponsPanel">Out of weapons</div>
+<div id="armorPanel">Out of armor</div>
+<div id="accessoriesPanel">Out of accessories</div>
+
+<script type="text/javascript" charset="utf-8">
+YUI({ filter:'raw' }).use(
+    'aui-data-editor',
+    'aui-options-data-editor',
+    'aui-radio-group-data-editor',
+    'aui-tabs-data-editor',
+    function(Y) {
+        var optionsEditor = new Y.OptionsDataEditor({
+            editedValue: ['Drogon', 'Visirion', 'Rhaegal'],
+            originalValue: ['Drogon', 'Visirion', 'Rhaegal']
+        });
+        Y.one('#optionsEditor').append(optionsEditor.get('node'));
+        Y.one('#optionsEditorValue').on('click', function() {
+            console.log(optionsEditor.get('editedValue'));
+        });
+
+        var radioGroupEditor = new Y.RadioGroupDataEditor({
+            editedValue: 2,
+            originalValue: 2,
+            radioLabels: ['Squirtle', 'Charmander', 'Bulbasaur']
+        });
+        Y.one('#radioGroupEditor').append(radioGroupEditor.get('node'));
+
+        var tabsEditor = new Y.TabsDataEditor({
+            editedValue: 'inventory-armor',
+            originalValue: 'inventory-armor',
+            tabs: [
+                {
+                    label: 'Weapons',
+                    panelNode: Y.one('#weaponsPanel'),
+                    value: 'inventory-weapon'
+                },
+                {
+                    label: 'Armor',
+                    panelNode: Y.one('#armorPanel'),
+                    value: 'inventory-armor'
+                },
+                {
+                    label: 'Accessories',
+                    panelNode: Y.one('#accessoriesPanel'),
+                    value: 'inventory-accessory'
+                }
+            ]
+        });
+        Y.one('#tabsEditor').append(tabsEditor.get('node'));
+    }
+);
+</script>
+</body>
+</html>

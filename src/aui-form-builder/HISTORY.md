@@ -4,44 +4,60 @@
 
 ## @VERSION@
 
-No registries yet.
-
-## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
-
-* [AUI-1781](https://issues.liferay.com/browse/AUI-1781) Radio field is being automatically selected after it's dragged and dropped in the Form Builder
-* [AUI-1747](https://issues.liferay.com/browse/AUI-1747) Change size of form-builder columns for large screens
-
-## [3.0.0](https://github.com/liferay/alloy-ui/releases/tag/3.0.0)
-
-* [AUI-1545](https://issues.liferay.com/browse/AUI-1545) Form Builder Checkbox and Radio have incorrect markup
-* [AUI-1635](https://issues.liferay.com/browse/AUI-1635) Fix lint problems
-* [AUI-1606](https://issues.liferay.com/browse/AUI-1606) Form Builder select field closes by itself when clicking after already focused
-* [AUI-1612](https://issues.liferay.com/browse/AUI-1612) Form builder textfield and textarea need width validators
-* [AUI-1610](https://issues.liferay.com/browse/AUI-1610) Changing predefinedValue for text fields doesn't update them
-* [AUI-1303](https://issues.liferay.com/browse/AUI-1303) Make aui-form-builder responsive
-* [AUI-1529](https://issues.liferay.com/browse/AUI-1529) Change width ratio of form builder columns
-* [AUI-1528](https://issues.liferay.com/browse/AUI-1528) Drop Zone on Form-Builder Styling is off
-* [AUI-1441](https://issues.liferay.com/browse/AUI-1441) Minimize property lookups for multiple A.Escape calls to use AEscape
-* [AUI-1332](https://issues.liferay.com/browse/AUI-1332) Decouple property list panel from the diagram builder
-* [AUI-1414](https://issues.liferay.com/browse/AUI-1414) Change field width sizes
-* [AUI-1415](https://issues.liferay.com/browse/AUI-1415) All form fields are showing up as required
-* [AUI-1339](https://issues.liferay.com/browse/AUI-1339) Escape form builder parameters
-* [AUI-1346](https://issues.liferay.com/browse/AUI-1346) Cannot clone hiddenAttributes in Form Builder
-* [AUI-1328](https://issues.liferay.com/browse/AUI-1328) Move automated tasks from Grunt to Gulp
-* [AUI-1287](https://issues.liferay.com/browse/AUI-1287) Wrong css formatting when running "grunt format"
-* [AUI-1174](https://issues.liferay.com/browse/AUI-1174) Validate source code with JSHint
-* [AUI-1098](https://issues.liferay.com/browse/AUI-1098) Upgrade to Bootstrap 3
-* [AUI-1257](https://issues.liferay.com/browse/AUI-1257) Fix text input sizes on Form Builder for Bootstrap 3
-* [AUI-1251](https://issues.liferay.com/browse/AUI-1251) Fix FormBuilder edit buttons alignment on Bootstrap 3
-* [AUI-1220](https://issues.liferay.com/browse/AUI-1220) Add .btn-default to .btn elements with no other color on Bootstrap 3
-* [AUI-1222](https://issues.liferay.com/browse/AUI-1222) Add .form-control to inputs and selects on Bootstrap 3
-* [AUI-1224](https://issues.liferay.com/browse/AUI-1224) Add .glyphicon and change prefix from .icon-* to .glyphicon-* on Bootstrap 3
-
-## [2.5.0](https://github.com/liferay/alloy-ui/releases/tag/2.5.0)
-
-* [AUI-1208](https://issues.liferay.com/browse/AUI-1346) Cannot clone hiddenAttributes in Form Builder
-* [AUI-1208](https://issues.liferay.com/browse/AUI-1208) Cloned fields displaying hidden attributes
-* [AUI-1163](https://issues.liferay.com/browse/AUI-1163) Remove unnecessary constants
-* [AUI-1130](https://issues.liferay.com/browse/AUI-1130) Field Label allows insertion of HTML tag in the Form Builder's DOM
-* [AUI-1124](https://issues.liferay.com/browse/AUI-1124) Correlate Form Builder input sizes with similar inputs in other places
-* [AUI-1034](https://issues.liferay.com/browse/AUI-1034) Predefined value is lost when radio option value is changed
+* [AUI-1877](https://issues.liferay.com/browse/AUI-1877) Move some form builder fields to Liferay Portal
+* [AUI-1859](https://issues.liferay.com/browse/AUI-1859) User shouldn't be able to move a field inside another with movableContent false
+* [AUI-1858](https://issues.liferay.com/browse/AUI-1858) FormBuilder should be able to receive layout as a configuration object
+* [AUI-1810](https://issues.liferay.com/browse/AUI-1810) Form builder advanced field settings for mobile
+* [AUI-1830](https://issues.liferay.com/browse/AUI-1830) Button to move field should be inside the field's toolbar
+* [AUI-1840](https://issues.liferay.com/browse/AUI-1840) Field settings cancel and save buttons for mobile
+* [AUI-1820](https://issues.liferay.com/browse/AUI-1820) Form Builder is not keyboard-accessible
+* [AUI-1755](https://issues.liferay.com/browse/AUI-1755) Button for adding page breaks should be on the left of the button to add rows
+* [AUI-1841](https://issues.liferay.com/browse/AUI-1841) Refactor field settings modal logic to separate file
+* [AUI-1832](https://issues.liferay.com/browse/AUI-1832) Refactor aui-form-builder into smaller files
+* [AUI-1831](https://issues.liferay.com/browse/AUI-1831) Change the way aui-data-editor updates the UI
+* [AUI-1816](https://issues.liferay.com/browse/AUI-1816) Add placeholder as an advanced field setting
+* [AUI-1826](https://issues.liferay.com/browse/AUI-1826) Rename FormBuilderPageBreak to FormBuilderPageBreakRow
+* [AUI-1825](https://issues.liferay.com/browse/AUI-1825) Show asterisks beside each field's required setting
+* [AUI-1811](https://issues.liferay.com/browse/AUI-1811) Change text field's multiline option to radio buttons instead of a button switch
+* [AUI-1812](https://issues.liferay.com/browse/AUI-1812) Fix layout builder bug on IE
+* [AUI-1802](https://issues.liferay.com/browse/AUI-1802) Add name as an advanced field setting
+* [AUI-1824](https://issues.liferay.com/browse/AUI-1824) Change move col from events to attributes
+* [AUI-1803](https://issues.liferay.com/browse/AUI-1803) Should be able to add and resize columns on main mode
+* [AUI-1785](https://issues.liferay.com/browse/AUI-1785) Merge list and choice fields into a single field type
+* [AUI-1800](https://issues.liferay.com/browse/AUI-1800) Add option on field toolbar to add a nested field
+* [AUI-1791](https://issues.liferay.com/browse/AUI-1791) Changing a field's content should update its row height
+* [AUI-1806](https://issues.liferay.com/browse/AUI-1806) Add button to cancel editing/creating a field
+* [AUI-1792](https://issues.liferay.com/browse/AUI-1792) Fix bug when canceling field creation followed by editing a field
+* [AUI-1750](https://issues.liferay.com/browse/AUI-1750) Create time field
+* [AUI-1724](https://issues.liferay.com/browse/AUI-1724) Improve aui-boolean-data-editor's appearance
+* [AUI-1784](https://issues.liferay.com/browse/AUI-1784) Convert existing form builder fields to separate rendering from edition logic
+* [AUI-1770](https://issues.liferay.com/browse/AUI-1770) Field rendering should be separate from field editing
+* [AUI-1738](https://issues.liferay.com/browse/AUI-1738) Update unique field types when fields change
+* [AUI-1764](https://issues.liferay.com/browse/AUI-1764) Improve aui-options-data-editor's appearance
+* [AUI-1776](https://issues.liferay.com/browse/AUI-1776) Improve appearance of rendered fields
+* [AUI-1775](https://issues.liferay.com/browse/AUI-1775) Improve appearance of form builder's initial screen
+* [AUI-1737](https://issues.liferay.com/browse/AUI-1737) Handle required fields on field settings modal
+* [AUI-1723](https://issues.liferay.com/browse/AUI-1723) Field edition should have 2 columns on bigger screens
+* [AUI-1763](https://issues.liferay.com/browse/AUI-1763) Update layout of page breaks and fields on regular mode
+* [AUI-1749](https://issues.liferay.com/browse/AUI-1749) Fix title of modal for editing a field
+* [AUI-1691](https://issues.liferay.com/browse/AUI-1691) Create date field
+* [AUI-1759](https://issues.liferay.com/browse/AUI-1759) Form builder should have a header with an options menu
+* [AUI-1693](https://issues.liferay.com/browse/AUI-1693) Create scale field
+* [AUI-1694](https://issues.liferay.com/browse/AUI-1694) Create grid field
+* [AUI-1720](https://issues.liferay.com/browse/AUI-1720) Allow moving fields inside existing fields
+* [AUI-1690](https://issues.liferay.com/browse/AUI-1690) Create list field
+* [AUI-1698](https://issues.liferay.com/browse/AUI-1698) Layout builder mode
+* [AUI-1696](https://issues.liferay.com/browse/AUI-1696) Create sentence field
+* [AUI-1697](https://issues.liferay.com/browse/AUI-1697) Add toolbar for fields
+* [AUI-1689](https://issues.liferay.com/browse/AUI-1689) Create choice field
+* [AUI-1685](https://issues.liferay.com/browse/AUI-1685) Button to add page breaks
+* [AUI-1722](https://issues.liferay.com/browse/AUI-1722) Button to add rows
+* [AUI-1684](https://issues.liferay.com/browse/AUI-1684) Add fields on empty columns
+* [AUI-1688](https://issues.liferay.com/browse/AUI-1688) Create text field
+* [AUI-1687](https://issues.liferay.com/browse/AUI-1687) Create base field class
+* [AUI-1682](https://issues.liferay.com/browse/AUI-1682) Create page break abstraction
+* [AUI-1714](https://issues.liferay.com/browse/AUI-1714) FormBuilder should update itself if `fieldTypes` attribute changes
+* [AUI-1713](https://issues.liferay.com/browse/AUI-1713) Replace old form builder
+* [AUI-1712](https://issues.liferay.com/browse/AUI-1712) Store field class info on FieldType
+* [AUI-1647](https://issues.liferay.com/browse/AUI-1647) New form builder should know about the field types it will handle
+* [AUI-1658](https://issues.liferay.com/browse/AUI-1658) Create new Field Type submodule of Form Builder

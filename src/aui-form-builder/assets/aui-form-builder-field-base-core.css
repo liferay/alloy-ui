@@ -1,0 +1,61 @@
+.form-field {
+    position: relative;
+}
+
+.form-field .form-builder-field-content-toolbar {
+    position: relative;
+}
+
+.form-builder-field-footer-content {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 6px 30px;
+    background-color: #ccc;
+}
+
+.form-builder-field-settings-content .modal-body {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.form-builder-field-settings-panel .tab-pane {
+    display: none;
+}
+
+.form-builder-field-settings-panel .tab-pane.active {
+    display: block;
+    margin-top: 20px;
+}
+
+.form-builder-field-settings-panel-left {
+    border-bottom: 1px solid #ccc;
+    padding: 0 30px;
+}
+
+.form-builder-field-settings-panel-right {
+    padding: 10px 30px 0;
+}
+
+@media (min-width: 991px) {
+    .form-builder-field-settings-panel-separator {
+        border-left: 1px solid #ccc;
+        bottom: 0;
+        left: 50%;
+        margin: 10px 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .form-builder-field-settings-panel-left {
+        border-bottom: none;
+    }
+}
+
+.form-builder-field-settings-panel-advanced-button {
+    background-color: #C0C0C0;
+    display: block;
+    width: 100%;
+}

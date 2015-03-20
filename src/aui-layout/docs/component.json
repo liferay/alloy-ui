@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-layout",
+    "displayName": "Gallery: aui-layout",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "brunocoelho" ],
+    "use"        : [ "aui-layout" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

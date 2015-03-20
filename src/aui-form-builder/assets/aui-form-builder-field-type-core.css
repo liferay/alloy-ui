@@ -1,0 +1,19 @@
+.field-type {
+    border: 1px solid #ccc;
+    cursor: pointer;
+    float: left;
+    font-size: 10px;
+    padding: 10px;
+    text-align: center;
+    width: 150px;
+}
+
+.field-type-icon {
+    font-size: 24px;
+    margin: 5px 0 10px;
+}
+
+.field-type-disabled {
+    background-color: white;
+    cursor: not-allowed;
+}

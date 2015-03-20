@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+</head>
+<body class="yui3-skin-sam">
+    <h1>AlloyUI - Form Field</h1>
+
+    <h2>Choice</h2>
+    <h3>Radio</h3>
+    <div id="fieldChoiceRadio"></div>
+    <h3>Checkbox</h3>
+    <div id="fieldChoiceCheckbox"></div>
+    <h3>Dropdown</h3>
+    <div id="fieldChoiceDropdown"></div>
+
+    <h2>Text</h2>
+    <div id="fieldText"></div>
+
+<script type="text/javascript" charset="utf-8">
+    YUI({ filter:'raw' }).use(
+        'aui-form-field-choice',
+        'aui-form-field-text',
+        function(Y) {
+            var fieldChoiceRadio = new Y.FormFieldChoice({
+                help: 'Remember all I\'m offering is the truth',
+                title: 'This is your last chance',
+                options: ['Red Pill', 'Blue Pill'],
+                otherOption: true
+            });
+            Y.one('#fieldChoiceRadio').append(fieldChoiceRadio.get('content'));
+
+            var fieldChoiceCheckbox = new Y.FormFieldChoice({
+                title: 'What are your favorite colors?',
+                options: ['Red', 'Blue', 'Yellow'],
+                type: Y.FormFieldChoice.TYPES.CHECKBOX
+            });
+            Y.one('#fieldChoiceCheckbox').append(fieldChoiceCheckbox.get('content'));
+
+            var fieldChoiceDropdown = new Y.FormFieldChoice({
+                title: 'The Best Maíra Quotes',
+                type: Y.FormFieldChoice.TYPES.DROPDOWN
+            });
+            Y.one('#fieldChoiceDropdown').append(fieldChoiceDropdown.get('content'));
+
+            var fieldText = new Y.FormFieldText({
+                help: 'Type your full name below',
+                title: 'What\'s your name?',
+                required: true
+            });
+            Y.one('#fieldText').append(fieldText.get('content'));
+        }
+    );
+</script>
+
+</body>
+</html>

@@ -1,36 +1,159 @@
-.form-builder .property-builder-drop-container, .form-builder .tab-pane {
-    height: auto;
-    min-height: 150px;
-    overflow: auto;
-    padding-bottom: 10px;
+.form-builder-content {
+    background-color: #ecedee;
 }
 
-.form-builder .property-builder-fields-container .form-builder-placeholder {
-    display: none;
+.form-builder-header {
+    background-color: #00a3ff;
+    color: #fff;
+    font-family: HelveticaNeue-Light;
+    font-size: 20px;
+    height: 56pt;
+    line-height: 56pt;
+    text-align: center;
+    vertical-align: middle;
 }
 
-.form-builder .property-builder-content-container,
-.form-builder .property-builder-fields-container {
-    padding-left: 0;
+@media (max-width: 768px) {
+    .form-builder-header {
+        font-size: 17px;
+    }
+
+    .form-builder-header .form-builder-header-back,
+    .form-builder-header .form-builder-menu {
+        width: 44px;
+    }
 }
 
-.form-builder .property-builder-fields-container .property-builder-field {
+.form-builder-header .form-builder-header-back {
+    color: #fff;
+    cursor: pointer;
+    visibility: hidden;
+    float: left;
+    width: 56pt;
+}
+
+.form-builder-header .form-builder-menu {
+    float: right;
+    width: 56pt;
+}
+
+.form-builder-menu .form-builder-menu-button {
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-builder-menu .form-builder-menu-content {
+    background-color: #34495e;
+    font-family: HelveticaNeue-Thin;
+    font-size: 20px;
+    letter-spacing: 4pt;
+    line-height: 15px;
+    margin-top: -1px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 320px;
+}
+
+.form-builder-menu .form-builder-menu-content .menu-item {
+    height: 50pt;
+    line-height: 50pt;
+}
+
+.form-builder-menu .form-builder-menu-content .menu-item:hover {
+    background-color: #546273;
+}
+
+.form-builder-menu .form-builder-menu-content .menu-item a:hover {
+    color: #fff;
+}
+
+.form-builder-edit-layout-button .form-builder-edit-layout-button-icon {
+    font-size: 12px;
+    margin-right: 5px;
+    margin-top: -3px;
+}
+
+.form-builder-edit-layout-button:hover {
+    color: #000;
+}
+
+.form-builder-menu .menu-item .form-builder-edit-layout-button a {
+    color: #fff;
+}
+.form-builder-modal {
     margin: 0;
+    width: 452px;
 }
 
-.form-builder-placeholder {
-    border: 1px dashed #CCCCCC;
-    margin: 5px;
+.form-builder-modal .modal-header {
+    background: #bbb;
+    text-align: center;
 }
 
-.form-builder-options-editor-hidden {
-    display: none;
-}
-/* work around Y.Widget zIndex bug */
-.basecelleditor {
-    z-index: 500 !important;
+.form-builder-modal .modal-body {
+    background-color: #eee;
+    padding: 0;
 }
 
-.form-builder-field-label, .form-builder-text-field-content label, .form-builder-checkbox-field-content {
-    min-height: 33px;
+.form-builder-modal-content {
+    border-radius: 0;
+}
+
+.form-builder-layout {
+    margin: 24px 73px;
+}
+
+.form-builder-layout .layout-row-container-row + .form-builder-page-break-row-container-row {
+    margin-top: 40pt;
+}
+
+.form-builder-layout .layout-row {
+    border-top: 2px solid #ecedee;
+}
+
+.form-builder-layout .layout-row .col {
+    background-color: #fff;
+    border-right: 2px solid #ecedee;
+    border-left: none;
+    min-height: 260px;
+    padding: 0;
+}
+
+.form-builder-layout .form-builder-page-break-row-container-row .col {
+    border-radius: 5px 5px 0 0;
+    height: 48pt;
+    line-height: 48pt;
+    min-height: 0;
+}
+
+.form-builder-layout .layout-row .col:last-child {
+    border-right: none;
+}
+
+.form-builder-layout .layout-row-container-row:last-child .col {
+    border-radius: 0 0 5px 5px;
+}
+
+.form-builder-empty-col {
+    cursor: pointer;
+    padding-top: 95px;
+    text-align: center;
+}
+
+.form-builder-empty-col .form-builder-empty-col-icon {
+    font-size: 40px;
+}
+
+.form-builder-empty-col .form-builder-empty-col-label {
+    font-size: 15px;
+}
+
+.form-builder-add-page-break {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .form-builder-layout {
+        margin: 24px 30px;
+    }
 }

@@ -1,0 +1,91 @@
+{
+    "aui-layout": {
+        "requires": [
+            "aui-layout-col",
+            "aui-layout-row",
+            "aui-node-base",
+            "base-build",
+            "datatype-number-parse",
+            "event-resize"
+        ]
+    },
+    "aui-layout-builder": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-layout",
+            "aui-layout-builder-add-col",
+            "aui-layout-builder-add-row",
+            "aui-layout-builder-move",
+            "aui-layout-builder-remove-col",
+            "aui-layout-builder-remove-row",
+            "aui-layout-builder-resize-col",
+            "aui-node-base",
+            "base-build",
+            "node-event-delegate",
+            "node-screen",
+            "node-style"
+        ]
+    },
+    "aui-layout-builder-add-col": {
+        "requires": [
+            "event-key",
+            "node-base"
+        ],
+        "skinnable": true
+    },
+    "aui-layout-builder-remove-col": {
+        "requires": [
+            "event-key",
+            "node-base"
+        ],
+        "skinnable": true
+    },
+    "aui-layout-builder-resize-col": {
+        "requires": [
+            "dd-constrain",
+            "dd-delegate",
+            "dd-drop-plugin",
+            "dd-proxy",
+            "event-mouseenter",
+            "node-base"
+        ],
+        "skinnable": true
+    },
+    "aui-layout-col": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-node-base",
+            "base-build"
+        ],
+        "skinnable": true
+    },
+    "aui-layout-row": {
+        "requires": [
+            "array-invoke",
+            "aui-node-base",
+            "base-build"
+        ],
+        "skinnable": true
+    },
+    "aui-layout-builder-add-row": {
+        "requires": [
+            "aui-node-base",
+            "base-build",
+            "node-scroll-info"
+        ],
+        "skinnable": true
+    },
+    "aui-layout-builder-remove-row": {
+        "requires": [
+            "aui-node-base",
+            "base-build"
+        ]
+    },
+    "aui-layout-builder-move": {
+        "requires": [
+            "aui-node-base",
+            "base-build"
+        ],
+        "skinnable": true
+    }
+}

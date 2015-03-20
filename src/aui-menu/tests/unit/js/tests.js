@@ -672,6 +672,32 @@ YUI.add('aui-menu-tests', function(Y) {
 
             item.fire('shortcut');
             Y.Mock.verify(mock);
+        },
+
+        'should trigger item selection via keypress': function() {
+            var item,
+                mock = new Y.Mock();
+
+            this._createMenu();
+            this._menu.open();
+            item = this._menu.get('items')[1];
+
+            mock.onItemSelected = function(event) {
+                Y.Assert.areSame(
+                    item,
+                    event.item,
+                    'Items should match'
+                );
+            };
+            Y.Mock.expect(mock, {
+                callCount: 1,
+                method: 'onItemSelected',
+                args: [Y.Mock.Value.Object]
+            });
+            this._menu.once('itemSelected', mock.onItemSelected);
+
+            item.get('node').simulate('keypress', { keyCode: 13 });
+            Y.Mock.verify(mock);
         }
     }));
 

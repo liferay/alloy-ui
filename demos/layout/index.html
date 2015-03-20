@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+        .col {
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            min-height: 62px;
+            padding-top: 20px;
+        }
+        .container {
+            padding: 0 70px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <h1>Layout Demo</h1>
+    <div class="container">
+        <div class="layout-builder-layout-container">
+            <div class="layout-node">
+                <div class="layout-row-container-row">
+                    <div class="layout-row row">
+                        <div class="col col-md-3">
+                            <div class="layout-col-content">
+                                Oi 4
+                            </div>
+                        </div>
+                        <div class="col col-md-3">
+                            <div class="layout-col-content">
+                                Oi 4
+                            </div>
+                        </div>
+                        <div class="col col-md-3">
+                            <div class="layout-col-content">
+                                Oi 4
+                            </div>
+                        </div>
+                        <div class="col col-md-3">
+                            <div class="layout-col-content">
+                                Oi 4
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout-row-container-row">
+                    <div class="layout-row row">
+                        <div class="col col-md-2">
+                            <div class="layout-col-content">
+                                Oi 2
+                            </div>
+                        </div>
+                        <div class="col col-md-2">
+                            <div class="layout-col-content">
+                                Oi 2
+                            </div>
+                        </div>
+                        <div class="col col-md-2">
+                            <div class="layout-col-content">
+                                Oi 2
+                            </div>
+                        </div>
+                        <div class="col col-md-2">
+                            <div class="layout-col-content">
+                                Oi 2
+                            </div>
+                        </div>
+                        <div class="col col-md-2">
+                            <div class="layout-col-content">
+                                Oi 2
+                            </div>
+                        </div>
+                        <div class="col col-md-2">
+                            <div class="layout-col-content">
+                                Oi 2
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout-row-container-row">
+                    <div class="layout-row row">
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                        <div class="col col-md-1">
+                            <div class="layout-col-content">
+                                Oi 1
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+    YUI({ filter:'raw' }).use(
+        'aui-layout-builder',
+        'aui-form-builder',
+        'aui-form-builder-field-text',
+        'aui-form-builder-field-sentence',
+        function(Y) {
+            var Content = Y.Base.create('content', Y.Base, [], {}, {
+                ATTRS: {
+                    content: {
+                        value: 'foo'
+                    }
+                }
+            });
+
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: new Y.FormBuilderFieldSentence({
+                                    help: 'My Help',
+                                    nestedFields: [
+                                        new Y.FormBuilderFieldText({
+                                            help: 'First nested field',
+                                            nestedFields: [
+                                                new Y.FormBuilderFieldText({
+                                                    help: 'Second level nested field',
+                                                    title: 'Nested Field 1.1'
+                                                })
+                                            ],
+                                            title: 'Nested Field 1'
+                                        }),
+                                        new Y.FormBuilderFieldText({
+                                            help: 'Second nested field',
+                                            title: 'Nested Field 2'
+                                        })
+                                    ],
+                                    title: 'My Title'
+                                })
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: new Content({ content: '3' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: new Content({ content: '6' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: new Content({ content: '6' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 9,
+                                value: new Content({ content: '9' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 3,
+                                value: new Content({ content: '3' })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 8,
+                                value: new Content({ content: '8' })
+                            }),
+                            new Y.LayoutCol({
+                                size: 4,
+                                value: new Y.FormBuilderFieldSentence({
+                                    help: 'My Help',
+                                    nestedFields: [
+                                        new Y.FormBuilderFieldText({
+                                            help: 'Second nested field',
+                                            title: 'Nested Field 2'
+                                        })
+                                    ],
+                                    title: 'My Second Title'
+                                })
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                value: new Content({ content: '4' }),
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '4' }),
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '4' }),
+                                size: 4
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '3' }),
+                                size: 3
+                            }),
+                            new Y.LayoutCol({
+                                value: new Content({ content: '6' }),
+                                size: 6
+                            })
+                        ]
+                    })
+                ]
+            });
+
+            new Y.LayoutBuilder({
+                container: '.container'//,
+                //layout: layout
+            });
+        }
+    );
+</script>
+</body>
+</html>

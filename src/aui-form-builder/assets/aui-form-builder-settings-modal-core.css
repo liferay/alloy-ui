@@ -1,0 +1,31 @@
+.form-builder-field-settings {
+    width: 80%;
+}
+
+.form-builder-field-settings .modal-body {
+    padding: 15px 0;
+    min-height: 350px;
+}
+
+.form-builder-field-settings-small-screen-header {
+    background-color: #C0C0C0;
+    height: 40px;
+    left: 0;
+    position: absolute;
+    top: -40px;
+    width: 100%;
+}
+
+.form-builder-field-settings-small-screen-header p {
+    margin: 8px 50%;
+}
+
+.form-builder-field-settings-small-screen-header-check {
+    float: right;
+    margin: -30px 5px;
+}
+
+.form-builder-field-settings-small-screen-header-left {
+    float: left;
+    margin: 9px 0px 0px 5px;
+}

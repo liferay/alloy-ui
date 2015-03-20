@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <title>AUI Boolean Data Editor Unit Tests</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-boolean-data-editor-tests.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+<div id="container"></div>
+<script>
+YUI({
+    coverage: ['aui-boolean-data-editor'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-boolean-data-editor-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-boolean-data-editor');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

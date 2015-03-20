@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title>AUI Form Builder Field Types Unit tests</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-form-builder-field-types-tests.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+<div class="row">
+    <div id="container"></div>
+</div>
+
+<script>
+YUI({
+    coverage: ['aui-form-builder-field-types'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-form-builder-field-types-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-form-builder-field-types');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

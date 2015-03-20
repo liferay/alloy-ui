@@ -91,8 +91,12 @@
         <br>
         <input class="clearable form-control" type="text" value="foo">
     </p>
+    <h2>Switch button</h2>
+    <p>
+        <div id="switch"></div>
+    </p>
     <script>
-    YUI({ filter: 'raw' }).use('aui-button', 'aui-button-search-cancel', function(Y) {
+    YUI({ filter: 'raw' }).use('aui-button', 'aui-button-search-cancel', 'aui-button-switch', function(Y) {
 
         new Y.Button({
             cssClass: 'btn-primary',
@@ -133,6 +137,11 @@
             trigger: '.clearable'
         });
 
+        new Y.ButtonSwitch({
+            srcNode: '#switch',
+            innerLabelLeft: 'Light',
+            innerLabelRight: 'Dark'
+        }).render();
     });
     </script>
 </body>

@@ -1,63 +1,27 @@
 {
     "name": "aui-form-builder",
     "builds": {
-        "aui-form-builder-available-field": {
-            "jsfiles": [
-                "js/aui-form-builder-available-field.js"
-            ]
-        },
-
         "aui-form-builder": {
             "jsfiles": [
                 "js/aui-form-builder.js"
             ]
         },
 
-        "aui-form-builder-field": {
+        "aui-form-builder-field-base": {
             "jsfiles": [
-                "js/aui-form-builder-field.js"
+                "js/aui-form-builder-field-base.js"
             ]
         },
 
-        "aui-form-builder-field-button": {
+        "aui-form-builder-field-choice": {
             "jsfiles": [
-                "js/aui-form-builder-field-button.js"
+                "js/aui-form-builder-field-choice.js"
             ]
         },
 
-        "aui-form-builder-field-checkbox": {
+        "aui-form-builder-field-sentence": {
             "jsfiles": [
-                "js/aui-form-builder-field-checkbox.js"
-            ]
-        },
-
-        "aui-form-builder-field-fieldset": {
-            "jsfiles": [
-                "js/aui-form-builder-field-fieldset.js"
-            ]
-        },
-
-        "aui-form-builder-field-file-upload": {
-            "jsfiles": [
-                "js/aui-form-builder-field-file-upload.js"
-            ]
-        },
-
-        "aui-form-builder-field-multiple-choice": {
-            "jsfiles": [
-                "js/aui-form-builder-field-multiple-choice.js"
-            ]
-        },
-
-        "aui-form-builder-field-radio": {
-            "jsfiles": [
-                "js/aui-form-builder-field-radio.js"
-            ]
-        },
-
-        "aui-form-builder-field-select": {
-            "jsfiles": [
-                "js/aui-form-builder-field-select.js"
+                "js/aui-form-builder-field-sentence.js"
             ]
         },
 
@@ -67,9 +31,40 @@
             ]
         },
 
-        "aui-form-builder-field-textarea": {
+
+        "aui-form-builder-field-toolbar": {
             "jsfiles": [
-                "js/aui-form-builder-field-textarea.js"
+                "js/aui-form-builder-field-toolbar.js"
+            ]
+        },
+
+        "aui-form-builder-field-type": {
+            "jsfiles": [
+                "js/aui-form-builder-field-type.js"
+            ]
+        },
+
+        "aui-form-builder-field-types": {
+            "jsfiles": [
+                "js/aui-form-builder-field-types.js"
+            ]
+        },
+
+        "aui-form-builder-layout-builder": {
+            "jsfiles": [
+                "js/aui-form-builder-layout-builder.js"
+            ]
+        },
+
+        "aui-form-builder-page-break-row": {
+            "jsfiles": [
+                "js/aui-form-builder-page-break-row.js"
+            ]
+        },
+
+        "aui-form-builder-settings-modal": {
+            "jsfiles": [
+                "js/aui-form-builder-settings-modal.js"
             ]
         }
     }

@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title>AUI Radio Group Data Editor Unit Tests</title>
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+    <meta charset="utf-8" />
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-radio-group-data-editor-tests.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+<div id="container"></div>
+<script>
+YUI({
+    coverage: ['aui-radio-group-data-editor'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-radio-group-data-editor-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-radio-group-data-editor');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

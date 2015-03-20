@@ -2,63 +2,622 @@
  * The Form Builder Component
  *
  * @module aui-form-builder
- * @submodule aui-form-builder-base
  */
 
-var L = A.Lang,
-    isObject = L.isObject,
+var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break'),
+    CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout', 'button'),
+    CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
+    CSS_EMPTY_COL_ADD_BUTTON = A.getClassName('form', 'builder', 'empty', 'col', 'add', 'button'),
+    CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
+    CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
+    CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
+    CSS_FIELD = A.getClassName('form', 'builder', 'field'),
+    CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
+    CSS_HEADER = A.getClassName('form', 'builder', 'header'),
+    CSS_HEADER_BACK = A.getClassName('form', 'builder', 'header', 'back'),
+    CSS_HEADER_TITLE = A.getClassName('form', 'builder', 'header', 'title'),
+    CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
+    CSS_MENU = A.getClassName('form', 'builder', 'menu'),
+    CSS_MENU_BUTTON = A.getClassName('form', 'builder', 'menu', 'button'),
+    CSS_MENU_CONTENT = A.getClassName('form', 'builder', 'menu', 'content'),
+    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
 
-    aArray = A.Array,
-
-    getAvailableFieldById = A.PropertyBuilderAvailableField.getAvailableFieldById,
-
-    isAvailableField = function(v) {
-        return (v instanceof A.PropertyBuilderAvailableField);
-    },
-
-    isFormBuilderField = function(v) {
-        return (v instanceof A.FormBuilderField);
-    },
-
-    getCN = A.getClassName,
-
-    AVAILABLE_FIELDS_ID_PREFIX = 'availableFields' + '_' + 'field' + '_',
-    FIELDS_ID_PREFIX = 'fields' + '_' + 'field' + '_',
-
-    CSS_DD_DRAGGING = getCN('dd', 'dragging'),
-    CSS_PROPERTY_BUILDER_CONTENT_CONTAINER = getCN('property', 'builder', 'content', 'container'),
-    CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE = getCN('property', 'builder', 'field', 'draggable'),
-    CSS_FIELD_HOVER = getCN('form', 'builder', 'field', 'hover'),
-    CSS_FORM_BUILDER_DROP_ZONE = getCN('form', 'builder', 'drop', 'zone'),
-    CSS_FORM_BUILDER_FIELD = getCN('form', 'builder', 'field'),
-    CSS_FORM_BUILDER_PLACEHOLDER = getCN('form', 'builder', 'placeholder'),
-    CSS_FORM_BUILDER_TABS = getCN('form', 'builder', 'tabs'),
-
-    MOBILE_TOUCH_ENABLED = A.UA.touchEnabled && A.UA.mobile,
-
-    TPL_PLACEHOLDER = '<div class="' + CSS_FORM_BUILDER_PLACEHOLDER + '"></div>';
+    MODES = {
+        LAYOUT: 'layout',
+        REGULAR: 'regular'
+    };
 
 /**
  * A base class for `A.FormBuilder`.
  *
  * @class A.FormBuilder
- * @extends A.PropertyBuilder
+ * @extends A.Widget
+ * @uses A.FormBuilderFieldTypes, A.FormBuilderLayoutBuilder
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
- * @include http://alloyui.com/examples/form-builder/basic-markup.html
- * @include http://alloyui.com/examples/form-builder/basic.js
  */
-var FormBuilder = A.Component.create({
+A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
+    A.FormBuilderFieldTypes,
+    A.FormBuilderLayoutBuilder
+], {
+    TITLE_REGULAR: 'Build your form',
+
+    TPL_BUTTON_ADD_PAGEBREAK: '<button class="btn-default btn ' + CSS_ADD_PAGE_BREAK + '" tabindex="1">' +
+        '<span class="glyphicon glyphicon-th-list"></span>' +
+        'Add Page Break' +
+        '</button>',
+    TPL_EDIT_LAYOUT_BUTTON: '<div class="' + CSS_EDIT_LAYOUT_BUTTON + '">' +
+        '<a>Edit Layout</a></div>',
+    TPL_EMPTY_COL: '<div class="' + CSS_EMPTY_COL + '">' +
+        '<div class="' + CSS_EMPTY_COL_ADD_BUTTON + '" tabindex="9">' +
+        '<span class="glyphicon glyphicon-plus ' + CSS_EMPTY_COL_ICON + '"></span>' +
+        '<div class="' + CSS_EMPTY_COL_LABEL + '">Add Field</div></div>' +
+        '<button class="' + CSS_FIELD_MOVE_TARGET +
+        ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
+        'Paste here</button>' +
+        '</div>',
+    TPL_EMPTY_LAYOUT: '<div class="' + CSS_EMPTY_LAYOUT + '">' +
+        '<div>You don\'t have any question yet.</div>' +
+        '<div>First for all let\'s create a new line?</div></div>',
+    TPL_HEADER: '<div class="' + CSS_HEADER + '">' +
+        '<a class="' + CSS_HEADER_BACK + '" tabindex="1"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
+        '<div class="' + CSS_MENU + '">' +
+        '<a class="dropdown-toggle ' + CSS_MENU_BUTTON + '" data-toggle="dropdown" tabindex="1">' +
+        '<span class="glyphicon glyphicon-cog"></span></a>' +
+        '<div class="' + CSS_MENU_CONTENT + ' dropdown-menu dropdown-menu-right"></div></div>' +
+        '<div class="' + CSS_HEADER_TITLE + '"></div>' +
+        '</div>',
+    TPL_LAYOUT: '<div class="' + CSS_LAYOUT + '" ></div>',
 
     /**
-     * Static property provides a string to identify the class.
+     * Construction logic executed during the `A.FormBuilder`
+     * instantiation. Lifecycle.
      *
-     * @property NAME
-     * @type String
-     * @static
+     * @method initializer
+     * @protected
      */
-    NAME: 'form-builder',
+    initializer: function() {
+        var contentBox = this.get('contentBox');
+
+        contentBox.append(this.TPL_HEADER);
+        contentBox.append(this.TPL_LAYOUT);
+        contentBox.append(this.TPL_EMPTY_LAYOUT);
+        contentBox.append(this.TPL_BUTTON_ADD_PAGEBREAK);
+
+        this._emptyLayoutMsg = contentBox.one('.' + CSS_EMPTY_LAYOUT);
+
+        this.get('layout').addTarget(this);
+
+        this._fieldToolbar = new A.FormBuilderFieldToolbar(this.get('fieldToolbarConfig'));
+
+        this._eventHandles = [
+            this.after('layoutChange', this._afterLayoutChange),
+            this.after('layout:rowsChange', this._afterLayoutRowsChange),
+            this.after('layout-row:colsChange', this._afterLayoutColsChange),
+            this.after('layout-col:valueChange', this._afterLayoutColValueChange)
+        ];
+    },
+
+    /**
+     * Renders the `A.FormBuilder` UI. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
+        this._menuEditLayoutItem = new A.MenuItem({
+            content: this.TPL_EDIT_LAYOUT_BUTTON
+        });
+
+        this._menu = new A.Menu({
+            boundingBox: '.' + CSS_MENU,
+            contentBox: '.' + CSS_MENU,
+            items: [this._menuEditLayoutItem],
+            trigger: '.' + CSS_MENU_BUTTON
+        }).render();
+    },
+
+    /**
+     * Bind the events for the `A.FormBuilder` UI. Lifecycle.
+     *
+     * @method bindUI
+     * @protected
+     */
+    bindUI: function() {
+        var boundingBox = this.get('boundingBox');
+
+        this._eventHandles.push(
+            this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
+            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
+            boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' + CSS_EMPTY_COL_ADD_BUTTON),
+            boundingBox.one('.' + CSS_ADD_PAGE_BREAK).on('click', this._onClickAddPageBreak, this),
+            boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
+            boundingBox.one('.' + CSS_HEADER_BACK).on('key', A.bind(this._onKeyPressHeaderBack, this), 'press:13'),
+            this._menu.after('itemSelected', A.bind(this._afterItemSelected, this)),
+            A.getDoc().on('key', this._onEscKey, 'esc', this)
+        );
+    },
+
+    /**
+     * Syncs the UI. Lifecycle.
+     *
+     * @method syncUI
+     * @protected
+     */
+    syncUI: function() {
+        this._syncLayoutRows();
+
+        this._updateUniqueFieldType();
+    },
+
+    /**
+     * Destructor lifecycle implementation for the `A.FormBuilder` class.
+     * Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        if (this._fieldSettingsModal) {
+            this._fieldSettingsModal.destroy();
+        }
+
+        (new A.EventHandle(this._eventHandles)).detach();
+    },
+
+    /**
+     * Adds a nested field to the given field.
+     *
+     * @method addNestedField
+     * @param {A.FormBuilderFieldBase} field
+     */
+    addNestedField: function (field) {
+        this._newFieldContainer = field;
+        this.showFieldsPanel();
+    },
+
+    /**
+     * Opens the settings panel for editing the given field.
+     *
+     * @method editField
+     * @param {A.FormBuilderFieldBase} field
+     */
+    editField: function (field) {
+        var fieldType = this.findTypeOfField(field);
+        this.showFieldSettingsPanel(field, fieldType.get('label'));
+    },
+
+    /**
+     * Returns the `fieldInstance`'s row.
+     *
+     * @method getFieldRow
+     * @param {A.FormField} fieldInstance
+     * @return {Node} The row where is the field parameter
+     */
+    getFieldRow: function(fieldInstance) {
+        return fieldInstance.get('content').ancestor('.layout-row');
+    },
+
+    /**
+     * Removes the given field from the form builder.
+     *
+     * @method removeField
+     * @param {A.FormBuilderFieldBase} field
+     */
+    removeField: function (field) {
+        var col,
+            parentField,
+            nestedFieldsNode = field.get('content').ancestor('.form-builder-field-nested');
+
+        if (nestedFieldsNode) {
+            parentField = nestedFieldsNode.ancestor('.form-builder-field').getData('field-instance');
+            parentField.removeNestedField(field);
+
+            this.get('layout').normalizeColsHeight(new A.NodeList(this.getFieldRow(parentField)));
+        }
+        else {
+            col = field.get('content').ancestor('.col').getData('layout-col');
+            this._makeColumnEmpty(col);
+        }
+
+        this._updateUniqueFieldType();
+    },
+
+    /**
+     * Shows the settings panel for the given field.
+     *
+     * @method showFieldSettingsPanel
+     * @param {A.FormField} field
+     * @param {String} typeName The name of the field type.
+     */
+    showFieldSettingsPanel: function(field, typeName) {
+        if (!this._fieldSettingsModal) {
+            this._fieldSettingsModal = new A.FormBuilderSettingsModal();
+            this._fieldSettingsModal.after('hide', A.bind(this._afterFieldSettingsModalHide, this));
+            this._fieldSettingsModal.after('save', A.bind(this._afterFieldSettingsModalSave, this));
+        }
+
+        this._fieldSettingsModal.show(field, typeName);
+    },
+
+    /**
+     * Adds a field into field's nested list and normalizes the columns height.
+     *
+     * @method _addNestedField
+     * @param {A.FormField} field The Field with nested list that will receive the field
+     * @param {A.FormField} nested Field to add as nested
+     * @param {Number} index The position where the nested field should be added
+     * @protected
+     */
+    _addNestedField: function(field, nested, index) {
+        field.addNestedField(index, nested);
+        this.get('layout').normalizeColsHeight(new A.NodeList(this.getFieldRow(nested)));
+    },
+
+    /**
+     * Fired when the field settings modal is hidden.
+     *
+     * @method _afterFieldSettingsModalHide
+     * @protected
+     */
+    _afterFieldSettingsModalHide: function() {
+        this._newFieldContainer = null;
+    },
+
+    /**
+     * Fired when the field settings modal is saved.
+     *
+     * @method _afterFieldSettingsModalSave
+     * @protected
+     */
+    _afterFieldSettingsModalSave: function(event) {
+        var field = event.field;
+
+        if (this._newFieldContainer) {
+            if (A.instanceOf(this._newFieldContainer, A.LayoutCol)) {
+                this._newFieldContainer.set('value', field);
+            }
+            else if (A.instanceOf(this._newFieldContainer, A.FormField)) {
+                this._addNestedField(
+                    this._newFieldContainer,
+                    field,
+                    this._newFieldContainer.get('nestedFields').length
+                );
+            }
+            this._newFieldContainer = null;
+        }
+        else {
+            this.get('layout').normalizeColsHeight(new A.NodeList(field.get('content').ancestor('.layout-row')));
+        }
+
+        this.disableUniqueFieldType(field);
+    },
+
+    /**
+     * Fired after the `itemSelected` event is triggered for the form builder's
+     * menu.
+     *
+     * @method _afterItemSelected
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterItemSelected: function(event) {
+        if (event.item === this._menuEditLayoutItem) {
+            this.set('mode', A.FormBuilder.MODES.LAYOUT);
+        }
+    },
+
+    /**
+     * Fired after the `layout` attribute is set.
+     *
+     * @method _afterLayoutChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterLayoutChange: function(event) {
+        this._syncLayoutRows();
+
+        event.prevVal.removeTarget(this);
+        event.newVal.addTarget(this);
+
+        this._updateUniqueFieldType();
+    },
+
+    /**
+     * Fired after the `layout-row:colsChange` event is triggered.
+     *
+     * @method _afterLayoutColsChange
+     * @protected
+     */
+    _afterLayoutColsChange: function() {
+        this._renderEmptyColumns();
+
+        this._updateUniqueFieldType();
+    },
+
+    /**
+     * Fired after the `layout-col:valueChange` event is triggered.
+     *
+     * @method _afterLayoutColValueChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterLayoutColValueChange: function(event) {
+        var col = event.target;
+
+        if (A.instanceOf(event.newVal, A.FormField)) {
+            col.set('movableContent', true);
+        }
+        else if (!event.newVal) {
+            this._makeColumnEmpty(col);
+        }
+        else {
+            col.set('movableContent', false);
+        }
+    },
+
+    /**
+     * Fired after the `layout:rowsChange` event is triggered.
+     *
+     * @method _afterLayoutRowsChange
+     * @protected
+     */
+    _afterLayoutRowsChange: function() {
+        this._syncLayoutRows();
+        this._updatePageBreaks();
+
+        this._updateUniqueFieldType();
+    },
+
+    /**
+     * Creates a new page break row.
+     *
+     * @method _createPageBreakRow
+     * @param {Number} nextPageBreakIndex The index of the next page break.
+     * @return {A.LayoutRow}
+     */
+    _createPageBreakRow: function(nextPageBreakIndex) {
+        return new A.FormBuilderPageBreakRow({
+            index: nextPageBreakIndex,
+            quantity: nextPageBreakIndex
+        });
+    },
+
+    /**
+     * Gets the number of page breaks currently inside the layout.
+     *
+     * @method _getNumberOfPageBreaks
+     * @protected
+     */
+    _getNumberOfPageBreaks: function() {
+        return this.get('contentBox').all('.' + CSS_PAGE_BREAK_ROW).size();
+    },
+
+    /**
+     * Fires when the esc key is pressed
+     *
+     * @method _onEscKey
+     * @protected
+     */
+    _onEscKey: function() {
+        this._newFieldContainer = null;
+    },
+
+    /**
+     * Turns the given column into an empty form builder column.
+     *
+     * @method _makeColumnEmpty
+     * @param {A.LayoutCol} col
+     * @protected
+     */
+    _makeColumnEmpty: function(col) {
+        col.set('value', { content: this.TPL_EMPTY_COL });
+    },
+
+    /**
+     * Fired when the button for adding a new field is clicked.
+     *
+     * @method _onClickAddField
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickAddField: function(event) {
+        this._openNewFieldPanel(event.currentTarget);
+    },
+
+    /**
+     * Adds a new page break to `layout`.
+     *
+     * @method _onClickAddPageBreak
+     * @protected
+     */
+    _onClickAddPageBreak: function () {
+        var newRowIndex = this.get('layout').get('rows').length,
+            row;
+
+        row = this._createPageBreakRow(this._getNumberOfPageBreaks() + 1);
+
+        this.get('layout').addRow(newRowIndex, row);
+    },
+
+    /**
+     * Fired when the header back button is clicked.
+     *
+     * @method _onClickHeaderBack
+     * @protected
+     */
+    _onClickHeaderBack: function() {
+        this.set('mode', A.FormBuilder.MODES.REGULAR);
+    },
+
+    /**
+     * Fired when some node is focused inside content box.
+     *
+     * @method _onFocus
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onFocus: function(event) {
+        var fieldContainer,
+            target = event.target;
+
+        if (target.hasClass(CSS_FIELD)) {
+            fieldContainer = target;
+        }
+        else {
+            fieldContainer = target.ancestor('.' + CSS_FIELD);
+        }
+
+        if (fieldContainer) {
+            this._fieldToolbar.addForField(fieldContainer.getData('field-instance'));
+        }
+        else {
+            this._fieldToolbar.remove();
+        }
+    },
+
+    /**
+     * Fired when the add field button is pressed.
+     *
+     * @method _onKeyPressAddField
+     * @params {EventFacade} event
+     * @protected
+     */
+    _onKeyPressAddField: function(event) {
+        this._openNewFieldPanel(event.currentTarget);
+    },
+
+    /**
+     * Fired when the header back button is pressed.
+     *
+     * @method _onKeyPressHeaderBack
+     * @protected
+     */
+    _onKeyPressHeaderBack: function() {
+        this.set('mode', A.FormBuilder.MODES.REGULAR);
+    },
+
+    /**
+     * Opens a panel to select a new field type.
+     *
+     * @method _openNewFieldPanel
+     * @param {Node} target
+     * @protected
+     */
+    _openNewFieldPanel: function(target) {
+        this._newFieldContainer = target.ancestor('.col').getData('layout-col');
+
+        this.showFieldsPanel();
+    },
+
+    /**
+     * Renders some content inside the empty columns of the current layout.
+     *
+     * @method _renderEmptyColumns
+     * @protected
+     */
+    _renderEmptyColumns: function() {
+        var instance = this,
+            rows = this.get('layout').get('rows');
+
+        A.Array.each(rows, function(row) {
+            A.Array.each(row.get('cols'), function(col) {
+                if (!col.get('value')) {
+                    instance._makeColumnEmpty(col);
+                }
+            });
+        });
+    },
+
+    /**
+     * Sets the `fieldToolbar` attribute.
+     *
+     * @method _setFieldToolbarConfig
+     * @return {Object}
+     */
+    _setFieldToolbarConfig: function(val) {
+        return A.merge({
+            formBuilder: this
+        }, val);
+    },
+
+    /**
+     * Sets the `layout` attribute.
+     *
+     * @method _setLayout
+     * @param {A.Layout} val
+     * @protected
+     */
+    _setLayout: function(val) {
+        var firstRow;
+
+        if (!A.instanceOf(val, A.Layout)) {
+            val = new A.Layout(val);
+        }
+
+        if (val.get('rows').length > 0) {
+            firstRow = val.get('rows')[0];
+        }
+
+        if (!firstRow || !A.instanceOf(firstRow, A.FormBuilderPageBreakRow)) {
+            val.addRow(0, this._createPageBreakRow(1));
+        }
+
+        return val;
+    },
+
+    /**
+     * Syncs the UI according to changes in the layout's rows.
+     *
+     * @method _syncLayoutRows
+     * @protected
+     */
+    _syncLayoutRows: function() {
+        var layout = this.get('layout');
+
+        this._renderEmptyColumns();
+
+        // Show the empty layout msg if there's only the initial page break in
+        // the layout.
+        if (layout.get('rows').length === 1) {
+            this._emptyLayoutMsg.show();
+        } else {
+            this._emptyLayoutMsg.hide();
+        }
+    },
+
+    /**
+     * Updates the form builder header's title.
+     *
+     * @method _updateHeaderTitle
+     * @param {String} title
+     * @protected
+     */
+    _updateHeaderTitle: function(title) {
+        var titleNode = this.get('contentBox').one('.' + CSS_HEADER_TITLE);
+
+        titleNode.set('text', title);
+    },
+
+    /**
+     * Update the quantity value of each page break created.
+     *
+     * @method _updatePageBreaks
+     * @protected
+     */
+    _updatePageBreaks: function () {
+        var index = 1,
+            quantity = this._getNumberOfPageBreaks();
+
+        A.Array.each(this.get('layout').get('rows'), function (row) {
+            if (A.instanceOf(row, A.FormBuilderPageBreakRow)) {
+                row.set('index', index++);
+                row.set('quantity', quantity);
+            }
+        });
+    }
+}, {
 
     /**
      * Static property used to define the default attribute
@@ -70,931 +629,65 @@ var FormBuilder = A.Component.create({
      */
     ATTRS: {
         /**
-         * Checks if removing required fields is permitted or not.
+         * A configuration object for the creation of the `A.FormBuilderFieldToolbar`
+         * instance to be used for the form builder field toolbars.
          *
-         * @attribute allowRemoveRequiredFields
-         * @default false
-         * @type Boolean
-         */
-        allowRemoveRequiredFields: {
-            validator: A.Lang.isBoolean,
-            value: false
-        },
-
-        /**
-         * Enables a field to be editable.
-         *
-         * @attribute enableEditing
-         * @default true
-         * @type Boolean
-         */
-        enableEditing: {
-            value: true
-        },
-
-        /**
-         * Collection of sortable fields.
-         *
-         * @attribute fieldsSortableListConfig
-         * @default null
+         * @attribute fieldToolbarConfig
          * @type Object
          */
-        fieldsSortableListConfig: {
-            setter: '_setFieldsSortableListConfig',
-            validator: isObject,
-            value: null
+        fieldToolbarConfig: {
+            setter: '_setFieldToolbarConfig',
+            validator: A.Lang.isObject,
+            value: {}
         },
 
         /**
-         * Collection of strings used to label elements of the UI.
+         * The layout where the form fields will be rendered.
          *
-         * @attribute strings
-         * @type Object
+         * @attribute layout
+         * @type A.Layout || Object
          */
-        strings: {
-            value: {
-                addNode: 'Add field',
-                close: 'Close',
-                propertyName: 'Property Name',
-                save: 'Save',
-                settings: 'Settings',
-                value: 'Value'
+        layout: {
+            setter: '_setLayout',
+            validator: function(val) {
+                return A.instanceOf(val, A.Layout) || A.Lang.isObject(val);
+            },
+            valueFn: function() {
+                return new A.Layout();
             }
         },
 
         /**
-         * Stores an instance of `A.TabView`.
+         * The form builder's current mode. Valid values are the ones listed on
+         * `A.FormBuilder.MODES`.
          *
-         * @attribute tabView
-         * @default null
-         * @type Object
-         * @writeOnce
+         * @attribute mode
+         * @default 'regular'
+         * @type String
          */
-        tabView: {
-            value: {
-                cssClass: CSS_FORM_BUILDER_TABS
-            }
+        mode: {
+            validator: function(val) {
+                return A.Object.hasValue(MODES, val);
+            },
+            value: MODES.REGULAR
         }
     },
 
     /**
-     * Static property used to define which component it extends.
+     * Static property provides a string to identify the CSS prefix.
      *
-     * @property EXTENDS
+     * @property CSS_PREFIX
      * @type String
      * @static
      */
-    EXTENDS: A.PropertyBuilder,
+    CSS_PREFIX: A.getClassName('form-builder'),
 
     /**
-     * Static property used to define the UI attributes.
+     * Static property used to define the valid `A.FormBuilder` modes.
      *
-     * @property UI_ATTRS
-     * @type Array
+     * @property MODES
+     * @type Object
      * @static
      */
-    UI_ATTRS: ['allowRemoveRequiredFields'],
-
-    /**
-     * Static property used to define the fields tab.
-     *
-     * @property FIELDS_TAB
-     * @default 0
-     * @type Number
-     * @static
-     */
-    FIELDS_TAB: 0,
-
-    /**
-     * Static property used to define the settings tab.
-     *
-     * @property SETTINGS_TAB
-     * @default 1
-     * @type Number
-     * @static
-     */
-    SETTINGS_TAB: 1,
-
-    prototype: {
-        CONTENT_CONTAINER_TEMPLATE: '<div class="col-xs-12 col-sm-6 col-md-8 ' + CSS_PROPERTY_BUILDER_CONTENT_CONTAINER + '"></div>',
-
-        selectedFieldsLinkedSet: null,
-        uniqueFieldsMap: null,
-
-        /**
-         * Construction logic executed during `A.FormBuilder` instantiation.
-         * Lifecycle.
-         *
-         * @method initializer
-         * @protected
-         */
-        initializer: function() {
-            var instance = this;
-
-            instance.uniqueFieldsMap = new A.Map();
-            instance.uniqueFieldsMap.after({
-                put: A.bind(instance._afterUniqueFieldsMapPut, instance),
-                remove: A.bind(instance._afterUniqueFieldsMapRemove, instance)
-            });
-
-            instance.selectedFieldsLinkedSet = new A.LinkedSet();
-            instance.selectedFieldsLinkedSet.after({
-                add: A.bind(instance._afterSelectedFieldsSetAdd, instance),
-                remove: A.bind(instance._afterSelectedFieldsSetRemove, instance)
-            });
-
-            instance.on({
-                'cancel': instance._onCancel,
-                'drag:end': instance._onDragEnd,
-                'drag:start': instance._onDragStart,
-                'drag:mouseDown': instance._onDragMouseDown,
-                'save': instance._onSave
-            });
-
-            instance.after('*:focusedChange', instance._afterFieldFocusedChange);
-
-            instance.dropContainer.delegate('click', A.bind(instance._onClickField, instance), '.' + CSS_FORM_BUILDER_FIELD);
-
-            if (!MOBILE_TOUCH_ENABLED) {
-                instance.dropContainer.delegate('mouseover', A.bind(instance._onMouseOverField, instance), '.' + CSS_FORM_BUILDER_FIELD);
-                instance.dropContainer.delegate('mouseout', A.bind(instance._onMouseOutField, instance), '.' + CSS_FORM_BUILDER_FIELD);
-            }
-
-            instance.get('contentBox').addClass('row');
-        },
-
-        /**
-         * Sync the `A.FormBuilder` UI. Lifecycle.
-         *
-         * @method syncUI
-         * @protected
-         */
-        syncUI: function() {
-            var instance = this;
-
-            instance._setupAvailableFieldsSortableList();
-            instance._setupFieldsSortableList();
-        },
-
-        /**
-         * Selects the field tab and disables the setting tabs.
-         *
-         * @method closeEditProperties
-         */
-        closeEditProperties: function() {
-            var instance = this;
-
-            instance.tabView.selectChild(A.FormBuilder.FIELDS_TAB);
-            instance.tabView.disableTab(A.FormBuilder.SETTINGS_TAB);
-        },
-
-        /**
-         * Creates a field and returns its configuration.
-         *
-         * @method createField
-         * @param config
-         * @return {Object}
-         */
-        createField: function(config) {
-            var instance = this,
-                attrs = {
-                    builder: instance,
-                    parent: instance
-                };
-
-            if (isFormBuilderField(config)) {
-                config.setAttrs(attrs);
-            }
-            else {
-                A.each(config, function(value, key) {
-                    if (value === undefined) {
-                        delete config[key];
-                    }
-                });
-
-                config = new(instance.getFieldClass(config.type || 'field'))(A.mix(attrs, config));
-            }
-
-            config.addTarget(instance);
-
-            return config;
-        },
-
-        /**
-         * Gets the current field index and then clones the field. Inserts the
-         * new one after the current field index, inside of the current field
-         * parent.
-         *
-         * @method duplicateField
-         * @param field
-         */
-        duplicateField: function(field) {
-            var instance = this,
-                index = instance._getFieldNodeIndex(field.get('boundingBox')),
-                newField = instance._cloneField(field, true),
-                boundingBox = newField.get('boundingBox');
-
-            boundingBox.setStyle('opacity', 0);
-            instance.insertField(newField, ++index, field.get('parent'));
-            boundingBox.show(true);
-        },
-
-        /**
-         * Checks if the current field is a `A.FormBuilderField` instance and
-         * selects it.
-         *
-         * @method editField
-         * @param field
-         */
-        editField: function(field) {
-            var instance = this;
-
-            if (isFormBuilderField(field)) {
-                instance.editingField = field;
-
-                instance.unselectFields();
-                instance.selectFields(field);
-            }
-        },
-
-        /**
-         * Gets the field class based on the `A.FormBuilder` type. If the type
-         * doesn't exist, logs an error message.
-         *
-         * @method getFieldClass
-         * @param type
-         * @return {Object | null}
-         */
-        getFieldClass: function(type) {
-            var clazz = A.FormBuilderField.types[type];
-
-            if (clazz) {
-                return clazz;
-            }
-            else {
-                A.log('The field type: [' + type + '] couldn\'t be found.');
-
-                return null;
-            }
-        },
-
-        /**
-         * Gets a list of properties from the field.
-         *
-         * @method getFieldProperties
-         * @param field
-         * @return {Array}
-         */
-        getFieldProperties: function(field, excludeHidden) {
-            return field.getProperties(excludeHidden);
-        },
-
-        /**
-         * Removes field from previous parent and inserts into the new parent.
-         *
-         * @method insertField
-         * @param field
-         * @param index
-         * @param parent
-         */
-        insertField: function(field, index, parent) {
-            var instance = this;
-
-            parent = parent || instance;
-
-            // remove from previous parent
-            field.get('parent').removeField(field);
-
-            parent.addField(field, index);
-        },
-
-        /**
-         * Enables the settings tab.
-         *
-         * @method openEditProperties
-         * @param field
-         */
-        openEditProperties: function(field) {
-            var instance = this;
-
-            instance.tabView.enableTab(A.FormBuilder.SETTINGS_TAB);
-            instance.tabView.selectChild(A.FormBuilder.SETTINGS_TAB);
-            instance.propertyList.set('data', instance.getFieldProperties(field, true));
-        },
-
-        /**
-         * Renders a field in the container.
-         *
-         * @method plotField
-         * @param field
-         * @param container
-         */
-        plotField: function(field, container) {
-            var instance = this,
-                boundingBox = field.get('boundingBox');
-
-            if (!field.get('rendered')) {
-                field.render(container);
-            }
-            else {
-                container.append(boundingBox);
-            }
-
-            instance._syncUniqueField(field);
-
-            instance.fieldsSortableList.add(boundingBox);
-        },
-
-        /**
-         * Renders a list of fields in the container.
-         *
-         * @method plotFields
-         * @param fields
-         * @param container
-         */
-        plotFields: function(fields, container) {
-            var instance = this;
-
-            container = container || instance.dropContainer;
-            fields = fields || instance.get('fields');
-
-            container.setContent('');
-
-            A.each(fields, function(field) {
-                instance.plotField(field, container);
-            });
-        },
-
-        /**
-         * Adds fields to a `A.LinkedSet` instance.
-         *
-         * @method selectFields
-         * @param fields
-         */
-        selectFields: function(fields) {
-            var instance = this,
-                selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
-
-            aArray.each(aArray(fields), function(field) {
-                selectedFieldsLinkedSet.add(field);
-            });
-        },
-
-        /**
-         * Triggers a focus event in the current field and a blur event in the
-         * last focused field.
-         *
-         * @method simulateFocusField
-         * @param field
-         */
-        simulateFocusField: function(field) {
-            var instance = this,
-                lastFocusedField = instance.lastFocusedField;
-
-            if (lastFocusedField && (field !== lastFocusedField)) {
-                lastFocusedField.blur();
-            }
-
-            instance.lastFocusedField = field.focus();
-        },
-
-        /**
-         * Removes fields from the `A.LinkedSet` instance.
-         *
-         * @method unselectFields
-         * @param fields
-         */
-        unselectFields: function(fields) {
-            var instance = this,
-                selectedFieldsLinkedSet = instance.selectedFieldsLinkedSet;
-
-            if (!fields) {
-                fields = selectedFieldsLinkedSet.values();
-            }
-
-            aArray.each(aArray(fields), function(field) {
-                selectedFieldsLinkedSet.remove(field);
-            });
-        },
-
-        /**
-         * Triggers after field focused change.
-         *
-         * @method _afterFieldFocusedChange
-         * @param event
-         * @protected
-         */
-        _afterFieldFocusedChange: function(event) {
-            var instance = this,
-                field = event.target;
-
-            if (event.newVal && isFormBuilderField(field) && !MOBILE_TOUCH_ENABLED) {
-                instance.editField(field);
-            }
-        },
-
-        /**
-         * Triggers after adding selected fields to a `A.LinkedSet` instance.
-         *
-         * @method _afterSelectedFieldsSetAdd
-         * @param event
-         * @protected
-         */
-        _afterSelectedFieldsSetAdd: function(event) {
-            var instance = this;
-
-            event.value.set('selected', true);
-
-            instance.openEditProperties(event.value);
-        },
-
-        /**
-         * Triggers after removing selected fields from the `A.LinkedSet`
-         * instance.
-         *
-         * @method _afterSelectedFieldsSetRemove
-         * @param event
-         * @protected
-         */
-        _afterSelectedFieldsSetRemove: function(event) {
-            var instance = this;
-
-            event.value.set('selected', false);
-
-            instance.closeEditProperties();
-        },
-
-        /**
-         * Triggers after adding unique fields to a `A.Map` instance.
-         *
-         * @method _afterUniqueFieldsMapPut
-         * @param event
-         * @protected
-         */
-        _afterUniqueFieldsMapPut: function(event) {
-            var availableField = getAvailableFieldById(event.key),
-                node;
-
-            if (isAvailableField(availableField)) {
-                node = availableField.get('node');
-
-                availableField.set('draggable', false);
-                node.unselectable();
-            }
-        },
-
-        /**
-         * Triggers after removing unique fields from the `A.Map` instance.
-         *
-         * @method _afterUniqueFieldsMapRemove
-         * @param event
-         * @protected
-         */
-        _afterUniqueFieldsMapRemove: function(event) {
-            var availableField = getAvailableFieldById(event.key),
-                node;
-
-            if (isAvailableField(availableField)) {
-                node = availableField.get('node');
-
-                availableField.set('draggable', true);
-                node.selectable();
-            }
-        },
-
-        /**
-         * Clones a field.
-         *
-         * @method _cloneField
-         * @param field
-         * @param deep
-         * @protected
-         * @return {Object}
-         */
-        _cloneField: function(field, deep) {
-            var instance = this,
-                config = field.getAttributesForCloning();
-
-            if (deep) {
-                config.fields = [];
-
-                A.each(field.get('fields'), function(child, index) {
-                    if (!child.get('unique')) {
-                        config.fields[index] = instance._cloneField(child, deep);
-                    }
-                });
-            }
-
-            return instance.createField(config);
-        },
-
-        /**
-         * Executes when the field is dropped.
-         *
-         * @method _dropField
-         * @param dragNode
-         * @protected
-         */
-        _dropField: function(dragNode) {
-            var instance = this,
-                availableField = dragNode.getData('availableField'),
-                field = A.Widget.getByNode(dragNode);
-
-            if (isAvailableField(availableField)) {
-                var config = {
-                    hiddenAttributes: availableField.get('hiddenAttributes'),
-                    label: availableField.get('label'),
-                    localizationMap: availableField.get('localizationMap'),
-                    options: availableField.get('options'),
-                    predefinedValue: availableField.get('predefinedValue'),
-                    readOnlyAttributes: availableField.get('readOnlyAttributes'),
-                    required: availableField.get('required'),
-                    showLabel: availableField.get('showLabel'),
-                    tip: availableField.get('tip'),
-                    type: availableField.get('type'),
-                    unique: availableField.get('unique'),
-                    width: availableField.get('width')
-                };
-
-                if (config.unique) {
-                    config.id = instance._getFieldId(availableField);
-                    config.name = availableField.get('name');
-                }
-
-                field = instance.createField(config);
-            }
-
-            if (isFormBuilderField(field)) {
-                var parentNode = dragNode.get('parentNode'),
-                    dropField = A.Widget.getByNode(parentNode),
-                    index = instance._getFieldNodeIndex(dragNode);
-
-                if (!isFormBuilderField(dropField)) {
-                    dropField = instance;
-                }
-
-                instance.insertField(field, index, dropField);
-            }
-        },
-
-        /**
-         * Gets the field id.
-         *
-         * @method _getFieldId
-         * @param field
-         * @protected
-         * @return {String}
-         */
-        _getFieldId: function(field) {
-            var id = field.get('id'),
-                prefix;
-
-            if (isAvailableField(field)) {
-                prefix = AVAILABLE_FIELDS_ID_PREFIX;
-            }
-            else {
-                prefix = FIELDS_ID_PREFIX;
-            }
-
-            return id.replace(prefix, '');
-        },
-
-        /**
-         * Gets the index from the field node.
-         *
-         * @method _getFieldNodeIndex
-         * @param fieldNode
-         * @protected
-         */
-        _getFieldNodeIndex: function(fieldNode) {
-            return fieldNode.get('parentNode').all(
-                // prevent the placeholder interference on the index
-                // calculation
-                '> *:not(' + '.' + CSS_FORM_BUILDER_PLACEHOLDER + ')'
-            ).indexOf(fieldNode);
-        },
-
-        /**
-         * Triggers on cancel. Unselect fields, stops the event propagation and
-         * prevents the default event behavior.
-         *
-         * @method _onCancel
-         * @param event
-         * @protected
-         */
-        _onCancel: function(event) {
-            var instance = this;
-
-            instance.unselectFields();
-
-            event.halt();
-        },
-
-        /**
-         * Triggers when the drag ends.
-         *
-         * @method _onDragEnd
-         * @param event
-         * @protected
-         */
-        _onDragEnd: function(event) {
-            var instance = this,
-                drag = event.target,
-                dragNode = drag.get('node');
-
-            instance._dropField(dragNode);
-
-            // skip already instanciated fields
-            if (!isFormBuilderField(A.Widget.getByNode(dragNode))) {
-                dragNode.remove();
-
-                drag.set('node', instance._originalDragNode);
-            }
-        },
-
-        /**
-         * Triggers when a field is clicked.
-         *
-         * @method _onClickField
-         * @param event
-         * @protected
-         */
-        _onClickField: function(event) {
-            var instance = this,
-                field = A.Widget.getByNode(event.target);
-
-            instance.simulateFocusField(field);
-
-            event.stopPropagation();
-        },
-
-        /**
-         * Triggers when the drag mouse down.
-         *
-         * @method _onDragMouseDown
-         * @param event
-         * @protected
-         */
-        _onDragMouseDown: function(event) {
-            var dragNode = event.target.get('node'),
-                availableField = A.PropertyBuilderAvailableField.getAvailableFieldByNode(dragNode);
-
-            if (isAvailableField(availableField) && !availableField.get('draggable')) {
-                event.halt();
-            }
-        },
-
-        /**
-         * Triggers when the drag starts.
-         *
-         * @method _onDragStart
-         * @param event
-         * @protected
-         */
-        _onDragStart: function(event) {
-            var instance = this,
-                drag = event.target,
-                dragNode = drag.get('node');
-
-            // skip already instanciated fields
-            if (isFormBuilderField(A.Widget.getByNode(dragNode))) {
-                return;
-            }
-
-            // in the dragEnd we`re going to restore the drag node
-            // to the original node
-            instance._originalDragNode = dragNode;
-
-            var clonedDragNode = dragNode.clone();
-            dragNode.placeBefore(clonedDragNode);
-
-            drag.set('node', clonedDragNode);
-
-            var availableFieldData = dragNode.getData('availableField');
-            clonedDragNode.setData('availableField', availableFieldData);
-
-            clonedDragNode.attr('id', '');
-            clonedDragNode.hide();
-
-            dragNode.removeClass(CSS_DD_DRAGGING);
-            dragNode.show();
-
-            instance.fieldsSortableList.add(clonedDragNode);
-        },
-
-        /**
-         * Triggers when the mouse is out a field.
-         *
-         * @method _onMouseOutField
-         * @param event
-         * @protected
-         */
-        _onMouseOutField: function(event) {
-            var field = A.Widget.getByNode(event.currentTarget);
-
-            field.controlsToolbar.hide();
-            field.get('boundingBox').removeClass(CSS_FIELD_HOVER);
-
-            event.stopPropagation();
-        },
-
-        /**
-         * Triggers when the mouse is over a field.
-         *
-         * @method _onMouseOverField
-         * @param event
-         * @protected
-         */
-        _onMouseOverField: function(event) {
-            var field = A.Widget.getByNode(event.currentTarget);
-
-            field.controlsToolbar.show();
-            field.get('boundingBox').addClass(CSS_FIELD_HOVER);
-
-            event.stopPropagation();
-        },
-
-        /**
-         * Triggers on saving a field. First checks if the field is being
-         * edited, if it is then sets the data and syncs on the UI.
-         *
-         * @method _onSave
-         * @param event
-         * @protected
-         */
-        _onSave: function() {
-            var instance = this,
-                editingField = instance.editingField;
-
-            if (editingField) {
-                var modelList = instance.propertyList.get('data');
-
-                modelList.each(function(model) {
-                    editingField.set(model.get('attributeName'), model.get('value'));
-                });
-
-                instance._syncUniqueField(editingField);
-            }
-        },
-
-        /**
-         * Overrides PropertyBuilderSettings's `_renderTabs` method, which renders
-         * the builder's tabs.
-         *
-         * @method _renderTabs
-         * @protected
-         */
-        _renderTabs: function() {
-            FormBuilder.superclass._renderTabs.apply(this, arguments);
-
-            this.tabView.get('boundingBox').addClass('col-xs-12 col-sm-6 col-md-4');
-        },
-
-        /**
-         * Set list of available fields by checking if a field is a
-         * `A.PropertyBuilderAvailableField` instance. If not creates a new
-         * instance of `A.FormBuilderAvailableField`.
-         *
-         * @method _setAvailableFields
-         * @param val
-         * @protected
-         * @return {Array}
-         */
-        _setAvailableFields: function(val) {
-            var fields = [];
-
-            aArray.each(val, function(field) {
-                fields.push(
-                    isAvailableField(field) ? field : new A.FormBuilderAvailableField(field)
-                );
-            });
-
-            return fields;
-        },
-
-        /**
-         * Set the `fieldsSortableListConfig` attribute.
-         *
-         * @method _setFieldsSortableListConfig
-         * @param val
-         * @protected
-         */
-        _setFieldsSortableListConfig: function(val) {
-            var instance = this,
-                dropContainer = instance.dropContainer;
-
-            return A.merge({
-                    bubbleTargets: instance,
-                    dd: {
-                        groups: ['availableFields'],
-                        plugins: [
-                            {
-                                cfg: {
-                                    horizontal: false,
-                                    scrollDelay: 150
-                                },
-                                fn: A.Plugin.DDWinScroll
-                            }
-                        ]
-                    },
-                    dropCondition: function(event) {
-                        var dropNode = event.drop.get('node'),
-                            field = A.Widget.getByNode(dropNode);
-
-                        if (isFormBuilderField(field)) {
-                            return true;
-                        }
-
-                        return false;
-                    },
-                    placeholder: A.Node.create(TPL_PLACEHOLDER),
-                    dropOn: '.' + CSS_FORM_BUILDER_DROP_ZONE,
-                    sortCondition: function(event) {
-                        var dropNode = event.drop.get('node');
-
-                        return (dropNode !== instance.dropContainer &&
-                            dropContainer.contains(dropNode));
-                    }
-                },
-                val || {}
-            );
-        },
-
-        /**
-         * Setup a `A.SortableList` of available fields.
-         *
-         * @method _setupAvailableFieldsSortableList
-         * @protected
-         */
-        _setupAvailableFieldsSortableList: function() {
-            var instance = this;
-
-            if (!instance.availableFieldsSortableList) {
-                var availableFieldsNodes = instance.fieldsContainer.all(
-                    '.' + CSS_PROPERTY_BUILDER_FIELD_DRAGGABLE
-                );
-
-                instance.availableFieldsSortableList = new A.SortableList(
-                    A.merge(
-                        instance.get('fieldsSortableListConfig'), {
-                            nodes: availableFieldsNodes
-                        }
-                    )
-                );
-            }
-        },
-
-        /**
-         * Setup a `A.SortableList` of fields.
-         *
-         * @method _setupFieldsSortableList
-         * @protected
-         */
-        _setupFieldsSortableList: function() {
-            var instance = this;
-
-            if (!instance.fieldsSortableList) {
-                instance.fieldsSortableList = new A.SortableList(
-                    instance.get('fieldsSortableListConfig')
-                );
-            }
-        },
-
-        /**
-         * Sync unique fields.
-         *
-         * @method _syncUniqueField
-         * @param field
-         * @protected
-         */
-        _syncUniqueField: function(field) {
-            var instance = this,
-                fieldId = instance._getFieldId(field),
-                availableField = getAvailableFieldById(fieldId);
-
-            if (isAvailableField(availableField)) {
-                if (availableField.get('unique') || field.get('unique')) {
-                    instance.uniqueFieldsMap.put(fieldId, field);
-                }
-            }
-        },
-
-        /**
-         * Set the `allowRemoveRequiredFields` attribute on the UI.
-         *
-         * @method _uiSetAllowRemoveRequiredFields
-         * @param val
-         * @protected
-         */
-        _uiSetAllowRemoveRequiredFields: function() {
-            var instance = this;
-
-            instance.get('fields').each(function(field) {
-                field._uiSetRequired(field.get('required'));
-            });
-        }
-    }
-
+    MODES: MODES
 });
-
-A.FormBuilder = FormBuilder;

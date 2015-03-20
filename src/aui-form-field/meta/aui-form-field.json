@@ -1,0 +1,30 @@
+{
+    "aui-form-field": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-node-base",
+            "base-build"
+        ],
+        "skinnable": true
+    },
+
+    "aui-form-field-choice": {
+        "requires": [
+            "aui-form-field-required"
+        ],
+        "skinnable": true
+    },
+
+    "aui-form-field-required": {
+        "requires": [
+            "aui-form-field"
+        ]
+    },
+
+    "aui-form-field-text": {
+        "requires": [
+            "aui-form-field-required"
+        ],
+        "skinnable": true
+    }
+}

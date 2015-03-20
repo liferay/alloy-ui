@@ -1,0 +1,28 @@
+{
+    "name": "aui-form-field",
+    "builds": {
+        "aui-form-field": {
+            "jsfiles": [
+                "js/aui-form-field.js"
+            ]
+        },
+
+        "aui-form-field-choice": {
+            "jsfiles": [
+                "js/aui-form-field-choice.js"
+            ]
+        },
+
+        "aui-form-field-required": {
+            "jsfiles": [
+                "js/aui-form-field-required.js"
+            ]
+        },
+
+        "aui-form-field-text": {
+            "jsfiles": [
+                "js/aui-form-field-text.js"
+            ]
+        }
+    }
+}

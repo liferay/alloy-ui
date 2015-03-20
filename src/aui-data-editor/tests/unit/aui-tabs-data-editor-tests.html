@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <title>AUI Tabs Data Editor Unit Tests</title>
+    <meta charset="utf-8" />
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-tabs-data-editor-tests.js"></script>
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+<div id="container"></div>
+
+<script>
+YUI({
+    coverage: ['aui-tabs-data-editor'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-tabs-data-editor-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-tabs-data-editor');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

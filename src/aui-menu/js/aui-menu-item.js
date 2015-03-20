@@ -20,7 +20,7 @@ var ALIGN_THRESHOLD = 25,
 
     EVENT_SUBMENU_ITEM_SELECTED = 'submenuItemSelected',
 
-    TPL_MENU_ITEM = '<li class="' + CSS_MENU_ITEM + ' clearfix">' +
+    TPL_MENU_ITEM = '<li class="' + CSS_MENU_ITEM + ' clearfix" tabindex="1">' +
         '<div class="' + CSS_MENU_ITEM_CONTENT + '"></div></li>',
     TPL_MENU_ITEM_SHORTCUT = '<div class="' + CSS_MENU_ITEM_SHORTCUT + '"></div>',
     TPL_MENU_ITEM_SUBMENU = '<div class="' + CSS_MENU_ITEM_SUBMENU + '"></div>',

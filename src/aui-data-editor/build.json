@@ -1,0 +1,40 @@
+{
+    "name": "aui-data-editor",
+    "builds": {
+        "aui-boolean-data-editor": {
+            "jsfiles": [
+                "js/aui-boolean-data-editor.js"
+            ]
+        },
+        "aui-data-editor": {
+            "jsfiles": [
+                "js/aui-data-editor.js"
+            ]
+        },
+        "aui-options-data-editor": {
+            "jsfiles": [
+                "js/aui-options-data-editor.js"
+            ]
+        },
+        "aui-radio-group-data-editor": {
+            "jsfiles": [
+                "js/aui-radio-group-data-editor.js"
+            ]
+        },
+        "aui-scale-data-editor": {
+            "jsfiles": [
+                "js/aui-scale-data-editor.js"
+            ]
+        },
+        "aui-tabs-data-editor": {
+            "jsfiles": [
+                "js/aui-tabs-data-editor.js"
+            ]
+        },
+        "aui-text-data-editor": {
+            "jsfiles": [
+                "js/aui-text-data-editor.js"
+            ]
+        }
+    }
+}

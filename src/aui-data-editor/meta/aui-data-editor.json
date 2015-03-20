@@ -1,0 +1,53 @@
+{
+    "aui-boolean-data-editor": {
+        "requires": [
+            "aui-button-switch",
+            "aui-data-editor"
+        ]
+    },
+    "aui-data-editor": {
+        "requires": [
+            "aui-classnamemanager",
+            "base-build",
+            "node-base"
+        ],
+        "skinnable": true
+    },
+    "aui-options-data-editor": {
+        "requires": [
+            "aui-data-editor",
+            "dd-constrain",
+            "dd-delegate",
+            "dd-drop-plugin",
+            "dd-proxy",
+            "event-valuechange",
+            "node-event-delegate"
+        ],
+        "skinnable": true
+    },
+    "aui-radio-group-data-editor": {
+        "requires": [
+            "aui-data-editor",
+            "node-event-delegate"
+        ]
+    },
+    "aui-scale-data-editor": {
+        "requires": [
+            "aui-classnamemanager",
+            "aui-data-editor",
+            "event-valuechange"
+        ]
+    },
+    "aui-tabs-data-editor": {
+        "requires": [
+            "aui-data-editor",
+            "aui-tabview"
+        ]
+    },
+    "aui-text-data-editor": {
+        "requires": [
+            "aui-data-editor",
+            "event-valuechange"
+        ]
+    }
+}
