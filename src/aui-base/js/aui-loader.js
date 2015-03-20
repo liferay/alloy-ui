@@ -753,6 +753,36 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-form-builder-available-field-deprecated": {
+        "requires": [
+            "aui-property-builder-available-field"
+        ]
+    },
+    "aui-form-builder-deprecated": {
+        "requires": [
+            "aui-button",
+            "aui-collection",
+            "aui-form-builder-available-field-deprecated",
+            "aui-form-builder-field-deprecated",
+            "aui-form-builder-field-button-deprecated",
+            "aui-form-builder-field-checkbox-deprecated",
+            "aui-form-builder-field-fieldset-deprecated",
+            "aui-form-builder-field-file-upload-deprecated",
+            "aui-form-builder-field-multiple-choice-deprecated",
+            "aui-form-builder-field-radio-deprecated",
+            "aui-form-builder-field-select-deprecated",
+            "aui-form-builder-field-text-deprecated",
+            "aui-form-builder-field-textarea-deprecated",
+            "aui-property-builder",
+            "aui-property-builder-settings",
+            "aui-sortable-list",
+            "aui-tabview",
+            "aui-tooltip-base",
+            "escape",
+            "transition"
+        ],
+        "skinnable": true
+    },
     "aui-form-builder-field-base": {
         "requires": [
             "aui-classnamemanager",
@@ -764,6 +794,16 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-form-builder-field-button-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-checkbox-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
     "aui-form-builder-field-choice": {
         "requires": [
             "aui-boolean-data-editor",
@@ -771,6 +811,40 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-tabs-data-editor",
             "aui-form-builder-field-base",
             "aui-form-field-choice"
+        ]
+    },
+    "aui-form-builder-field-deprecated": {
+        "requires": [
+            "panel",
+            "aui-datatype",
+            "aui-datatable-edit",
+            "aui-property-builder-field-support"
+        ],
+        "skinnable": true
+    },
+    "aui-form-builder-field-fieldset-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-file-upload-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-multiple-choice-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-radio-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-select-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
         ]
     },
     "aui-form-builder-field-sentence": {
@@ -785,6 +859,16 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-radio-group-data-editor",
             "aui-form-builder-field-base",
             "aui-form-field-text"
+        ]
+    },
+    "aui-form-builder-field-text-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-textarea-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
         ]
     },
     "aui-form-builder-field-toolbar": {
@@ -2034,4 +2118,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '9e06bc43f9196374e57879308ee94119';
+YUI.Env[Y.version].md5 = '70ea5b94d757fd555650cfd281255999';
