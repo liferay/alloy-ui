@@ -169,6 +169,37 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
+     * Removes mask from time option and convert time into milliseconds.
+     *
+     * @method convertTimeToInt
+     * @param val
+     * @return Int time
+     */
+    convertTimeToInt: function(val) {
+        var date = new Date(),
+            dateTime,
+            instance = this,
+            mask = instance.get('mask'),
+            maskRegex = /%H:%M/,
+            removeMask,
+            time;
+
+        if (!mask.match(maskRegex)) {
+            maskRegex = /%I:%M %p/;
+        }
+
+        removeMask = mask.replace(maskRegex, '');
+
+        time = val.replace(removeMask, '');
+
+        dateTime = [date.getMonth() + 1, date.getDate(), date.getFullYear(), time];
+
+        time = Date.parse(dateTime.join(' '));
+
+        return Lang.toInt(time);
+    },
+
+    /**
      * Triggers `_focusCurrentTime` method once.
      *
      * @method focusCurrentTimeOnce
@@ -263,35 +294,6 @@ A.mix(TimePickerBase.prototype, {
         }
     },
 
-        /**
-     * Removes mask from time option and converts time into milliseconds.
-     *
-     * @method _convertTimeToInt
-     * @param val
-     * @protected
-     * @return Int time
-     */
-    _convertTimeToInt: function(val) {
-        var date = new Date(),
-            instance = this,
-            mask = instance.get('mask'),
-            maskRegex = /%H:%M/;
-
-        if (!mask.match(maskRegex)) {
-            maskRegex = /%I:%M %p/;
-        }
-
-        var removeMask = mask.replace(maskRegex, '');
-
-        var time = val.replace(removeMask, '');
-
-        var dateTime = [date.getMonth() + 1, date.getDate(), date.getFullYear(), time];
-
-        time = Date.parse(dateTime.join(' '));
-
-        return time;
-    },
-
     /**
      * Scrolls time list to option nearest the current time.
      *
@@ -299,22 +301,26 @@ A.mix(TimePickerBase.prototype, {
      * @protected
      */
     _focusCurrentTime: function() {
-        var curTime = Date.now(),
+        var closestTime,
+            curTime = Date.now(),
             instance = this,
+            nodeTime,
             popover = instance.getPopover(),
-            timeList = popover.bodyNode.all('.yui3-aclist-item');
+            previousTime,
+            timeList = popover.bodyNode.all('.yui3-aclist-item'),
+            topOffset;
 
         if (instance.get('focusCurrentTime') && !timeList.isEmpty()) {
-            var previousTime = curTime * 2;
+            previousTime = (curTime * 2);
 
             timeList.each(
                 function(node) {
-                    var nodeTime = instance._convertTimeToInt(node.getHTML());
+                    nodeTime = instance.convertTimeToInt(node.getHTML());
 
-                    var closestTime = Math.abs(curTime - nodeTime);
+                    closestTime = Math.abs(curTime - nodeTime);
 
                     if (closestTime < previousTime) {
-                        var topOffset = node.get('offsetTop');
+                        topOffset = node.get('offsetTop');
 
                         popover.bodyNode.set('scrollTop', topOffset);
 

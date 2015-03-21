@@ -101,7 +101,7 @@ DatePickerDelegate.prototype = {
     /**
      * Method not implemented.
      *
-     * @method afterPopoverRenderOnce
+     * @method focusCurrentTimeOnce
      */
     focusCurrentTimeOnce: function() {},
 

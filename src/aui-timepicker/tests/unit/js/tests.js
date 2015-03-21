@@ -6,26 +6,21 @@ YUI.add('aui-timepicker-tests', function(Y) {
         name: 'Timepicker Tests',
 
         'timepicker should scroll to the option whose time is nearest the current time': function() {
-            this.timePicker = new Y.TimePicker({
+            var timePicker = new Y.TimePicker({
                 trigger: '#trigger'
             });
 
-            var convertTime,
+            var closestCurTime,
+                convertTime,
                 date = new Date(),
                 doc = Y.one(document),
                 hour = date.getHours(),
                 minutes = date.getMinutes(),
-                popover = this.timePicker.getPopover(),
+                optionList,
+                popover = timePicker.getPopover(),
+                scrollTop,
                 scrolledOption,
                 trigger = Y.one('#trigger');
-
-            convertTime = function(time) {
-                var dateTime = [date.getMonth() + 1, date.getDate(), date.getFullYear(), time];
-
-                var convertedTime = Date.parse(dateTime.join(' '));
-
-                return convertedTime;
-            };
 
             if (minutes > 44) {
                 hour += 1;
@@ -38,15 +33,15 @@ YUI.add('aui-timepicker-tests', function(Y) {
                 minutes = '30';
             }
 
-            var closestCurTime = hour + ':' + minutes;
+            closestCurTime = hour + ':' + minutes;
 
-            closestCurTime = convertTime(closestCurTime);
+            closestCurTime = timePicker.convertTimeToInt(closestCurTime);
 
             trigger.simulate('focus');
 
-            var scrollTop = popover.bodyNode.get('scrollTop');
+            scrollTop = popover.bodyNode.get('scrollTop');
 
-            var optionList = Y.all('.yui3-aclist-item');
+            optionList = Y.all('.yui3-aclist-item');
 
             if (optionList) {
                 optionList.each(
@@ -54,7 +49,7 @@ YUI.add('aui-timepicker-tests', function(Y) {
                         var offsetTop = node.get('offsetTop');
 
                         if (offsetTop == scrollTop) {
-                            scrolledOption = convertTime(node.getHTML());
+                            scrolledOption = timePicker.convertTimeToInt(node.getHTML());
                         }
                     }
                 );
@@ -62,7 +57,7 @@ YUI.add('aui-timepicker-tests', function(Y) {
 
             doc.simulate('click');
 
-            Y.Assert.areEqual(closestCurTime, scrolledOption);
+            Y.Assert.areEqual(closestCurTime, scrolledOption, 'The current time offset is not the same as the scroll offset');
         }
     }));
 

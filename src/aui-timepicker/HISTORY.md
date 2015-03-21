@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1876](https://issues.liferay.com/browse/AUI-1876) AUI Timepicker selection should drop down to nearest value of current time
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
 
