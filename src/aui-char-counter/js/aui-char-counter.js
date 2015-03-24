@@ -14,6 +14,9 @@ var L = A.Lang,
     SCROLL_LEFT = 'scrollLeft',
     SCROLL_TOP = 'scrollTop';
 
+    A.Node.DOM_EVENTS.compositionend = 1;
+    A.Node.DOM_EVENTS.compositionstart = 1;
+
 /**
  *
  * A base class for CharCounter, providing:
@@ -146,9 +149,6 @@ var CharCounter = A.Component.create({
 
             instance.after('maxLengthChange', instance.checkLength);
 
-            A.Node.DOM_EVENTS.compositionend = 1;
-            A.Node.DOM_EVENTS.compositionstart = 1;
-
             if (input) {
                 instance._eventHandles = [
                     input.on('compositionend', A.bind(instance._onInputCompositionEnd, instance)),
@@ -270,6 +270,13 @@ var CharCounter = A.Component.create({
             }
         },
 
+        /**
+         * Fired on input when `compositionend` event occurs.
+         *
+         * @method _onInputCompositionEnd
+         * @param {EventFacade} event
+         * @protected
+         */
         _onInputCompositionEnd: function() {
             var instance = this;
 
@@ -278,6 +285,13 @@ var CharCounter = A.Component.create({
             instance.checkLength();
         },
 
+        /**
+         * Fired on input when `compositionstart` event occurs.
+         *
+         * @method _onInputCompositionStart
+         * @param {EventFacade} event
+         * @protected
+         */
         _onInputCompositionStart: function() {
             var instance = this;
 
