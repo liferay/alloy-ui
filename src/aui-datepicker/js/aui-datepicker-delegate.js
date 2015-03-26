@@ -101,9 +101,9 @@ DatePickerDelegate.prototype = {
     /**
      * Method not implemented.
      *
-     * @method focusCurrentTimeOnce
+     * @method focusNearestValue
      */
-    focusCurrentTimeOnce: function() {},
+    focusNearestValue: function() {},
 
     /**
      * Gets the selected dates.
@@ -259,8 +259,6 @@ DatePickerDelegate.prototype = {
 
         instance.useInputNodeOnce(event.currentTarget);
 
-        instance.focusCurrentTimeOnce();
-
         instance._userInteractionInProgress = true;
     },
 
@@ -275,6 +273,8 @@ DatePickerDelegate.prototype = {
         var instance = this;
 
         instance.useInputNodeOnce(event.currentTarget);
+
+        instance.focusNearestValue();
 
         instance._userInteractionInProgress = false;
     },

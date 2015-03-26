@@ -53,13 +53,16 @@ TimePickerBase.ATTRS = {
     },
 
     /**
-     * If popover is initailly focused to the option closest to the current time
+     * If popover is initially scrolled to the time option nearest the timepicker's
+     * input time value or the time option nearest the current local time when no
+     * input time value is defined.
      *
      * @attribute focusCurrentTime
      * @default true
      * @type {boolean}
      */
     focusCurrentTime: {
+        validator: Lang.isBoolean,
         value: true
     },
 
@@ -169,46 +172,16 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * Removes mask from time option and convert time into milliseconds.
+     * Triggers `_focusNearestTime` method.
      *
-     * @method convertTimeToInt
-     * @param val
-     * @return Int time
+     * @method focusNearestValue
      */
-    convertTimeToInt: function(val) {
-        var date = new Date(),
-            dateTime,
-            instance = this,
-            mask = instance.get('mask'),
-            maskRegex = /%H:%M/,
-            removeMask,
-            time;
+    focusNearestValue: function() {
+        var instance = this;
 
-        if (!mask.match(maskRegex)) {
-            maskRegex = /%I:%M %p/;
+        if (instance.get('focusCurrentTime')) {
+            instance._focusNearestTime();
         }
-
-        removeMask = mask.replace(maskRegex, '');
-
-        time = val.replace(removeMask, '');
-
-        dateTime = [date.getMonth() + 1, date.getDate(), date.getFullYear(), time];
-
-        time = Date.parse(dateTime.join(' '));
-
-        return Lang.toInt(time);
-    },
-
-    /**
-     * Triggers `_focusCurrentTime` method once.
-     *
-     * @method focusCurrentTimeOnce
-     */
-    focusCurrentTimeOnce: function() {
-        var instance = this,
-        popover = instance.getPopover();
-
-        popover.after('render', instance._focusCurrentTime, instance);
     },
 
     /**
@@ -235,6 +208,29 @@ A.mix(TimePickerBase.prototype, {
         autocomplete.after('select', instance._afterAutocompleteSelect, instance);
 
         return autocomplete;
+    },
+
+    /**
+     * Gets the input time value if it exists and returns it as milliseconds since
+     * Jan 1, 1970. Otherwise it gets the current local time and returns it as
+     * milliseconds since Jan 1, 1970.
+     *
+     * @method getInputTime
+     * @return {Int} Current input or local time
+     */
+    getInputTime: function() {
+        var date = new Date(),
+            curTime = Date.parse(date.toUTCString(date.getTime())),
+            instance = this,
+            inputVal = instance.getParsedDatesFromInputValue();
+
+        if (inputVal) {
+            inputVal = inputVal.pop();
+
+            curTime = Date.parse(inputVal);
+        }
+
+        return curTime;
     },
 
     /**
@@ -295,38 +291,44 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * Scrolls time list to option nearest the current time.
+     * Scrolls time list to option nearest the current input time or local time.
      *
-     * @method _focusCurrentTime
+     * @method _focusNearestTime
      * @protected
      */
-    _focusCurrentTime: function() {
-        var closestTime,
-            curTime = Date.now(),
+    _focusNearestTime: function() {
+        var deltaTime,
             instance = this,
+            curTime = instance.getInputTime(),
+            mask = instance.get('mask'),
             nodeTime,
-            popover = instance.getPopover(),
+            popoverBody = instance.getPopover().bodyNode,
             previousTime,
-            timeList = popover.bodyNode.all('.yui3-aclist-item'),
+            nodeList = popoverBody.all('.yui3-aclist-item'),
+            targetNode,
+            timeVals = instance.get('values'),
             topOffset;
 
-        if (instance.get('focusCurrentTime') && !timeList.isEmpty()) {
+        if (!nodeList.isEmpty()) {
+            targetNode = nodeList.item(0);
+
             previousTime = (curTime * 2);
 
-            timeList.each(
-                function(node) {
-                    nodeTime = instance.convertTimeToInt(node.getHTML());
+            for (var i = 0; i < timeVals.length; i++) {
+                nodeTime = Date.parse(A.Date.parse(mask, timeVals[i]));
 
-                    closestTime = Math.abs(curTime - nodeTime);
+                deltaTime = Math.abs(curTime - nodeTime);
 
-                    if (closestTime < previousTime) {
-                        topOffset = node.get('offsetTop');
+                if (deltaTime < previousTime) {
+                    targetNode = nodeList.item(i);
 
-                        popover.bodyNode.set('scrollTop', topOffset);
+                    previousTime = deltaTime;
+                }
+            }
 
-                        previousTime = closestTime;
-                    }
-            });
+            topOffset = targetNode.get('offsetTop');
+
+            popoverBody.set('scrollTop', topOffset);
         }
     },
 

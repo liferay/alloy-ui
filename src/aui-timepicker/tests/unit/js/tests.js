@@ -5,59 +5,127 @@ YUI.add('aui-timepicker-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Timepicker Tests',
 
-        'timepicker should scroll to the option whose time is nearest the current time': function() {
-            var timePicker = new Y.TimePicker({
-                trigger: '#trigger'
-            });
-
-            var closestCurTime,
-                convertTime,
-                date = new Date(),
-                doc = Y.one(document),
-                hour = date.getHours(),
-                minutes = date.getMinutes(),
-                optionList,
-                popover = timePicker.getPopover(),
-                scrollTop,
-                scrolledOption,
-                trigger = Y.one('#trigger');
+        getLocalTime: function () {
+            var date = new Date(),
+                curTime = new Date(date.toUTCString(Date.now())),
+                hour = curTime.getHours(),
+                localTime,
+                minutes = curTime.getMinutes();
 
             if (minutes > 44) {
                 hour += 1;
             }
 
             if (minutes > 44 || minutes < 15) {
-                minutes = '00';
+                minutes = ':00';
             }
             else {
-                minutes = '30';
+                minutes = ':30';
             }
 
-            closestCurTime = hour + ':' + minutes;
+            localTime = hour + minutes;
 
-            closestCurTime = timePicker.convertTimeToInt(closestCurTime);
+            localTime = Date.parse(Y.Date.parse('%H:%M', localTime));
 
-            trigger.simulate('focus');
+            return localTime;
+        },
 
-            scrollTop = popover.bodyNode.get('scrollTop');
+        getScrolledOptTime: function (format, popoverBody) {
+            var offsetTop,
+                optionList,
+                scrollTop,
+                scrolledOptTime;
 
-            optionList = Y.all('.yui3-aclist-item');
+            scrollTop = popoverBody.get('scrollTop');
+
+            optionList = popoverBody.all('.yui3-aclist-item');
 
             if (optionList) {
-                optionList.each(
-                    function(node) {
-                        var offsetTop = node.get('offsetTop');
+                for (var i = 0; i < optionList.size(); i++) {
+                    offsetTop = optionList.item(i).get('offsetTop');
 
-                        if (offsetTop == scrollTop) {
-                            scrolledOption = timePicker.convertTimeToInt(node.getHTML());
-                        }
+                    if (offsetTop == scrollTop) {
+                        scrolledOptTime = Date.parse(Y.Date.parse(format, optionList.item(i).getHTML()));
                     }
-                );
+                }
             }
 
-            doc.simulate('click');
+            if (!scrolledOptTime) {
+                popoverBody.set('scrollTop', (scrollTop + 1));
 
-            Y.Assert.areEqual(closestCurTime, scrolledOption, 'The current time offset is not the same as the scroll offset');
+                if (scrollTop == popoverBody.get('scrollTop')) {
+                    scrolledOptTime = this.getLocalTime();
+                }
+            }
+
+            return scrolledOptTime;
+        },
+
+        selectTime: function(popoverBody, timeIndex) {
+            var timeOpts = popoverBody.all('.yui3-aclist-item'),
+                select = timeOpts.item(timeIndex);
+
+            select.simulate('click');
+        },
+
+        'timepicker should scroll to option nearest the current local time if input value is not defined': function() {
+            var timePicker = new Y.TimePicker({
+                popover: {
+                    visible: true
+                },
+                trigger: '#trigger'
+            });
+
+            var localTime,
+                mask = timePicker.get('mask'),
+                popoverBody = timePicker.getPopover().bodyNode,
+                scrolledOptTime,
+                trigger = Y.one('#trigger');
+
+            localTime = this.getLocalTime();
+
+            trigger.simulate('click');
+
+            scrolledOptTime = this.getScrolledOptTime(mask, popoverBody);
+
+            timePicker.hide();
+
+            Y.Assert.areEqual(localTime, scrolledOptTime, 'The timepicker did not scroll to the time nearest the current local time');
+        },
+
+        'timepicker should scroll to the option nearest the time value in the input field when input value is defined': function() {
+            var timePicker = new Y.TimePicker({
+                popover: {
+                    visible: true
+                },
+                trigger: '#trigger1'
+            });
+
+            var inputTime,
+                mask = timePicker.get('mask'),
+                popoverBody = timePicker.getPopover().bodyNode,
+                scrolledOptTime,
+                trigger = Y.one('#trigger1');
+
+            inputTime = Date.parse(Y.Date.parse(mask, trigger.get('value')));
+
+            trigger.simulate('click');
+
+            scrolledOptTime = this.getScrolledOptTime(mask, popoverBody);
+
+            this.selectTime(popoverBody, 20);
+
+            Y.Assert.areEqual(inputTime, scrolledOptTime, 'The timepicker did not scroll to the time nearest the current input value');
+
+            inputTime = Date.parse(Y.Date.parse(mask, trigger.get('value')));
+
+            trigger.simulate('click');
+
+            scrolledOptTime = this.getScrolledOptTime(mask, popoverBody);
+
+            timePicker.hide();
+
+            Y.Assert.areEqual(inputTime, scrolledOptTime, 'The timepicker did not scroll to the time matching the input value after a new time was chosen');
         }
     }));
 
