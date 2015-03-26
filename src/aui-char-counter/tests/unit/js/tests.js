@@ -12,6 +12,12 @@ YUI.add('aui-char-counter-tests', function(Y) {
             // follow the whole logic in aui-event-input, which is unit
             // tested separately.
             delete Y.Node.DOM_EVENTS.input;
+
+            // Remove 'compositionend' and 'compositionstart' from
+            // DOM_EVENTS so we can simulate it in the test by just
+            // calling 'fire'.
+            delete Y.Node.DOM_EVENTS.compositionend;
+            delete Y.Node.DOM_EVENTS.compositionstart;
         },
 
         setUp: function() {
@@ -305,6 +311,34 @@ YUI.add('aui-char-counter-tests', function(Y) {
 
             Y.Assert.isTrue(Lang.toInt(this.inputCounter.text()) >= 0);
             Y.Assert.isTrue(Lang.toInt(this.textareaCounter.text()) >= 0);
+        },
+
+        'should not truncate value during IME composition': function() {
+            this.inputCharCounter = new Y.CharCounter({
+                input: this.input,
+                counter: this.inputCounter,
+                maxLength: 10
+            });
+
+            this.textareaCharCounter = new Y.CharCounter({
+                input: this.textarea,
+                counter: this.textareaCounter,
+                maxLength: 10
+            });
+
+            this.input.fire('compositionstart');
+            this.textarea.fire('compositionstart');
+
+            this.changeInputContent('12345678901');
+
+            Y.Assert.areEqual(11, this.input.val().length);
+            Y.Assert.areEqual(11, this.textarea.val().length);
+
+            this.input.fire('compositionend');
+            this.textarea.fire('compositionend');
+
+            Y.Assert.areEqual(10, this.input.val().length);
+            Y.Assert.areEqual(10, this.textarea.val().length);
         }
     }));
 
