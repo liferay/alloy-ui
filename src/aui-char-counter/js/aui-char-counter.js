@@ -7,6 +7,9 @@
 var L = A.Lang,
     isNumber = L.isNumber;
 
+    A.Node.DOM_EVENTS.compositionend = 1;
+    A.Node.DOM_EVENTS.compositionstart = 1;
+
 /**
  * A base class for CharCounter, providing:
  *
@@ -94,14 +97,23 @@ var CharCounter = A.Component.create({
     prototype: {
 
         /**
-         * Event handler for the input [aui-event](../modules/aui-event.html)
-         * event.
+         * Holds the event handles for any bind event from the internal
+         * implementation.
          *
-         * @property handler
-         * @type EventHandle
+         * @property _eventHandles
+         * @type {Array}
          * @protected
          */
-        handler: null,
+        _eventHandles: null,
+
+        /**
+         * Tracks whether input is being manipulated by an IME tool.
+         *
+         * @property _inputComposition
+         * @type {Boolean}
+         * @protected
+         */
+        _inputComposition: false,
 
         /**
          * Construction logic executed during CharCounter instantiation.
@@ -133,8 +145,12 @@ var CharCounter = A.Component.create({
             instance.after('maxLengthChange', instance.checkLength);
 
             if (input) {
-                // use cross browser input-handler event
-                instance.handler = input.on('input', A.bind(instance._onInputChange, instance));
+                instance._eventHandles = [
+                    input.on('compositionend', A.bind(instance._onInputCompositionEnd, instance)),
+                    input.on('compositionstart', A.bind(instance._onInputCompositionStart, instance)),
+                    // use cross browser input-handler event
+                    input.on('input', A.bind(instance._onInputChange, instance))
+                ];
             }
         },
 
@@ -167,9 +183,7 @@ var CharCounter = A.Component.create({
         destroy: function() {
             var instance = this;
 
-            if (instance.handler) {
-                instance.handler.detach();
-            }
+            (new A.EventHandle(instance._eventHandles)).detach();
         },
 
         /**
@@ -253,7 +267,37 @@ var CharCounter = A.Component.create({
         _onInputChange: function() {
             var instance = this;
 
+            if (!instance._inputComposition) {
+                instance.checkLength();
+            }
+        },
+
+        /**
+         * Fired on input when `compositionend` event occurs.
+         *
+         * @method _onInputCompositionEnd
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onInputCompositionEnd: function() {
+            var instance = this;
+
+            instance._inputComposition = false;
+
             instance.checkLength();
+        },
+
+        /**
+         * Fired on input when `compositionstart` event occurs.
+         *
+         * @method _onInputCompositionStart
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onInputCompositionStart: function() {
+            var instance = this;
+
+            instance._inputComposition = true;
         },
 
         /**

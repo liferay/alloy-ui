@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-1875](https://issues.liferay.com/browse/AUI-1875) Input value is removed unexpectedly when typing with IME in Firefox.
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
 
