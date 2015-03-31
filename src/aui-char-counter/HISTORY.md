@@ -4,4 +4,5 @@
 
 ## @VERSION@
 
+* [AUI-1875](https://issues.liferay.com/browse/AUI-1875) Input value is removed unexpectedly when typing with IME in Firefox.
 * [AUI-1715](https://issues.liferay.com/browse/AUI-1715) Character count for textarea element input in Char Counter is incorrectly calculated in Chrome

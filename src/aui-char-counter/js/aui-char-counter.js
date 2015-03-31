@@ -155,7 +155,7 @@ var CharCounter = A.Component.create({
                     input.on('compositionstart', A.bind(instance._onInputCompositionStart, instance)),
                     // use cross browser input-handler event
                     input.on(INPUT, A.bind(instance._onInputChange, instance))
-                ]
+                ];
             }
         },
 
