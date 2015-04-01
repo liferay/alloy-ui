@@ -7,14 +7,14 @@
 var CSS_FIELD_CHOICE = A.getClassName('form', 'field', 'choice'),
     CSS_FIELD_CHOICE_CONTENT = A.getClassName('form', 'field', 'choice', 'content'),
     CSS_FIELD_CHOICE_CHECKBOX = A.getClassName('form', 'field', 'choice', 'checkbox'),
-    CSS_FIELD_CHOICE_LIST = A.getClassName('form', 'field', 'choice', 'list'),
     CSS_FIELD_CHOICE_FORM = A.getClassName('form', 'field', 'choice', 'form'),
-    CSS_FIELD_CHOICE_RADIO = A.getClassName('form', 'field', 'choice', 'radio'),
+    CSS_FIELD_CHOICE_LIST = A.getClassName('form', 'field', 'choice', 'list'),
     CSS_FIELD_CHOICE_OPTION = A.getClassName('form', 'field', 'choice', 'option'),
     CSS_FIELD_CHOICE_OPTIONS_CONTAINER =
         A.getClassName('form', 'field', 'choice', 'options', 'container'),
     CSS_FIELD_CHOICE_OPTION_OTHER =
         A.getClassName('form', 'field', 'choice', 'option', 'other'),
+    CSS_FIELD_CHOICE_RADIO = A.getClassName('form', 'field', 'choice', 'radio'),
 
     TPL_FIELD_CHOICE_FORM =
         '<form class="' + CSS_FIELD_CHOICE_FORM + ' ' +
@@ -126,7 +126,6 @@ A.FormFieldChoice = A.Base.create('form-field-choice', A.FormField, [A.FormField
      * @method _createOptionNode
      * @param {String} optionLabel
      * @return {Node} A new Option Node
-     * 
      * @protected
      */
     _createOptionNode: function(optionLabel) {
@@ -157,8 +156,9 @@ A.FormFieldChoice = A.Base.create('form-field-choice', A.FormField, [A.FormField
                 return CSS_FIELD_CHOICE_CHECKBOX;
             case TYPES.RADIO:
                 return CSS_FIELD_CHOICE_RADIO;
-    }
-},
+        }
+    },
+
     /**
      * Switch option type between radio and checkbox.
      *
