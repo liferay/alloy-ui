@@ -39,24 +39,30 @@ YUI.add('aui-form-field-choice-tests', function(Y) {
         },
 
         'should render input according to type attribute': function() {
-            var fieldNode;
+            var content,
+                optionsContainer;
 
             this._field = new Y.FormFieldChoice();
-            fieldNode = this._field.get('content');
+            this._field.set('options', ['Earth', 'Fire', 'Wind', 'Water', 'Heart']);
 
-            Y.Assert.isTrue(fieldNode.hasClass('form-field-choice-radio'));
-            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-checkbox'));
-            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-dropdown'));
+            content = this._field.get('content');
+            optionsContainer = content.one('.form-field-choice-options-container');
+
+            Y.Assert.isTrue(optionsContainer.hasClass('form-field-choice-radio'));
+            Y.Assert.isFalse(optionsContainer.hasClass('form-field-choice-checkbox'));
+            Y.Assert.isFalse(optionsContainer.hasClass('form-field-choice-list'));
 
             this._field.set('type', Y.FormFieldChoice.TYPES.CHECKBOX);
-            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-radio'));
-            Y.Assert.isTrue(fieldNode.hasClass('form-field-choice-checkbox'));
-            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-dropdown'));
+            Y.Assert.isFalse(optionsContainer.hasClass('form-field-choice-radio'));
+            Y.Assert.isTrue(optionsContainer.hasClass('form-field-choice-checkbox'));
+            Y.Assert.isFalse(optionsContainer.hasClass('form-field-choice-list'));
 
-            this._field.set('type', Y.FormFieldChoice.TYPES.DROPDOWN);
-            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-radio'));
-            Y.Assert.isFalse(fieldNode.hasClass('form-field-choice-checkbox'));
-            Y.Assert.isTrue(fieldNode.hasClass('form-field-choice-dropdown'));
+            this._field.set('type', Y.FormFieldChoice.TYPES.LIST);
+            optionsContainer = content.one('.form-field-choice-options-container');
+
+            Y.Assert.isFalse(optionsContainer.hasClass('form-field-choice-radio'));
+            Y.Assert.isFalse(optionsContainer.hasClass('form-field-choice-checkbox'));
+            Y.Assert.isTrue(optionsContainer.hasClass('form-field-choice-list'));
         }
     }));
 

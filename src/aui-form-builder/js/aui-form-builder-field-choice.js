@@ -24,9 +24,6 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormFiel
      * @protected
      */
     _fillSettings: function() {
-        var multipleEditor = new A.BooleanDataEditor({
-            label: 'Enable multiple selection'
-        });
 
         this._settings.push(
             {
@@ -49,15 +46,10 @@ A.FormBuilderFieldChoice = A.Base.create('form-builder-field-choice', A.FormFiel
                         },
                         {
                             label: 'List Select',
-                            panelNode: multipleEditor.get('node'),
-                            value: A.FormFieldChoice.TYPES.DROPDOWN
+                            value: A.FormFieldChoice.TYPES.LIST
                         }
                     ]
                 })
-            },
-            {
-                attrName: 'multiple',
-                editor: multipleEditor
             },
             {
                 attrName: 'options',

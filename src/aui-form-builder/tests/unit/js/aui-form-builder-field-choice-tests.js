@@ -50,7 +50,6 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
 
             settings.all('.button-switch').item(0).simulate('click');
             settings.all('.button-switch').item(1).simulate('click');
-            settings.all('.button-switch').item(2).simulate('click');
 
             settings.all('.tab').item(1).simulate('click');
 
@@ -63,7 +62,6 @@ YUI.add('aui-form-builder-field-choice-tests', function(Y) {
                     instance._field.saveSettings();
 
                     Y.Assert.isTrue(instance._field.get('required'));
-                    Y.Assert.isTrue(instance._field.get('multiple'));
                     Y.Assert.isTrue(instance._field.get('otherOption'));
 
                     Y.Assert.areEqual(Y.FormFieldChoice.TYPES.CHECKBOX, instance._field.get('type'));

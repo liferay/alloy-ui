@@ -29,21 +29,21 @@
             var fieldChoiceRadio = new Y.FormFieldChoice({
                 help: 'Remember all I\'m offering is the truth',
                 title: 'This is your last chance',
-                options: ['Red Pill', 'Blue Pill'],
-                otherOption: true
+                options: ['Red Pill', 'Blue Pill']
             });
             Y.one('#fieldChoiceRadio').append(fieldChoiceRadio.get('content'));
 
             var fieldChoiceCheckbox = new Y.FormFieldChoice({
-                title: 'What are your favorite colors?',
-                options: ['Red', 'Blue', 'Yellow'],
+                title: 'Choose your Pokemon',
+                options: [' Bulbasaur', 'Squirtle', 'Charmander'],
                 type: Y.FormFieldChoice.TYPES.CHECKBOX
             });
             Y.one('#fieldChoiceCheckbox').append(fieldChoiceCheckbox.get('content'));
 
             var fieldChoiceDropdown = new Y.FormFieldChoice({
                 title: 'The Best Maíra Quotes',
-                type: Y.FormFieldChoice.TYPES.DROPDOWN
+                type: Y.FormFieldChoice.TYPES.LIST,
+                options: ['I have talent', 'I have talent']
             });
             Y.one('#fieldChoiceDropdown').append(fieldChoiceDropdown.get('content'));
 
