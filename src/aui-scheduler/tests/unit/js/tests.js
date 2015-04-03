@@ -497,7 +497,82 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 Y.one('.scheduler-event-recorder-date').get('text'),
                 'The recorder date should NOT display the second day'
             );
-        }
+        },
+
+        'should display overlapping events correctly in week view': function() {
+            var column1,
+                column1Events,
+                column2,
+                column2Events,
+                intersectingEvents,
+                schedulerEvents;
+
+            this._createScheduler({
+                activeView: this._weekView,
+                date: new Date(2015, 02, 22),
+                firstDayOfWeek: 0,
+                items: [
+                    {
+                        content: 'Event 1',
+                        startDate: new Date(2015, 2, 25, 11, 0),
+                        endDate: new Date(2015, 2, 25, 16, 30)
+                    },
+                    {
+                        content: 'Event 2',
+                        startDate: new Date(2015, 2, 25, 15, 30),
+                        endDate: new Date(2015, 2, 25, 17, 0),
+                    },
+                    {
+                        content: 'Event 3',
+                        startDate: new Date(2015, 2, 25, 16, 0),
+                        endDate: new Date(2015, 2, 26, 11, 0),
+                    },
+                    {
+                        content: 'Event 4',
+                        startDate: new Date(2015, 2, 25, 18, 0),
+                        endDate: new Date(2015, 2, 26, 12, 30),
+                    }
+                ]
+            });
+
+            schedulerEvents = Y.all('.scheduler-event');
+
+            Y.Assert.areEqual(
+                6, schedulerEvents.size(),
+                '6 SchedulerEvent nodes should be in week view.'
+            );
+
+            intersectingEvents = Y.all('.scheduler-event.scheduler-event-intersecting');
+
+            Y.Assert.areEqual(
+                6, intersectingEvents.size(),
+                '6 intersecting SchedulerEvent nodes should be in week view.'
+            );
+
+            column1 = intersectingEvents.item(0).ancestor('.scheduler-view-day-table-colday');
+
+            column1Events = column1.all('.scheduler-event.scheduler-event-intersecting');
+
+            Y.Assert.areEqual(
+                4, column1Events.size(),
+                '4 intersecting SchedulerEvent nodes should be in column1Events column.'
+            );
+
+            column2 = intersectingEvents.item(4).ancestor('.scheduler-view-day-table-colday');
+
+            column2Events = column2.all('.scheduler-event.scheduler-event-intersecting');
+
+            Y.Assert.areEqual(
+                2, column2Events.size(),
+                '2 intersecting SchedulerEvent nodes should be in column2Events column.'
+            );
+
+            Y.Assert.areNotEqual(
+                column2Events.item(0).getStyle('left'), column2Events.item(1).getStyle('left'),
+                '2 SchedulerEvents which are intersecting with each other can not have the same left style value.'
+            );
+        },
+
     }));
 
     Y.Test.Runner.add(suite);
