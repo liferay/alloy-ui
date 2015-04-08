@@ -5,39 +5,121 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Form Builder Page Break Row Tests',
 
-        'should render index': function() {
-            var row = new Y.FormBuilderPageBreakRow({
-                index: 10
-            });
+        /**
+         * Simulates a `valuechange` event for the given input.
+         *
+         * @method _simulateInputChange
+         * @param {Node} input The input node to simulate the event for.
+         * @param {String} text The text that should be set as the input's final value.
+         * @param {Function} callback The function to be called when the simulation is
+         *   done.
+         * @protected
+         */
+        _simulateInputChange: function(input, text, callback) {
+            input.simulate('keydown');
+            input.set('value', text);
+            input.simulate('keydown');
 
-            console.log('here', row.get('node'));
-            Y.Assert.areEqual('10', row.get('node').one('.form-builder-page-break-index').get('text'));
+            this.wait(callback, Y.ValueChange.POLL_INTERVAL);
+        },
+
+        'should render index': function() {
+            var row,
+                title;
+
+            row = new Y.FormBuilderPageBreakRow({
+                index: 10,
+                quantity: 10
+            });
+            title = row.get('node').one('.form-builder-page-break-title');
+
+            Y.Assert.areEqual('Untitled Page ' + 10 + '/10', title.get('value'));
         },
 
         'should update index': function() {
-            var row = new Y.FormBuilderPageBreakRow({
-                index: 10
-            });
-            row.set('index', 20);
+            var row,
+                title;
 
-            Y.Assert.areEqual('20', row.get('node').one('.form-builder-page-break-index').get('text'));
+            row = new Y.FormBuilderPageBreakRow({
+                index: 10,
+                quantity: 10
+            });
+            title = row.get('node').one('.form-builder-page-break-title');
+            Y.Assert.areEqual('Untitled Page ' + 10 + '/10', title.get('value'));
+
+            row.set('index', 20);
+            Y.Assert.areEqual('Untitled Page ' + 20 + '/10', title.get('value'));
         },
 
         'should render quantity': function() {
-            var row = new Y.FormBuilderPageBreakRow({
+            var row,
+                title;
+
+            row = new Y.FormBuilderPageBreakRow({
+                index: 10,
                 quantity: 10
             });
+            title = row.get('node').one('.form-builder-page-break-title');
 
-            Y.Assert.areEqual('10', row.get('node').one('.form-builder-page-break-quantity').get('text'));
+            Y.Assert.areEqual('Untitled Page 10/' + 10, title.get('value'));
         },
 
         'should update quantity': function() {
-            var row = new Y.FormBuilderPageBreakRow({
+            var row,
+                title;
+
+            row = new Y.FormBuilderPageBreakRow({
+                index: 10,
                 quantity: 10
             });
-            row.set('quantity', 20);
+            title = row.get('node').one('.form-builder-page-break-title');
 
-            Y.Assert.areEqual('20', row.get('node').one('.form-builder-page-break-quantity').get('text'));
+            Y.Assert.areEqual('Untitled Page 10/' + 10, title.get('value'));
+
+            row.set('quantity', 20);
+            Y.Assert.areEqual('Untitled Page 10/' + 20, title.get('value'));
+        },
+
+        'should render title': function() {
+            var row,
+                title;
+
+            row = new Y.FormBuilderPageBreakRow({
+                title: 'title'
+            });
+            title = row.get('node').one('.form-builder-page-break-title');
+
+            Y.Assert.areEqual('title', title.get('value'));
+        },
+
+        'should update title': function() {
+            var row,
+                title;
+
+            row = new Y.FormBuilderPageBreakRow({
+                title: 'untitle'
+            });
+            title = row.get('node').one('.form-builder-page-break-title');
+
+            row.set('title', 'title');
+            Y.Assert.areEqual('title', title.get('value'));
+
+            this._simulateInputChange(title, 'try untitle here', function() {
+                Y.Assert.areEqual('try untitle here', row.get('title'));
+            });
+        },
+
+        'should toggle the visibility of the border around the title on mouseover/mouseleave': function() {
+            var node,
+                row = new Y.FormBuilderPageBreakRow();
+
+            node = row.get('node').one('.form-builder-page-break-title');
+
+            Y.Assert.isTrue(node.hasClass('form-builder-page-break-title-hide-border'));
+            node.simulate('mouseover');
+            Y.Assert.isFalse(node.hasClass('form-builder-page-break-title-hide-border'));
+            node.simulate('mouseout');
+            Y.Assert.isTrue(node.hasClass('form-builder-page-break-title-hide-border'));
         },
 
         'should make first page break unmovable': function() {
@@ -74,12 +156,64 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
 
             row.set('index', 1);
             Y.Assert.isFalse(row.get('removable'));
+        },
+
+        'should show/hide input\'s border on mouseover/mouseout': function() {
+            var row,
+                title;
+
+            row = new Y.FormBuilderPageBreakRow();
+            title = row.get('node').one('.form-builder-page-break-title');
+
+            Y.Assert.isTrue(title.hasClass('form-builder-page-break-title-hide-border'));
+
+            title.simulate('mouseover');
+            Y.Assert.isFalse(title.hasClass('form-builder-page-break-title-hide-border'));
+
+            title.simulate('mouseout');
+            Y.Assert.isTrue(title.hasClass('form-builder-page-break-title-hide-border'));
+        },
+
+        'shouldn\'t hide input\'s border on on mouseout when the input has focus': function() {
+            var row,
+                title;
+
+            row = new Y.FormBuilderPageBreakRow();
+            Y.one('#container').append(row.get('node'));
+
+            title = row.get('node').one('.form-builder-page-break-title');
+            
+            title.simulate('mouseover');
+
+            title.focus();
+            title.simulate('mouseout');
+            Y.Assert.isFalse(title.hasClass('form-builder-page-break-title-hide-border'));
+
+            title.blur();
+            Y.Assert.isTrue(title.hasClass('form-builder-page-break-title-hide-border'));
+
+            Y.one('#container').empty();
+        },
+
+        'should show input\'s border when click on edit icon': function() {
+            var row,
+                editIcon,
+                    title;
+
+            row = new Y.FormBuilderPageBreakRow();
+            editIcon = row.get('node').one('.form-builder-page-break-title-edit-icon');
+            title = row.get('node').one('.form-builder-page-break-title');
+
+            Y.Assert.isTrue(title.hasClass('form-builder-page-break-title-hide-border'));
+
+            editIcon.simulate('click');
+            Y.Assert.isFalse(title.hasClass('form-builder-page-break-title-hide-border'));
         }
     }));
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['aui-form-builder-page-break-row', 'test'],
+    requires: ['aui-form-builder-page-break-row', 'node-event-simulate', 'test'],
     test: function(Y) {
         return Y.UA.ie === 0 || Y.UA.ie > 8;
     }
