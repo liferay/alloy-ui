@@ -243,14 +243,16 @@ YUI.add('aui-form-builder-tests', function(Y) {
         'should update quantity value of all pages break on form': function() {
             var formBuilder = this.createFormBuilder();
 
+            Y.Assert.areEqual('Untitled Page 1/' + 1, Y.one('.form-builder-page-break-title').get('value'));
+
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
 
-            Y.Assert.areEqual(2, Y.one('.form-builder-page-break-quantity').get('text'));
+            Y.Assert.areEqual('Untitled Page 1/' + 2, Y.one('.form-builder-page-break-title').get('value'));
 
             this._clickAddRowButton();
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
             formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-            Y.Assert.areEqual(4, Y.one('.form-builder-page-break-quantity').get('text'));
+            Y.Assert.areEqual('Untitled Page 1/' + 4, Y.one('.form-builder-page-break-title').get('value'));
         },
 
         'should update page breaks when one is removed': function() {
