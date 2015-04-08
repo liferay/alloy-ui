@@ -499,6 +499,62 @@ YUI.add('aui-scheduler-tests', function(Y) {
             );
         },
 
+        'should display events correctly in week view in the last day of first week under DST when first day of week is Monday': function() {
+            var column1,
+                column1Events,
+                column2,
+                column2Events,
+                schedulerEvents,
+                dstDate = this._getLocalTimeZoneDSTFirstDay(),
+                currentDate = DateMath.subtract(dstDate, DateMath.DAY, 1),
+                previousDate = DateMath.subtract(dstDate, DateMath.DAY, 2);
+
+            this._createScheduler({
+                activeView: this._weekView,
+                date: previousDate,
+                firstDayOfWeek: 1,
+                items: [
+                    {
+                        content: 'Event 1',
+                        startDate: DateMath.add(new Date(previousDate.getTime()), DateMath.HOUR, 23),
+                        endDate: DateMath.add(new Date(previousDate.getTime()), DateMath.HOUR, 25)
+                    },
+                    {
+                        content: 'Event 2',
+                        startDate: DateMath.add(new Date(currentDate.getTime()), DateMath.HOUR, 23),
+                        endDate: DateMath.add(new Date(currentDate.getTime()), DateMath.HOUR, 25)
+                    }
+                ]
+            });
+
+            schedulerEvents = Y.all('.scheduler-event');
+
+            Y.Assert.areEqual(
+                3, schedulerEvents.size(),
+                '3 SchedulerEvent nodes should be in week view.'
+            );
+
+            var columns = Y.all('.scheduler-view-day-table-colday');
+
+            column1 = columns.item(5);
+
+            column1Events = column1.all('.scheduler-event');
+
+            Y.Assert.areEqual(
+                1, column1Events.size(),
+                '1 SchedulerEvent node should be in column1Events column.'
+            );
+
+            column2 = columns.item(6);
+
+            column2Events = column2.all('.scheduler-event');
+
+            Y.Assert.areEqual(
+                2, column2Events.size(),
+                '2 SchedulerEvent nodes should be in column2Events column.'
+            );
+        },
+
         'should display overlapping events correctly in week view': function() {
             var column1,
                 column1Events,
