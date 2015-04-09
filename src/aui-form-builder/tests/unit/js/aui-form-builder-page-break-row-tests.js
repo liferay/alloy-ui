@@ -201,6 +201,8 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
                     title;
 
             row = new Y.FormBuilderPageBreakRow();
+            Y.one('#container').append(row.get('node'));
+
             editIcon = row.get('node').one('.form-builder-page-break-title-edit-icon');
             title = row.get('node').one('.form-builder-page-break-title');
 
@@ -208,6 +210,7 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
 
             editIcon.simulate('click');
             Y.Assert.isFalse(title.hasClass('form-builder-page-break-title-hide-border'));
+            Y.one('#container').empty();
         }
     }));
 

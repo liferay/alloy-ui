@@ -19,7 +19,7 @@ var CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row
     TPL_PAGE_BREAK_ROW = '<div class="' + CSS_PAGE_BREAK_ROW + ' form-inline">' +
         '<label class="' + CSS_PAGE_BREAK_TITLE_EDIT_ICON +
         '"><span class="glyphicon glyphicon-pencil"></span></label>' +
-        '<input class="' + CSS_PAGE_BREAK_TITLE + ' ' +
+        '<input tabindex="1" class="' + CSS_PAGE_BREAK_TITLE + ' ' +
         CSS_PAGE_BREAK_TITLE_HIDE_BORDER + ' form-control" type="text"></input> ' +
         '</div>';
 
@@ -62,7 +62,7 @@ A.FormBuilderPageBreakRow = A.Base.create(
             node.one('.' + CSS_PAGE_BREAK_TITLE_EDIT_ICON).on('click',
                 A.bind(this._onTitleEditIconClick, this));
 
-            inputNode.on('mouseout', A.bind(this._onMouseOut, this)); 
+            inputNode.on('mouseout', A.bind(this._onMouseOut, this));
 
             node.one('.' + CSS_PAGE_BREAK_TITLE).on('valuechange',
                 A.bind(this._onInputValueChange, this));
@@ -168,6 +168,7 @@ A.FormBuilderPageBreakRow = A.Base.create(
          */
         _onInputFocus: function() {
             this._focused = true;
+            this._showTitleBorder();
         },
 
         /**
@@ -211,9 +212,7 @@ A.FormBuilderPageBreakRow = A.Base.create(
          * @protected
          */
         _onTitleEditIconClick: function() {
-            this._showTitleBorder();
             this._getContentNode().one('.' + CSS_PAGE_BREAK_TITLE).focus();
-            this._focused = true;
         },
 
         /**
