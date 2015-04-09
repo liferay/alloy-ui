@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1880](https://issues.liferay.com/browse/AUI-1880) Overlapping events don't show up correctly
 * [AUI-1871](https://issues.liferay.com/browse/AUI-1871) In month view, popover does not update values if an event was previously displayed
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)

@@ -5,14 +5,23 @@
  * @submodule aui-form-builder-page-break-row
  */
 
-var CSS_PAGE_BREAK_INDEX = A.getClassName('form', 'builder', 'page', 'break', 'index'),
-    CSS_PAGE_BREAK_QUANTITY = A.getClassName('form', 'builder', 'page', 'break', 'quantity'),
-    CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
-    CSS_PAGE_BREAK_ROW_CONTAINER_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row', 'container', 'row'),
+var CSS_PAGE_BREAK_ROW = A.getClassName('form', 'builder', 'page', 'break', 'row'),
+    CSS_PAGE_BREAK_ROW_CONTAINER_ROW =
+        A.getClassName('form', 'builder', 'page', 'break', 'row', 'container', 'row'),
+    CSS_PAGE_BREAK_TITLE = A.getClassName('form', 'builder', 'page', 'break', 'title'),
+    CSS_PAGE_BREAK_TITLE_EDIT_ICON =
+        A.getClassName('form', 'builder', 'page', 'break', 'title', 'edit', 'icon'),
+    CSS_PAGE_BREAK_TITLE_HIDE_BORDER =
+        A.getClassName('form', 'builder', 'page', 'break', 'title', 'hide', 'border'),
 
-    TPL_PAGE_BREAK_ROW = '<div class="' + CSS_PAGE_BREAK_ROW + '">' +
-        '<p>Page <span class="' + CSS_PAGE_BREAK_INDEX +
-        '"></span>/<span class="' + CSS_PAGE_BREAK_QUANTITY + '"></span></p></div>';
+    SOURCE_UI = 'ui',
+
+    TPL_PAGE_BREAK_ROW = '<div class="' + CSS_PAGE_BREAK_ROW + ' form-inline">' +
+        '<label class="' + CSS_PAGE_BREAK_TITLE_EDIT_ICON +
+        '"><span class="glyphicon glyphicon-pencil"></span></label>' +
+        '<input tabindex="1" class="' + CSS_PAGE_BREAK_TITLE + ' ' +
+        CSS_PAGE_BREAK_TITLE_HIDE_BORDER + ' form-control" type="text"></input> ' +
+        '</div>';
 
 /**
  * A base class for Form Builder Page Break Row.
@@ -35,13 +44,31 @@ A.FormBuilderPageBreakRow = A.Base.create(
          * @protected
          */
         initializer: function() {
-            this._uiSetIndex(this.get('index'));
-            this._uiSetQuantity(this.get('quantity'));
+            var inputNode,
+                node = this.get('node');
+
+            inputNode = node.one('.' + CSS_PAGE_BREAK_TITLE);
+            this._defaultTitleValue = 'Untitled Page';
+
+            this._uiSetTitle(this.get('title'));
 
             this.after('indexChange', this._afterIndexChange);
             this.after('quantityChange', this._afterQuantityChange);
+            this.after('titleChange', this._afterTitleChange);
 
-            this.get('node').addClass(CSS_PAGE_BREAK_ROW_CONTAINER_ROW);
+            node.addClass(CSS_PAGE_BREAK_ROW_CONTAINER_ROW);
+
+            inputNode.on('mouseover', A.bind(this._onMouseOver, this));
+            node.one('.' + CSS_PAGE_BREAK_TITLE_EDIT_ICON).on('click',
+                A.bind(this._onTitleEditIconClick, this));
+
+            inputNode.on('mouseout', A.bind(this._onMouseOut, this));
+
+            node.one('.' + CSS_PAGE_BREAK_TITLE).on('valuechange',
+                A.bind(this._onInputValueChange, this));
+
+            node.one('.' + CSS_PAGE_BREAK_TITLE).on('blur', this._onInputBlur, this);
+            node.one('.' + CSS_PAGE_BREAK_TITLE).on('focus', this._onInputFocus, this);
         },
 
         /**
@@ -62,6 +89,18 @@ A.FormBuilderPageBreakRow = A.Base.create(
          */
         _afterQuantityChange: function() {
             this._uiSetQuantity(this.get('quantity'));
+        },
+
+        /**
+         * Fired after the `title` attribute is set.
+         *
+         * @method _afterTitleChange
+         * @protected
+         */
+        _afterTitleChange: function(event) {
+            if (event.src !== SOURCE_UI) {
+                this._uiSetTitle(this.get('title'));
+            }
         },
 
         /**
@@ -98,25 +137,133 @@ A.FormBuilderPageBreakRow = A.Base.create(
         },
 
         /**
+         * Hide input's border of title.
+         *
+         * @method _hideTitleBorder
+         * @protected
+         */
+        _hideTitleBorder: function() {
+            var inputNode = this._getContentNode().one('.' + CSS_PAGE_BREAK_TITLE);
+
+            inputNode.addClass(CSS_PAGE_BREAK_TITLE_HIDE_BORDER);
+        },
+
+        /**
+         * Fire when `blur` the title item.
+         *
+         * @method _onInputBlur
+         * @protected
+         */
+        _onInputBlur: function() {
+            this._focused = false;
+            this._hideTitleBorder();
+            this._uiSetTitle(this.get('title'));
+        },
+
+        /**
+         * Fire when `focus` the title item.
+         *
+         * @method _onInputFocus
+         * @protected
+         */
+        _onInputFocus: function() {
+            this._focused = true;
+            this._showTitleBorder();
+        },
+
+        /**
+         * Fired on input value change.
+         *
+         * @method _onInputValueChange
+         * @protected
+         */
+        _onInputValueChange: function(event) {
+            this.set('title', event.newVal, {
+                src: SOURCE_UI
+            });
+        },
+
+        /**
+         * Fire when `mouseout` the title item.
+         *
+         * @method _onMouseOut
+         * @protected
+         */
+        _onMouseOut: function() {
+            if (!this._focused) {
+                this._hideTitleBorder();
+            }
+        },
+
+        /**
+         * Fire when `mouseover` the title item.
+         *
+         * @method _onMouseOver
+         * @protected
+         */
+        _onMouseOver: function() {
+            this._showTitleBorder();
+        },
+
+        /**
+         * Fire when `click` the edit icon item.
+         *
+         * @method _onTitleEditIconClick
+         * @protected
+         */
+        _onTitleEditIconClick: function() {
+            this._getContentNode().one('.' + CSS_PAGE_BREAK_TITLE).focus();
+        },
+
+        /**
+         * Shows input's border from title.
+         *
+         * @method _showTitleBorder
+         * @protected
+         */
+        _showTitleBorder: function() {
+            var inputNode = this._getContentNode().one('.' + CSS_PAGE_BREAK_TITLE);
+
+            inputNode.removeClass(CSS_PAGE_BREAK_TITLE_HIDE_BORDER);
+        },
+
+        /**
          * Updates the ui according to the value of the `index` attribute.
          *
          * @method _uiSetIndex
-         * @param {String} index
          * @protected
          */
-        _uiSetIndex: function(index) {
-            this._getContentNode().one('.' + CSS_PAGE_BREAK_INDEX).set('text', index);
+        _uiSetIndex: function() {
+            this._uiSetTitle(this.get('title'));
         },
 
         /**
          * Updates the ui according to the value of the `quantity` attribute.
          *
          * @method _uiSetQuantity
-         * @param {String} quantity
          * @protected
          */
-        _uiSetQuantity: function(quantity) {
-            this._getContentNode().one('.' + CSS_PAGE_BREAK_QUANTITY).set('text', quantity);
+        _uiSetQuantity: function() {
+            this._uiSetTitle(this.get('title'));
+        },
+
+        /**
+         * Updates the ui according to the value of the `title` attribute.
+         *
+         * @method _uiSetTitle
+         * @param {String} title
+         * @protected
+         */
+        _uiSetTitle: function(title) {
+            var inputNode = this._getContentNode().one('.' + CSS_PAGE_BREAK_TITLE);
+
+            if (!title.trim()) {
+                inputNode.set('value', this._defaultTitleValue +
+                    ' ' + this.get('index') + '/' + this.get('quantity'));
+            }
+            else {
+                this.get('node').one('.' + CSS_PAGE_BREAK_TITLE).set('value', title);
+            }
         }
     }, {
         /**
@@ -199,6 +346,17 @@ A.FormBuilderPageBreakRow = A.Base.create(
              */
             removable: {
                 getter: '_getRemovable'
+            },
+
+            /**
+             * The title of this Page Break.
+             *
+             * @attribute title
+             * @default ''
+             * @type {String}
+             */
+            title: {
+                value: ''
             }
         }
     }

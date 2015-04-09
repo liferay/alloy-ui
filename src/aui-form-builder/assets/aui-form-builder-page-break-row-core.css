@@ -1,4 +1,18 @@
-.form-builder-page-break-row {
-    color: #bcc9d2;
-    padding-left: 10pt;
+.form-inline .form-control.form-builder-page-break-title-hide-border {
+    box-shadow: none;
+    border-width: 1px;
+    border-color: transparent;
+}
+
+.form-inline .form-control.form-builder-page-break-title {
+    display: inline-block;
+    width: 95%;
+}
+
+.form-builder-page-break-title-edit-icon {
+    width: 3%;
+}
+
+.form-builder-page-break-row.form-inline {
+    padding: 0 10px;
 }
