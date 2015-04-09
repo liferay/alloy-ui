@@ -2,3 +2,7 @@
     z-index: -1 !important;
     display: none;
 }
+
+.tooltip-inner {
+    word-wrap: break-word;
+}
