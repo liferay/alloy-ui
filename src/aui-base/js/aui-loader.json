@@ -655,6 +655,8 @@
             "aui-layout-col",
             "aui-layout-row",
             "base",
+            "event-focus",
+            "event-valuechange",
             "node-base"
         ],
         "skinnable": true

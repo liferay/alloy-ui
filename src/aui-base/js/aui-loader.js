@@ -681,6 +681,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-layout-col",
             "aui-layout-row",
             "base",
+            "event-focus",
+            "event-valuechange",
             "node-base"
         ],
         "skinnable": true
@@ -1650,4 +1652,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '74afa2774972100f6a561835c1ee25f3';
+YUI.Env[Y.version].md5 = '8ff12484de67ceffa5e38d7f415b5bfe';
