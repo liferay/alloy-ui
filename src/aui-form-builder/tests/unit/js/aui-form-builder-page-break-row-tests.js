@@ -160,7 +160,8 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
 
         'shouldn\'t hide input\'s border on on mouseout when the input has focus': function() {
             var row,
-                title;
+                title,
+                yeti;
 
             row = new Y.FormBuilderPageBreakRow();
             Y.one('#container').append(row.get('node'));
@@ -170,10 +171,19 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
             title.simulate('mouseover');
 
             title.focus();
+            if (document.activeElement !== title) {
+                yeti = true;
+                // When the test is run with Yeti, focus is always stolen by the runner,
+                // so we need to call the function directly.
+                row._onInputFocus();
+            }
             title.simulate('mouseout');
             Y.Assert.isFalse(title.hasClass('form-builder-page-break-title-hide-border'));
 
             title.blur();
+            if (yeti) {
+                row._onInputBlur();
+            }
             Y.Assert.isTrue(title.hasClass('form-builder-page-break-title-hide-border'));
 
             Y.one('#container').empty();
@@ -193,6 +203,11 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
             Y.Assert.isTrue(title.hasClass('form-builder-page-break-title-hide-border'));
 
             editIcon.simulate('click');
+            if (document.activeElement !== title) {
+                // When the test is run with Yeti, focus is always stolen by the runner,
+                // so we need to call the function directly.
+                row._onInputFocus();
+            }
             Y.Assert.isFalse(title.hasClass('form-builder-page-break-title-hide-border'));
             Y.one('#container').empty();
         }
