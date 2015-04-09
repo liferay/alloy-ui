@@ -158,22 +158,6 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
             Y.Assert.isFalse(row.get('removable'));
         },
 
-        'should show/hide input\'s border on mouseover/mouseout': function() {
-            var row,
-                title;
-
-            row = new Y.FormBuilderPageBreakRow();
-            title = row.get('node').one('.form-builder-page-break-title');
-
-            Y.Assert.isTrue(title.hasClass('form-builder-page-break-title-hide-border'));
-
-            title.simulate('mouseover');
-            Y.Assert.isFalse(title.hasClass('form-builder-page-break-title-hide-border'));
-
-            title.simulate('mouseout');
-            Y.Assert.isTrue(title.hasClass('form-builder-page-break-title-hide-border'));
-        },
-
         'shouldn\'t hide input\'s border on on mouseout when the input has focus': function() {
             var row,
                 title;
@@ -182,7 +166,7 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
             Y.one('#container').append(row.get('node'));
 
             title = row.get('node').one('.form-builder-page-break-title');
-            
+
             title.simulate('mouseover');
 
             title.focus();
@@ -198,7 +182,7 @@ YUI.add('aui-form-builder-page-break-row-tests', function(Y) {
         'should show input\'s border when click on edit icon': function() {
             var row,
                 editIcon,
-                    title;
+                title;
 
             row = new Y.FormBuilderPageBreakRow();
             Y.one('#container').append(row.get('node'));
