@@ -743,18 +743,10 @@ var SchedulerDayView = A.Component.create({
             var instance = this;
 
             var viewDate = DateMath.safeClearTime(
-                instance.get('scheduler').get('viewDate')),
-                offsetDate = DateMath.safeClearTime(date),
-                d1Offset = viewDate.getTimezoneOffset(),
-                d2Offset = offsetDate.getTimezoneOffset();
+                instance.get('scheduler').get('viewDate'));
 
-            if (d1Offset !== d2Offset) {
-                var difference = d1Offset - d2Offset;
-
-                offsetDate = new Date(offsetDate.getTime() + (difference * DateMath.ONE_MINUTE_MS));
-            }
-
-            return DateMath.getDayOffset(offsetDate, viewDate);
+            return DateMath.countDays(
+                DateMath.safeClearTime(date), viewDate);
         },
 
         /**
