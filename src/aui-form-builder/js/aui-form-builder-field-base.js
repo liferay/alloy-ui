@@ -281,7 +281,6 @@ A.FormBuilderFieldBase.prototype = {
     _expandModalContent: function() {
         this._advancedSettingsToggler.set('expanded', !this._advancedSettingsToggler.get('expanded'));
         this._advancedSettingsToggler.get('content').setStyle('marginTop', '');
-console.log('modal', this._fieldSettingsModal);
     },
 
     /**
@@ -370,9 +369,6 @@ console.log('modal', this._fieldSettingsModal);
      */
     _toggleVisibilityOfModalContent: function() {
         this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON).toggleClass(CSS_HIDDEN);
-        // this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_LEFT).toggleClass(CSS_HIDDEN_XS);
-        // this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_RIGHT_CONTENT).toggleClass(CSS_HIDDEN_XS);
-
         this.fire('contentToggle');
     },
 
