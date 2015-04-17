@@ -6,7 +6,6 @@
  */
 
 var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break'),
-    CSS_ADD_ROW_COLLAPSED = A.getClassName('form', 'builder', 'add', 'row', 'collapsed'),
     CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'move'),
     CSS_CHOOSE_COL_MOVE_TARGET = A.getClassName('form', 'builder', 'choose', 'col', 'move', 'target'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
@@ -17,9 +16,9 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
     CSS_LAYOUT_BUILDER_MOVE_CANCEL = A.getClassName('layout', 'builder', 'move', 'cancel'),
     CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode'),
-    CSS_PAGE_BREAK_ROW_COLLAPSED = A.getClassName('form', 'builder', 'page', 'break', 'row', 'collapsed'),
 
-    SELECTOR_LAYOUT_BUILDER_ADD_ROW_CHOOSE_ROW = '.layout-builder-add-row-choose-row';
+    SELECTOR_LAYOUT_BUILDER_ADD_ROW_CHOOSE_ROW = '.layout-builder-add-row-choose-row',
+    SELECTOR_LAYOUT_BUILDER_ADD_ROW = '.layout-builder-add-row';
 
 /**
  * `A.FormBuilder` extension, which handles the `A.LayoutBuilder` inside it.
@@ -43,6 +42,7 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     initializer: function() {
         this.after({
+            create: this._afterFieldCreate,
             layoutChange: this._afterLayoutBuilderLayoutChange,
             modeChange: this._afterLayoutBuilderModeChange,
             render: this._afterLayoutBuilderRender
@@ -100,6 +100,16 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         targetNodes = colNode.all('.' + CSS_FIELD_MOVE_TARGET);
         targetNodes.setData('col', col);
+    },
+
+    /**
+     * Executed after the `layout:create` is fired.
+     *
+     * @method _afterFieldCreate
+     * @protected
+     */
+    _afterFieldCreate: function() {
+        this._checkLastEmptyRow();
     },
 
     /**
@@ -169,6 +179,30 @@ A.FormBuilderLayoutBuilder.prototype = {
         );
 
         this._removeLayoutCutColButtons();
+
+        this._removeAddRowButton();
+        this._checkLastEmptyRow();
+    },
+
+    /**
+     * Checks if the last row is empty.
+     *
+     * @method _checkLastEmptyRow
+     * @protected
+     */
+    _checkLastEmptyRow: function() {
+        var cols;
+
+        this._lastRow = this._getLastRow();
+
+        cols = this._lastRow.get('cols');
+
+        for (var i = 0; i < cols.length; i++) {
+            if (!cols[i].get('node').one('.form-builder-empty-col')) {
+                this._createLastRow();
+                break;
+            }
+        }
     },
 
     /**
@@ -253,11 +287,40 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _collapseAddPageBreakButton: function(addPageBreakButton, addRowContainer) {
-        var addRowButton = addRowContainer.one(SELECTOR_LAYOUT_BUILDER_ADD_ROW_CHOOSE_ROW);
-
-        addPageBreakButton.addClass(CSS_PAGE_BREAK_ROW_COLLAPSED);
-        addRowButton.addClass(CSS_ADD_ROW_COLLAPSED);
         addRowContainer.append(addPageBreakButton);
+    },
+
+    /**
+     * Creates a row with the same layout of the last row.
+     *
+     * @method _copyLastRow
+     * @protected
+     */
+    _copyLastRow: function() {
+        var cols = this._lastRow.get('cols'),
+            newCols = [];
+
+        for (var i = 0; i < cols.length; i++) {
+            newCols.push(new A.LayoutCol({ size: cols[i].get('size') }));
+        }
+
+        return new A.LayoutRow({ cols: newCols });
+    },
+
+    /**
+     * Creates a new row in the last position.
+     *
+     * @method _createLastRow
+     * @protected
+     */
+    _createLastRow: function() {
+        var lastRow = this._copyLastRow(),
+            layout = this.get('layout'),
+            rows = layout.get('rows');
+
+        layout.addRow(rows.length, lastRow);
+
+        this._lastRow = this._getLastRow();
     },
 
     /**
@@ -307,8 +370,25 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _expandAddPageBreakButton: function(addPageBreakButton, contentBox) {
-        addPageBreakButton.removeClass(CSS_PAGE_BREAK_ROW_COLLAPSED);
         contentBox.append(addPageBreakButton);
+    },
+
+    /**
+     * Gets the last row
+     *
+     * @method _getLastRow
+     * @protected
+     */
+    _getLastRow: function() {
+        var rows = this.get('layout').get('rows');
+
+        for (var i = rows.length - 1; i >= 0; i--) {
+            if (rows[i].name === 'layout-row') {
+                return rows[i];
+            }
+        }
+
+        return new A.LayoutRow();
     },
 
     /**
@@ -320,6 +400,16 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     _onFormBuilderToolbarFieldMouseEnter: function(event) {
         this._toggleMoveColItem(event.colNode);
+    },
+
+    /**
+     * Removes add row button
+     *
+     * @method _removeAddRowButton
+     * @protected
+     */
+    _removeAddRowButton: function() {
+        A.one(SELECTOR_LAYOUT_BUILDER_ADD_ROW_CHOOSE_ROW + SELECTOR_LAYOUT_BUILDER_ADD_ROW).remove();
     },
 
     /**
