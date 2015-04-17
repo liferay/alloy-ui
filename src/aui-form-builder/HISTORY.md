@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1897](https://issues.liferay.com/browse/AUI-1897) Make form builder field modal always have a single column
 * [AUI-1853](https://issues.liferay.com/browse/AUI-1853) Use default checkbox/radio/dropdown for FormBuilderChoiceField
 * [AUI-1844](https://issues.liferay.com/browse/AUI-1844) Trigger events for field creation/removal/edition
 * [AUI-1877](https://issues.liferay.com/browse/AUI-1877) Move some form builder fields to Liferay Portal

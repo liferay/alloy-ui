@@ -20,10 +20,7 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
         A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'advanced', 'button'),
     CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT =
         A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'advanced', 'content'),
-    CSS_FIELD_SETTINGS_PANEL_LEFT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'left'),
-    CSS_FIELD_SETTINGS_PANEL_RIGHT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'right'),
-    CSS_FIELD_SETTINGS_PANEL_RIGHT_CONTENT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'right', 'content'),
-    CSS_FIELD_SETTINGS_PANEL_SEPARATOR = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'separator'),
+    CSS_FIELD_SETTINGS_PANEL_CONTENT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'content'),
     CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED =
         A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'toggler', 'advanced'),
     CSS_FIELD_TOOLBAR_CONTAINER = A.getClassName('form', 'builder', 'field', 'toolbar', 'container'),
@@ -49,8 +46,6 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
 A.FormBuilderFieldBase = function() {};
 
 A.FormBuilderFieldBase.prototype = {
-    SETTINGS_DIVIDER_POSITION: 3,
-
     TPL_FIELD: '<div class="' + CSS_FIELD + ' form-field" tabindex="9">' +
         '<div class="' + CSS_FIELD_CONTENT_TOOLBAR + '">' +
         '<div class="' + CSS_FIELD_CONTENT + ' form-field-content"></div>' +
@@ -64,16 +59,12 @@ A.FormBuilderFieldBase.prototype = {
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
         'Paste as subquestion</button>',
     TPL_FIELD_SETTINGS_PANEL: '<div class="' + CSS_FIELD_SETTINGS_PANEL + ' clearfix">' +
-        '<div class="' + CSS_FIELD_SETTINGS_PANEL_SEPARATOR + '"></div>' +
-        '<div class="' + CSS_FIELD_SETTINGS_PANEL_LEFT + ' col-md-6"></div>' +
-        '<div class="' + CSS_FIELD_SETTINGS_PANEL_RIGHT + ' col-md-6">' +
-        '<div class="' + CSS_FIELD_SETTINGS_PANEL_RIGHT_CONTENT + '">' +
+        '<div class="' + CSS_FIELD_SETTINGS_PANEL_CONTENT + '">' +
         '</div>' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_ADVANCED + '">' +
         '<a class="'+ CSS_HIDDEN_XS + ' ' + CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED +
         '" href="javascript:void(0)">Advanced options</a>' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT + '"></div>' +
-        '</div>' +
         '</div>' +
         '<button class="visible-xs btn btn-default ' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON + '" type="button">' +
         '<span class="glyphicon glyphicon-cog"></span>Advanced options</button>' +
@@ -140,17 +131,11 @@ A.FormBuilderFieldBase.prototype = {
      * @method renderBasicSettings
      */
     renderBasicSettings: function() {
-        var currentNode,
+        var currentNode = this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_CONTENT),
             i,
             settings = this._getSettings();
 
-        currentNode = this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_LEFT);
-
         for (i = 0; i < settings.length; i++) {
-            if (i === this.SETTINGS_DIVIDER_POSITION) {
-                currentNode = this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_RIGHT_CONTENT);
-            }
-
             this.renderSetting(settings[i], currentNode);
         }
     },
@@ -296,6 +281,7 @@ A.FormBuilderFieldBase.prototype = {
     _expandModalContent: function() {
         this._advancedSettingsToggler.set('expanded', !this._advancedSettingsToggler.get('expanded'));
         this._advancedSettingsToggler.get('content').setStyle('marginTop', '');
+console.log('modal', this._fieldSettingsModal);
     },
 
     /**
@@ -384,8 +370,8 @@ A.FormBuilderFieldBase.prototype = {
      */
     _toggleVisibilityOfModalContent: function() {
         this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON).toggleClass(CSS_HIDDEN);
-        this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_LEFT).toggleClass(CSS_HIDDEN_XS);
-        this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_RIGHT_CONTENT).toggleClass(CSS_HIDDEN_XS);
+        // this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_LEFT).toggleClass(CSS_HIDDEN_XS);
+        // this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_RIGHT_CONTENT).toggleClass(CSS_HIDDEN_XS);
 
         this.fire('contentToggle');
     },
