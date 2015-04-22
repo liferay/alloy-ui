@@ -85,22 +85,3 @@
 .form-builder-choose-col-move-target .form-builder-field-move-target-invalid {
     visibility: hidden;
 }
-
-.layout-builder-add-row-choose-row.form-builder-add-row-collapsed {
-    border-radius: 4px;
-    width: 49%;
-}
-
-.form-builder-add-page-break.form-builder-page-break-row-collapsed {
-    background-color: white;
-    border: 1px solid black;
-    float: right;
-    height: 50px;
-    text-align: center;
-    width: 49%;
-}
-
-.layout-builder-add-row-area-fixed .form-builder-page-break-row-collapsed {
-    height: auto;
-    padding: 0;
-}
