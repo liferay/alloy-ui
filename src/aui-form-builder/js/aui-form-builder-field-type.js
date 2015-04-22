@@ -41,6 +41,9 @@ A.FormBuilderFieldType = A.Base.create('form-builder-field-type', A.Base, [], {
             iconChange: this._afterIconChange,
             labelChange: this._afterLabelChange
         });
+
+        this.get('node').on('mouseleave', A.bind(this._onMouseLeave, this));
+        this.get('node').on('mouseover', A.bind(this._onMouseOver, this));
     },
 
     /**
@@ -90,6 +93,32 @@ A.FormBuilderFieldType = A.Base.create('form-builder-field-type', A.Base, [], {
         if (labelElement) {
             labelElement.setHTML(this.get('label'));
         }
+    },
+
+    /**
+     * Fire when `mouseleave` the field type.
+     *
+     * @method _onMouseLeave
+     * @protected
+     */
+   _onMouseLeave: function() {
+        var node = this.get('node');
+
+        node.one('.field-type-label').removeClass('field-type-label-mouse-over');
+        node.one('.field-type-icon').removeClass('field-type-icon-mouse-over');
+    },
+
+    /**
+     * Fire when `mouseover` the field type.
+     *
+     * @method _onMouseOver
+     * @protected
+     */
+   _onMouseOver: function() {
+        var node = this.get('node');
+
+        node.one('.field-type-label').addClass('field-type-label-mouse-over');
+        node.one('.field-type-icon').addClass('field-type-icon-mouse-over');
     },
 
     /**
