@@ -6,6 +6,7 @@
  */
 
 var CSS_FIELD_TYPE = A.getClassName('field', 'type'),
+    CSS_FIELD_TYPES_LABEL = A.getClassName('form', 'builder', 'field', 'types', 'label'),
     CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list');
 
 /**
@@ -20,6 +21,7 @@ var CSS_FIELD_TYPE = A.getClassName('field', 'type'),
 A.FormBuilderFieldTypes = function() {};
 
 A.FormBuilderFieldTypes.prototype = {
+    TPL_HEADER_LABEL: '<div class="' + CSS_FIELD_TYPES_LABEL + '">Add Field</div>',
 
     /**
      * Construction logic executed during the `A.FormBuilderFieldTypes`
@@ -208,7 +210,7 @@ A.FormBuilderFieldTypes.prototype = {
             centered: true,
             cssClass: 'form-builder-modal',
             draggable: false,
-            headerContent: 'Add Field',
+            headerContent: this.TPL_HEADER_LABEL,
             modal: true,
             resizable: false,
             toolbars: this._buildFieldTypesToolbarConfig(),

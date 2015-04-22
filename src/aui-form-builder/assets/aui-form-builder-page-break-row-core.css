@@ -5,7 +5,12 @@
 }
 
 .form-inline .form-control.form-builder-page-break-title {
+    color: #666;
     display: inline-block;
+    font-family: Helvetica;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 0;
     width: 95%;
 }
 

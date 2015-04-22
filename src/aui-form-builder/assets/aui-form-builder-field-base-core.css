@@ -30,8 +30,15 @@
 }
 
 .form-builder-field-settings-panel-advanced {
+    background-color: #f4f4f4;
     border-bottom: none;
-    padding: 10px 30px 0;
+    color: #54aaff;
+    font-family: "Helvetica Neue";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 28px;
+    padding-top: 2px;
+    text-align: center;
 }
 
 .form-builder-field-settings-panel-advanced-button {
