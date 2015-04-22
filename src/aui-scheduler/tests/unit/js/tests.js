@@ -455,10 +455,7 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should display events spanning into DST correctly in week view when last day of week is the first day under DST': function() {
-            var column1,
-                column1Events,
-                column2,
-                column2Events,
+            var columns,
                 schedulerEvents,
                 dstDate = this._getLocalTimeZoneDSTFirstDay(),
                 currentDate = DateMath.toMidnight(
@@ -491,23 +488,15 @@ YUI.add('module-tests', function(Y) {
                 '3 SchedulerEvent nodes should be in week view.'
             );
 
-            var columns = Y.all('.scheduler-view-day-table-colday');
-
-            column1 = columns.item(5);
-
-            column1Events = column1.all('.scheduler-event');
+            columns = Y.all('.scheduler-view-day-table-colday');
 
             Y.Assert.areEqual(
-                1, column1Events.size(),
+                1, columns.item(5).all('.scheduler-event').size(),
                 '1 SchedulerEvent node should be in column1Events column.'
             );
 
-            column2 = columns.item(6);
-
-            column2Events = column2.all('.scheduler-event');
-
             Y.Assert.areEqual(
-                2, column2Events.size(),
+                2, columns.item(6).all('.scheduler-event').size(),
                 '2 SchedulerEvent nodes should be in column2Events column.'
             );
         },
