@@ -17,8 +17,8 @@ var CSS_ADD_PAGE_BREAK = A.getClassName('form', 'builder', 'add', 'page', 'break
     CSS_LAYOUT_BUILDER_MOVE_CANCEL = A.getClassName('layout', 'builder', 'move', 'cancel'),
     CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode'),
 
-    SELECTOR_LAYOUT_BUILDER_ADD_ROW_CHOOSE_ROW = '.layout-builder-add-row-choose-row',
-    SELECTOR_LAYOUT_BUILDER_ADD_ROW = '.layout-builder-add-row';
+    SELECTOR_LAYOUT_BUILDER_ADD_ROW = '.layout-builder-add-row',
+    SELECTOR_LAYOUT_BUILDER_ADD_ROW_CHOOSE_ROW = '.layout-builder-add-row-choose-row';
 
 /**
  * `A.FormBuilder` extension, which handles the `A.LayoutBuilder` inside it.
@@ -295,6 +295,7 @@ A.FormBuilderLayoutBuilder.prototype = {
      *
      * @method _copyLastRow
      * @protected
+     * @return {A.LayoutRow}
      */
     _copyLastRow: function() {
         var cols = this._lastRow.get('cols'),
@@ -374,10 +375,11 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Gets the last row
+     * Gets the last row.
      *
      * @method _getLastRow
      * @protected
+     * @return {A.LayoutRow}
      */
     _getLastRow: function() {
         var rows = this.get('layout').get('rows');
@@ -403,7 +405,7 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Removes add row button
+     * Removes add row button.
      *
      * @method _removeAddRowButton
      * @protected
