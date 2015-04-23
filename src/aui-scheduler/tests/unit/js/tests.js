@@ -502,12 +502,14 @@ YUI.add('aui-scheduler-tests', function(Y) {
 
         'should display events spanning into DST correctly in week view when last day of week is the first day under DST': function() {
             var columns,
-                schedulerEvents,
-                dstDate = this._getLocalTimeZoneDSTFirstDay(),
-                currentDate = DateMath.toMidnight(
-                    DateMath.subtract(dstDate, DateMath.DAY, 1)),
-                previousDate = DateMath.toMidnight(
-                    DateMath.subtract(dstDate, DateMath.DAY, 2));
+            	currentDate,
+            	dstDate,
+                previousDate,
+                schedulerEvents;
+
+            dstDate = this._getLocalTimeZoneDSTFirstDay(),
+            currentDate = DateMath.toMidnight(DateMath.subtract(dstDate, DateMath.DAY, 1)),
+            previousDate = DateMath.toMidnight(DateMath.subtract(dstDate, DateMath.DAY, 2));
 
             this._createScheduler({
                 activeView: this._weekView,
