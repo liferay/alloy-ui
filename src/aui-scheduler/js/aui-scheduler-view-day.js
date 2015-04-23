@@ -745,7 +745,7 @@ var SchedulerDayView = A.Component.create({
             var viewDate = DateMath.safeClearTime(
                 instance.get('scheduler').get('viewDate'));
 
-            return DateMath.getDayOffset(
+            return DateMath.countDays(
                 DateMath.safeClearTime(date), viewDate);
         },
 

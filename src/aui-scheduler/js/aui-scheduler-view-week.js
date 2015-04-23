@@ -137,7 +137,7 @@ var SchedulerWeekView = A.Component.create({
         getNextDate: function() {
             var instance = this;
             var scheduler = instance.get('scheduler');
-            var viewDate = scheduler.get('viewDate');
+            var viewDate = DateMath.safeClearTime(scheduler.get('viewDate'));
 
             return DateMath.toLastHour(DateMath.add(viewDate, DateMath.WEEK, 1));
         },

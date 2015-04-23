@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1893](https://issues.liferay.com/browse/AUI-1893) Wrong display of recurrent overnight events in week view in the last day of first week under DST
 * [AUI-1880](https://issues.liferay.com/browse/AUI-1880) Overlapping events don't show up correctly
 * [AUI-1871](https://issues.liferay.com/browse/AUI-1871) In month view, popover does not update values if an event was previously displayed
 
