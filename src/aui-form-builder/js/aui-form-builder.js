@@ -278,8 +278,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         var field = event.field;
 
         if (this._newFieldContainer) {
-            this._handleCreateEvent(field);
-
             if (A.instanceOf(this._newFieldContainer, A.LayoutCol)) {
                 this._newFieldContainer.set('value', field);
             }
@@ -297,6 +295,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
             this.get('layout').normalizeColsHeight(new A.NodeList(field.get('content').ancestor('.layout-row')));
         }
 
+        this._handleCreateEvent(field);
         this.disableUniqueFieldType(field);
     },
 
