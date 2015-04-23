@@ -17,7 +17,8 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 'should display event in month view in the week DST begins': NO_DST_OFFSET,
                 'should display event in month view in the last day of first week under DST': NO_DST_OFFSET,
                 'should not display "Show n more" link with only two events': NO_DST_OFFSET,
-                'should display last day of event spanning to DST from one week before': NO_DST_OFFSET
+                'should display last day of event spanning to DST from one week before': NO_DST_OFFSET,
+                'should display events spanning into DST correctly in week view when last day of week is the first day under DST': NO_DST_OFFSET
             }
         },
 
@@ -496,6 +497,55 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 formattedSecondDay,
                 Y.one('.scheduler-event-recorder-date').get('text'),
                 'The recorder date should NOT display the second day'
+            );
+        },
+
+        'should display events spanning into DST correctly in week view when last day of week is the first day under DST': function() {
+            var columns,
+            	currentDate,
+            	dstDate,
+                previousDate,
+                schedulerEvents;
+
+            dstDate = this._getLocalTimeZoneDSTFirstDay(),
+            currentDate = DateMath.toMidnight(DateMath.subtract(dstDate, DateMath.DAY, 1)),
+            previousDate = DateMath.toMidnight(DateMath.subtract(dstDate, DateMath.DAY, 2));
+
+            this._createScheduler({
+                activeView: this._weekView,
+                date: previousDate,
+                firstDayOfWeek: dstDate.getDay(),
+                items: [
+                    {
+                        content: 'Event 1',
+                        startDate: DateMath.add(new Date(previousDate.getTime()), DateMath.HOUR, 23),
+                        endDate: DateMath.add(new Date(previousDate.getTime()), DateMath.HOUR, 25)
+                    },
+                    {
+                        content: 'Event 2',
+                        startDate: DateMath.add(new Date(currentDate.getTime()), DateMath.HOUR, 23),
+                        endDate: DateMath.add(new Date(currentDate.getTime()), DateMath.HOUR, 25)
+                    }
+                ]
+            });
+
+            schedulerEvents = Y.all('.scheduler-event');
+
+            Y.Assert.areEqual(
+                3, schedulerEvents.size(),
+                '3 SchedulerEvent nodes should be in week view.'
+            );
+
+            columns = Y.all('.scheduler-view-day-table-colday');
+
+            Y.Assert.areEqual(
+                1, columns.item(5).all('.scheduler-event').size(),
+                '1 SchedulerEvent node should be in column1Events column.'
+            );
+
+            Y.Assert.areEqual(
+                2, columns.item(6).all('.scheduler-event').size(),
+                '2 SchedulerEvent nodes should be in column2Events column.'
             );
         },
 
