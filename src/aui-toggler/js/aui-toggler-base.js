@@ -444,7 +444,14 @@ var Toggler = A.Component.create({
          * @protected
          */
         _uiSetExpanded: function(val) {
-            var instance = this;
+            var instance = this,
+                content = instance.get('content');
+
+            if (val && !instance.wrapped) {
+                content.wrap(TPL_CONTENT_WRAPPER);
+
+                instance.wrapped = true;
+            }
 
             instance.get('content').replaceClass(CSS_TOGGLER_CONTENT_STATE[!val], CSS_TOGGLER_CONTENT_STATE[val]);
             instance.get('header').replaceClass(CSS_TOGGLER_HEADER_STATE[!val], CSS_TOGGLER_HEADER_STATE[val]);
