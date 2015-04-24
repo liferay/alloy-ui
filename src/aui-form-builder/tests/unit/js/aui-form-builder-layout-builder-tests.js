@@ -97,41 +97,6 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             windowNode.get = originalWinGet;
         },
 
-        'should put add page break in the same container of add row button': function() {
-            var instance = this,
-                layout;
-
-            this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.LAYOUT
-            });
-
-            this._mockWindowInnerWidth(500);
-
-            layout = this._formBuilder.get('layout');
-            Y.Assert.areEqual(2, Y.one('.layout-builder-add-row-area').get('children').size());
-
-            if (Y.UA.ie === 8) {
-                // Can't simulate a resize on IE8's window object, so
-                // calling the function directly here.
-                layout._handleResponsive(windowNode).get('innerWidth');
-            }
-            else {
-                windowNode.simulate('resize');
-            }
-
-            this.wait(function() {
-                Y.Assert.isNull(Y.one('.layout-builder-add-row-area'));
-
-                instance._mockWindowInnerWidth(desktopDefaultSize);
-                windowNode.simulate('resize');
-
-                this.wait(function() {
-                    Y.Assert.areEqual(2, Y.one('.layout-builder-add-row-area').get('children').size());
-                    instance._resetWindowGet();
-                }, Y.config.windowResizeDelay || 100);
-            }, Y.config.windowResizeDelay || 100);
-        },
-
         'should the row height adjust on form builder mode change': function() {
             var height;
 
@@ -266,7 +231,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             this._createFormBuilder();
 
             rowNodes = this._formBuilder.get('contentBox').all('.layout-row');
-            Y.Assert.areEqual(2, rowNodes.size());
+            Y.Assert.areEqual(3, rowNodes.size());
 
             this._formBuilder.set('layout', new Y.Layout());
             rowNodes = this._formBuilder.get('contentBox').all('.layout-row');
@@ -502,6 +467,41 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 return node.getStyle('visibility') !== 'hidden' && node.getStyle('display') !== 'none';
             });
             Y.Assert.areEqual(1, visibleTargets.size());
+        },
+
+        'should always have an empty row in the last position': function() {
+            this._formBuilder = new Y.FormBuilder().render('#container');
+
+            Y.Assert.areEqual(2, this._formBuilder.get('layout').get('rows').length);
+        },
+
+        'should add a new empty row with the same layout as the last row when a new field is created in the last row': function() {
+            this._formBuilder = new Y.FormBuilder({ fieldTypes: [
+                {
+                    defaultConfig: {
+                        title: 'Title'
+                    },
+                    fieldClass: Y.FormBuilderFieldSentence,
+                    label: 'Sentence'
+                },
+                {
+                    defaultConfig: {
+                        title: 'Title'
+                    },
+                    fieldClass: Y.FormBuilderFieldText,
+                    label: 'Text'
+                }
+            ] }).render('#container');
+
+            Y.Assert.areEqual(2, this._formBuilder.get('layout').get('rows').length);
+
+            Y.one('.glyphicon-plus.form-builder-empty-col-icon').simulate('click');
+            Y.one('.modal-content .field-type').simulate('click');
+            Y.one('.text-data-editor input.form-control').set('value', 'foo');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+            Y.one('.form-builder-field-settings-save').simulate('click');
+
+            Y.Assert.areEqual(3, this._formBuilder.get('layout').get('rows').length);
         }
     }));
 

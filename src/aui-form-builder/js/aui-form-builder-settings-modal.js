@@ -117,7 +117,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
             firstInput.focus();
         }
 
-        this._eventToggleAdvancedContent = field.on('contentToggle', A.bind(this._updateSmallScreenButtons, this));
+        this._eventToggleAdvancedContent = field.on('contentToggle', A.bind(this._updateModalOnContentToggle, this));
 
         this._fieldBeingEdited = field;
     },
@@ -214,12 +214,13 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
     },
 
     /**
-     * Toggle back and close button on small screen.
+     * Toggle back and close button on small screen and update Modal height.
      *
-     * @method _updateSmallScreenButtons
+     * @method _updateModalOnContentToggle
      * @protected
      */
-    _updateSmallScreenButtons: function() {
+    _updateModalOnContentToggle: function() {
+        this._modal.align();
         this._smallScreenHeader.one('.' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_BACK).toggleClass('hide');
         this._smallScreenHeader.one('.' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CLOSE).toggleClass('hidden');
     }
