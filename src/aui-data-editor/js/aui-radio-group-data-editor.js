@@ -8,8 +8,7 @@ var CSS_EDITOR = A.getClassName('radio', 'group', 'data', 'editor'),
     CSS_EDITOR_RADIO_BUTTON = A.getClassName('radio', 'group', 'data', 'editor', 'button'),
     CSS_EDITOR_RADIO_CONTENT = A.getClassName('radio', 'group', 'data', 'editor', 'content'),
     CSS_EDITOR_RADIO_ELEMENT = A.getClassName('radio', 'group', 'data', 'editor', 'element'),
-    CSS_EDITOR_RADIO_ELEMENTS_INLINE =
-        A.getClassName('radio', 'group', 'data', 'editor', 'elements', 'inline'),
+    CSS_EDITOR_RADIO_ELEMENTS_INLINE = A.getClassName('radio', 'group', 'data', 'editor', 'elements', 'inline'),
     CSS_EDITOR_RADIO_INLINE = A.getClassName('radio', 'group', 'data', 'editor', 'inline');
 
 /**
@@ -133,10 +132,12 @@ A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, 
 
         if (inline) {
             node.one('.' + CSS_EDITOR_RADIO_CONTENT).addClass(CSS_EDITOR_RADIO_ELEMENTS_INLINE);
+
             node.all('.' + CSS_EDITOR_RADIO_ELEMENT).addClass(CSS_EDITOR_RADIO_INLINE);
         }
         else {
             node.one('.' + CSS_EDITOR_RADIO_CONTENT).removeClass(CSS_EDITOR_RADIO_ELEMENTS_INLINE);
+
             node.all('.' + CSS_EDITOR_RADIO_ELEMENT).removeClass(CSS_EDITOR_RADIO_INLINE);
         }
     },
