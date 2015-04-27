@@ -7,7 +7,9 @@
 var CSS_EDITOR = A.getClassName('radio', 'group', 'data', 'editor'),
     CSS_EDITOR_RADIO_BUTTON = A.getClassName('radio', 'group', 'data', 'editor', 'button'),
     CSS_EDITOR_RADIO_CONTENT = A.getClassName('radio', 'group', 'data', 'editor', 'content'),
-    CSS_EDITOR_RADIO_ELEMENT = A.getClassName('radio', 'group', 'data', 'editor', 'element');
+    CSS_EDITOR_RADIO_ELEMENT = A.getClassName('radio', 'group', 'data', 'editor', 'element'),
+    CSS_EDITOR_RADIO_ELEMENTS_INLINE = A.getClassName('radio', 'group', 'data', 'editor', 'elements', 'inline'),
+    CSS_EDITOR_RADIO_INLINE = A.getClassName('radio', 'group', 'data', 'editor', 'inline');
 
 /**
  * A base class for Radio Group Data Editor.
@@ -35,8 +37,10 @@ A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, 
     initializer: function() {
         this._uiSetRadioLabels(this.get('radioLabels'));
         this._uiSetEditedValue(this.get('editedValue'));
+        this._uiSetInline(this.get('inline'));
 
         this.after('editedValueChange', this._afterEditedValueChange);
+        this.after('inlineChange', this._afterInlineChange);
         this.after('radioLabelsChange', this._afterRadioLabelsChange);
         this.get('node').delegate('click', A.bind(this._onClickRadioButton, this), '.' + CSS_EDITOR_RADIO_BUTTON);
     },
@@ -49,6 +53,16 @@ A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, 
      */
     _afterEditedValueChange: function() {
         this._uiSetEditedValue(this.get('editedValue'));
+    },
+
+    /**
+     * Fired after the `inline` attribute is set.
+     *
+     * @method _afterInlineChange
+     * @protected
+     */
+    _afterInlineChange: function() {
+        this._uiSetInline(this.get('inline'));
     },
 
     /**
@@ -107,6 +121,28 @@ A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, 
     },
 
     /**
+     * Updates the ui according to the value of the `editedValue` attribute.
+     *
+     * @method _uiSetInline
+     * @param {Boolean} inline
+     * @protected
+     */
+    _uiSetInline: function(inline) {
+        var node = this.get('node');
+
+        if (inline) {
+            node.one('.' + CSS_EDITOR_RADIO_CONTENT).addClass(CSS_EDITOR_RADIO_ELEMENTS_INLINE);
+
+            node.all('.' + CSS_EDITOR_RADIO_ELEMENT).addClass(CSS_EDITOR_RADIO_INLINE);
+        }
+        else {
+            node.one('.' + CSS_EDITOR_RADIO_CONTENT).removeClass(CSS_EDITOR_RADIO_ELEMENTS_INLINE);
+
+            node.all('.' + CSS_EDITOR_RADIO_ELEMENT).removeClass(CSS_EDITOR_RADIO_INLINE);
+        }
+    },
+
+    /**
      * Updates the ui according to the value of the `radioLabels` attribute.
      *
      * @method _uiSetRadioLabels
@@ -147,6 +183,17 @@ A.RadioGroupDataEditor = A.Base.create('radio-group-data-editor', A.DataEditor, 
                 return val >= 0 && val < this.get('radioLabels').length;
             },
             value: 0
+        },
+
+        /**
+         * Determines if the radio elements are inline or not.
+         *
+         * @attribute inline
+         * @default false
+         * @type Boolena
+         */
+        inline: {
+            value: false
         },
 
         /**

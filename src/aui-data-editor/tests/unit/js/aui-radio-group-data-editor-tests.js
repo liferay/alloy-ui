@@ -105,6 +105,24 @@ YUI.add('aui-radio-group-data-editor-tests', function(Y) {
 
             this._radioGroupDataEditor.set('originalValue', 2);
             Y.Assert.areEqual(2, this._radioGroupDataEditor.get('originalValue'));
+        },
+
+        'should set the inline attribute': function () {
+            var editor = this._radioGroupDataEditor,
+                radioElement = editor.get('node').all('.radio-group-data-editor-element'),
+                radioContent = editor.get('node').one('.radio-group-data-editor-content');
+
+            Y.Assert.isFalse(radioContent.hasClass('radio-group-data-editor-elements-inline'));
+            Y.Assert.isFalse(radioElement.item(0).hasClass('radio-group-data-editor-inline'));
+            Y.Assert.isFalse(radioElement.item(1).hasClass('radio-group-data-editor-inline'));
+            Y.Assert.isFalse(radioElement.item(2).hasClass('radio-group-data-editor-inline'));
+
+            editor.set('inline', true);
+
+            Y.Assert.isTrue(radioContent.hasClass('radio-group-data-editor-elements-inline'));
+            Y.Assert.isTrue(radioElement.item(0).hasClass('radio-group-data-editor-inline'));
+            Y.Assert.isTrue(radioElement.item(1).hasClass('radio-group-data-editor-inline'));
+            Y.Assert.isTrue(radioElement.item(2).hasClass('radio-group-data-editor-inline'));
         }
     }));
 

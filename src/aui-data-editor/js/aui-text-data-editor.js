@@ -4,7 +4,8 @@
  * @module aui-text-data-editor
  */
 
-var CSS_TEXT_DATA_EDITOR = A.getClassName('text', 'data', 'editor');
+var CSS_TEXT_DATA_EDITOR = A.getClassName('text', 'data', 'editor'),
+    CSS_TEXT_DATA_EDITOR_INPUT = A.getClassName('text', 'data', 'editor', 'input');
 
 /**
  * A base class for Text Data Editor.
@@ -17,7 +18,7 @@ var CSS_TEXT_DATA_EDITOR = A.getClassName('text', 'data', 'editor');
  */
 A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
     TPL_EDITOR_CONTENT: '<div class="' + CSS_TEXT_DATA_EDITOR + '">' +
-        '<input type="text" class="form-control"></input></div>',
+        '<input type="text" class="' + CSS_TEXT_DATA_EDITOR_INPUT + ' form-control"></input></div>',
 
     /**
      * Constructor for the `A.TextDataEditor`. Lifecycle.

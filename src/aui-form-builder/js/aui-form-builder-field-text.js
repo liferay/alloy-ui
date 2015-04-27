@@ -34,6 +34,7 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormFieldTex
             {
                 attrName: 'type',
                 editor: new A.RadioGroupDataEditor({
+                    inlineElements: true,
                     radioLabels: ['Singleline', 'Multiline'],
                     label: 'My text field type is:'
                 })

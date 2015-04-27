@@ -88,6 +88,40 @@ YUI.add('aui-form-builder-field-type-tests', function(Y) {
 
             this._fieldType.set('unique', false);
             Y.Assert.isFalse(this._fieldType.get('unique'));
+        },
+
+        'should add class on mouse over': function () {
+            var iconTest = 'icon-test',
+                label = 'label-test';
+
+            this._fieldType.set('icon', iconTest);
+            this._fieldType.set('label', label);
+
+            Y.Assert.isFalse(Y.one('.field-type-label').hasClass('field-type-label-mouse-over'));
+            Y.Assert.isFalse(Y.one('.field-type-icon').hasClass('field-type-icon-mouse-over'));
+
+            Y.one('.field-type').simulate('mouseover');
+
+            Y.Assert.isTrue(Y.one('.field-type-label').hasClass('field-type-label-mouse-over'));
+            Y.Assert.isTrue(Y.one('.field-type-icon').hasClass('field-type-icon-mouse-over'));
+        },
+
+        'should remove class on mouse out': function () {
+            var iconTest = 'icon-test',
+                label = 'label-test';
+
+            this._fieldType.set('icon', iconTest);
+            this._fieldType.set('label', label);
+            Y.one('.field-type').simulate('mouseover');
+
+            Y.Assert.isTrue(Y.one('.field-type-label').hasClass('field-type-label-mouse-over'));
+            Y.Assert.isTrue(Y.one('.field-type-icon').hasClass('field-type-icon-mouse-over'));
+
+            Y.one('.field-type').simulate('mouseout');
+            this._fieldType._onMouseLeave();
+
+            Y.Assert.isFalse(Y.one('.field-type-label').hasClass('field-type-label-mouse-over'));
+            Y.Assert.isFalse(Y.one('.field-type-icon').hasClass('field-type-icon-mouse-over'));
         }
 
     }));
@@ -95,7 +129,7 @@ YUI.add('aui-form-builder-field-type-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-form-builder-field-type', 'test'],
+    requires: ['aui-form-builder-field-type', 'node-event-simulate', 'test'],
     test: function(Y) {
         return Y.UA.ie === 0 || Y.UA.ie > 8;
     }

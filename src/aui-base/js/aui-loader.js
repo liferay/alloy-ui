@@ -1526,7 +1526,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-data-editor",
             "node-event-delegate"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-rating": {
         "use": [
@@ -1822,7 +1823,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-data-editor",
             "event-valuechange"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-text-data-unicode": {
         "requires": [
@@ -2120,4 +2122,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'ff975ab6707e2d65ba97c97bfb38d3f1';
+YUI.Env[Y.version].md5 = 'f9386883099436dff0f09e650f9535fc';

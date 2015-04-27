@@ -29,7 +29,8 @@
         "requires": [
             "aui-data-editor",
             "node-event-delegate"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-scale-data-editor": {
         "requires": [
@@ -48,6 +49,7 @@
         "requires": [
             "aui-data-editor",
             "event-valuechange"
-        ]
+        ],
+        "skinnable": true
     }
 }
