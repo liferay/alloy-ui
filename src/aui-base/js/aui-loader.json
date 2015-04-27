@@ -1138,7 +1138,8 @@
         "requires": [
             "aui-data-editor",
             "node-event-delegate"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-rating": {
         "use": [
@@ -1377,7 +1378,8 @@
         "requires": [
             "aui-data-editor",
             "event-valuechange"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-text-data-unicode": {
         "requires": [
