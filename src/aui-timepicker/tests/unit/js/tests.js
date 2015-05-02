@@ -6,11 +6,17 @@ YUI.add('aui-timepicker-tests', function(Y) {
         name: 'Timepicker Tests',
 
         getLocalTime: function () {
-            var date = new Date(),
-                curTime = new Date(date.toUTCString(Date.now())),
-                hour = curTime.getHours(),
+            var curTime,
+                date,
+                hour,
                 localTime,
-                minutes = curTime.getMinutes();
+                minutes;
+
+            date = new Date();
+            curTime = new Date(date.toUTCString(Date.now()));
+
+            hour = curTime.getHours();
+            minutes = curTime.getMinutes();
 
             if (minutes > 44) {
                 hour += 1;
@@ -31,7 +37,8 @@ YUI.add('aui-timepicker-tests', function(Y) {
         },
 
         getScrolledOptTime: function (format, popoverBody) {
-            var offsetTop,
+            var currentOption,
+                offsetTop,
                 optionList,
                 scrollTop,
                 scrolledOptTime;
@@ -42,10 +49,12 @@ YUI.add('aui-timepicker-tests', function(Y) {
 
             if (optionList) {
                 for (var i = 0; i < optionList.size(); i++) {
-                    offsetTop = optionList.item(i).get('offsetTop');
+                    currentOption = optionList.item(i);
+
+                    offsetTop = currentOption.get('offsetTop');
 
                     if (offsetTop == scrollTop) {
-                        scrolledOptTime = Date.parse(Y.Date.parse(format, optionList.item(i).getHTML()));
+                        scrolledOptTime = Date.parse(Y.Date.parse(format, currentOption.getHTML()));
                     }
                 }
             }
@@ -62,25 +71,36 @@ YUI.add('aui-timepicker-tests', function(Y) {
         },
 
         selectTime: function(popoverBody, timeIndex) {
-            var timeOpts = popoverBody.all('.yui3-aclist-item'),
+            var select,
+                timeOpts;
+
+                timeOpts = popoverBody.all('.yui3-aclist-item');
+
                 select = timeOpts.item(timeIndex);
 
             select.simulate('click');
         },
 
         'timepicker should scroll to option nearest the current local time if input value is not defined': function() {
-            var timePicker = new Y.TimePicker({
+            var localTime,
+                mask,
+                popoverBody,
+                scrolledOptTime,
+                timePicker,
+                trigger;
+
+            timePicker = new Y.TimePicker({
                 popover: {
                     visible: true
                 },
                 trigger: '#trigger'
             });
 
-            var localTime,
-                mask = timePicker.get('mask'),
-                popoverBody = timePicker.getPopover().bodyNode,
-                scrolledOptTime,
-                trigger = Y.one('#trigger');
+            mask = timePicker.get('mask');
+
+            popoverBody = timePicker.getPopover().bodyNode;
+
+            trigger = Y.one('#trigger');
 
             localTime = this.getLocalTime();
 
@@ -94,18 +114,24 @@ YUI.add('aui-timepicker-tests', function(Y) {
         },
 
         'timepicker should scroll to the option nearest the time value in the input field when input value is defined': function() {
-            var timePicker = new Y.TimePicker({
+            var inputTime,
+                mask,
+                popoverBody,
+                scrolledOptTime,
+                timePicker,
+                trigger;
+
+            timePicker = new Y.TimePicker({
                 popover: {
                     visible: true
                 },
                 trigger: '#trigger1'
             });
 
-            var inputTime,
-                mask = timePicker.get('mask'),
-                popoverBody = timePicker.getPopover().bodyNode,
-                scrolledOptTime,
-                trigger = Y.one('#trigger1');
+            mask = timePicker.get('mask');
+            popoverBody = timePicker.getPopover().bodyNode;
+
+            trigger = Y.one('#trigger1');
 
             inputTime = Date.parse(Y.Date.parse(mask, trigger.get('value')));
 

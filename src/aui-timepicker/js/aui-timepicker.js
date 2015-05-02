@@ -53,15 +53,15 @@ TimePickerBase.ATTRS = {
     },
 
     /**
-     * If popover is initially scrolled to the time option nearest the timepicker's
-     * input time value or the time option nearest the current local time when no
-     * input time value is defined.
+     * Focus time picker to the time option nearest the timepicker's input time
+     * or the time option nearest the current local time when no input time
+     * is passed.
      *
-     * @attribute focusCurrentTime
+     * @attribute focusSelectedTime
      * @default true
      * @type {boolean}
      */
-    focusCurrentTime: {
+    focusSelectedTime: {
         validator: Lang.isBoolean,
         value: true
     },
@@ -172,15 +172,15 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * Triggers `_focusNearestTime` method.
+     * Triggers `_focusSelectedValue` method.
      *
-     * @method focusNearestValue
+     * @method focusCurrentValue
      */
-    focusNearestValue: function() {
+    focusSelectedValue: function() {
         var instance = this;
 
-        if (instance.get('focusCurrentTime')) {
-            instance._focusNearestTime();
+        if (instance.get('focusSelectedTime')) {
+            instance._focusSelectedValue();
         }
     },
 
@@ -211,17 +211,22 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * Gets the input time value if it exists and returns it as milliseconds since
-     * Jan 1, 1970. Otherwise it gets the current local time and returns it as
-     * milliseconds since Jan 1, 1970.
+     * Get the input time value if it exists or return the current local time
+     * in milliseconds
      *
      * @method getInputTime
-     * @return {Int} Current input or local time
+     * @return {Int} date
      */
     getInputTime: function() {
-        var date = new Date(),
-            curTime = Date.parse(date.toUTCString(date.getTime())),
-            instance = this,
+        var instance = this,
+            curTime,
+            date,
+            inputVal;
+
+            date = new Date();
+
+            curTime = Date.parse(date.toUTCString(date.getTime()));
+
             inputVal = instance.getParsedDatesFromInputValue();
 
         if (inputVal) {
@@ -291,25 +296,34 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
-     * Scrolls time list to option nearest the current input time or local time.
+     * Select time nearest the current input time or local time.
      *
-     * @method _focusNearestTime
+     * @method focusSelectedValue
      * @protected
      */
-    _focusNearestTime: function() {
-        var deltaTime,
-            instance = this,
-            curTime = instance.getInputTime(),
-            mask = instance.get('mask'),
+    _focusSelectedValue: function() {
+        var instance = this,
+            deltaTime,
+            curTime,
+            mask,
             nodeTime,
-            popoverBody = instance.getPopover().bodyNode,
+            nodeList,
+            popoverBody,
             previousTime,
-            nodeList = popoverBody.all('.yui3-aclist-item'),
             targetNode,
-            timeVals = instance.get('values'),
+            timeVals,
             topOffset;
 
+            popoverBody = instance.getPopover().bodyNode;
+
+            nodeList = popoverBody.all('.yui3-aclist-item');
+
         if (!nodeList.isEmpty()) {
+            curTime = instance.getInputTime();
+
+            mask = instance.get('mask');
+            timeVals = instance.get('values');
+
             targetNode = nodeList.item(0);
 
             previousTime = (curTime * 2);
