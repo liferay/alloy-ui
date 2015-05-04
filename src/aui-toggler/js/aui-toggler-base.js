@@ -204,12 +204,17 @@ var Toggler = A.Component.create({
          * @protected
          */
         initializer: function() {
-            var instance = this;
+            var instance = this,
+            expanded = instance.get('expanded');
 
             instance.bindUI();
             instance.syncUI();
 
-            instance._uiSetExpanded(instance.get('expanded'));
+            instance._uiSetExpanded(expanded);
+
+            if (expanded && !instance.wrapped) {
+                instance._uiSetExpandedContent();
+            }
         },
 
         /**
@@ -444,10 +449,6 @@ var Toggler = A.Component.create({
         _uiSetExpanded: function(val) {
             var instance = this,
                 content = instance.get('content');
-
-            if (val && !instance.wrapped) {
-                instance._uiSetExpandedContent();
-            }
 
             instance.get('content').replaceClass(CSS_TOGGLER_CONTENT_STATE[!val], CSS_TOGGLER_CONTENT_STATE[val]);
             instance.get('header').replaceClass(CSS_TOGGLER_HEADER_STATE[!val], CSS_TOGGLER_HEADER_STATE[val]);

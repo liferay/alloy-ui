@@ -88,9 +88,13 @@ YUI.add('aui-toggler-base-tests', function(Y) {
         },
 
         'should wrap content when expanded is set to true': function() {
-            var toggler = this._toggler;
+            this.createToggler({
+                content: '.content',
+                expanded: true,
+                header: '.accordion-heading'
+            });
 
-            toggler.set('expanded' , true);
+            var toggler = this._toggler;
 
             Y.Assert.isTrue(toggler.wrapped);
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'));
