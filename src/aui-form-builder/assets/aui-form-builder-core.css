@@ -206,16 +206,66 @@
 
 .form-builder-empty-col {
     cursor: pointer;
-    padding-top: 95px;
+    height: 100%;
+    position: relative;
     text-align: center;
 }
 
-.form-builder-empty-col .form-builder-empty-col-icon {
-    font-size: 40px;
+.form-builder-empty-col-add-button {
+    font: 33px sans-serif;
+    height: 34px;
+    margin-top: -17px;
+    outline: none;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+    z-index: 1;
 }
 
-.form-builder-empty-col .form-builder-empty-col-label {
-    font-size: 15px;
+.form-builder-empty-col-add-button:before {
+    border-top: 2px solid #cce4ff;
+    bottom: 0;
+    content: "";
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 95%;
+    z-index: -1;
+}
+
+.form-builder-empty-col-add-button .form-builder-empty-col-circle {
+    background: #FFFFFF;
+    border-radius: 50%;
+    border: 1px solid #0078ff;
+    display: inline-block;
+    height: 34px;
+    width: 34px;
+}
+
+.form-builder-empty-col-add-button .form-builder-empty-col-icon {
+    background: #219fff;
+    height: 15px;
+    left: 50%;
+    margin-left: -0.5px;
+    margin-top: -7.5px;
+    position: absolute;
+    top: 50%;
+    width: 1px;
+}
+
+.form-builder-empty-col-add-button .form-builder-empty-col-icon:before {
+    background: #219fff;
+    content: "";
+    height: 1px;
+    left: 50%;
+    margin-left: -7.5px;
+    margin-top: -0.5px;
+    position: absolute;
+    top: 50%;
+    width: 15px;
 }
 
 .form-builder-add-page-break {
