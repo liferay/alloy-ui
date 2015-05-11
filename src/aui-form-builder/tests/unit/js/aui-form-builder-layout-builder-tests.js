@@ -500,7 +500,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             Y.Assert.areEqual(1, this._formBuilder.get('layouts')[0].get('rows').length);
 
-            Y.one('.glyphicon-plus.form-builder-empty-col-icon').simulate('click');
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
             Y.one('.modal-content .field-type').simulate('click');
             Y.one('.text-data-editor input.form-control').set('value', 'foo');
             Y.one('.form-builder-field-settings-save').simulate('click');
