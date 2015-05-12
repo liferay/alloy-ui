@@ -165,18 +165,18 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
         this._modal.addToolbar(
             [
                 {
-                    cssClass: CSS_FIELD_SETTINGS_CANCEL,
-                    label: 'Cancel',
-                    on: {
-                        click: A.bind(this.hide, this)
-                    },
-                    render: true
-                },
-                {
                     cssClass: CSS_FIELD_SETTINGS_SAVE,
                     label: 'Save',
                     on: {
                         click: A.bind(this._save, this)
+                    },
+                    render: true
+                },
+                {
+                    cssClass: CSS_FIELD_SETTINGS_CANCEL,
+                    label: 'Cancel',
+                    on: {
+                        click: A.bind(this.hide, this)
                     },
                     render: true
                 }
