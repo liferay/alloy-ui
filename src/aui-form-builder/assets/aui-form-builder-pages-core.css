@@ -1,0 +1,18 @@
+.form-inline .form-builder-page-header-title-hide-border {
+	box-shadow: none;
+    border-width: 1px;
+    border-color: transparent;
+}
+
+.form-inline .form-builder-page-header-title {
+    display: inline-block;
+    width: 95%;
+}
+
+.form-builder-page-break-title-edit-icon {
+    width: 3%;
+}
+
+.form-builder-page-header.form-inline {
+    padding: 0 10px;
+}

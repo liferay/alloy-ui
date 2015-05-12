@@ -19,13 +19,10 @@ YUI({ filter:'raw' }).use(
     'aui-form-builder-field-text',
     'aui-form-builder-field-sentence',
     'aui-form-builder-page-break-row',
+    'aui-form-builder-pages',
     function(Y) {
         var layout = new Y.Layout({
             rows: [
-                new Y.FormBuilderPageBreakRow({
-                    index: 1,
-                    quantity: 2
-                }),
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
@@ -57,10 +54,6 @@ YUI({ filter:'raw' }).use(
                         })
                     ]
                 }),
-                new Y.FormBuilderPageBreakRow({
-                    index: 2,
-                    quantity: 2
-                }),
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
@@ -90,6 +83,23 @@ YUI({ filter:'raw' }).use(
             ]
         });
 
+        var layout2 = new Y.Layout({
+            rows: [
+                new Y.LayoutRow({
+                    cols: [
+                        new Y.LayoutCol({
+                            movableContent: false,
+                            size: 12,
+                            value: new Y.FormBuilderFieldText({
+                                help: 'Type your full name here',
+                                title: 'What\'s your name?'
+                            })
+                        })
+                    ]
+                })
+            ]
+        });
+
         new Y.FormBuilder({
             fieldTypes: [{
                 fieldClass: Y.FormBuilderFieldSentence,
@@ -104,7 +114,7 @@ YUI({ filter:'raw' }).use(
                 icon:'glyphicon glyphicon-font',
                 label: 'Text'
             }],
-            layout: layout
+            layouts: [layout, layout2]
         }).render('#formBuilder');
     }
 );
