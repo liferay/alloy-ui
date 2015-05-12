@@ -32,8 +32,12 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
         this.input_ = node.one('.form-control');
         this.input_.after('valuechange', A.bind(this._onValueChange, this));
 
-        this.after('editedValueChange', this._afterEditedValueChange);
+        this.after({
+            editedValueChange: this._afterEditedValueChange,
+            placeholderChange: this._afterPlaceholderChange
+        });
         this._uiSetEditedValue(this.get('editedValue'));
+        this._uiSetPlaceholder(this.get('placeholder'));
     },
 
     /**
@@ -71,6 +75,16 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
     },
 
     /**
+     * Fired after the `placeholder` attribute is set.
+     *
+     * @method _afterPlaceholderChange
+     * @protected
+     */
+    _afterPlaceholderChange: function() {
+        this._uiSetPlaceholder(this.get('placeholder'));
+    },
+
+    /**
      * Fired when the input's value changes.
      *
      * @method _onValueChange
@@ -89,6 +103,19 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
      */
     _uiSetEditedValue: function(editedValue) {
         this.input_.set('value', editedValue);
+    },
+
+    /**
+     * Updates the ui according to the value of the `placeholder` attribute.
+     *
+     * @method _uiSetPlaceholder
+     * @param {String} placeholder
+     * @protected
+     */
+    _uiSetPlaceholder: function(placeholder) {
+        var inputNode = this.get('node').one('.' + CSS_TEXT_DATA_EDITOR_INPUT);
+
+        inputNode.setAttribute('placeholder', placeholder);
     }
 }, {
     /**
@@ -119,6 +146,18 @@ A.TextDataEditor = A.Base.create('text-data-editor', A.DataEditor, [], {
          * @type String
          */
         originalValue: {
+            value: ''
+        },
+
+        /**
+         * The placeholder text to be used on the Text Data Editor input.
+         *
+         * @attribute placeholder
+         * @default ''
+         * @type String
+         */
+        placeholder: {
+            validator: A.Lang.isString,
             value: ''
         }
     }

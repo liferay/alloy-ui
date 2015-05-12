@@ -57,6 +57,16 @@ YUI.add('aui-text-data-editor-tests', function(Y) {
 
             editor.set('editedValue', 'Atari Force');
             Y.Assert.isTrue(editor.isValid());
+        },
+
+        'should render a placeholder on text input according to placeholder attribute': function() {
+            var editor = new Y.TextDataEditor(),
+                fieldNode = editor.get('node');
+
+            Y.Assert.areEqual(fieldNode.one('input[type="text"]').getAttribute('placeholder'), '');
+
+            editor.set('placeholder', 'Blob');
+            Y.Assert.areEqual(fieldNode.one('input[type="text"]').getAttribute('placeholder'), 'Blob');
         }
     }));
 

@@ -318,14 +318,15 @@ A.FormBuilderFieldBase.prototype = {
                 {
                     attrName: 'title',
                     editor: new A.TextDataEditor({
-                        label: 'Type your question here',
+                        label: 'Question',
+                        placeholder: 'Type your question here',
                         required: true
                     })
                 },
                 {
                     attrName: 'help',
                     editor: new A.TextDataEditor({
-                        label: 'Help text...'
+                        label: 'Help text'
                     })
                 }
             ];

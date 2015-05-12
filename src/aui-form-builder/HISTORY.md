@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1904](https://issues.liferay.com/browse/AUI-1904) Update textual content on Field Text
 * [AUI-1902](https://issues.liferay.com/browse/AUI-1902) Form Builder fields toolbar buttons should not submit the form (reload the page) after clicked
 * [AUI-1899](https://issues.liferay.com/browse/AUI-1899) Improve Form Builder visual interface
 * [AUI-1866](https://issues.liferay.com/browse/AUI-1866) New line should be automatically added when a field is added on the last empty line
