@@ -46,7 +46,9 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         '<a>Edit Layout</a></div>',
     TPL_EMPTY_COL: '<div class="' + CSS_EMPTY_COL + '">' +
         '<div class="' + CSS_EMPTY_COL_ADD_BUTTON + '" tabindex="9">' +
-        '<span class="' + CSS_EMPTY_COL_CIRCLE + '"><span class="' + CSS_EMPTY_COL_ICON + '"></span>' +
+        '<span class="' + CSS_EMPTY_COL_CIRCLE + '">' +
+        '<span class="' + CSS_EMPTY_COL_ICON + '"></span>' +
+        '</span>' +
         '<button class="' + CSS_FIELD_MOVE_TARGET +
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
         'Paste here</button>' +
