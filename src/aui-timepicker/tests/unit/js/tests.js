@@ -53,7 +53,7 @@ YUI.add('aui-timepicker-tests', function(Y) {
 
                     offsetTop = currentOption.get('offsetTop');
 
-                    if (offsetTop == scrollTop) {
+                    if (offsetTop === scrollTop) {
                         scrolledOptTime = Date.parse(Y.Date.parse(format, currentOption.getHTML()));
                     }
                 }
@@ -62,7 +62,7 @@ YUI.add('aui-timepicker-tests', function(Y) {
             if (!scrolledOptTime) {
                 popoverBody.set('scrollTop', (scrollTop + 1));
 
-                if (scrollTop == popoverBody.get('scrollTop')) {
+                if (scrollTop === popoverBody.get('scrollTop')) {
                     scrolledOptTime = this.getLocalTime();
                 }
             }
@@ -151,7 +151,11 @@ YUI.add('aui-timepicker-tests', function(Y) {
 
             timePicker.hide();
 
-            Y.Assert.areEqual(inputTime, scrolledOptTime, 'The timepicker did not scroll to the time matching the input value after a new time was chosen');
+            Y.Assert.areEqual(
+                inputTime,
+                scrolledOptTime,
+                'The timepicker did not scroll to the time matching the input value after a new time was chosen'
+            );
         }
     }));
 
