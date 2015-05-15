@@ -53,9 +53,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
         'Paste here</button>' +
         '</div>',
-    TPL_EMPTY_LAYOUT: '<div class="' + CSS_EMPTY_LAYOUT + '">' +
-        '<div>You don\'t have any question yet.</div>' +
-        '<div>First for all let\'s create a new line?</div></div>',
     TPL_HEADER: '<div class="' + CSS_HEADER + '">' +
         '<a class="' + CSS_HEADER_BACK + '" tabindex="1"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
         '<div class="' + CSS_MENU + '">' +
@@ -81,11 +78,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         contentBox.append(this.TPL_HEADER);
         contentBox.append(this.TPL_PAGE_HEADER);
         contentBox.append(this.TPL_LAYOUT);
-        contentBox.append(this.TPL_EMPTY_LAYOUT);
-
         contentBox.append(this.TPL_PAGES);
-
-        this._emptyLayoutMsg = contentBox.one('.' + CSS_EMPTY_LAYOUT);
 
         this._fieldToolbar = new A.FormBuilderFieldToolbar(this.get('fieldToolbarConfig'));
 
@@ -640,14 +633,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         var layout = this.get('layouts')[this._getActiveLayoutIndex()];
 
         this._renderEmptyColumns();
-
-        // Show the empty layout msg if there's only the initial page break in
-        // the layout.
-        if (layout.get('rows').length === 1) {
-            this._emptyLayoutMsg.show();
-        } else {
-            this._emptyLayoutMsg.hide();
-        }
     },
 
     /**
