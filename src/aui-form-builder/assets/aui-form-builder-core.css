@@ -207,7 +207,6 @@
 .form-builder-empty-col {
     cursor: pointer;
     height: 100%;
-    position: relative;
     text-align: center;
 }
 
