@@ -37,7 +37,7 @@ var CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout',
  *     properties.
  * @constructor
  */
-A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
+A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     A.FormBuilderFieldTypes,
     A.FormBuilderLayoutBuilder
 ], {
@@ -54,7 +54,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         'Paste here</button>' +
         '</div>',
     TPL_HEADER: '<div class="' + CSS_HEADER + '">' +
-        '<a class="' + CSS_HEADER_BACK + '" tabindex="1"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
+        '<a class="' + CSS_HEADER_BACK +
+        '" tabindex="1"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
         '<div class="' + CSS_MENU + '">' +
         '<a class="dropdown-toggle ' + CSS_MENU_BUTTON + '" data-toggle="dropdown" tabindex="1">' +
         '<span class="glyphicon glyphicon-cog"></span></a>' +
@@ -114,7 +115,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
             pagesQuantity: this.get('layouts').length
         }).render();
 
-        this.get('layouts')[this._getActiveLayoutIndex()].addTarget(this);
+        this.getActiveLayout().addTarget(this);
     },
 
     /**
@@ -129,7 +130,8 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         this._eventHandles.push(
             this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
-            boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' + CSS_EMPTY_COL_ADD_BUTTON),
+            boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' +
+                CSS_EMPTY_COL_ADD_BUTTON),
             boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
             boundingBox.one('.' + CSS_HEADER_BACK).on('key', A.bind(this._onKeyPressHeaderBack, this), 'press:13'),
             this._menu.after('itemSelected', A.bind(this._afterItemSelected, this)),
@@ -138,7 +140,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
 
         this._pages.on('add', A.bind(this._addLayout, this));
         this._pages.on('remove', A.bind(this._removeLayout, this));
-        this._pages.after('activeIndexPageChange', A.bind(this._afterActiveIndexPageChange, this));
+        this._pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this));
     },
 
     /**
@@ -174,7 +176,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * @method addNestedField
      * @param {A.FormBuilderFieldBase} field
      */
-    addNestedField: function (field) {
+    addNestedField: function(field) {
         this._newFieldContainer = field;
         this.showFieldsPanel();
     },
@@ -185,9 +187,19 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * @method editField
      * @param {A.FormBuilderFieldBase} field
      */
-    editField: function (field) {
+    editField: function(field) {
         var fieldType = this.findTypeOfField(field);
         this.showFieldSettingsPanel(field, fieldType.get('label'));
+    },
+
+    /**
+     * Returns the active `LayoutPage`.
+     *
+     * @method getActiveLayout
+     * @return {A.LayoutPage}
+     */
+    getActiveLayout: function() {
+        return this.get('layouts')[this._getActiveLayoutIndex()];
     },
 
     /**
@@ -207,7 +219,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * @method removeField
      * @param {A.FormBuilderFieldBase} field
      */
-    removeField: function (field) {
+    removeField: function(field) {
         var col,
             parentField,
             nestedFieldsNode = field.get('content').ancestor('.form-builder-field-nested');
@@ -217,7 +229,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         if (nestedFieldsNode) {
             parentField = nestedFieldsNode.ancestor('.form-builder-field').getData('field-instance');
             parentField.removeNestedField(field);
-            this.get('layouts')[this._getActiveLayoutIndex()].normalizeColsHeight(new A.NodeList(this.getFieldRow(parentField)));
+            this.getActiveLayout().normalizeColsHeight(new A.NodeList(this.getFieldRow(parentField)));
         }
         else {
             col = field.get('content').ancestor('.col').getData('layout-col');
@@ -245,7 +257,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * 
+     *
      *
      * @method _addLayout
      * @protected
@@ -271,7 +283,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      */
     _addNestedField: function(field, nested, index) {
         field.addNestedField(index, nested);
-        this.get('layouts')[this._getActiveLayoutIndex()].normalizeColsHeight(new A.NodeList(this.getFieldRow(nested)));
+        this.getActiveLayout().normalizeColsHeight(new A.NodeList(this.getFieldRow(nested)));
     },
 
     /**
@@ -309,7 +321,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
         }
         else {
             this._handleEditEvent(field);
-            this.get('layouts')[this._getActiveLayoutIndex()].normalizeColsHeight(new A.NodeList(field.get('content').ancestor('.layout-row')));
+            this.getActiveLayout().normalizeColsHeight(new A.NodeList(field.get('content').ancestor('.layout-row')));
         }
 
         this._handleCreateEvent(field);
@@ -399,7 +411,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _getActiveLayoutIndex: function() {
-        return this._pages.get('activeIndexPage');
+        return this._pages.get('activePageNumber') - 1;
     },
 
     /**
@@ -444,11 +456,12 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
     /**
      *
      *
-     * @method _afterActiveIndexPageChange
+     * @method _afterActivePageNumberChange
      * @protected
      */
-    _afterActiveIndexPageChange: function(event) {
-        var activeLayout = this.get('layouts')[event.newVal];
+    _afterActivePageNumberChange: function(event) {
+        var layouts = this.get('layouts'),
+            activeLayout = layouts[event.newVal - 1];
 
         this._layoutBuilder.get('layout').removeTarget(this);
         activeLayout.addTarget(this);
@@ -474,7 +487,9 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _makeColumnEmpty: function(col) {
-        col.set('value', { content: this.TPL_EMPTY_COL });
+        col.set('value', {
+            content: this.TPL_EMPTY_COL
+        });
     },
 
     /**
@@ -559,7 +574,7 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * 
+     *
      *
      * @method _removeLayout
      * @protected
@@ -630,8 +645,6 @@ A.FormBuilder  = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _syncLayoutRows: function() {
-        var layout = this.get('layouts')[this._getActiveLayoutIndex()];
-
         this._renderEmptyColumns();
     },
 
