@@ -443,7 +443,6 @@ var Toggler = A.Component.create({
          */
         _uiSetExpanded: function(val) {
             var instance = this,
-                content = instance.get('content'),
                 expanded = instance.get('expanded');
 
             if (expanded && !instance.wrapped) {
