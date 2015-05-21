@@ -41,7 +41,7 @@ YUI.add('aui-toggler-base-tests', function(Y) {
         },
 
         togglerHasClass: function(className) {
-        	return Y.one('#toggler')._node.getAttribute('class').indexOf(className) !== -1;
+            return Y.one('#toggler')._node.getAttribute('class').indexOf(className) !== -1;
         },
 
         'should expand content': function() {
