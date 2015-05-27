@@ -21,7 +21,7 @@ CSS_PAGE_HEADER_TITLE_HIDE_BORDER = A.getClassName('form', 'builder', 'page', 'h
  * A base class for Form Builder Pages Builder.
  *
  * @class A.FormBuilderPages
- * @uses A.FormBuilderBuilder
+ * @extends A.Widget
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor

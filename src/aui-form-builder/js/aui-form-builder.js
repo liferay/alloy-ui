@@ -92,7 +92,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         this._pages = new A.FormBuilderPages({
             pageHeader: '.' + CSS_PAGE_HEADER,
-            // contentBox: '.' + CSS_PAGES,
             pagesQuantity: this.get('layouts').length
         });
 
