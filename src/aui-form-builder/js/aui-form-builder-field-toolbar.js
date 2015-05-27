@@ -28,7 +28,7 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
         '<button type="button" class="btn btn-default ' + CSS_TOOLBAR_TOGGLE + '" tabindex="9">' +
         '<span class="glyphicon glyphicon-cog"></span></button>' +
         '<div class="btn-group ' + CSS_TOOLBAR_ITEMS + '"></div></div>',
-    TPL_TOOLBAR_ITEM: '<button class="btn btn-default ' + CSS_TOOLBAR_ITEM + ' {buttonClass}" tabindex="9">' +
+    TPL_TOOLBAR_ITEM: '<button type="button" class="btn btn-default ' + CSS_TOOLBAR_ITEM + ' {buttonClass}" tabindex="9">' +
         '<span class="{iconClass}"></span></button>',
 
     /**
