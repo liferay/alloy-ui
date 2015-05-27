@@ -94,11 +94,9 @@
 
     "aui-form-builder-pages": {
         "requires": [
-            "aui-classnamemanager",
-            "aui-form-builder-layout-builder",
-            "aui-layout",
             "aui-pagination",
             "base",
+            "event-valuechange",
             "node-base"
         ],
         "skinnable": true

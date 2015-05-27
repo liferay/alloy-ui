@@ -9,7 +9,6 @@ var CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout',
     CSS_EMPTY_COL_ADD_BUTTON = A.getClassName('form', 'builder', 'empty', 'col', 'add', 'button'),
     CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
     CSS_EMPTY_COL_LABEL = A.getClassName('form', 'builder', 'empty', 'col', 'label'),
-    CSS_EMPTY_LAYOUT = A.getClassName('form', 'builder', 'empty', 'layout'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_HEADER = A.getClassName('form', 'builder', 'header'),
@@ -32,7 +31,7 @@ var CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout',
  *
  * @class A.FormBuilder
  * @extends A.Widget
- * @uses A.FormBuilderFieldTypes, A.FormBuilderLayoutBuilder, A.FormBuilderPagesBuilder
+ * @uses A.FormBuilderFieldTypes, A.FormBuilderLayoutBuilder
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
@@ -84,11 +83,20 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         this._fieldToolbar = new A.FormBuilderFieldToolbar(this.get('fieldToolbarConfig'));
 
         this._eventHandles = [
-            this.after('layoutChange', this._afterLayoutChange),
+            this.after('layoutsChange', A.bind(this._afterLayoutsChange, this)),
+            this.after('layout:valueChange', this._afterLayoutChange),
             this.after('layout:rowsChange', this._afterLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterLayoutColsChange),
             this.after('layout-col:valueChange', this._afterLayoutColValueChange)
         ];
+
+        this._pages = new A.FormBuilderPages({
+            pageHeader: '.' + CSS_PAGE_HEADER,
+            // contentBox: '.' + CSS_PAGES,
+            pagesQuantity: this.get('layouts').length
+        });
+
+        A.Array.invoke(this.get('layouts'), 'addTarget', this);
     },
 
     /**
@@ -109,11 +117,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             trigger: '.' + CSS_MENU_BUTTON
         }).render();
 
-        this._pages = new A.FormBuilderPages({
-            pageHeader: '.' + CSS_PAGE_HEADER,
-            contentBox: '.' + CSS_PAGES,
-            pagesQuantity: this.get('layouts').length
-        }).render();
+        this._pages.render('.' + CSS_PAGES);
 
         this.getActiveLayout().addTarget(this);
     },
@@ -135,12 +139,12 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
             boundingBox.one('.' + CSS_HEADER_BACK).on('key', A.bind(this._onKeyPressHeaderBack, this), 'press:13'),
             this._menu.after('itemSelected', A.bind(this._afterItemSelected, this)),
+            this._pages.on('add', A.bind(this._addPage, this)),
+            this._pages.on('remove', A.bind(this._removeLayout, this)),
+            this._pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this)),
+            this._pages.after('updatePageContent', A.bind(this._afterUpdatePageContentChange, this)),
             A.getDoc().on('key', this._onEscKey, 'esc', this)
         );
-
-        this._pages.on('add', A.bind(this._addLayout, this));
-        this._pages.on('remove', A.bind(this._removeLayout, this));
-        this._pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this));
     },
 
     /**
@@ -257,19 +261,21 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
+     * Adds a new page on form builder.
      *
-     *
-     * @method _addLayout
+     * @method _addPage
      * @protected
      */
-    _addLayout: function() {
+    _addPage: function() {
+        var layouts = this.get('layouts');
         var newLayout = new A.Layout({
             rows: [
                 new A.LayoutRow()
             ]
         });
 
-        this.get('layouts').push(newLayout);
+        layouts.push(newLayout);
+        this.set('layouts', layouts);
     },
 
     /**
@@ -284,6 +290,19 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     _addNestedField: function(field, nested, index) {
         field.addNestedField(index, nested);
         this.getActiveLayout().normalizeColsHeight(new A.NodeList(this.getFieldRow(nested)));
+    },
+
+    /**
+     * Fired after the `activePageNumber` change.
+     *
+     * @method _afterActivePageNumberChange
+     * @protected
+     */
+    _afterActivePageNumberChange: function(event) {
+        var layouts = this.get('layouts'),
+            activeLayout = layouts[event.newVal - 1];
+
+        this._updatePageContent(activeLayout);
     },
 
     /**
@@ -343,22 +362,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Fired after the `layout` attribute is set.
-     *
-     * @method _afterLayoutChange
-     * @param {EventFacade} event
-     * @protected
-     */
-    _afterLayoutChange: function(event) {
-        this._syncLayoutRows();
-
-        event.prevVal.removeTarget(this);
-        event.newVal.addTarget(this);
-
-        this._updateUniqueFieldType();
-    },
-
-    /**
      * Fired after the `layout-row:colsChange` event is triggered.
      *
      * @method _afterLayoutColsChange
@@ -401,6 +404,34 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         this._syncLayoutRows();
 
         this._updateUniqueFieldType();
+    },
+
+    /**
+     * Fires after layouts changes.
+     *
+     * @method _afterLayoutsChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterLayoutsChange: function(event) {
+        A.Array.invoke(event.prevVal, 'removeTarget', this);
+        A.Array.invoke(event.newVal, 'addTarget', this);
+
+        this._updateUniqueFieldType();
+        this._updatePageContent(this.get('layouts')[0]);
+    },
+
+    /**
+     * Fired after the `activePageNumber` change.
+     *
+     * @method _afterUpdatePageContentChange
+     * @protected
+     */
+    _afterUpdatePageContentChange: function(event) {
+        var layouts = this.get('layouts'),
+            activeLayout = layouts[event.newVal - 1];
+
+        this._updatePageContent(activeLayout);
     },
 
     /**
@@ -451,22 +482,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         this.fire('remove', {
             field: field
         });
-    },
-
-    /**
-     *
-     *
-     * @method _afterActivePageNumberChange
-     * @protected
-     */
-    _afterActivePageNumberChange: function(event) {
-        var layouts = this.get('layouts'),
-            activeLayout = layouts[event.newVal - 1];
-
-        this._layoutBuilder.get('layout').removeTarget(this);
-        activeLayout.addTarget(this);
-        this._layoutBuilder.set('layout', activeLayout);
-        this._syncLayoutRows();
     },
 
     /**
@@ -618,24 +633,28 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Sets the `layout` attribute.
+     * Sets the `layouts` attribute.
      *
-     * @method _setLayout
-     * @param {A.Layout} val
+     * @method _setLayouts
+     * @param {A.Array} val
      * @protected
      */
-    _setLayout: function(val) {
-        var firstRow;
+    _setLayouts: function(val) {
+        var layouts = [];
 
-        if (!A.instanceOf(val, A.Layout)) {
-            val = new A.Layout(val);
-        }
+        A.Array.each(val, function(layout) {
+            if (!A.instanceOf(layout, A.Layout)) {
+                layout = new A.Layout(layout);
+            }
 
-        if (val.get('rows').length > 0) {
-            firstRow = val.get('rows')[0];
-        }
+            if (layout.get('rows').length === 0) {
+                layout.set('rows', [new A.LayoutRow()]);
+            }
 
-        return val;
+            layouts.push(layout);
+        });
+
+        return layouts;
     },
 
     /**
@@ -659,6 +678,22 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         var titleNode = this.get('contentBox').one('.' + CSS_HEADER_TITLE);
 
         titleNode.set('text', title);
+    },
+
+    /**
+     * Fired after the `activePageNumber` change.
+     *
+     * @method _updatePageContent
+     * @protected
+     */
+    _updatePageContent: function(activeLayout) {
+        this.getActiveLayout().removeTarget(this);
+        activeLayout.addTarget(this);
+
+        if (this.get('rendered')) {
+            this._layoutBuilder.set('layout', activeLayout);
+            this._syncLayoutRows();
+        }
     }
 }, {
 
@@ -685,13 +720,18 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         },
 
         /**
-         * The layout where the form fields will be rendered.
+         * The layouts where the forms fields will be rendered.
          *
-         * @attribute layout
+         * @attribute layouts
+         * @default [A.Layout]
          * @type Array
          */
         layouts: {
-            value: []
+            setter: '_setLayouts',
+            validator: A.Lang.isArray,
+            valueFn: function() {
+                return [new A.Layout()];
+            }
         },
 
         /**

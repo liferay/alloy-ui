@@ -13,7 +13,7 @@ var CSS_FORM_BUILDER_ADD_PAGE = A.getClassName('form', 'builder', 'pages', 'add'
     CSS_PAGE_HEADER = A.getClassName('form', 'builder', 'page', 'header'),
     CSS_PAGE_HEADER_DESCRIPTION = A.getClassName('form', 'builder', 'page', 'header', 'description'),
     CSS_PAGE_HEADER_DESCRIPTION_HIDE_BORDER = A.getClassName('form', 'builder', 'page', 'header', 'description', 'hide',
-        'border');
+        'border'),
 CSS_PAGE_HEADER_TITLE = A.getClassName('form', 'builder', 'page', 'header', 'title'),
 CSS_PAGE_HEADER_TITLE_HIDE_BORDER = A.getClassName('form', 'builder', 'page', 'header', 'title', 'hide', 'border');
 
@@ -91,12 +91,46 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
         });
     },
 
-    _afterActivePageNumberChange: function(event) {
-        this._uiSetActivePageNumber(event.newVal)
+    /**
+     * Create a new page on Form Field.
+     *
+     * @method _addPage
+     * @protected
+     */
+    _addPage: function() {
+        var quantity = this.get('pagesQuantity');
+
+        this.set('pagesQuantity', quantity + 1);
+
+        this.fire(
+            'add', {
+                quantity: quantity
+            }
+        );
+
+        this._pagination.set('page', this.get('pagesQuantity'));
+
+        if (quantity === 0) {
+            this.fire(
+                'updatePageContent', {
+                    newVal: 1
+                }
+            );
+        }
     },
 
     /**
+     * Fired after the `activePageNumber` attribute changes.
      *
+     * @method _afterActivePageNumberChange
+     * @protected
+     */
+    _afterActivePageNumberChange: function(event) {
+        this._uiSetActivePageNumber(event.newVal);
+    },
+
+    /**
+     * Fired after the `pagesQuantity` attribute changes.
      *
      * @method _afterPagesQuantityChange
      * @protected
@@ -149,17 +183,7 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
      * @protected
      */
     _onAddPageClick: function() {
-        var quantity = this.get('pagesQuantity');
-
-        this.set('pagesQuantity', quantity + 1);
-
-        this.fire(
-            'add', {
-                quantity: quantity
-            }
-        );
-
-        this._pagination.set('page', this.get('pagesQuantity'));
+        this._addPage();
     },
 
     /**
@@ -208,6 +232,10 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
         // We need to improve aui-pagination. This should be done
         // automatically after the 'page' attribute is set.
         this._pagination.getItem(page).addClass('active');
+
+        if (!this.get('pagesQuantity')) {
+            this._addPage();
+        }
     },
 
     /**
@@ -255,6 +283,10 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
         var pagination = this._getPagination();
 
         pagination.set('total', total);
+
+        pagination.set('page', this.get('activePageNumber'));
+        this._pagination.getItem(this.get('activePageNumber')).addClass('active');
+        this._uiSetActivePageNumber(this.get('activePageNumber'));
     }
 }, {
     ATTRS: {

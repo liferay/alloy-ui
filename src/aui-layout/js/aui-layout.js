@@ -67,6 +67,7 @@ A.Layout = A.Base.create('layout', A.Base, [], {
      */
     destructor: function() {
         (new A.EventHandle(this._eventHandles)).detach();
+        this.get('node').remove();
     },
 
     /**

@@ -14,10 +14,7 @@ var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'mo
     CSS_FIELD_MOVING = A.getClassName('form', 'builder', 'field', 'moving'),
     CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
     CSS_LAYOUT_BUILDER_MOVE_CANCEL = A.getClassName('layout', 'builder', 'move', 'cancel'),
-    CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode'),
-
-    SELECTOR_LAYOUT_BUILDER_ADD_ROW = '.layout-builder-add-row',
-    SELECTOR_LAYOUT_BUILDER_ADD_ROW_CHOOSE_ROW = '.layout-builder-add-row-choose-row';
+    CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode');
 
 /**
  * `A.FormBuilder` extension, which handles the `A.LayoutBuilder` inside it.
@@ -42,7 +39,6 @@ A.FormBuilderLayoutBuilder.prototype = {
     initializer: function() {
         this.after({
             create: this._afterFieldCreate,
-            layoutChange: this._afterLayoutBuilderLayoutChange,
             modeChange: this._afterLayoutBuilderModeChange,
             render: this._afterLayoutBuilderRender
         });
@@ -112,28 +108,6 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Fired after the `layout:isColumnMode` attribute changes.
-     *
-     * @method _afterLayoutBuilderIsColumnModeChange
-     * @protected
-     */
-    _afterLayoutBuilderIsColumnModeChange: function() {
-        this._setPositionForPageBreakButton();
-    },
-
-    /**
-     * Fired after the `layout` attribute is set.
-     *
-     * @method _afterLayoutBuilderLayoutChange
-     * @protected
-     */
-    _afterLayoutBuilderLayoutChange: function() {
-        if (this._layoutBuilder) {
-            this._layoutBuilder.set('layout', this.getActiveLayout());
-        }
-    },
-
-    /**
      * Fired after the `mode` attribute is set.
      *
      * @method _afterLayoutBuilderModeChange
@@ -171,16 +145,12 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         this._uiSetLayoutBuilderMode(this.get('mode'));
 
-        this._layoutBuilder.get('layout').after('isColumnModeChange', A.bind(this._afterLayoutBuilderIsColumnModeChange,
-            this));
-
         this._eventHandles.push(
             this._fieldToolbar.on('onToolbarFieldMouseEnter', A.bind(this._onFormBuilderToolbarFieldMouseEnter, this))
         );
 
         this._removeLayoutCutColButtons();
 
-        this._removeAddRowButton();
         this._checkLastEmptyRow();
     },
 
@@ -280,18 +250,6 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Put add page break button together with add row button.
-     *
-     * @method _collapseAddPageBreakButton
-     * @param {Node} addPageBreakButton
-     * @param {Node} addRowContainer
-     * @protected
-     */
-    _collapseAddPageBreakButton: function(addPageBreakButton, addRowContainer) {
-        addRowContainer.append(addPageBreakButton);
-    },
-
-    /**
      * Creates a row with the same layout of the last row.
      *
      * @method _copyLastRow
@@ -368,18 +326,6 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Appends add page break button on content box.
-     *
-     * @method _expandAddPageBreakButton
-     * @param {Node} addPageBreakButton
-     * @param {Node} contentBox
-     * @protected
-     */
-    _expandAddPageBreakButton: function(addPageBreakButton, contentBox) {
-        contentBox.append(addPageBreakButton);
-    },
-
-    /**
      * Gets the last row.
      *
      * @method _getLastRow
@@ -389,13 +335,7 @@ A.FormBuilderLayoutBuilder.prototype = {
     _getLastRow: function() {
         var rows = this.getActiveLayout().get('rows');
 
-        for (var i = rows.length - 1; i >= 0; i--) {
-            if (rows[i].name === 'layout-row') {
-                return rows[i];
-            }
-        }
-
-        return new A.LayoutRow();
+        return rows[rows.length - 1];
     },
 
     /**
@@ -407,16 +347,6 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     _onFormBuilderToolbarFieldMouseEnter: function(event) {
         this._toggleMoveColItem(event.colNode);
-    },
-
-    /**
-     * Removes add row button.
-     *
-     * @method _removeAddRowButton
-     * @protected
-     */
-    _removeAddRowButton: function() {
-        A.one(SELECTOR_LAYOUT_BUILDER_ADD_ROW_CHOOSE_ROW + SELECTOR_LAYOUT_BUILDER_ADD_ROW).remove();
     },
 
     /**

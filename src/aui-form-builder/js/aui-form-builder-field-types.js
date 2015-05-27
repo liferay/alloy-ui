@@ -262,7 +262,7 @@ A.FormBuilderFieldTypes.prototype = {
             cols,
             field,
             row,
-            rows = this.get('layout').get('rows');
+            rows = this.getActiveLayout().get('rows');
 
         for (row = 0; row < rows.length; row++) {
             cols = rows[row].get('cols');
