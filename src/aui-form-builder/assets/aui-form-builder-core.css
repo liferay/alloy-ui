@@ -276,3 +276,7 @@
         margin: 24px 30px;
     }
 }
+
+.form-builder-content .layout-builder-add-row {
+    display: none;
+}
