@@ -10,6 +10,24 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
         },
 
         createFormBuilder: function(config) {
+            var layout;
+
+            layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: new Y.FormBuilderFieldText({
+                                    help: 'Help',
+                                    title: 'Title'
+                                })
+                            })
+                        ]
+                    })
+                ]
+            });
+
             this._formBuilder = new Y.FormBuilder(Y.merge({
                 fieldTypes: [
                     {
@@ -17,21 +35,7 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
                         label: 'Text'
                     }
                 ],
-                layout: new Y.Layout({
-                    rows: [
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    size: 6,
-                                    value: new Y.FormBuilderFieldText({
-                                        help: 'Help',
-                                        title: 'Title'
-                                    })
-                                })
-                            ]
-                        })
-                    ]
-                })
+                layouts: [layout] 
             }, config)).render('#container');
         },
 
@@ -314,70 +318,63 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
         },
 
         'should consider nested fields when checking if unique field is used': function() {
+            var layout;
+
+            layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: new Y.FormBuilderFieldText({
+                                    help: 'Help',
+                                    nestedFields: [
+                                        new Y.FormBuilderFieldText({
+                                            help: 'Help',
+                                            title: 'Title'
+                                        })
+                                    ],
+                                    title: 'Title'
+                                })
+                            }),
+                            new Y.LayoutCol({
+                                size: 6,
+                                value: new Y.FormBuilderFieldText({
+                                    help: 'Help',
+                                    nestedFields: [
+                                        new Y.FormBuilderFieldText({
+                                            help: 'Help',
+                                            nestedFields: [
+                                                new Y.FormBuilderFieldSentence({
+                                                    help: 'Help',
+                                                    title: 'Title'
+                                                })
+                                            ],
+                                            title: 'Title'
+                                        })
+                                    ],
+                                    title: 'Title'
+                                })
+                            })
+                        ]
+                    })
+                ]
+            });
+
             this.createFormBuilder({
                 fieldTypes: [{
                     fieldClass: Y.FormBuilderFieldSentence,
                     unique: true
                 }],
-                layout: new Y.Layout({
-                    rows: [
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    size: 6,
-                                    value: new Y.FormBuilderFieldText({
-                                        help: 'Help',
-                                        nestedFields: [
-                                            new Y.FormBuilderFieldText({
-                                                help: 'Help',
-                                                title: 'Title'
-                                            })
-                                        ],
-                                        title: 'Title'
-                                    })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 6,
-                                    value: new Y.FormBuilderFieldText({
-                                        help: 'Help',
-                                        nestedFields: [
-                                            new Y.FormBuilderFieldText({
-                                                help: 'Help',
-                                                nestedFields: [
-                                                    new Y.FormBuilderFieldSentence({
-                                                        help: 'Help',
-                                                        title: 'Title'
-                                                    })
-                                                ],
-                                                title: 'Title'
-                                            })
-                                        ],
-                                        title: 'Title'
-                                    })
-                                })
-                            ]
-                        })
-                    ]
-                })
+                layouts: [layout]
             });
             this._formBuilder.showFieldsPanel();
             Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
         },
 
         'should disable used unique types after update': function() {
-            this.createFormBuilder({
-                fieldTypes: [
-                    {
-                        fieldClass: Y.FormBuilderFieldSentence,
-                        unique: true
-                    },
-                    {
-                        fieldClass: Y.FormBuilderFieldText
-                    }
-                ]
-            });
-
-            this._formBuilder.set('layout', new Y.Layout({
+            var layout;
+            layout = new Y.Layout({
                 rows: [
                     new Y.LayoutRow({
                         cols: [
@@ -391,7 +388,21 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
                         ]
                     })
                 ]
-            }));
+            });
+
+            this.createFormBuilder({
+                fieldTypes: [
+                    {
+                        fieldClass: Y.FormBuilderFieldSentence,
+                        unique: true
+                    },
+                    {
+                        fieldClass: Y.FormBuilderFieldText
+                    }
+                ]
+            });
+
+            this._formBuilder.set('layouts', [layout]);
             this._formBuilder.showFieldsPanel();
             Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
         },
@@ -406,7 +417,7 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
                 ]
             });
 
-            this._formBuilder.set('layout', new Y.Layout());
+            this._formBuilder.set('layouts', [new Y.Layout()]);
             this._formBuilder.showFieldsPanel();
             Y.Assert.isFalse(Y.one('.field-type').hasClass('field-type-disabled'));
         },

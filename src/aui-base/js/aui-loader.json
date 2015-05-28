@@ -719,7 +719,7 @@
             "aui-form-builder-field-type",
             "aui-form-builder-field-types",
             "aui-form-builder-layout-builder",
-            "aui-form-builder-page-break-row",
+            "aui-form-builder-pages",
             "aui-form-builder-settings-modal",
             "aui-menu",
             "event-focus",
@@ -878,13 +878,10 @@
         ],
         "skinnable": true
     },
-    "aui-form-builder-page-break-row": {
+    "aui-form-builder-pages": {
         "requires": [
-            "aui-classnamemanager",
-            "aui-layout-col",
-            "aui-layout-row",
+            "aui-pagination",
             "base",
-            "event-focus",
             "event-valuechange",
             "node-base"
         ],

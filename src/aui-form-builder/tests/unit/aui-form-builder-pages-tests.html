@@ -1,11 +1,13 @@
 <!doctype html>
 <html>
 <head>
-    <title>AUI Form Builder Page Break Row Unit tests</title>
+    <title>AUI Form Builder Pages Unit tests</title>
     <meta charset="utf-8" />
 
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
     <script src="../../../../build/aui/aui.js"></script>
-    <script src="js/aui-form-builder-page-break-row-tests.js"></script>
+    <script src="js/aui-form-builder-pages-tests.js"></script>
 </head>
 <body class="yui3-skin-sam">
 <div id="logger"></div>
@@ -13,13 +15,13 @@
 
 <script>
 YUI({
-    coverage: ['aui-form-builder-page-break-row'],
+    coverage: ['aui-form-builder-pages'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-}).use('test-console', 'test', 'aui-form-builder-page-break-row-tests', function(Y) {
+}).use('test-console', 'test', 'aui-form-builder-pages-tests', function(Y) {
 
     (new Y.Test.Console()).render('#logger');
 
-    Y.Test.Runner.setName('aui-form-builder-page-break-row');
+    Y.Test.Runner.setName('aui-form-builder-pages');
     Y.Test.Runner.run();
 });
 </script>

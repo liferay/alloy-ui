@@ -12,7 +12,6 @@
 }
 
 .layout-builder-add-row-area {
-    height: 50px;
     margin-left: -15px;
     margin-right: -15px;
     position: relative;
@@ -32,13 +31,16 @@
     -moz-border-radius: 50px;
     -o-border-radius: 50px;
     border-radius: 50px;
+    display: inline-block;
     height: 45px;
     width: 45px;
 }
 
 .layout-builder-add-row-small-screen-area {
-    left: 40%;
     position: relative;
+    margin: 0 auto;
+    width: 58px;
+    text-align: center;
 }
 
 .layout-builder-add-row-small-screen-area.layout-builder-add-row-area-fixed {

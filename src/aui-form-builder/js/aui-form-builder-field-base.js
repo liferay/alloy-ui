@@ -55,7 +55,7 @@ A.FormBuilderFieldBase.prototype = {
         '<div class="' + CSS_FIELD_OVERLAY + '"></div>' +
         '<div class="' + CSS_FIELD_CONTENT_FOOTER + '"></div>' +
         '</div>',
-    TPL_FIELD_MOVE_TARGET: '<button class="' + CSS_FIELD_MOVE_TARGET +
+    TPL_FIELD_MOVE_TARGET: '<button type="button" class="' + CSS_FIELD_MOVE_TARGET +
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
         'Paste as subquestion</button>',
     TPL_FIELD_SETTINGS_PANEL: '<div class="' + CSS_FIELD_SETTINGS_PANEL + ' clearfix">' +
@@ -66,7 +66,7 @@ A.FormBuilderFieldBase.prototype = {
         '" href="javascript:void(0)">Advanced options</a>' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT + '"></div>' +
         '</div>' +
-        '<button class="visible-xs btn btn-default ' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON + '" type="button">' +
+        '<button type="button" class="visible-xs btn btn-default ' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON + '">' +
         '<span class="glyphicon glyphicon-cog"></span>Advanced options</button>' +
         '</div>',
     TPL_FIELD_FOOTER_CONTENT: '<div class="' + CSS_FIELD_FOOTER_CONTENT + '"></div>',
@@ -318,14 +318,15 @@ A.FormBuilderFieldBase.prototype = {
                 {
                     attrName: 'title',
                     editor: new A.TextDataEditor({
-                        label: 'Type your question here',
+                        label: 'Question',
+                        placeholder: 'Type your question here',
                         required: true
                     })
                 },
                 {
                     attrName: 'help',
                     editor: new A.TextDataEditor({
-                        label: 'Help text...'
+                        label: 'Help text'
                     })
                 }
             ];

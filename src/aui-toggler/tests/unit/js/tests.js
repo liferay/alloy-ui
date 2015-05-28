@@ -41,7 +41,7 @@ YUI.add('aui-toggler-base-tests', function(Y) {
         },
 
         togglerHasClass: function(className) {
-        	return Y.one('#toggler')._node.getAttribute('class').indexOf(className) !== -1;
+            return Y.one('#toggler')._node.getAttribute('class').indexOf(className) !== -1;
         },
 
         'should expand content': function() {
@@ -84,6 +84,19 @@ YUI.add('aui-toggler-base-tests', function(Y) {
             var toggler = this._toggler;
 
             toggler.animate({ duration: 0 });
+            Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'));
+        },
+
+        'should wrap content when expanded is set to true': function() {
+            this.createToggler({
+                content: '.content',
+                expanded: true,
+                header: '.accordion-heading'
+            });
+
+            var toggler = this._toggler;
+
+            Y.Assert.isTrue(toggler.wrapped);
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'));
         }
     }));

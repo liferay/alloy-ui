@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1887](https://issues.liferay.com/browse/AUI-1887) Form builder should have pages, not page breaks
 * [AUI-1858](https://issues.liferay.com/browse/AUI-1858) FormBuilder should be able to receive layout as a configuration object
 * [AUI-1830](https://issues.liferay.com/browse/AUI-1830) Button to move field should be inside the field's toolbar
 * [AUI-1755](https://issues.liferay.com/browse/AUI-1755) Button for adding page breaks should be on the left of the button to add rows

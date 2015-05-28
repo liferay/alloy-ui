@@ -21,6 +21,38 @@ YUI.add('aui-form-builder-tests', function(Y) {
          * @return {Y.FormBuilder}
          */
         createFormBuilder: function(config) {
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                size: 4,
+                                value: new Y.FormBuilderFieldSentence({
+                                    help: 'My Help',
+                                    nestedFields: [
+                                        new Y.FormBuilderFieldText({
+                                            help: 'First nested field',
+                                            title: 'Nested Field 1'
+                                        }),
+                                        new Y.FormBuilderFieldText({
+                                            help: 'Second nested field',
+                                            title: 'Nested Field 2'
+                                        })
+                                    ],
+                                    title: 'My Title'
+                                })
+                            })
+                        ]
+                    })
+                ]
+            });
+
             this._formBuilder = new Y.FormBuilder(Y.merge({
                 fieldTypes: [
                     {
@@ -38,37 +70,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                         label: 'Text'
                     }
                 ],
-                layout: new Y.Layout({
-                    rows: [
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    size: 4
-                                }),
-                                new Y.LayoutCol({
-                                    size: 4
-                                }),
-                                new Y.LayoutCol({
-                                    size: 4,
-                                    value: new Y.FormBuilderFieldSentence({
-                                        help: 'My Help',
-                                        nestedFields: [
-                                            new Y.FormBuilderFieldText({
-                                                help: 'First nested field',
-                                                title: 'Nested Field 1'
-                                            }),
-                                            new Y.FormBuilderFieldText({
-                                                help: 'Second nested field',
-                                                title: 'Nested Field 2'
-                                            })
-                                        ],
-                                        title: 'My Title'
-                                    })
-                                })
-                            ]
-                        })
-                    ]
-                })
+                layouts: [layout]
             }, config)).render('#container');
 
             return this._formBuilder;
@@ -142,149 +144,43 @@ YUI.add('aui-form-builder-tests', function(Y) {
         'should have default empty layout': function() {
             this._formBuilder = new Y.FormBuilder().render('#container');
 
-            Y.Assert.isNotNull(this._formBuilder.get('layout'));
-            Y.Assert.areEqual(2, this._formBuilder.get('layout').get('rows').length);
-        },
-
-        'should not show message if layout is not empty': function() {
-            this.createFormBuilder();
-
-            Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
-        },
-
-        'should update empty layout message when layout changes': function() {
-            var formBuilder = this.createFormBuilder({
-                layout: new Y.Layout()
-            });
-
-            formBuilder.set('layout', new Y.Layout({
-                rows: [
-                    new Y.LayoutRow()
-                ]
-            }));
-            Y.Assert.areEqual('none', Y.one('.form-builder-empty-layout').getStyle('display'));
-
-            formBuilder.set('layout', new Y.Layout());
-            Y.Assert.areEqual('block', Y.one('.form-builder-empty-layout').getStyle('display'));
-        },
-
-        'should add page break to layout that doesn\'t have one': function() {
-            this.createFormBuilder();
-
-            Y.Assert.areEqual(3, Y.all('.layout-row').size());
-        },
-
-        'should not add page break to layout that has one': function() {
-            this.createFormBuilder({
-                layout: new Y.Layout({
-                    rows: [
-                        new Y.FormBuilderPageBreakRow()
-                    ]
-                })
-            });
-
-            Y.Assert.areEqual(2, Y.all('.layout-row').size());
-        },
-
-        'should add a new page break on form': function() {
-            var formBuilder = this.createFormBuilder();
-
-            formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-            Y.Assert.areEqual(2, Y.all('.form-builder-page-break-row').size());
-        },
-
-        'should make page breaks columns unmovable and unremovable': function() {
-            var row;
-
-            this.createFormBuilder();
-            row = this._formBuilder.get('layout').get('rows')[0];
-
-            Y.Assert.isFalse(row.get('cols')[0].get('movableContent'));
-            Y.Assert.isFalse(row.get('cols')[0].get('removable'));
-        },
-
-        'should make first page break row unmovable and unremovable': function() {
-            var row;
-
-            this.createFormBuilder();
-            this._formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-            this._formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-
-            row = this._formBuilder.get('layout').get('rows')[0];
-            Y.Assert.isFalse(row.get('movable'));
-            Y.Assert.isFalse(row.get('removable'));
-
-            row = this._formBuilder.get('layout').get('rows')[1];
-            Y.Assert.isTrue(row.get('movable'));
-            Y.Assert.isTrue(row.get('removable'));
-
-            row = this._formBuilder.get('layout').get('rows')[2];
-            Y.Assert.isTrue(row.get('movable'));
-            Y.Assert.isTrue(row.get('removable'));
-        },
-
-        'should update quantity value of all pages break on form': function() {
-            var formBuilder = this.createFormBuilder();
-
-            Y.Assert.areEqual('Untitled Page 1/' + 1, Y.one('.form-builder-page-break-title').get('value'));
-
-            formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-
-            Y.Assert.areEqual('Untitled Page 1/' + 2, Y.one('.form-builder-page-break-title').get('value'));
-
-            formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-            formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-            Y.Assert.areEqual('Untitled Page 1/' + 4, Y.one('.form-builder-page-break-title').get('value'));
-        },
-
-        'should update page breaks when one is removed': function() {
-            var row;
-
-            this.createFormBuilder();
-            this._formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-            this._formBuilder.get('contentBox').one('.form-builder-add-page-break').simulate('click');
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-
-            row = this._formBuilder.get('layout').get('rows')[3];
-            this._formBuilder.get('layout').removeRow(row);
-            Y.Assert.areEqual(2, Y.all('.form-builder-page-break-row').size());
-
-            row = this._formBuilder.get('layout').get('rows')[3];
-            Y.Assert.areEqual(2, row.get('index'));
-            Y.Assert.areEqual(2, row.get('quantity'));
+            Y.Assert.isNotNull(this._formBuilder.getActiveLayout());
+            Y.Assert.areEqual(1, this._formBuilder.getActiveLayout().get('rows').length);
         },
 
         'should edit field and save correctly after closing modal through esc': function() {
             var field,
+                layout,
                 row;
+
+            layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                size: 4,
+                                value: new Y.FormBuilderFieldText({
+                                    help: 'help',
+                                    title: 'Title'
+                                })
+                            })
+                        ]
+                    })
+                ]
+            });
 
             this.createFormBuilder({
                 fieldTypes: [{
                     fieldClass: Y.FormBuilderFieldText,
                     label: 'Text'
                 }],
-                layout: new Y.Layout({
-                    rows: [
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    size: 4
-                                }),
-                                new Y.LayoutCol({
-                                    size: 4
-                                }),
-                                new Y.LayoutCol({
-                                    size: 4,
-                                    value: new Y.FormBuilderFieldText({
-                                        help: 'help',
-                                        title: 'Title'
-                                    })
-                                })
-                            ]
-                        })
-                    ]
-                })
+                layouts: [layout]
             });
 
             this._clickCreateNewField();
@@ -292,7 +188,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                 keyCode: 27
             });
 
-            row = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
+            row = this._formBuilder.getActiveLayout().get('rows')[1].get('cols')[0];
             Y.Assert.isNotNull(row.get('node').all('.form-builder-empty-col').item(0));
 
             field = Y.one('.form-builder-field').getData('field-instance');
@@ -326,7 +222,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this.createFormBuilder();
 
-            nestedField = this._formBuilder.get('layout').get('rows')[1].get('cols')[2].get('value').get('nestedFields');
+            nestedField = this._formBuilder.getActiveLayout().get('rows')[0].get('cols')[2].get('value').get('nestedFields');
             originalNestedFieldLength = nestedField.length;
 
             field = Y.one('.form-builder-field').getData('field-instance');
@@ -359,7 +255,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this.createFormBuilder();
 
-            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[2];
+            col = this._formBuilder.getActiveLayout().get('rows')[0].get('cols')[2];
             nestedField = col.get('value').get('nestedFields')[0];
             this._formBuilder.removeField(nestedField);
 
@@ -375,7 +271,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this.createFormBuilder();
 
-            heightAfterMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
+            heightAfterMode = Y.all('.layout-row-container-row').item(0).getStyle('height');
 
             field = Y.one('.form-builder-field-nested .form-builder-field').getData('field-instance');
             this._formBuilder.editField(field);
@@ -385,7 +281,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this._clickFieldSettingsSaveButton();
 
-            heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
+            heightBeforeMode = Y.all('.layout-row-container-row').item(0).getStyle('height');
 
             Y.Assert.isTrue(heightAfterMode < heightBeforeMode);
         },
@@ -404,7 +300,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this.createFormBuilder();
 
-            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[2];
+            col = this._formBuilder.getActiveLayout().get('rows')[1].get('cols')[2];
             col.set('value', null);
 
             Y.Assert.isNotNull(col.get('node').one('.form-builder-empty-col'));
@@ -413,7 +309,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
         'should fill empty columns for new rows': function() {
             this.createFormBuilder();
 
-            this._formBuilder.get('layout').addRow(0, new Y.LayoutRow({
+            this._formBuilder.getActiveLayout().addRow(0, new Y.LayoutRow({
                 cols: [
                     new Y.LayoutCol({
                         size: 6
@@ -434,7 +330,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
         'should fill empty columns for new cols': function() {
             this.createFormBuilder();
 
-            this._formBuilder.get('layout').get('rows')[1].set('cols', [
+            this._formBuilder.getActiveLayout().get('rows')[1].set('cols', [
                 new Y.LayoutCol({
                     size: 6
                 }),
@@ -445,15 +341,13 @@ YUI.add('aui-form-builder-tests', function(Y) {
             ]);
 
             Y.Assert.areEqual(
-                4,
+                3,
                 Y.one('.form-builder-layout').all('.form-builder-empty-col').size()
             );
         },
 
         'should fill empty columns for new layouts': function() {
-            this.createFormBuilder();
-
-            this._formBuilder.set('layout', new Y.Layout({
+            var layout = new Y.Layout({
                 rows: [
                     new Y.LayoutRow({
                         cols: [
@@ -467,14 +361,18 @@ YUI.add('aui-form-builder-tests', function(Y) {
                         ]
                     })
                 ]
-            }));
+            });
+
+            this.createFormBuilder();
+
+            this._formBuilder.set('layouts', [layout]);
 
             Y.Assert.areEqual(
                 1,
                 Y.all('.form-builder-empty-col').size()
             );
 
-            this._formBuilder.get('layout').addRow(0, new Y.LayoutRow({
+            this._formBuilder.getActiveLayout().addRow(0, new Y.LayoutRow({
                 cols: [
                     new Y.LayoutCol({
                         size: 6
@@ -496,7 +394,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             var emptyCol;
 
             this.createFormBuilder();
-            emptyCol = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
+            emptyCol = this._formBuilder.getActiveLayout().get('rows')[1].get('cols')[0];
 
             Y.Assert.isFalse(emptyCol.get('movableContent'));
         },
@@ -512,7 +410,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             var col;
 
             this.createFormBuilder();
-            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
+            col = this._formBuilder.getActiveLayout().get('rows')[0].get('cols')[0];
             Y.Assert.isFalse(Y.instanceOf(col.get('value'), Y.FormBuilderFieldSentence));
 
             this._clickCreateNewField();
@@ -527,7 +425,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this.createFormBuilder();
 
-            col = this._formBuilder.get('layout').get('rows')[1].get('cols')[0];
+            col = this._formBuilder.getActiveLayout().get('rows')[0].get('cols')[0];
             Y.Assert.isFalse(col.get('movableContent'));
 
             this._clickCreateNewField();
@@ -584,6 +482,12 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should disable adding unique field already used by creating one': function() {
+            var layout;
+
+            layout = new Y.Layout({
+                rows: [new Y.LayoutRow()]
+            });
+
             this.createFormBuilder({
                 fieldTypes: [{
                     defaultConfig: {
@@ -592,9 +496,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
                     fieldClass: Y.FormBuilderFieldSentence,
                     unique: true
                 }],
-                layout: new Y.Layout({
-                    rows: [new Y.LayoutRow()]
-                })
+                layouts: [layout]
             });
 
             this._clickCreateNewField();
@@ -627,34 +529,34 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should disable adding unique field already used when setting a new layout': function() {
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 4,
+                                value: new Y.FormBuilderFieldText({
+                                    title: 'Title'
+                                })
+                            })
+                        ]
+                    })
+                ]
+            });
+
             this.createFormBuilder({
                 fieldTypes: [{
                     fieldClass: Y.FormBuilderFieldText,
                     unique: true
                 }],
-                layout: new Y.Layout()
+                layouts: [new Y.Layout()]
             });
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isFalse(Y.one('.field-type').hasClass('field-type-disabled'));
             this._formBuilder.hideFieldsPanel();
 
-            this._formBuilder.set('layout',
-                new Y.Layout({
-                    rows: [
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    size: 4,
-                                    value: new Y.FormBuilderFieldText({
-                                        title: 'Title'
-                                    })
-                                })
-                            ]
-                        })
-                    ]
-                })
-            );
+            this._formBuilder.set('layouts', [layout]);
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
@@ -666,14 +568,14 @@ YUI.add('aui-form-builder-tests', function(Y) {
                     fieldClass: Y.FormBuilderFieldText,
                     unique: true
                 }],
-                layout: new Y.Layout()
+                layouts: [new Y.Layout()]
             });
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isFalse(Y.one('.field-type').hasClass('field-type-disabled'));
             this._formBuilder.hideFieldsPanel();
 
-            this._formBuilder.get('layout').set('rows',
+            this._formBuilder.getActiveLayout().set('rows',
                 [
                     new Y.LayoutRow({
                         cols: [
@@ -693,21 +595,25 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should disable adding unique field already used when setting a new row': function() {
+            var layout;
+
+            layout = new Y.Layout({
+                rows: [new Y.LayoutRow()]
+            });
+
             this.createFormBuilder({
                 fieldTypes: [{
                     fieldClass: Y.FormBuilderFieldText,
                     unique: true
                 }],
-                layout: new Y.Layout({
-                    rows: [new Y.LayoutRow()]
-                })
+                layouts: [layout]
             });
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isFalse(Y.one('.field-type').hasClass('field-type-disabled'));
             this._formBuilder.hideFieldsPanel();
 
-            this._formBuilder.get('layout').get('rows')[1].set('cols', [
+            this._formBuilder.getActiveLayout().get('rows')[0].set('cols', [
                 new Y.LayoutCol({
                     size: 12,
                     value: new Y.FormBuilderFieldText({
@@ -750,26 +656,27 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         'should be able to create a layout using an object instead of an instance of Layout': function() {
-            var config = {
-                layout: {
-                    rows: [
-                        new Y.FormBuilderPageBreakRow({
-                            index: 1,
-                            quantity: 2
-                        }),
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    size: 12
-                                })
-                            ]
-                        })
-                    ]
-                }
+            var config,
+                layout;
+
+            layout = {
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 12
+                            })
+                        ]
+                    })
+                ]
+            };
+
+            config = {
+                layouts: [layout]
             };
 
             this.createFormBuilder(config);
-            Y.Assert.isTrue(Y.instanceOf(this._formBuilder.get('layout'), Y.Layout));
+            Y.Assert.isTrue(Y.instanceOf(this._formBuilder.getActiveLayout(), Y.Layout));
         },
 
         'should fire create event after a new field has been created': function() {
@@ -834,6 +741,38 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this._formBuilder.removeField(field);
             Y.Assert.isTrue(removed);
+        },
+
+        'should add a new page when add page button clicked': function() {
+            this.createFormBuilder();
+
+            Y.Assert.areEqual(1, this._formBuilder.get('layouts').length);
+            Y.one('.form-builder-pages-add-page').simulate('click');
+            Y.Assert.areEqual(2, this._formBuilder.get('layouts').length);
+        },
+
+        'should remove the current page when remove page button clicked': function() {
+            this.createFormBuilder({
+                layouts: [new Y.Layout(), new Y.Layout()]
+            });
+
+            Y.Assert.areEqual(2, this._formBuilder.get('layouts').length);
+            Y.one('.form-builder-pages-remove-page').simulate('click');
+            Y.Assert.areEqual(1, this._formBuilder.get('layouts').length);
+            Y.one('.form-builder-pages-remove-page').simulate('click');
+            Y.Assert.areEqual(1, this._formBuilder.get('layouts').length);
+        },
+
+        'should update page when page selected': function() {
+            this.createFormBuilder();
+
+            Y.one('.form-builder-pages-add-page').simulate('click');
+
+            Y.Assert.areEqual(1, this._formBuilder.getActiveLayout().get('rows').length);
+            Y.one('.pagination-control').simulate('click');
+            Y.Assert.areEqual(2, this._formBuilder.getActiveLayout().get('rows').length);
+            Y.one('.pagination-control').simulate('click');
+            Y.Assert.areEqual(1, this._formBuilder.getActiveLayout().get('rows').length);
         }
     }));
 

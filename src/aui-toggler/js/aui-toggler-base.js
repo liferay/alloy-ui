@@ -401,13 +401,11 @@ var Toggler = A.Component.create({
             }
 
             if (!instance.wrapped) {
-                content.wrap(TPL_CONTENT_WRAPPER);
+                instance._uiSetExpandedContent();
 
                 if (expand) {
                     content.setStyle('marginTop', -(height + gutter));
                 }
-
-                instance.wrapped = true;
             }
 
             instance.set('animating', true);
@@ -444,10 +442,29 @@ var Toggler = A.Component.create({
          * @protected
          */
         _uiSetExpanded: function(val) {
-            var instance = this;
+            var instance = this,
+                expanded = instance.get('expanded');
+
+            if (expanded && !instance.wrapped) {
+                instance._uiSetExpandedContent();
+            }
 
             instance.get('content').replaceClass(CSS_TOGGLER_CONTENT_STATE[!val], CSS_TOGGLER_CONTENT_STATE[val]);
             instance.get('header').replaceClass(CSS_TOGGLER_HEADER_STATE[!val], CSS_TOGGLER_HEADER_STATE[val]);
+        },
+
+        /**
+         * Wrap the content HTML if `expanded` attribute is true.
+         *
+         * @method _uiSetExpandedContent
+         * @protected
+         */
+        _uiSetExpandedContent: function() {
+            var instance = this;
+
+            instance.get('content').wrap(TPL_CONTENT_WRAPPER);
+
+            instance.wrapped = true;
         }
 
     }

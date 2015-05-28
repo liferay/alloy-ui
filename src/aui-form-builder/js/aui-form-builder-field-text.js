@@ -28,7 +28,7 @@ A.FormBuilderFieldText = A.Base.create('form-builder-field-text', A.FormFieldTex
             {
                 attrName: 'required',
                 editor: new A.BooleanDataEditor({
-                    label: 'Required'
+                    label: 'Required question'
                 })
             },
             {

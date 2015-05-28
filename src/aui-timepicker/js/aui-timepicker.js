@@ -53,6 +53,20 @@ TimePickerBase.ATTRS = {
     },
 
     /**
+     * Focus time picker to the time option nearest the timepicker's input time
+     * or the time option nearest the current local time when no input time
+     * is passed.
+     *
+     * @attribute focusSelectedTime
+     * @default true
+     * @type {boolean}
+     */
+    focusSelectedTime: {
+        validator: Lang.isBoolean,
+        value: true
+    },
+
+    /**
      * Format for displayed time.
      *
      * @attribute mask
@@ -158,6 +172,19 @@ A.mix(TimePickerBase.prototype, {
     },
 
     /**
+     * Triggers `_focusSelectedValue` method.
+     *
+     * @method focusCurrentValue
+     */
+    focusSelectedValue: function() {
+        var instance = this;
+
+        if (instance.get('focusSelectedTime')) {
+            instance._focusSelectedValue();
+        }
+    },
+
+    /**
      * Creates and returns a new instance of `AutoComplete`.
      *
      * @method getAutoComplete
@@ -181,6 +208,34 @@ A.mix(TimePickerBase.prototype, {
         autocomplete.after('select', instance._afterAutocompleteSelect, instance);
 
         return autocomplete;
+    },
+
+    /**
+     * Get the input time value if it exists or return the current local time
+     * in milliseconds
+     *
+     * @method getInputTime
+     * @return {Int} date
+     */
+    getInputTime: function() {
+        var instance = this,
+            curTime,
+            date,
+            inputVal;
+
+            date = new Date();
+
+            curTime = Date.parse(date.toUTCString(date.getTime()));
+
+            inputVal = instance.getParsedDatesFromInputValue();
+
+        if (inputVal) {
+            inputVal = inputVal.pop();
+
+            curTime = Date.parse(inputVal);
+        }
+
+        return curTime;
     },
 
     /**
@@ -237,6 +292,57 @@ A.mix(TimePickerBase.prototype, {
 
         if (instance.get('autoHide')) {
             instance.hide();
+        }
+    },
+
+    /**
+     * Select time nearest the current input time or local time.
+     *
+     * @method focusSelectedValue
+     * @protected
+     */
+    _focusSelectedValue: function() {
+        var instance = this,
+            deltaTime,
+            curTime,
+            mask,
+            nodeTime,
+            nodeList,
+            popoverBody,
+            previousTime,
+            targetNode,
+            timeVals,
+            topOffset;
+
+            popoverBody = instance.getPopover().bodyNode;
+
+            nodeList = popoverBody.all('.yui3-aclist-item');
+
+        if (!nodeList.isEmpty()) {
+            curTime = instance.getInputTime();
+
+            mask = instance.get('mask');
+            timeVals = instance.get('values');
+
+            targetNode = nodeList.item(0);
+
+            previousTime = (curTime * 2);
+
+            for (var i = 0; i < timeVals.length; i++) {
+                nodeTime = Date.parse(A.Date.parse(mask, timeVals[i]));
+
+                deltaTime = Math.abs(curTime - nodeTime);
+
+                if (deltaTime < previousTime) {
+                    targetNode = nodeList.item(i);
+
+                    previousTime = deltaTime;
+                }
+            }
+
+            topOffset = targetNode.get('offsetTop');
+
+            popoverBody.set('scrollTop', topOffset);
         }
     },
 

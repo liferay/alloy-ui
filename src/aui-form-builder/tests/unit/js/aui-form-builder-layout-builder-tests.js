@@ -31,42 +31,44 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
         },
 
         _createFormBuilder: function(config, skipRender) {
-            this._formBuilder = new Y.FormBuilder(Y.merge({
-                layout: new Y.Layout({
-                    rows: [
-                        new Y.LayoutRow({
-                            cols: [
-                                new Y.LayoutCol({
-                                    movableContent: true,
-                                    size: 4,
-                                    value: new Y.FormBuilderFieldSentence({
-                                        help: 'My Help',
-                                        nestedFields: [
-                                            new Y.FormBuilderFieldText({
-                                                help: 'First nested field',
-                                                title: 'Nested Field 1'
-                                            }),
-                                            new Y.FormBuilderFieldText({
-                                                help: 'Second nested field',
-                                                title: 'Nested Field 2'
-                                            })
-                                        ],
-                                        title: 'My Title'
-                                    })
-                                }),
-                                new Y.LayoutCol({
-                                    size: 4
-                                }),
-                                new Y.LayoutCol({
-                                    size: 4,
-                                    value: new Y.FormBuilderFieldSentence({
-                                        title: 'Another Field'
-                                    })
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                movableContent: true,
+                                size: 4,
+                                value: new Y.FormBuilderFieldSentence({
+                                    help: 'My Help',
+                                    nestedFields: [
+                                        new Y.FormBuilderFieldText({
+                                            help: 'First nested field',
+                                            title: 'Nested Field 1'
+                                        }),
+                                        new Y.FormBuilderFieldText({
+                                            help: 'Second nested field',
+                                            title: 'Nested Field 2'
+                                        })
+                                    ],
+                                    title: 'My Title'
                                 })
-                            ]
-                        })
-                    ]
-                })
+                            }),
+                            new Y.LayoutCol({
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                size: 4,
+                                value: new Y.FormBuilderFieldSentence({
+                                    title: 'Another Field'
+                                })
+                            })
+                        ]
+                    })
+                ]
+            });
+
+            this._formBuilder = new Y.FormBuilder(Y.merge({
+                layouts: [layout] 
             }, config));
 
             if (!skipRender) {
@@ -231,9 +233,9 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             this._createFormBuilder();
 
             rowNodes = this._formBuilder.get('contentBox').all('.layout-row');
-            Y.Assert.areEqual(3, rowNodes.size());
+            Y.Assert.areEqual(2, rowNodes.size());
 
-            this._formBuilder.set('layout', new Y.Layout());
+            this._formBuilder.set('layouts', [new Y.Layout()]);
             rowNodes = this._formBuilder.get('contentBox').all('.layout-row');
             Y.Assert.areEqual(1, rowNodes.size());
         },
@@ -247,28 +249,31 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             this._formBuilder.set('mode', Y.FormBuilder.MODES.REGULAR);
             this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
 
-            this._formBuilder.set('layout', new Y.Layout());
+            this._formBuilder.set('layouts', [new Y.Layout()]);
 
             button = this._formBuilder.get('contentBox').one('.layout-builder-remove-row-button');
             Y.Assert.isNull(button);
         },
 
         'should update with new attributes after rendering': function() {
-            var rowNodes;
+            var layout,
+                rowNodes;
 
-            this._createFormBuilder({}, true);
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            this._formBuilder.set('layout', new Y.Layout({
+            layout = new Y.Layout({
                 rows: [
                     new Y.LayoutRow(),
                     new Y.LayoutRow()
                 ]
-            }));
+            });
+
+            this._createFormBuilder({}, true);
+
+            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
+            this._formBuilder.set('layouts', [layout]);
 
             this._formBuilder.render('#container');
             rowNodes = this._formBuilder.get('contentBox').all('.layout-row');
-            Y.Assert.areEqual(3, rowNodes.size());
+            Y.Assert.areEqual(2, rowNodes.size());
 
             Y.Assert.isTrue(this._formBuilder.get('boundingBox').hasClass('form-builder-layout-mode'));
         },
@@ -288,7 +293,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             moveItem = this._toolbar._toolbar.one('.glyphicon-move').ancestor();
 
-            row = this._formBuilder.get('layout').get('rows')[1];
+            row = this._formBuilder.get('layouts')[0].get('rows')[0];
             rowNode = row.get('node');
 
             moveItem.simulate('click');
@@ -320,7 +325,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             moveItem = this._toolbar._toolbar.one('.glyphicon-move').ancestor();
 
-            row = this._formBuilder.get('layout').get('rows')[1];
+            row = this._formBuilder.get('layouts')[0].get('rows')[0];
             rowNode = row.get('node');
 
             moveItem.simulate('click');
@@ -353,7 +358,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             moveItem = this._toolbar._toolbar.one('.glyphicon-move').ancestor();
 
-            row = this._formBuilder.get('layout').get('rows')[1];
+            row = this._formBuilder.get('layouts')[0].get('rows')[0];
             cols = row.get('cols');
             field = cols[0].get('value');
 
@@ -382,7 +387,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._openToolbar(Y.all('.form-builder-field-content-toolbar').item(1));
 
-            row = this._formBuilder.get('layout').get('rows')[1];
+            row = this._formBuilder.get('layouts')[0].get('rows')[0];
             cols = row.get('cols');
             field = cols[0].get('value').get('nestedFields')[0];
 
@@ -412,7 +417,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._openToolbar(Y.all('.form-builder-field-content-toolbar').item(1));
 
-            row = this._formBuilder.get('layout').get('rows')[1];
+            row = this._formBuilder.get('layouts')[0].get('rows')[0];
             cols = row.get('cols');
             field = cols[0].get('value').get('nestedFields')[0];
 
@@ -436,7 +441,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 mode: Y.FormBuilder.MODES.REGULAR
             });
 
-            this._formBuilder.get('layout').get('rows')[1].get('cols')[0].set('movableContent', false);
+            this._formBuilder.get('layouts')[0].get('rows')[0].get('cols')[0].set('movableContent', false);
 
             this._toolbar = this._formBuilder._fieldToolbar;
             this._openToolbar();
@@ -453,14 +458,14 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._createFormBuilder();
 
-            this._formBuilder.get('layout').get('rows')[1].get('cols')[2].set('movableContent', false);
+            this._formBuilder.get('layouts')[0].get('rows')[0].get('cols')[2].set('movableContent', false);
 
             this._openToolbar();
 
             moveItem = Y.one('.glyphicon-move').ancestor();
             moveItem.simulate('click');
 
-            row = this._formBuilder.get('layout').get('rows')[1];
+            row = this._formBuilder.get('layouts')[0].get('rows')[0];
             rowNode = row.get('node');
 
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
@@ -472,7 +477,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
         'should always have an empty row in the last position': function() {
             this._formBuilder = new Y.FormBuilder().render('#container');
 
-            Y.Assert.areEqual(2, this._formBuilder.get('layout').get('rows').length);
+            Y.Assert.areEqual(1, this._formBuilder.get('layouts')[0].get('rows').length);
         },
 
         'should add a new empty row with the same layout as the last row when a new field is created in the last row': function() {
@@ -493,15 +498,15 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 }
             ] }).render('#container');
 
-            Y.Assert.areEqual(2, this._formBuilder.get('layout').get('rows').length);
+            Y.Assert.areEqual(1, this._formBuilder.get('layouts')[0].get('rows').length);
 
-            Y.one('.glyphicon-plus.form-builder-empty-col-icon').simulate('click');
+            Y.one('.form-builder-empty-col-add-button').simulate('click');
             Y.one('.modal-content .field-type').simulate('click');
             Y.one('.text-data-editor input.form-control').set('value', 'foo');
             Y.one('.form-builder-field-settings-save').simulate('click');
             Y.one('.form-builder-field-settings-save').simulate('click');
 
-            Y.Assert.areEqual(3, this._formBuilder.get('layout').get('rows').length);
+            Y.Assert.areEqual(2, this._formBuilder.get('layouts')[0].get('rows').length);
         }
     }));
 

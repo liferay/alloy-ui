@@ -99,6 +99,13 @@ DatePickerDelegate.prototype = {
     },
 
     /**
+     * Method not implemented.
+     *
+     * @method focusSelectedValue
+     */
+    focusSelectedValue: function() {},
+
+    /**
      * Gets the selected dates.
      *
      * @method getSelectedDates
@@ -266,6 +273,8 @@ DatePickerDelegate.prototype = {
         var instance = this;
 
         instance.useInputNodeOnce(event.currentTarget);
+
+        instance.focusSelectedValue();
 
         instance._userInteractionInProgress = false;
     },
