@@ -91,6 +91,7 @@ YUI.add('dd-delegate', function(Y) {
                 this._shimState = Y.DD.DDM._noShim;
                 Y.DD.DDM._noShim = true;
                 this.set('currentNode', tar);
+                dd._unprep();
                 dd.set('node', tar);
                 if (dd.proxy) {
                     dd.set('dragNode', Y.DD.DDM._proxy);
@@ -339,4 +340,4 @@ YUI.add('dd-delegate', function(Y) {
 
 
 
-}, '3.4.0' ,{skinnable:false, requires:['dd-drag', 'event-mouseenter', 'dd-drop-plugin']});
+}, '3.4.0' ,{requires:['dd-drag', 'event-mouseenter', 'dd-drop-plugin'], skinnable:false});
