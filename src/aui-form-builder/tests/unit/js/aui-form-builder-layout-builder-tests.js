@@ -76,7 +76,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             });
 
             this._formBuilder = new Y.FormBuilder(Y.merge({
-                layouts: [layout] 
+                layouts: [layout]
             }, config));
 
             if (!skipRender) {

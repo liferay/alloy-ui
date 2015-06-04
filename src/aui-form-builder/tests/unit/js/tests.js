@@ -771,7 +771,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(1, this._formBuilder.getActiveLayout().get('rows').length);
         },
 
-        'should only update the DOM content when the list of layouts to be seted but before form builder to be rendered': function() {
+        'should only update the DOM content when setting list of layouts after form builder is rendered': function() {
             var markup,
                 formbuilder = new Y.FormBuilder({
                     layouts: [new Y.Layout(), new Y.Layout()],
