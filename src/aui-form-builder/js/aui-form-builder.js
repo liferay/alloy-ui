@@ -194,18 +194,14 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Returns the `fieldListInstance`'s row.
+     * Returns the row of the given field.
      *
      * @method getFieldRow
-     * @param {A.FormBuilderFieldList|A.FormField} val
+     * @param {A.FormField} field
      * @return {Node} The row where is the field parameter
      */
-    getFieldRow: function(val) {
-        if (A.instanceOf(val, A.FormBuilderFieldList)) {
-            return val.get('contentBox').ancestor('.layout-row');
-        }
-
-        return val.get('content').ancestor('.layout-row');
+    getFieldRow: function(field) {
+        return field.get('content').ancestor('.layout-row');
     },
 
     /**
@@ -217,6 +213,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     removeField: function(field) {
         var col,
             parentField,
+            row,
             nestedFieldsNode = field.get('content').ancestor('.form-builder-field-nested');
 
         this._handleRemoveEvent(field);
@@ -228,8 +225,9 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         }
         else {
             col = field.get('content').ancestor('.col').getData('layout-col');
+            row = this.getFieldRow(field);
             col.get('value').removeField(field);
-            this.getActiveLayout().normalizeColsHeight(new A.NodeList(this.getFieldRow(col.get('value'))));
+            this.getActiveLayout().normalizeColsHeight(new A.NodeList(row));
         }
 
         this._updateUniqueFieldType();
