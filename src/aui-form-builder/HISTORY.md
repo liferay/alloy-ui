@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1885](https://issues.liferay.com/browse/AUI-1885) Allows adding multiple fields on the same column
 * [AUI-1887](https://issues.liferay.com/browse/AUI-1887) Form builder should have pages, not page breaks
 * [AUI-1904](https://issues.liferay.com/browse/AUI-1904) Update textual content on Field Text
 * [AUI-1902](https://issues.liferay.com/browse/AUI-1902) Form Builder fields toolbar buttons should not submit the form (reload the page) after clicked
