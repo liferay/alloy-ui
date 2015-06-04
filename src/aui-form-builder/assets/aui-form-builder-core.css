@@ -101,15 +101,13 @@
 }
 
 .form-builder-layout {
-    margin: 0 auto;
-    width: 920px;
+    margin: 0 80px;
 }
 
 .form-builder-pages-header {
     background-color: #FFFFFF;
     margin: 2px auto;
     text-align: center;
-    width: 920px;
 }
 
 .yui3-form-builder-pages {
@@ -122,7 +120,6 @@
     margin: 0 auto;
     position: relative;
     text-align: center;
-    width: 920px;
 }
 
 .form-builder-pages .form-builder-page-controls {
@@ -210,6 +207,6 @@
 
 @media (max-width: 768px) {
     .form-builder-layout {
-        margin: 24px 30px;
+        margin: 24px 20px;
     }
 }
