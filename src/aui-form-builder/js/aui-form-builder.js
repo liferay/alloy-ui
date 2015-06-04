@@ -5,12 +5,9 @@
  */
 
 var CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout', 'button'),
-    CSS_EMPTY_COL = A.getClassName('form', 'builder', 'empty', 'col'),
-    CSS_EMPTY_COL_ADD_BUTTON = A.getClassName('form', 'builder', 'empty', 'col', 'add', 'button'),
-    CSS_EMPTY_COL_CIRCLE = A.getClassName('form', 'builder', 'empty', 'col', 'circle'),
-    CSS_EMPTY_COL_ICON = A.getClassName('form', 'builder', 'empty', 'col', 'icon'),
+    CSS_EMPTY_COL_ADD_BUTTON_CIRCLE =
+        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'circle'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
-    CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_HEADER = A.getClassName('form', 'builder', 'header'),
     CSS_HEADER_BACK = A.getClassName('form', 'builder', 'header', 'back'),
     CSS_HEADER_TITLE = A.getClassName('form', 'builder', 'header', 'title'),
@@ -44,15 +41,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
     TPL_EDIT_LAYOUT_BUTTON: '<div class="' + CSS_EDIT_LAYOUT_BUTTON + '">' +
         '<a>Edit Layout</a></div>',
-    TPL_EMPTY_COL: '<div class="' + CSS_EMPTY_COL + '">' +
-        '<div class="' + CSS_EMPTY_COL_ADD_BUTTON + '" tabindex="9">' +
-        '<span class="' + CSS_EMPTY_COL_CIRCLE + '">' +
-        '<span class="' + CSS_EMPTY_COL_ICON + '"></span>' +
-        '</span>' +
-        '<button type="button" class="' + CSS_FIELD_MOVE_TARGET +
-        ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
-        'Paste here</button>' +
-        '</div>',
     TPL_HEADER: '<div class="' + CSS_HEADER + '">' +
         '<a class="' + CSS_HEADER_BACK +
         '" tabindex="1"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
@@ -87,8 +75,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             this.after('layoutsChange', A.bind(this._afterLayoutsChange, this)),
             this.after('layout:valueChange', this._afterLayoutChange),
             this.after('layout:rowsChange', this._afterLayoutRowsChange),
-            this.after('layout-row:colsChange', this._afterLayoutColsChange),
-            this.after('layout-col:valueChange', this._afterLayoutColValueChange)
+            this.after('layout-row:colsChange', this._afterLayoutColsChange)
         ];
 
         this._pages = new A.FormBuilderPages({
@@ -120,6 +107,8 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         this._pages.render('.' + CSS_PAGES);
 
         this.getActiveLayout().addTarget(this);
+
+        this._renderEmptyColumns();
     },
 
     /**
@@ -133,9 +122,9 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         this._eventHandles.push(
             this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
-            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
+            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON_CIRCLE, this),
             boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' +
-                CSS_EMPTY_COL_ADD_BUTTON),
+                CSS_EMPTY_COL_ADD_BUTTON_CIRCLE),
             boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
             boundingBox.one('.' + CSS_HEADER_BACK).on('key', A.bind(this._onKeyPressHeaderBack, this), 'press:13'),
             this._menu.after('itemSelected', A.bind(this._afterItemSelected, this)),
@@ -154,8 +143,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     syncUI: function() {
-        this._syncLayoutRows();
-
         this._updateUniqueFieldType();
     },
 
@@ -207,14 +194,18 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Returns the `fieldInstance`'s row.
+     * Returns the `fieldListInstance`'s row.
      *
      * @method getFieldRow
-     * @param {A.FormField} fieldInstance
+     * @param {A.FormBuilderFieldList|A.FormField} val
      * @return {Node} The row where is the field parameter
      */
-    getFieldRow: function(fieldInstance) {
-        return fieldInstance.get('content').ancestor('.layout-row');
+    getFieldRow: function(val) {
+        if (A.instanceOf(val, A.FormBuilderFieldList)) {
+            return val.get('contentBox').ancestor('.layout-row');
+        }
+
+        return val.get('content').ancestor('.layout-row');
     },
 
     /**
@@ -237,7 +228,8 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         }
         else {
             col = field.get('content').ancestor('.col').getData('layout-col');
-            this._makeColumnEmpty(col);
+            col.get('value').removeField(field);
+            this.getActiveLayout().normalizeColsHeight(new A.NodeList(this.getFieldRow(col.get('value'))));
         }
 
         this._updateUniqueFieldType();
@@ -326,10 +318,10 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         var field = event.field;
 
         if (this._newFieldContainer) {
-            if (A.instanceOf(this._newFieldContainer, A.LayoutCol)) {
-                this._newFieldContainer.set('value', field);
+            if (A.instanceOf(this._newFieldContainer.get('value'), A.FormBuilderFieldList)) {
+                this._newFieldContainer.get('value').addField(field);
             }
-            else if (A.instanceOf(this._newFieldContainer, A.FormField)) {
+            else {
                 this._addNestedField(
                     this._newFieldContainer,
                     field,
@@ -340,8 +332,9 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         }
         else {
             this._handleEditEvent(field);
-            this.getActiveLayout().normalizeColsHeight(new A.NodeList(field.get('content').ancestor('.layout-row')));
         }
+
+        this.getActiveLayout().normalizeColsHeight(new A.NodeList(field.get('content').ancestor('.layout-row')));
 
         this._handleCreateEvent(field);
         this.disableUniqueFieldType(field);
@@ -368,30 +361,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _afterLayoutColsChange: function() {
-        this._renderEmptyColumns();
-
         this._updateUniqueFieldType();
-    },
-
-    /**
-     * Fired after the `layout-col:valueChange` event is triggered.
-     *
-     * @method _afterLayoutColValueChange
-     * @param {EventFacade} event
-     * @protected
-     */
-    _afterLayoutColValueChange: function(event) {
-        var col = event.target;
-
-        if (A.instanceOf(event.newVal, A.FormField)) {
-            col.set('movableContent', true);
-        }
-        else if (!event.newVal) {
-            this._makeColumnEmpty(col);
-        }
-        else {
-            col.set('movableContent', false);
-        }
     },
 
     /**
@@ -401,7 +371,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _afterLayoutRowsChange: function() {
-        this._syncLayoutRows();
+        this._renderEmptyColumns();
 
         this._updateUniqueFieldType();
     },
@@ -417,8 +387,11 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         A.Array.invoke(event.prevVal, 'removeTarget', this);
         A.Array.invoke(event.newVal, 'addTarget', this);
 
-        this._updateUniqueFieldType();
         this._updatePageContent(this.get('layouts')[0]);
+        this._updateUniqueFieldType();
+
+        this._pages.set('activePageNumber', 1);
+        this._pages.set('pagesQuantity', this.get('layouts').length);
     },
 
     /**
@@ -497,14 +470,12 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     /**
      * Turns the given column into an empty form builder column.
      *
-     * @method _makeColumnEmpty
+     * @method _makeEmptyFieldList
      * @param {A.LayoutCol} col
      * @protected
      */
-    _makeColumnEmpty: function(col) {
-        col.set('value', {
-            content: this.TPL_EMPTY_COL
-        });
+    _makeEmptyFieldList: function(col) {
+        col.set('value', new A.FormBuilderFieldList());
     },
 
     /**
@@ -595,10 +566,10 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _removeLayout: function(event) {
-        var layout = this.get('layouts');
+        var layouts = this.get('layouts');
 
-        layout[event.removedIndex].destroy();
-        layout.splice(event.removedIndex, 1);
+        layouts[event.removedIndex].destroy();
+        layouts.splice(event.removedIndex, 1);
     },
 
     /**
@@ -614,7 +585,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         A.Array.each(rows, function(row) {
             A.Array.each(row.get('cols'), function(col) {
                 if (!col.get('value')) {
-                    instance._makeColumnEmpty(col);
+                    instance._makeEmptyFieldList(col);
                 }
             });
         });
@@ -658,16 +629,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Syncs the UI according to changes in the layout's rows.
-     *
-     * @method _syncLayoutRows
-     * @protected
-     */
-    _syncLayoutRows: function() {
-        this._renderEmptyColumns();
-    },
-
-    /**
      * Updates the form builder header's title.
      *
      * @method _updateHeaderTitle
@@ -687,12 +648,11 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _updatePageContent: function(activeLayout) {
-        this.getActiveLayout().removeTarget(this);
         activeLayout.addTarget(this);
 
         if (this.get('rendered')) {
             this._layoutBuilder.set('layout', activeLayout);
-            this._syncLayoutRows();
+            this._renderEmptyColumns();
         }
     }
 }, {

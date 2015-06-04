@@ -18,9 +18,13 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
                         cols: [
                             new Y.LayoutCol({
                                 size: 6,
-                                value: new Y.FormBuilderFieldText({
-                                    help: 'Help',
-                                    title: 'Title'
+                                value: new Y.FormBuilderFieldList({
+                                    fields: [
+                                        new Y.FormBuilderFieldText({
+                                            help: 'Help',
+                                            title: 'Title'
+                                        })
+                                    ]
                                 })
                             })
                         ]
@@ -326,34 +330,42 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
                         cols: [
                             new Y.LayoutCol({
                                 size: 6,
-                                value: new Y.FormBuilderFieldText({
-                                    help: 'Help',
-                                    nestedFields: [
-                                        new Y.FormBuilderFieldText({
-                                            help: 'Help',
-                                            title: 'Title'
-                                        })
-                                    ],
-                                    title: 'Title'
-                                })
+                                value: new Y.FormBuilderFieldList({
+                                fields: [
+                                    new Y.FormBuilderFieldText({
+                                        help: 'Help',
+                                        nestedFields: [
+                                            new Y.FormBuilderFieldText({
+                                                help: 'Help',
+                                                title: 'Title'
+                                            })
+                                        ],
+                                        title: 'Title'
+                                    })
+                                ]
+                            })
                             }),
                             new Y.LayoutCol({
                                 size: 6,
-                                value: new Y.FormBuilderFieldText({
-                                    help: 'Help',
-                                    nestedFields: [
+                                value: new Y.FormBuilderFieldList({
+                                    fields: [
                                         new Y.FormBuilderFieldText({
                                             help: 'Help',
                                             nestedFields: [
-                                                new Y.FormBuilderFieldSentence({
+                                                new Y.FormBuilderFieldText({
                                                     help: 'Help',
+                                                    nestedFields: [
+                                                        new Y.FormBuilderFieldSentence({
+                                                            help: 'Help',
+                                                            title: 'Title'
+                                                        })
+                                                    ],
                                                     title: 'Title'
                                                 })
                                             ],
                                             title: 'Title'
                                         })
-                                    ],
-                                    title: 'Title'
+                                    ]
                                 })
                             })
                         ]
@@ -380,9 +392,13 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
                         cols: [
                             new Y.LayoutCol({
                                 size: 6,
-                                value: new Y.FormBuilderFieldSentence({
-                                    help: 'Help',
-                                    title: 'Title'
+                                value: new Y.FormBuilderFieldList({
+                                    fields: [
+                                        new Y.FormBuilderFieldSentence({
+                                            help: 'Help',
+                                            title: 'Title'
+                                        })
+                                    ]
                                 })
                             })
                         ]

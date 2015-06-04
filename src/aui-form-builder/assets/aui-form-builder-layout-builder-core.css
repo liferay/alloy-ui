@@ -67,7 +67,7 @@
     z-index: 1;
 }
 
-.form-builder-empty-col .form-builder-field-move-target {
+.form-builder-empty-col-add-button .form-builder-field-move-target {
     margin-left: auto;
     margin-right: auto;
 }

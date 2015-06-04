@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1885](https://issues.liferay.com/browse/AUI-1885) Allows adding multiple fields on the same column
 * [AUI-1887](https://issues.liferay.com/browse/AUI-1887) Form builder should have pages, not page breaks
 * [AUI-1858](https://issues.liferay.com/browse/AUI-1858) FormBuilder should be able to receive layout as a configuration object
 * [AUI-1830](https://issues.liferay.com/browse/AUI-1830) Button to move field should be inside the field's toolbar

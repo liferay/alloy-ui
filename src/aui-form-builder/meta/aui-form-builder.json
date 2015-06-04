@@ -3,6 +3,7 @@
         "requires": [
             "aui-modal",
             "aui-layout",
+            "aui-form-builder-field-list",
             "aui-form-builder-field-toolbar",
             "aui-form-builder-field-type",
             "aui-form-builder-field-types",

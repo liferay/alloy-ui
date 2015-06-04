@@ -70,6 +70,8 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         targetNodes.setData('node-col', colNode);
         targetNodes.setData('node-row', rowNode);
+
+        this._renderEmptyColumns();
     },
 
     /**
@@ -85,7 +87,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             colNode = col.get('node'),
             targetNodes;
 
-        cantReceiveMoveTarget = !col.get('movableContent') && !colNode.one('.form-builder-empty-col');
+        cantReceiveMoveTarget = !col.get('movableContent') && !colNode.one('.form-builder-empty-col-add-button');
 
         if (cantReceiveMoveTarget) {
             return;
@@ -168,7 +170,8 @@ A.FormBuilderLayoutBuilder.prototype = {
         cols = this._lastRow.get('cols');
 
         for (var i = 0; i < cols.length; i++) {
-            if (!cols[i].get('node').one('.form-builder-empty-col')) {
+            if (A.instanceOf(cols[i].get('value'), A.FormBuilderFieldList) &&
+                (cols[i].get('value').get('fields').length > 0)) {
                 this._createLastRow();
                 break;
             }
@@ -190,6 +193,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             targetNode;
 
         this._fieldBeingMoved = fieldNode.getData('field-instance');
+        this._fieldListBeingMoved = col.get('value');
         this._fieldBeingMovedCol = col;
 
         colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
@@ -224,15 +228,6 @@ A.FormBuilderLayoutBuilder.prototype = {
             toolbarMoveIconCancelMode.removeClass(CSS_LAYOUT_BUILDER_MOVE_CANCEL);
         }
 
-        if (parentFieldNode) {
-            parentFieldNode.getData('field-instance').removeNestedField(this._fieldBeingMoved);
-
-            this.getActiveLayout().normalizeColsHeight(new A.NodeList(this.getFieldRow(
-                parentFieldNode.getData('field-instance'))));
-        }
-        else {
-            this._fieldBeingMovedCol.set('value', null);
-        }
 
         if (targetNestedParent) {
             this._addNestedField(
@@ -242,7 +237,17 @@ A.FormBuilderLayoutBuilder.prototype = {
             );
         }
         else {
-            moveTarget.getData('col').set('value', this._fieldBeingMoved);
+            moveTarget.getData('col').get('value').addField(this._fieldBeingMoved);
+        }
+
+        if (parentFieldNode) {
+            parentFieldNode.getData('field-instance').removeNestedField(this._fieldBeingMoved);
+
+            this.getActiveLayout().normalizeColsHeight(new A.NodeList(this.getFieldRow(
+                parentFieldNode.getData('field-instance'))));
+        }
+        else {
+            this._fieldListBeingMoved.removeField(this._fieldBeingMoved);
         }
 
         this._layoutBuilder.cancelMove();
@@ -391,17 +396,11 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _toggleMoveColItem: function(colNode) {
-        var hasMovableContent = colNode.getData('layout-col').get('movableContent'),
-            moveItem = this._fieldToolbar.getItem('.glyphicon-move').ancestor();
+        var moveItem = this._fieldToolbar.getItem('.glyphicon-move').ancestor();
 
-        if (!hasMovableContent) {
-            moveItem.addClass('hidden');
-        }
-        else {
-            moveItem.setData('layout-row', colNode.ancestor('.row').getData('layout-row'));
-            moveItem.setData('node-col', colNode);
-            moveItem.removeClass('hidden');
-        }
+        moveItem.setData('layout-row', colNode.ancestor('.row').getData('layout-row'));
+        moveItem.setData('node-col', colNode);
+        moveItem.removeClass('hidden');
     },
 
     /**
