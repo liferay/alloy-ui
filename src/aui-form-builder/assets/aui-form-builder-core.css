@@ -176,10 +176,6 @@
     margin: 0;
 }
 
-.form-builder-layout .layout-row-container-row + .form-builder-page-break-row-container-row {
-    margin-top: 40pt;
-}
-
 .form-builder-layout .layout-row {
     margin: 0;
 }
@@ -188,13 +184,6 @@
     background-color: #fff;
     min-height: 260px;
     padding: 0;
-}
-
-.form-builder-layout .form-builder-page-break-row-container-row .col {
-    border-radius: 5px 5px 0 0;
-    height: 48pt;
-    line-height: 48pt;
-    min-height: 0;
 }
 
 .form-builder-layout .layout-row .col:last-child {
