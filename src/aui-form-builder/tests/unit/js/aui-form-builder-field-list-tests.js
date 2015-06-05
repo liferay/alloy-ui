@@ -11,11 +11,12 @@ YUI.add('aui-form-builder-field-list-tests', function(Y) {
 
         tearDown: function() {
             this._fieldList && this._fieldList.destroy();
+            this._container.empty();
         },
 
         createFieldList: function(config) {
             this._fieldList = new Y.FormBuilderFieldList(config);
-            this._container.append(this._fieldList.get('contentBox'));
+            this._container.append(this._fieldList.get('content'));
         },
 
         'should add a field to the field list': function() {

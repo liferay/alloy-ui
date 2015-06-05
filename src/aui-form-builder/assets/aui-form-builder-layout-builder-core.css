@@ -85,3 +85,7 @@
 .form-builder-choose-col-move-target .form-builder-field-move-target-invalid {
     visibility: hidden;
 }
+
+.form-builder-col-moving .form-builder-list-move-target  {
+    visibility: hidden;
+}

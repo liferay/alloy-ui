@@ -15,25 +15,27 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
         A.getClassName('form', 'builder', 'field', 'list', 'container'),
     CSS_FIELD_LIST_EMPTY = A.getClassName('form', 'builder', 'field', 'list', 'empty'),
     CSS_FIELD_MOVE_TARGET =
-        A.getClassName('form', 'builder', 'field', 'move', 'target');
+        A.getClassName('form', 'builder', 'field', 'move', 'target'),
+    CSS_LIST_MOVE_TARGET =
+        A.getClassName('form', 'builder', 'list', 'move', 'target');
 
 /**
  * A base class for `A.FormBuilderFieldList`.
  *
  * @class A.FormBuilderFieldList
- * @extends A.Widget
+ * @extends A.Base
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Widget, [], {
+A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '">' +
         '<div class="' + CSS_FIELD_LIST_CONTAINER + '"></div>' +
         '<div class="' + CSS_FIELD_LIST_ADD_BUTTON + '" tabindex="9">' +
         '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_CIRCLE + '">' +
         '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + '"></span>' +
         '</span>' +
-        '<button type="button" class="' + CSS_FIELD_MOVE_TARGET +
+        '<button type="button" class="' + CSS_FIELD_MOVE_TARGET + ' ' + CSS_LIST_MOVE_TARGET +
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
         'Paste here</button>' +
         '</div>' +
@@ -47,9 +49,6 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Widget, [],
      * @protected
      */
     initializer: function() {
-        var contentBox = this.get('contentBox');
-
-        contentBox.append(this.TPL_FIELD_LIST);
         this._uiSetFields(this.get('fields'));
 
         this.after('fieldsChange', A.bind(this._afterFieldsChange, this));
@@ -100,15 +99,15 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Widget, [],
      * @protected
      */
     _uiSetFields: function(fields) {
-        var contentBox = this.get('contentBox'),
-            container = contentBox.one('.' + CSS_FIELD_LIST_CONTAINER);
+        var content = this.get('content'),
+            container = content.one('.' + CSS_FIELD_LIST_CONTAINER);
 
         container.empty();
         A.each(fields, function(field) {
             container.append(field.get('content'));
         });
 
-        contentBox.toggleClass(CSS_FIELD_LIST_EMPTY, !fields.length);
+        content.toggleClass(CSS_FIELD_LIST_EMPTY, !fields.length);
     }
 }, {
 
@@ -121,6 +120,23 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Widget, [],
      * @static
      */
     ATTRS: {
+
+        /**
+         * Node containing the contents of this field list.
+         *
+         * @attribute content
+         * @type Node
+         */
+        content: {
+            validator: function(val) {
+                return A.instanceOf(val, A.Node);
+            },
+            valueFn: function() {
+                return A.Node.create(this.TPL_FIELD_LIST);
+            },
+            writeOnce: 'initOnly'
+        },
+
         /**
          * List of field.
          *

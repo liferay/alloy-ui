@@ -308,13 +308,13 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('visibility') !== 'hidden';
             });
-            // Y.Assert.areEqual(2, visibleTargets.size());
+            Y.Assert.areEqual(3, visibleTargets.size());
 
-            // moveItem.simulate('click');
-            // visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
-            //     return node.getStyle('display') !== 'none';
-            // });
-            // Y.Assert.areEqual(0, visibleTargets.size());
+            moveItem.simulate('click');
+            visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
+                return node.getStyle('display') !== 'none';
+            });
+            Y.Assert.areEqual(0, visibleTargets.size());
         },
 
         'should show valid field move targets for nested field': function() {
@@ -340,7 +340,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('visibility') !== 'hidden';
             });
-            Y.Assert.areEqual(6, visibleTargets.size());
+            Y.Assert.areEqual(5, visibleTargets.size());
 
             moveItem.simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
@@ -463,7 +463,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('visibility') !== 'hidden' && node.getStyle('display') !== 'none';
             });
-            Y.Assert.areEqual(2, visibleTargets.size());
+            Y.Assert.areEqual(1, visibleTargets.size());
         },
 
         'should always have an empty row in the last position': function() {

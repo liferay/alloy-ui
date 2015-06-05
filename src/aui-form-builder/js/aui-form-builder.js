@@ -279,7 +279,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      */
     _addNestedField: function(field, nested, index) {
         field.addNestedField(index, nested);
-        this.getActiveLayout().normalizeColsHeight(new A.NodeList(this.getFieldRow(nested)));
     },
 
     /**
@@ -331,7 +330,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         else {
             this._handleEditEvent(field);
         }
-
+console.log(1);
         this.getActiveLayout().normalizeColsHeight(new A.NodeList(field.get('content').ancestor('.layout-row')));
 
         this._handleCreateEvent(field);
