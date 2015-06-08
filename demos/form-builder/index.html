@@ -16,6 +16,7 @@
 YUI({ filter:'raw' }).use(
     'aui-form-builder',
     'aui-form-builder-field-choice',
+    'aui-form-builder-field-list',
     'aui-form-builder-field-text',
     'aui-form-builder-field-sentence',
     'aui-form-builder-pages',
@@ -27,9 +28,13 @@ YUI({ filter:'raw' }).use(
                         new Y.LayoutCol({
                             movableContent: false,
                             size: 12,
-                            value: new Y.FormBuilderFieldText({
-                                help: 'Type your full name here',
-                                title: 'What\'s your name?'
+                            value: new Y.FormBuilderFieldList({
+                                fields: [
+                                    new Y.FormBuilderFieldText({
+                                        help: 'Type your full name here',
+                                        title: 'What\'s your name?'
+                                    })
+                                ]
                             })
                         })
                     ]
@@ -38,18 +43,24 @@ YUI({ filter:'raw' }).use(
                     cols: [
                         new Y.LayoutCol({
                             size: 4,
-                            value: new Y.FormBuilderFieldChoice({
-                                help: 'Choose one of the options in the list below',
-                                options: ['Male', 'Female'],
-                                title: 'What\'s your gender?',
-                                type: Y.FormFieldChoice.TYPES.CHECKBOX
+                            value: new Y.FormBuilderFieldList({
+                                fields: [
+                                    new Y.FormBuilderFieldChoice({
+                                        help: 'Choose one of the options in the list below',
+                                        options: ['Male', 'Female'],
+                                        title: 'What\'s your gender?',
+                                        type: Y.FormFieldChoice.TYPES.CHECKBOX
+                                    })
+                                ]
                             })
                         }),
                         new Y.LayoutCol({
-                            size: 4
+                            size: 4,
+                            value: new Y.FormBuilderFieldList()
                         }),
                         new Y.LayoutCol({
-                            size: 4
+                            size: 4,
+                            value: new Y.FormBuilderFieldList()
                         })
                     ]
                 }),
@@ -57,24 +68,28 @@ YUI({ filter:'raw' }).use(
                     cols: [
                         new Y.LayoutCol({
                             size: 12,
-                            value: new Y.FormBuilderFieldSentence({
-                                nestedFields: [
-                                    new Y.FormBuilderFieldText({
-                                        help: 'Type the full name of your school here',
-                                        title: 'Where did you go to school?'
-                                    }),
-                                    new Y.FormBuilderFieldText({
-                                        help: 'Type the full name of your school here',
-                                        title: 'When did you go to that school?'
-                                    }),
-                                    new Y.FormBuilderFieldChoice({
-                                        help: 'Select one of the options below',
-                                        options: ['Computer Science', 'Design'],
-                                        otherOption: true,
-                                        title: 'What is your major?'
+                            value: new Y.FormBuilderFieldList({
+                                fields: [
+                                    new Y.FormBuilderFieldSentence({
+                                        nestedFields: [
+                                            new Y.FormBuilderFieldText({
+                                                help: 'Type the full name of your school here',
+                                                title: 'Where did you go to school?'
+                                            }),
+                                            new Y.FormBuilderFieldText({
+                                                help: 'Type the full name of your school here',
+                                                title: 'When did you go to that school?'
+                                            }),
+                                            new Y.FormBuilderFieldChoice({
+                                                help: 'Select one of the options below',
+                                                options: ['Computer Science', 'Design'],
+                                                otherOption: true,
+                                                title: 'What is your major?'
+                                            })
+                                        ],
+                                        title: 'Regarding education:'
                                     })
-                                ],
-                                title: 'Regarding education:'
+                                ]
                             })
                         })
                     ]
@@ -87,11 +102,19 @@ YUI({ filter:'raw' }).use(
                 new Y.LayoutRow({
                     cols: [
                         new Y.LayoutCol({
-                            movableContent: false,
+                            movableContent: true,
                             size: 12,
-                            value: new Y.FormBuilderFieldText({
-                                help: 'Type your full name here',
-                                title: 'What\'s your name?'
+                            value: new Y.FormBuilderFieldList({
+                                fields: [
+                                    new Y.FormBuilderFieldText({
+                                        help: 'Type your full name here',
+                                        title: 'What\'s your name?'
+                                    }),
+                                    new Y.FormBuilderFieldText({
+                                        help: 'HELP!!!!',
+                                        title: 'Anyone!'
+                                    })
+                                ]
                             })
                         })
                     ]
@@ -107,13 +130,14 @@ YUI({ filter:'raw' }).use(
             },{
                 fieldClass: Y.FormBuilderFieldChoice,
                 icon:'glyphicon glyphicon-font',
-                label: 'Choice'
+                label: 'Choice',
+                unique: true
             },{
                 fieldClass: Y.FormBuilderFieldText,
                 icon:'glyphicon glyphicon-font',
                 label: 'Text'
             }],
-            layouts: [layout, layout2]
+            layouts: [layout2, layout],
         }).render('#formBuilder');
     }
 );

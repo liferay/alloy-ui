@@ -3,6 +3,7 @@
         "requires": [
             "aui-modal",
             "aui-layout",
+            "aui-form-builder-field-list",
             "aui-form-builder-field-toolbar",
             "aui-form-builder-field-type",
             "aui-form-builder-field-types",
@@ -37,6 +38,16 @@
             "aui-form-field-choice"
         ]
     },
+
+	"aui-form-builder-field-list": {
+		"requires": [
+			"aui-form-builder-field-type",
+			"aui-form-builder-field-types",
+			"aui-form-builder-layout-builder",
+			"aui-menu"
+		],
+        "skinnable": true
+	},
 
     "aui-form-builder-field-sentence": {
         "requires": [

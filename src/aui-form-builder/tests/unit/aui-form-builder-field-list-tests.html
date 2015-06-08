@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <title>AUI Form Builder Field List tests</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-form-builder-field-list-tests.js"></script>
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+<div class="row">
+    <div id="container">
+</div>
+</div>
+
+<script>
+YUI({
+    coverage: ['aui-form-builder-field-list'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-form-builder-field-list-tests', function(Y) {
+    (new Y.Test.Console()).render('#logger');
+    Y.Test.Runner.setName('aui-form-builder-field-list');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

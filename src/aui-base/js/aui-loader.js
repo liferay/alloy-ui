@@ -741,6 +741,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-modal",
             "aui-layout",
+            "aui-form-builder-field-list",
             "aui-form-builder-field-toolbar",
             "aui-form-builder-field-type",
             "aui-form-builder-field-types",
@@ -831,6 +832,15 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-form-builder-field-deprecated"
         ]
+    },
+    "aui-form-builder-field-list": {
+        "requires": [
+            "aui-form-builder-field-type",
+            "aui-form-builder-field-types",
+            "aui-form-builder-layout-builder",
+            "aui-menu"
+        ],
+        "skinnable": true
     },
     "aui-form-builder-field-multiple-choice-deprecated": {
         "requires": [
@@ -2119,4 +2129,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'd592d9b75ab273fdea9464470c26a91a';
+YUI.Env[Y.version].md5 = '25c3139ecf4b630ec3bfab1fdf12c7eb';

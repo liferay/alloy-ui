@@ -67,7 +67,7 @@
     z-index: 1;
 }
 
-.form-builder-empty-col .form-builder-field-move-target {
+.form-builder-empty-col-add-button .form-builder-field-move-target {
     margin-left: auto;
     margin-right: auto;
 }
@@ -83,5 +83,9 @@
 
 .form-builder-choose-col-move-target .form-builder-field-moving .form-builder-field-move-target,
 .form-builder-choose-col-move-target .form-builder-field-move-target-invalid {
+    visibility: hidden;
+}
+
+.form-builder-col-moving .form-builder-list-move-target  {
     visibility: hidden;
 }

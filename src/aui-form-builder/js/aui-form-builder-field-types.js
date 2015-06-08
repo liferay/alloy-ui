@@ -195,6 +195,58 @@ A.FormBuilderFieldTypes.prototype = {
     },
 
     /**
+     * Check on all created fields if there is one of the same type
+     * of the parameter.
+     *
+     * @method _checkActiveLayoutHasFieldType
+     * @param {Object} fieldType
+     * @return {Boolean}
+     * @protected
+     */
+    _checkActiveLayoutHasFieldType: function(fieldType) {
+        var col,
+            cols,
+            fieldList,
+            row,
+            rows = this.getActiveLayout().get('rows');
+
+        for (row = 0; row < rows.length; row++) {
+            cols = rows[row].get('cols');
+            for (col = 0; col < cols.length; col++) {
+                fieldList = cols[col].get('value');
+                if (fieldList && this._checkListHasFieldType(fieldList, fieldType)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    },
+
+    /**
+     * Checks on all fields of a field list if there is one of the
+     * same type of the parameter.
+     *
+     * @method _checkListHasFieldType
+     * @param {A.FormBuilderFIeldList} fieldList
+     * @param {Object} fieldType
+     * @return {Boolean}
+     * @protected
+     */
+    _checkListHasFieldType: function(fieldList, fieldType) {
+        var fields = fieldList.get('fields'),
+            i;
+
+            for (i = 0; i < fields.length; i++) {
+                if (this._hasFieldType(fieldType, fields[i])) {
+                    return true;
+                }
+            }
+
+        return false;
+    },
+
+    /**
      * Creates the field types panel.
      *
      * @method _createFieldTypesPanel
@@ -242,37 +294,6 @@ A.FormBuilderFieldTypes.prototype = {
         for (i = 0; i < nestedFields.length; i++) {
             if (this._hasFieldType(fieldType, nestedFields[i])) {
                 return true;
-            }
-        }
-
-        return false;
-    },
-
-    /**
-     * Check all Field created if there is a someone of the same type
-     * of the parameter.
-     *
-     * @method _hasFieldTypeAll
-     * @param {Object} fieldType
-     * @return {Boolean}
-     * @protected
-     */
-    _hasFieldTypeAll: function(fieldType) {
-        var col,
-            cols,
-            field,
-            row,
-            rows = this.getActiveLayout().get('rows');
-
-        for (row = 0; row < rows.length; row++) {
-            cols = rows[row].get('cols');
-            for (col = 0; col < cols.length; col++) {
-                field = cols[col].get('value');
-                if (field && (field instanceof A.FormField)) {
-                    if (this._hasFieldType(fieldType, field)) {
-                        return true;
-                    }
-                }
             }
         }
 
@@ -406,7 +427,7 @@ A.FormBuilderFieldTypes.prototype = {
 
         A.Array.each(instance.get('fieldTypes'), function (fieldType) {
             if (fieldType.get('unique')) {
-                fieldType.set('disabled', instance._hasFieldTypeAll(fieldType));
+                fieldType.set('disabled', instance._checkActiveLayoutHasFieldType(fieldType));
             }
         });
     }

@@ -7,6 +7,7 @@
 
 var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'move'),
     CSS_CHOOSE_COL_MOVE_TARGET = A.getClassName('form', 'builder', 'choose', 'col', 'move', 'target'),
+    CSS_COL_MOVING = A.getClassName('form', 'builder', 'col', 'moving'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_MOVE_BUTTON = A.getClassName('form', 'builder', 'field', 'move', 'button'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
@@ -70,6 +71,8 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         targetNodes.setData('node-col', colNode);
         targetNodes.setData('node-row', rowNode);
+
+        this._renderEmptyColumns();
     },
 
     /**
@@ -85,7 +88,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             colNode = col.get('node'),
             targetNodes;
 
-        cantReceiveMoveTarget = !col.get('movableContent') && !colNode.one('.form-builder-empty-col');
+        cantReceiveMoveTarget = col.get('value').get('fields').length > 0;
 
         if (cantReceiveMoveTarget) {
             return;
@@ -168,7 +171,8 @@ A.FormBuilderLayoutBuilder.prototype = {
         cols = this._lastRow.get('cols');
 
         for (var i = 0; i < cols.length; i++) {
-            if (!cols[i].get('node').one('.form-builder-empty-col')) {
+            if (A.instanceOf(cols[i].get('value'), A.FormBuilderFieldList) &&
+                (cols[i].get('value').get('fields').length > 0)) {
                 this._createLastRow();
                 break;
             }
@@ -187,12 +191,15 @@ A.FormBuilderLayoutBuilder.prototype = {
     _chooseColMoveTarget: function(originalFn, cutButton, col) {
         var colNode = col.get('node'),
             fieldNode = cutButton.ancestor('.' + CSS_FIELD),
+            layout = this.getActiveLayout(),
             targetNode;
 
         this._fieldBeingMoved = fieldNode.getData('field-instance');
+        this._fieldListBeingMoved = col.get('value');
         this._fieldBeingMovedCol = col;
 
         colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
+        colNode.addClass(CSS_COL_MOVING);
         fieldNode.addClass(CSS_FIELD_MOVING);
 
         targetNode = fieldNode.previous('.' + CSS_FIELD_MOVE_TARGET);
@@ -206,6 +213,8 @@ A.FormBuilderLayoutBuilder.prototype = {
         }
 
         originalFn(cutButton, col);
+
+        layout.normalizeColsHeight(layout.get('node').all('.row'));
     },
 
     /**
@@ -216,7 +225,9 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _clickColMoveTarget: function(moveTarget) {
-        var parentFieldNode = this._fieldBeingMoved.get('content').ancestor('.' + CSS_FIELD),
+        var layout = this.getActiveLayout(),
+            parentFieldNode = this._fieldBeingMoved.get('content').ancestor('.' + CSS_FIELD),
+            row,
             targetNestedParent = moveTarget.getData('nested-field-parent'),
             toolbarMoveIconCancelMode = this._fieldToolbar.getItem('.' + CSS_LAYOUT_BUILDER_MOVE_CANCEL);
 
@@ -227,11 +238,13 @@ A.FormBuilderLayoutBuilder.prototype = {
         if (parentFieldNode) {
             parentFieldNode.getData('field-instance').removeNestedField(this._fieldBeingMoved);
 
-            this.getActiveLayout().normalizeColsHeight(new A.NodeList(this.getFieldRow(
+            layout.normalizeColsHeight(new A.NodeList(this.getFieldRow(
                 parentFieldNode.getData('field-instance'))));
         }
         else {
-            this._fieldBeingMovedCol.set('value', null);
+            row = this.getFieldRow(this._fieldBeingMoved);
+            this._fieldListBeingMoved.removeField(this._fieldBeingMoved);
+            layout.normalizeColsHeight(new A.NodeList(row));
         }
 
         if (targetNestedParent) {
@@ -242,11 +255,13 @@ A.FormBuilderLayoutBuilder.prototype = {
             );
         }
         else {
-            moveTarget.getData('col').set('value', this._fieldBeingMoved);
+            moveTarget.getData('col').get('value').addField(this._fieldBeingMoved);
         }
 
         this._layoutBuilder.cancelMove();
         this._removeLayoutCutColButtons();
+
+        layout.normalizeColsHeight(new A.NodeList(this.getFieldRow(this._fieldBeingMoved)));
     },
 
     /**
@@ -366,11 +381,15 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _removeColMoveTargets: function() {
-        var contentBox = this.get('contentBox');
+        var contentBox = this.get('contentBox'),
+            layout = this.getActiveLayout();
 
         contentBox.all('.' + CSS_CHOOSE_COL_MOVE_TARGET).removeClass(CSS_CHOOSE_COL_MOVE_TARGET);
         contentBox.all('.' + CSS_FIELD_MOVING).removeClass(CSS_FIELD_MOVING);
+        contentBox.all('.' + CSS_COL_MOVING).removeClass(CSS_COL_MOVING);
         contentBox.all('.' + CSS_FIELD_MOVE_TARGET_INVALID).removeClass(CSS_FIELD_MOVE_TARGET_INVALID);
+
+        layout.normalizeColsHeight(layout.get('node').all('.row'));
     },
 
     /**
@@ -391,17 +410,11 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _toggleMoveColItem: function(colNode) {
-        var hasMovableContent = colNode.getData('layout-col').get('movableContent'),
-            moveItem = this._fieldToolbar.getItem('.glyphicon-move').ancestor();
+        var moveItem = this._fieldToolbar.getItem('.glyphicon-move').ancestor();
 
-        if (!hasMovableContent) {
-            moveItem.addClass('hidden');
-        }
-        else {
-            moveItem.setData('layout-row', colNode.ancestor('.row').getData('layout-row'));
-            moveItem.setData('node-col', colNode);
-            moveItem.removeClass('hidden');
-        }
+        moveItem.setData('layout-row', colNode.ancestor('.row').getData('layout-row'));
+        moveItem.setData('node-col', colNode);
+        moveItem.removeClass('hidden');
     },
 
     /**
