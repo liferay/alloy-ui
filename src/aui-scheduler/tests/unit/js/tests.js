@@ -18,7 +18,7 @@ YUI.add('module-tests', function(Y) {
                 'should display event in month view in the last day of first week under DST': NO_DST_OFFSET,
                 'should not display "Show n more" link with only two events': NO_DST_OFFSET,
                 'should display last day of event spanning to DST from one week before': NO_DST_OFFSET,
-                'should display events spanning into DST correctly in week view when last day of week is the first day under DST': NO_DST_OFFSET
+                'should display events correctly in week view in the last day of first week under DST when first day of week is Monday': NO_DST_OFFSET
             }
         },
 
@@ -454,7 +454,7 @@ YUI.add('module-tests', function(Y) {
             );
         },
 
-        'should display events spanning into DST correctly in week view when last day of week is the first day under DST': function() {
+        'should display events correctly in week view in the last day of first week under DST when first day of week is Monday': function() {
             var column1,
                 column1Events,
                 column2,
@@ -467,7 +467,7 @@ YUI.add('module-tests', function(Y) {
             this._createScheduler({
                 activeView: this._weekView,
                 date: previousDate,
-                firstDayOfWeek: dstDate.getDay(),
+                firstDayOfWeek: 1,
                 items: [
                     {
                         content: 'Event 1',
