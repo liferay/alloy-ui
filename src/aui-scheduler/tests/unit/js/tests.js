@@ -461,10 +461,8 @@ YUI.add('module-tests', function(Y) {
                 column2Events,
                 schedulerEvents,
                 dstDate = this._getLocalTimeZoneDSTFirstDay(),
-                currentDate = DateMath.toMidnight(
-                    DateMath.subtract(dstDate, DateMath.DAY, 1)),
-                previousDate = DateMath.toMidnight(
-                    DateMath.subtract(dstDate, DateMath.DAY, 2));
+                currentDate = DateMath.subtract(dstDate, DateMath.DAY, 1),
+                previousDate = DateMath.subtract(dstDate, DateMath.DAY, 2);
 
             this._createScheduler({
                 activeView: this._weekView,
