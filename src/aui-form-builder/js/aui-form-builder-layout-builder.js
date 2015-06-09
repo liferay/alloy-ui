@@ -319,7 +319,7 @@ A.FormBuilderLayoutBuilder.prototype = {
 
     /**
      * Create a confirmation modal to be used when a remove row button from a row with
-     * fields is clicked. 
+     * fields is clicked.
      *
      * @method _initRemoveConfirmationModal
      * @protected
@@ -335,7 +335,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             visible: false,
             zIndex: 2
         }).render();
-        
+
         modal.addToolbar([
             {
                 cssClass: 'btn-primary',

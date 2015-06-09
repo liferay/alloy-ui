@@ -86,7 +86,9 @@ A.LayoutBuilderRemoveCol.prototype = {
         var col = event.target.get('node');
 
         if (!event.newVal) {
-            col.one('.' + CSS_REMOVE_COL).remove();
+            if (col.one('.' + CSS_REMOVE_COL)) {
+                col.one('.' + CSS_REMOVE_COL).remove();
+            }
         }
         else {
             col.append(A.Node.create(TPL_REMOVE_COL));

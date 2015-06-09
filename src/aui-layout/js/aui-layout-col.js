@@ -26,6 +26,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
      */
     initializer: function() {
         this.after({
+            removableChange: this._afterRemovableChange,
             sizeChange: this._afterSizeChange,
             valueChange: this._afterValueChange
         });
@@ -42,6 +43,22 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
      */
     _afterContentChange: function() {
         this._uiSetValue(this.get('value'));
+    },
+
+    /**
+     * Fired after the `removable` attribute changes.
+     *
+     * @method _afterRemovableChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterRemovableChange: function(event) {
+        if (event.newVal) {
+            this.set('minSize', 0);
+        }
+        else {
+            this.set('minSize', 1);
+        }
     },
 
     /**
@@ -79,7 +96,13 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
      * @protected
      */
     _uiSetSize: function(size) {
-        this.get('node').addClass(BOOTSTRAP_CLASS_PREFIX + size);
+        if (size > 0) {
+            this.get('node').addClass(BOOTSTRAP_CLASS_PREFIX + size);
+            this.get('node').show();
+        }
+        else {
+            this.get('node').hide();
+        }
     },
 
     /**
@@ -137,7 +160,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
          * @type {Number}
          */
         minSize: {
-            value: 1
+            value: 0
         },
 
         /**

@@ -297,6 +297,8 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         if (this._newFieldContainer) {
             if (A.instanceOf(this._newFieldContainer.get('value'), A.FormBuilderFieldList)) {
                 this._newFieldContainer.get('value').addField(field);
+console.log(this._newFieldContainer.get('removable'));
+                this._newFieldContainer.set('removable', false);
             }
             else {
                 this._addNestedField(
