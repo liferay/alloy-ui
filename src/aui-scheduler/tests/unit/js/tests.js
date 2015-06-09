@@ -17,8 +17,7 @@ YUI.add('module-tests', function(Y) {
                 'should display event in month view in the week DST begins': NO_DST_OFFSET,
                 'should display event in month view in the last day of first week under DST': NO_DST_OFFSET,
                 'should not display "Show n more" link with only two events': NO_DST_OFFSET,
-                'should display last day of event spanning to DST from one week before': NO_DST_OFFSET,
-                'should display events correctly in week view in the last day of first week under DST when first day of week is Monday': NO_DST_OFFSET
+                'should display last day of event spanning to DST from one week before': NO_DST_OFFSET
             }
         },
 
