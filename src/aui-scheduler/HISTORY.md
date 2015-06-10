@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1920](https://issues.liferay.com/browse/AUI-1920) Calendar - Hiding calendar does not update neither events nor "Show n more" link
 * [AUI-1880](https://issues.liferay.com/browse/AUI-1880) Overlapping events don't show up correctly
 * [AUI-1871](https://issues.liferay.com/browse/AUI-1871) In month view, popover does not update values if an event was previously displayed
 * [AUI-1856](https://issues.liferay.com/browse/AUI-1856) Incorrect display of overnight events in monthly view
