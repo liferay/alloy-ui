@@ -476,11 +476,9 @@ var SchedulerTableView = A.Component.create({
                     events = [];
                 }
 
-                for (i = 0; i < events.length; i++) {
-                    if (!events[i].get('visible')) {
-                        events.splice(i, 1);
-                    }
-                }
+                events = events.filter(function(currEvent) {
+                    return currEvent.get('visible');
+                });
 
                 var evt = instance._getRenderableEvent(events, rowStartDate, rowEndDate, celDate);
 
