@@ -420,6 +420,10 @@ var SchedulerTableView = A.Component.create({
                     events = [];
                 }
 
+                events = events.filter(function(currEvent) {
+                    return currEvent.get('visible');
+                });
+
                 var evt = instance._getRenderableEvent(events, rowStartDate, rowEndDate, celDate);
 
                 var evtColNode = A.Node.create(TPL_SVT_TABLE_DATA_COL);
