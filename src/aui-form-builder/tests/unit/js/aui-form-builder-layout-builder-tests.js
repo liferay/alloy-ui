@@ -466,10 +466,22 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areEqual(1, visibleTargets.size());
         },
 
-        'should always have an empty row in the last position': function() {
+        'should always have an empty row when a Form Builder is created without rows': function() {
             this._formBuilder = new Y.FormBuilder().render('#container');
 
             Y.Assert.areEqual(1, this._formBuilder.get('layouts')[0].get('rows').length);
+        },
+
+        'should always add an empty row in the last position when a the previous row had more then one col': function() {
+            var layout;
+
+            this._formBuilder = new Y.FormBuilder().render('#container');
+            layout = this._formBuilder.get('layouts')[0];
+
+            Y.one('.layout-builder-add-col').simulate('click');
+
+            Y.Assert.areEqual(2, layout.get('rows').length);
+            Y.Assert.areEqual(1, layout.get('rows')[1].get('cols').length);
         }
     }));
 
