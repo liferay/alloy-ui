@@ -21,7 +21,7 @@ var CSS_FIELD_TYPE = A.getClassName('field', 'type'),
 A.FormBuilderFieldTypes = function() {};
 
 A.FormBuilderFieldTypes.prototype = {
-    TPL_HEADER_LABEL: '<div class="' + CSS_FIELD_TYPES_LABEL + '">Add Field</div>',
+    TPL_HEADER_LABEL: '<div class="' + CSS_FIELD_TYPES_LABEL + '">{addField}</div>',
 
     /**
      * Construction logic executed during the `A.FormBuilderFieldTypes`
@@ -253,6 +253,12 @@ A.FormBuilderFieldTypes.prototype = {
      * @protected
      */
     _createFieldTypesPanel: function() {
+        var headerNode;
+
+        headerNode = A.Lang.sub(this.TPL_HEADER_LABEL, {
+            addField: this.get('strings').addField
+        });
+
         this._fieldTypesPanel = A.Node.create(
             '<div class="clearfix ' + CSS_FIELD_TYPES_LIST + '" role="main" />'
         );
@@ -262,7 +268,7 @@ A.FormBuilderFieldTypes.prototype = {
             centered: true,
             cssClass: 'form-builder-modal',
             draggable: false,
-            headerContent: this.TPL_HEADER_LABEL,
+            headerContent: headerNode,
             modal: true,
             resizable: false,
             toolbars: this._buildFieldTypesToolbarConfig(),
@@ -454,5 +460,18 @@ A.FormBuilderFieldTypes.ATTRS = {
         setter: '_setFieldTypes',
         validator: A.Lang.isArray,
         value: []
-    }
+    },
+
+        /**
+         * Collection of strings used to label elements of the UI.
+         *
+         * @attribute strings
+         * @type {Object}
+         */
+        strings: {
+            value: {
+                addField: 'Add Field'
+            },
+            writeOnce: true
+        }
 };

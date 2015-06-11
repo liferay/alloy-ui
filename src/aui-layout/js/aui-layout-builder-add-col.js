@@ -11,7 +11,7 @@ var CSS_ADD_COL = A.getClassName('layout', 'builder', 'add', 'col'),
     SELECTOR_ROW = '.layout-row',
     TPL_ADD_COL = '<div class="' + CSS_ADD_COL + '" tabindex="5">' +
         '<span class="glyphicon glyphicon-th-large"></span>' +
-        '<span class="' + CSS_ADD_COL_TEXT + '">Add Column</span>' +
+        '<span class="' + CSS_ADD_COL_TEXT + '">{addColumn}</span>' +
         '</div>';
 
 /**
@@ -140,14 +140,18 @@ A.LayoutBuilderAddCol.prototype = {
     _appendAddColButtonToSingleRow: function(row) {
         var addColLeft,
             addColRight,
+            addColTemplate,
             colsLength,
             layoutRow = row.getData('layout-row');
 
         colsLength = layoutRow.get('cols').length;
+        addColTemplate = A.Lang.sub(TPL_ADD_COL, {
+            addColumn: this.get('strings').addColumn
+        });
 
         if (colsLength < layoutRow.get('maximumCols')) {
-            addColLeft = A.Node.create(TPL_ADD_COL).addClass(CSS_ADD_COL_LEFT);
-            addColRight = A.Node.create(TPL_ADD_COL).addClass(CSS_ADD_COL_RIGHT);
+            addColLeft = A.Node.create(addColTemplate).addClass(CSS_ADD_COL_LEFT);
+            addColRight = A.Node.create(addColTemplate).addClass(CSS_ADD_COL_RIGHT);
 
             row.append(addColLeft);
             row.append(addColRight);

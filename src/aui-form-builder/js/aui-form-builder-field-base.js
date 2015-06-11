@@ -57,17 +57,17 @@ A.FormBuilderFieldBase.prototype = {
         '</div>',
     TPL_FIELD_MOVE_TARGET: '<button type="button" class="' + CSS_FIELD_MOVE_TARGET +
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
-        'Paste as subquestion</button>',
+        '{subquestion}</button>',
     TPL_FIELD_SETTINGS_PANEL: '<div class="' + CSS_FIELD_SETTINGS_PANEL + ' clearfix">' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_CONTENT + '">' +
         '</div>' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_ADVANCED + '">' +
         '<a class="'+ CSS_HIDDEN_XS + ' ' + CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED +
-        '" href="javascript:void(0)">Advanced options</a>' +
+        '" href="javascript:void(0)">{advancedOptions}</a>' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT + '"></div>' +
         '</div>' +
         '<button type="button" class="visible-xs btn btn-default ' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON + '">' +
-        '<span class="glyphicon glyphicon-cog"></span>Advanced options</button>' +
+        '<span class="glyphicon glyphicon-cog"></span>{advancedOptions}</button>' +
         '</div>',
     TPL_FIELD_FOOTER_CONTENT: '<div class="' + CSS_FIELD_FOOTER_CONTENT + '"></div>',
 
@@ -81,7 +81,9 @@ A.FormBuilderFieldBase.prototype = {
         var advancedSettings,
             i;
 
-        this._fieldSettingsPanel = A.Node.create(this.TPL_FIELD_SETTINGS_PANEL);
+        this._fieldSettingsPanel = A.Node.create(A.Lang.sub(this.TPL_FIELD_SETTINGS_PANEL, {
+            advancedOptions: this.get('strings').advancedOptions
+        }));
 
         advancedSettings = this._getAdvancedSettings();
 
@@ -265,7 +267,13 @@ A.FormBuilderFieldBase.prototype = {
      * @protected
      */
     _createMoveTarget: function(position) {
-        var targetNode = A.Node.create(this.TPL_FIELD_MOVE_TARGET);
+        var instance = this,
+            targetNode;
+
+        targetNode = A.Node.create(A.Lang.sub(this.TPL_FIELD_MOVE_TARGET, {
+            subquestion: instance.get('strings').subquestion
+        }));
+
         targetNode.setData('nested-field-index', position);
         targetNode.setData('nested-field-parent', this);
 
@@ -390,5 +398,20 @@ A.FormBuilderFieldBase.prototype = {
             nestedFieldsNode.append(nestedField.get('content'));
             nestedFieldsNode.append(instance._createMoveTarget(index + 1));
         });
+    }
+};
+
+A.FormBuilderFieldBase.ATTRS = {
+	/**
+     * Collection of strings used to label elements of the UI.
+     *
+     * @attribute strings
+     * @type {Object}
+     */
+    strings: {
+        value: {
+            subquestion: 'Paste as subquestion',
+            advancedOptions: 'Advanced options'
+        }
     }
 };

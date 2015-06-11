@@ -37,7 +37,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         '</span>' +
         '<button type="button" class="' + CSS_FIELD_MOVE_TARGET + ' ' + CSS_LIST_MOVE_TARGET +
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
-        'Paste here</button>' +
+        '{pasteHere}</button>' +
         '</div>' +
         '</div>',
 
@@ -132,7 +132,13 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
                 return A.instanceOf(val, A.Node);
             },
             valueFn: function() {
-                return A.Node.create(this.TPL_FIELD_LIST);
+                var node;
+
+                node = A.Node.create(A.Lang.sub(this.TPL_FIELD_LIST, {
+                    pasteHere: this.get('strings').pasteHere
+                }));
+
+                return node;
             },
             writeOnce: 'initOnly'
         },
@@ -145,6 +151,19 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
          */
         fields: {
             value: []
+        },
+
+        /**
+         * Collection of strings used to label elements of the UI.
+         *
+         * @attribute strings
+         * @type {Object}
+         */
+        strings: {
+            value: {
+                pasteHere: 'Paste here'
+            },
+            writeOnce: true
         }
     }
 });

@@ -28,7 +28,6 @@ var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'mo
 A.FormBuilderLayoutBuilder = function() {};
 
 A.FormBuilderLayoutBuilder.prototype = {
-    TITLE_LAYOUT: 'Edit Layout',
 
     /**
      * Construction logic executed during the `A.FormBuilderLayoutBuilder`
@@ -290,7 +289,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             });
         }
 
-        this._updateHeaderTitle(this.TITLE_LAYOUT);
+        this._updateHeaderTitle(this.get('strings').titleOnEditLayoutMode);
     },
 
     /**
@@ -309,7 +308,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             });
         }
 
-        this._updateHeaderTitle(this.TITLE_REGULAR);
+        this._updateHeaderTitle(this.get('strings').titleOnRegularMode);
     },
 
     /**
