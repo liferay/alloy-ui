@@ -301,7 +301,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this.createFormBuilder();
 
             Y.Assert.areEqual(
-                6,
+                4,
                 Y.one('.form-builder-layout').all('.form-builder-field-list').size()
             );
         },
@@ -322,7 +322,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             }));
 
             Y.Assert.areEqual(
-                7,
+                5,
                 Y.one('.form-builder-layout').all('.form-builder-field-list').size()
             );
         },
@@ -341,7 +341,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             ]);
 
             Y.Assert.areEqual(
-                4,
+                5,
                 Y.one('.form-builder-layout').all('.form-builder-field-list').size()
             );
         },

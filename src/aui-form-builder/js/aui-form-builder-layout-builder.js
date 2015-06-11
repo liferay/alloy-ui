@@ -39,9 +39,9 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     initializer: function() {
         this.after({
-            create: this._afterFieldCreate,
             modeChange: this._afterLayoutBuilderModeChange,
-            render: this._afterLayoutBuilderRender
+            render: this._afterLayoutBuilderRender,
+            'layout-row:colsChange': this._afterLayoutBuilderColsChange
         });
     },
 
@@ -101,13 +101,18 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Executed after the `layout:create` is fired.
+     * Executed after the `layout:rowsChange` is fired.
      *
-     * @method _afterFieldCreate
+     * @method _afterLayoutBuilderColsChange
+     * @param {EventFacade} event
      * @protected
      */
-    _afterFieldCreate: function() {
-        this._checkLastEmptyRow();
+    _afterLayoutBuilderColsChange: function(event) {
+        var lastRow = this._getLastRow();
+
+        if (lastRow === event.target) {
+            this._checkLastRow();
+        }
     },
 
     /**
@@ -154,28 +159,19 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         this._removeLayoutCutColButtons();
 
-        this._checkLastEmptyRow();
+        this._checkLastRow();
     },
 
     /**
-     * Checks if the last row is empty.
+     * Checks if the last row has more the one col, if yes a new row is
+     * created and seted as the last position.
      *
-     * @method _checkLastEmptyRow
+     * @method _checkLastRow
      * @protected
      */
-    _checkLastEmptyRow: function() {
-        var cols;
-
-        this._lastRow = this._getLastRow();
-
-        cols = this._lastRow.get('cols');
-
-        for (var i = 0; i < cols.length; i++) {
-            if (A.instanceOf(cols[i].get('value'), A.FormBuilderFieldList) &&
-                (cols[i].get('value').get('fields').length > 0)) {
-                this._createLastRow();
-                break;
-            }
+    _checkLastRow: function() {
+        if (this._getLastRow().get('cols').length > 1) {
+            this._createLastRow();
         }
     },
 
@@ -265,41 +261,17 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Creates a row with the same layout of the last row.
-     *
-     * @method _copyLastRow
-     * @protected
-     * @return {A.LayoutRow}
-     */
-    _copyLastRow: function() {
-        var cols = this._lastRow.get('cols'),
-            newCols = [];
-
-        for (var i = 0; i < cols.length; i++) {
-            newCols.push(new A.LayoutCol({
-                size: cols[i].get('size')
-            }));
-        }
-
-        return new A.LayoutRow({
-            cols: newCols
-        });
-    },
-
-    /**
      * Creates a new row in the last position.
      *
      * @method _createLastRow
      * @protected
      */
     _createLastRow: function() {
-        var lastRow = this._copyLastRow(),
+        var lastRow = new A.LayoutRow(),
             layout = this.getActiveLayout(),
             rows = layout.get('rows');
 
         layout.addRow(rows.length, lastRow);
-
-        this._lastRow = this._getLastRow();
     },
 
     /**
