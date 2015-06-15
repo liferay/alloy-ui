@@ -9,8 +9,12 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button'),
     CSS_FIELD_LIST_ADD_BUTTON_CIRCLE =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'circle'),
+    CSS_FIELD_LIST_ADD_BUTTON_CONTENT =
+        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'content'),
     CSS_FIELD_LIST_ADD_BUTTON_ICON =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'icon'),
+    CSS_FIELD_LIST_ADD_BUTTON_VISIBLE =
+        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'visible'),
     CSS_FIELD_LIST_CONTAINER =
         A.getClassName('form', 'builder', 'field', 'list', 'container'),
     CSS_FIELD_LIST_EMPTY = A.getClassName('form', 'builder', 'field', 'list', 'empty'),
@@ -29,17 +33,18 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
  * @constructor
  */
 A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
-    TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '">' +
-        '<div class="' + CSS_FIELD_LIST_CONTAINER + '"></div>' +
-        '<div class="' + CSS_FIELD_LIST_ADD_BUTTON + '" tabindex="9">' +
+    TPL_ADD_FIELD: '<div class="' + CSS_FIELD_LIST_ADD_BUTTON + ' ' + CSS_FIELD_LIST_ADD_BUTTON_VISIBLE + '" tabindex="9">' +
+        '<div class="' + CSS_FIELD_LIST_ADD_BUTTON_CONTENT + '">' +
         '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_CIRCLE + '">' +
         '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + '"></span>' +
         '</span>' +
         '<button type="button" class="' + CSS_FIELD_MOVE_TARGET + ' ' + CSS_LIST_MOVE_TARGET +
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
         '{pasteHere}</button>' +
-        '</div>' +
         '</div>',
+    TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '">' +
+        '<div class="' + CSS_FIELD_LIST_CONTAINER + '"></div>' +
+        '</div></div>',
 
     /**
      * Construction logic executed during the `A.FormBuilderFieldList`
@@ -49,7 +54,13 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
      * @protected
      */
     initializer: function() {
+        var content = this.get('content');
+
         this._uiSetFields(this.get('fields'));
+
+        content.delegate('click', this._onClickAddField, '.' + CSS_FIELD_LIST_ADD_BUTTON_CIRCLE, this),
+        content.delegate('mouseenter', this._onMouseEnterAddButton, '.' + CSS_FIELD_LIST_ADD_BUTTON, this),
+        content.delegate('mouseleave', this._onMouseLeaveAddButton, '.' + CSS_FIELD_LIST_ADD_BUTTON, this),
 
         this.after('fieldsChange', A.bind(this._afterFieldsChange, this));
     },
@@ -63,7 +74,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     addField: function(field) {
         var fields = this.get('fields');
 
-        fields.push(field);
+        fields.splice(this._newFieldIndex, 0, field);
         this.set('fields', fields);
     },
 
@@ -92,6 +103,49 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     },
 
     /**
+     * Fired when the button for adding a new field is clicked.
+     *
+     * @method _onClickAddField
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickAddField: function(event) {
+        var emptyFieldList = this.get('content').all('.' + CSS_FIELD_LIST_ADD_BUTTON_CIRCLE);
+
+        this._newFieldIndex = emptyFieldList.indexOf(event.target);
+    },
+
+    /**
+     * Fired when mouse enters the button for adding a new field.
+     *
+     * @method _onMouseEnterAddButton
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onMouseEnterAddButton: function(event) {
+        var addButtonNode = event.currentTarget;
+
+        addButtonNode.addClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
+    },
+
+    /**
+     * Fired when mouse leaves the button for adding a new field.
+     *
+     * @method _onMouseLeaveAddButton
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onMouseLeaveAddButton: function(event) {
+        var addButtonNode = event.currentTarget,
+            content = this.get('content'),
+            addButtonsNodeList = content.all('.' + CSS_FIELD_LIST_ADD_BUTTON);
+
+        if (addButtonsNodeList.indexOf(addButtonNode) < addButtonsNodeList.size() - 1) {
+            addButtonNode.removeClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
+        }
+    },
+
+    /**
      * Updates the ui according to the value of the `fields` attribute.
      *
      * @method _uiSetFields
@@ -100,10 +154,17 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
      */
     _uiSetFields: function(fields) {
         var content = this.get('content'),
-            container = content.one('.' + CSS_FIELD_LIST_CONTAINER);
+            container = content.one('.' + CSS_FIELD_LIST_CONTAINER),
+            instance = this;
 
         container.empty();
+
         A.each(fields, function(field) {
+            var addButtonNode = A.Node.create(instance.TPL_ADD_FIELD);
+
+            addButtonNode.removeClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
+
+            container.append(addButtonNode);
             container.append(field.get('content'));
         });
 
@@ -134,7 +195,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
             valueFn: function() {
                 return A.Node.create(A.Lang.sub(this.TPL_FIELD_LIST, {
                     pasteHere: this.get('strings').pasteHere
-                }));
+                })).append(this.TPL_ADD_FIELD);
             },
             writeOnce: 'initOnly'
         },

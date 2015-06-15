@@ -308,7 +308,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('visibility') !== 'hidden';
             });
-            Y.Assert.areEqual(3, visibleTargets.size());
+            Y.Assert.areEqual(4, visibleTargets.size());
 
             moveItem.simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
@@ -340,7 +340,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('visibility') !== 'hidden';
             });
-            Y.Assert.areEqual(5, visibleTargets.size());
+            Y.Assert.areEqual(6, visibleTargets.size());
 
             moveItem.simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
@@ -399,7 +399,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._toolbar._toolbar.one('.glyphicon-move').ancestor().simulate('click');
 
-            cols[2].get('node').one('.layout-builder-move-col-target').simulate('click');
+            cols[2].get('node').all('.layout-builder-move-col-target').item(1).simulate('click');
 
             Y.Assert.areEqual(1, cols[0].get('value').get('fields')[0].get('nestedFields').length);
             Y.Assert.areNotEqual(field, cols[0].get('value').get('fields')[0].get('nestedFields')[0]);
@@ -431,7 +431,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._toolbar._toolbar.one('.glyphicon-move').ancestor().simulate('click');
 
-            cols[2].get('node').one('.layout-builder-move-col-target').simulate('click');
+            cols[2].get('node').all('.layout-builder-move-col-target').item(1).simulate('click');
 
             heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
 

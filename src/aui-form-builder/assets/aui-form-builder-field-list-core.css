@@ -1,16 +1,11 @@
-.form-builder-field-list-add-button {
-    height: 100%;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.form-builder-field-list-add-button-circle {
-    cursor: pointer;
+.form-builder-field-list-container {
+    padding: 35px 0;
 }
 
 .form-builder-field-list-add-button {
     font: 33px sans-serif;
     height: 34px;
+    margin-bottom: 15px;
     margin-top: -17px;
     outline: none;
     position: relative;
@@ -19,12 +14,24 @@
     z-index: 1;
 }
 
+.form-builder-field-list-add-button-circle {
+    cursor: pointer;
+}
+
+.form-builder-field-list-add-button-content {
+    display: none;
+}
+
+.form-builder-field-list-add-button-visible .form-builder-field-list-add-button-content {
+    display: block;
+}
+
 .form-builder-field-list-empty .form-builder-field-list-add-button {
     position: absolute;
     top: 50%;
 }
 
-.form-builder-field-list-add-button:before {
+.form-builder-field-list-add-button-content:before {
     border-top: 2px solid #cce4ff;
     bottom: 0;
     content: "";
