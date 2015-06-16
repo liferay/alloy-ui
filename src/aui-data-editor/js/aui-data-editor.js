@@ -11,7 +11,7 @@ var CSS_EDITOR = A.getClassName('data', 'editor'),
 
     TPL_EDITOR = '<div class="' + CSS_EDITOR + '">' +
         '<div><label class="' + CSS_EDITOR_LABEL + ' control-label"></label>' +
-        '<label class="' + CSS_EDITOR_REQUIRED_LABEL + ' control-label">REQUIRED</label></div>' +
+        '<label class="' + CSS_EDITOR_REQUIRED_LABEL + ' control-label">{required}</label></div>' +
         '<div class="' + CSS_EDITOR_CONTENT_INNER + '"></div>' +
         '</div>';
 
@@ -34,9 +34,12 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
      * @protected
      */
     initializer: function() {
-        var node = this.get('node');
+        var contentNode,
+            node = this.get('node');
 
-        node.one('.' + CSS_EDITOR_CONTENT_INNER).setHTML(this.TPL_EDITOR_CONTENT);
+        contentNode = A.Lang.sub(this.TPL_EDITOR_CONTENT, this.get('strings'));
+
+        node.one('.' + CSS_EDITOR_CONTENT_INNER).setHTML(contentNode);
 
         this._uiSetLabel(this.get('label'));
         this._uiSetRequired(this.get('required'));
@@ -201,7 +204,9 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
         node: {
             readOnly: true,
             valueFn: function() {
-                return A.Node.create(TPL_EDITOR);
+                return A.Node.create(A.Lang.sub(TPL_EDITOR, {
+                    required: this.get('strings').required
+                }));
             }
         },
 
@@ -225,6 +230,19 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
         required: {
             validator: A.Lang.isBoolean,
             value: false
+        },
+
+        /**
+         * Collection of strings used to label elements of the UI.
+         *
+         * @attribute strings
+         * @type {Object}
+         */
+        strings: {
+            value: {
+                required: 'REQUIRED'
+            },
+            writeOnce: true
         },
 
         /**

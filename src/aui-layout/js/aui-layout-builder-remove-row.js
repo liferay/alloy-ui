@@ -7,7 +7,7 @@
 var CSS_REMOVE_ROW = A.getClassName('layout', 'builder', 'remove', 'row', 'button'),
     SELECTOR_ROW = '.layout-row',
     TPL_REMOVE_ROW_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_REMOVE_ROW + '" tabindex="4" type="button">' +
-        '<span class="glyphicon glyphicon-trash"></span> Remove Row</button>';
+        '<span class="glyphicon glyphicon-trash"></span>{removeRow}</button>';
 
 /**
  * A base class for Layout Remove Row.
@@ -153,7 +153,11 @@ LayoutBuilderRemoveRow.prototype = {
      * @protected
      */
     _insertRemoveButtonBeforeRow: function(layoutRow, row) {
-        var removeRowButton = A.Node.create(TPL_REMOVE_ROW_BUTTON);
+        var removeRowButton;
+
+        removeRowButton = A.Node.create(A.Lang.sub(TPL_REMOVE_ROW_BUTTON, {
+            removeRow: this.get('strings').removeRow
+        }));
 
         removeRowButton.setData('layout-row', layoutRow);
         this._layoutContainer.insertBefore(removeRowButton, row);

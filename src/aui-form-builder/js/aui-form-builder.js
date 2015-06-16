@@ -37,10 +37,8 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     A.FormBuilderFieldTypes,
     A.FormBuilderLayoutBuilder
 ], {
-    TITLE_REGULAR: 'Build your form',
-
     TPL_EDIT_LAYOUT_BUTTON: '<div class="' + CSS_EDIT_LAYOUT_BUTTON + '">' +
-        '<a>Edit Layout</a></div>',
+        '<a>{editLayout}</a></div>',
     TPL_HEADER: '<div class="' + CSS_HEADER + '">' +
         '<a class="' + CSS_HEADER_BACK +
         '" tabindex="1"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
@@ -93,8 +91,14 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     renderUI: function() {
+        var layoutButtonNode;
+
+        layoutButtonNode = A.Lang.sub(this.TPL_EDIT_LAYOUT_BUTTON, {
+            editLayout: this.get('strings').titleOnEditLayoutMode
+        });
+
         this._menuEditLayoutItem = new A.MenuItem({
-            content: this.TPL_EDIT_LAYOUT_BUTTON
+            content: layoutButtonNode
         });
 
         this._menu = new A.Menu({
@@ -703,6 +707,20 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
                 return A.Object.hasValue(MODES, val);
             },
             value: MODES.REGULAR
+        },
+
+        /**
+         * Collection of strings used to label elements of the UI.
+         *
+         * @attribute strings
+         * @type {Object}
+         */
+        strings: {
+            value: {
+                titleOnRegularMode: 'Build your form',
+                titleOnEditLayoutMode: 'Edit Layout'
+            },
+            writeOnce: true
         }
     },
 

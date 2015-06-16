@@ -4,6 +4,8 @@
 
 ## @VERSION@
 
+* [AUI-1917](https://issues.liferay.com/browse/AUI-1917) Add option to create Fields between two others Fields on the same column
+* [AUI-1922](https://issues.liferay.com/browse/AUI-1922) Fixing localization issues on Form Builder
 * [AUI-1921](https://issues.liferay.com/browse/AUI-1921) A row with one col should be automatically added on last position when the last row have at least two cols
 * [AUI-1885](https://issues.liferay.com/browse/AUI-1885) Allows adding multiple fields on the same column
 * [AUI-1887](https://issues.liferay.com/browse/AUI-1887) Form builder should have pages, not page breaks

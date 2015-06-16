@@ -29,9 +29,9 @@ CSS_PAGE_HEADER_TITLE_HIDE_BORDER = A.getClassName('form', 'builder', 'page', 'h
 A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
 
     TPL_PAGE_HEADER: '<div class="' + CSS_PAGE_HEADER + ' form-inline">' +
-        '<input placeholder="Untitle page" tabindex="1" class="' + CSS_PAGE_HEADER_TITLE + ' ' +
+        '<input placeholder="{untitledPage}" tabindex="1" class="' + CSS_PAGE_HEADER_TITLE + ' ' +
         CSS_PAGE_HEADER_TITLE_HIDE_BORDER + ' form-control" type="text" />' +
-        '<input placeholder="An aditional info about this page" tabindex="2" class="' + CSS_PAGE_HEADER_DESCRIPTION +
+        '<input placeholder="{aditionalInfo}" tabindex="2" class="' + CSS_PAGE_HEADER_DESCRIPTION +
         ' ' +
         CSS_PAGE_HEADER_DESCRIPTION_HIDE_BORDER + ' form-control" type="text" />' +
         '</div>',
@@ -44,24 +44,20 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
         '</div></div>',
 
     /**
-     * Constructor for the `A.FormBuilderPages`. Lifecycle.
-     *
-     * @method initializer
-     * @protected
-     */
-    initializer: function() {
-        this._defaultTitlePlaceholderValue = 'Untitled Page';
-    },
-
-    /**
      * Renders the `A.FormBuilderPages` UI. Lifecycle.
      *
      * @method renderUI
      * @protected
      */
     renderUI: function() {
+        var headerTemplate;
+
+        headerTemplate = A.Lang.sub(this.TPL_PAGE_HEADER, {
+            aditionalInfo: this.get('strings').aditionalInfo
+        });
+
         this.get('contentBox').append(this.TPL_PAGES);
-        this.get('pageHeader').append(this.TPL_PAGE_HEADER);
+        this.get('pageHeader').append(headerTemplate);
 
         this._getPagination().render();
 
@@ -262,11 +258,15 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
             title = this.get('titles')[activePageNumber - 1],
             pageHeader = this.get('pageHeader'),
             descriptionNode = pageHeader.one('.' + CSS_PAGE_HEADER_DESCRIPTION),
-            titleNode = pageHeader.one('.' + CSS_PAGE_HEADER_TITLE);
+            titleNode = pageHeader.one('.' + CSS_PAGE_HEADER_TITLE),
+            untitledPageTemplate;
 
         if (!title) {
-            titleNode.attr('placeholder', this._defaultTitlePlaceholderValue + ' (' +
-                activePageNumber + ' of ' + this.get('pagesQuantity') + ')');
+            untitledPageTemplate = A.Lang.sub(this.get('strings').untitledPage, {
+                activePageNumber: activePageNumber,
+                pagesQuantity: this.get('pagesQuantity')
+            });
+            titleNode.attr('placeholder', untitledPageTemplate);
         }
 
         titleNode.set('value', title || '');
@@ -335,6 +335,22 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
          */
         pagesQuantity: {
             value: 1
+        },
+
+        /**
+         * Collection of strings used to label elements of the UI. To Untitled Page text,
+         * the string used should follow this have placeholder to Active Page Number and
+         * Pages Quantity, e.g. `Untitled Page ({activePageNumber} of {pagesQuantity})`.
+         *
+         * @attribute strings
+         * @type {Object}
+         */
+        strings: {
+            value: {
+                aditionalInfo: 'An aditional info about this page',
+                untitledPage: 'Untitled Page ({activePageNumber} of {pagesQuantity})'
+            },
+            writeOnce: true
         },
 
         /**

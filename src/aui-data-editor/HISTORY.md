@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1922](https://issues.liferay.com/browse/AUI-1922) Fixing localization issues on Form Builder
 * [AUI-1904](https://issues.liferay.com/browse/AUI-1904) Update textual content on Field Text
 * [AUI-1899](https://issues.liferay.com/browse/AUI-1899) Improve Form Builder visual interface
 * [AUI-1831](https://issues.liferay.com/browse/AUI-1831) Change the way aui-data-editor updates the UI
