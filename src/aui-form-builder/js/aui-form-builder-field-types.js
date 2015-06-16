@@ -462,16 +462,16 @@ A.FormBuilderFieldTypes.ATTRS = {
         value: []
     },
 
-        /**
-         * Collection of strings used to label elements of the UI.
-         *
-         * @attribute strings
-         * @type {Object}
-         */
-        strings: {
-            value: {
-                addField: 'Add Field'
-            },
-            writeOnce: true
-        }
+    /**
+     * Collection of strings used to label elements of the UI.
+     *
+     * @attribute strings
+     * @type {Object}
+     */
+    strings: {
+        value: {
+            addField: 'Add Field'
+        },
+        writeOnce: true
+    }
 };

@@ -132,13 +132,9 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
                 return A.instanceOf(val, A.Node);
             },
             valueFn: function() {
-                var node;
-
-                node = A.Node.create(A.Lang.sub(this.TPL_FIELD_LIST, {
+                return A.Node.create(A.Lang.sub(this.TPL_FIELD_LIST, {
                     pasteHere: this.get('strings').pasteHere
                 }));
-
-                return node;
             },
             writeOnce: 'initOnly'
         },

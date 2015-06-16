@@ -204,13 +204,9 @@ A.DataEditor = A.Base.create('data-editor', A.Base, [], {
         node: {
             readOnly: true,
             valueFn: function() {
-                var node;
-
-                node = A.Node.create(A.Lang.sub(TPL_EDITOR, {
+                return A.Node.create(A.Lang.sub(TPL_EDITOR, {
                     required: this.get('strings').required
                 }));
-
-                return node;
             }
         },
 

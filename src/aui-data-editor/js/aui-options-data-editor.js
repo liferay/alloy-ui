@@ -346,8 +346,7 @@ A.OptionsDataEditor = A.Base.create('options-data-editor', A.DataEditor, [], {
             value: {
                 addOption: 'Tap to add an option',
                 required: 'REQUIRED'
-            },
-            writeOnce: true
+            }
         }
     }
 });

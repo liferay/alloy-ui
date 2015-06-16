@@ -267,11 +267,10 @@ A.FormBuilderFieldBase.prototype = {
      * @protected
      */
     _createMoveTarget: function(position) {
-        var instance = this,
-            targetNode;
+        var targetNode;
 
         targetNode = A.Node.create(A.Lang.sub(this.TPL_FIELD_MOVE_TARGET, {
-            subquestion: instance.get('strings').subquestion
+            subquestion: this.get('strings').subquestion
         }));
 
         targetNode.setData('nested-field-index', position);
@@ -412,6 +411,7 @@ A.FormBuilderFieldBase.ATTRS = {
         value: {
             subquestion: 'Paste as subquestion',
             advancedOptions: 'Advanced options'
-        }
+        },
+        writeOnce: true
     }
 };
