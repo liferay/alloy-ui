@@ -41,10 +41,10 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         '<button type="button" class="' + CSS_FIELD_MOVE_TARGET + ' ' + CSS_LIST_MOVE_TARGET +
         ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
         '{pasteHere}</button>' +
-        '</div>',
+        '</div></div>',
     TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '">' +
         '<div class="' + CSS_FIELD_LIST_CONTAINER + '"></div>' +
-        '</div></div>',
+        '</div>',
 
     /**
      * Construction logic executed during the `A.FormBuilderFieldList`
