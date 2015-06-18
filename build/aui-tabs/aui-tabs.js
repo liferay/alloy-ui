@@ -116,9 +116,9 @@ var Tab = A.Component.create(
 						node = instance._createDefaultContentEl();
 
 						instance.get(CONTENT_BOX).prepend(node);
-
-						node.addClass(CSS_TABVIEW_CONTENT_ITEM);
 					}
+
+					node.addClass(CSS_TABVIEW_CONTENT_ITEM);
 
 					var current = instance.get(CONTENT_NODE);
 
@@ -333,11 +333,11 @@ var TabView = A.Component.create(
 
 					if (!node) {
 						node = instance._createDefaultContentContainer();
-
-						instance.get(CONTENT_BOX).appendChild(node);
-
-						node.addClass(CSS_TABVIEW_CONTENT_WIDGET);
 					}
+
+					instance.get(CONTENT_BOX).appendChild(node);
+
+					node.addClass(CSS_TABVIEW_CONTENT_WIDGET);
 
 					return node;
 				}
@@ -619,7 +619,7 @@ var TabView = A.Component.create(
 
 A.TabView = TabView;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-component','aui-state-interaction']});
+}, '@VERSION@' ,{requires:['aui-component','aui-state-interaction'], skinnable:true});
 AUI.add('aui-tabs-menu-plugin', function(A) {
 var Lang = A.Lang,
 
