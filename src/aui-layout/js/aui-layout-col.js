@@ -118,7 +118,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
 
         valueNode.empty();
         if (value) {
-            if (value.content) {
+            if (value.content !== undefined) {
                 valueNode.append(value.content);
             }
             else {
@@ -160,7 +160,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
          * @type {Number}
          */
         minSize: {
-            value: 0
+            value: 1
         },
 
         /**

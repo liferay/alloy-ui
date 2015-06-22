@@ -338,7 +338,10 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             firstRow = this._layoutBuilder.get('layout').get('rows')[0];
 
             while (firstRow.get('cols').length < firstRow.get('maximumCols')) {
-                firstRow.addCol();
+                    firstRow.addCol(undefined, new Y.LayoutCol({
+                    value: { content: '' },
+                    size: 1
+                }));
             }
 
             dragHandles = firstRow.get('node').all('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + ':not(.hide)');
@@ -429,7 +432,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
         'should resize columns': function() {
             var col,
                 dragHandle,
-                firstBreakpointLine,
+                secondBreakpointLine,
                 row = Y.all('.row').item(1);
 
             col = row.one('.col');
@@ -439,12 +442,69 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
             dragHandle.simulate('keypress', { keyCode: 13 });
 
-            firstBreakpointLine = row.one('.layout-builder-resize-col-breakpoint-line');
-            firstBreakpointLine.simulate('keypress', { keyCode: 13 });
-
-            col = row.one('.col');
+            secondBreakpointLine = row.all('.layout-builder-resize-col-breakpoint-line').item(1);
+            secondBreakpointLine.simulate('keypress', { keyCode: 13 });
 
             Assert.areEqual(1, col.getData('layout-col').get('size'));
+        },
+
+        'should resize unremovable columns': function() {
+            var col,
+                dragHandle,
+                secondBreakpointLine,
+                row = Y.all('.row').item(1);
+
+            row.all('.col').each(function(col) {
+                col.getData('layout-col').set('removable', false);
+            });
+
+            col = row.one('.col');
+            dragHandle = row.one('.layout-builder-resize-col-draggable-handle');
+
+            Assert.areEqual(6, col.getData('layout-col').get('size'));
+
+            dragHandle.simulate('keypress', { keyCode: 13 });
+
+            secondBreakpointLine = row.all('.layout-builder-resize-col-breakpoint-line').item(1);
+            secondBreakpointLine.simulate('keypress', { keyCode: 13 });
+
+            Assert.areEqual(1, col.getData('layout-col').get('size'));
+        },
+
+        'should destroy removable first column': function() {
+            var row = Y.one('.row'),
+                col = row.one('.col'),
+                dragHandle,
+                breakpoint,
+                addColButton = row.one('.layout-builder-add-col');
+
+            Assert.areEqual(true, col.getData('layout-col').get('removable'));
+
+            addColButton.simulate('click');
+
+            dragHandle = row.all('.layout-builder-resize-col-draggable-handle').item(0);
+            breakpoint = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(0);
+
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint);
+            Assert.areEqual(5, col.getData('layout-col').get('size'));
+        },
+
+        'should destroy removable second column': function() {
+            var row = Y.one('.row'),
+                col = row.one('.col'),
+                dragHandle,
+                breakpoint,
+                addColButton = row.all('.layout-builder-add-col').item(1);
+
+            Assert.areEqual(true, col.getData('layout-col').get('removable'));
+
+            addColButton.simulate('click');
+
+            dragHandle = row.all('.layout-builder-resize-col-draggable-handle').item(3);
+            breakpoint = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(12);
+
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint);
+            Assert.areEqual(5, col.getData('layout-col').get('size'));
         },
 
         'should toggle breakpoints visibility when keypress on draghandle': function() {
@@ -453,13 +513,13 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
             dragHandle = row.one('.layout-builder-resize-col-draggable-handle');
 
-            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+            Assert.areEqual('none', row.all('.layout-builder-resize-col-breakpoint').item(1).getStyle('display'));
 
             dragHandle.simulate('keypress', { keyCode: 13 });
-            Assert.areEqual('block', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+            Assert.areEqual('block', row.all('.layout-builder-resize-col-breakpoint').item(1).getStyle('display'));
 
             dragHandle.simulate('keypress', { keyCode: 13 });
-            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+            Assert.areEqual('none', row.all('.layout-builder-resize-col-breakpoint').item(1).getStyle('display'));
         },
 
         'should not show grid breakpoints when clicking drag handle with a button other than left': function() {
@@ -467,16 +527,16 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
                 row = Y.all('.row').item(1);
 
             dragHandle = row.one('.layout-builder-resize-col-draggable-handle');
-            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+            Assert.areEqual('none', row.all('.layout-builder-resize-col-breakpoint').item(1).getStyle('display'));
 
             dragHandle.simulate('mousedown', { button: 1 });
-            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+            Assert.areEqual('none', row.all('.layout-builder-resize-col-breakpoint').item(1).getStyle('display'));
 
             dragHandle.simulate('mousedown', { button: 2 });
-            Assert.areEqual('none', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+            Assert.areEqual('none', row.all('.layout-builder-resize-col-breakpoint').item(1).getStyle('display'));
 
             dragHandle.simulate('mousedown', { button: 0 });
-            Assert.areEqual('block', row.one('.layout-builder-resize-col-breakpoint').getStyle('display'));
+            Assert.areEqual('block', row.all('.layout-builder-resize-col-breakpoint').item(1).getStyle('display'));
         },
 
         'should remove resize col feature on smartphones': function() {
