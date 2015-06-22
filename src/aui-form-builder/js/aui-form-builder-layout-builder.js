@@ -131,7 +131,6 @@ A.FormBuilderLayoutBuilder.prototype = {
             clickColMoveTarget: A.bind(this._clickColMoveTarget, this),
             clickRemoveRow: A.bind(this._clickRemoveRow, this),
             container: this.get('contentBox').one('.' + CSS_LAYOUT),
-            enableRemoveCols: false,
             layout: this.getActiveLayout(),
             removeColMoveButtons: A.bind(this._removeColMoveButtons, this),
             removeColMoveTargets: A.bind(this._removeColMoveTargets, this)
