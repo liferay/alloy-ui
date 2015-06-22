@@ -322,7 +322,6 @@ A.LayoutBuilderResizeCol.prototype = {
 
         col1.set('size', col1.get('size') + difference);
         col2.set('size', col2.get('size') - difference);
-console.log(col1.get('removable'), col1.get('size'));
         if (col1.get('removable') && col1.get('size') === 0) {
             this._removeCol(col1.get('node'));
         }
