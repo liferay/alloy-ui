@@ -360,6 +360,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * Fired after the `activePageNumber` change.
      *
      * @method _afterUpdatePageContentChange
+     * @param {EventFacade} event
      * @protected
      */
     _afterUpdatePageContentChange: function(event) {
@@ -373,7 +374,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * Fire event of create a field.
      *
      * @method _getActiveLayoutIndex
-     * @param {A.FormBuilderFieldBase} field
      * @protected
      */
     _getActiveLayoutIndex: function() {

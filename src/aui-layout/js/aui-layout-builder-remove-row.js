@@ -8,7 +8,6 @@ var CSS_REMOVE_ROW = A.getClassName('layout', 'builder', 'remove', 'row', 'butto
     SELECTOR_ROW = '.layout-row',
     TPL_REMOVE_ROW_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_REMOVE_ROW + '" tabindex="4" type="button">' +
         '<span class="glyphicon glyphicon-trash"></span></button>';
-
 /**
  * A base class for Layout Remove Row.
  *
@@ -69,6 +68,29 @@ LayoutBuilderRemoveRow.prototype = {
     },
 
     /**
+     * Fired after the `removable` attribute changes.
+     *
+     * @method _afterRemoveRowRemovableChange
+     * @protected
+     */
+    _afterRemoveRowRemovableChange: function(event) {
+        var containerRow = event.target.get('node'),
+            layoutRow = event.target,
+            removeRowButton;
+
+        removeRowButton = containerRow.one('.' + CSS_REMOVE_ROW);
+
+        if (!event.newVal) {
+            if (removeRowButton) {
+                removeRowButton.remove();
+            }
+        }
+        else {
+            this._insertRemoveButtonBeforeRow(layoutRow, containerRow.one(SELECTOR_ROW));
+        }
+    },
+
+    /**
      * Fired after `rows` attribute changes.
      *
      * @method _afterRemoveRowRowsChange
@@ -106,27 +128,6 @@ LayoutBuilderRemoveRow.prototype = {
                 instance._insertRemoveButtonBeforeRow(layoutRow, row);
             }
         });
-    },
-
-    /**
-     * Fired after the `removable` attribute changes.
-     *
-     * @method _afterRemoveRowRemovableChange
-     * @protected
-     */
-    _afterRemoveRowRemovableChange: function(event) {
-        var containerRow = event.target.get('node'),
-            layoutRow = event.target,
-            removeRowButton;
-
-        removeRowButton = containerRow.one('.' + CSS_REMOVE_ROW);
-
-        if (!event.newVal) {
-            removeRowButton.remove();
-        }
-        else {
-            this._insertRemoveButtonBeforeRow(layoutRow, containerRow.one(SELECTOR_ROW));
-        }
     },
 
     /**
