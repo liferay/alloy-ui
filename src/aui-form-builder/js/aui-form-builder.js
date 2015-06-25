@@ -564,6 +564,8 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
                 layout.set('rows', [new A.LayoutRow()]);
             }
 
+            layout.get('rows')[layout.get('rows').length - 1].set('removable', false);
+            
             layouts.push(layout);
         });
 
@@ -632,7 +634,12 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         strings: {
             value: {
                 addField: 'Add Field',
-                formTitle: 'Build your form'
+                formTitle: 'Build your form',
+                cancelRemoveRow: 'Cancel',
+                confirmRemoveRow: 'Yes, delete',
+                modalHeader: 'Remove confirmation',
+                removeRowModal: 'You will also delete fields with this row. ' +
+                    'Are you sure you want delete it?'
             },
             writeOnce: true
         }

@@ -53,8 +53,8 @@
     border-radius: 50%;
     z-index: 1;
     position: absolute;
-    right: 10px;
-    top: 12px;
+    right: 14px;
+    top: -10px;
 }
 
 .layout-row-container-row {

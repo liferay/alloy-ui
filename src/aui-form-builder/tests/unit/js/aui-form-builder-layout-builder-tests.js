@@ -117,7 +117,70 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areNotEqual('none', button.getStyle('display'));
         },
 
-        'should be able to remove rows': function() {
+        'should open a confirmation modal when a remove row button from a row with fields is clicked': function() {
+            this._createFormBuilder();
+
+            Y.Assert.isTrue(Y.one('.form-builder-remove-row-modal').hasClass('modal-dialog-hidden'));
+
+            Y.one('.layout-builder-remove-row-button').simulate('click');
+            Y.Assert.isFalse(Y.one('.form-builder-remove-row-modal').hasClass('modal-dialog-hidden'));
+        },
+
+        'should remove a row just clicking on remove row button when this row has no field': function() {
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                movableContent: true,
+                                size: 4,
+                                value: new Y.FormBuilderFieldList()
+                            }),
+                            new Y.LayoutCol({
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                size: 4,
+                                value: new Y.FormBuilderFieldList()
+                            })
+                        ]
+                    })
+                ]
+            });
+            this._createFormBuilder({layouts: [layout]});
+
+            Y.Assert.areEqual(this._formBuilder.get('layouts')[0].get('rows').length, 2);
+
+            Y.one('.layout-builder-remove-row-button').simulate('click');
+            Y.Assert.areEqual(this._formBuilder.get('layouts')[0].get('rows').length, 1);
+        },
+
+        'should hide button for removing row when a layout with a single row is added to the form builder': function() {
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 12,
+                                value: new Y.FormBuilderFieldList({
+                                    fields: [
+                                        new Y.FormBuilderFieldSentence({
+                                            help: 'My Help',
+                                            title: 'My Title'
+                                        })
+                                    ]
+                                })
+                            })
+                        ]
+                    })
+                ]
+            });
+
+            this._createFormBuilder({layouts: [layout]});
+
+            Y.Assert.isNull(Y.one('.layout-builder-remove-row-button'));
+        },
+        'should remove a row with fields only if the confirmation button from the confirmation modal is clicked': function() {
             var button;
 
             this._createFormBuilder();
@@ -126,6 +189,17 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             Y.Assert.isNotNull(button);
             Y.Assert.areNotEqual('none', button.getStyle('display'));
+            Y.Assert.areEqual(this._formBuilder.get('layouts')[0].get('rows').length, 2);
+
+            Y.one('.layout-builder-remove-row-button').simulate('click');
+            Y.one('.modal-footer').all('button').item(1).simulate('focus');
+            Y.one('.modal-footer').all('button').item(1).simulate('click');
+            Y.Assert.areEqual(this._formBuilder.get('layouts')[0].get('rows').length, 2);
+
+            Y.one('.layout-builder-remove-row-button').simulate('click');
+            Y.one('.modal-footer').all('button').item(0).simulate('focus');
+            Y.one('.modal-footer').all('button').item(0).simulate('click');
+            Y.Assert.areEqual(this._formBuilder.get('layouts')[0].get('rows').length, 1);
         },
 
         'should be able to add cols': function() {

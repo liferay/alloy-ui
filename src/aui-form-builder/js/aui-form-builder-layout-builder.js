@@ -13,7 +13,8 @@ var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'mo
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_MOVE_TARGET_INVALID = A.getClassName('form', 'builder', 'field', 'move', 'target', 'invalid'),
     CSS_FIELD_MOVING = A.getClassName('form', 'builder', 'field', 'moving'),
-    CSS_LAYOUT = A.getClassName('form', 'builder', 'layout');
+    CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
+    CSS_REMOVE_ROW_MODAL = A.getClassName('form', 'builder', 'remove', 'row', 'modal');
 
 /**
  * `A.FormBuilder` extension, which handles the `A.LayoutBuilder` inside it.
@@ -35,6 +36,8 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     initializer: function() {
+        this._initRemoveConfirmationModal();
+
         this.after({
             render: this._afterLayoutBuilderRender,
             'layout-row:colsChange': this._afterLayoutBuilderColsChange
@@ -52,6 +55,8 @@ A.FormBuilderLayoutBuilder.prototype = {
         if (this._layoutBuilder) {
             this._layoutBuilder.destroy();
         }
+
+        this._removeConfirmationModal.destroy();
     },
 
     /**
@@ -124,6 +129,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             addColMoveButton: A.bind(this._addColMoveButton, this),
             addColMoveTarget: A.bind(this._addColMoveTarget, this),
             clickColMoveTarget: A.bind(this._clickColMoveTarget, this),
+            clickRemoveRow: A.bind(this._clickRemoveRow, this),
             container: this.get('contentBox').one('.' + CSS_LAYOUT),
             enableRemoveCols: false,
             layout: this.getActiveLayout(),
@@ -152,8 +158,14 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _checkLastRow: function() {
-        if (this._getLastRow().get('cols').length > 1) {
+        var lastRow = this._getLastRow();
+
+        if (lastRow.get('cols').length > 1) {
+            lastRow.set('removable', true);
             this._createLastRow();
+        }
+        else {
+            lastRow.set('removable', false);
         }
     },
 
@@ -238,6 +250,32 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
+     * Overrides default `clickRemoveRow` attribute. Check if the parameter `row` has fields.
+     *
+     * @method _clickRemoveRow
+     * @param {A.LayoutRow} row
+     * @protected
+     */
+    _clickRemoveRow: function(row) {
+        var cols = row.get('cols'),
+            currentList,
+            index;
+
+        for (index = 0; index < cols.length; index++) {
+            currentList = cols[index].get('value');
+
+            if (currentList && currentList.get('fields').length) {
+                this._removeConfirmationModal.show();
+                this._removingRow = row;
+
+                return false;
+            }
+        }
+
+        return true;
+    },
+
+    /**
      * Creates a new row in the last position.
      *
      * @method _createLastRow
@@ -248,7 +286,21 @@ A.FormBuilderLayoutBuilder.prototype = {
             layout = this.getActiveLayout(),
             rows = layout.get('rows');
 
+        lastRow.set('removable', false);
+
         layout.addRow(rows.length, lastRow);
+    },
+
+    /**
+     * Removes a row even with field.
+     *
+     * @method _forceRemoveRow
+     * @protected
+     */
+    _forceRemoveRow: function() {
+        this.getActiveLayout().removeRow(this._removingRow);
+
+        this._removeConfirmationModal.hide();
     },
 
     /**
@@ -262,6 +314,49 @@ A.FormBuilderLayoutBuilder.prototype = {
         var rows = this.getActiveLayout().get('rows');
 
         return rows[rows.length - 1];
+    },
+
+
+    /**
+     * Create a confirmation modal to be used when a remove row button from a row with
+     * fields is clicked. 
+     *
+     * @method _initRemoveConfirmationModal
+     * @protected
+     */
+    _initRemoveConfirmationModal: function() {
+        var modal = new A.Modal({
+            bodyContent: this.get('strings').removeRowModal,
+            centered: true,
+            cssClass: CSS_REMOVE_ROW_MODAL,
+            headerContent: this.get('strings').modalHeader,
+            modal: true,
+            resizable: false,
+            visible: false,
+            zIndex: 2
+        }).render();
+        
+        modal.addToolbar([
+            {
+                cssClass: 'btn-primary',
+                label: this.get('strings').confirmRemoveRow,
+                on: {
+                    click: A.bind(this._forceRemoveRow, this)
+                },
+                render: true
+            },
+            {
+                label: this.get('strings').cancelRemoveRow,
+                on: {
+                    click: function() {
+                        modal.hide();
+                    }
+                },
+                render: true
+            }
+        ]);
+
+        this._removeConfirmationModal = modal;
     },
 
     /**

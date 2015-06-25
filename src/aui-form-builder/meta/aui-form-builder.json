@@ -95,6 +95,7 @@
         "requires": [
             "aui-classnamemanager",
             "aui-layout-builder",
+            "aui-modal",
             "base",
             "node-base"
         ],

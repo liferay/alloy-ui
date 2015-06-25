@@ -119,6 +119,32 @@ YUI.add('aui-layout-builder-remove-row-tests', function(Y) {
             Assert.isNull(button);
         },
 
+        'should remove a row on remove button clicked only if `clickRemoveRow` attribute returns true': function() {
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow(),
+                    new Y.LayoutRow()
+                ]
+            });
+
+            this.layoutBuilder.set('layout', layout);
+
+            Assert.areEqual(2, Y.all('.layout-row-container-row').size());
+
+            Y.one('.layout-builder-remove-row-button').simulate('click');
+            Assert.areEqual(1, Y.all('.layout-row-container-row').size());
+
+            this.layoutBuilder.set('clickRemoveRow', function() { return false; });
+
+            Y.one('.layout-builder-remove-row-button').simulate('click');
+            Assert.areEqual(1, Y.all('.layout-row-container-row').size());
+
+            this.layoutBuilder.set('clickRemoveRow', function() { return true; });
+
+            Y.one('.layout-builder-remove-row-button').simulate('click');
+            Assert.areEqual(0, Y.all('.layout-row-container-row').size());
+        },
+
         'should not add remove row button if a row is not removable': function() {
             var layout = new Y.Layout({
                 rows: [
