@@ -214,27 +214,21 @@ YUI.add('module-tests', function(Y) {
          * @tests AUI-1092
          */
         '#12 #triggerLeft\'s tooltip should not cover button #triggerBottom': function() {
-            var test = this,
+            var condition,
                 tooltipLeft = Y.one('.tooltip.left'),
                 triggerTooltipHelp = Y.one('#triggerTooltipHelp');
 
-            tooltipLeft.once('mouseout', function(event) {
-                setTimeout(function() {
-                    test.resume(function() {
-                        Y.Assert.isTrue(
-                            Y.one('.tooltip.left').getStyle('zIndex') < 0,
-                            '.tooltip.left does not have a z-index less than 0');
-                    })
-                }, 800);
-            });
+            triggerTooltipHelp.simulate('mouseout');
+            tooltipLeft.simulate('mouseover');
+            tooltipLeft.simulate('mouseout');
 
-            setTimeout(function() {
-                triggerTooltipHelp.simulate('mouseout');
-                tooltipLeft.simulate('mouseover');
-                tooltipLeft.simulate('mouseout');
-            });
+            condition = (tooltipLeft === null ||
+                tooltipLeft.getStyle('zIndex') < 0 || tooltipLeft.getComputedStyle(
+                    'zIndex') < 0);
 
-            test.wait(1000);
+            Y.Assert.isTrue(
+                condition,
+                '.tooltip.left does not have a z-index less than 0');
         },
 
         'should create tooltip with html content': function() {
