@@ -155,12 +155,16 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     _uiSetFields: function(fields) {
         var content = this.get('content'),
             container = content.one('.' + CSS_FIELD_LIST_CONTAINER),
-            instance = this;
+            addFieldTemplate;
+
+        addFieldTemplate = A.Lang.sub(this.TPL_ADD_FIELD, {
+            pasteHere: this.get('strings').pasteHere
+        });
 
         container.empty();
 
         A.each(fields, function(field) {
-            var addButtonNode = A.Node.create(instance.TPL_ADD_FIELD);
+            var addButtonNode = A.Node.create(addFieldTemplate);
 
             addButtonNode.removeClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
 
@@ -193,9 +197,10 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
                 return A.instanceOf(val, A.Node);
             },
             valueFn: function() {
-                return A.Node.create(A.Lang.sub(this.TPL_FIELD_LIST, {
+                var addFieldTemplate = A.Lang.sub(this.TPL_ADD_FIELD, {
                     pasteHere: this.get('strings').pasteHere
-                })).append(this.TPL_ADD_FIELD);
+                });
+                return A.Node.create(this.TPL_FIELD_LIST).append(addFieldTemplate);
             },
             writeOnce: 'initOnly'
         },

@@ -460,18 +460,5 @@ A.FormBuilderFieldTypes.ATTRS = {
         setter: '_setFieldTypes',
         validator: A.Lang.isArray,
         value: []
-    },
-
-    /**
-     * Collection of strings used to label elements of the UI.
-     *
-     * @attribute strings
-     * @type {Object}
-     */
-    strings: {
-        value: {
-            addField: 'Add Field'
-        },
-        writeOnce: true
     }
 };

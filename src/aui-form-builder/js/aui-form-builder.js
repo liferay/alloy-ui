@@ -717,6 +717,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
          */
         strings: {
             value: {
+                addField: 'Add Field',
                 titleOnRegularMode: 'Build your form',
                 titleOnEditLayoutMode: 'Edit Layout'
             },
