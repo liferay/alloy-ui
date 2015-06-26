@@ -275,14 +275,6 @@ A.LayoutBuilderResizeCol.prototype = {
             col1MinSize = col1.get('minSize'),
             col2MinSize = col2.get('minSize');
 
-        if (diff1 === 0 && col1value && (col1value.content !== undefined || col1value.get('content'))) {
-            return false;
-        }
-
-        if (diff2 === 0 && col2value && (col2value.content !== undefined || col2value.get('content'))) {
-            return false;
-        }
-
         if (col1.get('removable')) {
             col1MinSize = 0;
         }

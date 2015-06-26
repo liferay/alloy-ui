@@ -26,7 +26,6 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
      */
     initializer: function() {
         this.after({
-            removableChange: this._afterRemovableChange,
             sizeChange: this._afterSizeChange,
             valueChange: this._afterValueChange
         });
@@ -43,22 +42,6 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
      */
     _afterContentChange: function() {
         this._uiSetValue(this.get('value'));
-    },
-
-    /**
-     * Fired after the `removable` attribute changes.
-     *
-     * @method _afterRemovableChange
-     * @param {EventFacade} event
-     * @protected
-     */
-    _afterRemovableChange: function(event) {
-        if (event.newVal) {
-            this.set('minSize', 0);
-        }
-        else {
-            this.set('minSize', 1);
-        }
     },
 
     /**

@@ -290,18 +290,11 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             dragHandle.simulate('mousedown');
 
             breakpoints = this._getVisibleRowNodes(row, '.' + CSS_RESIZE_COL_BREAKPOINT);
-            Y.Assert.areEqual(11, breakpoints.length);
-            Y.Assert.areEqual(1, breakpoints[0].getData('layout-position'));
-            Y.Assert.areEqual(2, breakpoints[1].getData('layout-position'));
-            Y.Assert.areEqual(3, breakpoints[2].getData('layout-position'));
-            Y.Assert.areEqual(4, breakpoints[3].getData('layout-position'));
-            Y.Assert.areEqual(5, breakpoints[4].getData('layout-position'));
-            Y.Assert.areEqual(6, breakpoints[5].getData('layout-position'));
-            Y.Assert.areEqual(7, breakpoints[6].getData('layout-position'));
-            Y.Assert.areEqual(8, breakpoints[7].getData('layout-position'));
-            Y.Assert.areEqual(9, breakpoints[8].getData('layout-position'));
-            Y.Assert.areEqual(10, breakpoints[9].getData('layout-position'));
-            Y.Assert.areEqual(11, breakpoints[10].getData('layout-position'));
+            Y.Assert.areEqual(13, breakpoints.length);
+
+            Y.Array.each(breakpoints, function(breakpoint, position) {
+                Y.Assert.areEqual(position, breakpoint.getData('layout-position'));
+            });
 
             // The fifth row has 3 columns with size 4 each.
             row = this._layoutBuilder.get('layout').get('rows')[4];
@@ -309,14 +302,11 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             dragHandle.simulate('mousedown');
 
             breakpoints = this._getVisibleRowNodes(row, '.' + CSS_RESIZE_COL_BREAKPOINT);
-            Y.Assert.areEqual(7, breakpoints.length);
-            Y.Assert.areEqual(1, breakpoints[0].getData('layout-position'));
-            Y.Assert.areEqual(2, breakpoints[1].getData('layout-position'));
-            Y.Assert.areEqual(3, breakpoints[2].getData('layout-position'));
-            Y.Assert.areEqual(4, breakpoints[3].getData('layout-position'));
-            Y.Assert.areEqual(5, breakpoints[4].getData('layout-position'));
-            Y.Assert.areEqual(6, breakpoints[5].getData('layout-position'));
-            Y.Assert.areEqual(7, breakpoints[6].getData('layout-position'));
+            Y.Assert.areEqual(9, breakpoints.length);
+
+            Y.Array.each(breakpoints, function(breakpoint, position) {
+                Y.Assert.areEqual(position, breakpoint.getData('layout-position'));
+            });
         },
 
         'should not insert layout grid for borders without handles': function() {
