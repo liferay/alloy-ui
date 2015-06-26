@@ -269,13 +269,11 @@ A.LayoutBuilderResizeCol.prototype = {
     _canDrop: function(dragNode, position) {
         var col1 = dragNode.getData('layout-col1'),
             col2 = dragNode.getData('layout-col2'),
-            col1value = col1.get('value'),
-            col2value = col2.get('value'),
             difference = position - dragNode.getData('layout-position'),
             diff1 = col1.get('size') + difference,
             diff2 = col2.get('size') - difference,
-            col1minSize = 0,
-            col2minSize = 0;
+            col1MinSize = col1.get('minSize'),
+            col2MinSize = col2.get('minSize');
 
         if (diff1 === 0 && col1value && (col1value.content !== undefined || col1value.get('content'))) {
             return false;
@@ -286,17 +284,14 @@ A.LayoutBuilderResizeCol.prototype = {
         }
 
         if (col1.get('removable')) {
-            col1minSize = 0;
+            col1MinSize = 0;
         }
 
         if (col2.get('removable')) {
-            col2minSize = 0;
+            col2MinSize = 0;
         }
 
-        if (diff1 < col1minSize) {
-            return false;
-        }
-        if (diff2 < col2minSize) {
+        if (diff1 < col1MinSize || diff2 < col2MinSize) {
             return false;
         }
 
@@ -340,17 +335,17 @@ A.LayoutBuilderResizeCol.prototype = {
         var col1 = dragNode.getData('layout-col1'),
             col2 = dragNode.getData('layout-col2'),
             difference = dropNode.getData('layout-position') - dragNode.getData('layout-position'),
-            col1newSize = col1.get('size') + difference,
-            col2newSize = col2.get('size') - difference;
+            col1NewSize = col1.get('size') + difference,
+            col2NewSize = col2.get('size') - difference;
 
-        col1.set('size', col1newSize);
-        col2.set('size', col2newSize);
+        col1.set('size', col1NewSize);
+        col2.set('size', col2NewSize);
 
-        if (col1.get('removable') && col1newSize === 0) {
+        if (col1.get('removable') && col1NewSize === 0) {
             this._removeCol(col1.get('node'));
         }
 
-        if (col2.get('removable') && col2newSize === 0) {
+        if (col2.get('removable') && col2NewSize === 0) {
             this._removeCol(col2.get('node'));
         }
 
