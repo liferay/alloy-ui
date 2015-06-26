@@ -9,19 +9,10 @@ var CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout',
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'circle'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_HEADER = A.getClassName('form', 'builder', 'header'),
-    CSS_HEADER_BACK = A.getClassName('form', 'builder', 'header', 'back'),
     CSS_HEADER_TITLE = A.getClassName('form', 'builder', 'header', 'title'),
     CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
-    CSS_MENU = A.getClassName('form', 'builder', 'menu'),
-    CSS_MENU_BUTTON = A.getClassName('form', 'builder', 'menu', 'button'),
-    CSS_MENU_CONTENT = A.getClassName('form', 'builder', 'menu', 'content'),
     CSS_PAGE_HEADER = A.getClassName('form', 'builder', 'pages', 'header'),
-    CSS_PAGES = A.getClassName('form', 'builder', 'pages'),
-
-    MODES = {
-        LAYOUT: 'layout',
-        REGULAR: 'regular'
-    };
+    CSS_PAGES = A.getClassName('form', 'builder', 'pages');
 
 /**
  * A base class for `A.FormBuilder`.
@@ -40,13 +31,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     TPL_EDIT_LAYOUT_BUTTON: '<div class="' + CSS_EDIT_LAYOUT_BUTTON + '">' +
         '<a>{editLayout}</a></div>',
     TPL_HEADER: '<div class="' + CSS_HEADER + '">' +
-        '<a class="' + CSS_HEADER_BACK +
-        '" tabindex="1"><span class="glyphicon glyphicon-chevron-left"></span></a>' +
-        '<div class="' + CSS_MENU + '">' +
-        '<a class="dropdown-toggle ' + CSS_MENU_BUTTON + '" data-toggle="dropdown" tabindex="1">' +
-        '<span class="glyphicon glyphicon-cog"></span></a>' +
-        '<div class="' + CSS_MENU_CONTENT + ' dropdown-menu dropdown-menu-right"></div></div>' +
-        '<div class="' + CSS_HEADER_TITLE + '"></div>' +
+        '<div class="' + CSS_HEADER_TITLE + '">{formTitle}</div>' +
         '</div>',
     TPL_LAYOUT: '<div class="' + CSS_LAYOUT + '" ></div>',
     TPL_PAGE_HEADER: '<div class="' + CSS_PAGE_HEADER + '" ></div>',
@@ -60,9 +45,14 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     initializer: function() {
-        var contentBox = this.get('contentBox');
+        var contentBox = this.get('contentBox'),
+            headerTemplate;
 
-        contentBox.append(this.TPL_HEADER);
+        headerTemplate = A.Lang.sub(this.TPL_HEADER, {
+            formTitle: this.get('strings').formTitle
+        });
+
+        contentBox.append(headerTemplate);
         contentBox.append(this.TPL_PAGE_HEADER);
         contentBox.append(this.TPL_LAYOUT);
         contentBox.append(this.TPL_PAGES);
@@ -97,17 +87,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             editLayout: this.get('strings').titleOnEditLayoutMode
         });
 
-        this._menuEditLayoutItem = new A.MenuItem({
-            content: layoutButtonNode
-        });
-
-        this._menu = new A.Menu({
-            boundingBox: '.' + CSS_MENU,
-            contentBox: '.' + CSS_MENU,
-            items: [this._menuEditLayoutItem],
-            trigger: '.' + CSS_MENU_BUTTON
-        }).render();
-
         this._pages.render('.' + CSS_PAGES);
 
         this.getActiveLayout().addTarget(this);
@@ -129,9 +108,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON_CIRCLE, this),
             boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' +
                 CSS_EMPTY_COL_ADD_BUTTON_CIRCLE),
-            boundingBox.one('.' + CSS_HEADER_BACK).on('click', this._onClickHeaderBack, this),
-            boundingBox.one('.' + CSS_HEADER_BACK).on('key', A.bind(this._onKeyPressHeaderBack, this), 'press:13'),
-            this._menu.after('itemSelected', A.bind(this._afterItemSelected, this)),
             this._pages.on('add', A.bind(this._addPage, this)),
             this._pages.on('remove', A.bind(this._removeLayout, this)),
             this._pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this)),
@@ -341,20 +317,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Fired after the `itemSelected` event is triggered for the form builder's
-     * menu.
-     *
-     * @method _afterItemSelected
-     * @param {EventFacade} event
-     * @protected
-     */
-    _afterItemSelected: function(event) {
-        if (event.item === this._menuEditLayoutItem) {
-            this.set('mode', A.FormBuilder.MODES.LAYOUT);
-        }
-    },
-
-    /**
      * Fired after the `layout-row:colsChange` event is triggered.
      *
      * @method _afterLayoutColsChange
@@ -490,16 +452,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Fired when the header back button is clicked.
-     *
-     * @method _onClickHeaderBack
-     * @protected
-     */
-    _onClickHeaderBack: function() {
-        this.set('mode', A.FormBuilder.MODES.REGULAR);
-    },
-
-    /**
      * Fired when some node is focused inside content box.
      *
      * @method _onFocus
@@ -534,16 +486,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      */
     _onKeyPressAddField: function(event) {
         this._openNewFieldPanel(event.currentTarget);
-    },
-
-    /**
-     * Fired when the header back button is pressed.
-     *
-     * @method _onKeyPressHeaderBack
-     * @protected
-     */
-    _onKeyPressHeaderBack: function() {
-        this.set('mode', A.FormBuilder.MODES.REGULAR);
     },
 
     /**
@@ -629,19 +571,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Updates the form builder header's title.
-     *
-     * @method _updateHeaderTitle
-     * @param {String} title
-     * @protected
-     */
-    _updateHeaderTitle: function(title) {
-        var titleNode = this.get('contentBox').one('.' + CSS_HEADER_TITLE);
-
-        titleNode.set('text', title);
-    },
-
-    /**
      * Fired after the `activePageNumber` change.
      *
      * @method _updatePageContent
@@ -695,21 +624,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         },
 
         /**
-         * The form builder's current mode. Valid values are the ones listed on
-         * `A.FormBuilder.MODES`.
-         *
-         * @attribute mode
-         * @default 'regular'
-         * @type String
-         */
-        mode: {
-            validator: function(val) {
-                return A.Object.hasValue(MODES, val);
-            },
-            value: MODES.REGULAR
-        },
-
-        /**
          * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
@@ -718,8 +632,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         strings: {
             value: {
                 addField: 'Add Field',
-                titleOnRegularMode: 'Build your form',
-                titleOnEditLayoutMode: 'Edit Layout'
+                formTitle: 'Build your form'
             },
             writeOnce: true
         }
@@ -732,14 +645,5 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @type String
      * @static
      */
-    CSS_PREFIX: A.getClassName('form-builder'),
-
-    /**
-     * Static property used to define the valid `A.FormBuilder` modes.
-     *
-     * @property MODES
-     * @type Object
-     * @static
-     */
-    MODES: MODES
+    CSS_PREFIX: A.getClassName('form-builder')
 });

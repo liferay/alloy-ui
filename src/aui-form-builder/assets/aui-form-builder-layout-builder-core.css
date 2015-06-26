@@ -1,38 +1,5 @@
-.form-builder-layout-mode .form-builder-header .form-builder-header-back {
-    visibility: visible;
-}
-
-.form-builder-layout-mode .form-builder-header .form-builder-menu {
-    visibility: hidden;
-}
-
-.form-builder-layout-mode .form-builder-empty-col-add-button,
-.form-builder-layout-mode .form-builder-field-content-inner,
-.form-builder-layout-mode .form-builder-field-sentence-help {
-    display: none;
-}
-
-.form-builder-layout-mode .form-builder-field-overlay {
-    background-color: #eee;
-    height: 100%;
-    left: 0;
-    opacity: 0.5;
-    position: absolute;
-    top: 0;
-    width: 100%;
-}
-
-.form-builder-layout-mode .form-builder-field-nested .form-builder-field-overlay {
-    display: none;
-}
-
 .form-builder-content .layout-builder-layout-container {
     margin-bottom: 3px;
-}
-
-.form-builder-layout-mode .form-builder-layout .layout-row-container-row {
-    margin-bottom: 10px;
-    margin-top: 0;
 }
 
 .form-builder-field-move-button {
@@ -47,14 +14,6 @@
     z-index: 1;
 }
 
-.form-builder-layout-mode .layout-builder-move-target {
-    position: relative;
-}
-
-.form-builder-layout-mode .form-builder-field-move-target {
-    display: block;
-    visibility: hidden;
-}
 
 .form-builder-field-move-target {
     background-color: #fff;
@@ -88,4 +47,16 @@
 
 .form-builder-col-moving .form-builder-list-move-target  {
     visibility: hidden;
+}
+
+.layout-builder-move-cut-button.layout-builder-move-cut-row-button {
+    border-radius: 50%;
+    z-index: 1;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+
+.layout-row-container-row {
+    position: relative;
 }

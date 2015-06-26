@@ -107,21 +107,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             windowNode.get = originalWinGet;
         },
 
-        'should the row height adjust on form builder mode change': function() {
-            var height;
-
-            this._createFormBuilder();
-
-            height = Y.all('.layout-row-container-row').item(1).getStyle('height');
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            Y.Assert.isTrue(parseInt(Y.all('.layout-row-container-row').item(1).getStyle('height')) > parseInt(height));
-
-            height = Y.all('.layout-row-container-row').item(1).getStyle('height');
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.REGULAR);
-            Y.Assert.isFalse(parseInt(Y.all('.layout-row-container-row').item(1).getStyle('height')) > parseInt(height));
-        },
-
-        'should be able to add rows on both regular and layout mode': function() {
+        'should be able to add rows': function() {
             var button;
 
             this._createFormBuilder();
@@ -129,54 +115,29 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             button = this._formBuilder.get('contentBox').one('.layout-builder-add-row-area');
             Y.Assert.isNotNull(button);
             Y.Assert.areNotEqual('none', button.getStyle('display'));
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            button = this._formBuilder.get('contentBox').one('.layout-builder-add-row-area');
-            Y.Assert.isNotNull(button);
-            Y.Assert.areNotEqual('none', button.getStyle('display'));
         },
 
-        'should only be able to remove rows on layout mode': function() {
+        'should be able to remove rows': function() {
             var button;
 
             this._createFormBuilder();
 
             button = this._formBuilder.get('contentBox').one('.layout-builder-remove-row-button');
-            Y.Assert.isNull(button);
 
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            button = this._formBuilder.get('contentBox').one('.layout-builder-remove-row-button');
             Y.Assert.isNotNull(button);
             Y.Assert.areNotEqual('none', button.getStyle('display'));
         },
 
-        'should be able to add cols on both regular and layout mode': function() {
+        'should be able to add cols': function() {
             var button;
 
             this._createFormBuilder();
 
             button = this._formBuilder.get('contentBox').one('.layout-builder-add-col');
             Y.Assert.isNotNull(button);
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            button = this._formBuilder.get('contentBox').one('.layout-builder-add-col');
-            Y.Assert.isNotNull(button);
         },
 
-        'should not be able to remove cols on regular mode': function() {
-            var button;
-
-            this._createFormBuilder();
-
-            button = this._formBuilder.get('contentBox').one('.layout-builder-remove-col-button');
-            Y.Assert.isNull(button);
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            button = this._formBuilder.get('contentBox').one('.layout-builder-remove-col-button');
-            Y.Assert.isNotNull(button);
-        },
-
-        'should not be able to move rows on regular mode': function() {
+        'should be able to move rows': function() {
             var button,
                 contentBox;
 
@@ -185,14 +146,10 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             contentBox = this._formBuilder.get('contentBox');
 
             button = contentBox.one('.layout-builder-move-cut-row-button');
-            Y.Assert.isNull(button);
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            button = contentBox.one('.layout-builder-move-cut-row-button');
             Y.Assert.isNotNull(button);
         },
 
-        'should be able to move cols on regular mode': function() {
+        'should be able to move cols': function() {
             this._createFormBuilder();
 
             this._toolbar = new Y.FormBuilderFieldToolbar({
@@ -210,29 +167,13 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.isNull(Y.one('.form-builder-choose-col-move .form-builder-field-move-target'));
         },
 
-        'should be able to resize cols on both regular and layout mode': function() {
+        'should be able to resize cols': function() {
             var draggable;
 
             this._createFormBuilder();
 
             draggable = this._formBuilder.get('contentBox').one('.layout-builder-resize-col-draggable');
             Y.Assert.isNotNull(draggable);
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            draggable = this._formBuilder.get('contentBox').one('.layout-builder-resize-col-draggable');
-            Y.Assert.isNotNull(draggable);
-        },
-
-        'should add/remove css class when on/off layout mode': function() {
-            this._createFormBuilder();
-
-            Y.Assert.isFalse(this._formBuilder.get('boundingBox').hasClass('form-builder-layout-mode'));
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            Y.Assert.isTrue(this._formBuilder.get('boundingBox').hasClass('form-builder-layout-mode'));
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.REGULAR);
-            Y.Assert.isFalse(this._formBuilder.get('boundingBox').hasClass('form-builder-layout-mode'));
         },
 
         'should update layout when it changes': function() {
@@ -248,21 +189,6 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areEqual(1, rowNodes.size());
         },
 
-        'should not break if changing mode and layout before rendering': function() {
-            var button;
-
-            this._createFormBuilder({}, true);
-
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.REGULAR);
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
-
-            this._formBuilder.set('layouts', [new Y.Layout()]);
-
-            button = this._formBuilder.get('contentBox').one('.layout-builder-remove-row-button');
-            Y.Assert.isNull(button);
-        },
-
         'should update with new attributes after rendering': function() {
             var layout,
                 rowNodes;
@@ -276,14 +202,11 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._createFormBuilder({}, true);
 
-            this._formBuilder.set('mode', Y.FormBuilder.MODES.LAYOUT);
             this._formBuilder.set('layouts', [layout]);
 
             this._formBuilder.render('#container');
             rowNodes = this._formBuilder.get('contentBox').all('.layout-row');
             Y.Assert.areEqual(2, rowNodes.size());
-
-            Y.Assert.isTrue(this._formBuilder.get('boundingBox').hasClass('form-builder-layout-mode'));
         },
 
         'should show valid field move targets for root field': function() {
@@ -292,9 +215,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 rowNode,
                 visibleTargets;
 
-            this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.REGULAR
-            });
+            this._createFormBuilder();
 
             this._toolbar = this._formBuilder._fieldToolbar;
             this._openToolbar();
@@ -323,9 +244,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 rowNode,
                 visibleTargets;
 
-            this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.REGULAR
-            });
+            this._createFormBuilder();
 
             this._toolbar = this._formBuilder._fieldToolbar;
 
@@ -356,9 +275,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 moveItem,
                 row;
 
-            this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.REGULAR
-            });
+            this._createFormBuilder();
 
             this._toolbar = this._formBuilder._fieldToolbar;
 
@@ -385,9 +302,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 field,
                 row;
 
-            this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.REGULAR
-            });
+            this._createFormBuilder();
 
             this._toolbar = this._formBuilder._fieldToolbar;
 
@@ -411,13 +326,9 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
         'should resizing the row when move a nested field to another col': function() {
             var cols,
                 field,
-                heightAfterMode,
-                heightBeforeMode,
                 row;
 
-            this._createFormBuilder({
-                mode: Y.FormBuilder.MODES.REGULAR
-            });
+            this._createFormBuilder();
 
             this._toolbar = this._formBuilder._fieldToolbar;
 
@@ -427,13 +338,9 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             cols = row.get('cols');
             field = cols[0].get('value').get('fields')[0].get('nestedFields')[0];
 
-            heightAfterMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
-
             this._toolbar._toolbar.one('.glyphicon-move').ancestor().simulate('click');
 
             cols[2].get('node').all('.layout-builder-move-col-target').item(1).simulate('click');
-
-            heightBeforeMode = Y.all('.layout-row-container-row').item(1).getStyle('height');
 
             Y.Assert.areEqual(1, cols[0].get('value').get('fields')[0].get('nestedFields').length);
             Y.Assert.areNotEqual(field, cols[0].get('value').get('fields')[0].get('nestedFields')[0]);

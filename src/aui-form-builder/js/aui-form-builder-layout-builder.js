@@ -13,9 +13,7 @@ var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'mo
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_MOVE_TARGET_INVALID = A.getClassName('form', 'builder', 'field', 'move', 'target', 'invalid'),
     CSS_FIELD_MOVING = A.getClassName('form', 'builder', 'field', 'moving'),
-    CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
-    CSS_LAYOUT_BUILDER_MOVE_CANCEL = A.getClassName('layout', 'builder', 'move', 'cancel'),
-    CSS_LAYOUT_MODE = A.getClassName('form', 'builder', 'layout', 'mode');
+    CSS_LAYOUT = A.getClassName('form', 'builder', 'layout');
 
 /**
  * `A.FormBuilder` extension, which handles the `A.LayoutBuilder` inside it.
@@ -38,7 +36,6 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     initializer: function() {
         this.after({
-            modeChange: this._afterLayoutBuilderModeChange,
             render: this._afterLayoutBuilderRender,
             'layout-row:colsChange': this._afterLayoutBuilderColsChange
         });
@@ -115,19 +112,6 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Fired after the `mode` attribute is set.
-     *
-     * @method _afterLayoutBuilderModeChange
-     * @protected
-     */
-    _afterLayoutBuilderModeChange: function() {
-        var layout = this.getActiveLayout();
-
-        this._uiSetLayoutBuilderMode(this.get('mode'));
-        layout.normalizeColsHeight(layout.get('node').all('.row'));
-    },
-
-    /**
      * Fired after this widget is rendered.
      *
      * @method _afterLayoutBuilderRender
@@ -141,6 +125,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             addColMoveTarget: A.bind(this._addColMoveTarget, this),
             clickColMoveTarget: A.bind(this._clickColMoveTarget, this),
             container: this.get('contentBox').one('.' + CSS_LAYOUT),
+            enableRemoveCols: false,
             layout: this.getActiveLayout(),
             removeColMoveButtons: A.bind(this._removeColMoveButtons, this),
             removeColMoveTargets: A.bind(this._removeColMoveTargets, this)
@@ -149,8 +134,6 @@ A.FormBuilderLayoutBuilder.prototype = {
         originalChooseColMoveTargetFn = this._layoutBuilder.get('chooseColMoveTarget');
         this._layoutBuilder.set('chooseColMoveTarget', A.bind(this._chooseColMoveTarget, this,
             originalChooseColMoveTargetFn));
-
-        this._uiSetLayoutBuilderMode(this.get('mode'));
 
         this._eventHandles.push(
             this._fieldToolbar.on('onToolbarFieldMouseEnter', A.bind(this._onFormBuilderToolbarFieldMouseEnter, this))
@@ -223,12 +206,7 @@ A.FormBuilderLayoutBuilder.prototype = {
         var layout = this.getActiveLayout(),
             parentFieldNode = this._fieldBeingMoved.get('content').ancestor('.' + CSS_FIELD),
             row,
-            targetNestedParent = moveTarget.getData('nested-field-parent'),
-            toolbarMoveIconCancelMode = this._fieldToolbar.getItem('.' + CSS_LAYOUT_BUILDER_MOVE_CANCEL);
-
-        if (toolbarMoveIconCancelMode) {
-            toolbarMoveIconCancelMode.removeClass(CSS_LAYOUT_BUILDER_MOVE_CANCEL);
-        }
+            targetNestedParent = moveTarget.getData('nested-field-parent');
 
         if (parentFieldNode) {
             parentFieldNode.getData('field-instance').removeNestedField(this._fieldBeingMoved);
@@ -271,44 +249,6 @@ A.FormBuilderLayoutBuilder.prototype = {
             rows = layout.get('rows');
 
         layout.addRow(rows.length, lastRow);
-    },
-
-    /**
-     * Makes the form builder enter layout mode, where the layout can be edited.
-     *
-     * @method _enterLayoutMode
-     * @protected
-     */
-    _enterLayoutMode: function() {
-        if (this._layoutBuilder) {
-            this._layoutBuilder.setAttrs({
-                enableMoveCols: false,
-                enableMoveRows: true,
-                enableRemoveCols: true,
-                enableRemoveRows: true
-            });
-        }
-
-        this._updateHeaderTitle(this.get('strings').titleOnEditLayoutMode);
-    },
-
-    /**
-     * Makes the form builder exit layout mode.
-     *
-     * @method _exitLayoutMode
-     * @protected
-     */
-    _exitLayoutMode: function() {
-        if (this._layoutBuilder) {
-            this._layoutBuilder.setAttrs({
-                enableMoveCols: true,
-                enableMoveRows: false,
-                enableRemoveCols: false,
-                enableRemoveRows: false
-            });
-        }
-
-        this._updateHeaderTitle(this.get('strings').titleOnRegularMode);
     },
 
     /**
@@ -386,23 +326,5 @@ A.FormBuilderLayoutBuilder.prototype = {
         moveItem.setData('layout-row', colNode.ancestor('.row').getData('layout-row'));
         moveItem.setData('node-col', colNode);
         moveItem.removeClass('hidden');
-    },
-
-    /**
-     * Updates the UI according to the value of the `mode` attribute.
-     *
-     * @method _uiSetLayoutBuilderMode
-     * @param  {String} mode
-     * @protected
-     */
-    _uiSetLayoutBuilderMode: function(mode) {
-        if (mode === A.FormBuilder.MODES.LAYOUT) {
-            this._enterLayoutMode();
-            this.get('boundingBox').addClass(CSS_LAYOUT_MODE);
-        }
-        else {
-            this._exitLayoutMode();
-            this.get('boundingBox').removeClass(CSS_LAYOUT_MODE);
-        }
     }
 };

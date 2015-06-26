@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1926](https://issues.liferay.com/browse/AUI-1926) Change functionality of move rows
 * [AUI-1917](https://issues.liferay.com/browse/AUI-1917) Add option to create Fields between two others Fields on the same column
 * [AUI-1922](https://issues.liferay.com/browse/AUI-1922) Fixing localization issues on Form Builder
 * [AUI-1921](https://issues.liferay.com/browse/AUI-1921) A row with one col should be automatically added on last position when the last row have at least two cols
