@@ -321,7 +321,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             Y.Assert.areEqual(0, breakpoints.length);
         },
 
-        'should not insert layout grid if a row is full of cols': function() {
+        'should have a number of handles consistent with the number of removable rows': function() {
             var dragHandles,
                 firstRow;
 
@@ -330,12 +330,13 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             while (firstRow.get('cols').length < firstRow.get('maximumCols')) {
                     firstRow.addCol(undefined, new Y.LayoutCol({
                     value: { content: '' },
+                    removable: false,
                     size: 1
                 }));
             }
 
             dragHandles = firstRow.get('node').all('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + ':not(.hide)');
-            Assert.areEqual(0, dragHandles.size());
+            Assert.areEqual(4, dragHandles.size());
         },
 
         'should resize columns when dropping handle on breakpoint': function() {
