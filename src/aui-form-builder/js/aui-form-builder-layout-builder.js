@@ -150,8 +150,8 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Checks if the last row has more the one col, if yes a new row is
-     * created and seted as the last position.
+     * Checks if the last row has more than one col.
+     * If it has, creates and set a new row as the last position.
      *
      * @method _checkLastRow
      * @protected
