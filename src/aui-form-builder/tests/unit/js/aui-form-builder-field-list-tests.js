@@ -78,13 +78,55 @@ YUI.add('aui-form-builder-field-list-tests', function(Y) {
 
             this._fieldList.removeField(sentence);
             Y.Assert.isNull(Y.one('.form-builder-field'));
+        },
+
+        'should set LayoutCol as unremovable when there are fields inside it': function() {
+            var layout,
+                layoutCol,
+                fieldList = new Y.FormBuilderFieldList(),
+                field,
+                form;
+
+            layoutCol = new Y.LayoutCol({
+                value: fieldList
+            });
+
+            field = new Y.FormBuilderFieldText({
+                help: 'Type your full name here',
+                title: 'What\'s your name?'
+            });
+
+            layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({cols: [layoutCol]
+                })]
+            });
+
+            form = new Y.FormBuilder({
+                layouts: [layout],
+            }).render(this._container);
+
+            Y.Assert.isTrue(layoutCol.get('removable'));
+
+            fieldList.addField(field);
+
+            this.wait(function() {
+                Y.Assert.isFalse(layoutCol.get('removable'));
+            }, 0);
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-form-builder-field-list', 'aui-form-builder-field-sentence', 'node-event-simulate', 'test'],
+    requires: [
+        'aui-form-builder',
+        'aui-form-builder-field-list',
+        'aui-form-builder-field-text',
+        'aui-form-builder-field-sentence',
+        'node-event-simulate',
+        'test'
+    ],
     test: function(Y) {
         return Y.UA.ie === 0 || Y.UA.ie > 8;
     }

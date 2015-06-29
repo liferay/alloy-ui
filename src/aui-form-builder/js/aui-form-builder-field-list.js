@@ -172,6 +172,16 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
             container.append(field.get('content'));
         });
 
+        setTimeout(function() {
+            var col = content.ancestor('.col'),
+                layoutCol;
+
+            if (col) {
+                layoutCol = col.getData('layout-col');
+                layoutCol.set('removable', fields.length === 0);
+            }
+        }, 0);
+
         content.toggleClass(CSS_FIELD_LIST_EMPTY, !fields.length);
     }
 }, {
