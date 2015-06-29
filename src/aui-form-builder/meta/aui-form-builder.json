@@ -9,7 +9,7 @@
             "aui-form-builder-field-types",
             "aui-form-builder-layout-builder",
             "aui-form-builder-pages",
-            "aui-form-builder-settings-modal"
+            "aui-form-builder-settings-modal",
             "event-focus",
             "event-tap"
         ],
