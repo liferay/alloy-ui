@@ -470,7 +470,7 @@ var SchedulerAgendaView = A.Component.create({
                                         color: schedulerEvent.get(COLOR),
                                         content: schedulerEvent.get(CONTENT),
                                         dates: eventsDateFormatter.call(instance, startDate, endDate),
-                                        eventClassName: (startDate.getTime() < today.getTime()) ? CSS_EVENT_PAST : _EMPTY_STR,
+                                        eventClassName: ((date.getTime() < today.getTime()) || (endDate.getTime() < today.getTime())) ? CSS_EVENT_PAST : _EMPTY_STR,
                                         firstClassName: (seIndex === 0) ? CSS_EVENT_FIRST : _EMPTY_STR,
                                         lastClassName: (seIndex === schedulerEventsLength - 1) ? CSS_EVENT_LAST : _EMPTY_STR
                                     })
