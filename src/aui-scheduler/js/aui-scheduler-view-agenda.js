@@ -515,22 +515,29 @@ var SchedulerAgendaView = A.Component.create({
             scheduler.eachEvent(
                 function(schedulerEvent) {
                     var startDate = schedulerEvent.get(START_DATE),
+			endDate = schedulerEvent.get('endDate'),
                         visible = schedulerEvent.get(VISIBLE),
                         dayTS;
 
-                    if (!visible ||
-                        (startDate.getTime() < viewDate.getTime())) {
-
+                    if (!visible) {
                         return;
                     }
 
-                    dayTS = DateMath.safeClearTime(startDate).getTime();
+                    var displayDate = startDate;
 
-                    if (!eventsMap[dayTS]) {
-                        eventsMap[dayTS] = [];
+                    while (displayDate.getTime() <= endDate.getTime()) {
+                        if (displayDate.getTime() >= viewDate.getTime()) {
+                            dayTS = DateMath.safeClearTime(displayDate).getTime();
+
+                            if (!eventsMap[dayTS]) {
+                                eventsMap[dayTS] = [];
+                            }
+
+                            eventsMap[dayTS].push(schedulerEvent);
+                        }
+
+                        displayDate = DateMath.add(displayDate, DateMath.DAY, 1);
                     }
-
-                    eventsMap[dayTS].push(schedulerEvent);
                 }
             );
 
