@@ -678,6 +678,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-classnamemanager",
             "aui-layout-builder",
+            "aui-modal",
             "base",
             "node-base"
         ],
@@ -925,7 +926,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-node-base",
             "base-build"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-layout-builder-resize-col": {
         "requires": [
@@ -1659,4 +1661,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '28c618dc7cbeb232ed7b3961f6548dc6';
+YUI.Env[Y.version].md5 = '0d06435a189f8f16975ebe6e177f7cc0';
