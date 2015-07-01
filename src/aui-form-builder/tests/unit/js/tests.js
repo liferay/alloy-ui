@@ -223,6 +223,18 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isFalse(Y.one('.form-builder-field-settings').hasClass('modal-dialog-hidden'));
         },
 
+        'should create unremovable layout column for column with form': function() {
+            var cols;
+
+            this.createFormBuilder();
+
+            cols = this._formBuilder.getActiveLayout().get('rows')[0].get('cols');
+
+            Y.Assert.isTrue(cols[0].get('removable'));
+            Y.Assert.isTrue(cols[1].get('removable'));
+            Y.Assert.isFalse(cols[2].get('removable'));
+        },
+
         'should add a field in nested when addNestedField method is called': function() {
             var currentCol,
                 field,

@@ -527,8 +527,14 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         A.Array.each(rows, function(row) {
             A.Array.each(row.get('cols'), function(col) {
-                if (!col.get('value')) {
+                var colValue = col.get('value');
+
+                if (!colValue) {
                     instance._makeEmptyFieldList(col);
+                }
+
+                if (colValue && colValue._updateRemovableLayoutColProperty) {
+                    colValue._updateRemovableLayoutColProperty();
                 }
             });
         });
