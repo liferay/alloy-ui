@@ -523,6 +523,7 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _onMouseClickOnMoveCutButton: function(event) {
+        event.stopPropagation();
         this._clickOnCutButton(event.currentTarget);
     },
 

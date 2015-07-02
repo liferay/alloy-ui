@@ -42,6 +42,17 @@ YUI.add('aui-form-builder-field-list-tests', function(Y) {
             Y.Assert.areEqual(Y.all('.form-field-title').item(1).get('innerHTML'), 'between');
         },
 
+        'should add a field to a list in a specific position': function() {
+            var sentence = new Y.FormBuilderFieldSentence(),
+                sentence2 = new Y.FormBuilderFieldSentence();
+
+            this.createFieldList({ fields: [sentence, sentence2] });
+
+            this._fieldList.addField(new Y.FormBuilderFieldSentence({title: 'specific'}), 1);
+
+            Y.Assert.areEqual(Y.all('.form-field-title').item(1).get('innerHTML'), 'specific');
+        },
+
         'should show/hide add button between fields on mouseover/mouseleave': function() {
             var addButton,
                 sentence = new Y.FormBuilderFieldSentence(),

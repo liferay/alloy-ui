@@ -84,6 +84,21 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             }
         },
 
+        _moveTargetIsVisible: function () {
+            var row,
+                rowNode,
+                visibleTargets;
+
+            row = this._formBuilder.get('layouts')[0].get('rows')[0];
+            rowNode = row.get('node');
+
+            visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
+                return node.getStyle('display') !== 'none';
+            });
+
+            return !!visibleTargets.size();
+        },
+
         _mockWindowInnerWidth: function (size) {
             Y.Mock.expect(windowNode, {
                 args: ['innerWidth'],
@@ -242,6 +257,83 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.isNull(Y.one('.form-builder-choose-col-move .form-builder-field-move-target'));
         },
 
+        'should be able to move fields to a different position in a same col': function() {
+            var layout = new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                movableContent: true,
+                                size: 4,
+                                value: new Y.FormBuilderFieldList({
+                                    fields: [
+                                        new Y.FormBuilderFieldSentence({
+                                            title: 'My Title1'
+                                        }),
+                                        new Y.FormBuilderFieldSentence({
+                                            title: 'My Title2'
+                                        })
+                                    ]
+                                })
+                            })
+                        ]
+                    })
+                ]
+            });
+
+            this._createFormBuilder({layouts: [layout]});
+
+            this._toolbar = new Y.FormBuilderFieldToolbar({
+                formBuilder: this._formBuilder
+            });
+
+            Y.Assert.areNotEqual('My Title2', Y.one('.form-field-title').get('innerHTML'));
+
+            this._openToolbar(Y.all('.form-builder-field-content-toolbar').item(1));
+            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
+            Y.one('.form-builder-field-move-target').simulate('click');
+
+            Y.Assert.areEqual('My Title2', Y.one('.form-field-title').get('innerHTML'));
+        },
+
+        'should cancel move field action when a click event is triggered in an invalid move target element': function() {
+            this._createFormBuilder();
+
+            this._toolbar = new Y.FormBuilderFieldToolbar({
+                formBuilder: this._formBuilder
+            });
+
+            Y.Assert.isFalse(this._moveTargetIsVisible());
+
+            this._openToolbar();
+            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
+            Y.Assert.isTrue(this._moveTargetIsVisible());
+
+            Y.one(Y.config.doc).simulate('click');
+
+            Y.Assert.isFalse(this._moveTargetIsVisible());
+        },
+
+        'should cancel move field action when esc is pressed': function() {
+            this._createFormBuilder();
+
+            this._toolbar = new Y.FormBuilderFieldToolbar({
+                formBuilder: this._formBuilder
+            });
+
+            Y.Assert.isFalse(this._moveTargetIsVisible());
+
+            this._openToolbar();
+            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
+            Y.Assert.isTrue(this._moveTargetIsVisible());
+
+            Y.one(Y.config.doc).simulate('keydown', {
+                keyCode: 27
+            });
+
+            Y.Assert.isFalse(this._moveTargetIsVisible());
+        },
+
         'should be able to resize cols': function() {
             var draggable;
 
@@ -334,7 +426,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('visibility') !== 'hidden';
             });
-            Y.Assert.areEqual(6, visibleTargets.size());
+            Y.Assert.areEqual(8, visibleTargets.size());
 
             moveItem.simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
@@ -445,7 +537,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('visibility') !== 'hidden' && node.getStyle('display') !== 'none';
             });
-            Y.Assert.areEqual(1, visibleTargets.size());
+            Y.Assert.areEqual(4, visibleTargets.size());
         },
 
         'should always have an empty row when a Form Builder is created without rows': function() {

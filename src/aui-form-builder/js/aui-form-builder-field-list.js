@@ -33,18 +33,19 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
  * @constructor
  */
 A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
-    TPL_ADD_FIELD: '<div class="' + CSS_FIELD_LIST_ADD_BUTTON + ' ' + CSS_FIELD_LIST_ADD_BUTTON_VISIBLE + '" tabindex="9">' +
+    TPL_ADD_FIELD: '<div class="' + CSS_FIELD_LIST_ADD_BUTTON + ' ' +
+        CSS_FIELD_LIST_ADD_BUTTON_VISIBLE + '" tabindex="9">' +
         '<div class="' + CSS_FIELD_LIST_ADD_BUTTON_CONTENT + '">' +
         '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_CIRCLE + '">' +
         '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + '"></span>' +
         '</span>' +
-        '<button type="button" class="' + CSS_FIELD_MOVE_TARGET + ' ' + CSS_LIST_MOVE_TARGET +
-        ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
-        '{pasteHere}</button>' +
         '</div></div>',
     TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '">' +
         '<div class="' + CSS_FIELD_LIST_CONTAINER + '"></div>' +
         '</div>',
+    TPL_FIELD_MOVE_TARGET: '<button type="button" class="' + CSS_FIELD_MOVE_TARGET + ' ' + CSS_LIST_MOVE_TARGET +
+        ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
+        '{pasteHere}</button>',
 
     /**
      * Construction logic executed during the `A.FormBuilderFieldList`
@@ -70,11 +71,18 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
      *
      * @method addField
      * @param {A.FormBuilderFieldBase} field
+     * @param {Number} index
      */
-    addField: function(field) {
+    addField: function(field, index) {
         var fields = this.get('fields');
 
-        fields.splice(this._newFieldIndex, 0, field);
+        if (A.Lang.isNumber(index)) {
+            fields.splice(index, 0, field);
+        }
+        else {
+            fields.splice(this._newFieldIndex, 0, field);
+        }
+
         this.set('fields', fields);
     },
 
@@ -106,21 +114,31 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     },
 
     /**
-     * Update removable property for layout cols
+     * Appends add field on the given container.
      *
-     * @method _updateRemovableLayoutColProperty
+     * @method _appendAddFieldNode
+     * @param {Node} container
+     * @param {Number} index
+     * @param {Boolean} visible
      * @protected
      */
-    _updateRemovableLayoutColProperty: function() {
-        var fields = this.get('fields'),
-            content = this.get('content'),
-            col = content.ancestor('.col'),
-            layoutCol;
+    _appendAddFieldNode: function(container, index, visible) {
+        var addFieldNode,
+            moveTargetNode;
 
-        if (col) {
-            layoutCol = col.getData('layout-col');
-            layoutCol.set('removable', fields.length === 0);
+        addFieldNode = A.Node.create(this.TPL_ADD_FIELD);
+        moveTargetNode = A.Node.create(A.Lang.sub(this.TPL_FIELD_MOVE_TARGET, {
+            pasteHere: this.get('strings').pasteHere
+        }));
+
+        if (!visible) {
+            addFieldNode.removeClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
         }
+
+        moveTargetNode.setData('field-list-index', index);
+
+        container.append(addFieldNode);
+        container.append(moveTargetNode);
     },
 
     /**
@@ -133,7 +151,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     _onClickAddField: function(event) {
         var emptyFieldList = this.get('content').all('.' + CSS_FIELD_LIST_ADD_BUTTON_CIRCLE);
 
-        this._newFieldIndex = emptyFieldList.indexOf(event.target);
+        this._newFieldIndex = emptyFieldList.indexOf(event.currentTarget);
     },
 
     /**
@@ -176,24 +194,36 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     _uiSetFields: function(fields) {
         var content = this.get('content'),
             container = content.one('.' + CSS_FIELD_LIST_CONTAINER),
-            addFieldTemplate;
-
-        addFieldTemplate = A.Lang.sub(this.TPL_ADD_FIELD, {
-            pasteHere: this.get('strings').pasteHere
-        });
+            index;
 
         container.empty();
 
-        A.each(fields, function(field) {
-            var addButtonNode = A.Node.create(addFieldTemplate);
+        for (index = 0; index < fields.length; index++) {
+            this._appendAddFieldNode(container, index, false);
+            container.append(fields[index].get('content'));
+        }
 
-            addButtonNode.removeClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
-
-            container.append(addButtonNode);
-            container.append(field.get('content'));
-        });
+        this._appendAddFieldNode(container, index, true);
 
         content.toggleClass(CSS_FIELD_LIST_EMPTY, !fields.length);
+    },
+
+    /**
+     * Update removable property for layout cols.
+     *
+     * @method _updateRemovableLayoutColProperty
+     * @protected
+     */
+    _updateRemovableLayoutColProperty: function() {
+        var fields = this.get('fields'),
+            content = this.get('content'),
+            col = content.ancestor('.col'),
+            layoutCol;
+
+        if (col) {
+            layoutCol = col.getData('layout-col');
+            layoutCol.set('removable', fields.length === 0);
+        }
     }
 }, {
 
@@ -218,10 +248,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
                 return A.instanceOf(val, A.Node);
             },
             valueFn: function() {
-                var addFieldTemplate = A.Lang.sub(this.TPL_ADD_FIELD, {
-                    pasteHere: this.get('strings').pasteHere
-                });
-                return A.Node.create(this.TPL_FIELD_LIST).append(addFieldTemplate);
+                return A.Node.create(this.TPL_FIELD_LIST);
             },
             writeOnce: 'initOnly'
         },
