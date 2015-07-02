@@ -512,9 +512,11 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     *
+     * Remove a layout from the form builder. The paramenter `event` has the
+     * layout index to be removed.
      *
      * @method _removeLayout
+     * @params {EventFacade} event
      * @protected
      */
     _removeLayout: function(event) {
@@ -553,6 +555,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * Sets the `fieldToolbar` attribute.
      *
      * @method _setFieldToolbarConfig
+     * @params {Object} val
      * @return {Object}
      */
     _setFieldToolbarConfig: function(val) {

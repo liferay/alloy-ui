@@ -83,7 +83,6 @@ A.FormBuilderLayoutBuilder.prototype = {
      *
      * @method _addColMoveTarget
      * @param {A.LayoutCol} col
-     * @param {Number} index
      * @protected
      */
     _addColMoveTarget: function(col) {
