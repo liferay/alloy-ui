@@ -3,8 +3,7 @@
  *
  * @module aui-layout-builder-resize-col
  */
-
-var BREAKPOINTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+var BREAKPOINTS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     CSS_RESIZE_COL_BREAKPOINT = A.getClassName('layout', 'builder', 'resize', 'col', 'breakpoint'),
     CSS_RESIZE_COL_BREAKPOINT_LINE = A.getClassName('layout', 'builder', 'resize', 'col', 'breakpoint', 'line'),
     CSS_RESIZE_COL_BREAKPOINT_OVER = A.getClassName('layout', 'builder', 'resize', 'col', 'breakpoint', 'over'),
@@ -270,12 +269,21 @@ A.LayoutBuilderResizeCol.prototype = {
     _canDrop: function(dragNode, position) {
         var col1 = dragNode.getData('layout-col1'),
             col2 = dragNode.getData('layout-col2'),
-            difference = position - dragNode.getData('layout-position');
+            difference = position - dragNode.getData('layout-position'),
+            diff1 = col1.get('size') + difference,
+            diff2 = col2.get('size') - difference,
+            col1MinSize = col1.get('minSize'),
+            col2MinSize = col2.get('minSize');
 
-        if (col1.get('size') + difference < col1.get('minSize')) {
-            return false;
+        if (col1.get('removable')) {
+            col1MinSize = 0;
         }
-        if (col2.get('size') - difference < col2.get('minSize')) {
+
+        if (col2.get('removable')) {
+            col2MinSize = 0;
+        }
+
+        if (diff1 < col1MinSize || diff2 < col2MinSize) {
             return false;
         }
 
@@ -318,10 +326,20 @@ A.LayoutBuilderResizeCol.prototype = {
     _handleBreakpointDrop: function(dragNode, dropNode) {
         var col1 = dragNode.getData('layout-col1'),
             col2 = dragNode.getData('layout-col2'),
-            difference = dropNode.getData('layout-position') - dragNode.getData('layout-position');
+            difference = dropNode.getData('layout-position') - dragNode.getData('layout-position'),
+            col1NewSize = col1.get('size') + difference,
+            col2NewSize = col2.get('size') - difference;
 
-        col1.set('size', col1.get('size') + difference);
-        col2.set('size', col2.get('size') - difference);
+        col1.set('size', col1NewSize);
+        col2.set('size', col2NewSize);
+
+        if (col1.get('removable') && col1NewSize === 0) {
+            this._removeCol(col1.get('node'));
+        }
+
+        if (col2.get('removable') && col2NewSize === 0) {
+            this._removeCol(col2.get('node'));
+        }
 
         this._syncDragHandles();
     },

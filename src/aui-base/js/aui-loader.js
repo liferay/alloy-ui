@@ -748,7 +748,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-form-builder-layout-builder",
             "aui-form-builder-pages",
             "aui-form-builder-settings-modal",
-            "aui-menu",
             "event-focus",
             "event-tap"
         ],
@@ -837,8 +836,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-form-builder-field-type",
             "aui-form-builder-field-types",
-            "aui-form-builder-layout-builder",
-            "aui-menu"
+            "aui-form-builder-layout-builder"
         ],
         "skinnable": true
     },
@@ -909,6 +907,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-classnamemanager",
             "aui-layout-builder",
+            "aui-modal",
             "base",
             "node-base"
         ],
@@ -1226,7 +1225,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-node-base",
             "base-build"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-layout-builder-resize-col": {
         "requires": [
@@ -2129,4 +2129,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '25c3139ecf4b630ec3bfab1fdf12c7eb';
+YUI.Env[Y.version].md5 = 'dc343f53f40ed63e022fe95489f15c7f';

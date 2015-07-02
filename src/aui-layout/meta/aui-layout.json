@@ -79,7 +79,8 @@
         "requires": [
             "aui-node-base",
             "base-build"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-layout-builder-move": {
         "requires": [

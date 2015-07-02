@@ -722,7 +722,6 @@
             "aui-form-builder-layout-builder",
             "aui-form-builder-pages",
             "aui-form-builder-settings-modal",
-            "aui-menu",
             "event-focus",
             "event-tap"
         ],
@@ -811,8 +810,7 @@
         "requires": [
             "aui-form-builder-field-type",
             "aui-form-builder-field-types",
-            "aui-form-builder-layout-builder",
-            "aui-menu"
+            "aui-form-builder-layout-builder"
         ],
         "skinnable": true
     },
@@ -883,6 +881,7 @@
         "requires": [
             "aui-classnamemanager",
             "aui-layout-builder",
+            "aui-modal",
             "base",
             "node-base"
         ],
@@ -1200,7 +1199,8 @@
         "requires": [
             "aui-node-base",
             "base-build"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-layout-builder-resize-col": {
         "requires": [

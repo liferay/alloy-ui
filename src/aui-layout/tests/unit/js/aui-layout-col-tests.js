@@ -45,7 +45,7 @@ YUI.add('aui-layout-col-tests', function(Y) {
             Assert.areEqual(12, layoutCol.get('size'));
         },
 
-        'should set minimum size if it\'s size is lower than the minimum': function() {
+        'should set minimum size if its size is lower than the minimum': function() {
             var layoutCol = new Y.LayoutCol({
                 size: -1
             });

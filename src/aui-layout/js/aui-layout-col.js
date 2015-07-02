@@ -95,7 +95,7 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
 
         valueNode.empty();
         if (value) {
-            if (value.content) {
+            if (value.content !== undefined) {
                 valueNode.append(value.content);
             }
             else {

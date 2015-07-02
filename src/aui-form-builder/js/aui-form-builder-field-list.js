@@ -99,7 +99,28 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
      * @protected
      */
     _afterFieldsChange: function() {
-        this._uiSetFields(this.get('fields'));
+        var fields = this.get('fields');
+
+        this._uiSetFields(fields);
+        this._updateRemovableLayoutColProperty();
+    },
+
+    /**
+     * Update removable property for layout cols
+     *
+     * @method _updateRemovableLayoutColProperty
+     * @protected
+     */
+    _updateRemovableLayoutColProperty: function() {
+        var fields = this.get('fields'),
+            content = this.get('content'),
+            col = content.ancestor('.col'),
+            layoutCol;
+
+        if (col) {
+            layoutCol = col.getData('layout-col');
+            layoutCol.set('removable', fields.length === 0);
+        }
     },
 
     /**

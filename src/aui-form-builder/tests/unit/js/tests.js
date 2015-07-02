@@ -223,6 +223,18 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isFalse(Y.one('.form-builder-field-settings').hasClass('modal-dialog-hidden'));
         },
 
+        'should create unremovable layout column for column with form': function() {
+            var cols;
+
+            this.createFormBuilder();
+
+            cols = this._formBuilder.getActiveLayout().get('rows')[0].get('cols');
+
+            Y.Assert.isTrue(cols[0].get('removable'));
+            Y.Assert.isTrue(cols[1].get('removable'));
+            Y.Assert.isFalse(cols[2].get('removable'));
+        },
+
         'should add a field in nested when addNestedField method is called': function() {
             var currentCol,
                 field,
@@ -411,36 +423,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this._clickFieldSettingsSaveButton();
 
             Y.Assert.isTrue(Y.instanceOf(fields[0], Y.FormBuilderFieldSentence));
-        },
-
-        'should change to layout mode when menu button is clicked': function() {
-            var contentBox;
-
-            this.createFormBuilder();
-
-            contentBox = this._formBuilder.get('contentBox');
-            contentBox.one('.form-builder-menu-button').simulate('click');
-            contentBox.one('.form-builder-edit-layout-button').simulate('click');
-
-            Y.Assert.areEqual(Y.FormBuilder.MODES.LAYOUT, this._formBuilder.get('mode'));
-
-            contentBox.one('.form-builder-header-back').simulate('click');
-            Y.Assert.areEqual(Y.FormBuilder.MODES.REGULAR, this._formBuilder.get('mode'));
-        },
-
-        'should change to layout mode when menu button is key pressed': function() {
-            var contentBox;
-
-            this.createFormBuilder();
-
-            contentBox = this._formBuilder.get('contentBox');
-            contentBox.one('.form-builder-menu-button').simulate('keypress', { keyCode: 13 });
-            contentBox.one('.form-builder-edit-layout-button').simulate('keypress', { keyCode: 13 });
-
-            Y.Assert.areEqual(Y.FormBuilder.MODES.LAYOUT, this._formBuilder.get('mode'));
-
-            contentBox.one('.form-builder-header-back').simulate('keypress', { keyCode: 13 });
-            Y.Assert.areEqual(Y.FormBuilder.MODES.REGULAR, this._formBuilder.get('mode'));
         },
 
         'should show corret label when open settings editor': function() {

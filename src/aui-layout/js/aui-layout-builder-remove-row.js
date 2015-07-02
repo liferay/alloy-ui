@@ -7,8 +7,7 @@
 var CSS_REMOVE_ROW = A.getClassName('layout', 'builder', 'remove', 'row', 'button'),
     SELECTOR_ROW = '.layout-row',
     TPL_REMOVE_ROW_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_REMOVE_ROW + '" tabindex="4" type="button">' +
-        '<span class="glyphicon glyphicon-trash"></span>{removeRow}</button>';
-
+        '<span class="glyphicon glyphicon-trash"></span></button>';
 /**
  * A base class for Layout Remove Row.
  *
@@ -69,6 +68,29 @@ LayoutBuilderRemoveRow.prototype = {
     },
 
     /**
+     * Fired after the `removable` attribute changes.
+     *
+     * @method _afterRemoveRowRemovableChange
+     * @protected
+     */
+    _afterRemoveRowRemovableChange: function(event) {
+        var containerRow = event.target.get('node'),
+            layoutRow = event.target,
+            removeRowButton;
+
+        removeRowButton = containerRow.one('.' + CSS_REMOVE_ROW);
+
+        if (!event.newVal) {
+            if (removeRowButton) {
+                removeRowButton.remove();
+            }
+        }
+        else {
+            this._insertRemoveButtonBeforeRow(layoutRow, containerRow.one(SELECTOR_ROW));
+        }
+    },
+
+    /**
      * Fired after `rows` attribute changes.
      *
      * @method _afterRemoveRowRowsChange
@@ -109,27 +131,6 @@ LayoutBuilderRemoveRow.prototype = {
     },
 
     /**
-     * Fired after the `removable` attribute changes.
-     *
-     * @method _afterRemoveRowRemovableChange
-     * @protected
-     */
-    _afterRemoveRowRemovableChange: function(event) {
-        var containerRow = event.target.get('node'),
-            layoutRow = event.target,
-            removeRowButton;
-
-        removeRowButton = containerRow.one('.' + CSS_REMOVE_ROW);
-
-        if (!event.newVal) {
-            removeRowButton.remove();
-        }
-        else {
-            this._insertRemoveButtonBeforeRow(layoutRow, containerRow.one(SELECTOR_ROW));
-        }
-    },
-
-    /**
      * Binds the necessary events for the functionality of removing rows from layout.
      *
      * @method _bindRemoveRowEvents
@@ -155,9 +156,7 @@ LayoutBuilderRemoveRow.prototype = {
     _insertRemoveButtonBeforeRow: function(layoutRow, row) {
         var removeRowButton;
 
-        removeRowButton = A.Node.create(A.Lang.sub(TPL_REMOVE_ROW_BUTTON, {
-            removeRow: this.get('strings').removeRow
-        }));
+        removeRowButton = A.Node.create(TPL_REMOVE_ROW_BUTTON);
 
         removeRowButton.setData('layout-row', layoutRow);
         this._layoutContainer.insertBefore(removeRowButton, row);
@@ -171,10 +170,12 @@ LayoutBuilderRemoveRow.prototype = {
      * @protected
      */
     _onMouseClickRemoveRowEvent: function(event) {
-        var removeRowButton = event.target,
+        var removeRowButton = event.currentTarget,
             row = removeRowButton.getData('layout-row');
 
-        this.get('layout').removeRow(row);
+        if (this.get('clickRemoveRow')(row)){
+            this.get('layout').removeRow(row);
+        }
     },
 
     /**
@@ -228,6 +229,19 @@ LayoutBuilderRemoveRow.prototype = {
  * @static
  */
 LayoutBuilderRemoveRow.ATTRS = {
+    /**
+     * Check if the row can be remove when remove button is clicked.  
+     *
+     * @attribute clickRemoveRow
+     * @type {Function}
+     */
+    clickRemoveRow: {
+        validator: A.Lang.isFunction,
+        value: function() {
+            return true;
+        }
+    },
+
     /**
      * Flag indicating if the feature of removing rows from layout is
      * enabled or not.
