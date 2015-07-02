@@ -97,7 +97,8 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             if (Y.UA.mobile) {
                 Y.one('.form-builder-field-content').simulate('click');
-            } else {
+            }
+            else {
                 fieldNode.simulate('mouseover');
                 fieldNode.one('.form-builder-field-toolbar-toggle').simulate('click');
             }
