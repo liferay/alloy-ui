@@ -72,26 +72,6 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
-     * Fired after the `enableMoveCols` attribute changes.
-     *
-     * @method _afterEnableMoveColsChange
-     * @protected
-     */
-    _afterEnableMoveColsChange: function() {
-        this._resetMoveUI();
-    },
-
-    /**
-     * Fired after the `enableMoveRows` attribute changes.
-     *
-     * @method _afterEnableMoveRowsChange
-     * @protected
-     */
-    _afterEnableMoveRowsChange: function() {
-        this._resetMoveUI();
-    },
-
-    /**
      * Destructor implementation for the `A.LayoutBuilderMove` class. Lifecycle.
      *
      * @method destructor
@@ -138,9 +118,30 @@ LayoutBuilderMove.prototype = {
      */
     _addColMoveTarget: function(col, index) {
         var target = A.Node.create(TPL_MOVE_TARGET);
+
         target.setData('col-index', index);
         target.addClass(CSS_MOVE_COL_TARGET);
         col.get('node').append(target);
+    },
+
+    /**
+     * Fired after the `enableMoveCols` attribute changes.
+     *
+     * @method _afterEnableMoveColsChange
+     * @protected
+     */
+    _afterEnableMoveColsChange: function() {
+        this._resetMoveUI();
+    },
+
+    /**
+     * Fired after the `enableMoveRows` attribute changes.
+     *
+     * @method _afterEnableMoveRowsChange
+     * @protected
+     */
+    _afterEnableMoveRowsChange: function() {
+        this._resetMoveUI();
     },
 
     /**
@@ -523,6 +524,7 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _onMouseClickOnMoveCutButton: function(event) {
+        event.stopPropagation();
         this._clickOnCutButton(event.currentTarget);
     },
 

@@ -331,12 +331,19 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * Fired after the `layout:rowsChange` event is triggered.
      *
      * @method _afterLayoutRowsChange
+     * @param {EventFacade} event
      * @protected
      */
-    _afterLayoutRowsChange: function() {
-        this._renderEmptyColumns();
+    _afterLayoutRowsChange: function(event) {
+        var rows = event.newVal;
 
+        for (var i = 0; i < rows.length; i++) {
+            rows[i].set('removable', true);
+        }
+
+        this._renderEmptyColumns();
         this._updateUniqueFieldType();
+        this._checkLastRow();
     },
 
     /**
@@ -355,6 +362,8 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         this._pages.set('activePageNumber', 1);
         this._pages.set('pagesQuantity', this.get('layouts').length);
+
+        this._checkLastRow();
     },
 
     /**
@@ -503,9 +512,11 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     *
+     * Remove a layout from the form builder. The paramenter `event` has the
+     * layout index to be removed.
      *
      * @method _removeLayout
+     * @params {EventFacade} event
      * @protected
      */
     _removeLayout: function(event) {
@@ -544,6 +555,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * Sets the `fieldToolbar` attribute.
      *
      * @method _setFieldToolbarConfig
+     * @params {Object} val
      * @return {Object}
      */
     _setFieldToolbarConfig: function(val) {

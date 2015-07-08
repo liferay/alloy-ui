@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1928](https://issues.liferay.com/browse/AUI-1928) Fields should be moved between others field in a same col
 * [AUI-1918](https://issues.liferay.com/browse/AUI-1918) Change functionality of remove rows
 * [AUI-1922](https://issues.liferay.com/browse/AUI-1922) Fixing localization issues on Form Builder
 * [AUI-1885](https://issues.liferay.com/browse/AUI-1885) Allows adding multiple fields on the same column

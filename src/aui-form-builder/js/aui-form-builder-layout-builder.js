@@ -7,13 +7,15 @@
 
 var CSS_CHOOSE_COL_MOVE = A.getClassName('form', 'builder', 'choose', 'col', 'move'),
     CSS_CHOOSE_COL_MOVE_TARGET = A.getClassName('form', 'builder', 'choose', 'col', 'move', 'target'),
-    CSS_COL_MOVING = A.getClassName('form', 'builder', 'col', 'moving'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_MOVE_BUTTON = A.getClassName('form', 'builder', 'field', 'move', 'button'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
     CSS_FIELD_MOVE_TARGET_INVALID = A.getClassName('form', 'builder', 'field', 'move', 'target', 'invalid'),
     CSS_FIELD_MOVING = A.getClassName('form', 'builder', 'field', 'moving'),
     CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
+    CSS_LAYOUT_BUILDER_MOVE_CANCEL = A.getClassName('layout', 'builder', 'move', 'cancel'),
+    CSS_MOVE_COL_TARGET = A.getClassName('layout', 'builder', 'move', 'col', 'target'),
+    CSS_MOVE_TARGET = A.getClassName('layout', 'builder', 'move', 'target'),
     CSS_REMOVE_ROW_MODAL = A.getClassName('form', 'builder', 'remove', 'row', 'modal');
 
 /**
@@ -81,19 +83,11 @@ A.FormBuilderLayoutBuilder.prototype = {
      *
      * @method _addColMoveTarget
      * @param {A.LayoutCol} col
-     * @param {Number} index
      * @protected
      */
     _addColMoveTarget: function(col) {
-        var cantReceiveMoveTarget,
-            colNode = col.get('node'),
+        var colNode = col.get('node'),
             targetNodes;
-
-        cantReceiveMoveTarget = col.get('value').get('fields').length > 0;
-
-        if (cantReceiveMoveTarget) {
-            return;
-        }
 
         colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
 
@@ -150,8 +144,8 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
-     * Checks if the last row has more than one col.
-     * If it has, creates and set a new row as the last position.
+     * Checks if the last row has more than one col, if yes a new row is
+     * created and set as the last position.
      *
      * @method _checkLastRow
      * @protected
@@ -178,8 +172,7 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _chooseColMoveTarget: function(originalFn, cutButton, col) {
-        var colNode = col.get('node'),
-            fieldNode = cutButton.ancestor('.' + CSS_FIELD),
+        var fieldNode = cutButton.ancestor('.' + CSS_FIELD),
             layout = this.getActiveLayout(),
             targetNode;
 
@@ -187,8 +180,6 @@ A.FormBuilderLayoutBuilder.prototype = {
         this._fieldListBeingMoved = col.get('value');
         this._fieldBeingMovedCol = col;
 
-        colNode.addClass(CSS_CHOOSE_COL_MOVE_TARGET);
-        colNode.addClass(CSS_COL_MOVING);
         fieldNode.addClass(CSS_FIELD_MOVING);
 
         targetNode = fieldNode.previous('.' + CSS_FIELD_MOVE_TARGET);
@@ -202,8 +193,14 @@ A.FormBuilderLayoutBuilder.prototype = {
         }
 
         originalFn(cutButton, col);
+        this._addColMoveTarget(col);
 
         layout.normalizeColsHeight(layout.get('node').all('.row'));
+
+        this._cancelMoveFieldHandles = [
+            A.one(A.config.doc).on('click', A.bind(this._onClickOutsideMoveTarget, this)),
+            A.one(A.config.doc).on('key', A.bind(this._onEscKeyPressMoveTarget, this), 'down:27')
+        ];
     },
 
     /**
@@ -217,18 +214,19 @@ A.FormBuilderLayoutBuilder.prototype = {
         var layout = this.getActiveLayout(),
             parentFieldNode = this._fieldBeingMoved.get('content').ancestor('.' + CSS_FIELD),
             row,
-            targetNestedParent = moveTarget.getData('nested-field-parent');
+            targetNestedParent = moveTarget.getData('nested-field-parent'),
+            toolbarMoveIconCancelMode = this._fieldToolbar.getItem('.' + CSS_LAYOUT_BUILDER_MOVE_CANCEL);
+
+        if (toolbarMoveIconCancelMode) {
+            toolbarMoveIconCancelMode.removeClass(CSS_LAYOUT_BUILDER_MOVE_CANCEL);
+        }
 
         if (parentFieldNode) {
             parentFieldNode.getData('field-instance').removeNestedField(this._fieldBeingMoved);
-
-            layout.normalizeColsHeight(new A.NodeList(this.getFieldRow(
-                parentFieldNode.getData('field-instance'))));
         }
         else {
             row = this.getFieldRow(this._fieldBeingMoved);
             this._fieldListBeingMoved.removeField(this._fieldBeingMoved);
-            layout.normalizeColsHeight(new A.NodeList(row));
         }
 
         if (targetNestedParent) {
@@ -239,13 +237,18 @@ A.FormBuilderLayoutBuilder.prototype = {
             );
         }
         else {
-            moveTarget.getData('col').get('value').addField(this._fieldBeingMoved);
+            moveTarget.getData('col').get('value').addField(
+                this._fieldBeingMoved,
+                moveTarget.getData('field-list-index')
+            );
         }
 
         this._layoutBuilder.cancelMove();
         this._removeLayoutCutColButtons();
 
         layout.normalizeColsHeight(new A.NodeList(this.getFieldRow(this._fieldBeingMoved)));
+
+        this._detachCancelMoveFieldEvents();
     },
 
     /**
@@ -288,6 +291,16 @@ A.FormBuilderLayoutBuilder.prototype = {
         lastRow.set('removable', false);
 
         layout.addRow(rows.length, lastRow);
+    },
+
+    /**
+     * Detaches events related to the cancel move field funcionality.
+     *
+     * @method _detachCancelMoveFieldEvents
+     * @protected
+     */
+    _detachCancelMoveFieldEvents: function() {
+        new A.EventHandle(this._cancelMoveFieldHandles).detach();
     },
 
     /**
@@ -359,6 +372,44 @@ A.FormBuilderLayoutBuilder.prototype = {
     },
 
     /**
+     * Fires when click event is triggered.
+     *
+     * @method _onClickOutsideMoveTarget
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onClickOutsideMoveTarget: function(event) {
+        var targetNode = event.target,
+        toolbarMoveIconCancelMode = this._fieldToolbar.getItem('.' + CSS_LAYOUT_BUILDER_MOVE_CANCEL);
+
+        if (toolbarMoveIconCancelMode) {
+            toolbarMoveIconCancelMode.removeClass(CSS_LAYOUT_BUILDER_MOVE_CANCEL);
+        }
+
+        if (!(targetNode.hasClass(CSS_MOVE_TARGET) && targetNode.hasClass(CSS_MOVE_COL_TARGET))) {
+            this._layoutBuilder.cancelMove();
+            this._detachCancelMoveFieldEvents();
+        }
+    },
+
+    /**
+     * Fires when esc key press event is triggered.
+     *
+     * @method _onEscKeyPressMoveTarget
+     * @protected
+     */
+    _onEscKeyPressMoveTarget: function() {
+        var toolbarMoveIconCancelMode = this._fieldToolbar.getItem('.' + CSS_LAYOUT_BUILDER_MOVE_CANCEL);
+
+        if (toolbarMoveIconCancelMode) {
+            toolbarMoveIconCancelMode.removeClass(CSS_LAYOUT_BUILDER_MOVE_CANCEL);
+        }
+
+        this._layoutBuilder.cancelMove();
+        this._detachCancelMoveFieldEvents();
+    },
+
+    /**
      * Fired when mouse enters a toolbar's field.
      *
      * @method _onFormBuilderToolbarFieldMouseEnter
@@ -391,7 +442,6 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         contentBox.all('.' + CSS_CHOOSE_COL_MOVE_TARGET).removeClass(CSS_CHOOSE_COL_MOVE_TARGET);
         contentBox.all('.' + CSS_FIELD_MOVING).removeClass(CSS_FIELD_MOVING);
-        contentBox.all('.' + CSS_COL_MOVING).removeClass(CSS_COL_MOVING);
         contentBox.all('.' + CSS_FIELD_MOVE_TARGET_INVALID).removeClass(CSS_FIELD_MOVE_TARGET_INVALID);
 
         layout.normalizeColsHeight(layout.get('node').all('.row'));

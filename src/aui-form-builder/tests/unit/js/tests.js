@@ -286,6 +286,26 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.areEqual(1, nestedFields.length);
         },
 
+        'should update removable rows before a row is moved': function() {
+            var activeLayout;
+
+            this.createFormBuilder();
+
+            activeLayout = this._formBuilder.getActiveLayout();
+
+            Y.Assert.areEqual(2, activeLayout.get('rows').length);
+            Y.Assert.isTrue(activeLayout.get('rows')[0].get('removable'));
+            Y.Assert.isFalse(activeLayout.get('rows')[1].get('removable'));
+
+            Y.one('.layout-builder-move-cut-button').simulate('click');
+            Y.one('.layout-builder-move-row-target').simulate('click');
+
+            Y.Assert.areEqual(3, activeLayout.get('rows').length);
+            Y.Assert.isTrue(activeLayout.get('rows')[0].get('removable'));
+            Y.Assert.isTrue(activeLayout.get('rows')[1].get('removable'));
+            Y.Assert.isFalse(activeLayout.get('rows')[2].get('removable'));
+        },
+
         'should resize the row when a nested field is edited': function() {
             var field,
                 heightAfterMode,
@@ -380,7 +400,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this._formBuilder.set('layouts', [layout]);
 
             Y.Assert.areEqual(
-                1,
+                2,
                 Y.all('.form-builder-field-list').size()
             );
 
@@ -397,7 +417,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             }));
 
             Y.Assert.areEqual(
-                2,
+                3,
                 Y.all('.form-builder-field-list').size()
             );
         },

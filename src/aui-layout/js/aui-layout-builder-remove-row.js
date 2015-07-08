@@ -71,6 +71,7 @@ LayoutBuilderRemoveRow.prototype = {
      * Fired after the `removable` attribute changes.
      *
      * @method _afterRemoveRowRemovableChange
+     * @params {EventFacade} event
      * @protected
      */
     _afterRemoveRowRemovableChange: function(event) {
@@ -149,7 +150,7 @@ LayoutBuilderRemoveRow.prototype = {
      * Inserts remove button before a specified row.
      *
      * @method _insertRemoveButtonBeforeRow
-     * @param {Node} layoutRow
+     * @param {A.LayoutRow} layoutRow
      * @param {Node} row
      * @protected
      */

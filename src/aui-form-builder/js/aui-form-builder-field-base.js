@@ -121,7 +121,8 @@ A.FormBuilderFieldBase.prototype = {
             for (i = 0; i < advancedSettings.length; i++) {
                 this.renderSetting(advancedSettings[i], currentNode);
             }
-        } else {
+        }
+        else {
             this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED).addClass(CSS_HIDE);
             this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON).addClass(CSS_HIDDEN);
         }
