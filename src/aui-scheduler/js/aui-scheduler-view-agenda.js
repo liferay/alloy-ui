@@ -472,7 +472,7 @@ var SchedulerAgendaView = A.Component.create({
             scheduler.eachEvent(
                 function(schedulerEvent) {
                     var startDate = schedulerEvent.get('startDate'),
-			endDate = schedulerEvent.get('endDate'),
+                        endDate = schedulerEvent.get('endDate'),
                         visible = schedulerEvent.get('visible'),
                         dayTS;
 
