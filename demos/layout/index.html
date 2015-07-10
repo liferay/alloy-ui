@@ -160,6 +160,14 @@
         'aui-form-builder-field-sentence',
         'aui-alert',
         function(Y) {
+            var alert = new Y.Alert({
+                    animated: true,
+                    bodyContent: 'This column can\'t be removed.',
+                    closeable: true,
+                    cssClass: 'alert-warning',
+                    duration: 1
+                });
+
             var Content = Y.Base.create('content', Y.Base, [], {}, {
                 ATTRS: {
                     content: {
@@ -291,19 +299,7 @@
             });
 
             layout.on('layout-col:removalCanceled', function() {
-                var alert = new Y.Alert({
-                    animated: true,
-                    bodyContent: 'This column can\'t be removed.',
-                    closeable: true,
-                    cssClass: 'alert-warning',
-                    destroyOnHide: true,
-                    duration: 1,
-                    render: true
-                });
-
-                setTimeout(function() {
-                    alert.destroy();
-                }, 1500);
+                alert.render();
             });
 
             new Y.LayoutBuilder({
