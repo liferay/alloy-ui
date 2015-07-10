@@ -543,7 +543,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             Y.Assert.isNull(resizeColDraggable);
         },
 
-        'should normalize cols\' height after resize a column': function() {
+        'should normalize cols\' height after column resize': function() {
             var breakpoint,
                 dragHandle,
                 layout = this._layoutBuilder.get('layout'),
