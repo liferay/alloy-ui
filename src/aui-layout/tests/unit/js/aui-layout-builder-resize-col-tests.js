@@ -514,6 +514,54 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             });
         },
 
+        'should not destroy unremovable third column from left': function() {
+            var row = Y.one('.row'),
+                col = row.all('.col').item(2),
+                layoutCol = col.getData('layout-col'),
+                dragHandle,
+                breakpoint,
+                canceled;
+
+            layoutCol.set('removable', false);
+
+            dragHandle = row.all('.layout-builder-resize-col-draggable-handle').item(1);
+
+            breakpoint = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(9);
+
+            layoutCol.on('removalCanceled', function() {
+                canceled = true;
+            });
+
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Assert.areEqual(3, col.getData('layout-col').get('size'));
+                Assert.areEqual(true, canceled);
+            });
+        },
+
+        'should not destroy unremovable third column from right': function() {
+            var row = Y.one('.row'),
+                col = row.all('.col').item(2),
+                layoutCol = col.getData('layout-col'),
+                dragHandle,
+                breakpoint,
+                canceled;
+
+            layoutCol.set('removable', false);
+
+            dragHandle = row.all('.layout-builder-resize-col-draggable-handle').item(2);
+
+            breakpoint = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(6);
+
+            layoutCol.on('removalCanceled', function() {
+                canceled = true;
+            });
+
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Assert.areEqual(3, col.getData('layout-col').get('size'));
+                Assert.areEqual(true, canceled);
+            });
+        },
+
         'should toggle breakpoints visibility when keypress on draghandle': function() {
             var dragHandle,
                 row = Y.all('.row').item(1);

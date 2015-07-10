@@ -95,6 +95,9 @@ A.LayoutBuilderResizeCol.prototype = {
             row = dragNode.ancestor(SELECTOR_ROW);
 
         this._resize(dragNode, row);
+        this._hideBreakpoints(row);
+        this._syncDragHandles();
+
         this.get('layout').normalizeColsHeight(new A.NodeList(row));
     },
 
@@ -275,15 +278,7 @@ A.LayoutBuilderResizeCol.prototype = {
             col1MinSize = col1.get('minSize'),
             col2MinSize = col2.get('minSize');
 
-        if (col1.get('removable')) {
-            col1MinSize = 0;
-        }
-
-        if (col2.get('removable')) {
-            col2MinSize = 0;
-        }
-
-        if (diff1 < col1MinSize || diff2 < col2MinSize) {
+        if (diff1 !== 0 && diff2 !== 0 && (diff1 < col1MinSize || diff2 < col2MinSize)) {
             return false;
         }
 
@@ -330,18 +325,26 @@ A.LayoutBuilderResizeCol.prototype = {
             col1NewSize = col1.get('size') + difference,
             col2NewSize = col2.get('size') - difference;
 
+        if (!col1.get('removable') && col1NewSize === 0) {
+            col1.fire('removalCanceled');
+            return;
+        }
+
+        if (!col2.get('removable') && col2NewSize === 0) {
+            col2.fire('removalCanceled');
+            return;
+        }
+
         col1.set('size', col1NewSize);
         col2.set('size', col2NewSize);
 
-        if (col1.get('removable') && col1NewSize === 0) {
+        if (col1NewSize === 0) {
             this._removeCol(col1.get('node'));
         }
 
-        if (col2.get('removable') && col2NewSize === 0) {
+        if (col2NewSize === 0) {
             this._removeCol(col2.get('node'));
         }
-
-        this._syncDragHandles();
     },
 
     /**
@@ -405,6 +408,8 @@ A.LayoutBuilderResizeCol.prototype = {
         row = this._lastDropEnter.ancestor(SELECTOR_ROW);
 
         this._resize(this._dragNode, row);
+        this._hideBreakpoints(row);
+        this._syncDragHandles();
     },
 
     /**
@@ -479,8 +484,6 @@ A.LayoutBuilderResizeCol.prototype = {
         else {
             dragNode.show();
         }
-
-        this._hideBreakpoints(row);
     },
 
     /**
