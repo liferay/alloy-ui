@@ -473,10 +473,9 @@ A.LayoutBuilderResizeCol.prototype = {
      *
      * @method _resize
      * @param {Node} dragNode
-     * @param {Node} row
      * @protected
      */
-    _resize: function(dragNode, row) {
+    _resize: function(dragNode) {
         if (this._lastDropEnter) {
             this._handleBreakpointDrop(dragNode, this._lastDropEnter);
             this._lastDropEnter = null;

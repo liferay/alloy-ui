@@ -359,6 +359,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
             dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
             breakpoint = row.get('node').all('.' + CSS_RESIZE_COL_BREAKPOINT).item(3);
+
             this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
                 dragNode = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE);
                 breakpoint = row.get('node').one('.' + CSS_RESIZE_COL_BREAKPOINT);
@@ -386,6 +387,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
                 row = this._layoutBuilder.get('layout').get('rows')[1];
 
             dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
+
             this._simulateDrag(this, dragHandle, undefined, function() {
                 dragNode = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE);
                 Y.Assert.areEqual(6, dragNode.getData('layout-position'));
@@ -525,7 +527,6 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             layoutCol.set('removable', false);
 
             dragHandle = row.all('.layout-builder-resize-col-draggable-handle').item(1);
-
             breakpoint = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(9);
 
             layoutCol.on('removalCanceled', function() {
@@ -549,7 +550,6 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             layoutCol.set('removable', false);
 
             dragHandle = row.all('.layout-builder-resize-col-draggable-handle').item(2);
-
             breakpoint = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(6);
 
             layoutCol.on('removalCanceled', function() {
