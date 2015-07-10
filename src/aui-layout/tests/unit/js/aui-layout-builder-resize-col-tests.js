@@ -29,6 +29,12 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             this._layoutBuilder.destroy();
         },
 
+        _should: {
+            ignore: {
+                'should normalize cols\' height after column resize': true
+            }
+        },
+
         /**
          * Creates a layout for testing.
          *
@@ -157,9 +163,10 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
          * @param {Y.Test.Case} test
          * @param {Node} dragHandle
          * @param {Array} position
+         * @param {Function} done
          * @protected
          */
-        _simulateDrag: function(test, dragHandle, position) {
+        _simulateDrag: function(test, dragHandle, position, done) {
             var shim;
 
             dragHandle.simulate('mousedown');
@@ -177,6 +184,10 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
                 }
 
                 dragHandle.simulate('mouseup');
+
+                if (done) {
+                    done();
+                }
             }, Y.DD.DDM.get('clickTimeThresh') + 100);
         },
 
@@ -187,15 +198,16 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
          * @param {Y.Test.Case} test
          * @param {Node} dragHandle
          * @param {Node} breakpoint
+         * @param {Function} done
          * @protected
          */
-        _simulateDragToBreakpoint: function(test, dragHandle, breakpoint) {
+        _simulateDragToBreakpoint: function(test, dragHandle, breakpoint, done) {
             this._simulateDrag(test, dragHandle, function() {
                 return [
                     breakpoint.get('region').left,
                     breakpoint.get('region').top
                 ];
-            });
+            }, done);
         },
 
         'should append drag handlers for all borders that can be dragged': function() {
@@ -321,7 +333,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             Y.Assert.areEqual(0, breakpoints.length);
         },
 
-        'should have a number of handles consistent with the number of removable rows': function() {
+        'should have a number of handles consistent with the number of rows': function() {
             var dragHandles,
                 firstRow;
 
@@ -336,48 +348,50 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             }
 
             dragHandles = firstRow.get('node').all('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + ':not(.hide)');
-            Assert.areEqual(4, dragHandles.size());
+            Assert.areEqual(11, dragHandles.size());
         },
 
         'should resize columns when dropping handle on breakpoint': function() {
             var breakpoint,
                 dragHandle,
+                dragNode,
                 row = this._layoutBuilder.get('layout').get('rows')[1];
 
             dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
-            breakpoint = row.get('node').one('.' + CSS_RESIZE_COL_BREAKPOINT);
-            this._simulateDragToBreakpoint(this, dragHandle, breakpoint);
-
-            dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
-            Y.Assert.areEqual(3, dragHandle.getData('layout-position'));
-            Y.Assert.areEqual(3, row.get('cols')[0].get('size'));
-            Y.Assert.areEqual(9, row.get('cols')[1].get('size'));
+            breakpoint = row.get('node').all('.' + CSS_RESIZE_COL_BREAKPOINT).item(3);
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                dragNode = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE);
+                breakpoint = row.get('node').one('.' + CSS_RESIZE_COL_BREAKPOINT);
+                Y.Assert.areEqual(3, dragNode.getData('layout-position'));
+                Y.Assert.areEqual(3, row.get('cols')[0].get('size'));
+                Y.Assert.areEqual(9, row.get('cols')[1].get('size'));
+            });
         },
 
-        'should not resize column if handle doesn\'s hit a breakpoint': function() {
+        'should not resize column if handle doesn\'t hit a breakpoint': function() {
             var dragHandle,
                 row = this._layoutBuilder.get('layout').get('rows')[1];
 
             dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
-            this._simulateDrag(this, dragHandle, [10, 10]);
 
-            dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
-            Y.Assert.areEqual(6, dragHandle.getData('layout-position'));
-            Y.Assert.areEqual(6, row.get('cols')[0].get('size'));
-            Y.Assert.areEqual(6, row.get('cols')[1].get('size'));
+            this._simulateDrag(this, dragHandle, [1000, 10], function() {
+                Y.Assert.areEqual(6, row.get('cols')[0].get('size'));
+                Y.Assert.areEqual(6, row.get('cols')[1].get('size'));
+            });
         },
 
         'should not resize column if handle move': function() {
             var dragHandle,
+                dragNode,
                 row = this._layoutBuilder.get('layout').get('rows')[1];
 
             dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
-            this._simulateDrag(this, dragHandle);
-
-            dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
-            Y.Assert.areEqual(6, dragHandle.getData('layout-position'));
-            Y.Assert.areEqual(6, row.get('cols')[0].get('size'));
-            Y.Assert.areEqual(6, row.get('cols')[1].get('size'));
+            this._simulateDrag(this, dragHandle, undefined, function() {
+                dragNode = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE);
+                Y.Assert.areEqual(6, dragNode.getData('layout-position'));
+                Y.Assert.areEqual(6, row.get('cols')[0].get('size'));
+                Y.Assert.areEqual(6, row.get('cols')[1].get('size'));
+            });
         },
 
         'should not be able to resize col if enableResizeCols is false': function() {
@@ -464,38 +478,40 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
         'should destroy removable first column': function() {
             var row = Y.one('.row'),
-                col = row.one('.col'),
+                cols = row.all('.col'),
                 dragHandle,
                 breakpoint,
                 addColButton = row.one('.layout-builder-add-col');
 
-            Assert.areEqual(true, col.getData('layout-col').get('removable'));
+            Assert.areEqual(true, cols.item(0).getData('layout-col').get('removable'));
 
             addColButton.simulate('click');
 
             dragHandle = row.all('.layout-builder-resize-col-draggable-handle').item(0);
             breakpoint = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(0);
 
-            this._simulateDragToBreakpoint(this, dragHandle, breakpoint);
-            Assert.areEqual(5, col.getData('layout-col').get('size'));
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Assert.areEqual(3, cols.item(0).getData('layout-col').get('size'));
+            });
         },
 
         'should destroy removable second column': function() {
             var row = Y.one('.row'),
-                col = row.one('.col'),
+                cols = row.all('.col'),
                 dragHandle,
                 breakpoint,
                 addColButton = row.all('.layout-builder-add-col').item(1);
 
-            Assert.areEqual(true, col.getData('layout-col').get('removable'));
+            Assert.areEqual(true, cols.item(0).getData('layout-col').get('removable'));
 
             addColButton.simulate('click');
 
             dragHandle = row.all('.layout-builder-resize-col-draggable-handle').item(3);
             breakpoint = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(12);
 
-            this._simulateDragToBreakpoint(this, dragHandle, breakpoint);
-            Assert.areEqual(5, col.getData('layout-col').get('size'));
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Assert.areEqual(3, cols.item(0).getData('layout-col').get('size'));
+            });
         },
 
         'should toggle breakpoints visibility when keypress on draghandle': function() {
@@ -556,9 +572,9 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
             dragHandle = row.get('node').one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
             breakpoint = row.get('node').one('.' + CSS_RESIZE_COL_BREAKPOINT);
-            this._simulateDragToBreakpoint(this, dragHandle, breakpoint);
-
-            Y.Mock.verify(layout);
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Y.Mock.verify(layout);
+            });
         }
     }));
 
