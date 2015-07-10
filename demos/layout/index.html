@@ -158,6 +158,7 @@
         'aui-form-builder',
         'aui-form-builder-field-text',
         'aui-form-builder-field-sentence',
+        'aui-alert',
         function(Y) {
             var Content = Y.Base.create('content', Y.Base, [], {}, {
                 ATTRS: {
@@ -173,6 +174,7 @@
                         cols: [
                             new Y.LayoutCol({
                                 size: 3,
+                                removable: false,
                                 value: new Y.FormBuilderFieldSentence({
                                     help: 'My Help',
                                     nestedFields: [
@@ -286,6 +288,22 @@
                         ]
                     })
                 ]
+            });
+
+            layout.on('layout-col:removalCanceled', function() {
+                var alert = new Y.Alert({
+                    animated: true,
+                    bodyContent: 'This column can\'t be removed.',
+                    closeable: true,
+                    cssClass: 'alert-warning',
+                    destroyOnHide: true,
+                    duration: 1,
+                    render: true
+                });
+
+                setTimeout(function() {
+                    alert.destroy();
+                }, 1500);
             });
 
             new Y.LayoutBuilder({
