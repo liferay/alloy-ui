@@ -94,8 +94,12 @@ A.LayoutBuilderResizeCol.prototype = {
         var dragNode = this._delegateDrag.get('lastNode'),
             row = dragNode.ancestor(SELECTOR_ROW);
 
-        this._resize(dragNode, row);
-        this._hideBreakpoints(row);
+        this._resize(dragNode);
+
+        if (row) {
+            this._hideBreakpoints(row);
+        }
+
         this._syncDragHandles();
 
         this.get('layout').normalizeColsHeight(new A.NodeList(row));
@@ -407,8 +411,12 @@ A.LayoutBuilderResizeCol.prototype = {
 
         row = this._lastDropEnter.ancestor(SELECTOR_ROW);
 
-        this._resize(this._dragNode, row);
-        this._hideBreakpoints(row);
+        this._resize(this._dragNode);
+
+        if (row) {
+            this._hideBreakpoints(row);
+        }
+
         this._syncDragHandles();
     },
 
