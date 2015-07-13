@@ -148,10 +148,10 @@ A.LayoutBuilderResizeCol.prototype = {
      */
     _afterDragMouseup: function(event) {
         var dragNode = event.target.get('node'),
-            rowNode = dragNode.ancestor(SELECTOR_ROW);
+            row = dragNode.ancestor(SELECTOR_ROW);
 
-        if (rowNode) {
-            this._hideBreakpoints(rowNode);
+        if (row) {
+            this._hideBreakpoints(row);
         }
     },
 
