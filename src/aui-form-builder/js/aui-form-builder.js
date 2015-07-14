@@ -12,7 +12,8 @@ var CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout',
     CSS_HEADER_TITLE = A.getClassName('form', 'builder', 'header', 'title'),
     CSS_LAYOUT = A.getClassName('form', 'builder', 'layout'),
     CSS_PAGE_HEADER = A.getClassName('form', 'builder', 'pages', 'header'),
-    CSS_PAGES = A.getClassName('form', 'builder', 'pages');
+    CSS_PAGES = A.getClassName('form', 'builder', 'pages'),
+    CSS_TABS = A.getClassName('form', 'builder', 'tabs');
 
 /**
  * A base class for `A.FormBuilder`.
@@ -36,6 +37,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     TPL_LAYOUT: '<div class="' + CSS_LAYOUT + '" ></div>',
     TPL_PAGE_HEADER: '<div class="' + CSS_PAGE_HEADER + '" ></div>',
     TPL_PAGES: '<div class="' + CSS_PAGES + '" ></div>',
+    TPL_TABVIEW: '<div class="' + CSS_TABS + '"></div>',
 
     /**
      * Construction logic executed during the `A.FormBuilder`
@@ -54,6 +56,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         contentBox.append(headerTemplate);
         contentBox.append(this.TPL_PAGE_HEADER);
+        contentBox.append(this.TPL_TABVIEW);
         contentBox.append(this.TPL_LAYOUT);
         contentBox.append(this.TPL_PAGES);
 
@@ -65,11 +68,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             this.after('layout:rowsChange', this._afterLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterLayoutColsChange)
         ];
-
-        this._pages = new A.FormBuilderPages({
-            pageHeader: '.' + CSS_PAGE_HEADER,
-            pagesQuantity: this.get('layouts').length
-        });
 
         A.Array.invoke(this.get('layouts'), 'addTarget', this);
     },
@@ -86,8 +84,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         layoutButtonNode = A.Lang.sub(this.TPL_EDIT_LAYOUT_BUTTON, {
             editLayout: this.get('strings').titleOnEditLayoutMode
         });
-
-        this._pages.render('.' + CSS_PAGES);
 
         this.getActiveLayout().addTarget(this);
 
@@ -108,10 +104,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON_CIRCLE, this),
             boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' +
                 CSS_EMPTY_COL_ADD_BUTTON_CIRCLE),
-            this._pages.on('add', A.bind(this._addPage, this)),
-            this._pages.on('remove', A.bind(this._removeLayout, this)),
-            this._pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this)),
-            this._pages.after('updatePageContent', A.bind(this._afterUpdatePageContentChange, this)),
             A.getDoc().on('key', this._onEscKey, 'esc', this)
         );
     },
@@ -136,6 +128,10 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     destructor: function() {
         if (this._fieldSettingsModal) {
             this._fieldSettingsModal.destroy();
+        }
+
+        if (this._pages) {
+            this._pages.destroy();
         }
 
         (new A.EventHandle(this._eventHandles)).detach();
@@ -340,7 +336,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         for (var i = 0; i < rows.length; i++) {
             rows[i].set('removable', true);
         }
-
         this._renderEmptyColumns();
         this._updateUniqueFieldType();
         this._checkLastRow();
@@ -354,14 +349,20 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _afterLayoutsChange: function(event) {
+        var pages;
+
         A.Array.invoke(event.prevVal, 'removeTarget', this);
         A.Array.invoke(event.newVal, 'addTarget', this);
 
         this._updatePageContent(this.get('layouts')[0]);
         this._updateUniqueFieldType();
 
-        this._pages.set('activePageNumber', 1);
-        this._pages.set('pagesQuantity', this.get('layouts').length);
+        if (this.get('rendered')) {
+            pages = this._getPages();
+
+            pages.set('activePageNumber', 1);
+            pages.set('pagesQuantity', this.get('layouts').length);
+        }
 
         this._checkLastRow();
     },
@@ -387,7 +388,38 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _getActiveLayoutIndex: function() {
-        return this._pages.get('activePageNumber') - 1;
+        return this.get('rendered') ? this._getPages().get('activePageNumber') - 1: 0;
+    },
+
+    /**
+     * Returns the form builder pages instance.
+     *
+     * @method _getPages
+     * @return {A.FormBuilderPages}
+     * @protected
+     */
+    _getPages: function() {
+        var contentBox;
+
+        if (!this._pages) {
+            contentBox = this.get('contentBox');
+
+            this._pages = new A.FormBuilderPages({
+                pageHeader: contentBox.one('.' + CSS_PAGE_HEADER),
+                pagesQuantity: this.get('layouts').length,
+                paginationContainer: contentBox.one('.' + CSS_PAGES),
+                tabviewContainer: contentBox.one('.' + CSS_TABS)
+            });
+
+            this._eventHandles.push(
+                this._pages.on('add', A.bind(this._addPage, this)),
+                this._pages.on('remove', A.bind(this._removeLayout, this)),
+                this._pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this)),
+                this._pages.after('updatePageContent', A.bind(this._afterUpdatePageContentChange, this))
+            );
+        }
+
+        return this._pages;
     },
 
     /**

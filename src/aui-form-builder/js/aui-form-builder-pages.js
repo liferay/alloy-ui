@@ -9,24 +9,31 @@ var CSS_FORM_BUILDER_ADD_PAGE = A.getClassName('form', 'builder', 'pages', 'add'
     CSS_FORM_BUILDER_PAGE_CONTROLS = A.getClassName('form', 'builder', 'page', 'controls'),
     CSS_FORM_BUILDER_PAGES_CONTENT = A.getClassName('form', 'builder', 'pages', 'content'),
     CSS_FORM_BUILDER_PAGINATION = A.getClassName('form', 'builder', 'pagination'),
-    CSS_FORM_BUILDER_REMOVE_PAGE = A.getClassName('form', 'builder', 'pages', 'remove', 'page'),
+    CSS_FORM_BUILDER_REMOVE_PAGE =
+        A.getClassName('form', 'builder', 'pages', 'remove', 'page'),
+    CSS_FORM_BUILDER_SWITCH_VIEW = A.getClassName('form', 'builder', 'switch', 'view'),
+    CSS_FORM_BUILDER_TABS_CONTENT = A.getClassName('form', 'builder', 'tabs', 'content'),
+    CSS_FORM_BUILDER_TABVIEW = A.getClassName('form', 'builder', 'tabview'),
     CSS_PAGE_HEADER = A.getClassName('form', 'builder', 'page', 'header'),
-    CSS_PAGE_HEADER_DESCRIPTION = A.getClassName('form', 'builder', 'page', 'header', 'description'),
-    CSS_PAGE_HEADER_DESCRIPTION_HIDE_BORDER = A.getClassName('form', 'builder', 'page', 'header', 'description', 'hide',
-        'border'),
-CSS_PAGE_HEADER_TITLE = A.getClassName('form', 'builder', 'page', 'header', 'title'),
-CSS_PAGE_HEADER_TITLE_HIDE_BORDER = A.getClassName('form', 'builder', 'page', 'header', 'title', 'hide', 'border');
+    CSS_PAGE_HEADER_DESCRIPTION =
+        A.getClassName('form', 'builder', 'page', 'header', 'description'),
+    CSS_PAGE_HEADER_DESCRIPTION_HIDE_BORDER =
+        A.getClassName('form', 'builder', 'page', 'header', 'description', 'hide', 'border'),
+    CSS_PAGE_HEADER_TITLE = A.getClassName('form', 'builder', 'page', 'header', 'title'),
+    CSS_PAGE_HEADER_TITLE_HIDE_BORDER =
+        A.getClassName('form', 'builder', 'page', 'header', 'title', 'hide', 'border'),
+    CSS_TAB_LABEL = A.getClassName('tab', 'label');
 
 /**
  * A base class for Form Builder Pages Builder.
  *
  * @class A.FormBuilderPages
- * @extends A.Widget
+ * @extends A.Base
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
+A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
 
     TPL_PAGE_HEADER: '<div class="' + CSS_PAGE_HEADER + ' form-inline">' +
         '<input placeholder="{untitledPage}" tabindex="1" class="' + CSS_PAGE_HEADER_TITLE + ' ' +
@@ -39,56 +46,87 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
     TPL_PAGES: '<div class="' + CSS_FORM_BUILDER_PAGES_CONTENT + '">' +
         '<div class="' + CSS_FORM_BUILDER_PAGINATION + '"></div>' +
         '<div class="' + CSS_FORM_BUILDER_PAGE_CONTROLS + '">' +
+        '<a href="javascript:;" class="' + CSS_FORM_BUILDER_SWITCH_VIEW + ' glyphicon glyphicon-refresh"></a>' +
         '<a href="javascript:;" class="' + CSS_FORM_BUILDER_REMOVE_PAGE + ' glyphicon glyphicon-trash"></a>' +
         '<a href="javascript:;" class="' + CSS_FORM_BUILDER_ADD_PAGE + ' glyphicon glyphicon-plus"></a>' +
         '</div></div>',
 
-    /**
-     * Renders the `A.FormBuilderPages` UI. Lifecycle.
-     *
-     * @method renderUI
-     * @protected
-     */
-    renderUI: function() {
-        var headerTemplate;
-
-        headerTemplate = A.Lang.sub(this.TPL_PAGE_HEADER, {
-            aditionalInfo: this.get('strings').aditionalInfo
-        });
-
-        this.get('contentBox').append(this.TPL_PAGES);
-        this.get('pageHeader').append(headerTemplate);
-
-        this._getPagination().render();
-
-        this._uiSetActivePageNumber(this.get('activePageNumber'));
-    },
+    TPL_TABS: '<div class="' + CSS_FORM_BUILDER_TABS_CONTENT + '">' +
+        '<div class="' + CSS_FORM_BUILDER_TABVIEW + '"></div>' +
+        '</div>',
 
     /**
-     * Bind the events for the `A.FormBuilderPages` UI. Lifecycle.
+     * Construction logic executed during the `A.FormBuilderPages`
+     * instantiation. Lifecycle.
      *
-     * @method bindUI
+     * @method initializer
      * @protected
      */
-    bindUI: function() {
-        var contentBox = this.get('contentBox'),
+    initializer: function() {
+        var paginationContainer = this.get('paginationContainer'),
+            tabviewContainer = this.get('tabviewContainer'),
             pageHeader = this.get('pageHeader');
 
-        contentBox.one('.' + CSS_FORM_BUILDER_ADD_PAGE).on('click', A.bind(this._onAddPageClick, this));
-        contentBox.one('.' + CSS_FORM_BUILDER_REMOVE_PAGE).on('click', A.bind(this._onRemovePageClick, this));
+        paginationContainer.append(this.TPL_PAGES);
+        tabviewContainer.append(this.TPL_TABS);
 
-        pageHeader.one('.' + CSS_PAGE_HEADER_DESCRIPTION).on('valuechange', A.bind(this._onDescriptionInputValueChange,
-            this));
-        pageHeader.one('.' + CSS_PAGE_HEADER_TITLE).on('valuechange', A.bind(this._onTitleInputValueChange, this));
+        pageHeader.append(A.Lang.sub(this.TPL_PAGE_HEADER, {
+            aditionalInfo: this.get('strings').aditionalInfo
+        }));
+
+        this._getPagination().render();
+        this._getTabView().render();
+
+        this._eventHandles = [
+            paginationContainer.one('.' + CSS_FORM_BUILDER_ADD_PAGE).on('click',
+                A.bind(this._onAddPageClick, this)
+            ),
+            paginationContainer.one('.' + CSS_FORM_BUILDER_REMOVE_PAGE).on('click',
+                A.bind(this._onRemovePageClick, this)
+            ),
+            paginationContainer.one('.' + CSS_FORM_BUILDER_SWITCH_VIEW).on('click',
+                A.bind(this._onSwitchViewClick, this)
+            ),
+            pageHeader.one('.' + CSS_PAGE_HEADER_DESCRIPTION).on('valuechange',
+                A.bind(this._onDescriptionInputValueChange, this)
+            ),
+            pageHeader.one('.' + CSS_PAGE_HEADER_TITLE).on('valuechange',
+                A.bind(this._onTitleInputValueChange, this)
+            )
+        ];
 
         this.after({
             activePageNumberChange: this._afterActivePageNumberChange,
             pagesQuantityChange: this._afterPagesQuantityChange
         });
+
+        this._uiSetActivePageNumber(this.get('activePageNumber'));
     },
 
     /**
-     * Create a new page on Form Field.
+     * Destructor lifecycle implementation for the `A.FormBuilderPages` class.
+     * Lifecycle.
+     *
+     * @method destructor
+     * @protected
+     */
+    destructor: function() {
+        var pagination = this._pagination,
+            tabview = this._tabview;
+
+        if (pagination) {
+            pagination.destroy();
+        }
+
+        if (tabview) {
+            tabview.destroy();
+        }
+
+        (new A.EventHandle(this._eventHandles)).detach();
+    },
+
+    /**
+     * Create a new page on Form Builder.
      *
      * @method _addPage
      * @protected
@@ -116,9 +154,29 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
     },
 
     /**
+     * Create a new tab on Form Builder.
+     *
+     * @method _addTab
+     * @protected
+     */
+    _addTab: function() {
+        var nextIndex = this.get('pagesQuantity'),
+            tabview = this._getTabView(),
+            title;
+
+        title = this._createUntitledPageLabel(nextIndex, nextIndex);
+    
+        tabview.add({ label: nextIndex + '.' + title });
+        tabview.selectChild(nextIndex - 1);
+
+        this._updateTabViewContent();
+    },
+
+    /**
      * Fired after the `activePageNumber` attribute changes.
      *
      * @method _afterActivePageNumberChange
+     * @param {EventFacade} event
      * @protected
      */
     _afterActivePageNumberChange: function(event) {
@@ -136,10 +194,30 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
     },
 
     /**
+     * Fired after the `selection` attribute from the tabview changes.
+     *
+     * @method _afterTabViewSelectionChange
+     * @protected
+     */
+    _afterTabViewSelectionChange: function() {
+        var index,
+            pagination = this._getPagination(),
+            tabview = this._getTabView();
+
+        index = tabview.getTabs().indexOf(tabview.getActiveTab());
+
+        if (index > -1) {
+            pagination.set('page', index + 1);
+            this.set('activePageNumber', index + 1);
+        }
+        
+    },
+
+    /**
      * Creates pagination.
      *
      * @method _createPagination
-     * @return {Node}
+     * @return {A.Pagination}
      * @protected
      */
     _createPagination: function() {
@@ -158,6 +236,46 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
     },
 
     /**
+     * Creates tab view.
+     *
+     * @method _createTabView
+     * @return {A.TabView}
+     * @protected
+     */
+    _createTabView: function() {
+        var tabview;
+
+        tabview = new A.TabView({
+            boundingBox: '.' + CSS_FORM_BUILDER_TABVIEW
+        });
+
+        tabview.get('contentBox').toggleView();
+        tabview.after('selectionChange', A.bind(this._afterTabViewSelectionChange, this));
+
+        return tabview;
+    },
+
+    /**
+     * Returns an untitled page string based on strings attribute.
+     *
+     * @method _createUntitledPageLabel
+     * @param {Number} activePageNumber
+     * @param {Number} pagesQuantity
+     * @return {String}
+     * @protected
+     */
+    _createUntitledPageLabel: function(activePageNumber, pagesQuantity) {
+        var title;
+
+        title = A.Lang.sub(this.get('strings').untitledPage, {
+            activePageNumber: activePageNumber,
+            pagesQuantity: pagesQuantity
+        });
+
+        return title;
+    },
+
+    /**
      * Returns the pagination instance.
      *
      * @method _getPagination
@@ -173,6 +291,38 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
     },
 
     /**
+     * Returns the tab view instance.
+     *
+     * @method _getTabView
+     * @return {A.TabView}
+     * @protected
+     */
+    _getTabView: function() {
+        var index,
+            pages = this.get('pagesQuantity'),
+            title,
+            titles = this.get('titles');
+
+        if (!this._tabview) {
+            this._tabview = this._createTabView();
+
+            for (index = 0; index < pages; index++) {
+                title = titles[index];
+
+                if (!title) {
+                    title = this._createUntitledPageLabel((index + 1), pages);
+                }
+
+                this._tabview.add({ label: (index + 1) + '.' + title });
+            }
+
+            this._tabview.selectChild(this.get('activePageNumber') - 1);
+        }
+
+        return this._tabview;
+    },
+
+    /**
      * Fired on add button clicked.
      *
      * @method _onAddPageClick
@@ -180,6 +330,7 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
      */
     _onAddPageClick: function() {
         this._addPage();
+        this._addTab();
     },
 
     /**
@@ -193,9 +344,10 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
     },
 
     /**
-     * Fired on input value change.
+     * Fired on description input value change.
      *
-     * @method _onTitleInputValueChange
+     * @method _onDescriptionInputValueChange
+     * @param {EventFacade} event
      * @protected
      */
     _onDescriptionInputValueChange: function(event) {
@@ -212,9 +364,11 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
      */
     _onRemovePageClick: function() {
         var activePageNumber = this.get('activePageNumber'),
-            page = Math.max(1, activePageNumber - 1);
+            page = Math.max(1, activePageNumber - 1),
+            titles = this.get('titles');
 
         this._getPagination().prev();
+
         this.set('pagesQuantity', this.get('pagesQuantity') - 1);
 
         this.fire(
@@ -223,27 +377,79 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
             }
         );
 
-        this._pagination.set('page', page);
-
         // We need to improve aui-pagination. This should be done
         // automatically after the 'page' attribute is set.
         this._pagination.getItem(page).addClass('active');
 
+        titles.splice(activePageNumber - 1, 1);
+        this.set('titles', titles);
+
+        this._removeTab(activePageNumber - 1);
+
         if (!this.get('pagesQuantity')) {
             this._addPage();
+            this._addTab();
         }
     },
 
     /**
-     * Fired on input value change.
+     * Fired on switch view button clicked.
+     *
+     * @method _onSwitchViewClick
+     * @protected
+     */
+    _onSwitchViewClick: function() {
+        var activePageNumber = this.get('activePageNumber'),
+            pagination = this._getPagination(),
+            tabview = this._getTabView();
+
+        pagination.get('contentBox').toggleView();
+        tabview.get('contentBox').toggleView();
+
+        pagination.set('page', activePageNumber);
+        tabview.selectChild(activePageNumber - 1);
+    },
+
+    /**
+     * Fired on title input value change.
      *
      * @method _onTitleInputValueChange
+     * @param {EventFacade} event
      * @protected
      */
     _onTitleInputValueChange: function(event) {
-        var titles = this.get('titles');
+        var activePageNumber = this.get('activePageNumber'),
+            activeTab = this._getTabView().getActiveTab(),
+            pagesQuantity = this.get('pagesQuantity'),
+            title = event.newVal.trim(),
+            titles = this.get('titles');
 
-        titles[this.get('activePageNumber') - 1] = event.newVal.trim();
+        titles[activePageNumber - 1] = title;
+
+        if (!title) {
+            title = this._createUntitledPageLabel(activePageNumber, pagesQuantity);
+        }
+
+        activeTab.one('.' + CSS_TAB_LABEL).set('text', activePageNumber + '.' + title);
+        this.set('titles', titles);
+    },
+
+    /**
+     * Remove a tab from Form Builder.
+     *
+     * @method _removeTab
+     * @param {Number} index
+     * @protected
+     */
+    _removeTab: function(index) {
+        var tabview = this._getTabView();
+
+        if (index > 0) {
+            tabview.selectChild(index - 1);
+        }
+
+        tabview.remove(index);
+        this._updateTabViewContent();
     },
 
     /**
@@ -258,14 +464,12 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
             title = this.get('titles')[activePageNumber - 1],
             pageHeader = this.get('pageHeader'),
             descriptionNode = pageHeader.one('.' + CSS_PAGE_HEADER_DESCRIPTION),
+            pagesQuantity = this.get('pagesQuantity'),
             titleNode = pageHeader.one('.' + CSS_PAGE_HEADER_TITLE),
             untitledPageTemplate;
 
         if (!title) {
-            untitledPageTemplate = A.Lang.sub(this.get('strings').untitledPage, {
-                activePageNumber: activePageNumber,
-                pagesQuantity: this.get('pagesQuantity')
-            });
+            untitledPageTemplate = this._createUntitledPageLabel(activePageNumber, pagesQuantity);
             titleNode.attr('placeholder', untitledPageTemplate);
         }
 
@@ -277,16 +481,43 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
      * Updates the ui according to the value of the `pagesQuantity` attribute.
      *
      * @method _uiSetPagesQuantity
+     * @param {Number} total
      * @protected
      */
     _uiSetPagesQuantity: function(total) {
-        var pagination = this._getPagination();
+        var activePageNumber = this.get('activePageNumber'),
+            pagination = this._getPagination();
 
         pagination.set('total', total);
 
-        pagination.set('page', this.get('activePageNumber'));
-        this._pagination.getItem(this.get('activePageNumber')).addClass('active');
-        this._uiSetActivePageNumber(this.get('activePageNumber'));
+        pagination.set('page', activePageNumber);
+        this._pagination.getItem(activePageNumber).addClass('active');
+        this._uiSetActivePageNumber(activePageNumber);
+    },
+
+
+    /**
+     * Update all tabs title based on titles attribute.
+     *
+     * @method _updateTabViewContent
+     * @protected
+     */
+    _updateTabViewContent: function() {
+        var index,
+            pages = this.get('pagesQuantity'),
+            tabs = this._getTabView().get('contentBox').all('.tab-content'),
+            title,
+            titles = this.get('titles');
+
+        for (index = 0; index < pages; index++) {
+            title = titles[index];
+
+            if (!title) {
+                title = this._createUntitledPageLabel(index + 1, pages);
+            }
+
+            tabs.item(index).set('text', (index + 1) + '.' + title);
+        }
     }
 }, {
     ATTRS: {
@@ -314,10 +545,10 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
         },
 
         /**
-         *
+         * Container for the page's header.
          *
          * @attribute pageHeader
-         * @default 0
+         * @default null
          * @type {Node}
          * @writeOnce
          */
@@ -335,6 +566,19 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
          */
         pagesQuantity: {
             value: 1
+        },
+
+        /**
+         * Container for the paginator.
+         *
+         * @attribute paginationContainer
+         * @default null
+         * @type {Node}
+         * @writeOnce
+         */
+        paginationContainer: {
+            setter: A.one,
+            writeOnce: true
         },
 
         /**
@@ -363,6 +607,19 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Widget, [], {
          */
         titles: {
             value: []
+        },
+
+        /**
+         * Container for the tab view.
+         *
+         * @attribute tabviewContainer
+         * @default null
+         * @type {Node}
+         * @writeOnce
+         */
+        tabviewContainer: {
+            setter: A.one,
+            writeOnce: true
         }
     }
 });
