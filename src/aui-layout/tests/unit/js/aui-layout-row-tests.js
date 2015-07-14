@@ -8,12 +8,18 @@ YUI.add('aui-layout-row-tests', function(Y) {
         name: 'Layout Row Tests',
 
         setUp: function() {
+            this._createLayoutBuilder();
+        },
+
+        _createLayoutBuilder: function(config) {
+            var layoutRow;
+            
             col = new Y.LayoutCol({
                 size: 4,
                 value: {content: 'foo'}
             });
 
-            this.layoutRow = new Y.LayoutRow({
+            layoutRow = {
                 cols: [
                     col,
                     new Y.LayoutCol({
@@ -25,7 +31,9 @@ YUI.add('aui-layout-row-tests', function(Y) {
                         value: { content: 'baz' }
                     })
                 ]
-            });
+            };
+
+            this.layoutRow = new Y.LayoutRow(Y.merge(layoutRow, config));
         },
 
         tearDown: function() {
@@ -98,23 +106,36 @@ YUI.add('aui-layout-row-tests', function(Y) {
 
         'should add a col passing a reference': function() {
             var childNumber,
-                row = this.layoutRow;
+                row;
 
+            this._createLayoutBuilder({
+                cols: []
+            });
+
+            row = this.layoutRow;
             childNumber = row.get('cols').length;
-            Assert.areEqual(3, childNumber);
+
+            Assert.areEqual(childNumber, 1);
 
             row.addCol(0, col);
+            
             childNumber = row.get('cols').length;
-
-            Assert.areEqual(4, childNumber);
+            Assert.areEqual(childNumber, 2);
         },
 
         'should not add col if max is reached': function() {
-            var currentColsSize = this.layoutRow.get('cols').length,
-                maximumCols = this.layoutRow.get('maximumCols');
+            var currentColsSize,
+                maximumCols;
+
+            this._createLayoutBuilder({
+                cols: []
+            });
+
+            currentColsSize = this.layoutRow.get('cols').length;
+            maximumCols = this.layoutRow.get('maximumCols');
 
             for (var i = currentColsSize; i <= maximumCols; i++) {
-                this.layoutRow.addCol();
+                this.layoutRow.addCol(i - 1);
             }
 
             Assert.areEqual(maximumCols, this.layoutRow.get('cols').length);
@@ -249,7 +270,97 @@ YUI.add('aui-layout-row-tests', function(Y) {
             Assert.areEqual(3, layoutRow.get('cols').length);
             Assert.isTrue(Y.instanceOf(layoutRow.get('cols')[0], Y.LayoutCol));
             Assert.areEqual('foo', layoutRow.get('cols')[0].get('value').content);
-        }
+        },
+
+        'should be able to add a col without passing index': function() {
+            var childNumber,
+                row = this.layoutRow,
+                col = new Y.LayoutCol({
+                    size: 1,
+                    value: {content: 'foo'}
+                });
+
+            childNumber = row.get('cols').length;
+            Assert.areEqual(childNumber, 3);
+
+            row.addCol(col);
+            
+            childNumber = row.get('cols').length;
+            Assert.areEqual(childNumber, 4);
+        },
+
+        'should be able to add a col passing a index up than 11': function() {
+            var childNumber,
+                row = this.layoutRow;
+
+            childNumber = row.get('cols').length;
+            Assert.areEqual(childNumber, 3);
+
+            row.addCol(20);
+            
+            childNumber = row.get('cols').length;
+            Assert.areEqual(childNumber, 4);
+        },
+
+        'should be able to add a col between neighbors': function() {
+            var childNumber,
+                row = this.layoutRow,
+                newCol = new Y.LayoutCol({
+                    size: 1
+                });
+
+            childNumber = row.get('cols').length;
+            Assert.areEqual(childNumber, 3);
+
+            row.addCol(1, newCol);
+            
+            childNumber = row.get('cols').length;
+            Assert.areEqual(childNumber, 4);
+            Assert.areEqual(12, row._getSize(row.get('cols')));
+        },
+
+        'should remove a col between neighbors': function() {
+            var layoutRow,
+                cols;
+
+            this._createLayoutBuilder( {
+                cols: [
+                    new Y.LayoutCol({
+                        size: 1,
+                        value: { content: 'bar' }
+                    }),
+                    new Y.LayoutCol({
+                        size: 10,
+                        value: { content: 'baz' }
+                    }),
+                    new Y.LayoutCol({
+                        size: 1,
+                        value: { content: 'baz' }
+                    })
+                ]
+            });
+
+            layoutRow = this.layoutRow;
+            layoutRow.removeCol(1);
+
+            cols = layoutRow.get('cols');
+
+            Y.Assert.areEqual(2, cols.length);
+            Y.Assert.areEqual(6, cols[0].get('size'));
+        },
+
+        'should remove the last col from a row': function() {
+            var childNumber,
+                row = this.layoutRow;
+
+            childNumber = row.get('cols').length;
+            Assert.areEqual(childNumber, 3);
+
+            row.removeCol(2);
+            
+            childNumber = row.get('cols').length;
+            Assert.areEqual(childNumber, 2);
+        },
     }));
 
     Y.Test.Runner.add(suite);

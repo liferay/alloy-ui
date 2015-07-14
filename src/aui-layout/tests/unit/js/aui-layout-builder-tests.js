@@ -88,16 +88,6 @@ YUI.add('aui-layout-builder-tests', function(Y) {
             Assert.areEqual(row.get('cols').length, 3);
         },
 
-        'should remove a col from a row': function() {
-            var row = layout.get('rows')[1];
-
-            Assert.areEqual(row.get('cols').length, 2);
-
-            row.removeCol(1);
-
-            Assert.areEqual(row.get('cols').length, 1);
-        },
-
         'should add a row to layout': function() {
             Assert.areEqual(container.all('.row').size(), 2);
             layout.addRow(4);
