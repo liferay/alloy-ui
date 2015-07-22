@@ -10,7 +10,8 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
         },
 
         setUp: function() {
-            this._container.append('<div id="header"></div><div id="pages"></div>');
+            this._container.append('<div id="header"></div><div id="tabs"></div>' +
+                '<div id="pages"></div>');
         },
 
         tearDown: function() {
@@ -26,7 +27,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
          * @return {Y.FormBuilderPages}
          */
         createFormBuilderPages: function(config) {
-            this._pages = new Y.FormBuilderPages(config).render();
+            this._pages = new Y.FormBuilderPages(config);
 
             return this._pages;
         },
@@ -56,8 +57,9 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             pages = this.createFormBuilderPages({
                 activePageNumber: 10,
                 pageHeader: '#header',
-                contentBox: '#pages',
-                pagesQuantity: 10
+                pagesQuantity: 10,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
             });
 
             title = pages.get('pageHeader').one('.form-builder-page-header-title');
@@ -72,10 +74,11 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             this.createFormBuilderPages({
                 activePageNumber: 1,
                 pageHeader: '#header',
-                contentBox: '#pages',
-                pagesQuantity: 1
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
             });
-
+ 
             Y.Assert.areEqual(3, Y.one('.pagination-content').all('li').size());
 
             Y.one('.form-builder-pages-add-page').simulate('click');
@@ -87,8 +90,9 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             this.createFormBuilderPages({
                 activePageNumber: 2,
                 pageHeader: '#header',
-                contentBox: '#pages',
-                pagesQuantity: 2
+                pagesQuantity: 2,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
             });
 
             Y.Assert.areEqual(4, Y.one('.pagination-content').all('li').size());
@@ -102,6 +106,42 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             Y.Assert.areEqual(3, Y.one('.pagination-content').all('li').size());
         },
 
+        'should add a new tab on addPage button clicked': function() {
+            this.createFormBuilderPages({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+ 
+            Y.Assert.areEqual(1, Y.one('.tabbable-content').all('.tab').size());
+
+            Y.one('.form-builder-pages-add-page').simulate('click');
+
+            Y.Assert.areEqual(2, Y.one('.tabbable-content').all('.tab').size());
+        },
+
+        'should remove the current tab on removePage button clicked': function() {
+            this.createFormBuilderPages({
+                activePageNumber: 2,
+                pageHeader: '#header',
+                pagesQuantity: 2,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            Y.Assert.areEqual(2, Y.one('.tabbable-content').all('.tab').size());
+
+            Y.one('.form-builder-pages-remove-page').simulate('click');
+
+            Y.Assert.areEqual(1, Y.one('.tabbable-content').all('.tab').size());
+
+            Y.one('.form-builder-pages-remove-page').simulate('click');
+
+            Y.Assert.areEqual(1, Y.one('.tabbable-content').all('.tab').size());
+        },
+
         'should update `title` attribute on title input change': function() {
             var pages,
                 titleNode;
@@ -109,8 +149,9 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             pages = this.createFormBuilderPages({
                 activePageNumber: 1,
                 pageHeader: '#header',
-                contentBox: '#pages',
-                pagesQuantity: 1
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
             });
 
             titleNode = Y.one('.form-builder-page-header-title');
@@ -125,14 +166,66 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             });
         },
 
+        'should update tab title on title of the current page change': function() {
+            var pages,
+                titleNode;
+
+            pages = this.createFormBuilderPages({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            Y.one('.form-builder-switch-view').simulate('click');
+
+            titleNode = Y.one('.form-builder-page-header-title');
+
+            Y.Assert.areEqual('Untitled Page (1 of 1)', titleNode.get('placeholder'));
+
+            this._simulateInputChange(titleNode, 'title', function() {
+                Y.Assert.areEqual('1.title', Y.one('.tab-label').text());
+                this._simulateInputChange(titleNode, '', function() {
+                    Y.Assert.areEqual('1.Untitled Page (1 of 1)', Y.one('.tab-label').text());
+                });
+            });
+        },
+
+        'should show/hide the tabview/pagination on switch button clicked': function() {
+            var pages;
+
+            pages = this.createFormBuilderPages({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            Y.Assert.isFalse(Y.one('.pagination-content').hasClass('hide'));
+            Y.Assert.isTrue(Y.one('.tabbable-content').hasClass('hide'));
+
+            Y.one('.form-builder-switch-view').simulate('click');
+
+            Y.Assert.isTrue(Y.one('.pagination-content').hasClass('hide'));
+            Y.Assert.isFalse(Y.one('.tabbable-content').hasClass('hide'));
+
+            Y.one('.form-builder-switch-view').simulate('click');
+
+            Y.Assert.isFalse(Y.one('.pagination-content').hasClass('hide'));
+            Y.Assert.isTrue(Y.one('.tabbable-content').hasClass('hide'));
+        },
+
         'should show the right title on page change': function() {
             var titleNode;
 
             this.createFormBuilderPages({
                 activePageNumber: 1,
                 pageHeader: '#header',
-                contentBox: '#pages',
                 pagesQuantity: 2,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs',
                 titles: ['Title', '']
             });
 
@@ -152,8 +245,9 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             pages = this.createFormBuilderPages({
                 activePageNumber: 1,
                 pageHeader: '#header',
-                contentBox: '#pages',
-                pagesQuantity: 1
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
             });
 
             descriptionNode = Y.one('.form-builder-page-header-description');

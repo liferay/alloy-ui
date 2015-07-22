@@ -110,7 +110,7 @@
     text-align: center;
 }
 
-.yui3-form-builder-pages {
+.form-builder-pages {
     padding-bottom: 5px;
 }
 
@@ -153,7 +153,7 @@
     color: #4fa8ff;
 }
 
-.form-builder-pages-add-page, .form-builder-pages-remove-page {
+.form-builder-pages-add-page, .form-builder-pages-remove-page, .form-builder-switch-view {
     float: right;
     padding: 14px 20px;
     color: #a6d3ff;
@@ -162,12 +162,12 @@
     top: 0;
 }
 
-.form-builder-pages-add-page:hover, .form-builder-pages-remove-page:hover {
+.form-builder-pages-add-page:hover, .form-builder-pages-remove-page:hover, .form-builder-switch-view:hover {
     background-color: #dceeff;
     text-decoration: none;
 }
 
-.form-builder-pages-add-page:focus, .form-builder-pages-remove-page:focus {
+.form-builder-pages-add-page:focus, .form-builder-pages-remove-page:focus, .form-builder-switch-view:focus {
     background-color: transparent;
     text-decoration: none;
 }

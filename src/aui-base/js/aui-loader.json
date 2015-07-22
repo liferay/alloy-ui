@@ -890,6 +890,7 @@
     "aui-form-builder-pages": {
         "requires": [
             "aui-pagination",
+            "aui-tabview",
             "base",
             "event-valuechange",
             "node-base"

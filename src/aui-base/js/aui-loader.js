@@ -916,6 +916,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-form-builder-pages": {
         "requires": [
             "aui-pagination",
+            "aui-tabview",
             "base",
             "event-valuechange",
             "node-base"
@@ -2129,4 +2130,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'dc343f53f40ed63e022fe95489f15c7f';
+YUI.Env[Y.version].md5 = '1de36cae15f3b9f9a8655aa1d9770a16';
