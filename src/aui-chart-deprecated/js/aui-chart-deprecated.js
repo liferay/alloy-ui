@@ -29,7 +29,7 @@ var Chart = A.Component.create({
         },
         swfURL: {
             valueFn: function() {
-                return YUI.defaults.chart.swfURL || DEFAULT_SWF_PATH;
+                return A.namespace('config.chart').swfURL || DEFAULT_SWF_PATH;
             }
         },
         swfCfg: {
