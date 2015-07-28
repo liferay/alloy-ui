@@ -5,6 +5,9 @@
     height: 228px;
     position: relative;
 }
+.colorpicker-panel {
+    position: static;
+}
 .colorpicker-canvas {
     background: #f00 url(picker_bg.png);
     background-color: #f00;
@@ -96,7 +99,4 @@
 .colorpicker-container .colorpicker-hue-slider-content {
     display: inline;
     position: static;
-}
-.yui3-widget-hd {
-    display: none;
 }
