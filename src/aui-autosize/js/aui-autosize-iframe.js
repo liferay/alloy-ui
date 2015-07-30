@@ -404,7 +404,7 @@ A.mix(AutosizeIframe, {
         if (iframeDoc && iframeWin.location.href !== 'about:blank') {
             var docEl = iframeDoc.documentElement;
 
-            var docOffsetHeight = (docEl && docEl.offsetHeight) || 0;
+            var docOffsetHeight = (docEl && Math.max(docEl.offsetHeight, docEl.scrollHeight)) || 0;
 
             var standardsMode = (iframeDoc.compatMode === 'CSS1Compat');
 
