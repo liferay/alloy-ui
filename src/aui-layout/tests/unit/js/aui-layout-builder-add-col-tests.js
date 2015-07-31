@@ -108,6 +108,26 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             }, done);
         },
 
+        'should add addColButton to new rows': function() {
+            var addColButtons,
+                addRowArea,
+                container;
+
+            this._createLayoutBuilder();
+
+            container = this._layoutBuilder.get('container');
+            addColButtons = container.all('.layout-builder-add-col-handle');
+
+            Y.Assert.areEqual(4, addColButtons.size());
+
+            addRowArea = container.one('.layout-builder-add-row-choose-row');
+            addRowArea.simulate('click');
+
+            addColButtons = container.all('.layout-builder-add-col-handle');
+
+            Y.Assert.areEqual(6, addColButtons.size());
+        },
+
         'should not append addCol button if row alreay has the maximum number of cols': function() {
             var cols,
                 firstRow,
@@ -118,15 +138,12 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             firstRow = this._layoutBuilder.get('layout').get('rows')[0];
             cols = firstRow.get('cols');
 
-            while (firstRow.get('cols').length < firstRow.get('maximumCols')) {
+            while (i < firstRow.get('maximumCols') + 2) {
                 firstRow.addCol(i);
-                i++;
+                i ++;
             }
 
             Y.Assert.areEqual(firstRow.get('cols').length, firstRow.get('maximumCols'));
-
-            this._layoutBuilder.set('enableAddCols', false);
-            this._layoutBuilder.set('enableAddCols', true);
 
             Y.Assert.isNull(firstRow.get('node').one('.layout-builder-add-col'));
         },
@@ -190,10 +207,10 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
         },
 
         'should normalize cols height after add a new col': function() {
-            var layout,
-                row,
+            var breakpoint,
                 dragHandle,
-                breakpoint;
+                layout,
+                row;
 
             this._createLayoutBuilder();
 
@@ -207,9 +224,9 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
                 method: 'normalizeColsHeight'
             });
 
-            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {});
-
-            Y.Mock.verify(layout);
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Y.Mock.verify(layout); 
+            });
         },
 
         'should not scroll when add a new col': function() {

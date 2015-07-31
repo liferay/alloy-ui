@@ -8,10 +8,10 @@ YUI.add('aui-layout-row-tests', function(Y) {
         name: 'Layout Row Tests',
 
         setUp: function() {
-            this._createLayoutBuilder();
+            this._createLayoutCol();
         },
 
-        _createLayoutBuilder: function(config) {
+        _createLayoutCol: function(config) {
             var layoutRow;
             
             col = new Y.LayoutCol({
@@ -108,7 +108,7 @@ YUI.add('aui-layout-row-tests', function(Y) {
             var childNumber,
                 row;
 
-            this._createLayoutBuilder({
+            this._createLayoutCol({
                 cols: []
             });
 
@@ -127,15 +127,15 @@ YUI.add('aui-layout-row-tests', function(Y) {
             var currentColsSize,
                 maximumCols;
 
-            this._createLayoutBuilder({
+            this._createLayoutCol({
                 cols: []
             });
 
             currentColsSize = this.layoutRow.get('cols').length;
             maximumCols = this.layoutRow.get('maximumCols');
 
-            for (var i = currentColsSize; i <= maximumCols; i++) {
-                this.layoutRow.addCol(i - 1);
+            for (var i = 0; i < maximumCols; i++) {
+                this.layoutRow.addCol(i);
             }
 
             Assert.areEqual(maximumCols, this.layoutRow.get('cols').length);
@@ -274,11 +274,11 @@ YUI.add('aui-layout-row-tests', function(Y) {
 
         'should be able to add a col without passing index': function() {
             var childNumber,
-                row = this.layoutRow,
                 col = new Y.LayoutCol({
                     size: 1,
                     value: {content: 'foo'}
-                });
+                }),
+                row = this.layoutRow;
 
             childNumber = row.get('cols').length;
             Assert.areEqual(childNumber, 3);
@@ -289,7 +289,7 @@ YUI.add('aui-layout-row-tests', function(Y) {
             Assert.areEqual(childNumber, 4);
         },
 
-        'should be able to add a col passing a index up than 11': function() {
+        'should be able to add a col passing a index greater than 11': function() {
             var childNumber,
                 row = this.layoutRow;
 
@@ -304,10 +304,10 @@ YUI.add('aui-layout-row-tests', function(Y) {
 
         'should be able to add a col between neighbors': function() {
             var childNumber,
-                row = this.layoutRow,
                 newCol = new Y.LayoutCol({
                     size: 1
-                });
+                }),
+                row = this.layoutRow;
 
             childNumber = row.get('cols').length;
             Assert.areEqual(childNumber, 3);
@@ -320,10 +320,10 @@ YUI.add('aui-layout-row-tests', function(Y) {
         },
 
         'should remove a col between neighbors': function() {
-            var layoutRow,
-                cols;
+            var cols,
+                layoutRow;
 
-            this._createLayoutBuilder( {
+            this._createLayoutCol( {
                 cols: [
                     new Y.LayoutCol({
                         size: 1,

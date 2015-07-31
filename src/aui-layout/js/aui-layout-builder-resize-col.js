@@ -100,6 +100,7 @@ A.LayoutBuilderResizeCol.prototype = {
         }
         else {
             this._resize(dragNode);
+            this.get('layout').normalizeColsHeight(new A.NodeList(row));
         }
 
         if (row) {
@@ -107,8 +108,6 @@ A.LayoutBuilderResizeCol.prototype = {
         }
 
         this._syncDragHandles();
-
-        this.get('layout').normalizeColsHeight(new A.NodeList(row));
 
         dragNode.show();
     },
@@ -279,16 +278,17 @@ A.LayoutBuilderResizeCol.prototype = {
      * @method _canDrop
      * @param {Node} dragNode
      * @param {Number} position
+     * @return {Boolean}
      * @protected
      */
     _canDrop: function(dragNode, position) {
         var col1 = dragNode.getData('layout-col1'),
             col2 = dragNode.getData('layout-col2'),
-            difference = position - dragNode.getData('layout-position'),
+            col1MinSize,
+            col2MinSize,
             diff1,
             diff2,
-            col1MinSize,
-            col2MinSize;
+            difference = position - dragNode.getData('layout-position');
 
         if (dragNode.getData('layout-action') === ADD_COLUMN_ACTION) {
             if ((col2 && difference < col2.get('size')) ||
@@ -392,7 +392,7 @@ A.LayoutBuilderResizeCol.prototype = {
      * Add new column for the given layout row after drop handler.
      *
      * @method _insertColumnAfterDropHandles
-     * @param {A.LayoutRow} dragNode
+     * @param {Node} dragNode
      * @protected
      */
      _insertColumnAfterDropHandles: function(dragNode){
@@ -401,14 +401,13 @@ A.LayoutBuilderResizeCol.prototype = {
             newCol = new A.LayoutCol(),
             newColPosition,
             newColumnSize = Math.abs(dragPosition - colLayoutPosition),
-            row = dragNode.ancestor(SELECTOR_ROW).getData('layout-row'),
-            rowColsLength = row.get('cols').length;
+            row = dragNode.ancestor(SELECTOR_ROW).getData('layout-row');
 
         if (dragPosition === 0) {
             newColPosition = 0;
         }
         else {
-            newColPosition = rowColsLength;
+            newColPosition = row.get('cols').length;
         }
 
         if (colLayoutPosition > 0 && colLayoutPosition < 12) {
