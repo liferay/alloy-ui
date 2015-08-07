@@ -97,10 +97,12 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
 
         this.after({
             activePageNumberChange: this._afterActivePageNumberChange,
-            pagesQuantityChange: this._afterPagesQuantityChange
+            pagesQuantityChange: this._afterPagesQuantityChange,
+            modeChange: this._afterModeChange
         });
 
         this._uiSetActivePageNumber(this.get('activePageNumber'));
+        this._uiSetMode(this.get('mode'));
     },
 
     /**
@@ -181,6 +183,16 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
      */
     _afterActivePageNumberChange: function(event) {
         this._uiSetActivePageNumber(event.newVal);
+    },
+
+    /**
+     * Fired after the `mode` attribute changes.
+     *
+     * @method _afterModeChange
+     * @protected
+     */
+    _afterModeChange: function() {
+        this._uiSetMode(this.get('mode'));
     },
 
     /**
@@ -399,15 +411,12 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
      * @protected
      */
     _onSwitchViewClick: function() {
-        var activePageNumber = this.get('activePageNumber'),
-            pagination = this._getPagination(),
-            tabview = this._getTabView();
-
-        pagination.get('contentBox').toggleView();
-        tabview.get('contentBox').toggleView();
-
-        pagination.set('page', activePageNumber);
-        tabview.selectChild(activePageNumber - 1);
+        if (this.get('mode') === 'pagination') {
+            this.set('mode', 'tabs');
+        }
+        else {
+            this.set('mode', 'pagination');
+        }
     },
 
     /**
@@ -478,6 +487,30 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
     },
 
     /**
+     * Switch the pages mode view.
+     *
+     * @method _uiSetMode
+     * @param {String} type
+     * @protected
+     */
+     _uiSetMode: function(type) {
+        var activePageNumber = this.get('activePageNumber'),
+            pagination = this._getPagination(),
+            tabview = this._getTabView();
+
+        if (type === 'tabs') {
+            pagination.get('contentBox').hide();
+            tabview.get('contentBox').show();
+            tabview.selectChild(activePageNumber - 1);
+        }
+        else {
+            pagination.get('contentBox').show();
+            tabview.get('contentBox').hide();
+            pagination.set('page', activePageNumber);
+        }
+    },
+
+    /**
      * Updates the ui according to the value of the `pagesQuantity` attribute.
      *
      * @method _uiSetPagesQuantity
@@ -494,7 +527,6 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
         this._pagination.getItem(activePageNumber).addClass('active');
         this._uiSetActivePageNumber(activePageNumber);
     },
-
 
     /**
      * Update all tabs title based on titles attribute.
@@ -542,6 +574,20 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
          */
         descriptions: {
             value: []
+        },
+
+        /**
+         * The mode of the pages visualization. Could be pagination or tabs.
+         *
+         * @attribute mode
+         * @default 'pagination'
+         * @type {String}
+         */
+        mode: {
+            validator: function(value) {
+                return (value === 'pagination' || value === 'tabs');
+            },
+            value: 'pagination'
         },
 
         /**

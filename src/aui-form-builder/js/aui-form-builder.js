@@ -97,14 +97,19 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     bindUI: function() {
-        var boundingBox = this.get('boundingBox');
+        var boundingBox = this.get('boundingBox'),
+            pages = this.get('pages');
 
         this._eventHandles.push(
             this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON_CIRCLE, this),
             boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' +
                 CSS_EMPTY_COL_ADD_BUTTON_CIRCLE),
-            A.getDoc().on('key', this._onEscKey, 'esc', this)
+            A.getDoc().on('key', this._onEscKey, 'esc', this),
+            pages.on('add', A.bind(this._addPage, this)),
+            pages.on('remove', A.bind(this._removeLayout, this)),
+            pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this)),
+            pages.after('updatePageContent', A.bind(this._afterUpdatePageContentChange, this))
         );
     },
 
@@ -130,8 +135,8 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             this._fieldSettingsModal.destroy();
         }
 
-        if (this._pages) {
-            this._pages.destroy();
+        if (this.get('pages')) {
+            this.get('pages').destroy();
         }
 
         (new A.EventHandle(this._eventHandles)).detach();
@@ -358,7 +363,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         this._updateUniqueFieldType();
 
         if (this.get('rendered')) {
-            pages = this._getPages();
+            pages = this.get('pages');
 
             pages.set('activePageNumber', 1);
             pages.set('pagesQuantity', this.get('layouts').length);
@@ -388,35 +393,28 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _getActiveLayoutIndex: function() {
-        return this.get('rendered') ? this._getPages().get('activePageNumber') - 1: 0;
+        return this.get('rendered') ? this.get('pages').get('activePageNumber') - 1: 0;
     },
 
     /**
-     * Returns the form builder pages instance.
-     *
-     * @method _getPages
+     * Form Builder Pages instance initializer. Receives a custom
+     * object of configurations or using default configurations instead.
+     * 
+     * @method _getPagesInstance
+     * @param {Object} config
      * @return {A.FormBuilderPages}
      * @protected
      */
-    _getPages: function() {
-        var contentBox;
+    _getPagesInstance: function(config) {
+        var contentBox = this.get('contentBox');
 
         if (!this._pages) {
-            contentBox = this.get('contentBox');
-
-            this._pages = new A.FormBuilderPages({
+            this._pages = new A.FormBuilderPages(A.merge({
                 pageHeader: contentBox.one('.' + CSS_PAGE_HEADER),
                 pagesQuantity: this.get('layouts').length,
                 paginationContainer: contentBox.one('.' + CSS_PAGES),
                 tabviewContainer: contentBox.one('.' + CSS_TABS)
-            });
-
-            this._eventHandles.push(
-                this._pages.on('add', A.bind(this._addPage, this)),
-                this._pages.on('remove', A.bind(this._removeLayout, this)),
-                this._pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this)),
-                this._pages.after('updatePageContent', A.bind(this._afterUpdatePageContentChange, this))
-            );
+            }, config));
         }
 
         return this._pages;
@@ -674,6 +672,17 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             valueFn: function() {
                 return [new A.Layout()];
             }
+        },
+
+        /**
+         * A Form Builder Pages instance.
+         *
+         * @attribute pages
+         * @type {A.FormBuilderPages} 
+         */
+        pages: {
+            getter: '_getPagesInstance',
+            validator: A.Lang.isObject
         },
 
         /**

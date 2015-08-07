@@ -260,6 +260,66 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
                     Y.Assert.areEqual('An aditional info about this page', descriptionNode.get('placeholder'));
                 });
             });
+        },
+
+        'should initialize with pagination tabs if the default option was replaced': function() {
+            this.createFormBuilderPages({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs',
+                mode: 'tabs'
+            });
+
+            Y.Assert.isFalse(Y.one('.tabbable-content').hasClass('hide'));
+            Y.Assert.isTrue(Y.one('.pagination-content').hasClass('hide'));
+        },
+
+        'should not mode attribute accept values not equal to `pagination` or `tabs`': function() {
+            var pages;
+
+            pages = this.createFormBuilderPages({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs',
+                mode: 'numbers'
+            });
+
+            Y.Assert.areNotEqual(pages.get('mode'), 'numbers');
+        },
+
+        'should the active tab match with current active page after switch page mode from pagination to tabs': function() {
+            this.createFormBuilderPages({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 2,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            Y.all('.pagination-control').item(1).simulate('click');
+            Y.one('.form-builder-switch-view').simulate('click');
+
+            Y.Assert.isTrue(Y.all('.nav.nav-tabs .tab').item(1).hasClass('active'));
+        },
+
+        'should the active page match with current active tab after page mode change from tabs to pagination': function() {
+            this.createFormBuilderPages({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 2,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs',
+                mode: 'tabs'
+            });
+
+            Y.all('.nav.nav-tabs .tab').item(1).simulate('click');
+            Y.one('.form-builder-switch-view').simulate('click');
+
+            Y.Assert.isTrue(Y.all('.pagination.pagination-content li').item(2).hasClass('active'));
         }
     }));
 
