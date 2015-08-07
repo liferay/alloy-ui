@@ -10,6 +10,59 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'AUI Form Builder Layout Builder Unit Tests',
 
+        /**
+         * Simulates dragging the given dragHandle.
+         *
+         * @param {Y.Test.Case} test
+         * @param {Node} dragHandle
+         * @param {Array} position
+         * @param {Function} done
+         * @protected
+         */
+        _simulateDrag: function(test, dragHandle, position, done) {
+            var shim;
+
+            dragHandle.simulate('mousedown');
+            test.wait(function() {
+                shim = Y.one('.yui3-dd-shim');
+
+                if (position) {
+                    if (Y.Lang.isFunction(position)) {
+                        position = position();
+                    }
+                    shim.simulate('mousemove', {
+                        clientX: position[0],
+                        clientY: position[1]
+                    });
+                }
+
+                dragHandle.simulate('mouseup');
+
+                if (done) {
+                    done();
+                }
+            }, Y.DD.DDM.get('clickTimeThresh') + 100);
+        },
+
+        /**
+         * Simulates dragging the given dragHandle to the given breakpoint.
+         *
+         * @method _simulateDragToBreakpoint
+         * @param {Y.Test.Case} test
+         * @param {Node} dragHandle
+         * @param {Node} breakpoint
+         * @param {Function} done
+         * @protected
+         */
+        _simulateDragToBreakpoint: function(test, dragHandle, breakpoint, done) {
+            this._simulateDrag(test, dragHandle, function() {
+                return [
+                    breakpoint.get('region').left,
+                    breakpoint.get('region').top
+                ];
+            }, done);
+        },
+
         init: function() {
             // Set the width to a big value so all layout buil
             // guaranteed to be turned on.
@@ -223,7 +276,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._createFormBuilder();
 
-            button = this._formBuilder.get('contentBox').one('.layout-builder-add-col');
+            button = this._formBuilder.get('contentBox').one('.layout-builder-resize-col-draggable-handle.expand-left');
             Y.Assert.isNotNull(button);
         },
 
@@ -547,15 +600,23 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
         },
 
         'should always add an empty row in the last position when a the previous row had more then one col': function() {
-            var layout;
+            var breakpoint,
+                dragHandle,
+                layout;
 
             this._formBuilder = new Y.FormBuilder().render('#container');
+
             layout = this._formBuilder.get('layouts')[0];
+            dragHandle = layout.get('node').one('.layout-builder-resize-col-draggable-handle.expand-left');
+            breakpoint = layout.get('rows')[0].get('node').all('.' + 'layout-builder-resize-col-breakpoint').item(1);
 
-            Y.one('.layout-builder-add-col').simulate('click');
+            Y.Assert.isNotNull(dragHandle);
+            Y.Assert.isNotNull(breakpoint);
 
-            Y.Assert.areEqual(2, layout.get('rows').length);
-            Y.Assert.areEqual(1, layout.get('rows')[1].get('cols').length);
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Y.Assert.areEqual(2, layout.get('rows').length);
+                Y.Assert.areEqual(1, layout.get('rows')[1].get('cols').length);
+            });
         }
     }));
 

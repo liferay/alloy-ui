@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1930](https://issues.liferay.com/browse/AUI-1930) Change functionality of add cols
 * [AUI-1931](https://issues.liferay.com/browse/AUI-1931) Add Tabs View mode
 * [AUI-1928](https://issues.liferay.com/browse/AUI-1928) Fields should be moved between others field in a same col
 * [AUI-1926](https://issues.liferay.com/browse/AUI-1926) Change functionality of move rows

@@ -4,15 +4,15 @@
  * @module aui-layout-builder-add-col
  */
 
-var CSS_ADD_COL = A.getClassName('layout', 'builder', 'add', 'col'),
-    CSS_ADD_COL_LEFT = A.getClassName('layout', 'builder', 'add', 'col', 'left'),
-    CSS_ADD_COL_RIGHT = A.getClassName('layout', 'builder', 'add', 'col', 'right'),
-    CSS_ADD_COL_TEXT = A.getClassName('layout', 'builder', 'add', 'col', 'text'),
-    SELECTOR_ROW = '.layout-row',
-    TPL_ADD_COL = '<div class="' + CSS_ADD_COL + '" tabindex="5">' +
-        '<span class="glyphicon glyphicon-th-large"></span>' +
-        '<span class="' + CSS_ADD_COL_TEXT + '">{addColumn}</span>' +
-        '</div>';
+var ADD_COLUMN_ACTION = 'addColumn',
+    CSS_ADD_COL_DRAGGABLE = A.getClassName('layout', 'builder', 'add', 'col', 'draggable'),
+    CSS_ADD_COL_DRAGGABLE_HANDLE = A.getClassName('layout', 'builder', 'add', 'col', 'handle'),
+    CSS_RESIZE_COL_DRAGGABLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable'),
+    CSS_RESIZE_COL_DRAGGABLE_BORDER = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'border'),
+    CSS_RESIZE_COL_DRAGGABLE_HANDLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'handle'),
+    CSS_RESIZE_COL_DRAGGABLE_HANDLE_EXPAND_LEFT = A.getClassName('expand', 'left'),
+    CSS_RESIZE_COL_DRAGGABLE_HANDLE_EXPAND_RIGHT = A.getClassName('expand', 'right'),
+    SELECTOR_ROW = '.layout-row';
 
 /**
  * LayoutBuilder extension, which can be used to add the funcionality of adding
@@ -27,6 +27,12 @@ var CSS_ADD_COL = A.getClassName('layout', 'builder', 'add', 'col'),
 A.LayoutBuilderAddCol = function() {};
 
 A.LayoutBuilderAddCol.prototype = {
+    TPL_RESIZE_ADD_COL: '<div data-layout-action="' + ADD_COLUMN_ACTION + '" class="' + 
+        CSS_RESIZE_COL_DRAGGABLE + ' ' + CSS_ADD_COL_DRAGGABLE + '">' +
+        '<div class="' + CSS_RESIZE_COL_DRAGGABLE_BORDER + '"></div>' +
+        '<div class="' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + '" tabindex="8">' +
+        '<span class="' + CSS_ADD_COL_DRAGGABLE_HANDLE + '"></span></div></div>',
+
     /**
      * Construction logic executed during `A.LayoutBuilderAddCol` instantiation.
      * Lifecycle.
@@ -37,6 +43,7 @@ A.LayoutBuilderAddCol.prototype = {
     initializer: function() {
         this._eventHandles.push(
             this.after('enableAddColsChange', this._afterEnableAddColsChange),
+            this.after('enableResizeColsChange', this._afterEnableAddColsChange),
             this.after('layout:isColumnModeChange', A.bind(this._afterAddColIsColumnModeChange, this))
         );
 
@@ -51,25 +58,6 @@ A.LayoutBuilderAddCol.prototype = {
      */
     destructor: function() {
         this._unbindAddColEvents();
-    },
-
-    /**
-     * Add a col to row.
-     *
-     * @method _addCol
-     * @param {Node} currentTarget
-     * @protected
-     */
-    _addCol: function(currentTarget) {
-        var addButton = A.one(currentTarget),
-            row = currentTarget.ancestor(SELECTOR_ROW).getData('layout-row');
-
-        if (addButton.hasClass(CSS_ADD_COL_LEFT)) {
-            row.addCol(0);
-        }
-        else {
-            row.addCol(row.get('cols').length);
-        }
     },
 
     /**
@@ -138,23 +126,31 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     _appendAddColButtonToSingleRow: function(row) {
-        var addColLeft,
-            addColRight,
-            addColTemplate,
-            colsLength,
-            layoutRow = row.getData('layout-row');
+        var cols,
+            layoutRow = row.getData('layout-row'),
+            draggableLeft,
+            draggableRight;
 
-        colsLength = layoutRow.get('cols').length;
-        addColTemplate = A.Lang.sub(TPL_ADD_COL, {
-            addColumn: this.get('strings').addColumn
-        });
+        cols = layoutRow.get('cols');
 
-        if (colsLength < layoutRow.get('maximumCols')) {
-            addColLeft = A.Node.create(addColTemplate).addClass(CSS_ADD_COL_LEFT);
-            addColRight = A.Node.create(addColTemplate).addClass(CSS_ADD_COL_RIGHT);
+        if (cols.length < layoutRow.get('maximumCols')) {
+            draggableLeft = A.Node.create(this.TPL_RESIZE_ADD_COL);
+            draggableRight = A.Node.create(this.TPL_RESIZE_ADD_COL);
 
-            row.append(addColLeft);
-            row.append(addColRight);
+            draggableLeft.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).addClass(CSS_RESIZE_COL_DRAGGABLE_HANDLE_EXPAND_LEFT);
+            draggableLeft.one('.' + CSS_ADD_COL_DRAGGABLE_HANDLE).addClass(this.get('addButtonLeftClass'));
+            draggableLeft.setStyle('left', '0%');
+            draggableLeft.setData('layout-position', 0);
+            draggableLeft.setData('layout-col2', cols[0]);
+            
+            draggableRight.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).addClass(CSS_RESIZE_COL_DRAGGABLE_HANDLE_EXPAND_RIGHT);
+            draggableRight.one('.' + CSS_ADD_COL_DRAGGABLE_HANDLE).addClass(this.get('addButtonRightClass'));
+            draggableRight.setStyle('left', '100%');
+            draggableRight.setData('layout-position', layoutRow.get('maximumCols'));
+            draggableRight.setData('layout-col1', cols[cols.length - 1]);
+
+            row.append(draggableLeft);
+            row.append(draggableRight);
         }
     },
 
@@ -166,36 +162,20 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     _bindAddColEvents: function() {
-        var container = this.get('container');
-
         this._addColsEventHandles = [
-            container.delegate('click', A.bind(this._onMouseClickAddColEvent, this), '.' + CSS_ADD_COL),
-            container.delegate('key', A.bind(this._onKeyPressAddColEvent, this), 'press:13', '.' + CSS_ADD_COL),
             this.after('layout-row:colsChange', this._afterAddColLayoutColsChange),
             this.after('layout:rowsChange', this._afterAddColRowsChange)
         ];
     },
 
     /**
-     * Fired on `key:press` event for the add column button.
+     * Removes all add col buttons.
      *
-     * @method _onKeyPressAddColEvent
-     * @param {EventFacade} event
+     * @method _removeAddColButton
      * @protected
      */
-    _onKeyPressAddColEvent: function(event) {
-        this._addCol(event.currentTarget);
-    },
-
-    /**
-     * Fired on `click` event for the add column button.
-     *
-     * @method _onMouseClickAddColEvent
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onMouseClickAddColEvent: function(event) {
-        this._addCol(event.currentTarget);
+    _removeAddColButton: function() {
+        this._layoutContainer.all('.' + CSS_ADD_COL_DRAGGABLE).remove();
     },
 
     /**
@@ -206,7 +186,7 @@ A.LayoutBuilderAddCol.prototype = {
      * @protected
      */
     _uiSetEnableAddCols: function(enableAddCols) {
-        if (enableAddCols && this.get('layout').get('isColumnMode')) {
+        if (enableAddCols && this.get('layout').get('isColumnMode') && this.get('enableResizeCols')) {
             this._appendAddColButtonToRows();
             this._bindAddColEvents();
         }
@@ -214,16 +194,6 @@ A.LayoutBuilderAddCol.prototype = {
             this._removeAddColButton();
             this._unbindAddColEvents();
         }
-    },
-
-    /**
-     * Removes all add col buttons.
-     *
-     * @method _removeAddColButton
-     * @protected
-     */
-    _removeAddColButton: function() {
-        this._layoutContainer.all('.' + CSS_ADD_COL).remove();
     },
 
     /**
@@ -249,6 +219,30 @@ A.LayoutBuilderAddCol.prototype = {
  * @static
  */
 A.LayoutBuilderAddCol.ATTRS = {
+    /**
+     * Class name to the add handler on the left side of the layout
+     *
+     * @attribute addButtonLeftClass
+     * @default "glyphicon glyphicon-hand-right"
+     * @type {String}
+     */
+    addButtonLeftClass: {
+        validator: A.Lang.isString,
+        value: 'glyphicon glyphicon-hand-right'
+    },
+
+    /**
+     * Class name to the add handler on the right side of the layout
+     *
+     * @attribute addButtonRightClass
+     * @default "glyphicon glyphicon-hand-left"
+     * @type {String}
+     */
+    addButtonRightClass: {
+        validator: A.Lang.isString,
+        value: 'glyphicon glyphicon-hand-left'
+    },
+
     /**
      * Flag indicating if the feature of adding columns to the layout is
      * enabled or not.

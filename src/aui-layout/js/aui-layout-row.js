@@ -44,19 +44,28 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      * @param {A.LayoutCol} col Col to be added.
      */
     addCol: function(index, col) {
-        var cols = this.get('cols').concat();
+        var cols = this.get('cols').concat(),
+            insertIndex = index;
 
         if (A.Lang.isUndefined(index)) {
-            index = cols.length;
+            insertIndex = cols.length;
+        }
+        else if (A.instanceOf(index, A.LayoutCol)) {
+            insertIndex = cols.length;
+            col = index;
         }
 
         if (!col) {
             col = new A.LayoutCol();
         }
 
-        cols.splice(index, 0, col);
+        if (insertIndex > cols.length) {
+            insertIndex = cols.length;
+        }
 
-        cols = this._resizeCols(cols);
+        cols.splice(insertIndex, 0, col);
+
+        cols = this._resizeColsAfterAdding(cols, insertIndex);
 
         this.set('cols', cols);
     },
@@ -106,6 +115,51 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     },
 
     /**
+     * Resize cols width passing a size.
+     *
+     * @method _expandNeighborColsWidth
+     * @param {Array} cols Columns to be resized
+     * @param {Number} size Size to shared between the columns
+     * will be increase or decrease
+     * @protected
+     */
+    _expandNeighborColsWidth: function(cols, size) {
+        var col1 = cols[0],
+            col2 = cols[1];
+
+        col1.set('size', col1.get('size') + Math.ceil(size / cols.length));
+
+        if (col2) {
+            col2.set('size', col2.get('size') + Math.floor(size / cols.length));
+        }
+    },
+
+    /**
+     * Find a next and previous column.
+     *
+     * @method _findNeighbors
+     * @param {Array} cols Columns to search into.
+     * @param {Number} index Column index reference.
+     * @return {Array} Columns neighbors.
+     * @protected
+     */
+    _findNeighbors: function(cols, index) {
+        var nextCol = cols[index + 1],
+            previousCol = cols[index - 1],
+            neighbor = [];
+
+        if (previousCol) {
+            neighbor.push(previousCol);
+        }
+
+        if (nextCol) {
+            neighbor.push(nextCol);
+        }
+
+        return neighbor;
+    },
+
+    /**
      * Returns the sum of all this row's column sizes.
      *
      * @method getSize
@@ -127,6 +181,32 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     },
 
     /**
+     * Resize cols width passing a size.
+     *
+     * @method _reduceNeighborColsWidth
+     * @param {Array} cols Columns to be resized
+     * @param {Number} size Size to shared between the columns
+     * @protected
+     */
+    _reduceNeighborColsWidth: function(cols, size) {
+        var majorCol = cols[0],
+            minorCol,
+            remove = 0;
+
+        if (cols[1] && cols[1].get('size') > cols[0].get('size')) {
+            minorCol = cols[0];
+            majorCol = cols[1];
+        }
+
+        if (minorCol) {
+            remove = Math.min(Math.floor(size / cols.length), minorCol.get('size') - 1);
+            minorCol.set('size', minorCol.get('size') - remove);
+        }
+
+        majorCol.set('size', majorCol.get('size') - (size - remove));
+    },
+
+    /**
      * Removes a col from this row by it's index.
      *
      * @method _removeColByIndex
@@ -135,8 +215,9 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
      */
     _removeColByIndex: function(index) {
         var cols = this.get('cols').concat();
+
         cols.splice(index, 1);
-        cols = this._resizeCols(cols);
+        cols = this._resizeColsAfterRemoving(cols, index);
         this.set('cols', cols);
     },
 
@@ -159,38 +240,62 @@ A.LayoutRow = A.Base.create('layout-row', A.Base, [], {
     /**
      * Resizes cols.
      *
-     * @method _resizeCols
+     * @method _resizeColsAfterAdding
      * @param {Array} cols Columns to be resized.
+     * @param {Number} index Column index reference.
      * @return {Array} Columns resized.
      * @protected
      */
-    _resizeCols: function(cols) {
-        var colsLength = cols.length,
-            colSize = ALLOWED_SIZE / colsLength,
-            difference = 0,
-            i = 0,
-            lastSize,
-            totalSize = colsLength * colSize;
+    _resizeColsAfterAdding: function(cols, index) {
+        var colSize = cols[index].get('size'),
+            previousColSize = 0,
+            nextColSize = 0,
+            maxWidth = 0,
+            neighbor = this._findNeighbors(cols, index);
 
-        if (!A.Lang.isInteger(colSize)) {
-            colSize = Math.round(colSize);
-            totalSize = colsLength * colSize;
+        previousColSize = neighbor[0].get('size');
 
-            if (totalSize > ALLOWED_SIZE) {
-                difference = totalSize - ALLOWED_SIZE;
-            }
+        if (neighbor[1]) {
+            nextColSize = neighbor[1].get('size');
         }
 
-        A.each(cols, function(col) {
-            col.set('size', colSize);
-        });
+        maxWidth = (previousColSize + nextColSize) - neighbor.length;
 
-        for (i = 0; i < difference; i++) {
-            cols[i].set('size', cols[i].get('size') - 1);
+        if (colSize > maxWidth) {
+            colSize = maxWidth;
         }
 
-        lastSize = ALLOWED_SIZE - (totalSize - colSize - difference);
-        cols[cols.length - 1].set('size', lastSize);
+        this._reduceNeighborColsWidth(neighbor, colSize);
+
+        cols[index].set('size', colSize);
+
+        return cols;
+    },
+
+    /**
+     * Expand nearby cols after deletting another one.
+     *
+     * @method _resizeColsAfterRemoving
+     * @param {Array} cols Columns to be resized.
+     * @param {Number} index Column index reference.
+     * @return {Array} Columns resized.
+     * @protected
+     */
+    _resizeColsAfterRemoving: function(cols, index) {
+        var removedColSize = ALLOWED_SIZE - this._getSize(cols),
+            neighbor;
+
+        neighbor = [];
+
+        if (cols[index]) {
+            neighbor.push(cols[index]);
+        }
+
+        if (cols[index - 1]) {
+            neighbor.push(cols[index - 1]);
+        }
+
+        this._expandNeighborColsWidth(neighbor, removedColSize);
 
         return cols;
     },

@@ -54,79 +54,96 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
             }, config));
         },
 
-        'should add a col to a row when click on add col button': function() {
-            var addColButton,
-                col,
-                layout;
+        /**
+         * Simulates dragging the given dragHandle.
+         *
+         * @param {Y.Test.Case} test
+         * @param {Node} dragHandle
+         * @param {Array} position
+         * @param {Function} done
+         * @protected
+         */
+        _simulateDrag: function(test, dragHandle, position, done) {
+            var shim;
 
-            this._createLayoutBuilder();
+            dragHandle.simulate('mousedown');
+            test.wait(function() {
+                shim = Y.one('.yui3-dd-shim');
 
-            col = Y.one('.col-md-6');
-            addColButton = col.ancestor().one('.layout-builder-add-col');
-            addColButton.simulate('click');
+                if (position) {
+                    if (Y.Lang.isFunction(position)) {
+                        position = position();
+                    }
+                    shim.simulate('mousemove', {
+                        clientX: position[0],
+                        clientY: position[1]
+                    });
+                }
 
-            layout = this._layoutBuilder.get('layout');
-            Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 3);
+                dragHandle.simulate('mouseup');
+
+                if (done) {
+                    done();
+                }
+            }, Y.DD.DDM.get('clickTimeThresh') + 100);
         },
 
-        'should add a col at the beginning of a row when click on the left button': function() {
-            var addColButton,
-                container,
-                firstCol,
-                row;
+        /**
+         * Simulates dragging the given dragHandle to the given breakpoint.
+         *
+         * @method _simulateDragToBreakpoint
+         * @param {Y.Test.Case} test
+         * @param {Node} dragHandle
+         * @param {Node} breakpoint
+         * @param {Function} done
+         * @protected
+         */
+        _simulateDragToBreakpoint: function(test, dragHandle, breakpoint, done) {
+            done = done || function(){};
+            this._simulateDrag(test, dragHandle, function() {
+                return [
+                    breakpoint.get('region').left,
+                    breakpoint.get('region').top
+                ];
+            }, done);
+        },
+
+        'should add addColButton to new rows': function() {
+            var addColButtons,
+                addRowArea,
+                container;
 
             this._createLayoutBuilder();
 
             container = this._layoutBuilder.get('container');
-            row = container.one('.row');
+            addColButtons = container.all('.layout-builder-add-col-handle');
 
-            firstCol = row.one('.col');
+            Y.Assert.areEqual(4, addColButtons.size());
 
-            Y.Assert.isNotNull(firstCol.getData('layout-col').get('value'));
+            addRowArea = container.one('.layout-builder-add-row-choose-row');
+            addRowArea.simulate('click');
 
-            addColButton = row.one('.layout-builder-add-col-left');
-            addColButton.simulate('click');
+            addColButtons = container.all('.layout-builder-add-col-handle');
 
-            firstCol = row.one('.col');
-
-            Y.Assert.isNull(firstCol.getData('layout-col').get('value'));
-        },
-
-        'should add a col at the end of a row when click on the right button': function() {
-            var addColButton,
-                container,
-                lastCol,
-                row;
-
-            this._createLayoutBuilder();
-
-            container = this._layoutBuilder.get('container');
-            row = container.one('.row');
-
-            lastCol = row.all('.col').last();
-
-            Y.Assert.isNotNull(lastCol.getData('layout-col').get('value'));
-
-            addColButton = row.one('.layout-builder-add-col-right');
-            addColButton.simulate('click');
-
-            lastCol = row.all('.col').last();
-
-            Y.Assert.isNull(lastCol.getData('layout-col').get('value'));
+            Y.Assert.areEqual(6, addColButtons.size());
         },
 
         'should not append addCol button if row alreay has the maximum number of cols': function() {
             var cols,
-                firstRow;
+                firstRow,
+                i = 0;
 
             this._createLayoutBuilder();
 
             firstRow = this._layoutBuilder.get('layout').get('rows')[0];
             cols = firstRow.get('cols');
 
-            while (firstRow.get('cols').length < firstRow.get('maximumCols')) {
-                firstRow.addCol();
+            while (i < firstRow.get('maximumCols') + 2) {
+                firstRow.addCol(i);
+                i ++;
             }
+
+            Y.Assert.areEqual(firstRow.get('cols').length, firstRow.get('maximumCols'));
 
             Y.Assert.isNull(firstRow.get('node').one('.layout-builder-add-col'));
         },
@@ -146,75 +163,32 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
         },
 
         'should enable/disable adding columns dynamically': function() {
-            var addColButton,
+            var dragHandle,
+                breakpoint,
                 col,
-                layout;
+                layout,
+                instance = this;
 
-            this._createLayoutBuilder();
+            instance._createLayoutBuilder();
 
             col = Y.one('.col-md-6');
 
-            this._layoutBuilder.set('enableAddCols', false);
+            instance._layoutBuilder.set('enableAddCols', false);
 
-            addColButton = col.ancestor().one('.layout-builder-add-col');
-            Y.Assert.isNull(addColButton);
+            dragHandle = Y.one('.layout-builder-resize-col-draggable-handle.expand-left');
+            Y.Assert.isNull(dragHandle);
 
-            this._layoutBuilder.set('enableAddCols', true);
+            instance._layoutBuilder.set('enableAddCols', true);
 
-            addColButton = col.ancestor().one('.layout-builder-add-col');
-            Y.Assert.isNotNull(addColButton);
+            dragHandle = Y.one('.layout-builder-resize-col-draggable-handle.expand-left');
+            Y.Assert.isNotNull(dragHandle);
 
-            addColButton.simulate('click');
-            layout = this._layoutBuilder.get('layout');
-            Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 3);
-        },
+            breakpoint = col.ancestor().all('.layout-builder-resize-col-breakpoint').item(1);
 
-        'should add two add col buttons per row': function() {
-            var container,
-                row;
-
-            this._createLayoutBuilder();
-
-            container = this._layoutBuilder.get('container');
-            row = container.one('.row');
-
-            Y.Assert.areEqual(2, row.all('.layout-builder-add-col').size());
-        },
-
-        'should add addColButton to new rows': function() {
-            var addColButtons,
-                addRowArea,
-                container;
-
-            this._createLayoutBuilder();
-
-            container = this._layoutBuilder.get('container');
-            addColButtons = container.all('.layout-builder-add-col');
-
-            Y.Assert.areEqual(4, addColButtons.size());
-
-            addRowArea = container.one('.layout-builder-add-row-choose-row');
-            addRowArea.simulate('click');
-
-            addColButtons = container.all('.layout-builder-add-col');
-
-            Y.Assert.areEqual(6, addColButtons.size());
-        },
-
-        'should add a col when press enter on add col button': function() {
-            var addColButton,
-                row;
-
-            this._createLayoutBuilder();
-
-            addColButton = Y.one('.layout-builder-add-col');
-            row = addColButton.ancestor('.row');
-
-            Y.Assert.areEqual(2, row.getData('layout-row').get('cols').length);
-
-            addColButton.simulate('keypress', { keyCode: 13 });
-
-            Y.Assert.areEqual(3, row.getData('layout-row').get('cols').length);
+            instance._simulateDragToBreakpoint(instance, dragHandle, breakpoint, function() {
+                layout = instance._layoutBuilder.get('layout');
+                Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 3);
+            });
         },
 
         'should remove add col feature on smartphones': function() {
@@ -227,40 +201,50 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             layout._set('isColumnMode', false);
 
-            addColButton = Y.one('.layout-builder-add-col');
+            addColButton = Y.one('.layout-builder-add-col-handle');
 
             Y.Assert.isNull(addColButton);
         },
 
         'should normalize cols height after add a new col': function() {
-            var addColButton,
-                layout;
+            var breakpoint,
+                dragHandle,
+                layout,
+                row;
 
             this._createLayoutBuilder();
 
             layout = this._layoutBuilder.get('layout');
+            row = layout.get('rows')[0];
+            dragHandle = row.get('node').one('.layout-builder-resize-col-draggable-handle.expand-right');
+            breakpoint = row.get('node').all('.layout-builder-resize-col-breakpoint').item(11);
 
             Y.Mock.expect(layout, {
                 args: [Y.Mock.Value.Object],
                 method: 'normalizeColsHeight'
             });
 
-            addColButton = Y.one('.layout-builder-add-col');
-            addColButton.simulate('click');
-
-            Y.Mock.verify(layout);
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Y.Mock.verify(layout); 
+            });
         },
 
         'should not scroll when add a new col': function() {
-            var addColButton,
+            var breakpoint,
+                dragHandle,
+                instance = this,
                 layout,
+                row,
                 scrollPositionAfter,
                 scrollPositionBefore,
                 win = Y.config.win;
 
-            this._createLayoutBuilder();
+            instance._createLayoutBuilder();
 
-            layout = this._layoutBuilder.get('layout');
+            layout = instance._layoutBuilder.get('layout');
+            row = layout.get('rows')[0];
+            dragHandle = row.get('node').one('.layout-builder-resize-col-draggable-handle.expand-right');
+            breakpoint = row.get('node').all('.layout-builder-resize-col-breakpoint').item(11);
 
             for (var i = 0; i < 20; i++) {
                 layout.addRow();
@@ -268,16 +252,55 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             win.scrollTo(0, Y.one('body').get('region').height);
 
-            this.wait(function() {
+            instance.wait(function() {
                 scrollPositionBefore = win.scrollY;
 
-                addColButton = Y.all('.layout-builder-add-col').last();
-                addColButton.simulate('click');
+                instance._simulateDragToBreakpoint(instance, dragHandle, breakpoint, function() {
+                    scrollPositionAfter = win.scrollY;
 
-                scrollPositionAfter = win.scrollY;
-
-                Y.Assert.areEqual(scrollPositionBefore, scrollPositionAfter);
+                    Y.Assert.areEqual(scrollPositionBefore, scrollPositionAfter);
+                });
             }, 100);
+        },
+
+        'should insert a new column on the left after drop the left draggable handle': function() {
+            var dragHandle,
+                breakpoint,
+                layout,
+                row;
+
+            this._createLayoutBuilder();
+
+            layout = this._layoutBuilder.get('layout');
+            row = layout.get('rows')[0];
+            dragHandle = row.get('node').one('.layout-builder-resize-col-draggable-handle.expand-left');
+            breakpoint = row.get('node').all('.layout-builder-resize-col-breakpoint').item(1);
+
+            Y.Assert.areEqual(row.get('cols').length, 2);
+
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 3);
+            });
+        },
+
+        'should insert a new column on the right after drop the right draggable handle': function() {
+            var layout,
+                row,
+                dragHandle,
+                breakpoint;
+
+            this._createLayoutBuilder();
+
+            layout = this._layoutBuilder.get('layout');
+            row = layout.get('rows')[0];
+            dragHandle = row.get('node').one('.layout-builder-resize-col-draggable-handle.expand-right');
+            breakpoint = row.get('node').all('.layout-builder-resize-col-breakpoint').item(11);
+
+            Y.Assert.areEqual(row.get('cols').length, 2);
+
+            this._simulateDragToBreakpoint(this, dragHandle, breakpoint, function() {
+                Y.Assert.areEqual(layout.get('rows')[0].get('cols').length, 3);
+            });
         }
     }));
 
