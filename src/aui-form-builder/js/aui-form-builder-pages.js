@@ -644,18 +644,6 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
         },
 
         /**
-         * List of all pages titles.
-         *
-         * @attribute titles
-         * @default []
-         * @type {Array}
-         * @writeOnce
-         */
-        titles: {
-            value: []
-        },
-
-        /**
          * Container for the tab view.
          *
          * @attribute tabviewContainer
@@ -666,6 +654,18 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
         tabviewContainer: {
             setter: A.one,
             writeOnce: true
+        },
+
+        /**
+         * List of all pages titles.
+         *
+         * @attribute titles
+         * @default []
+         * @type {Array}
+         * @writeOnce
+         */
+        titles: {
+            value: []
         }
     }
 });

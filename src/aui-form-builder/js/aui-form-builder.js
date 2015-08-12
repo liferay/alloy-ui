@@ -232,6 +232,19 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
+     * Adds a field into field's nested list and normalizes the columns height.
+     *
+     * @method _addNestedField
+     * @param {A.FormField} field The Field with nested list that will receive the field
+     * @param {A.FormField} nested Field to add as nested
+     * @param {Number} index The position where the nested field should be added
+     * @protected
+     */
+    _addNestedField: function(field, nested, index) {
+        field.addNestedField(index, nested);
+    },
+
+    /**
      * Adds a new page on form builder.
      *
      * @method _addPage
@@ -247,19 +260,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         layouts.push(newLayout);
         this.set('layouts', layouts);
-    },
-
-    /**
-     * Adds a field into field's nested list and normalizes the columns height.
-     *
-     * @method _addNestedField
-     * @param {A.FormField} field The Field with nested list that will receive the field
-     * @param {A.FormField} nested Field to add as nested
-     * @param {Number} index The position where the nested field should be added
-     * @protected
-     */
-    _addNestedField: function(field, nested, index) {
-        field.addNestedField(index, nested);
     },
 
     /**
@@ -319,6 +319,32 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
+     * Fires after layouts changes.
+     *
+     * @method _afterLayoutsChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterLayoutsChange: function(event) {
+        var pages;
+
+        A.Array.invoke(event.prevVal, 'removeTarget', this);
+        A.Array.invoke(event.newVal, 'addTarget', this);
+
+        this._updatePageContent(this.get('layouts')[0]);
+        this._updateUniqueFieldType();
+
+        if (this.get('rendered')) {
+            pages = this.get('pages');
+
+            pages.set('activePageNumber', 1);
+            pages.set('pagesQuantity', this.get('layouts').length);
+        }
+
+        this._checkLastRow();
+    },
+
+    /**
      * Fired after the `layout-row:colsChange` event is triggered.
      *
      * @method _afterLayoutColsChange
@@ -343,32 +369,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         }
         this._renderEmptyColumns();
         this._updateUniqueFieldType();
-        this._checkLastRow();
-    },
-
-    /**
-     * Fires after layouts changes.
-     *
-     * @method _afterLayoutsChange
-     * @param {EventFacade} event
-     * @protected
-     */
-    _afterLayoutsChange: function(event) {
-        var pages;
-
-        A.Array.invoke(event.prevVal, 'removeTarget', this);
-        A.Array.invoke(event.newVal, 'addTarget', this);
-
-        this._updatePageContent(this.get('layouts')[0]);
-        this._updateUniqueFieldType();
-
-        if (this.get('rendered')) {
-            pages = this.get('pages');
-
-            pages.set('activePageNumber', 1);
-            pages.set('pagesQuantity', this.get('layouts').length);
-        }
-
         this._checkLastRow();
     },
 
@@ -460,16 +460,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Fires when the esc key is pressed
-     *
-     * @method _onEscKey
-     * @protected
-     */
-    _onEscKey: function() {
-        this._newFieldContainer = null;
-    },
-
-    /**
      * Turns the given column into an empty form builder column.
      *
      * @method _makeEmptyFieldList
@@ -489,6 +479,16 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      */
     _onClickAddField: function(event) {
         this._openNewFieldPanel(event.currentTarget);
+    },
+
+    /**
+     * Fires when the esc key is pressed.
+     *
+     * @method _onEscKey
+     * @protected
+     */
+    _onEscKey: function() {
+        this._newFieldContainer = null;
     },
 
     /**
