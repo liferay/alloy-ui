@@ -400,16 +400,16 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * Form Builder Pages instance initializer. Receives a custom
      * object of configurations or using default configurations instead.
      * 
-     * @method _getPagesInstance
+     * @method _getPageManagerInstance
      * @param {Object} config
      * @return {A.FormBuilderPages}
      * @protected
      */
-    _getPagesInstance: function(config) {
+    _getPageManagerInstance: function(config) {
         var contentBox = this.get('contentBox');
 
-        if (!this._pages) {
-            this._pages = new A.FormBuilderPages(A.merge({
+        if (!this._pageManager) {
+            this._pageManager = new A.FormBuilderPageManager(A.merge({
                 pageHeader: contentBox.one('.' + CSS_PAGE_HEADER),
                 pagesQuantity: this.get('layouts').length,
                 paginationContainer: contentBox.one('.' + CSS_PAGES),
@@ -417,7 +417,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             }, config));
         }
 
-        return this._pages;
+        return this._pageManager;
     },
 
     /**
@@ -681,7 +681,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
          * @type {A.FormBuilderPages} 
          */
         pages: {
-            getter: '_getPagesInstance',
+            getter: '_getPageManagerInstance',
             validator: A.Lang.isObject
         },
 

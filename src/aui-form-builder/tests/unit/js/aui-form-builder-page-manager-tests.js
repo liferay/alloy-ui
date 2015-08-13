@@ -1,6 +1,6 @@
-YUI.add('aui-form-builder-pages-tests', function(Y) {
+YUI.add('aui-form-builder-page-manager-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-form-builder-pages');
+    var suite = new Y.Test.Suite('aui-form-builder-page-manager');
 
     suite.add(new Y.Test.Case({
         name: 'Form Builder Pages Tests',
@@ -22,12 +22,12 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
         /**
          * Creates a new form builder pages instance with the given config.
          *
-         * @method createFormBuilderPages
+         * @method createFormBuilderPageManager
          * @param {Object} config
-         * @return {Y.FormBuilderPages}
+         * @return {Y.FormBuilderPageManager}
          */
-        createFormBuilderPages: function(config) {
-            this._pages = new Y.FormBuilderPages(config);
+        createFormBuilderPageManager: function(config) {
+            this._pages = new Y.FormBuilderPageManager(config);
 
             return this._pages;
         },
@@ -54,7 +54,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             var pages,
                 title;
 
-            pages = this.createFormBuilderPages({
+            pages = this.createFormBuilderPageManager({
                 activePageNumber: 10,
                 pageHeader: '#header',
                 pagesQuantity: 10,
@@ -71,7 +71,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
         },
 
         'should add a new page on addPage button clicked': function() {
-            this.createFormBuilderPages({
+            this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 1,
@@ -81,13 +81,13 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
  
             Y.Assert.areEqual(3, Y.one('.pagination-content').all('li').size());
 
-            Y.one('.form-builder-pages-add-page').simulate('click');
+            Y.one('.form-builder-page-manager-add-page').simulate('click');
 
             Y.Assert.areEqual(4, Y.one('.pagination-content').all('li').size());
         },
 
         'should remove the current page on removePage button clicked': function() {
-            this.createFormBuilderPages({
+            this.createFormBuilderPageManager({
                 activePageNumber: 2,
                 pageHeader: '#header',
                 pagesQuantity: 2,
@@ -97,17 +97,17 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
 
             Y.Assert.areEqual(4, Y.one('.pagination-content').all('li').size());
 
-            Y.one('.form-builder-pages-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-remove-page').simulate('click');
 
             Y.Assert.areEqual(3, Y.one('.pagination-content').all('li').size());
 
-            Y.one('.form-builder-pages-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-remove-page').simulate('click');
 
             Y.Assert.areEqual(3, Y.one('.pagination-content').all('li').size());
         },
 
         'should add a new tab on addPage button clicked': function() {
-            this.createFormBuilderPages({
+            this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 1,
@@ -117,13 +117,13 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
  
             Y.Assert.areEqual(1, Y.one('.tabbable-content').all('.tab').size());
 
-            Y.one('.form-builder-pages-add-page').simulate('click');
+            Y.one('.form-builder-page-manager-add-page').simulate('click');
 
             Y.Assert.areEqual(2, Y.one('.tabbable-content').all('.tab').size());
         },
 
         'should remove the current tab on removePage button clicked': function() {
-            this.createFormBuilderPages({
+            this.createFormBuilderPageManager({
                 activePageNumber: 2,
                 pageHeader: '#header',
                 pagesQuantity: 2,
@@ -133,11 +133,11 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
 
             Y.Assert.areEqual(2, Y.one('.tabbable-content').all('.tab').size());
 
-            Y.one('.form-builder-pages-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-remove-page').simulate('click');
 
             Y.Assert.areEqual(1, Y.one('.tabbable-content').all('.tab').size());
 
-            Y.one('.form-builder-pages-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-remove-page').simulate('click');
 
             Y.Assert.areEqual(1, Y.one('.tabbable-content').all('.tab').size());
         },
@@ -146,7 +146,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             var pages,
                 titleNode;
 
-            pages = this.createFormBuilderPages({
+            pages = this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 1,
@@ -170,7 +170,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             var pages,
                 titleNode;
 
-            pages = this.createFormBuilderPages({
+            pages = this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 1,
@@ -195,7 +195,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
         'should show/hide the tabview/pagination on switch button clicked': function() {
             var pages;
 
-            pages = this.createFormBuilderPages({
+            pages = this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 1,
@@ -220,7 +220,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
         'should show the right title on page change': function() {
             var titleNode;
 
-            this.createFormBuilderPages({
+            this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 2,
@@ -242,7 +242,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
             var descriptionNode,
                 pages;
 
-            pages = this.createFormBuilderPages({
+            pages = this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 1,
@@ -263,7 +263,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
         },
 
         'should initialize with pagination tabs if the default option was replaced': function() {
-            this.createFormBuilderPages({
+            this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 1,
@@ -279,7 +279,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
         'should not mode attribute accept values not equal to `pagination` or `tabs`': function() {
             var pages;
 
-            pages = this.createFormBuilderPages({
+            pages = this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 1,
@@ -292,7 +292,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
         },
 
         'should the active tab match with current active page after switch page mode from pagination to tabs': function() {
-            this.createFormBuilderPages({
+            this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 2,
@@ -307,7 +307,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
         },
 
         'should the active page match with current active tab after page mode change from tabs to pagination': function() {
-            this.createFormBuilderPages({
+            this.createFormBuilderPageManager({
                 activePageNumber: 1,
                 pageHeader: '#header',
                 pagesQuantity: 2,
@@ -325,7 +325,7 @@ YUI.add('aui-form-builder-pages-tests', function(Y) {
 
     Y.Test.Runner.add(suite);
 }, '', {
-    requires: ['aui-form-builder-pages', 'node-event-simulate', 'test'],
+    requires: ['aui-form-builder-page-manager', 'node-event-simulate', 'test'],
     test: function(Y) {
         return Y.UA.ie === 0 || Y.UA.ie > 8;
     }

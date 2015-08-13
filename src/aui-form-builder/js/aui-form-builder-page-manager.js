@@ -2,15 +2,15 @@
  * The Form Builder Pages Builder Component
  *
  * @module aui-form-builder
- * @submodule aui-form-builder-pages
+ * @submodule aui-form-builder-page-manager
  */
 
-var CSS_FORM_BUILDER_ADD_PAGE = A.getClassName('form', 'builder', 'pages', 'add', 'page'),
+var CSS_FORM_BUILDER_ADD_PAGE = A.getClassName('form', 'builder', 'page', 'manager', 'add', 'page'),
     CSS_FORM_BUILDER_PAGE_CONTROLS = A.getClassName('form', 'builder', 'page', 'controls'),
-    CSS_FORM_BUILDER_PAGES_CONTENT = A.getClassName('form', 'builder', 'pages', 'content'),
+    CSS_FORM_BUILDER_PAGES_CONTENT = A.getClassName('form', 'builder', 'page', 'manager', 'content'),
     CSS_FORM_BUILDER_PAGINATION = A.getClassName('form', 'builder', 'pagination'),
     CSS_FORM_BUILDER_REMOVE_PAGE =
-        A.getClassName('form', 'builder', 'pages', 'remove', 'page'),
+        A.getClassName('form', 'builder', 'page', 'manager', 'remove', 'page'),
     CSS_FORM_BUILDER_SWITCH_VIEW = A.getClassName('form', 'builder', 'switch', 'view'),
     CSS_FORM_BUILDER_TABS_CONTENT = A.getClassName('form', 'builder', 'tabs', 'content'),
     CSS_FORM_BUILDER_TABVIEW = A.getClassName('form', 'builder', 'tabview'),
@@ -33,7 +33,7 @@ var CSS_FORM_BUILDER_ADD_PAGE = A.getClassName('form', 'builder', 'pages', 'add'
  *     properties.
  * @constructor
  */
-A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
+A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, [], {
 
     TPL_PAGE_HEADER: '<div class="' + CSS_PAGE_HEADER + ' form-inline">' +
         '<input placeholder="{untitledPage}" tabindex="1" class="' + CSS_PAGE_HEADER_TITLE + ' ' +
