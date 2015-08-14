@@ -86,7 +86,7 @@ Base.prototype = {
 
             cursorPosition = editor.getCursorPosition();
 
-            Range = require('ace/range').Range;
+            Range = ace.require('ace/range').Range;
 
             overwriteRange = new Range(startRow, startColumn, cursorPosition.row, cursorPosition.column);
 
