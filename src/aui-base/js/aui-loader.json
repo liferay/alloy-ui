@@ -720,7 +720,7 @@
             "aui-form-builder-field-type",
             "aui-form-builder-field-types",
             "aui-form-builder-layout-builder",
-            "aui-form-builder-pages",
+            "aui-form-builder-page-manager",
             "aui-form-builder-settings-modal",
             "event-focus",
             "event-tap"
@@ -887,7 +887,7 @@
         ],
         "skinnable": true
     },
-    "aui-form-builder-pages": {
+    "aui-form-builder-page-manager": {
         "requires": [
             "aui-pagination",
             "aui-tabview",

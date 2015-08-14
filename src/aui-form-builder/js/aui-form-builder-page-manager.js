@@ -2,15 +2,15 @@
  * The Form Builder Pages Builder Component
  *
  * @module aui-form-builder
- * @submodule aui-form-builder-pages
+ * @submodule aui-form-builder-page-manager
  */
 
-var CSS_FORM_BUILDER_ADD_PAGE = A.getClassName('form', 'builder', 'pages', 'add', 'page'),
+var CSS_FORM_BUILDER_ADD_PAGE = A.getClassName('form', 'builder', 'page', 'manager', 'add', 'page'),
     CSS_FORM_BUILDER_PAGE_CONTROLS = A.getClassName('form', 'builder', 'page', 'controls'),
-    CSS_FORM_BUILDER_PAGES_CONTENT = A.getClassName('form', 'builder', 'pages', 'content'),
+    CSS_FORM_BUILDER_PAGES_CONTENT = A.getClassName('form', 'builder', 'page', 'manager', 'content'),
     CSS_FORM_BUILDER_PAGINATION = A.getClassName('form', 'builder', 'pagination'),
     CSS_FORM_BUILDER_REMOVE_PAGE =
-        A.getClassName('form', 'builder', 'pages', 'remove', 'page'),
+        A.getClassName('form', 'builder', 'page', 'manager', 'remove', 'page'),
     CSS_FORM_BUILDER_SWITCH_VIEW = A.getClassName('form', 'builder', 'switch', 'view'),
     CSS_FORM_BUILDER_TABS_CONTENT = A.getClassName('form', 'builder', 'tabs', 'content'),
     CSS_FORM_BUILDER_TABVIEW = A.getClassName('form', 'builder', 'tabview'),
@@ -33,7 +33,7 @@ var CSS_FORM_BUILDER_ADD_PAGE = A.getClassName('form', 'builder', 'pages', 'add'
  *     properties.
  * @constructor
  */
-A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
+A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, [], {
 
     TPL_PAGE_HEADER: '<div class="' + CSS_PAGE_HEADER + ' form-inline">' +
         '<input placeholder="{untitledPage}" tabindex="1" class="' + CSS_PAGE_HEADER_TITLE + ' ' +
@@ -97,10 +97,12 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
 
         this.after({
             activePageNumberChange: this._afterActivePageNumberChange,
-            pagesQuantityChange: this._afterPagesQuantityChange
+            pagesQuantityChange: this._afterPagesQuantityChange,
+            modeChange: this._afterModeChange
         });
 
         this._uiSetActivePageNumber(this.get('activePageNumber'));
+        this._uiSetMode(this.get('mode'));
     },
 
     /**
@@ -181,6 +183,16 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
      */
     _afterActivePageNumberChange: function(event) {
         this._uiSetActivePageNumber(event.newVal);
+    },
+
+    /**
+     * Fired after the `mode` attribute changes.
+     *
+     * @method _afterModeChange
+     * @protected
+     */
+    _afterModeChange: function() {
+        this._uiSetMode(this.get('mode'));
     },
 
     /**
@@ -399,15 +411,12 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
      * @protected
      */
     _onSwitchViewClick: function() {
-        var activePageNumber = this.get('activePageNumber'),
-            pagination = this._getPagination(),
-            tabview = this._getTabView();
-
-        pagination.get('contentBox').toggleView();
-        tabview.get('contentBox').toggleView();
-
-        pagination.set('page', activePageNumber);
-        tabview.selectChild(activePageNumber - 1);
+        if (this.get('mode') === 'pagination') {
+            this.set('mode', 'tabs');
+        }
+        else {
+            this.set('mode', 'pagination');
+        }
     },
 
     /**
@@ -478,6 +487,30 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
     },
 
     /**
+     * Switch the pages mode view.
+     *
+     * @method _uiSetMode
+     * @param {String} type
+     * @protected
+     */
+     _uiSetMode: function(type) {
+        var activePageNumber = this.get('activePageNumber'),
+            pagination = this._getPagination(),
+            tabview = this._getTabView();
+
+        if (type === 'tabs') {
+            pagination.get('contentBox').hide();
+            tabview.get('contentBox').show();
+            tabview.selectChild(activePageNumber - 1);
+        }
+        else {
+            pagination.get('contentBox').show();
+            tabview.get('contentBox').hide();
+            pagination.set('page', activePageNumber);
+        }
+    },
+
+    /**
      * Updates the ui according to the value of the `pagesQuantity` attribute.
      *
      * @method _uiSetPagesQuantity
@@ -494,7 +527,6 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
         this._pagination.getItem(activePageNumber).addClass('active');
         this._uiSetActivePageNumber(activePageNumber);
     },
-
 
     /**
      * Update all tabs title based on titles attribute.
@@ -542,6 +574,20 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
          */
         descriptions: {
             value: []
+        },
+
+        /**
+         * The mode of the pages visualization. Could be pagination or tabs.
+         *
+         * @attribute mode
+         * @default 'pagination'
+         * @type {String}
+         */
+        mode: {
+            validator: function(value) {
+                return (value === 'pagination' || value === 'tabs');
+            },
+            value: 'pagination'
         },
 
         /**
@@ -598,18 +644,6 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
         },
 
         /**
-         * List of all pages titles.
-         *
-         * @attribute titles
-         * @default []
-         * @type {Array}
-         * @writeOnce
-         */
-        titles: {
-            value: []
-        },
-
-        /**
          * Container for the tab view.
          *
          * @attribute tabviewContainer
@@ -620,6 +654,18 @@ A.FormBuilderPages = A.Base.create('form-builder-pages', A.Base, [], {
         tabviewContainer: {
             setter: A.one,
             writeOnce: true
+        },
+
+        /**
+         * List of all pages titles.
+         *
+         * @attribute titles
+         * @default []
+         * @type {Array}
+         * @writeOnce
+         */
+        titles: {
+            value: []
         }
     }
 });

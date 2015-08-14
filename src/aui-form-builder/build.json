@@ -62,9 +62,9 @@
             ]
         },
 
-        "aui-form-builder-pages": {
+        "aui-form-builder-page-manager": {
             "jsfiles": [
-                "js/aui-form-builder-pages.js"
+                "js/aui-form-builder-page-manager.js"
             ]
         },
 

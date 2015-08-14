@@ -746,7 +746,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-form-builder-field-type",
             "aui-form-builder-field-types",
             "aui-form-builder-layout-builder",
-            "aui-form-builder-pages",
+            "aui-form-builder-page-manager",
             "aui-form-builder-settings-modal",
             "event-focus",
             "event-tap"
@@ -913,7 +913,7 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
-    "aui-form-builder-pages": {
+    "aui-form-builder-page-manager": {
         "requires": [
             "aui-pagination",
             "aui-tabview",
@@ -2130,4 +2130,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '0b69c12f79d44ef0d716120a4c168bc8';
+YUI.Env[Y.version].md5 = '834d0b256b03cc48178ba69d840a42af';
