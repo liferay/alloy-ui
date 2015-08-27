@@ -897,7 +897,7 @@ var FormValidator = A.Component.create({
                 var required = instance.normalizeRuleValue(fieldRules.required);
 
                 validatable = (required || (!required && defaults.RULES.required.apply(instance, [field.val(),
-                    field])) || fieldRules.custom);
+                    field])));
             }
 
             return !!validatable;
