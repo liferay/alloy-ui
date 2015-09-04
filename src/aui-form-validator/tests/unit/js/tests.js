@@ -48,6 +48,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 required: true
             },
             'image-url': {
+                custom: true,
                 imageURL: true,
                 required: true
             },
@@ -167,6 +168,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 boundingBox: form,
                 rules: {
                     gt50: {
+                        custom: true,
                         greaterThan50: true,
                         required: true
                     }
@@ -188,6 +190,47 @@ YUI.add('aui-form-validator-tests', function(Y) {
             form.simulate('submit');
 
             Y.Assert.isFalse(validator.hasErrors());
+        },
+
+        /*
+         * Check if validator correctly validates fields with optional custom rules
+         * @tests AUI-1958
+         */
+        'test custom optional rules': function() {
+            var form = Y.Node.create('<form><input name="always-fails" id="always-fails" type="text"></form>'),
+                input = form.one('input'),
+                validator;
+
+            Y.FormValidator.addCustomRules(
+                {
+                    'alwaysFailsValidation': {
+                        condition: function() {
+                            return false;
+                        },
+                        errorMessage: 'Give up, there\'s nothing you can do to pass this validation.'
+                    }
+                }
+            );
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    'always-fails': {
+                        alwaysFailsValidation: true,
+                        custom: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors());
+
+            input.attr('value', 'anything');
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(validator.hasErrors());
         },
 
         _assertValidatorNextLabel: function(input) {
