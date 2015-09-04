@@ -204,7 +204,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
             Y.FormValidator.addCustomRules(
                 {
                     'alwaysFailsValidation': {
-                        condition: function(val) {
+                        condition: function() {
                             return false;
                         },
                         errorMessage: 'Give up, there\'s nothing you can do to pass this validation.'
