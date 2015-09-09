@@ -74,8 +74,8 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
             aditionalInfo: this.get('strings').aditionalInfo
         }));
 
-        this._getPagination().render();
-        this._getTabView().render();
+        this._renderTopPagination();
+        this._renderFooterPagination();
 
         this._eventHandles = [
             paginationContainer.one('.' + CSS_FORM_BUILDER_ADD_PAGE).on('click',
@@ -459,6 +459,26 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
 
         tabview.remove(index);
         this._updateTabViewContent();
+    },
+
+    /**
+     * Render default footer pagination
+     *
+     * @method _renderFooterPagination
+     * @protected
+     */
+    _renderFooterPagination: function() {
+        this._getPagination().render();
+    },
+
+    /**
+     * Render default top pagination
+     *
+     * @method _renderTopPagination
+     * @protected
+     */
+    _renderTopPagination: function() {
+        this._getTabView().render();
     },
 
     /**
