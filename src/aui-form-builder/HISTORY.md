@@ -3,7 +3,7 @@
 > Documentation and test modifications are not included in this changelog. For more details, see [full commit history](https://github.com/liferay/alloy-ui/commits/master/src/aui-form-builder).
 
 ## @VERSION@
-
+* [AUI-1962](https://issues.liferay.com/browse/AUI-1962) Updating the Page Manager to use a Popover with add/remove page instead of buttons
 * [AUI-1992](https://issues.liferay.com/browse/AUI-1992) Extract the rendering pagination logic from initializer
 * [AUI-1951](https://issues.liferay.com/browse/AUI-1951) Add attribute mode on Form Builder Pages
 * [AUI-1930](https://issues.liferay.com/browse/AUI-1930) Change functionality of add cols

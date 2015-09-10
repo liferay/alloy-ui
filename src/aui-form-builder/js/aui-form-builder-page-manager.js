@@ -5,12 +5,19 @@
  * @submodule aui-form-builder-page-manager
  */
 
-var CSS_FORM_BUILDER_ADD_PAGE = A.getClassName('form', 'builder', 'page', 'manager', 'add', 'page'),
+var CSS_FORM_BUILDER_PAGES_CONTENT =
+        A.getClassName('form', 'builder', 'page', 'manager', 'content'),
     CSS_FORM_BUILDER_PAGE_CONTROLS = A.getClassName('form', 'builder', 'page', 'controls'),
-    CSS_FORM_BUILDER_PAGES_CONTENT = A.getClassName('form', 'builder', 'page', 'manager', 'content'),
+    CSS_FORM_BUILDER_PAGE_MANAGER_ADD_PAGE_LAST_POSITION =
+        A.getClassName('form', 'builder', 'page', 'manager', 'add', 'last', 'position'),
+    CSS_FORM_BUILDER_PAGE_MANAGER_DELETE_PAGE =
+        A.getClassName('form', 'builder', 'page', 'manager', 'delete', 'page'),
+    CSS_FORM_BUILDER_PAGE_MANAGER_POPOVER = A.getClassName('form', 'builder', 'page', 'manager', 'popover'),
+    CSS_FORM_BUILDER_PAGE_MANAGER_SWITCH_MODE =
+        A.getClassName('form', 'builder', 'page', 'manager', 'switch', 'mode'),
+    CSS_FORM_BUILDER_PAGE_POPOVER_CONTENT =
+        A.getClassName('form', 'builder', 'pages', 'popover', 'content'),
     CSS_FORM_BUILDER_PAGINATION = A.getClassName('form', 'builder', 'pagination'),
-    CSS_FORM_BUILDER_REMOVE_PAGE =
-        A.getClassName('form', 'builder', 'page', 'manager', 'remove', 'page'),
     CSS_FORM_BUILDER_SWITCH_VIEW = A.getClassName('form', 'builder', 'switch', 'view'),
     CSS_FORM_BUILDER_TABS_CONTENT = A.getClassName('form', 'builder', 'tabs', 'content'),
     CSS_FORM_BUILDER_TABVIEW = A.getClassName('form', 'builder', 'tabview'),
@@ -46,10 +53,14 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
     TPL_PAGES: '<div class="' + CSS_FORM_BUILDER_PAGES_CONTENT + '">' +
         '<div class="' + CSS_FORM_BUILDER_PAGINATION + '"></div>' +
         '<div class="' + CSS_FORM_BUILDER_PAGE_CONTROLS + '">' +
-        '<a href="javascript:;" class="' + CSS_FORM_BUILDER_SWITCH_VIEW + ' glyphicon glyphicon-refresh"></a>' +
-        '<a href="javascript:;" class="' + CSS_FORM_BUILDER_REMOVE_PAGE + ' glyphicon glyphicon-trash"></a>' +
-        '<a href="javascript:;" class="' + CSS_FORM_BUILDER_ADD_PAGE + ' glyphicon glyphicon-plus"></a>' +
+        '<a href="javascript:;" class="' + CSS_FORM_BUILDER_SWITCH_VIEW + ' glyphicon glyphicon-th"></a>' +
         '</div></div>',
+
+    TPL_POPOVER_CONTENT: '<ul class="' + CSS_FORM_BUILDER_PAGE_POPOVER_CONTENT + '">' +
+        '<li class="' + CSS_FORM_BUILDER_PAGE_MANAGER_ADD_PAGE_LAST_POSITION + '">{addPageLastPosition}</li>' +
+        '<li class="' + CSS_FORM_BUILDER_PAGE_MANAGER_DELETE_PAGE + '">{deleteCurrentPage}</li>' +
+        '<li class="' + CSS_FORM_BUILDER_PAGE_MANAGER_SWITCH_MODE + '">{switchMode}</li>' +
+        '</ul>',
 
     TPL_TABS: '<div class="' + CSS_FORM_BUILDER_TABS_CONTENT + '">' +
         '<div class="' + CSS_FORM_BUILDER_TABVIEW + '"></div>' +
@@ -78,15 +89,6 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
         this._renderFooterPagination();
 
         this._eventHandles = [
-            paginationContainer.one('.' + CSS_FORM_BUILDER_ADD_PAGE).on('click',
-                A.bind(this._onAddPageClick, this)
-            ),
-            paginationContainer.one('.' + CSS_FORM_BUILDER_REMOVE_PAGE).on('click',
-                A.bind(this._onRemovePageClick, this)
-            ),
-            paginationContainer.one('.' + CSS_FORM_BUILDER_SWITCH_VIEW).on('click',
-                A.bind(this._onSwitchViewClick, this)
-            ),
             pageHeader.one('.' + CSS_PAGE_HEADER_DESCRIPTION).on('valuechange',
                 A.bind(this._onDescriptionInputValueChange, this)
             ),
@@ -114,6 +116,7 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
      */
     destructor: function() {
         var pagination = this._pagination,
+            popover = this._popover,
             tabview = this._tabview;
 
         if (pagination) {
@@ -122,6 +125,10 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
 
         if (tabview) {
             tabview.destroy();
+        }
+
+        if (popover) {
+            popover.destroy();
         }
 
         (new A.EventHandle(this._eventHandles)).detach();
@@ -145,7 +152,7 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
         );
 
         this._pagination.set('page', this.get('pagesQuantity'));
-
+        
         if (quantity === 0) {
             this.fire(
                 'updatePageContent', {
@@ -248,6 +255,53 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
     },
 
     /**
+     * Creates popover.
+     *
+     * @method _createPopover
+     * @return {A.Popover}
+     * @protected
+     */
+    _createPopover: function() {
+        var popoverContent,
+            paginationMenu = this.get('paginationContainer').one('.' + CSS_FORM_BUILDER_SWITCH_VIEW),
+            popover;
+
+        popoverContent = A.Lang.sub(this.TPL_POPOVER_CONTENT, {
+            addPageLastPosition: this.get('strings').addPageLastPosition,
+            addPageNextPosition: this.get('strings').addPageNextPosition,
+            deleteCurrentPage: this.get('strings').deleteCurrentPage,
+            switchMode: this.get('strings').switchMode
+        });
+
+        popover = new A.Popover({
+            align: {
+                node: paginationMenu
+            },
+            bodyContent: popoverContent,
+            constrain: true,
+            cssClass: CSS_FORM_BUILDER_PAGE_MANAGER_POPOVER,
+            position: 'top',
+            visible: false,
+            zIndex: 50
+        }).render();
+
+        paginationMenu.after('click', popover.toggle, popover);
+        paginationMenu.after('clickoutside', popover.hide, popover);
+
+        popover.get('boundingBox').one('.' + CSS_FORM_BUILDER_PAGE_MANAGER_ADD_PAGE_LAST_POSITION).on('click',
+            A.bind(this._onAddLastPageClick, this)
+        );
+        popover.get('boundingBox').one('.' + CSS_FORM_BUILDER_PAGE_MANAGER_DELETE_PAGE).on('click',
+            A.bind(this._onRemovePageClick, this)
+        );
+        popover.get('boundingBox').one('.' + CSS_FORM_BUILDER_PAGE_MANAGER_SWITCH_MODE).on('click',
+            A.bind(this._onSwitchViewClick, this)
+        );
+
+        return popover;
+    },
+
+    /**
      * Creates tab view.
      *
      * @method _createTabView
@@ -299,7 +353,22 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
             this._pagination = this._createPagination();
         }
 
+        if (!this._popover) {
+            this._popover = this._createPopover();
+        }
+
         return this._pagination;
+    },
+
+    /**
+     * Returns the popover instance.
+     *
+     * @method _getPopover
+     * @return {A.Popover}
+     * @protected
+     */
+    _getPopover: function() {
+        return this._popover;
     },
 
     /**
@@ -335,14 +404,15 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
     },
 
     /**
-     * Fired on add button clicked.
+     * Fired on `Add new page after last` element clicked.
      *
-     * @method _onAddPageClick
+     * @method _onAddLastPageClick
      * @protected
      */
-    _onAddPageClick: function() {
+    _onAddLastPageClick: function() {
         this._addPage();
         this._addTab();
+        this._getPopover().hide();
     },
 
     /**
@@ -352,6 +422,7 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
      * @protected
      */
     _onCurrentPageChange: function(event) {
+        this._getPopover().hide();
         this.set('activePageNumber', event.newVal);
     },
 
@@ -380,6 +451,7 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
             titles = this.get('titles');
 
         this._getPagination().prev();
+        this._getPopover().hide();
 
         this.set('pagesQuantity', this.get('pagesQuantity') - 1);
 
@@ -411,6 +483,8 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
      * @protected
      */
     _onSwitchViewClick: function() {
+        this._getPopover().hide();
+
         if (this.get('mode') === 'pagination') {
             this.set('mode', 'tabs');
         }
@@ -544,7 +618,7 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
         pagination.set('total', total);
 
         pagination.set('page', activePageNumber);
-        this._pagination.getItem(activePageNumber).addClass('active');
+        pagination.getItem(activePageNumber).addClass('active');
         this._uiSetActivePageNumber(activePageNumber);
     },
 
@@ -657,7 +731,10 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
          */
         strings: {
             value: {
+                addPageLastPosition: 'Add new page after last',
                 aditionalInfo: 'An aditional info about this page',
+                deleteCurrentPage: 'Delete current page',
+                switchMode: 'Switch pagination mode',
                 untitledPage: 'Untitled Page ({activePageNumber} of {pagesQuantity})'
             },
             writeOnce: true

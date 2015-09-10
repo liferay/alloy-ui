@@ -105,6 +105,7 @@
     "aui-form-builder-page-manager": {
         "requires": [
             "aui-pagination",
+            "aui-popover",
             "aui-tabview",
             "base",
             "event-valuechange",

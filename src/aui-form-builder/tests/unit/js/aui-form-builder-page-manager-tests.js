@@ -81,9 +81,25 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
  
             Y.Assert.areEqual(3, Y.one('.pagination-content').all('li').size());
 
-            Y.one('.form-builder-page-manager-add-page').simulate('click');
+            Y.one('.form-builder-page-manager-add-last-position').simulate('click');
 
             Y.Assert.areEqual(4, Y.one('.pagination-content').all('li').size());
+        },
+
+        'should show the popover with a list of options': function() {
+            this.createFormBuilderPageManager({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+  
+            Y.Assert.isTrue(Y.one('.form-builder-page-manager-popover').hasClass('popover-hidden'));
+
+            Y.one('.form-builder-switch-view').simulate('click');
+
+            Y.Assert.isFalse(Y.one('.form-builder-page-manager-popover').hasClass('popover-hidden'));
         },
 
         'should remove the current page on removePage button clicked': function() {
@@ -97,11 +113,11 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
 
             Y.Assert.areEqual(4, Y.one('.pagination-content').all('li').size());
 
-            Y.one('.form-builder-page-manager-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-delete-page').simulate('click');
 
             Y.Assert.areEqual(3, Y.one('.pagination-content').all('li').size());
 
-            Y.one('.form-builder-page-manager-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-delete-page').simulate('click');
 
             Y.Assert.areEqual(3, Y.one('.pagination-content').all('li').size());
         },
@@ -117,7 +133,7 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
  
             Y.Assert.areEqual(1, Y.one('.tabbable-content').all('.tab').size());
 
-            Y.one('.form-builder-page-manager-add-page').simulate('click');
+            Y.one('.form-builder-page-manager-add-last-position').simulate('click');
 
             Y.Assert.areEqual(2, Y.one('.tabbable-content').all('.tab').size());
         },
@@ -133,11 +149,11 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
 
             Y.Assert.areEqual(2, Y.one('.tabbable-content').all('.tab').size());
 
-            Y.one('.form-builder-page-manager-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-delete-page').simulate('click');
 
             Y.Assert.areEqual(1, Y.one('.tabbable-content').all('.tab').size());
 
-            Y.one('.form-builder-page-manager-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-delete-page').simulate('click');
 
             Y.Assert.areEqual(1, Y.one('.tabbable-content').all('.tab').size());
         },
@@ -178,7 +194,7 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
                 tabviewContainer: '#tabs'
             });
 
-            Y.one('.form-builder-switch-view').simulate('click');
+            Y.one('.form-builder-page-manager-switch-mode').simulate('click');
 
             titleNode = Y.one('.form-builder-page-header-title');
 
@@ -206,12 +222,12 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
             Y.Assert.isFalse(Y.one('.pagination-content').hasClass('hide'));
             Y.Assert.isTrue(Y.one('.tabbable-content').hasClass('hide'));
 
-            Y.one('.form-builder-switch-view').simulate('click');
+            Y.one('.form-builder-page-manager-switch-mode').simulate('click');
 
             Y.Assert.isTrue(Y.one('.pagination-content').hasClass('hide'));
             Y.Assert.isFalse(Y.one('.tabbable-content').hasClass('hide'));
 
-            Y.one('.form-builder-switch-view').simulate('click');
+            Y.one('.form-builder-page-manager-switch-mode').simulate('click');
 
             Y.Assert.isFalse(Y.one('.pagination-content').hasClass('hide'));
             Y.Assert.isTrue(Y.one('.tabbable-content').hasClass('hide'));
@@ -301,7 +317,7 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
             });
 
             Y.all('.pagination-control').item(1).simulate('click');
-            Y.one('.form-builder-switch-view').simulate('click');
+            Y.one('.form-builder-page-manager-switch-mode').simulate('click');
 
             Y.Assert.isTrue(Y.all('.nav.nav-tabs .tab').item(1).hasClass('active'));
         },
@@ -317,7 +333,7 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
             });
 
             Y.all('.nav.nav-tabs .tab').item(1).simulate('click');
-            Y.one('.form-builder-switch-view').simulate('click');
+            Y.one('.form-builder-page-manager-switch-mode').simulate('click');
 
             Y.Assert.isTrue(Y.all('.pagination.pagination-content li').item(2).hasClass('active'));
         }
