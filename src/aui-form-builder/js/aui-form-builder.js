@@ -47,18 +47,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     initializer: function() {
-        var contentBox = this.get('contentBox'),
-            headerTemplate;
-
-        headerTemplate = A.Lang.sub(this.TPL_HEADER, {
-            formTitle: this.get('strings').formTitle
-        });
-
-        contentBox.append(headerTemplate);
-        contentBox.append(this.TPL_PAGE_HEADER);
-        contentBox.append(this.TPL_TABVIEW);
-        contentBox.append(this.TPL_LAYOUT);
-        contentBox.append(this.TPL_PAGES);
+        this._buidUI();
 
         this._fieldToolbar = new A.FormBuilderFieldToolbar(this.get('fieldToolbarConfig'));
 
@@ -384,6 +373,25 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             activeLayout = layouts[event.newVal - 1];
 
         this._updatePageContent(activeLayout);
+    },
+
+    /**
+     * Render the form builder UI parts
+     *
+     * @method _buidUI
+     * @protected
+     */
+    _buidUI: function() {
+        var contentBox = this.get('contentBox'),
+            headerTemplate = A.Lang.sub(this.TPL_HEADER, {
+                formTitle: this.get('strings').formTitle
+            });
+
+        contentBox.append(headerTemplate);
+        contentBox.append(this.TPL_PAGE_HEADER);
+        contentBox.append(this.TPL_TABVIEW);
+        contentBox.append(this.TPL_LAYOUT);
+        contentBox.append(this.TPL_PAGES);
     },
 
     /**
