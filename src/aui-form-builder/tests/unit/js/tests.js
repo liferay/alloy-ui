@@ -745,7 +745,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             this.createFormBuilder();
 
             Y.Assert.areEqual(1, this._formBuilder.get('layouts').length);
-            Y.one('.form-builder-page-manager-add-page').simulate('click');
+            Y.one('.form-builder-page-manager-add-last-position').simulate('click');
             Y.Assert.areEqual(2, this._formBuilder.get('layouts').length);
         },
 
@@ -755,16 +755,16 @@ YUI.add('aui-form-builder-tests', function(Y) {
             });
 
             Y.Assert.areEqual(2, this._formBuilder.get('layouts').length);
-            Y.one('.form-builder-page-manager-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-delete-page').simulate('click');
             Y.Assert.areEqual(1, this._formBuilder.get('layouts').length);
-            Y.one('.form-builder-page-manager-remove-page').simulate('click');
+            Y.one('.form-builder-page-manager-delete-page').simulate('click');
             Y.Assert.areEqual(1, this._formBuilder.get('layouts').length);
         },
 
         'should update page when page selected': function() {
             this.createFormBuilder();
 
-            Y.one('.form-builder-page-manager-add-page').simulate('click');
+            Y.one('.form-builder-page-manager-add-last-position').simulate('click');
 
             Y.Assert.areEqual(1, this._formBuilder.getActiveLayout().get('rows').length);
             Y.one('.pagination-control').simulate('click');
