@@ -527,6 +527,56 @@ YUI.add('module-tests', function(Y) {
             );
         },
 
+        'should display the events overlay entirely': function() {
+            var events = [];
+
+            var displayDate = new Date(2014, 2, 8);
+            var eventDate = new Date(2014, 3, 5);
+
+            for (var i = 0; i < 10; i++) {
+                events.push(
+                    {
+                        color: 'c2a374',
+                        content: 'dummy ' + i,
+                        endDate: eventDate,
+                        startDate: eventDate,
+                        allDay: true
+                    }
+                );
+            }
+
+            this._createScheduler({
+              items: events,
+              date: displayDate,
+              activeView: this._monthView
+            });
+
+            Y.one('.scheduler-view-table-more').simulate('click');
+
+            var schedulerBB = this._scheduler.get('boundingBox');
+            var schedulerRect = schedulerBB._node.getBoundingClientRect();
+
+            var overlay = this._monthView.eventsOverlay;
+            var overlayBB = overlay.get('boundingBox');
+            var overlayRect = overlayBB._node.getBoundingClientRect();
+
+            Y.Assert.isTrue(
+                schedulerRect.top >= 0,
+                'The top of the events overlay should be inside the viewport.'
+            );
+            Y.Assert.isTrue(
+                overlayRect.bottom <= Y.one("body").get("winHeight"),
+                'The bottom of the events overlay should be inside the viewport.'
+            );
+            Y.Assert.isTrue(
+                schedulerRect.left >= 0,
+                'The left of the events overlay should be inside the viewport.'
+            );
+            Y.Assert.isTrue(
+                overlayRect.right <= Y.one("body").get("winWidth"),
+                'The right of the events overlay should be inside the viewport.'
+            );
+        }
     }));
 
     Y.Test.Runner.add(suite);

@@ -222,7 +222,28 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * The element or locator to constrain the events overlay.
+         *
+         * When a cell has more events than can be shown, it offers an option
+         * to open an overlay to see all of them by clicking in a "See x more"
+         * link. This overlay should be constrained by another element, lest
+         * it could be cropped or would resize the entire document.
+         *
+         * The default value is `true`, in which case the overlay is constrained
+         * to the viewport.
+         *
+         * @attribute eventsOverlayConstrain
+         * @default null
+         * @type {Boolean | Node | String}
+         * @writeOnce
+         */
+        eventsOverlayConstrain: {
+            value: true,
+            writeOnce: true
+        },
+
+        /**
+         * Indicates whether the height of the `SchedulerTableView` is fixed.
          *
          * @attribute fixedHeight
          * @default true
@@ -1207,6 +1228,7 @@ var SchedulerTableView = A.Component.create({
                         label: strings[CLOSE]
                     }
                 ),
+                constrain: instance.get('eventsOverlayConstrain'),
                 render: instance.get(BOUNDING_BOX),
                 visible: false,
                 width: 250,
