@@ -47,8 +47,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     initializer: function() {
-        this._buidUI();
-
         this._fieldToolbar = new A.FormBuilderFieldToolbar(this.get('fieldToolbarConfig'));
 
         this._eventHandles = [
@@ -69,6 +67,8 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      */
     renderUI: function() {
         this.getActiveLayout().addTarget(this);
+
+        this._renderContentBox();
 
         this._renderEmptyColumns();
     },
@@ -370,25 +370,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Render the form builder UI parts
-     *
-     * @method _buidUI
-     * @protected
-     */
-    _buidUI: function() {
-        var contentBox = this.get('contentBox'),
-            headerTemplate = A.Lang.sub(this.TPL_HEADER, {
-                formTitle: this.get('strings').formTitle
-            });
-
-        contentBox.append(headerTemplate);
-        contentBox.append(this.TPL_PAGE_HEADER);
-        contentBox.append(this.TPL_TABVIEW);
-        contentBox.append(this.TPL_LAYOUT);
-        contentBox.append(this.TPL_PAGES);
-    },
-
-    /**
      * Fire event of create a field.
      *
      * @method _getActiveLayoutIndex
@@ -559,6 +540,25 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
+     * Render the form builder UI parts
+     *
+     * @method _renderContentBox
+     * @protected
+     */
+    _renderContentBox: function() {
+        var contentBox = this.get('contentBox'),
+            headerTemplate = A.Lang.sub(this.TPL_HEADER, {
+                formTitle: this.get('strings').formTitle
+            });
+
+        contentBox.append(headerTemplate);
+        contentBox.append(this.TPL_PAGE_HEADER);
+        contentBox.append(this.TPL_TABVIEW);
+        contentBox.append(this.TPL_LAYOUT);
+        contentBox.append(this.TPL_PAGES);
+    },
+
+    /**
      * Renders some content inside the empty columns of the current layout.
      *
      * @method _renderEmptyColumns
@@ -616,7 +616,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             }
 
             layout.get('rows')[layout.get('rows').length - 1].set('removable', false);
-            
+
             layouts.push(layout);
         });
 
