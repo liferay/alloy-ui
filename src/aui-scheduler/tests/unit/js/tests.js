@@ -661,7 +661,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 'The top of the events overlay should be inside the viewport.'
             );
             Y.Assert.isTrue(
-                overlayRect.bottom <= Y.one("body").get("winHeight"),
+                overlayRect.bottom <= Y.one('body').get('winHeight'),
                 'The bottom of the events overlay should be inside the viewport.'
             );
             Y.Assert.isTrue(
@@ -669,7 +669,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 'The left of the events overlay should be inside the viewport.'
             );
             Y.Assert.isTrue(
-                overlayRect.right <= Y.one("body").get("winWidth"),
+                overlayRect.right <= Y.one('body').get('winWidth'),
                 'The right of the events overlay should be inside the viewport.'
             );
         }
