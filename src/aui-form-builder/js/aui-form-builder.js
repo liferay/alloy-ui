@@ -68,12 +68,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     renderUI: function() {
-        var layoutButtonNode;
-
-        layoutButtonNode = A.Lang.sub(this.TPL_EDIT_LAYOUT_BUTTON, {
-            editLayout: this.get('strings').titleOnEditLayoutMode
-        });
-
         this.getActiveLayout().addTarget(this);
 
         this._renderEmptyColumns();
