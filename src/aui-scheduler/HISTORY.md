@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1997](https://issues.liferay.com/browse/AUI-1997) Overlay displaying extra events appears cropped or demands scrolling
 * [AUI-1929](https://issues.liferay.com/browse/AUI-1929) Alloy Scheduler does not add long events to each day the event occurs on in Agenda view.
 * [AUI-1920](https://issues.liferay.com/browse/AUI-1920) Calendar - Hiding calendar does not update neither events nor "Show n more" link
 * [AUI-1893](https://issues.liferay.com/browse/AUI-1893) Wrong display of recurrent overnight events in week view in the last day of first week under DST
