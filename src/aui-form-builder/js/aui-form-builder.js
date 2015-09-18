@@ -5,8 +5,8 @@
  */
 
 var CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout', 'button'),
-    CSS_EMPTY_COL_ADD_BUTTON_CIRCLE =
-        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'circle'),
+    CSS_EMPTY_COL_ADD_BUTTON =
+        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_HEADER = A.getClassName('form', 'builder', 'header'),
     CSS_HEADER_TITLE = A.getClassName('form', 'builder', 'header', 'title'),
@@ -85,9 +85,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         this._eventHandles.push(
             this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
-            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON_CIRCLE, this),
-            boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' +
-                CSS_EMPTY_COL_ADD_BUTTON_CIRCLE),
+            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
             A.getDoc().on('key', this._onEscKey, 'esc', this),
             pages.on('add', A.bind(this._addPage, this)),
             pages.on('remove', A.bind(this._removeLayout, this)),
@@ -498,17 +496,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         else {
             this._fieldToolbar.remove();
         }
-    },
-
-    /**
-     * Fired when the add field button is pressed.
-     *
-     * @method _onKeyPressAddField
-     * @params {EventFacade} event
-     * @protected
-     */
-    _onKeyPressAddField: function(event) {
-        this._openNewFieldPanel(event.currentTarget);
     },
 
     /**

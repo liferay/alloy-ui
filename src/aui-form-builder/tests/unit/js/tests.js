@@ -103,7 +103,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
          * @protected
          */
         _clickCreateNewField: function() {
-            Y.one('.form-builder-field-list-add-button-circle').simulate('click');
+            Y.one('.form-builder-field-list-add-button').simulate('click');
         },
 
         /**
@@ -617,22 +617,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             this._formBuilder.showFieldsPanel();
             Y.Assert.isTrue(Y.one('.field-type').hasClass('field-type-disabled'));
-        },
-
-        'should open new field type selection when key press on add field button': function() {
-            var addFieldButton;
-
-            this.createFormBuilder();
-
-            addFieldButton = Y.one('.form-builder-field-list-add-button-circle');
-            addFieldButton.focus();
-            addFieldButton.simulate('keydown', {
-                keyCode: 13
-            });
-
-            this._formBuilder._fieldTypesModal.get('visible');
-
-            Y.Assert.isTrue(this._formBuilder._fieldTypesModal.get('visible'));
         },
 
         'should show toolbar settings only when focus on a field': function() {
