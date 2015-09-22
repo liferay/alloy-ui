@@ -210,6 +210,7 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
      */
     _afterPagesQuantityChange: function() {
         this._uiSetPagesQuantity(this.get('pagesQuantity'));
+        this._syncPopoverContent();
     },
 
     /**
@@ -269,7 +270,7 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
         popoverContent = A.Lang.sub(this.TPL_POPOVER_CONTENT, {
             addPageLastPosition: this.get('strings').addPageLastPosition,
             addPageNextPosition: this.get('strings').addPageNextPosition,
-            deleteCurrentPage: this.get('strings').deleteCurrentPage,
+            deleteCurrentPage: this._getDeleteButtonString(),
             switchMode: this.get('strings').switchMode
         });
 
@@ -339,6 +340,26 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
         });
 
         return title;
+    },
+
+    /**
+     * Returns the delete button string according to the page quantity.
+     *
+     * @method _getDeleteButtonLabel
+     * @return {String}
+     * @protected
+     */
+    _getDeleteButtonString: function() {
+        var deleteButtonString;
+
+        if (this.get('pagesQuantity') > 1) {
+            deleteButtonString = this.get('strings').deleteCurrentPage;
+        }
+        else {
+            deleteButtonString = this.get('strings').resetPage;
+        }
+
+        return deleteButtonString;
     },
 
     /**
@@ -556,6 +577,18 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
     },
 
     /**
+     * Updates the popover content ui.
+     *
+     * @method _syncPopoverContent
+     * @protected
+     */
+    _syncPopoverContent: function() {
+        var deletePageButton = this._getPopover().get('boundingBox').one('.' + CSS_FORM_BUILDER_PAGE_MANAGER_DELETE_PAGE);
+
+        deletePageButton.text(this._getDeleteButtonString());
+    },
+
+    /**
      * Updates the ui according to the value of the `activePageNumber` attribute.
      *
      * @method _uiSetActivePageNumber
@@ -731,11 +764,12 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
          */
         strings: {
             value: {
-                addPageLastPosition: 'Add new page after last',
+                addPageLastPosition: 'Add new page',
                 aditionalInfo: 'An aditional info about this page',
                 deleteCurrentPage: 'Delete current page',
+                resetPage: 'Reset page',
                 switchMode: 'Switch pagination mode',
-                untitledPage: 'Untitled Page ({activePageNumber} of {pagesQuantity})'
+                untitledPage: 'Untitled page ({activePageNumber} of {pagesQuantity})'
             },
             writeOnce: true
         },

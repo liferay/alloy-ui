@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2014](https://issues.liferay.com/browse/AUI-2014) Changes the default value of the strings attribute from FormBuilderPageManager class
 * [AUI-1993](https://issues.liferay.com/browse/AUI-1993) Change the add Field button
 * [AUI-1995](https://issues.liferay.com/browse/AUI-1995) Extract the UI rendering logic from initializer
 * [AUI-1962](https://issues.liferay.com/browse/AUI-1962) Updating the Page Manager to use a Popover with add/remove page instead of buttons
