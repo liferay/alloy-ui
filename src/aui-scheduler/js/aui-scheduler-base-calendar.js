@@ -94,7 +94,7 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
             silent: true
         });
 
-        instance._uiSetEvents(instance.toArray(), event.skipSyncEventsUI);
+        instance._uiSetEvents(instance.toArray(), event.skipSyncUI);
     },
 
     /**
@@ -153,14 +153,14 @@ var SchedulerCalendar = A.Base.create(SCHEDULER_CALENDAR, A.ModelList, [], {
      * @param val
      * @protected
      */
-    _uiSetEvents: function(val, skipSyncEventsUI) {
+    _uiSetEvents: function(val, skipSyncUI) {
         var instance = this;
         var scheduler = instance.get(SCHEDULER);
 
         if (scheduler) {
             scheduler.addEvents(val);
 
-            if(!skipSyncEventsUI) {
+            if(!skipSyncUI) {
                 scheduler.syncEventsUI();
             }
         }
