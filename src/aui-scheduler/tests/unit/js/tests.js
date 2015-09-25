@@ -578,7 +578,7 @@ YUI.add('module-tests', function(Y) {
             );
         },
 
-        'an absent skipSyncUI event property shouldn\'t prevent syncEventsUI() being called': function() {
+        'should not prevent "syncEventsUI" from being called if the skipSyncUI event property is not present': function() {
             var displayDate = new Date(2015, 9, 24);
             var eventDate = new Date(2015, 9, 24);
 
@@ -621,7 +621,7 @@ YUI.add('module-tests', function(Y) {
             );
         },
 
-        'a skipSyncUI event property, set to true, should prevent syncEventsUI() being called': function() {
+        'should prevent "syncEventsUI" from being called if the skipSyncUI event property is present': function() {
 
             var displayDate = new Date(2015, 9, 24);
             var eventDate = new Date(2015, 9, 24);
