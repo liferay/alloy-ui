@@ -90,7 +90,7 @@ var SchedulerCalendar = A.Base.create('scheduler-calendar', A.ModelList, [], {
      * @param {EventFacade} event
      * @protected
      */
-    _afterEventsChange: function() {
+    _afterEventsChange: function(event) {
         var instance = this;
 
         instance._setModelsAttrs({
@@ -101,7 +101,7 @@ var SchedulerCalendar = A.Base.create('scheduler-calendar', A.ModelList, [], {
             silent: true
         });
 
-        instance._uiSetEvents(instance.toArray());
+        instance._uiSetEvents(instance.toArray(), event.skipSyncUI);
     },
 
     /**
@@ -161,13 +161,16 @@ var SchedulerCalendar = A.Base.create('scheduler-calendar', A.ModelList, [], {
      *     property.
      * @protected
      */
-    _uiSetEvents: function(val) {
+    _uiSetEvents: function(val, skipSyncUI) {
         var instance = this;
         var scheduler = instance.get('scheduler');
 
         if (scheduler) {
             scheduler.addEvents(val);
-            scheduler.syncEventsUI();
+
+            if(!skipSyncUI) {
+                scheduler.syncEventsUI();
+            }
         }
     }
 }, {

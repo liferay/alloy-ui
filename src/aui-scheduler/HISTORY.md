@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1996](https://issues.liferay.com/browse/AUI-1996) Allow Scheduler to skip syncEventsUI to avoid redundant DOM manipulation.
 * [AUI-1997](https://issues.liferay.com/browse/AUI-1997) Overlay displaying extra events appears cropped or demands scrolling
 * [AUI-1929](https://issues.liferay.com/browse/AUI-1929) Alloy Scheduler does not add long events to each day the event occurs on in Agenda view.
 * [AUI-1920](https://issues.liferay.com/browse/AUI-1920) Calendar - Hiding calendar does not update neither events nor "Show n more" link

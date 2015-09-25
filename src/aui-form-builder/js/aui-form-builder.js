@@ -5,8 +5,8 @@
  */
 
 var CSS_EDIT_LAYOUT_BUTTON = A.getClassName('form', 'builder', 'edit', 'layout', 'button'),
-    CSS_EMPTY_COL_ADD_BUTTON_CIRCLE =
-        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'circle'),
+    CSS_EMPTY_COL_ADD_BUTTON =
+        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button'),
     CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_HEADER = A.getClassName('form', 'builder', 'header'),
     CSS_HEADER_TITLE = A.getClassName('form', 'builder', 'header', 'title'),
@@ -47,8 +47,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     initializer: function() {
-        this._buidUI();
-
         this._fieldToolbar = new A.FormBuilderFieldToolbar(this.get('fieldToolbarConfig'));
 
         this._eventHandles = [
@@ -68,13 +66,9 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     renderUI: function() {
-        var layoutButtonNode;
-
-        layoutButtonNode = A.Lang.sub(this.TPL_EDIT_LAYOUT_BUTTON, {
-            editLayout: this.get('strings').titleOnEditLayoutMode
-        });
-
         this.getActiveLayout().addTarget(this);
+
+        this._renderContentBox();
 
         this._renderEmptyColumns();
     },
@@ -91,9 +85,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         this._eventHandles.push(
             this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
-            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON_CIRCLE, this),
-            boundingBox.delegate('key', A.bind(this._onKeyPressAddField, this), 'enter', '.' +
-                CSS_EMPTY_COL_ADD_BUTTON_CIRCLE),
+            boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
             A.getDoc().on('key', this._onEscKey, 'esc', this),
             pages.on('add', A.bind(this._addPage, this)),
             pages.on('remove', A.bind(this._removeLayout, this)),
@@ -376,25 +368,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Render the form builder UI parts
-     *
-     * @method _buidUI
-     * @protected
-     */
-    _buidUI: function() {
-        var contentBox = this.get('contentBox'),
-            headerTemplate = A.Lang.sub(this.TPL_HEADER, {
-                formTitle: this.get('strings').formTitle
-            });
-
-        contentBox.append(headerTemplate);
-        contentBox.append(this.TPL_PAGE_HEADER);
-        contentBox.append(this.TPL_TABVIEW);
-        contentBox.append(this.TPL_LAYOUT);
-        contentBox.append(this.TPL_PAGES);
-    },
-
-    /**
      * Fire event of create a field.
      *
      * @method _getActiveLayoutIndex
@@ -526,17 +499,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Fired when the add field button is pressed.
-     *
-     * @method _onKeyPressAddField
-     * @params {EventFacade} event
-     * @protected
-     */
-    _onKeyPressAddField: function(event) {
-        this._openNewFieldPanel(event.currentTarget);
-    },
-
-    /**
      * Opens a panel to select a new field type.
      *
      * @method _openNewFieldPanel
@@ -562,6 +524,25 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         layouts[event.removedIndex].destroy();
         layouts.splice(event.removedIndex, 1);
+    },
+
+    /**
+     * Render the form builder UI parts
+     *
+     * @method _renderContentBox
+     * @protected
+     */
+    _renderContentBox: function() {
+        var contentBox = this.get('contentBox'),
+            headerTemplate = A.Lang.sub(this.TPL_HEADER, {
+                formTitle: this.get('strings').formTitle
+            });
+
+        contentBox.append(headerTemplate);
+        contentBox.append(this.TPL_PAGE_HEADER);
+        contentBox.append(this.TPL_TABVIEW);
+        contentBox.append(this.TPL_LAYOUT);
+        contentBox.append(this.TPL_PAGES);
     },
 
     /**
@@ -622,7 +603,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             }
 
             layout.get('rows')[layout.get('rows').length - 1].set('removable', false);
-            
+
             layouts.push(layout);
         });
 

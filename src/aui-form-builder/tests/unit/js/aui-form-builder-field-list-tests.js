@@ -34,8 +34,8 @@ YUI.add('aui-form-builder-field-list-tests', function(Y) {
 
             this.createFieldList({ fields: [sentence, sentence2] });
 
-            Y.all('.form-builder-field-list-add-button').item(1).simulate('mouseover');
-            Y.all('.form-builder-field-list-add-button-circle').item(1).simulate('click');
+            Y.all('.form-builder-field-list-add-container').item(1).simulate('mouseover');
+            Y.all('.form-builder-field-list-add-button').item(1).simulate('click');
 
             this._fieldList.addField(new Y.FormBuilderFieldSentence({title: 'between'}));
 
@@ -60,7 +60,7 @@ YUI.add('aui-form-builder-field-list-tests', function(Y) {
 
             this.createFieldList({ fields: [sentence, sentence2] });
 
-            addButton = Y.all('.form-builder-field-list-add-button').item(1);
+            addButton = Y.all('.form-builder-field-list-add-container').item(1);
 
             Y.Assert.isFalse(addButton.hasClass('form-builder-field-list-add-button-visible'));
 

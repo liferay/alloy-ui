@@ -64,10 +64,10 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
 
             title = pages.get('pageHeader').one('.form-builder-page-header-title');
 
-            Y.Assert.areEqual('Untitled Page (10 of ' + 10 + ')', title.get('placeholder'));
+            Y.Assert.areEqual('Untitled page (10 of ' + 10 + ')', title.get('placeholder'));
 
             pages.set('pagesQuantity', 20);
-            Y.Assert.areEqual('Untitled Page (10 of ' + 20 + ')', title.get('placeholder'));
+            Y.Assert.areEqual('Untitled page (10 of ' + 20 + ')', title.get('placeholder'));
         },
 
         'should add a new page on addPage button clicked': function() {
@@ -172,12 +172,12 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
 
             titleNode = Y.one('.form-builder-page-header-title');
 
-            Y.Assert.areEqual('Untitled Page (1 of 1)', titleNode.get('placeholder'));
+            Y.Assert.areEqual('Untitled page (1 of 1)', titleNode.get('placeholder'));
 
             this._simulateInputChange(titleNode, 'title', function() {
                 Y.Assert.areEqual('title', pages.get('titles')[0]);
                 this._simulateInputChange(titleNode, '', function() {
-                    Y.Assert.areEqual('Untitled Page (1 of 1)', titleNode.get('placeholder'));
+                    Y.Assert.areEqual('Untitled page (1 of 1)', titleNode.get('placeholder'));
                 });
             });
         },
@@ -198,12 +198,12 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
 
             titleNode = Y.one('.form-builder-page-header-title');
 
-            Y.Assert.areEqual('Untitled Page (1 of 1)', titleNode.get('placeholder'));
+            Y.Assert.areEqual('Untitled page (1 of 1)', titleNode.get('placeholder'));
 
             this._simulateInputChange(titleNode, 'title', function() {
                 Y.Assert.areEqual('1.title', Y.one('.tab-label').text());
                 this._simulateInputChange(titleNode, '', function() {
-                    Y.Assert.areEqual('1.Untitled Page (1 of 1)', Y.one('.tab-label').text());
+                    Y.Assert.areEqual('1.Untitled page (1 of 1)', Y.one('.tab-label').text());
                 });
             });
         },
@@ -251,7 +251,7 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
 
             Y.one('.pagination-control').simulate('click');
 
-            Y.Assert.areEqual('Untitled Page (2 of 2)', titleNode.get('placeholder'));
+            Y.Assert.areEqual('Untitled page (2 of 2)', titleNode.get('placeholder'));
         },
 
         'should update `descriptions` attribute on title input change': function() {
@@ -336,6 +336,56 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
             Y.one('.form-builder-page-manager-switch-mode').simulate('click');
 
             Y.Assert.isTrue(Y.all('.pagination.pagination-content li').item(2).hasClass('active'));
+        },
+
+        'should show `Reset page` button if the page quantity is equal to one': function() {
+            this.createFormBuilderPageManager({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            Y.Assert.areEqual('Reset page', Y.one('.form-builder-page-manager-delete-page').text());
+        },
+
+        'should show `Delete current page` button if the page quantity is greater than one': function() {
+            this.createFormBuilderPageManager({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 2,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            Y.Assert.areEqual('Delete current page', Y.one('.form-builder-page-manager-delete-page').text());
+        },
+
+        'should show `Reset page` button dynamically after deleting the second page': function() {
+            this.createFormBuilderPageManager({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 2,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            Y.one('.form-builder-page-manager-delete-page').simulate('click');
+            Y.Assert.areEqual('Reset page', Y.one('.form-builder-page-manager-delete-page').text());
+        },
+
+        'should show `Delete current page` button dynamically after adding a second page': function() {
+            this.createFormBuilderPageManager({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 1,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            Y.one('.form-builder-page-manager-add-last-position').simulate('click');
+            Y.Assert.areEqual('Delete current page', Y.one('.form-builder-page-manager-delete-page').text());
         }
     }));
 

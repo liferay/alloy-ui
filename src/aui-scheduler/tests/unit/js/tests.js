@@ -672,6 +672,100 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 overlayRect.right <= Y.one('body').get('winWidth'),
                 'The right of the events overlay should be inside the viewport.'
             );
+        },
+
+        'should not prevent "syncEventsUI" from being called if the skipSyncUI event property is not present': function() {
+            var displayDate = new Date(2015, 9, 24);
+            var eventDate = new Date(2015, 9, 24);
+
+            var additionalEvents = [
+                {
+                    content: 'Event 2',
+                    endDate: eventDate,
+                    startDate: eventDate
+                }
+            ];
+
+            var initialEvents = [
+                {
+                    content: 'Event 1',
+                    endDate: eventDate,
+                    startDate: eventDate
+                }
+            ];
+
+            this._createScheduler({
+                date: displayDate,
+                activeView: this._monthView,
+                items: initialEvents
+            });
+
+            var schedulerCalendar = new Y.SchedulerCalendar({
+                scheduler: this._scheduler
+            });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-event').size(),
+                '1 event should display.'
+            );
+
+            schedulerCalendar.reset(additionalEvents);
+
+            Y.Assert.areEqual(
+                2, Y.all('.scheduler-event').size(),
+                '2 events should display.'
+            );
+        },
+
+        'should prevent "syncEventsUI" from being called if the skipSyncUI event property is present': function() {
+
+            var displayDate = new Date(2015, 9, 24);
+            var eventDate = new Date(2015, 9, 24);
+
+            var additionalEvents = [
+                {
+                    content: 'Event 2',
+                    endDate: eventDate,
+                    startDate: eventDate
+                }
+            ];
+
+            var initialEvents = [
+                {
+                    content: 'Event 1',
+                    endDate: eventDate,
+                    startDate: eventDate
+                }
+            ];
+
+            this._createScheduler({
+                date: displayDate,
+                activeView: this._monthView,
+                items: initialEvents
+            });
+
+            var schedulerCalendar = new Y.SchedulerCalendar({
+                scheduler: this._scheduler
+            });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-event').size(),
+                '1 events should display.'
+            );
+
+            schedulerCalendar.reset(additionalEvents, { skipSyncUI: true });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-event').size(),
+                '1 event should display.'
+            );
+
+            this._scheduler.syncEventsUI();
+
+            Y.Assert.areEqual(
+                2, Y.all('.scheduler-event').size(),
+                '2 events should display.'
+            );
         }
     }));
 
