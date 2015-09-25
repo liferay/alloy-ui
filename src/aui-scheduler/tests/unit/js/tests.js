@@ -674,7 +674,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
             );
         },
 
-        "an absent skipSyncUI event property shouldn't prevent syncEventsUI() being called": function() {
+        'an absent skipSyncUI event property shouldn\'t prevent syncEventsUI() being called': function() {
             var displayDate = new Date(2015, 9, 24);
             var eventDate = new Date(2015, 9, 24);
 
