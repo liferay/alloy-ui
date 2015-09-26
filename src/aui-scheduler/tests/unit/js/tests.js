@@ -766,6 +766,85 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 2, Y.all('.scheduler-event').size(),
                 '2 events should display.'
             );
+        },
+
+        'should sort events by date and time': function() {
+            var testText = 'Event Sept. 1 @ 6';
+
+            var events = [
+                {
+                    content: 'Event Sept. 30 @ 6',
+                    startDate: new Date(2015, 8, 30, 6),
+                    endDate: new Date(2015, 8, 30, 7)
+                },
+
+                {
+                    content: testText,
+                    startDate: new Date(2015, 8, 1, 6),
+                    endDate: new Date(2015, 8, 1, 7)
+                },
+                {
+                    content: 'Event Sept. 1 @ 7',
+                    startDate: new Date(2015, 8, 1, 7),
+                    endDate: new Date(2015, 8, 1, 8)
+                },
+                {
+                    content: 'Event Sept. 1 @ 8',
+                    startDate: new Date(2015, 8, 1, 8),
+                    endDate: new Date(2015, 8, 1, 9)
+                },
+
+                {
+                    content: 'Event Sept. 2 @ 6',
+                    startDate: new Date(2015, 8, 2, 6),
+                    endDate: new Date(2015, 8, 2, 7)
+                },
+                {
+                    content: 'Event Sept. 2 @ 7',
+                    startDate: new Date(2015, 8, 2, 7),
+                    endDate: new Date(2015, 8, 2, 8)
+                },
+                {
+                    content: 'Event Sept. 2 @ 8',
+                    startDate: new Date(2015, 8, 2, 8),
+                    endDate: new Date(2015, 8, 2, 9)
+                },
+
+                {
+                    content: 'Event Sept. 3 @ 6',
+                    startDate: new Date(2015, 8, 3, 6),
+                    endDate: new Date(2015, 8, 3, 7)
+                },
+                {
+                    content: 'Event Sept. 3 @ 7',
+                    startDate: new Date(2015, 8, 3, 7),
+                    endDate: new Date(2015, 8, 3, 8)
+                },
+                {
+                    content: 'Event Sept. 3 @ 8',
+                    startDate: new Date(2015, 8, 3, 8),
+                    endDate: new Date(2015, 8, 3, 9)
+                },
+
+                {
+                    content: 'Event Sept. 4 @ 6',
+                    startDate: new Date(2015, 8, 4, 6),
+                    endDate: new Date(2015, 8, 4, 7)
+                }
+            ];
+
+            var displayDate = new Date(2015, 8, 1);
+
+            this._createScheduler({
+                date: displayDate,
+                activeView: this._monthView,
+                items: events
+            });
+
+            Y.Assert.areEqual(
+                testText, Y.one('.scheduler-event .scheduler-event-content').text(),
+                'First event should be: ' + testText
+            );
         }
     }));
 
