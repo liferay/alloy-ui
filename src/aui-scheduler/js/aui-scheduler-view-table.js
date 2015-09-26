@@ -950,16 +950,10 @@ var SchedulerTableView = A.Component.create({
                 filterFn = this.get('filterFn'),
                 i = 0;
 
-            // Sort events by start date (they are sorted in a different way
+            // Sort events by start date and time (they are sorted in a different way
             // by default).
-            // Also sort by time (to account for multiple events with the
-            // same start date).
             events.sort(function(evt1, evt2) {
-                if(evt1.isAfter(evt2)) {
-                    return 1;
-                }
-
-                return -1;
+                return evt1.isAfter(evt2) ? 1 : -1;
             });
 
             while (i < events.length) {
