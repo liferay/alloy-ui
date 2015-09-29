@@ -60,6 +60,8 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
         '<span class="glyphicon glyphicon-ok"></span></button>' +
         '</div>',
 
+    TPL_FIELD_SETTINGS_HEAD_CONTENT: '<div class="' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
+
     /**
      * Destructor lifecycle implementation for the `A.FormBuilderSettingsModal` class.
      * Lifecycle.
@@ -158,7 +160,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
             cssClass: CSS_FIELD_SETTINGS,
             draggable: false,
             modal: true,
-            headerContent: '<div class="' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
+            headerContent: this.TPL_FIELD_SETTINGS_HEAD_CONTENT,
             resizable: false,
             zIndex: 2
         }).render();
