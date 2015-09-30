@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2017](https://issues.liferay.com/browse/AUI-2017) Buttons in fields settings modal should follow bootstrap visual patterns
 * [AUI-2000](https://issues.liferay.com/browse/AUI-2000) Add borders as separators on the grid
 * [AUI-2014](https://issues.liferay.com/browse/AUI-2014) Changes the default value of the strings attribute from FormBuilderPageManager class
 * [AUI-1993](https://issues.liferay.com/browse/AUI-1993) Change the add Field button
