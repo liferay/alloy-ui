@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2019](https://issues.liferay.com/browse/AUI-2019) The Active page number shouldn't appear over the Fields Panel
 * [AUI-2018](https://issues.liferay.com/browse/AUI-2018) Create a template variable to form builder modal head content
 * [AUI-2017](https://issues.liferay.com/browse/AUI-2017) Buttons in fields settings modal should follow bootstrap visual patterns
 * [AUI-2000](https://issues.liferay.com/browse/AUI-2000) Add borders as separators on the grid

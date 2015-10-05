@@ -273,7 +273,7 @@ A.FormBuilderFieldTypes.prototype = {
             resizable: false,
             toolbars: this._buildFieldTypesToolbarConfig(),
             visible: false,
-            zIndex: 2
+            zIndex: 3
         }).render();
 
         this._uiSetFieldTypes(this.get('fieldTypes'));
