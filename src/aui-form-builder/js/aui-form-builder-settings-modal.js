@@ -5,7 +5,8 @@
  * @submodule aui-form-builder-settings-modal
  */
 
-var CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
+var CSS_BTN_PRIMARY = A.getClassName('btn', 'primary'),
+    CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FIELD_SETTINGS_CANCEL =
         A.getClassName('form', 'builder', 'field', 'settings', 'cancel'),
     CSS_FIELD_SETTINGS_LABEL = A.getClassName('form', 'builder', 'field', 'settings', 'label'),
@@ -58,6 +59,8 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
         '<button class="close ' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CHECK + '" type="button">' +
         '<span class="glyphicon glyphicon-ok"></span></button>' +
         '</div>',
+
+    TPL_FIELD_SETTINGS_HEAD_CONTENT: '<div class="' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
 
     /**
      * Destructor lifecycle implementation for the `A.FormBuilderSettingsModal` class.
@@ -157,15 +160,15 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
             cssClass: CSS_FIELD_SETTINGS,
             draggable: false,
             modal: true,
-            headerContent: '<div class="' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
+            headerContent: this.TPL_FIELD_SETTINGS_HEAD_CONTENT,
             resizable: false,
-            zIndex: 2
+            zIndex: 3
         }).render();
 
         this._modal.addToolbar(
             [
                 {
-                    cssClass: CSS_FIELD_SETTINGS_SAVE,
+                    cssClass: [CSS_BTN_PRIMARY, CSS_FIELD_SETTINGS_SAVE].join(' '),
                     label: 'Save',
                     on: {
                         click: A.bind(this._save, this)

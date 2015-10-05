@@ -176,6 +176,29 @@
     margin: 0;
 }
 
+.form-builder-layout .layout-row:hover .layout-builder-resize-col-draggable-border {
+    border-right: 1px dotted transparent;
+}
+
+.form-builder-layout .layout-row {
+    border-top: 1px dotted transparent;
+    border-bottom: 1px dotted transparent;
+}
+
+.form-builder-layout .layout-row .layout-builder-resize-col-draggable {
+    opacity: 0;
+}
+
+.form-builder-layout .layout-row:hover .layout-builder-resize-col-draggable {
+    opacity: 1;
+}
+
+.form-builder-layout .layout-row:hover, .form-builder-layout .layout-row:hover .layout-builder-resize-col-draggable-border {
+    border-top-color: rgb(164, 179, 191);
+    border-right-color: rgb(164, 179, 191);
+    border-bottom-color: rgb(164, 179, 191);
+}
+
 .form-builder-layout .layout-row {
     margin: 0;
 }
