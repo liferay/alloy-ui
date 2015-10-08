@@ -24,6 +24,7 @@
     font-size: 13pt;
     font-weight: normal;
     margin-bottom: 24pt;
+    word-wrap: break-word;
 }
 
 .form-field-help {
@@ -31,6 +32,7 @@
     font-family: HelveticaNeue-LightItalic;
     font-size: 11pt;
     margin-bottom: 24pt;
+    word-wrap: break-word;
 }
 
 @media (max-width: 768px) {

@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2020](https://issues.liferay.com/browse/AUI-2020) Field title and field help texts should not exceed its container’s boundaries even when there isn’t space between words.
 * [AUI-1853](https://issues.liferay.com/browse/AUI-1853) Use default checkbox/radio/dropdown for FormBuilderChoiceField
 * [AUI-1877](https://issues.liferay.com/browse/AUI-1877) Move some form builder fields to Liferay Portal
 * [AUI-1787](https://issues.liferay.com/browse/AUI-1787) Implement new scale field's behavior
