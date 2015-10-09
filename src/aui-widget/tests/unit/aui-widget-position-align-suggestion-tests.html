@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>AUI WidgetCssClass Unit Tests</title>
+
+            <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+            <script src="../../../../build/aui/aui.js"></script>
+            <script src="js/aui-widget-position-align-suggestion-tests.js"></script>
+
+            <style type="text/css">
+                .test-position-item {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                }
+
+                .popover {
+                    display: block!important;
+                    padding: 10px;
+                    top: -20000;
+                    left: -20000;
+                }
+
+                #content {
+                    width:100%;
+                    height:200px;
+                }
+
+                #buttom,
+                #buttomTwo {
+                    position: absolute;
+                }
+
+                #containerConstrain {
+                    position: relative;
+                    background: red;
+                    width: 400px;
+                    height: 300px;
+                    margin-left: 400px;
+                }
+            </style>
+        </head>
+        <body class="yui3-skin-sam">
+            <div id="logger"></div>
+
+            <div id="content">
+                <button type="btn btn-default" id="buttom">Reference</button>
+
+                <div id="containerConstrain">
+                    <button type="btn btn-default" id="buttomTwo">Reference 2</button>    
+                </div>
+            </div>
+
+            <script>
+                YUI({
+                    coverage: ['aui-widget-position-align-suggestion'],
+                    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+                }).use('test-console', 'test', 'aui-widget-position-align-suggestion-tests', function(Y) {
+
+                    (new Y.Test.Console()).render('#logger');
+
+                    Y.Test.Runner.setName('aui-widget-position-align-suggestion');
+                    Y.Test.Runner.run();
+                });
+            </script>
+        </body>
+</html>

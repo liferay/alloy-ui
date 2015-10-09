@@ -20,13 +20,14 @@
     <div class="example">
         <button class="btn btn-large btn-primary" id="triggerTop">Click here to toggle a top popover</button>
         <button class="btn btn-large btn-primary" id="triggerBottom">Click here to toggle a bottom popover</button>
+        <button class="btn btn-large btn-primary" id="triggerConstrain">Click here to toggle a bottom popover</button>
     </div>
     <script>
     YUI({ filter:'raw' }).use('aui-popover', function(Y) {
 
-        var popoverTop = new Y.Popover({
+        new Y.Popover({
             align: {
-                node: triggerTop
+                node: '#triggerTop'
             },
             animated: true,
             bodyContent: 'One fine body…',
@@ -39,7 +40,7 @@
             }
         }).render();
 
-        var popoverBottom = new Y.Popover({
+        new Y.Popover({
             align: {
                 node: '#triggerBottom'
             },
@@ -47,6 +48,17 @@
             headerContent: 'Header content',
             position: 'bottom',
             trigger: '#triggerBottom'
+        }).render();
+
+        new Y.Popover({
+            align: {
+                node: '#triggerConstrain'
+            },
+            bodyContent: 'Try to hide me reducing the browser viewport.',
+            constrain: true,
+            headerContent: 'Header content',
+            position: 'bottom',
+            trigger: '#triggerConstrain'
         }).render();
 
     });

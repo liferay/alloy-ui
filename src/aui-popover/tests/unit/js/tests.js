@@ -117,6 +117,36 @@ YUI.add('aui-popover-tests', function(Y) {
                 Y.one('.popover'),
                 'The popover element shouldn\'t exist after being destroyed'
             );
+        },
+
+        'should keep inside of the viewport if attribute constrain is true': function() {
+            var button = Y.one('#triggerTop');
+
+            this._popover = new Y.Popover({
+                align: {
+                    node: button
+                },
+                bodyContent: 'Body content',
+                headerContent: 'Header content',
+                position: 'top',
+                constrain: true,
+                trigger: button
+            }).render();
+
+            button.setStyle('position', 'relative');
+            button.setStyle('top', '-20000px');
+            if (Y.UA.ie === 8) {
+                // Can't simulate a resize on IE8's window object, so
+                // calling the function directly here.
+                this._popover._onResize();
+            }
+            else {
+                Y.one(Y.config.win).simulate('resize');
+            }
+
+            this.wait(function() {
+                Y.Assert.isTrue(Y.one('.popover').inViewportRegion());
+            }, Y.config.windowResizeDelay || 100);
         }
     }));
 
