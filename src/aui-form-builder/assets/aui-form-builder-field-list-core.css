@@ -9,10 +9,26 @@
     width: 92%;
 }
 
+.form-builder-field-list-add-button-icon {
+    background-color: #108BD1;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: 200;
+    height: 30px;
+    margin: 0 auto;
+    width: 30px;
+}
+
 .form-builder-field-list-add-button-label {
     color: #4a90e2;
     font-family: "Helvetica Neue";
     font-size: 11px;
+}
+
+.form-builder-field-list-add-button-plus-icon {
+    color: white;
+    line-height: 27px;
+    margin-top: 8px;
 }
 
 .form-builder-field-list-add-button-visible .form-builder-field-list-add-button {
