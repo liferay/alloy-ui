@@ -16,7 +16,6 @@
             "aui-layout-builder-add-col",
             "aui-layout-builder-add-row",
             "aui-layout-builder-move",
-            "aui-layout-builder-remove-col",
             "aui-layout-builder-remove-row",
             "aui-layout-builder-resize-col",
             "aui-node-base",
@@ -27,13 +26,6 @@
         ]
     },
     "aui-layout-builder-add-col": {
-        "requires": [
-            "event-key",
-            "node-base"
-        ],
-        "skinnable": true
-    },
-    "aui-layout-builder-remove-col": {
         "requires": [
             "event-key",
             "node-base"

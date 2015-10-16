@@ -349,7 +349,8 @@ A.LayoutBuilderResizeCol.prototype = {
             col2 = dragNode.getData('layout-col2'),
             difference = dropNode.getData('layout-position') - dragNode.getData('layout-position'),
             col1NewSize = col1.get('size') + difference,
-            col2NewSize = col2.get('size') - difference;
+            col2NewSize = col2.get('size') - difference,
+            row;
 
         if (!col1.get('removable') && col1NewSize === 0) {
             col1.fire('removalCanceled');
@@ -365,11 +366,13 @@ A.LayoutBuilderResizeCol.prototype = {
         col2.set('size', col2NewSize);
 
         if (col1NewSize === 0) {
-            this._removeCol(col1.get('node'));
+            row = col1.get('node').ancestor().getData('layout-row');
+            row.removeCol(col1.get('node').getData('layout-col'));
         }
 
         if (col2NewSize === 0) {
-            this._removeCol(col2.get('node'));
+            row = col2.get('node').ancestor().getData('layout-row');
+            row.removeCol(col2.get('node').getData('layout-col'));
         }
     },
 
