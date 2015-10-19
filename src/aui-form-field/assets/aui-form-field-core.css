@@ -1,7 +1,8 @@
 .form-field {
     color: #5d6d7e;
     height: 100%;
-    padding: 32pt;
+    padding-top: 32pt;
+    padding-bottom: 32pt;
 }
 
 .form-field .form-field-nested .form-field {
@@ -37,6 +38,7 @@
 
 @media (max-width: 768px) {
     .form-field {
-        padding: 20pt;
+        padding-top: 20pt;
+        padding-bottom: 20pt;
     }
 }

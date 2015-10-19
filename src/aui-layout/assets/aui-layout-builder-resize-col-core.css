@@ -15,7 +15,7 @@
     margin-left: -10px;
     position: absolute;
     width: 20px;
-    z-index: 1;
+    z-index: 2;
 }
 
 .layout-builder-resize-col-draggable-border {
@@ -42,6 +42,7 @@
     position: absolute;
     top: 0;
     width: 0;
+    z-index: 2;
 }
 
 .layout-builder-resize-col-breakpoint-line {
