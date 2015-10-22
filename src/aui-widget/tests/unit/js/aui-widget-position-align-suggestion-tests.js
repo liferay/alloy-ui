@@ -398,6 +398,37 @@ YUI.add('aui-widget-position-align-suggestion-tests', function(Y) {
             this.wait(function() {
                 Y.Assert.isTrue(this._widget.get('boundingBox').inRegion(this._constrainElement, true));
             }, 100);
+        },
+
+        'should update the position attribute to reflect the align points initially defined': function() {
+            var bottomPoints = [Y.WidgetPositionAlign.TC, Y.WidgetPositionAlign.BC];
+
+            this.createWidget({
+                align: {
+                    node: this._secondButton,
+                    points: bottomPoints
+                }
+            });
+
+            this.wait(function() {
+                Y.Assert.areEqual('bottom', this._widget.get('position'));
+            }, 100);
+        },
+
+        'shouldn\'t try to find the position attribute value if the align points are unknown': function() {
+            var unknowPoints = [Y.WidgetPositionAlign.TC, Y.WidgetPositionAlign.RC];
+
+            this.createWidget({
+                align: {
+                    node: this._secondButton,
+                    points: unknowPoints
+                },
+                position: 'left'
+            });
+
+            this.wait(function() {
+                Y.Assert.areEqual('left', this._widget.get('position'));
+            }, 100);
         }
 
     }));

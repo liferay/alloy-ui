@@ -65,6 +65,7 @@ A.mix(PositionAlignSuggestion.prototype, {
 
         if (config && config.align && config.align.points) {
             instance._hasAlignmentPoints = true;
+            instance._setPositionAccordingPoints();
         }
 
         A.on(instance._onUISetAlignPAS, instance, '_uiSetAlign');
@@ -199,6 +200,7 @@ A.mix(PositionAlignSuggestion.prototype, {
             return 'right';
         }
     },
+
     /**
      * Guess alignment points for the `position`.
      *
@@ -249,6 +251,24 @@ A.mix(PositionAlignSuggestion.prototype, {
 
         return new A.Do.AlterArgs(
             null, [node, instance._getAlignPointsSuggestion(position)]);
+    },
+
+    /**
+     * Sets the position according to the align points initially defined.
+     *
+     * @method _setPositionAccordingPoints
+     * @protected
+     */
+    _setPositionAccordingPoints: function() {
+        var instance = this,
+            points = instance.get('align').points;
+
+        A.Object.some(instance.POSITION_ALIGN_SUGGESTION, function(value, key) {
+            if (points[0] === value[0] && points[1] === value[1]) {
+                instance.set('position', key);
+                return true;
+            }
+        });
     },
 
     /**
