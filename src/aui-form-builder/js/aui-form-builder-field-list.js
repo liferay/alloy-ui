@@ -7,8 +7,14 @@
 var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_LIST_ADD_BUTTON =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button'),
+        CSS_FIELD_LIST_ADD_BUTTON_ICON =
+        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'icon'),
     CSS_FIELD_LIST_ADD_BUTTON_LABEL =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'label'),
+        CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON =
+        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'plus', 'icon'),
+        CSS_FIELD_LIST_ADD_BUTTON_PLUS_LABEL =
+        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'plus', 'label'),
     CSS_FIELD_LIST_ADD_BUTTON_VISIBLE =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'visible'),
     CSS_FIELD_LIST_ADD_CONTAINER =
@@ -34,7 +40,12 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     TPL_ADD_FIELD: '<div class="' + CSS_FIELD_LIST_ADD_CONTAINER + '">' +
         '<div class="' + CSS_FIELD_LIST_ADD_BUTTON + ' ' +
         CSS_FIELD_LIST_ADD_BUTTON_VISIBLE + '" tabindex="9">' +
-        '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_LABEL + '">+ ADD FIELD</label>' +
+        '<div class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + '">' +
+        '<div class="' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON + '">+</div>' +
+        '</div>' +
+        '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_LABEL + '">' +
+        '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_LABEL + '">+</label> ADD FIELD' +
+        '</label>' +
         '</div></div>',
     TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '">' +
         '<div class="' + CSS_FIELD_LIST_CONTAINER + '"></div>' +
@@ -160,7 +171,9 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     _onMouseEnterAddButton: function(event) {
         var addButtonNode = event.currentTarget;
 
-        addButtonNode.addClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
+        if (this.get('fields').length > 0) {
+            addButtonNode.addClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
+        }
     },
 
     /**
@@ -171,11 +184,9 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
      * @protected
      */
     _onMouseLeaveAddButton: function(event) {
-        var addButtonNode = event.currentTarget,
-            content = this.get('content'),
-            addButtonsNodeList = content.all('.' + CSS_FIELD_LIST_ADD_BUTTON);
+        var addButtonNode = event.currentTarget;
 
-        if (addButtonsNodeList.indexOf(addButtonNode) < addButtonsNodeList.size() - 1) {
+        if (this.get('fields').length > 0) {
             addButtonNode.removeClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
         }
     },
@@ -202,6 +213,16 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         this._appendAddFieldNode(container, index, true);
 
         content.toggleClass(CSS_FIELD_LIST_EMPTY, !fields.length);
+
+        if (fields.length === 0) {
+            content.one('.' + CSS_FIELD_LIST_ADD_CONTAINER).addClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
+            content.all('.' + CSS_FIELD_LIST_ADD_BUTTON_ICON).removeClass('hidden');
+            content.all('.' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_LABEL).addClass('hidden');
+        }
+        else {
+            content.all('.' + CSS_FIELD_LIST_ADD_BUTTON_ICON).addClass('hidden');
+            content.all('.' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_LABEL).removeClass('hidden');
+        }
     },
 
     /**

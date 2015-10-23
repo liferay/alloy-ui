@@ -1184,7 +1184,6 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-layout-builder-add-col",
             "aui-layout-builder-add-row",
             "aui-layout-builder-move",
-            "aui-layout-builder-remove-col",
             "aui-layout-builder-remove-row",
             "aui-layout-builder-resize-col",
             "aui-node-base",
@@ -1213,13 +1212,6 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-node-base",
             "base-build"
-        ],
-        "skinnable": true
-    },
-    "aui-layout-builder-remove-col": {
-        "requires": [
-            "event-key",
-            "node-base"
         ],
         "skinnable": true
     },
@@ -2131,4 +2123,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'c0ebc1dcdda675c3b207355215a39085';
+YUI.Env[Y.version].md5 = 'b65be83700cbd3d94cbea048728d9e47';

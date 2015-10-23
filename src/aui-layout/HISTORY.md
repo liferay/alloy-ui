@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2016](https://issues.liferay.com/browse/AUI-2016) Remove column delete button from From Builder
 * [AUI-1930](https://issues.liferay.com/browse/AUI-1930) Change functionality of add cols
 * [AUI-1939](https://issues.liferay.com/browse/AUI-1939) Fix form builder column resizing after the first page / layout
 * [AUI-1928](https://issues.liferay.com/browse/AUI-1928) Fields should be moved between others field in a same col

@@ -23,7 +23,6 @@ var CSS_LAYOUT_BUILDER_LAYOUT_CONTAINER = A.getClassName('layout', 'builder', 'l
 A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
     A.LayoutBuilderAddCol,
     A.LayoutBuilderMove,
-    A.LayoutBuilderRemoveCol,
     A.LayoutBuilderRemoveRow,
     A.LayoutBuilderResizeCol,
     // It's necessary that A.LayoutBuilderAddRow is the last to be loaded.

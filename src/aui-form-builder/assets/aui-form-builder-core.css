@@ -193,7 +193,7 @@
     opacity: 1;
 }
 
-.form-builder-layout .layout-row:hover, .form-builder-layout .layout-row:hover .layout-builder-resize-col-draggable-border {
+.form-builder:hover .layout-row, .form-builder-layout .layout-row:hover .layout-builder-resize-col-draggable-border {
     border-top-color: rgb(164, 179, 191);
     border-right-color: rgb(164, 179, 191);
     border-bottom-color: rgb(164, 179, 191);
@@ -205,7 +205,6 @@
 
 .form-builder-layout .layout-row .col {
     background-color: #fff;
-    min-height: 260px;
     padding: 0;
 }
 
