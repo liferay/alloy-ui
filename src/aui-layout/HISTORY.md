@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2031](https://issues.liferay.com/browse/AUI-2031) JavaScript error thrown when trying to split a row into two columns
 * [AUI-2016](https://issues.liferay.com/browse/AUI-2016) Remove column delete button from From Builder
 * [AUI-1930](https://issues.liferay.com/browse/AUI-1930) Change functionality of add cols
 * [AUI-1939](https://issues.liferay.com/browse/AUI-1939) Fix form builder column resizing after the first page / layout

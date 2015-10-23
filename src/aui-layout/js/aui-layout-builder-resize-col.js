@@ -95,15 +95,15 @@ A.LayoutBuilderResizeCol.prototype = {
         var dragNode = this._delegateDrag.get('lastNode'),
             row = dragNode.ancestor(SELECTOR_ROW);
 
-        if (dragNode.getData('layout-action') && dragNode.getData('layout-action') === 'addColumn') {
-            this._insertColumnAfterDropHandles(dragNode);
-        }
-        else {
-            this._resize(dragNode);
-            this.get('layout').normalizeColsHeight(new A.NodeList(row));
-        }
-
         if (row) {
+            if (dragNode.getData('layout-action') && dragNode.getData('layout-action') === 'addColumn') {
+                this._insertColumnAfterDropHandles(dragNode);
+            }
+            else {
+                this._resize(dragNode);
+                this.get('layout').normalizeColsHeight(new A.NodeList(row));
+            }
+
             this._hideBreakpoints(row);
         }
 
@@ -398,7 +398,7 @@ A.LayoutBuilderResizeCol.prototype = {
      * @param {Node} dragNode
      * @protected
      */
-     _insertColumnAfterDropHandles: function(dragNode){
+     _insertColumnAfterDropHandles: function(dragNode) {
         var colLayoutPosition = this._lastDropEnter.getData('layout-position'),
             dragPosition = dragNode.getData('layout-position'),
             newCol = new A.LayoutCol(),
