@@ -53,6 +53,7 @@ A.FormBuilderFieldTypes.prototype = {
      */
     disableUniqueFieldType: function(field) {
         var fieldType = this.findTypeOfField(field);
+
         if (fieldType.get('unique')) {
             fieldType.set('disabled', true);
         }
@@ -148,6 +149,7 @@ A.FormBuilderFieldTypes.prototype = {
      * Fired after the `fieldTypes` attribute is set.
      *
      * @method _afterFieldTypesChange
+     * @param {EventFacade} event
      * @protected
      */
     _afterFieldTypesChange: function(event) {
@@ -158,6 +160,7 @@ A.FormBuilderFieldTypes.prototype = {
      * Fired after a field type is selected by the user.
      *
      * @method _afterSelectFieldType
+     * @param {EventFacade} event
      * @protected
      */
     _afterSelectFieldType: function(event) {
@@ -253,6 +256,8 @@ A.FormBuilderFieldTypes.prototype = {
      *
      * @method _setFieldTypes
      * @param {Object | A.FormBuilderFieldType} val
+     * @return {A.FormBuilderFieldType}
+     * @protected
      */
     _setFieldTypes: function(val) {
         for (var i = 0; i < val.length; i++) {
@@ -323,6 +328,7 @@ A.FormBuilderFieldTypes.prototype = {
      * Default value for the modal displayed to select a field.
      *
      * @method _valueFieldTypesModal
+     * @return {A.FormBuilderFieldTypesModal}
      * @protected
      */
     _valueFieldTypesModal: function() {

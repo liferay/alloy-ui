@@ -21,6 +21,7 @@ var CSS_FIELD_TYPE = A.getClassName('field', 'type'),
 
 A.FormBuilderFieldTypesModal = A.Base.create('form-builder-field-types-modal', A.Modal, [], {
     TPL_HEADER_LABEL: '<div class="' + CSS_FIELD_TYPES_LABEL + '">{addField}</div>',
+    TPL_TYPES_LIST: '<div class="clearfix ' + CSS_FIELD_TYPES_LIST + '" role="main"></div>',
 
     /**
      * Construction logic executed during the `A.FormBuilderFieldTypesModal`
@@ -34,19 +35,9 @@ A.FormBuilderFieldTypesModal = A.Base.create('form-builder-field-types-modal', A
     },
 
     /**
-     * Fired after the `fieldTypes` attribute is set.
+     * Bind the events on the FormBuilderFieldTypesModal UI. Lifecycle.
      *
-     * @method _afterFieldTypesChange
-     * @protected
-     */
-    _afterFieldTypesChange: function() {
-        this._uiSetFieldTypes(this.get('fieldTypes'));
-    },
-
-    /**
-     * Binds all necessary events for the field types modal to work.
-     *
-     * @method _bindFieldTypesModalEvents
+     * @method bindUI
      * @protected
      */
     bindUI: function() {
@@ -61,14 +52,24 @@ A.FormBuilderFieldTypesModal = A.Base.create('form-builder-field-types-modal', A
     },
 
     /**
-     * Renders the fieldTypes on the modal body
+     * Renders the FormBuilderFieldTypesModal component instance. Lifecycle.
      *
-     * @method _bindFieldTypesModalEvents
+     * @method renderUI
      * @protected
      */
     renderUI: function() {
         A.FormBuilderFieldTypesModal.superclass.renderUI.apply(this, arguments);
 
+        this._uiSetFieldTypes(this.get('fieldTypes'));
+    },
+
+    /**
+     * Fires after `fieldTypes` attribute changes.
+     *
+     * @method _afterFieldTypesChange
+     * @protected
+     */
+    _afterFieldTypesChange: function() {
         this._uiSetFieldTypes(this.get('fieldTypes'));
     },
 
@@ -118,9 +119,7 @@ A.FormBuilderFieldTypesModal = A.Base.create('form-builder-field-types-modal', A
      * @protected
      */
     _uiSetFieldTypes: function(fieldTypes) {
-        var fieldTypesListNode = A.Node.create(
-            '<div class="clearfix ' + CSS_FIELD_TYPES_LIST + '" role="main" />'
-        );
+        var fieldTypesListNode = A.Node.create(this.TPL_TYPES_LIST);
 
         fieldTypesListNode.get('children').remove();
 
@@ -134,7 +133,7 @@ A.FormBuilderFieldTypesModal = A.Base.create('form-builder-field-types-modal', A
     /**
      * Returns the template of the modal header.
      *
-     * @method _valueToolbars
+     * @method _valueHeaderContent
      * @return {Object}
      * @protected
      */
