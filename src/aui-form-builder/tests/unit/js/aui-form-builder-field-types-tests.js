@@ -221,19 +221,6 @@ YUI.add('aui-form-builder-field-types-tests', function(Y) {
             Y.Assert.isFalse(formBuilderModal.hasClass('modal-dialog-hidden'));
         },
 
-        'should close field types panel through close button': function() {
-            var formBuilderModal;
-
-            this.createFormBuilder();
-            this._formBuilder.showFieldsPanel();
-
-            formBuilderModal = Y.one('.form-builder-modal');
-            formBuilderModal.one('.close').simulate('mousemove');
-            formBuilderModal.one('.close').simulate('click');
-
-            Y.Assert.isTrue(formBuilderModal.hasClass('modal-dialog-hidden'));
-        },
-
         'should open settings editor for the clicked field type': function() {
             var mock = new Y.Mock();
 

@@ -5,10 +5,6 @@
  * @submodule aui-form-builder-field-types
  */
 
-var CSS_FIELD_TYPE = A.getClassName('field', 'type'),
-    CSS_FIELD_TYPES_LABEL = A.getClassName('form', 'builder', 'field', 'types', 'label'),
-    CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list');
-
 /**
  * `A.FormBuilder` extension, which is responsible for all the logic related
  * to field types.
@@ -21,8 +17,6 @@ var CSS_FIELD_TYPE = A.getClassName('field', 'type'),
 A.FormBuilderFieldTypes = function() {};
 
 A.FormBuilderFieldTypes.prototype = {
-    TPL_HEADER_LABEL: '<div class="' + CSS_FIELD_TYPES_LABEL + '">{addField}</div>',
-
     /**
      * Construction logic executed during the `A.FormBuilderFieldTypes`
      * instantiation. Lifecycle.
@@ -32,6 +26,7 @@ A.FormBuilderFieldTypes.prototype = {
      */
     initializer: function() {
         this.after('fieldTypesChange', this._afterFieldTypesChange);
+        this.after('form-builder-field-types-modal:selectFieldType', this._afterSelectFieldType);
     },
 
     /**
@@ -46,9 +41,7 @@ A.FormBuilderFieldTypes.prototype = {
             field.destroy();
         });
 
-        if (this._fieldTypesModal) {
-            this._fieldTypesModal.destroy();
-        }
+        this.get('fieldTypesModal').destroy();
     },
 
     /**
@@ -58,7 +51,7 @@ A.FormBuilderFieldTypes.prototype = {
      * @method disableUniqueFieldType
      * @param {A.FormField} field
      */
-    disableUniqueFieldType: function (field) {
+    disableUniqueFieldType: function(field) {
         var fieldType = this.findTypeOfField(field);
         if (fieldType.get('unique')) {
             fieldType.set('disabled', true);
@@ -88,9 +81,9 @@ A.FormBuilderFieldTypes.prototype = {
      * @method hideFieldsPanel
      */
     hideFieldsPanel: function() {
-        if (this._fieldTypesModal) {
-            this._fieldTypesModal.hide();
-        }
+        var fieldTypesModal = this.get('fieldTypesModal');
+
+        fieldTypesModal.hide();
     },
 
     /**
@@ -120,11 +113,13 @@ A.FormBuilderFieldTypes.prototype = {
      * @method showFieldsPanel
      */
     showFieldsPanel: function() {
-        if (!this._fieldTypesPanel) {
-            this._createFieldTypesPanel();
+        var fieldTypesModal = this.get('fieldTypesModal');
+
+        if (!fieldTypesModal.get('rendered')) {
+            fieldTypesModal.render();
         }
 
-        this._fieldTypesModal.show();
+        fieldTypesModal.show();
     },
 
     /**
@@ -155,43 +150,24 @@ A.FormBuilderFieldTypes.prototype = {
      * @method _afterFieldTypesChange
      * @protected
      */
-    _afterFieldTypesChange: function() {
-        this._uiSetFieldTypes(this.get('fieldTypes'));
+    _afterFieldTypesChange: function(event) {
+        this.get('fieldTypesModal').set('fieldTypes', event.newVal);
     },
 
     /**
-     * Binds all necessary events for the field types modal to work.
+     * Fired after a field type is selected by the user.
      *
-     * @method _bindFieldTypesModalEvents
+     * @method _afterSelectFieldType
      * @protected
      */
-    _bindFieldTypesModalEvents: function() {
-        this._eventHandles.push(
-            this._fieldTypesPanel.delegate('click', this._onClickFieldType, '.' + CSS_FIELD_TYPE, this),
-            this._fieldTypesPanel.delegate('key', A.bind(this._onKeyPressFieldType, this), 'enter', '.' + CSS_FIELD_TYPE)
-        );
-    },
+    _afterSelectFieldType: function(event) {
+        var field,
+            fieldType = event.fieldType;
 
-    /**
-     * Builds and returns the configuration object for the field types modal
-     * toolbar.
-     *
-     * @method _buildFieldTypesToolbarConfig
-     * @return {Object}
-     * @protected
-     */
-    _buildFieldTypesToolbarConfig: function() {
-        return {
-            header: [
-                {
-                    cssClass: 'close',
-                    label: '\u00D7',
-                    on: {
-                        click: A.bind(this._onFieldTypesModalCloseClick, this)
-                    }
-                }
-            ]
-        };
+        if (!fieldType.get('disabled')) {
+            field = new(fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
+            this.showFieldSettingsPanel(field, fieldType.get('label'));
+        }
     },
 
     /**
@@ -237,47 +213,13 @@ A.FormBuilderFieldTypes.prototype = {
         var fields = fieldList.get('fields'),
             i;
 
-            for (i = 0; i < fields.length; i++) {
-                if (this._hasFieldType(fieldType, fields[i])) {
-                    return true;
-                }
+        for (i = 0; i < fields.length; i++) {
+            if (this._hasFieldType(fieldType, fields[i])) {
+                return true;
             }
+        }
 
         return false;
-    },
-
-    /**
-     * Creates the field types panel.
-     *
-     * @method _createFieldTypesPanel
-     * @protected
-     */
-    _createFieldTypesPanel: function() {
-        var headerNode;
-
-        headerNode = A.Lang.sub(this.TPL_HEADER_LABEL, {
-            addField: this.get('strings').addField
-        });
-
-        this._fieldTypesPanel = A.Node.create(
-            '<div class="clearfix ' + CSS_FIELD_TYPES_LIST + '" role="main" />'
-        );
-
-        this._fieldTypesModal = new A.Modal({
-            bodyContent: this._fieldTypesPanel,
-            centered: true,
-            cssClass: 'form-builder-modal',
-            draggable: false,
-            headerContent: headerNode,
-            modal: true,
-            resizable: false,
-            toolbars: this._buildFieldTypesToolbarConfig(),
-            visible: false,
-            zIndex: 3
-        }).render();
-
-        this._uiSetFieldTypes(this.get('fieldTypes'));
-        this._bindFieldTypesModalEvents();
     },
 
     /**
@@ -307,47 +249,6 @@ A.FormBuilderFieldTypes.prototype = {
     },
 
     /**
-     * Fired when a field type is clicked.
-     *
-     * @method _onClickFieldType
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onClickFieldType: function(event) {
-        var field,
-            fieldType = event.currentTarget.getData('fieldType');
-
-        if (!fieldType.get('disabled')) {
-            this.hideFieldsPanel();
-
-            field = new (fieldType.get('fieldClass'))(fieldType.get('defaultConfig'));
-            this.showFieldSettingsPanel(field, fieldType.get('label'));
-        }
-    },
-
-    /**
-     * Fired when the close button for the field types modal is clicked.
-     *
-     * @method _onFieldTypesModalCloseClick
-     * @protected
-     */
-    _onFieldTypesModalCloseClick: function() {
-        this.hideFieldsPanel();
-        this._newFieldContainer = null;
-    },
-
-    /**
-     * Fired when a field type is keypressed.
-     *
-     * @method _onKeyPressFieldType
-     * @param {EventFacade} event
-     * @protected
-     */
-    _onKeyPressFieldType: function(event) {
-        this._onClickFieldType(event);
-    },
-
-    /**
      * Sets the `fieldTypes` attribute.
      *
      * @method _setFieldTypes
@@ -361,26 +262,6 @@ A.FormBuilderFieldTypes.prototype = {
         }
 
         return val;
-    },
-
-    /**
-     * Updates the ui according to the value of the `fieldTypes` attribute.
-     *
-     * @method _uiSetFieldTypes
-     * @param {Array} fieldTypes
-     * @protected
-     */
-    _uiSetFieldTypes: function(fieldTypes) {
-        var instance = this;
-
-        if (!this._fieldTypesPanel) {
-            return;
-        }
-
-        this._fieldTypesPanel.get('children').remove();
-        A.Array.each(fieldTypes, function(type) {
-            instance._fieldTypesPanel.append(type.get('node'));
-        });
     },
 
     /**
@@ -431,11 +312,34 @@ A.FormBuilderFieldTypes.prototype = {
     _updateUniqueFieldType: function() {
         var instance = this;
 
-        A.Array.each(instance.get('fieldTypes'), function (fieldType) {
+        A.Array.each(instance.get('fieldTypes'), function(fieldType) {
             if (fieldType.get('unique')) {
                 fieldType.set('disabled', instance._checkActiveLayoutHasFieldType(fieldType));
             }
         });
+    },
+
+    /**
+     * Default value for the modal displayed to select a field.
+     *
+     * @method _valueFieldTypesModal
+     * @protected
+     */
+    _valueFieldTypesModal: function() {
+        var fieldTypesModal = new A.FormBuilderFieldTypesModal({
+            centered: true,
+            cssClass: 'form-builder-modal',
+            draggable: false,
+            fieldTypes: this.get('fieldTypes'),
+            modal: true,
+            resizable: false,
+            visible: false,
+            zIndex: 3
+        });
+
+        fieldTypesModal.addTarget(this);
+
+        return fieldTypesModal;
     }
 };
 
@@ -460,5 +364,15 @@ A.FormBuilderFieldTypes.ATTRS = {
         setter: '_setFieldTypes',
         validator: A.Lang.isArray,
         value: []
+    },
+
+    /**
+     * The modal that will be used to select a field type.
+     *
+     * @attribute fieldTypesModal
+     * @type `A.FormBuilderFieldTypesModal`
+     */
+    fieldTypesModal: {
+        valueFn: '_valueFieldTypesModal'
     }
 };
