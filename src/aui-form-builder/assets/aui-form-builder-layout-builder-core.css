@@ -14,7 +14,6 @@
     z-index: 1;
 }
 
-
 .form-builder-field-move-target {
     background-color: #fff;
     border-color: #ccc;
@@ -45,7 +44,7 @@
     visibility: hidden;
 }
 
-.form-builder-col-moving .form-builder-list-move-target  {
+.form-builder-col-moving .form-builder-list-move-target {
     visibility: hidden;
 }
 
