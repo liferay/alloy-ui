@@ -58,12 +58,14 @@ A.mix(PositionAlignSuggestion.prototype, {
      * instantiation. Lifecycle.
      *
      * @method initializer
+     * @protected
      */
     initializer: function(config) {
         var instance = this;
 
         if (config && config.align && config.align.points) {
             instance._hasAlignmentPoints = true;
+            instance._setPositionAccordingPoints();
         }
 
         A.on(instance._onUISetAlignPAS, instance, '_uiSetAlign');
@@ -153,16 +155,16 @@ A.mix(PositionAlignSuggestion.prototype, {
     _findBestPosition: function(node) {
         var instance = this,
             position = instance.get('position'),
-            testPositions = [position, 'top', 'bottom', 'right', 'left'];
+            testPositions = [position, 'top', 'bottom', 'right', 'left'],
+            trigger = A.one(node);
 
-        if (node && !node.inViewportRegion()) {
-            return instance._findBestPositionOutsideViewport(node);
-        }
-        else {
+        if (trigger && !trigger.inViewportRegion()) {
+            return instance._findBestPositionOutsideViewport(trigger);
+        } else {
             testPositions = A.Array.dedupe(testPositions);
 
             A.Array.some(testPositions, function(testPosition) {
-                if (instance._canWidgetAlignToNode(node, testPosition)) {
+                if (instance._canWidgetAlignToNode(trigger, testPosition)) {
                     position = testPosition;
                     return true;
                 }
@@ -172,6 +174,14 @@ A.mix(PositionAlignSuggestion.prototype, {
         return position;
     },
 
+    /**
+     * Finds the better widget's position when its anchor is outside
+     * the view port.
+     *
+     * @method _findBestPositionOutsideViewport
+     * @param node
+     * @protected
+     */
     _findBestPositionOutsideViewport: function(node) {
         var instance = this,
             nodeRegion = instance._getRegion(node),
@@ -190,6 +200,7 @@ A.mix(PositionAlignSuggestion.prototype, {
             return 'right';
         }
     },
+
     /**
      * Guess alignment points for the `position`.
      *
@@ -240,6 +251,24 @@ A.mix(PositionAlignSuggestion.prototype, {
 
         return new A.Do.AlterArgs(
             null, [node, instance._getAlignPointsSuggestion(position)]);
+    },
+
+    /**
+     * Sets the position according to the align points initially defined.
+     *
+     * @method _setPositionAccordingPoints
+     * @protected
+     */
+    _setPositionAccordingPoints: function() {
+        var instance = this,
+            points = instance.get('align').points;
+
+        A.Object.some(instance.POSITION_ALIGN_SUGGESTION, function(value, key) {
+            if (points[0] === value[0] && points[1] === value[1]) {
+                instance.set('position', key);
+                return true;
+            }
+        });
     },
 
     /**

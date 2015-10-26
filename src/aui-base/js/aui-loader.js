@@ -897,9 +897,15 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-form-builder-field-types": {
         "requires": [
             "aui-classnamemanager",
-            "aui-modal",
+            "aui-form-builder-field-types-modal",
             "base",
             "node-base"
+        ],
+        "skinnable": true
+    },
+    "aui-form-builder-field-types-modal": {
+        "requires": [
+            "aui-modal"
         ],
         "skinnable": true
     },
@@ -2123,4 +2129,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'b65be83700cbd3d94cbea048728d9e47';
+YUI.Env[Y.version].md5 = '1b67db8090b5ed5e6407d19fbed6f44d';

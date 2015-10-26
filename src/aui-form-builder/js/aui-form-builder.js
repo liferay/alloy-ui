@@ -374,13 +374,13 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _getActiveLayoutIndex: function() {
-        return this.get('rendered') ? this.get('pages').get('activePageNumber') - 1: 0;
+        return this.get('rendered') ? this.get('pages').get('activePageNumber') - 1 : 0;
     },
 
     /**
      * Form Builder Pages instance initializer. Receives a custom
      * object of configurations or using default configurations instead.
-     * 
+     *
      * @method _getPageManagerInstance
      * @param {Object} config
      * @return {A.FormBuilderPages}
@@ -667,7 +667,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
          * A Form Builder Pages instance.
          *
          * @attribute pages
-         * @type {A.FormBuilderPages} 
+         * @type {A.FormBuilderPages}
          */
         pages: {
             getter: '_getPageManagerInstance',
@@ -683,9 +683,9 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         strings: {
             value: {
                 addField: 'Add Field',
-                formTitle: 'Build your form',
                 cancelRemoveRow: 'Cancel',
                 confirmRemoveRow: 'Yes, delete',
+                formTitle: 'Build your form',
                 modalHeader: 'Remove confirmation',
                 removeRowModal: 'You will also delete fields with this row. ' +
                     'Are you sure you want delete it?'
