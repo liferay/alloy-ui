@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2030](https://issues.liferay.com/browse/AUI-2030) A row with one col should be automatically added on last position when the last row have at least one field
 * [AUI-2031](https://issues.liferay.com/browse/AUI-2031) JavaScript error thrown when trying to split a row into two columns
 * [AUI-2016](https://issues.liferay.com/browse/AUI-2016) Remove column delete button from From Builder
 * [AUI-1930](https://issues.liferay.com/browse/AUI-1930) Change functionality of add cols

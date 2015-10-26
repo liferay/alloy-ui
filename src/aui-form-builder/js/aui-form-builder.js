@@ -39,6 +39,8 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     TPL_PAGES: '<div class="' + CSS_PAGES + '" ></div>',
     TPL_TABVIEW: '<div class="' + CSS_TABS + '"></div>',
 
+    _fieldsChangeHandles: [],
+
     /**
      * Construction logic executed during the `A.FormBuilder`
      * instantiation. Lifecycle.
@@ -57,6 +59,9 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         ];
 
         A.Array.invoke(this.get('layouts'), 'addTarget', this);
+        this._addFieldsChangeListener(this.get('layouts'));
+
+        this._checkLayoutsLastRow();
     },
 
     /**
@@ -213,6 +218,25 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
+     * Attach the `fieldsChange` event listener from all layouts on the
+     * `layouts` attribute.
+     *
+     * @method _addFieldsChangeListener
+     * @protected
+     */
+    _addFieldsChangeListener: function(layouts) {
+        var i;
+
+        for(i = 0; i < layouts.length; i++) {
+            this._fieldsChangeHandles.push(
+            layouts[i].after(
+                'form-builder-field-list:fieldsChange',
+                A.bind(this._afterFieldsChange, this))
+            );
+        }
+    },
+
+    /**
      * Adds a field into field's nested list and normalizes the columns height.
      *
      * @method _addNestedField
@@ -312,6 +336,9 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         A.Array.invoke(event.prevVal, 'removeTarget', this);
         A.Array.invoke(event.newVal, 'addTarget', this);
 
+        this._removeFieldsChangeListener(event.prevVal);
+        this._addFieldsChangeListener(event.newVal);
+
         this._updatePageContent(this.get('layouts')[0]);
         this._updateUniqueFieldType();
 
@@ -322,7 +349,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             pages.set('pagesQuantity', this.get('layouts').length);
         }
 
-        this._checkLastRow();
+        this._checkLayoutsLastRow();
     },
 
     /**
@@ -350,7 +377,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         }
         this._renderEmptyColumns();
         this._updateUniqueFieldType();
-        this._checkLastRow();
+        this._checkLastRow(event.target);
     },
 
     /**
@@ -366,6 +393,29 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         this._updatePageContent(activeLayout);
     },
+
+    /**
+     * Fired after the `form-builder-field-list:fieldsChange` event is triggered.
+     *
+     * @method _afterFieldsChange
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterFieldsChange: function(event) {
+        this._checkLastRow(event.currentTarget);
+    },
+
+    /**
+     * Executes the '_checkLastRow' funciton for each layouts on 'layouts' attribute.
+     *
+     * @method _checkLayoutsLastRow
+     * @protected
+     */
+    _checkLayoutsLastRow: function() {
+        this.get('layouts').forEach(this._checkLastRow, this);
+    },
+
+    /**
 
     /**
      * Fire event of create a field.
@@ -512,6 +562,17 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
+     * Detach the `fieldsChange` event listener from all layouts on the
+     * `layouts` attribute.
+     *
+     * @method _removeFieldsChangeListener
+     * @protected
+     */
+    _removeFieldsChangeListener: function() {
+        (new A.EventHandle(this._fieldsChangeHandles)).detach();
+    },
+
+    /**
      * Remove a layout from the form builder. The paramenter `event` has the
      * layout index to be removed.
      *
@@ -603,7 +664,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             }
 
             layout.get('rows')[layout.get('rows').length - 1].set('removable', false);
-
             layouts.push(layout);
         });
 

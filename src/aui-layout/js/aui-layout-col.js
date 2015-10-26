@@ -105,6 +105,8 @@ A.LayoutCol = A.Base.create('layout-col', A.Base, [], {
                     'contentChange',
                     A.bind(this._afterContentChange, this)
                 );
+
+                this.get('value').addTarget(this);
             }
         }
     }

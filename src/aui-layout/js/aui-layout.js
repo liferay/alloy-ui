@@ -5,11 +5,8 @@
  */
 
 var CSS_LAYOUT_NODE = A.getClassName('layout', 'node'),
-
     MAXIMUM_COLS_PER_ROW = 12,
-
     RESPONSIVENESS_BREAKPOINT = 992,
-
     SELECTOR_COL = '.col',
     SELECTOR_LAYOUT_COL_CONTENT = '.layout-col-content',
     SELECTOR_LAYOUT_ROW_CONTAINER_ROW = '.layout-row-container-row',

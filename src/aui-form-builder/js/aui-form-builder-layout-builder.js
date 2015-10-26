@@ -103,10 +103,11 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _afterLayoutBuilderColsChange: function(event) {
-        var lastRow = this._getLastRow();
+        var activeLayout = this.getActiveLayout(),
+            lastRow = this._getLastRow(activeLayout);
 
         if (lastRow === event.target) {
-            this._checkLastRow();
+            this._checkLastRow(activeLayout);
         }
     },
 
@@ -139,27 +140,26 @@ A.FormBuilderLayoutBuilder.prototype = {
         );
 
         this._removeLayoutCutColButtons();
-
-        this._checkLastRow();
     },
 
     /**
-     * Checks if the last row has more than one col, if yes a new row is
-     * created and set as the last position.
+     * Checks if the last row has more than one col or if it has at least one field,
+     * if true a new row is created and set on the last position.
      *
      * @method _checkLastRow
+     * @param {A.Layout} layout
      * @protected
      */
-    _checkLastRow: function() {
-        var lastRow = this._getLastRow();
+    _checkLastRow: function(layout) {
+        var lastRow = this._getLastRow(layout),
+            cols = lastRow.get('cols');
 
-        if (lastRow.get('cols').length > 1) {
-            lastRow.set('removable', true);
-            this._createLastRow();
+        if (cols.length > 1 || (cols[0].get('value') &&
+            cols[0].get('value').get('fields').length > 0)) {
+            this._createLastRow(layout);
         }
-        else {
-            lastRow.set('removable', false);
-        }
+
+        this._getLastRow(layout).set('removable', false);
     },
 
     /**
@@ -281,14 +281,12 @@ A.FormBuilderLayoutBuilder.prototype = {
      * Creates a new row in the last position.
      *
      * @method _createLastRow
+     * @param {A.Layout} layout
      * @protected
      */
-    _createLastRow: function() {
+    _createLastRow: function(layout) {
         var lastRow = new A.LayoutRow(),
-            layout = this.getActiveLayout(),
             rows = layout.get('rows');
-
-        lastRow.set('removable', false);
 
         layout.addRow(rows.length, lastRow);
     },
@@ -319,11 +317,12 @@ A.FormBuilderLayoutBuilder.prototype = {
      * Gets the last row.
      *
      * @method _getLastRow
+     * @param {A.Layout} layout
      * @protected
      * @return {A.LayoutRow}
      */
-    _getLastRow: function() {
-        var rows = this.getActiveLayout().get('rows');
+    _getLastRow: function(layout) {
+        var rows = layout.get('rows');
 
         return rows[rows.length - 1];
     },
