@@ -51,6 +51,72 @@ YUI.add('aui-button-core-tests', function(Y) {
 
             button.set('icon');
             Y.Assert.areNotEqual(oldIcon, button.get('icon'));
+        },
+
+        'should add the button default classes': function() {
+            this._button.destroy();
+            this.createButton({
+                label: 'Button',
+                srcNode: '#content'
+            });
+
+            Y.Assert.isTrue(this._button.getNode().hasClass('btn'), 'Button has not the default class btn');
+            Y.Assert.isTrue(this._button.getNode().hasClass('btn-default'), 'Button has not the default class btn-default');
+        },
+
+        'should not add the button default classes': function() {
+            this._button.destroy();
+            this.createButton({
+                label: 'Button',
+                srcNode: '#content',
+                discardDefaultButtonCssClasses: true
+            });
+
+            Y.Assert.isFalse(this._button.getNode().hasClass('btn'), 'Button has the default class btn');
+            Y.Assert.isFalse(this._button.getNode().hasClass('btn-default'), 'Button has the default class btn-default');
+        },
+
+        'should not create a button with domType different of button or submit': function() {
+            var button;
+
+            button = new Y.Button({
+                domType: 'button'
+            }).render(this._container);
+
+            Y.Assert.areEqual(button.getNode().getAttribute('type'), 'button');
+
+            button.destroy();
+
+            button = new Y.Button({
+                domType: 'submit'
+            }).render(this._container);
+
+            Y.Assert.areEqual(button.getNode().getAttribute('type'), 'submit');
+
+            button.destroy();
+
+            button = new Y.Button({
+                domType: 'anythingelse'
+            }).render(this._container);
+
+            Y.Assert.areEqual(button.getNode().getAttribute('type'), '');
+
+            button.destroy();
+        },
+
+        'should domType attribute once writable': function() {
+            var button;
+
+            button = new Y.Button({
+                domType: 'button'
+            }).render(this._container);
+
+            button.set('submit');
+
+            Y.Assert.areEqual(button.get('domType'), 'button');
+            Y.Assert.areEqual(button.getNode().getAttribute('type'), 'button');
+
+            button.destroy();
         }
     }));
 
