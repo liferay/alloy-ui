@@ -16,7 +16,8 @@ var Lang = A.Lang,
     CSS_BTN_GROUP = getCN('btn', 'group'),
     CSS_BTN_GROUP_CHECKBOX = getCN('btn', 'group', 'checkbox'),
     CSS_BTN_GROUP_RADIO = getCN('btn', 'group', 'radio'),
-    CSS_BTN_GROUP_VERTICAL = getCN('btn', 'group', 'vertical');
+    CSS_BTN_GROUP_VERTICAL = getCN('btn', 'group', 'vertical'),
+    CSS_BTN_TOOLBAR = getCN('btn', 'toolbar', 'button');
 
 /**
  * A base class for Toolbar.
@@ -132,7 +133,7 @@ A.Toolbar = A.Component.create({
                 boundingBox = instance.get('boundingBox');
 
             boundingBox.delegate(
-                ['click', 'mousemove', 'focus'], instance._onUserInitInteraction, '.' + CSS_BTN,
+                ['click', 'mousemove', 'focus'], instance._onUserInitInteraction, '.' + CSS_BTN_TOOLBAR + ', .' + CSS_BTN,
                 instance);
         },
 
@@ -236,6 +237,7 @@ A.Toolbar = A.Component.create({
             if (!seed || seed.getData('enclosingWidgetInitialized')) {
                 return;
             }
+
             seed.setData('enclosingWidgetInitialized', true);
 
             var enclosingWidget = A.Widget.getByNode(seed),
@@ -246,7 +248,8 @@ A.Toolbar = A.Component.create({
                 return;
             }
 
-            var buttonNode = seed.ancestor('.' + CSS_BTN, true);
+            var buttonNode = seed.ancestor('.' + CSS_BTN_TOOLBAR + ', .' + CSS_BTN, true);
+
             if (buttonNode) {
                 // Initialize button first since it can be outside a group
                 if (A.Button.hasWidgetLazyConstructorData(seed)) {
@@ -360,7 +363,7 @@ ToolbarRenderer.prototype = {
                 return value.get('boundingBox');
             }
 
-            if (A.UA.touchEnabled) {
+            if (A.UA.mobile && A.UA.touchEnabled) {
                 buttonInstance = new A.Button(value).render();
 
                 // Add title support
@@ -389,12 +392,22 @@ ToolbarRenderer.prototype = {
             }
 
             // Add cssClass support
-            cssClass = [CSS_BTN, CSS_BTN_DEFAULT, value.cssClass];
+            cssClass = [CSS_BTN_TOOLBAR, value.cssClass];
+
+            if (!value.discardDefaultButtonCssClasses) {
+                cssClass.push(CSS_BTN, CSS_BTN_DEFAULT);
+            }
+
             buttonNode.addClass(cssClass.join(' '));
 
             // Add id support
             if (value.id) {
                 buttonNode.setAttribute('id', value.id);
+            }
+
+            // Add labelHTML support because the label attribuite is sanitized on A.Button class
+            if (value.labelHTML) {
+                buttonNode.append(value.labelHTML);
             }
 
             // Add label support

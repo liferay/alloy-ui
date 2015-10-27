@@ -31,12 +31,14 @@ YUI.add('aui-toolbar-tests', function(Y) {
             this._toolbar = new Y.Toolbar(config).render();
         },
 
-        addContent: function() {
-            var content = {
+        addContent: function(options) {
+            var content;
+
+            content = Y.merge({
                 label: 'Test',
                 domType: 'button',
                 id: 'button'
-            };
+            }, options);
 
             this._toolbar.add([content]);
 
@@ -67,6 +69,31 @@ YUI.add('aui-toolbar-tests', function(Y) {
             var item = this.addContent();
 
             Y.Assert.areEqual(item.id, this._toolbar.item(0).get('id'));
+        },
+
+        'shouldn\'t add button default classes': function() {
+            var button;
+
+            this.addContent({
+                cssClass: '',
+                discardDefaultButtonCssClasses: true
+            });
+
+            button = this._toolbar.get('boundingBox').one('.btn-toolbar-button');
+
+            Y.Assert.isFalse(button.hasClass('btn-default'), 'The button has the default classe btn-default.');
+            Y.Assert.isFalse(button.hasClass('btn'), 'The button has the default classe btn.');
+        },
+
+        'should write a html as button content': function() {
+            var HTMLContent = '<span>\u00D7</span>';
+
+            this.addContent({
+                label: undefined,
+                labelHTML: HTMLContent
+            });
+
+            Y.Assert.areEqual(HTMLContent, this._toolbar.item(0).getNode().getHTML());
         }
     }));
 
