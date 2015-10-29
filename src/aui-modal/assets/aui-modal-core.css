@@ -11,9 +11,15 @@
 }
 
 .modal-footer .btn-toolbar {
-	margin-left: 0;
+    margin-left: 0;
 }
 
 .modal-footer .btn-toolbar > .btn:first-child {
-	margin-left: 0;
+    margin-left: 0;
+}
+
+@media (max-width: 768px) {
+    .modal-dialog {
+        width: 97%;
+    }
 }
