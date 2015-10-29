@@ -319,11 +319,38 @@ YUI.add('aui-form-builder-field-base-tests', function(Y) {
 
             Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-expanded'));
 
-            Y.one('.form-builder-field-settings-panel-advanced-button').simulate('click');
-            Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-collapsed'));
+            Y.one('.form-builder-field-settings-panel-toggler-advanced').simulate('click');
+            this.wait(function(){
+                Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-collapsed'));
 
-            Y.one('.form-builder-field-settings-panel-advanced-button').simulate('click');
+                Y.one('.form-builder-field-settings-panel-toggler-advanced').simulate('click');
+                this.wait(function(){
+                    Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-expanded'));
+                }, 500);
+            }, 500);
+        },
+
+        'should toggle advanced edited settings by tap event': function() {
+            var container = Y.one('#container');
+
+            this._field = new TestField({
+                name1: 'Name',
+                name2: 'Name2'
+            });
+
+            this._field.renderSettingsPanel(container);
+
             Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-expanded'));
+
+            Y.one('.form-builder-field-settings-panel-toggler-advanced').simulateGesture('tap');
+            this.wait(function(){
+                Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-collapsed'));
+
+                Y.one('.form-builder-field-settings-panel-toggler-advanced').simulateGesture('tap');
+                this.wait(function(){
+                    Y.Assert.isTrue(Y.one('.form-builder-field-settings-panel-advanced-content').hasClass('toggler-content-expanded'));
+                }, 500);
+            }, 500);
         },
 
         'should render nested fields move targets': function() {
