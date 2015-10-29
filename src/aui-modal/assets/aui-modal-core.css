@@ -6,10 +6,14 @@
     overflow: hidden;
 }
 
-.modal-footer {
-    margin-top: 0;
-}
-
 .modal-dialog {
     position: fixed;
+}
+
+.modal-footer .btn-toolbar {
+	margin-left: 0;
+}
+
+.modal-footer .btn-toolbar > .btn:first-child {
+	margin-left: 0;
 }
