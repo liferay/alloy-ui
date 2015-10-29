@@ -452,13 +452,13 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             field = Y.one('.form-builder-field').getData('field-instance');
             this._formBuilder.editField(field);
-            Y.Assert.areEqual(Y.one('.form-builder-field-settings-label').getHTML(), 'Sentence');
+            Y.Assert.areEqual(Y.one('.modal-title').getHTML(), 'Sentence');
 
             field = Y.all('.form-builder-field').item(1).getData('field-instance');
             Y.one('.form-builder-field-settings-cancel').simulate('mousemove');
             Y.one('.form-builder-field-settings-cancel').simulate('click');
             this._formBuilder.editField(field);
-            Y.Assert.areEqual(Y.one('.form-builder-field-settings-label').getHTML(), 'Text');
+            Y.Assert.areEqual(Y.one('.modal-title').getHTML(), 'Text');
         },
 
         'should disable adding unique field already used by creating one': function() {

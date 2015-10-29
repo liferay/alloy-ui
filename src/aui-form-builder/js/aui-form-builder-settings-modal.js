@@ -9,7 +9,6 @@ var CSS_BTN_PRIMARY = A.getClassName('btn', 'primary'),
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FIELD_SETTINGS_CANCEL =
         A.getClassName('form', 'builder', 'field', 'settings', 'cancel'),
-    CSS_FIELD_SETTINGS_LABEL = A.getClassName('form', 'builder', 'field', 'settings', 'label'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
     CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER =
@@ -23,7 +22,8 @@ var CSS_BTN_PRIMARY = A.getClassName('btn', 'primary'),
     CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_LEFT =
         A.getClassName('form', 'builder', 'field', 'settings', 'small', 'screen', 'header', 'left'),
     CSS_MODAL_FOOTER = A.getClassName('modal', 'footer'),
-    CSS_MODAL_HEADER = A.getClassName('modal', 'header');
+    CSS_MODAL_HEADER = A.getClassName('modal', 'header'),
+    CSS_MODAL_TITLE = A.getClassName('modal', 'title');
 
 /**
  * Fired when the modal is hidden.
@@ -60,7 +60,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
         '<span class="glyphicon glyphicon-ok"></span></button>' +
         '</div>',
 
-    TPL_FIELD_SETTINGS_HEAD_CONTENT: '<div class="' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
+    TPL_FIELD_SETTINGS_HEAD_CONTENT: '<h4 class="' + CSS_MODAL_TITLE + '"></h4>',
 
     /**
      * Destructor lifecycle implementation for the `A.FormBuilderSettingsModal` class.
@@ -110,7 +110,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
         field.renderSettingsPanel(bodyNode);
 
         this._smallScreenHeader.one('p').set('text', typeName);
-        this._modal.get('boundingBox').one('.' + CSS_FIELD_SETTINGS_LABEL).set('text', typeName);
+        this._modal.get('boundingBox').one('.' + CSS_MODAL_TITLE).set('text', typeName);
 
         this._modal.show();
         this._modal.align();

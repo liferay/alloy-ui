@@ -144,7 +144,7 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
             var title;
 
             this._modal.show(new Y.FormBuilderFieldText(), 'Text');
-            title = Y.one('.form-builder-field-settings-label');
+            title = Y.one('.modal-title');
             Y.Assert.areEqual('Text', title.get('text'));
 
             this._modal.hide();
