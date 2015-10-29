@@ -108,8 +108,8 @@ BaseOptionsCellEditor = A.Component.create({
         strings: {
             value: {
                 add: 'Add',
-                cancel: 'Cancel',
                 addOption: 'Add option',
+                cancel: 'Cancel',
                 edit: 'Edit options',
                 editOptions: 'Edit option(s)',
                 name: 'Name',
@@ -143,14 +143,11 @@ BaseOptionsCellEditor = A.Component.create({
         EDIT_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT + '"></div>',
 
         EDIT_OPTION_ROW_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT_OPTION_ROW + '">' +
-            '<span class="' + [CSS_CELLEDITOR_EDIT_DD_HANDLE,
-            CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL].join(' ') + '"></span>' +
-            '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME +
-            '" size="7" placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' +
-            '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE +
-            '" size="7" placeholder="{titleValue}" title="{titleValue}" type="text" value="{valueValue}" /> ' +
-            '<a class="' + [CSS_CELLEDITOR_EDIT_LINK,
-            CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(' ') + '" href="javascript:void(0);">{remove}</a> ' + '</div>',
+            '<span class="' + [CSS_CELLEDITOR_EDIT_DD_HANDLE, CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL].join(' ') + '"></span>' +
+            '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + '" size="7" placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' +
+            '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + '" size="7" placeholder="{titleValue}" title="{titleValue}" type="text" value="{valueValue}" /> ' +
+            '<a class="' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(' ') + '" href="javascript:void(0);">{remove}</a> ' +
+        '</div>',
 
         EDIT_ADD_LINK_TEMPLATE: '<a class="' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_ADD_OPTION].join(
             ' ') + '" href="javascript:void(0);">{addOption}</a> ',
