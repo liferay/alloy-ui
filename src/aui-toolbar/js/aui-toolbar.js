@@ -347,10 +347,9 @@ ToolbarRenderer.prototype = {
                 cssClass,
                 iconContent,
                 type,
-                value;
-
                 value = childRenderHints.value;
-                type = value.domType || 'button';
+
+            type = value.domType || 'button';
 
             if (A.instanceOf(value, A.Button) ||
                 A.instanceOf(value, A.ToggleButton)) {
