@@ -315,7 +315,7 @@ BaseOptionsCellEditor = A.Component.create({
             var instance = this;
             var editContainer = instance.editContainer;
 
-            if (editContainer) {
+            if (editContainer && !editContainer.hasAttribute('hidden')) {
                 var names = editContainer.all('.' + CSS_CELLEDITOR_EDIT_INPUT_NAME);
                 var values = editContainer.all('.' + CSS_CELLEDITOR_EDIT_INPUT_VALUE);
                 var options = {};
