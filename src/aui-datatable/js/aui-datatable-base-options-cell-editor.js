@@ -75,6 +75,77 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
+         * Defines the custom rules used to validate options.
+         *
+         * @attribute optionsValidatorCustomRules
+         * @type Object
+         */
+        optionsValidatorCustomRules: {
+            validator: A.Lang.isObject,
+            valueFn: function() {
+                var instance = this;
+
+                return {
+                    'uniqueValue': {
+                        condition: function(fieldValue, fieldNode) {
+                            var instance = this;
+
+                            var editContainerNode = fieldNode.ancestor('.' + CSS_CELLEDITOR_EDIT);
+
+                            var inputValueNodelist = editContainerNode.all('.' + CSS_CELLEDITOR_EDIT_INPUT_VALUE);
+
+                            var validate = function (validateNode, nodelist, recurse) {
+                                var duplicates = false;
+
+                                nodelist.each(
+                                    function(node){
+                                        if (validateNode !== node) {
+                                            if (validateNode.val() == node.val()) {
+                                                instance.highlight(validateNode);
+                                                instance.addFieldError(validateNode, 'uniqueValue');
+
+                                                duplicates = true;
+                                            }
+
+                                            if (recurse) {
+                                                validate(node, inputValueNodelist, false);
+                                            }
+                                        }
+                                    }
+                                );
+
+                                if (!duplicates) {
+                                    instance.resetField(validateNode);
+                                    instance.highlight(validateNode, true);
+                                }
+
+                                return !duplicates;
+                            };
+
+                            return validate(fieldNode, inputValueNodelist, true);
+                        },
+                        errorMessage: instance.getStrings().valueNotUnique
+                    }
+                };
+            }
+        },
+
+        /**
+         * Defines the initial rules used to validate options.
+         *
+         * @attribute optionsValidatorInputRules
+         * @default {custom: true, uniqueValue: true}
+         * @type Object
+         */
+        optionsValidatorInputRules: {
+            validator: A.Lang.isObject,
+            value: {
+                custom: true,
+                uniqueValue: true
+            }
+        },
+
+        /**
          * Static property of output formatter for modifying the data values
          * for output.
          *
@@ -118,7 +189,8 @@ BaseOptionsCellEditor = A.Component.create({
                 remove: 'Remove',
                 save: 'Save',
                 stopEditing: 'Stop editing',
-                value: 'Value'
+                value: 'Value',
+                valueNotUnique: 'Value not unique.'
             }
         }
     },
@@ -183,6 +255,8 @@ BaseOptionsCellEditor = A.Component.create({
             instance.on('edit', instance._onEditEvent);
             instance.on('save', instance._onSave);
             instance.after('initToolbar', instance._afterInitToolbar);
+
+            A.FormValidator.addCustomRules(instance.get('optionsValidatorCustomRules'));
         },
 
         /**
@@ -356,14 +430,16 @@ BaseOptionsCellEditor = A.Component.create({
         _createEditOption: function(name, value) {
             var instance = this;
 
-            var optionValueName = A.guid() + '_value';
+            var fieldName = A.guid() + '_value';
             var strings = instance.getStrings();
+
+            instance.validator.get('rules')[fieldName] = instance.get('optionsValidatorInputRules');
 
             return L.sub(
                 instance.EDIT_OPTION_ROW_TEMPLATE, {
                     labelOptionName: AEscape.html(strings.optionName),
                     labelOptionValue: AEscape.html(strings.optionValue),
-                    optionValueName: AEscape.html(optionValueName),
+                    optionValueName: AEscape.html(fieldName),
                     remove: strings.remove,
                     titleName: AEscape.html(strings.name),
                     titleValue: AEscape.html(strings.value),
