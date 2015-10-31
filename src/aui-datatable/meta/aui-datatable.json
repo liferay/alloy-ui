@@ -39,7 +39,8 @@
         "requires": [
             "aui-datatable-base-cell-editor",
             "escape"
-        ]
+        ],
+        "skinnable": true
     },
 
     "aui-datatable-checkbox-cell-editor": {
