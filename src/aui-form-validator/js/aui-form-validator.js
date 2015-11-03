@@ -686,21 +686,21 @@ var FormValidator = A.Component.create({
          * Gets a field from the form.
          *
          * @method getField
-         * @param {Node|String} fieldOrFieldName
+         * @param {Node|String} field
          * @return {Node}
          */
-        getField: function(fieldOrFieldName) {
+        getField: function(field) {
             var instance = this;
 
-            if (isString(fieldOrFieldName)) {
-                fieldOrFieldName = instance.getFieldsByName(fieldOrFieldName);
+            if (isString(field)) {
+                field = instance.getFieldsByName(field);
 
-                if (fieldOrFieldName && fieldOrFieldName.length && !fieldOrFieldName.name) {
-                    fieldOrFieldName = fieldOrFieldName[0];
+                if (field && field.length && !field.name) {
+                    field = field[0];
                 }
             }
 
-            return A.one(fieldOrFieldName);
+            return A.one(field);
         },
 
         /**
