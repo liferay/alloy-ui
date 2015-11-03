@@ -554,12 +554,20 @@ YUI.add('aui-datatable-tests', function(Y) {
 
             textArea.val(newVal);
 
-            //simulate press escape key
+            var test = this;
 
-            this._simulateKey(editorNode, 27);
+            setTimeout(function() {
+                test.resume(function() {
+                    //simulate press escape key var test = this;
 
-            Y.Assert.areEqual(cell.html(), originalVal);
-            Y.Assert.isFalse(editor.get('visible'), 'editor should be hidden');
+                    this._simulateKey(editorNode, 27);
+
+                    Y.Assert.areEqual(cell.html(), originalVal);
+                    Y.Assert.isFalse(editor.get('visible'), 'editor should be hidden');
+                });
+            }, 500);
+
+            test.wait();
         },
 
         'save cell edit': function() {
