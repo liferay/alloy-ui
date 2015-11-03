@@ -307,7 +307,7 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * Saves the `BaseOptionsCellEditor` options.
+         * Saves the `BaseOptionsCellEditor` `options` property.
          *
          * @method saveOptions
          */
@@ -347,7 +347,8 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * Create UI options values.
+         * Creates option elements and stores a reference to them in
+         * the `option` property.
          * TODO. Rewrite this method.
          *
          * @method _createOptions
@@ -635,7 +636,7 @@ BaseOptionsCellEditor = A.Component.create({
          * Set UI Options values.
          *
          * @method _uiSetOptions
-         * @param {Object} val
+         * @param {Array} val
          * @protected
          */
         _uiSetOptions: function(val) {
@@ -647,10 +648,11 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * Sets the `A.BaseOptionsCellEditor` option values.
+         * Sets the `selectedAttrName` (`selected`) attribute on the option
+         * elements matching `val`.
          *
          * @method _uiSetValue
-         * @param {Array} val
+         * @param {Array|String} val
          * @protected
          * @return {Array} Resulting new values.
          */
