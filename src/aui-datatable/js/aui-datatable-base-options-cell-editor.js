@@ -283,6 +283,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         addNewOption: function(name, value) {
             var instance = this;
+
             var addOptionLink = instance.editContainer.one('.' + CSS_CELLEDITOR_EDIT_ADD_OPTION);
 
             var newRow = A.Node.create(
@@ -313,6 +314,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         saveOptions: function() {
             var instance = this;
+
             var editContainer = instance.editContainer;
 
             if (editContainer && !editContainer.hasAttribute('hidden')) {
@@ -357,6 +359,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _createOptions: function(val) {
             var instance = this;
+
             var elements = instance.elements;
             var optionsBuffer = [];
             var wrappersBuffer = [];
@@ -406,6 +409,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _createEditBuffer: function() {
             var instance = this;
+
             var strings = instance.getStrings();
             var buffer = [];
 
@@ -469,6 +473,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _defInitEditFn: function() {
             var instance = this;
+
             var editContainer = A.Node.create(instance.EDIT_TEMPLATE);
 
             editContainer.delegate('click', A.bind(instance._onEditLinkClickEvent, instance), '.' +
@@ -505,6 +510,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _getSelectedOptions: function() {
             var instance = this;
+
             var options = [];
 
             instance.options.each(function(option) {
@@ -542,6 +548,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _onEditLinkClickEvent: function(event) {
             var instance = this;
+
             var currentTarget = event.currentTarget;
 
             if (currentTarget.test('.' + CSS_CELLEDITOR_EDIT_ADD_OPTION)) {
@@ -569,6 +576,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _onEditKeyEvent: function(event) {
             var instance = this;
+
             var currentTarget = event.currentTarget;
 
             if (event.isKey('return')) {
@@ -658,6 +666,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _uiSetValue: function(val) {
             var instance = this;
+
             var optionsNodeList = instance.options;
 
             if (optionsNodeList && optionsNodeList.size()) {

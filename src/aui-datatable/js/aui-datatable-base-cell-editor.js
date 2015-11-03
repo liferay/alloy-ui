@@ -421,14 +421,16 @@ BaseCellEditor = A.Component.create({
          * @protected
          */
         _defInitValidatorFn: function() {
-            this.validator = new A.FormValidator(
-                this.get('validator')
+            var instance = this;
+
+            instance.validator = new A.FormValidator(
+                instance.get('validator')
             );
         },
 
         /**
-         * Default callback for the `initToolbar` event. Initializes the `Toolbar` using
-         * the config from the `toolbar` attribute.
+         * Default callback for the `initToolbar` event. Initializes the
+         * `Toolbar` using the config from the `toolbar` attribute.
          *
          * @method _defInitToolbarFn
          * @param {EventFacade} event
@@ -436,6 +438,7 @@ BaseCellEditor = A.Component.create({
          */
         _defInitToolbarFn: function() {
             var instance = this;
+
             var editable = instance.get('editable');
 
             instance.toolbar = new A.Toolbar(
@@ -475,6 +478,7 @@ BaseCellEditor = A.Component.create({
          */
         _debounceVisibleChange: function(event) {
             var instance = this;
+
             var hDocEscKey = instance._hDocEscKeyEv;
             var hDocMouseDown = instance._hDocMouseDownEv;
 
@@ -598,6 +602,7 @@ BaseCellEditor = A.Component.create({
          */
         _onDocMouseDownExt: function(event) {
             var instance = this;
+
             var boundingBox = instance.get('boundingBox');
 
             if (!boundingBox.contains(event.target)) {
@@ -642,6 +647,7 @@ BaseCellEditor = A.Component.create({
          */
         _setToolbar: function(val) {
             var instance = this;
+
             var strings = instance.getStrings();
 
             return A.merge({
@@ -693,6 +699,7 @@ BaseCellEditor = A.Component.create({
          */
         _uiSetShowToolbar: function(val) {
             var instance = this;
+
             var footerNode = instance.footerNode;
 
             if (val) {
@@ -716,6 +723,7 @@ BaseCellEditor = A.Component.create({
          */
         getElementsValue: function() {
             var instance = this;
+
             var elements = instance.elements;
 
             if (elements) {
@@ -800,6 +808,7 @@ BaseCellEditor = A.Component.create({
          */
         _uiSetEditable: function(val) {
             var instance = this;
+
             var toolbar = instance.toolbar;
 
             if (instance.get('rendered') && toolbar) {
@@ -831,6 +840,7 @@ BaseCellEditor = A.Component.create({
          */
         _uiSetValue: function(val) {
             var instance = this;
+
             var elements = instance.elements;
 
             if (elements) {
