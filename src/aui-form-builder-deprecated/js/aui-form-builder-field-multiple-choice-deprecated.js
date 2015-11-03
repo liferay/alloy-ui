@@ -97,7 +97,7 @@ var OptionsEditor = A.Component.create({
             instance.set('hideEditContainerOnSave', false);
 
             instance.after('render', function() {
-                instance._onEditEvent();
+                instance.fire('edit');
             });
         },
 
