@@ -380,21 +380,21 @@ BaseOptionsCellEditor = A.Component.create({
                 }
             });
 
-            var options = A.NodeList.create(optionsBuffer.join(''));
-            var wrappers = A.NodeList.create(wrappersBuffer.join(''));
+            var optionsNodeList = A.NodeList.create(optionsBuffer.join(''));
+            var wrappersNodeList = A.NodeList.create(wrappersBuffer.join(''));
 
-            if (wrappers.size()) {
-                wrappers.each(function(wrapper, i) {
-                    wrapper.prepend(options.item(i));
+            if (wrappersNodeList.size()) {
+                wrappersNodeList.each(function(wrapper, i) {
+                    wrapper.prepend(optionsNodeList.item(i));
                 });
 
-                elements.setContent(wrappers);
+                elements.setContent(wrappersNodeList);
             }
             else {
-                elements.setContent(options);
+                elements.setContent(optionsNodeList);
             }
 
-            instance.options = options;
+            instance.options = optionsNodeList;
         },
 
         /**
@@ -658,10 +658,10 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _uiSetValue: function(val) {
             var instance = this;
-            var options = instance.options;
+            var optionsNodeList = instance.options;
 
-            if (options && options.size()) {
-                options.set(instance.get('selectedAttrName'), false);
+            if (optionsNodeList && optionsNodeList.size()) {
+                optionsNodeList.set(instance.get('selectedAttrName'), false);
 
                 if (L.isValue(val)) {
                     if (!L.isArray(val)) {
@@ -669,7 +669,7 @@ BaseOptionsCellEditor = A.Component.create({
                     }
 
                     A.Array.each(val, function(value) {
-                        options.filter('[value="' + AEscape.html(L.trim(value)) + '"]').set(instance.get(
+                        optionsNodeList.filter('[value="' + AEscape.html(L.trim(value)) + '"]').set(instance.get(
                             'selectedAttrName'), true);
                     });
                 }
