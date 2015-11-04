@@ -127,7 +127,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
             modal: true,
             headerContent: this.TPL_FIELD_SETTINGS_HEAD_CONTENT,
             resizable: false,
-            zIndex: 3
+            zIndex: 4
         }).render();
 
         this._modal.addToolbar(
