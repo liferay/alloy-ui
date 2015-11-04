@@ -224,31 +224,12 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areEqual(this._formBuilder.get('layouts')[0].get('rows').length, 1);
         },
 
-        'should hide button for removing row when a layout with a single row is added to the form builder': function() {
-            var layout = new Y.Layout({
-                rows: [
-                    new Y.LayoutRow({
-                        cols: [
-                            new Y.LayoutCol({
-                                size: 12,
-                                value: new Y.FormBuilderFieldList({
-                                    fields: [
-                                        new Y.FormBuilderFieldSentence({
-                                            help: 'My Help',
-                                            title: 'My Title'
-                                        })
-                                    ]
-                                })
-                            })
-                        ]
-                    })
-                ]
-            });
-
-            this._createFormBuilder({layouts: [layout]});
+        'should hide button for removing row when a layout with a single and empty row is added to the form builder': function() {
+            this._createFormBuilder({layouts: [new Y.Layout()]});
 
             Y.Assert.isNull(Y.one('.layout-builder-remove-row-button'));
         },
+
         'should remove a row with fields only if the confirmation button from the confirmation modal is clicked': function() {
             var button;
 
@@ -599,7 +580,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.Assert.areEqual(1, this._formBuilder.get('layouts')[0].get('rows').length);
         },
 
-        'should always add an empty row in the last position when a the previous row had more then one col': function() {
+        'should always add an empty row in the last position when the previous row had more then one col': function() {
             var breakpoint,
                 dragHandle,
                 layout;
@@ -617,6 +598,18 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
                 Y.Assert.areEqual(2, layout.get('rows').length);
                 Y.Assert.areEqual(1, layout.get('rows')[1].get('cols').length);
             });
+        },
+
+        'should always add an empty row in the last position when the previous row had at least one field': function() {
+            var layout;
+
+            this._formBuilder = new Y.FormBuilder().render('#container');
+            layout = this._formBuilder.get('layouts')[0];
+            Y.Assert.areEqual(1, layout.get('rows').length);
+
+            layout.get('rows')[0].get('cols')[0].get('value').addField(new Y.FormBuilderFieldSentence());
+            Y.Assert.areEqual(2, layout.get('rows').length);
+            Y.Assert.areEqual(1, layout.get('rows')[1].get('cols').length);
         }
     }));
 

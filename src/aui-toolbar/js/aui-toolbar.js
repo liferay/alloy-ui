@@ -4,19 +4,14 @@
  * @module aui-toolbar
  */
 
-var Lang = A.Lang,
-    isArray = Lang.isArray,
-    isString = Lang.isString,
-    isFunction = Lang.isFunction,
-
-    getCN = A.getClassName,
-
-    CSS_BTN = getCN('btn'),
-    CSS_BTN_DEFAULT = getCN('btn', 'default'),
-    CSS_BTN_GROUP = getCN('btn', 'group'),
-    CSS_BTN_GROUP_CHECKBOX = getCN('btn', 'group', 'checkbox'),
-    CSS_BTN_GROUP_RADIO = getCN('btn', 'group', 'radio'),
-    CSS_BTN_GROUP_VERTICAL = getCN('btn', 'group', 'vertical');
+var isFunction = A.Lang.isFunction,
+    CSS_BTN = A.getClassName('btn'),
+    CSS_BTN_DEFAULT = A.getClassName('btn', 'default'),
+    CSS_BTN_GROUP = A.getClassName('btn', 'group'),
+    CSS_BTN_GROUP_CHECKBOX = A.getClassName('btn', 'group', 'checkbox'),
+    CSS_BTN_GROUP_RADIO = A.getClassName('btn', 'group', 'radio'),
+    CSS_BTN_GROUP_VERTICAL = A.getClassName('btn', 'group', 'vertical'),
+    CSS_BTN_TOOLBAR = A.getClassName('btn', 'toolbar', 'button');
 
 /**
  * A base class for Toolbar.
@@ -59,7 +54,7 @@ A.Toolbar = A.Component.create({
          * @type Array
          */
         children: {
-            validator: isArray
+            validator: A.Lang.isArray
         },
 
         /**
@@ -128,12 +123,11 @@ A.Toolbar = A.Component.create({
          * @protected
          */
         bindUI: function() {
-            var instance = this,
-                boundingBox = instance.get('boundingBox');
+            var boundingBox = this.get('boundingBox');
 
             boundingBox.delegate(
-                ['click', 'mousemove', 'focus'], instance._onUserInitInteraction, '.' + CSS_BTN,
-                instance);
+                ['click', 'mousemove', 'focus'], this._onUserInitInteraction, '.' + CSS_BTN_TOOLBAR + ', .' + CSS_BTN,
+                this);
         },
 
         /**
@@ -144,9 +138,8 @@ A.Toolbar = A.Component.create({
          * @param where
          */
         add: function(children, where) {
-            var instance = this,
-                boundingBox = instance.get('boundingBox'),
-                toolbarRenderer = instance.get('toolbarRenderer');
+            var boundingBox = this.get('boundingBox'),
+                toolbarRenderer = this.get('toolbarRenderer');
 
             boundingBox.insert(toolbarRenderer.render(A.Array(children)), where);
         },
@@ -157,8 +150,7 @@ A.Toolbar = A.Component.create({
          * @method clear
          */
         clear: function() {
-            var instance = this,
-                boundingBox = instance.get('boundingBox');
+            var boundingBox = this.get('boundingBox');
 
             boundingBox.get('children').remove();
         },
@@ -183,13 +175,12 @@ A.Toolbar = A.Component.create({
          * @param index
          */
         item: function(index) {
-            var instance = this,
-                seed = instance.get('boundingBox').get('children').item(index),
+            var seed = this.get('boundingBox').get('children').item(index),
                 widget;
 
-            instance._initEnclosingWidgetIfNeeded(seed);
+            this._initEnclosingWidgetIfNeeded(seed);
 
-            widget = instance.getEnclosingWidget(seed);
+            widget = this.getEnclosingWidget(seed);
 
             if (A.Toolbar.isSupportedWidget(widget)) {
                 return widget;
@@ -205,24 +196,9 @@ A.Toolbar = A.Component.create({
          * @param where
          */
         remove: function(where) {
-            var instance = this,
-                boundingBox = instance.get('boundingBox');
+            var boundingBox = this.get('boundingBox');
 
             return boundingBox.get('children').item(where).remove();
-        },
-
-        /**
-         * Fire on user's first interaction.
-         *
-         * @method _onUserInitInteraction
-         * @param event
-         * @protected
-         */
-        _onUserInitInteraction: function(event) {
-            var instance = this,
-                currentTarget = event.currentTarget;
-
-            instance._initEnclosingWidgetIfNeeded(currentTarget, event);
         },
 
         /**
@@ -233,20 +209,29 @@ A.Toolbar = A.Component.create({
          * @protected
          */
         _initEnclosingWidgetIfNeeded: function(seed, event) {
+            var buttonNode,
+                enclosingWidget,
+                isAlreadyButton,
+                isAlreadyButtonGroup,
+                groupNode,
+                type;
+
             if (!seed || seed.getData('enclosingWidgetInitialized')) {
                 return;
             }
+
             seed.setData('enclosingWidgetInitialized', true);
 
-            var enclosingWidget = A.Widget.getByNode(seed),
-                isAlreadyButton = A.instanceOf(enclosingWidget, A.Button),
-                isAlreadyButtonGroup = A.instanceOf(enclosingWidget, A.ButtonGroup);
+            enclosingWidget = A.Widget.getByNode(seed),
+            isAlreadyButton = A.instanceOf(enclosingWidget, A.Button),
+            isAlreadyButtonGroup = A.instanceOf(enclosingWidget, A.ButtonGroup);
 
             if (isAlreadyButton || isAlreadyButtonGroup) {
                 return;
             }
 
-            var buttonNode = seed.ancestor('.' + CSS_BTN, true);
+            buttonNode = seed.ancestor('.' + CSS_BTN_TOOLBAR + ', .' + CSS_BTN, true);
+
             if (buttonNode) {
                 // Initialize button first since it can be outside a group
                 if (A.Button.hasWidgetLazyConstructorData(seed)) {
@@ -258,9 +243,8 @@ A.Toolbar = A.Component.create({
                 }
             }
 
-            var groupNode = seed.ancestor('.' + CSS_BTN_GROUP + ', ' + CSS_BTN_GROUP_VERTICAL, true);
+            groupNode = seed.ancestor('.' + CSS_BTN_GROUP + ', ' + CSS_BTN_GROUP_VERTICAL, true);
             if (groupNode) {
-                var type;
                 if (groupNode.hasClass(CSS_BTN_GROUP_CHECKBOX)) {
                     type = 'checkbox';
                 }
@@ -283,6 +267,19 @@ A.Toolbar = A.Component.create({
         },
 
         /**
+         * Fire on user's first interaction.
+         *
+         * @method _onUserInitInteraction
+         * @param event
+         * @protected
+         */
+        _onUserInitInteraction: function(event) {
+            var currentTarget = event.currentTarget;
+
+            this._initEnclosingWidgetIfNeeded(currentTarget, event);
+        },
+
+        /**
          * Set `children` attribute on the UI.
          *
          * @method _uiSetChildren
@@ -290,15 +287,13 @@ A.Toolbar = A.Component.create({
          * @protected
          */
         _uiSetChildren: function(val) {
-            var instance = this;
-
             if (!val) {
                 return;
             }
 
-            instance.clear();
+            this.clear();
 
-            instance.add(val);
+            this.add(val);
         }
     }
 });
@@ -347,12 +342,14 @@ ToolbarRenderer.prototype = {
          * @param childRenderHints
          */
         button: function(childRenderHints) {
-            var instance = this,
-                value = childRenderHints.value,
-                type = value.domType || 'button',
+            var buttonInstance,
+                buttonNode,
                 cssClass,
-                buttonInstance,
-                buttonNode;
+                iconContent,
+                type,
+                value = childRenderHints.value;
+
+            type = value.domType || 'button';
 
             if (A.instanceOf(value, A.Button) ||
                 A.instanceOf(value, A.ToggleButton)) {
@@ -360,7 +357,7 @@ ToolbarRenderer.prototype = {
                 return value.get('boundingBox');
             }
 
-            if (A.UA.touchEnabled) {
+            if (A.UA.mobile && A.UA.touchEnabled) {
                 buttonInstance = new A.Button(value).render();
 
                 // Add title support
@@ -385,16 +382,26 @@ ToolbarRenderer.prototype = {
             else {
                 buttonNode = A.Node.create(
                     A.ButtonExt.getTypedButtonTemplate(
-                        instance.TEMPLATES.button, type));
+                        this.TEMPLATES.button, type));
             }
 
             // Add cssClass support
-            cssClass = [CSS_BTN, CSS_BTN_DEFAULT, value.cssClass];
+            cssClass = [CSS_BTN_TOOLBAR, value.cssClass];
+
+            if (!value.discardDefaultButtonCssClasses) {
+                cssClass.push(CSS_BTN, CSS_BTN_DEFAULT);
+            }
+
             buttonNode.addClass(cssClass.join(' '));
 
             // Add id support
             if (value.id) {
                 buttonNode.setAttribute('id', value.id);
+            }
+
+            // Add labelHTML support because the label attribuite is sanitized on A.Button class
+            if (value.labelHTML) {
+                buttonNode.append(value.labelHTML);
             }
 
             // Add label support
@@ -404,7 +411,7 @@ ToolbarRenderer.prototype = {
 
             // Add icon support
             if (value.icon) {
-                var iconContent = Lang.sub(instance.TEMPLATES.icon, {
+                iconContent = A.Lang.sub(this.TEMPLATES.icon, {
                     cssClass: value.icon
                 });
 
@@ -427,8 +434,10 @@ ToolbarRenderer.prototype = {
          * @param childRenderHints
          */
         group: function(childRenderHints) {
-            var instance = this,
+            var childNode,
+                instance = this,
                 value = childRenderHints.value,
+                groupNode,
                 groupType = childRenderHints.groupType,
                 orientation = childRenderHints.orientation,
                 cssClass = [];
@@ -451,13 +460,13 @@ ToolbarRenderer.prototype = {
                 cssClass.push(CSS_BTN_GROUP);
             }
 
-            var groupNode = A.Node.create(
-                Lang.sub(instance.TEMPLATES.group, {
+            groupNode = A.Node.create(
+                A.Lang.sub(instance.TEMPLATES.group, {
                     cssClass: cssClass.join(' ')
                 }));
 
             A.Array.each(value, function(child, index) {
-                var childNode = instance.renderNode(child);
+                childNode = instance.renderNode(child);
 
                 groupNode.appendChild(childNode);
 
@@ -478,12 +487,13 @@ ToolbarRenderer.prototype = {
      * @param children
      */
     render: function(children) {
-        var instance = this;
+        var docFrag,
+            instance = this;
 
         if (!children) {
             return;
         }
-        var docFrag = A.one(A.config.doc).invoke('createDocumentFragment');
+        docFrag = A.one(A.config.doc).invoke('createDocumentFragment');
         A.Array.each(children, function(child) {
             docFrag.appendChild(instance.renderNode(child));
         });
@@ -497,19 +507,18 @@ ToolbarRenderer.prototype = {
      * @param child
      */
     renderNode: function(child) {
-        var instance = this,
-            childRenderHints,
+        var childRenderHints,
             renderer;
 
         if (A.Toolbar.isSupportedWidget(child)) {
             return child.render().get('boundingBox');
         }
 
-        childRenderHints = instance._getChildRenderHints(child);
-        renderer = instance.RENDERER[childRenderHints.renderer];
+        childRenderHints = this._getChildRenderHints(child);
+        renderer = this.RENDERER[childRenderHints.renderer];
 
         if (isFunction(renderer)) {
-            return renderer.call(instance, childRenderHints);
+            return renderer.call(this, childRenderHints);
         }
     },
 
@@ -532,14 +541,15 @@ ToolbarRenderer.prototype = {
         else if (A.instanceOf(child, A.ButtonGroup)) {
             renderer = 'group';
         }
-        else if (isArray(child)) {
+        else if (A.Lang.isArray(child)) {
             renderer = 'group';
-            groupType = isString(child[0]) ? child.shift() : null;
-            orientation = isString(child[0]) ? child.shift() : 'normal';
+            groupType = A.Lang.isString(child[0]) ? child.shift() : null;
+            orientation = A.Lang.isString(child[0]) ? child.shift() : 'normal';
         }
         else {
             renderer = 'button';
         }
+
         return {
             groupType: groupType,
             orientation: orientation,

@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2030](https://issues.liferay.com/browse/AUI-2030) A row with one col should be automatically added on last position when the last row have at least one field
 * [AUI-2032](https://issues.liferay.com/browse/AUI-2032) Move out logic that displays field types modal
 * [AUI-2016](https://issues.liferay.com/browse/AUI-2016) Remove column delete button from From Builder
 * [AUI-2019](https://issues.liferay.com/browse/AUI-2019) The Active page number shouldn't appear over the Fields Panel
