@@ -229,9 +229,10 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
 
         for(i = 0; i < layouts.length; i++) {
             this._fieldsChangeHandles.push(
-            layouts[i].after(
-                'form-builder-field-list:fieldsChange',
-                A.bind(this._afterFieldsChange, this))
+                layouts[i].after(
+                    'form-builder-field-list:fieldsChange',
+                    A.bind(this._afterFieldsChange, this)
+                )
             );
         }
     },
