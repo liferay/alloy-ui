@@ -997,19 +997,6 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * Fires after `validateOnInput` attribute change.
-         *
-         * @method _afterValidateOnInputChange
-         * @param event
-         * @protected
-         */
-        _afterValidateOnInputChange: function(event) {
-            var instance = this;
-
-            instance._uiSetValidateOnInput(event.newVal);
-        },
-
-        /**
          * Fires after `validateOnBlur` attribute change.
          *
          * @method _afterValidateOnBlurChange
@@ -1020,6 +1007,19 @@ var FormValidator = A.Component.create({
             var instance = this;
 
             instance._uiSetValidateOnBlur(event.newVal);
+        },
+
+        /**
+         * Fires after `validateOnInput` attribute change.
+         *
+         * @method _afterValidateOnInputChange
+         * @param event
+         * @protected
+         */
+        _afterValidateOnInputChange: function(event) {
+            var instance = this;
+
+            instance._uiSetValidateOnInput(event.newVal);
         },
 
         /**
