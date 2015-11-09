@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2040](https://issues.liferay.com/browse/AUI-2040) Change validation for file input on change event
 * [AUI-1958](https://issues.liferay.com/browse/AUI-1958) When custom and default validators are used together the validators show errors without setting a value in the field
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
