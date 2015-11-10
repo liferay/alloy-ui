@@ -333,7 +333,8 @@ A.Modal = A.Base.create('modal', A.Widget, [
                     header: [
                         {
                             cssClass: 'close',
-                            label: '\u00D7',
+                            discardDefaultButtonCssClasses: true,
+                            labelHTML: '<span> \u00D7 </span>',
                             on: {
                                 click: function(event) {
                                     instance.hide();

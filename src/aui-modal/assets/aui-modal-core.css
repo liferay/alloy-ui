@@ -1,15 +1,25 @@
-.modal-dialog-hidden {
-    display: none;
-}
-
 .modal-content {
     overflow: hidden;
 }
 
-.modal-footer {
-    margin-top: 0;
-}
-
 .modal-dialog {
     position: fixed;
+}
+
+.modal-dialog-hidden {
+    display: none;
+}
+
+.modal-footer .btn-toolbar {
+    margin-left: 0;
+}
+
+.modal-footer .btn-toolbar > .btn:first-child {
+    margin-left: 0;
+}
+
+@media (max-width: 768px) {
+    .modal-dialog {
+        width: 97%;
+    }
 }
