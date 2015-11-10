@@ -138,7 +138,7 @@ YUI.add('aui-button-core-tests', function(Y) {
             this._buttonGroup && this._buttonGroup.destroy();
         },
 
-        createButtonGroup: function(config) {
+        createButtonGroupElement: function() {
             var content = Y.Node.create(
                 '<div id="buttongroup">' +
                     '<input id="first" type="button" value="2">' +
@@ -147,6 +147,10 @@ YUI.add('aui-button-core-tests', function(Y) {
                 '</div>');
 
             this._container.append(content);
+        },
+
+        createButtonGroup: function(config) {
+            this.createButtonGroupElement();
             this._buttonGroup = new Y.ButtonGroup(config).render();
         },
 
@@ -186,6 +190,28 @@ YUI.add('aui-button-core-tests', function(Y) {
 
             button.unselect(1);
             Y.Assert.areEqual(notActive, Y.one('#second')._node.getAttribute('class').indexOf('active'));
+        },
+
+        'should renderUI method use the button lazy configuration object': function() {
+            var buttonGroup;
+
+            this._buttonGroup.destroy();
+            this.createButtonGroupElement();
+
+            buttonGroup = new Y.ButtonGroup({
+                boundingBox: '#buttongroup',
+                type: 'checkbox'
+            });
+
+            Y.Button.setWidgetLazyConstructorNodeData(buttonGroup.item(2), {
+                label: '4',
+                disabled: true
+            });
+
+            buttonGroup.render();
+
+            Y.Assert.isTrue(buttonGroup.item(2).get('disabled'));
+            Y.Assert.areEqual(buttonGroup.item(2).get('label'), '4');
         }
     }));
 
