@@ -390,8 +390,8 @@ A.FormBuilderFieldBase.ATTRS = {
      */
     strings: {
         value: {
-            subquestion: 'Paste as subquestion',
-            advancedOptions: 'Advanced options'
+            advancedOptions: 'Advanced options',
+            subquestion: 'Paste as subquestion'
         },
         writeOnce: true
     }
