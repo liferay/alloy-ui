@@ -70,7 +70,7 @@ ButtonExt.ATTRS = {
      * @writeOnce
      */
     domType: {
-        validator: this._domTypeValidator,
+        validator: '_domTypeValidator',
         writeOnce: true
     },
 
@@ -247,16 +247,10 @@ ButtonExt.prototype = {
      * @protected
      */
     _uiSetIcon: function(val) {
-        var iconElement;
-
-        if (!val) {
-            return;
-        }
-
-        iconElement = this.get('iconElement');
-
-        iconElement.set('className', val);
-        this._uiSetIconAlign(this.get('iconAlign'));
+        if (val) {
+           this.get('iconElement').set('className', val);
+           this._uiSetIconAlign(this.get('iconAlign'));
+       }
     },
 
     /**
