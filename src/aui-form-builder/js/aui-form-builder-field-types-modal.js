@@ -6,8 +6,8 @@
  */
 
 var CSS_FIELD_TYPE = A.getClassName('field', 'type'),
-    CSS_FIELD_TYPES_LABEL = A.getClassName('form', 'builder', 'field', 'types', 'label'),
-    CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list');
+    CSS_FIELD_TYPES_LIST = A.getClassName('form', 'builder', 'field', 'types', 'list'),
+    CSS_FIELD_TYPES_MODAL_TITLE = A.getClassName('modal', 'title');
 
 /**
  * `A.FormBuilder` extension, which is responsible for all the logic related
@@ -20,7 +20,7 @@ var CSS_FIELD_TYPE = A.getClassName('field', 'type'),
  */
 
 A.FormBuilderFieldTypesModal = A.Base.create('form-builder-field-types-modal', A.Modal, [], {
-    TPL_HEADER_LABEL: '<div class="' + CSS_FIELD_TYPES_LABEL + '">{addField}</div>',
+    TPL_HEADER_LABEL: '<h4 class="' + CSS_FIELD_TYPES_MODAL_TITLE + '">{addField}</h4>',
     TPL_TYPES_LIST: '<div class="clearfix ' + CSS_FIELD_TYPES_LIST + '" role="main"></div>',
 
     /**
@@ -156,7 +156,8 @@ A.FormBuilderFieldTypesModal = A.Base.create('form-builder-field-types-modal', A
             header: [
                 {
                     cssClass: 'close',
-                    label: '\u00D7',
+                    discardDefaultButtonCssClasses: true,
+                    labelHTML: '<span> \u00D7 </span>',
                     on: {
                         click: A.bind(this._onFieldTypesModalCloseClick, this)
                     }

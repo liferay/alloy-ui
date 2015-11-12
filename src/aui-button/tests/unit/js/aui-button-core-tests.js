@@ -51,6 +51,72 @@ YUI.add('aui-button-core-tests', function(Y) {
 
             button.set('icon');
             Y.Assert.areNotEqual(oldIcon, button.get('icon'));
+        },
+
+        'should add the button default classes': function() {
+            this._button.destroy();
+            this.createButton({
+                label: 'Button',
+                srcNode: '#content'
+            });
+
+            Y.Assert.isTrue(this._button.getNode().hasClass('btn'), 'Button has not the default class btn');
+            Y.Assert.isTrue(this._button.getNode().hasClass('btn-default'), 'Button has not the default class btn-default');
+        },
+
+        'should not add the button default classes': function() {
+            this._button.destroy();
+            this.createButton({
+                label: 'Button',
+                srcNode: '#content',
+                discardDefaultButtonCssClasses: true
+            });
+
+            Y.Assert.isFalse(this._button.getNode().hasClass('btn'), 'Button has the default class btn');
+            Y.Assert.isFalse(this._button.getNode().hasClass('btn-default'), 'Button has the default class btn-default');
+        },
+
+        'should not create a button with domType different of button or submit': function() {
+            var button;
+
+            button = new Y.Button({
+                domType: 'button'
+            }).render(this._container);
+
+            Y.Assert.areEqual(button.getNode().getAttribute('type'), 'button');
+
+            button.destroy();
+
+            button = new Y.Button({
+                domType: 'submit'
+            }).render(this._container);
+
+            Y.Assert.areEqual(button.getNode().getAttribute('type'), 'submit');
+
+            button.destroy();
+
+            button = new Y.Button({
+                domType: 'anythingelse'
+            }).render(this._container);
+
+            Y.Assert.areEqual(button.getNode().getAttribute('type'), '');
+
+            button.destroy();
+        },
+
+        'should domType attribute once writable': function() {
+            var button;
+
+            button = new Y.Button({
+                domType: 'button'
+            }).render(this._container);
+
+            button.set('submit');
+
+            Y.Assert.areEqual(button.get('domType'), 'button');
+            Y.Assert.areEqual(button.getNode().getAttribute('type'), 'button');
+
+            button.destroy();
         }
     }));
 
@@ -72,7 +138,7 @@ YUI.add('aui-button-core-tests', function(Y) {
             this._buttonGroup && this._buttonGroup.destroy();
         },
 
-        createButtonGroup: function(config) {
+        createButtonGroupElement: function() {
             var content = Y.Node.create(
                 '<div id="buttongroup">' +
                     '<input id="first" type="button" value="2">' +
@@ -81,6 +147,10 @@ YUI.add('aui-button-core-tests', function(Y) {
                 '</div>');
 
             this._container.append(content);
+        },
+
+        createButtonGroup: function(config) {
+            this.createButtonGroupElement();
             this._buttonGroup = new Y.ButtonGroup(config).render();
         },
 
@@ -120,6 +190,28 @@ YUI.add('aui-button-core-tests', function(Y) {
 
             button.unselect(1);
             Y.Assert.areEqual(notActive, Y.one('#second')._node.getAttribute('class').indexOf('active'));
+        },
+
+        'should renderUI method use the button lazy configuration object': function() {
+            var buttonGroup;
+
+            this._buttonGroup.destroy();
+            this.createButtonGroupElement();
+
+            buttonGroup = new Y.ButtonGroup({
+                boundingBox: '#buttongroup',
+                type: 'checkbox'
+            });
+
+            Y.Button.setWidgetLazyConstructorNodeData(buttonGroup.item(2), {
+                label: '4',
+                disabled: true
+            });
+
+            buttonGroup.render();
+
+            Y.Assert.isTrue(buttonGroup.item(2).get('disabled'));
+            Y.Assert.areEqual(buttonGroup.item(2).get('label'), '4');
         }
     }));
 

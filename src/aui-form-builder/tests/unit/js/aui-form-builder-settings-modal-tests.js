@@ -45,21 +45,6 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
             Y.Assert.areNotEqual('none', node.getStyle('display'));
         },
 
-        'should toggle modal components on toggle content': function() {
-            this._modal.show(new Y.FormBuilderFieldText(), 'Text');
-
-            Y.Assert.isTrue(Y.one('.form-builder-field-settings-small-screen-header-back').hasClass('hide'));
-            Y.Assert.isFalse(Y.one('.form-builder-field-settings-small-screen-header-close').hasClass('hide'));
-
-            Y.one('.form-builder-field-settings-panel-advanced-button').simulate('click');
-            Y.Assert.isFalse(Y.one('.form-builder-field-settings-small-screen-header-back').hasClass('hide'));
-            Y.Assert.isTrue(Y.one('.form-builder-field-settings-small-screen-header-close').hasClass('hidden'));
-
-            Y.one('.form-builder-field-settings-small-screen-header-back').simulate('click');
-            Y.Assert.isTrue(Y.one('.form-builder-field-settings-small-screen-header-back').hasClass('hide'));
-            Y.Assert.isFalse(Y.one('.form-builder-field-settings-small-screen-header-close').hasClass('hide'));
-        },
-
         'should not create multiple modals with multiple calls to "show"': function() {
             this._modal.show(new Y.FormBuilderFieldText(), 'Text');
             this._modal.show(new Y.FormBuilderFieldText(), 'Text');
@@ -121,8 +106,7 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
         },
 
         'should hide modal when close button is clicked': function() {
-            var header,
-                node;
+            var node;
 
             this._modal.show(new Y.FormBuilderFieldText(), 'Text');
 
@@ -130,21 +114,13 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
             node.one('.close').simulate('mousemove');
             node.one('.close').simulate('click');
             Y.Assert.areEqual('none', node.getStyle('display'));
-
-            this._modal.show(new Y.FormBuilderFieldText(), 'Text');
-            Y.Assert.areEqual('block', node.getStyle('display'));
-
-            header = Y.one('.form-builder-field-settings-small-screen-header');
-            header.one('.form-builder-field-settings-small-screen-header-close').simulate('mousemove');
-            header.one('.form-builder-field-settings-small-screen-header-close').simulate('click');
-            Y.Assert.areEqual('none', node.getStyle('display'));
         },
 
         'should render title text as requested': function() {
             var title;
 
             this._modal.show(new Y.FormBuilderFieldText(), 'Text');
-            title = Y.one('.form-builder-field-settings-label');
+            title = Y.one('.modal-title');
             Y.Assert.areEqual('Text', title.get('text'));
 
             this._modal.hide();
@@ -170,29 +146,17 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
 
         'should save modal when save button is clicked': function() {
             var field = new Y.FormBuilderFieldText(),
-                header,
                 node;
 
             this._modal.show(field, 'Text');
 
             node = Y.one('.form-builder-field-settings');
-            header = Y.one('.form-builder-field-settings-small-screen-header');
 
             this._simulateInputChange(node.one('input'), 'My Title', function() {
                 node.one('.form-builder-field-settings-save').simulate('mousemove');
                 node.one('.form-builder-field-settings-save').simulate('click');
 
                 Y.Assert.areEqual('My Title', field.get('title'));
-                Y.Assert.areEqual('none', node.getStyle('display'));
-            });
-
-            this._modal.show(field, 'Text');
-
-            this._simulateInputChange(node.one('input'), 'My Title 2', function() {
-                node.one('.form-builder-field-settings-small-screen-header-check').simulate('mousemove');
-                node.one('.form-builder-field-settings-small-screen-header-check').simulate('click');
-
-                Y.Assert.areEqual('My Title 2', field.get('title'));
                 Y.Assert.areEqual('none', node.getStyle('display'));
             });
         },
@@ -206,6 +170,30 @@ YUI.add('aui-form-builder-settings-modal-tests', function(Y) {
             node.one('.form-builder-field-settings-save').simulate('mousemove');
             node.one('.form-builder-field-settings-save').simulate('click');
             Y.Assert.areNotEqual('none', node.getStyle('display'));
+        },
+
+        'should align vertically the modal after height of the advanced settings panel change': function() {
+            var node,
+                initialYPosition;
+
+            this._modal.show(new Y.FormBuilderFieldText(), 'Text');
+
+            node = Y.one('.form-builder-field-settings');
+            initialYPosition = node.getY();
+
+            node.one('.form-builder-field-settings-panel-toggler-advanced').simulate('click');
+
+            this.wait(function(){
+                var newVertialPosition = initialYPosition - node.one('.toggler-content-wrapper').get('region').height / 2;
+
+                Y.Assert.areEqual(node.getY(), newVertialPosition);
+
+                node.one('.form-builder-field-settings-panel-toggler-advanced').simulate('click');
+
+                this.wait(function(){
+                    Y.Assert.areEqual(initialYPosition, node.getY());
+                }, 500);
+            }, 500);
         }
     }));
 

@@ -82,23 +82,11 @@
 }
 
 .form-builder-modal {
-    margin: 0;
     width: 300px;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
-}
-
-.form-builder-modal .modal-header {
-    text-align: center;
 }
 
 .form-builder-modal .modal-body {
     padding: 0;
-}
-
-.form-builder-modal-content {
-    border: none;
-    border-radius: 0;
 }
 
 .form-builder-layout {

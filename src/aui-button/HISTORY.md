@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2035](https://issues.liferay.com/browse/AUI-2035) AUI Button should have an option to don't add .btn-default and also .btn default classes
 * [AUI-1899](https://issues.liferay.com/browse/AUI-1899) Improve Form Builder visual interface
 * [AUI-1806](https://issues.liferay.com/browse/AUI-1806) Add button to cancel editing/creating a field
 * [AUI-1793](https://issues.liferay.com/browse/AUI-1793) Fix date field bug with the boolean data editors

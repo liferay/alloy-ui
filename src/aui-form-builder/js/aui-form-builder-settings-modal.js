@@ -9,21 +9,9 @@ var CSS_BTN_PRIMARY = A.getClassName('btn', 'primary'),
     CSS_FIELD_SETTINGS = A.getClassName('form', 'builder', 'field', 'settings'),
     CSS_FIELD_SETTINGS_CANCEL =
         A.getClassName('form', 'builder', 'field', 'settings', 'cancel'),
-    CSS_FIELD_SETTINGS_LABEL = A.getClassName('form', 'builder', 'field', 'settings', 'label'),
     CSS_FIELD_SETTINGS_SAVE =
         A.getClassName('form', 'builder', 'field', 'settings', 'save'),
-    CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER =
-        A.getClassName('form', 'builder', 'field', 'settings', 'small', 'screen', 'header'),
-    CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_BACK =
-        A.getClassName('form', 'builder', 'field', 'settings', 'small', 'screen', 'header', 'back'),
-    CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CHECK =
-        A.getClassName('form', 'builder', 'field', 'settings', 'small', 'screen', 'header', 'check'),
-    CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CLOSE =
-        A.getClassName('form', 'builder', 'field', 'settings', 'small', 'screen', 'header', 'close'),
-    CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_LEFT =
-        A.getClassName('form', 'builder', 'field', 'settings', 'small', 'screen', 'header', 'left'),
-    CSS_MODAL_FOOTER = A.getClassName('modal', 'footer'),
-    CSS_MODAL_HEADER = A.getClassName('modal', 'header');
+    CSS_MODAL_TITLE = A.getClassName('modal', 'title');
 
 /**
  * Fired when the modal is hidden.
@@ -48,19 +36,7 @@ var CSS_BTN_PRIMARY = A.getClassName('btn', 'primary'),
  * @constructor
  */
 A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base, [], {
-    TPL_SMALL_SCREEN_HEADER: '<div class="visible-xs ' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER + '">' +
-        '<button class="close ' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_LEFT + ' ' +
-            CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CLOSE + '" type="button">' +
-        '<span class="glyphicon glyphicon-remove"></span></button>' +
-        '<button class="hide close ' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_LEFT + ' ' +
-            CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_BACK + '" type="button">' +
-        '<span class="glyphicon glyphicon-chevron-left"></span></button>' +
-        '<p></p>' +
-        '<button class="close ' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CHECK + '" type="button">' +
-        '<span class="glyphicon glyphicon-ok"></span></button>' +
-        '</div>',
-
-    TPL_FIELD_SETTINGS_HEAD_CONTENT: '<div class="' + CSS_FIELD_SETTINGS_LABEL + '"></div>',
+    TPL_FIELD_SETTINGS_HEAD_CONTENT: '<h4 class="' + CSS_MODAL_TITLE + '"></h4>',
 
     /**
      * Destructor lifecycle implementation for the `A.FormBuilderSettingsModal` class.
@@ -109,8 +85,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
         bodyNode.empty();
         field.renderSettingsPanel(bodyNode);
 
-        this._smallScreenHeader.one('p').set('text', typeName);
-        this._modal.get('boundingBox').one('.' + CSS_FIELD_SETTINGS_LABEL).set('text', typeName);
+        this._modal.get('boundingBox').one('.' + CSS_MODAL_TITLE).set('text', typeName);
 
         this._modal.show();
         this._modal.align();
@@ -139,16 +114,6 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
     },
 
     /**
-     * Collapse Advanced Content.
-     *
-     * @method _collapseContent
-     * @protected
-     */
-    _collapseContent: function() {
-        this._fieldBeingEdited.collapseModalContent();
-    },
-
-    /**
      * Creates and renders the field settings modal for the first time.
      *
      * @method _create
@@ -162,7 +127,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
             modal: true,
             headerContent: this.TPL_FIELD_SETTINGS_HEAD_CONTENT,
             resizable: false,
-            zIndex: 3
+            zIndex: 4
         }).render();
 
         this._modal.addToolbar(
@@ -187,16 +152,7 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
             A.WidgetStdMod.FOOTER
         );
 
-        this._smallScreenHeader = A.Node.create(this.TPL_SMALL_SCREEN_HEADER);
-
-        this._modal.get('boundingBox').one('.' + CSS_MODAL_HEADER).addClass('hidden-xs');
-        this._modal.get('boundingBox').one('.' + CSS_MODAL_FOOTER).addClass('hidden-xs');
-        this._modal.get('boundingBox').append(this._smallScreenHeader);
-
         this._modal.after('visibleChange', A.bind(this._afterModalVisibleChange, this));
-        this._smallScreenHeader.one('.' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CHECK).on('click', A.bind(this._save, this));
-        this._smallScreenHeader.one('.' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CLOSE).on('click', A.bind(this.hide, this));
-        this._smallScreenHeader.one('.' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_BACK).after('click', this._collapseContent, this);
     },
 
     /**
@@ -224,7 +180,5 @@ A.FormBuilderSettingsModal = A.Base.create('form-builder-settings-modal', A.Base
      */
     _updateModalOnContentToggle: function() {
         this._modal.align();
-        this._smallScreenHeader.one('.' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_BACK).toggleClass('hide');
-        this._smallScreenHeader.one('.' + CSS_FIELD_SETTINGS_SMALL_SCREEN_HEADER_CLOSE).toggleClass('hidden');
     }
 });

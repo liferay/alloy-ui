@@ -16,16 +16,12 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_OVERLAY = A.getClassName('form', 'builder', 'field', 'overlay'),
     CSS_FIELD_SETTINGS_PANEL = A.getClassName('form', 'builder', 'field', 'settings', 'panel'),
     CSS_FIELD_SETTINGS_PANEL_ADVANCED = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'advanced'),
-    CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON =
-        A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'advanced', 'button'),
     CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT =
         A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'advanced', 'content'),
     CSS_FIELD_SETTINGS_PANEL_CONTENT = A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'content'),
     CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED =
         A.getClassName('form', 'builder', 'field', 'settings', 'panel', 'toggler', 'advanced'),
     CSS_FIELD_TOOLBAR_CONTAINER = A.getClassName('form', 'builder', 'field', 'toolbar', 'container'),
-    CSS_HIDDEN = A.getClassName('hidden'),
-    CSS_HIDDEN_XS = A.getClassName('hidden-xs'),
     CSS_HIDE = A.getClassName('hide');
 
 /**
@@ -62,12 +58,10 @@ A.FormBuilderFieldBase.prototype = {
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_CONTENT + '">' +
         '</div>' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_ADVANCED + '">' +
-        '<a class="'+ CSS_HIDDEN_XS + ' ' + CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED +
+        '<a class="' + CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED +
         '" href="javascript:void(0)">{advancedOptions}</a>' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT + '"></div>' +
         '</div>' +
-        '<button type="button" class="visible-xs btn btn-default ' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON + '">' +
-        '<span class="glyphicon glyphicon-cog"></span>{advancedOptions}</button>' +
         '</div>',
     TPL_FIELD_FOOTER_CONTENT: '<div class="' + CSS_FIELD_FOOTER_CONTENT + '"></div>',
 
@@ -124,7 +118,6 @@ A.FormBuilderFieldBase.prototype = {
         }
         else {
             this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED).addClass(CSS_HIDE);
-            this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON).addClass(CSS_HIDDEN);
         }
     },
 
@@ -250,11 +243,10 @@ A.FormBuilderFieldBase.prototype = {
             animated: true,
             content: '.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_CONTENT,
             header: '.' + CSS_FIELD_SETTINGS_PANEL_TOGGLER_ADVANCED,
-            expanded: this.get('content').one('.' + CSS_FIELD_CONTENT_FOOTER).hasChildNodes()
+            expanded: this.get('content').one('.' + CSS_FIELD_CONTENT_FOOTER).hasChildNodes(),
+            toggleEvent: 'click'
         });
 
-        this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON).after('click',
-            this._expandModalContent, this);
         this._advancedSettingsToggler.after('expandedChange', A.bind(this._afterExpandedChange, this));
     },
 
@@ -278,17 +270,6 @@ A.FormBuilderFieldBase.prototype = {
         targetNode.setData('nested-field-parent', this);
 
         return targetNode;
-    },
-
-    /**
-     * Expand Advanced Settings Content.
-     *
-     * @method _expandModalContent
-     * @protected
-     */
-    _expandModalContent: function() {
-        this._advancedSettingsToggler.set('expanded', !this._advancedSettingsToggler.get('expanded'));
-        this._advancedSettingsToggler.get('content').setStyle('marginTop', '');
     },
 
     /**
@@ -377,7 +358,6 @@ A.FormBuilderFieldBase.prototype = {
      * @protected
      */
     _toggleVisibilityOfModalContent: function() {
-        this._fieldSettingsPanel.one('.' + CSS_FIELD_SETTINGS_PANEL_ADVANCED_BUTTON).toggleClass(CSS_HIDDEN);
         this.fire('contentToggle');
     },
 
@@ -410,8 +390,8 @@ A.FormBuilderFieldBase.ATTRS = {
      */
     strings: {
         value: {
-            subquestion: 'Paste as subquestion',
-            advancedOptions: 'Advanced options'
+            advancedOptions: 'Advanced options',
+            subquestion: 'Paste as subquestion'
         },
         writeOnce: true
     }

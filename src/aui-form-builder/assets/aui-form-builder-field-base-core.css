@@ -15,11 +15,6 @@
     background-color: #ccc;
 }
 
-.form-builder-field-settings-content .modal-body {
-    max-height: 450px;
-    overflow-y: auto;
-}
-
 .form-builder-field-settings-panel .tab-pane {
     display: none;
 }
@@ -50,5 +45,4 @@
 
 .form-builder-field-settings-panel-content {
     border-bottom: none;
-    padding: 10px 30px 0;
 }

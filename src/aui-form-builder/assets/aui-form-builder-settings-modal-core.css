@@ -1,20 +1,3 @@
-.form-builder-field-settings {
-    width: 450px;
-}
-
-.form-builder-field-settings .modal-body {
-    padding: 15px 0;
-    min-height: 350px;
-}
-
-.form-builder-field-settings .modal-footer {
-    text-align: left;
-}
-
-.form-builder-field-settings-content.modal-content {
-    border-radius: 0;
-}
-
 .form-builder-field-settings-small-screen-header {
     background-color: #C0C0C0;
     height: 40px;
@@ -38,14 +21,44 @@
     margin: 9px 0px 0px 5px;
 }
 
-.form-builder-field-settings-cancel {
-    border-width: 0;
+@media only screen and (max-device-width : 1024px) and (min-device-width : 320px) {
+    .form-builder-field-settings .modal-body {
+        height: 100%;
+        overflow: auto;
+    }
+
+    .form-builder-field-settings .modal-content {
+        height: 100%;
+        padding-bottom: 121px;
+    }
+
+    .form-builder-field-settings .modal-footer {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+    }
 }
 
-.form-builder-field-settings-cancel:hover {
-    background-color: transparent;
+@media only screen and (max-device-width : 736px) and (min-device-width : 320px) {
+    .form-builder-field-settings.modal-dialog {
+        height: 100%;
+        width: 100%;
+    }
+
+    .form-builder-field-settings .modal-content {
+        border-radius: 0;
+    }
+
+    .form-builder-field-settings .modal-footer {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+    }
 }
 
-.form-builder-field-settings-cancel, .form-builder-field-settings-save {
-    padding: 15px 40px
+@media only screen and (max-device-width : 1024px) and (min-device-width : 768px) {
+    .form-builder-field-settings.modal-dialog {
+        height: 70%;
+        width: 392px;
+    }    
 }

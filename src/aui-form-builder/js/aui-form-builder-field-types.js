@@ -340,7 +340,7 @@ A.FormBuilderFieldTypes.prototype = {
             modal: true,
             resizable: false,
             visible: false,
-            zIndex: 3
+            zIndex: 4
         });
 
         fieldTypesModal.addTarget(this);
