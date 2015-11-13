@@ -22,6 +22,12 @@
                 <input name="email1" id="email1" class="field-email" type="text">
             </div>
         </div>
+        <div class="control-group">
+            <label class="control-label" for="file1">File (required)</label>
+            <div class="controls">
+                <input name="file1" id="file1" class="field-required form-control" type="file">
+            </div>
+        </div>
     </form>
     <h2>Rules passed from JavaScript</h2>
     <form action="" id="fm2" name="fm2">
@@ -69,6 +75,12 @@
         <div class="control-group">
             <div class="checkbox">
               <label for="confirm" class="control-label"><input type="checkbox" name="confirm" id="confirm" value="true"/>Check this box</label>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="file2">File (required)</label>
+            <div class="controls">
+                <input name="file2" id="file2" class="field-required form-control" type="file">
             </div>
         </div>
         <input type="submit" class="btn btn-primary">
@@ -132,6 +144,9 @@
                 },
                 'forty-two': {
                     fortytwo: true
+                },
+                file2: {
+                    required: true
                 },
                 'image-url': {
                     imageURL: true,
