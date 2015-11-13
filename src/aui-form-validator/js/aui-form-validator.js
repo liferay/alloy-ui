@@ -24,12 +24,15 @@ var Lang = A.Lang,
 
     _DOT = '.',
     _EMPTY_STR = '',
+    _EXCLUDE_FILE_INPUT_SELECTOR = 'input:not([type="file"]),select,textarea,button',
+    _FILE_INPUT_SELECTOR = 'input[type="file"]',
     _FORM_ELEMENTS_SELECTOR = 'input,select,textarea,button',
     _INVALID_DATE = 'Invalid Date',
     _PIPE = '|',
     _SPACE = ' ',
 
     EV_BLUR = 'blur',
+    EV_CHANGE = 'change',
     EV_ERROR_FIELD = 'errorField',
     EV_INPUT = 'input',
     EV_SUBMIT_ERROR = 'submitError',
@@ -507,6 +510,8 @@ var FormValidator = A.Component.create({
 
             instance.errors = {};
             instance._blurHandlers = null;
+            instance._fileBlurHandlers = null;
+            instance._fileInputHandlers = null;
             instance._inputHandlers = null;
             instance._rulesAlreadyExtracted = false;
             instance._stackErrorContainers = {};
@@ -1282,12 +1287,21 @@ var FormValidator = A.Component.create({
             if (val) {
                 if (!instance._inputHandlers) {
                     instance._inputHandlers = boundingBox.delegate(EV_INPUT, instance._onFieldInput,
-                        _FORM_ELEMENTS_SELECTOR, instance);
+                        _EXCLUDE_FILE_INPUT_SELECTOR, instance);
+                }
+
+                if (!instance._fileInputHandlers) {
+                    instance._fileInputHandlers = boundingBox.delegate(EV_CHANGE, instance._onFieldInput,
+                        _FILE_INPUT_SELECTOR, instance);
                 }
             }
             else {
                 if (instance._inputHandlers) {
                     instance._inputHandlers.detach();
+                }
+
+                if (instance._fileInputHandlers) {
+                    instance._fileInputHandlers.detach();
                 }
             }
         },
@@ -1306,12 +1320,21 @@ var FormValidator = A.Component.create({
             if (val) {
                 if (!instance._blurHandlers) {
                     instance._blurHandlers = boundingBox.delegate(EV_BLUR, instance._onFieldInput,
-                        _FORM_ELEMENTS_SELECTOR, instance);
+                        _EXCLUDE_FILE_INPUT_SELECTOR, instance);
+                }
+
+                if (!instance._fileBlurHandlers) {
+                    instance._fileBlurHandlers = boundingBox.delegate(EV_CHANGE, instance._onFieldInput,
+                        _FILE_INPUT_SELECTOR, instance);
                 }
             }
             else {
                 if (instance._blurHandlers) {
                     instance._blurHandlers.detach();
+                }
+
+                if (instance._fileBlurHandlers) {
+                    instance._fileBlurHandlers.detach();
                 }
             }
         }
