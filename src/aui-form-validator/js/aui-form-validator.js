@@ -966,19 +966,6 @@ var FormValidator = A.Component.create({
         /**
          * TODO. Wanna help? Please send a Pull Request.
          *
-         * @method _afterValidateOnInputChange
-         * @param event
-         * @protected
-         */
-        _afterValidateOnInputChange: function(event) {
-            var instance = this;
-
-            instance._uiSetValidateOnInput(event.newVal);
-        },
-
-        /**
-         * TODO. Wanna help? Please send a Pull Request.
-         *
          * @method _afterValidateOnBlurChange
          * @param event
          * @protected
@@ -987,6 +974,19 @@ var FormValidator = A.Component.create({
             var instance = this;
 
             instance._uiSetValidateOnBlur(event.newVal);
+        },
+
+        /**
+         * TODO. Wanna help? Please send a Pull Request.
+         *
+         * @method _afterValidateOnInputChange
+         * @param event
+         * @protected
+         */
+        _afterValidateOnInputChange: function(event) {
+            var instance = this;
+
+            instance._uiSetValidateOnInput(event.newVal);
         },
 
         /**
