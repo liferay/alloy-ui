@@ -923,7 +923,7 @@ var FormValidator = A.Component.create({
          * Checks if a field can be validated or not.
          *
          * @method validatable
-         * @param field
+         * @param {Node} field
          * @return {Boolean}
          */
         validatable: function(field) {
@@ -932,10 +932,9 @@ var FormValidator = A.Component.create({
                 fieldRules = instance.get('rules')[field.get('name')];
 
             if (fieldRules) {
-                var required = instance.normalizeRuleValue(fieldRules.required);
-
-                validatable = (required || (!required && defaults.RULES.required.apply(instance, [field.val(),
-                    field])) || fieldRules.custom);
+                validatable = fieldRules.custom ||
+                    instance.normalizeRuleValue(fieldRules.required) ||
+                    defaults.RULES.required.apply(instance, [field.val(), field]);
             }
 
             return !!validatable;
