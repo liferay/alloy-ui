@@ -132,13 +132,13 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
             form.simulate('submit');
 
-            Y.Assert.isTrue(validator.hasErrors());
+            Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
 
             validOption.attr('selected', 'selected');
 
             form.simulate('submit');
 
-            Y.Assert.isFalse(validator.hasErrors());
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
         },
 
         /*
@@ -148,9 +148,12 @@ YUI.add('aui-form-validator-tests', function(Y) {
         'test custom rules': function() {
             var form = Y.Node.create('<form><input name="gt50" id="gt50" type="text"></form>'),
                 input = form.one('input'),
-                validator;
+                validator,
+                gt50Executed = false;
 
             var gt50 = function(val) {
+                gt50Executed = true;
+
                 return (val >= 50);
             };
 
@@ -167,7 +170,63 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 boundingBox: form,
                 rules: {
                     gt50: {
-                        greaterThan50: true,
+                        greaterThan50: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(gt50Executed, 'gt50Executed should be false');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+
+            input.attr('value', '42');
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(gt50Executed, 'gt50Executed should be true');
+
+            Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
+
+            input.attr('value', '100');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+        },
+
+        /*
+         * Check if validator correctly validates fields with custom rules that
+         * are required (using required property)
+         * @tests AUI-2027
+         */
+        'test required (using required property) custom rules': function() {
+            var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
+                input = form.one('input'),
+                validator,
+                custonFnExecuted;
+
+            var conditionFn = function() {
+                custonFnExecuted = true;
+
+                return true;
+            };
+
+            Y.FormValidator.addCustomRules(
+                {
+                    'myCustomRule': {
+                        condition: conditionFn,
+                        errorMessage: 'error message'
+                    }
+                }
+            );
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    inputName: {
+                        myCustomRule: true,
                         required: true
                     }
                 }
@@ -175,19 +234,276 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
             form.simulate('submit');
 
-            Y.Assert.isTrue(validator.hasErrors());
+            Y.Assert.isTrue(custonFnExecuted, 'custonFnExecuted should be true');
 
-            input.attr('value', '42');
+            Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
 
-            form.simulate('submit');
-
-            Y.Assert.isTrue(validator.hasErrors());
-
-            input.attr('value', '100');
+            input.attr('value', 'anything');
 
             form.simulate('submit');
 
-            Y.Assert.isFalse(validator.hasErrors());
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+        },
+
+        /*
+         * Check if validator correctly validates fields with custom rules that
+         * are required (using custon property)
+         * @tests AUI-2027
+         */
+        'test required (using custon property) custom rules': function() {
+            var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
+                input = form.one('input'),
+                validator,
+                custonFnExecuted;
+
+            var conditionFn = function(val) {
+                custonFnExecuted = true;
+
+                return !!val;
+            };
+
+            Y.FormValidator.addCustomRules(
+                {
+                    'myCustomRule': {
+                        condition: conditionFn,
+                        errorMessage: 'error message'
+                    }
+                }
+            );
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    inputName: {
+                        myCustomRule: true,
+                        custom: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(custonFnExecuted, 'custonFnExecuted should be true');
+
+            Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
+
+            input.attr('value', 'anything');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+        },
+
+        /*
+         * Check if validator correctly validates fields with custom rules that
+         * are required (using requireValidation property)
+         * @tests AUI-2027
+         */
+        'test required (using requireValidation property) custom rules': function() {
+            var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
+                input = form.one('input'),
+                validator,
+                custonFnExecuted;
+
+            var conditionFn = function(val) {
+                custonFnExecuted = true;
+
+                return !!val;
+            };
+
+            Y.FormValidator.addCustomRules(
+                {
+                    'myCustomRule': {
+                        condition: conditionFn,
+                        errorMessage: 'error message'
+                    }
+                }
+            );
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    inputName: {
+                        myCustomRule: true,
+                        requireValidation: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(custonFnExecuted, 'custonFnExecuted should be true');
+
+            Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
+
+            input.attr('value', 'anything');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+        },
+
+        /*
+         * Check if validator correctly passes rule value to custom rules
+         * @tests AUI-2027
+         */
+        'test passing rule values to custom rules': function() {
+            var form = Y.Node.create('<form><input name="gt50" id="gt50" type="text"></form>'),
+                validator;
+
+            var conditionFn = function(val, node, ruleValue) {
+                return ruleValue === 'my rule value';
+            };
+
+            Y.FormValidator.addCustomRules(
+                {
+                    'myCustomRule': {
+                        condition: conditionFn,
+                        errorMessage: 'error message'
+                    }
+                }
+            );
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    gt50: {
+                        myCustomRule: 'my rule value',
+                        requireValidation: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+        },
+
+        /*
+         * Check if validator correctly validates non-required fields
+         * via required: false
+         * @tests AUI-2027
+         */
+        'test non-required fields using required: false': function() {
+            var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
+                input = form.one('input'),
+                validator;
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    inputName: {
+                        required: false
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+
+            input.attr('value', 'anything');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+        },
+
+        /*
+         * Check if validator correctly validates hasValue rule
+         * @tests AUI-2027
+         */
+        'test hasValue rule': function() {
+            var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
+                input = form.one('input'),
+                validator;
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    inputName: {
+                        hasValue: true,
+                        requireValidation: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
+
+            input.attr('value', 'anything');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+        },
+
+        /*
+         * Check if validator correctly validates required fields when using a
+         * function as a rule value
+         *
+         * @tests AUI-2027
+         */
+        'test required (via required property) fields using rule value as a function': function() {
+            var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
+                input = form.one('input'),
+                validator;
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    inputName: {
+                        required: function() {
+                            return true;
+                        }
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
+
+            input.attr('value', 'anything');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+        },
+
+        /*
+         * Check if validator correctly validates required fields when using a
+         * function as a rule value
+         *
+         * @tests AUI-2027
+         */
+        'test required (via requireValidation property) fields using rule value as a function ': function() {
+            var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
+                input = form.one('input'),
+                validator;
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    inputName: {
+                        requireValidation: function() {
+                            return true;
+                        },
+                        hasValue: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
+
+            input.attr('value', 'anything');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
         },
 
         _assertValidatorNextLabel: function(input) {
