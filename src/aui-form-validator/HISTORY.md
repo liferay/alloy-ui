@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2027](https://issues.liferay.com/browse/AUI-2027) Allow requiring custom validation without field values
 * [AUI-2040](https://issues.liferay.com/browse/AUI-2040) Change validation for file input on change event
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
