@@ -53,6 +53,17 @@ YUI.add('aui-image-viewer-base-tests', function(Y) {
             );
         },
 
+        'should update the css z-index property when the zIndex attribute (inherited from WidgetStack) change': function() {
+            var boundingBox;
+
+            this._createImageViewer();
+            boundingBox = this._imageViewer.get('boundingBox');
+
+            Y.Assert.areEqual(0, boundingBox.getStyle('z-index'));
+            this._imageViewer.set('zIndex', 2103);
+            Y.Assert.areEqual(2103, boundingBox.getStyle('z-index'));
+        },
+
         'should show loading indicator until image is ready': function() {
             var instance = this,
                 imageContainer,

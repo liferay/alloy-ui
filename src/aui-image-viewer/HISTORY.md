@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-2044](https://issues.liferay.com/browse/AUI-2044) Add zIndex to AUI Image Viewer
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
 
