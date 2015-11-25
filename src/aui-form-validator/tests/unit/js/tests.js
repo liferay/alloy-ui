@@ -205,10 +205,10 @@ YUI.add('aui-form-validator-tests', function(Y) {
             var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
                 input = form.one('input'),
                 validator,
-                custonFnExecuted;
+                customFnExecuted;
 
             var conditionFn = function() {
-                custonFnExecuted = true;
+                customFnExecuted = true;
 
                 return true;
             };
@@ -234,7 +234,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
             form.simulate('submit');
 
-            Y.Assert.isTrue(custonFnExecuted, 'custonFnExecuted should be true');
+            Y.Assert.isTrue(customFnExecuted, 'customFnExecuted should be true');
 
             Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
 
@@ -247,17 +247,17 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
         /*
          * Check if validator correctly validates fields with custom rules that
-         * are required (using custon property)
+         * are required (using custom property)
          * @tests AUI-2027
          */
-        'test required (using custon property) custom rules': function() {
+        'test required (using custom property) custom rules': function() {
             var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
                 input = form.one('input'),
                 validator,
-                custonFnExecuted;
+                customFnExecuted;
 
             var conditionFn = function(val) {
-                custonFnExecuted = true;
+                customFnExecuted = true;
 
                 return !!val;
             };
@@ -283,7 +283,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
             form.simulate('submit');
 
-            Y.Assert.isTrue(custonFnExecuted, 'custonFnExecuted should be true');
+            Y.Assert.isTrue(customFnExecuted, 'customFnExecuted should be true');
 
             Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
 
@@ -303,10 +303,10 @@ YUI.add('aui-form-validator-tests', function(Y) {
             var form = Y.Node.create('<form><input name="inputName" type="text"></form>'),
                 input = form.one('input'),
                 validator,
-                custonFnExecuted;
+                customFnExecuted;
 
             var conditionFn = function(val) {
-                custonFnExecuted = true;
+                customFnExecuted = true;
 
                 return !!val;
             };
@@ -332,7 +332,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
             form.simulate('submit');
 
-            Y.Assert.isTrue(custonFnExecuted, 'custonFnExecuted should be true');
+            Y.Assert.isTrue(customFnExecuted, 'customFnExecuted should be true');
 
             Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
 
