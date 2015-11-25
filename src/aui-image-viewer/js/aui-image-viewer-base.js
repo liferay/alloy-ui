@@ -36,7 +36,8 @@ var CSS_CONTENT = A.getClassName('image', 'viewer', 'base', 'node', 'content'),
 A.ImageViewerBase = A.Base.create(
     'image-viewer-base',
     A.Widget, [
-        A.WidgetResponsive
+        A.WidgetResponsive,
+        A.WidgetStack
     ], {
         TPL_CONTROL_LEFT: '<a href="#" class="' + CSS_CONTROL + ' ' + CSS_CONTROL_LEFT +
             '"><span class="glyphicon glyphicon-chevron-left"></span></a>',

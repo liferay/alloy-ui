@@ -1080,7 +1080,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "base-build",
             "imageloader",
             "node-base",
-            "widget"
+            "widget",
+            "widget-stack"
         ],
         "skinnable": true
     },
@@ -2129,4 +2130,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '1b67db8090b5ed5e6407d19fbed6f44d';
+YUI.Env[Y.version].md5 = 'a088be86166e18d96a89b4e8a5199400';
