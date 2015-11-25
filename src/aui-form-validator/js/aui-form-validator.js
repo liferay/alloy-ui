@@ -857,7 +857,12 @@ var FormValidator = A.Component.create({
             var instance = this;
 
             if (!instance.get('showAllMessages')) {
-                errors = errors.slice(0, 1);
+                if (errors.indexOf('required') !== -1) {
+                    errors = ['required'];
+                }
+                else {
+                    errors = errors.slice(0, 1);
+                }
             }
 
             container.empty();
