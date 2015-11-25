@@ -444,6 +444,24 @@ YUI.add('aui-form-validator-tests', function(Y) {
             Y.Assert.isTrue(
                 textNode.next().hasClass('form-validator-stack'),
                 'Next to the input should be form validator');
+        },
+
+        'should clear the field error': function() {
+            var form = Y.Node.create('<form><input name="clear-erro"></form>'),
+                validator;
+
+            validator = new Y.FormValidator({
+                boundingBox: form
+            });
+
+            validator.addFieldError(form, {erro: 'erro'});
+            Y.Assert.isTrue(validator.hasErrors());
+
+            validator.clearFieldError({name: 'clear-erro'});
+            Y.Assert.isTrue(validator.hasErrors());
+
+            validator.clearFieldError(form);
+            Y.Assert.isFalse(validator.hasErrors());
         }
     }));
 

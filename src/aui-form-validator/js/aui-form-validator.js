@@ -619,12 +619,10 @@ var FormValidator = A.Component.create({
          * @param {Node|String} field
          */
         clearFieldError: function(field) {
-            var instance = this;
-
             var fieldName = isNode(field) ? field.get('name') : field;
 
             if (isString(fieldName)) {
-                delete instance.errors[fieldName];
+                delete this.errors[fieldName];
             }
         },
 
@@ -907,18 +905,16 @@ var FormValidator = A.Component.create({
          * @param {Node|String} field
          */
         resetField: function(field) {
-            var instance = this;
+            var fieldNode,
+                stackContainer;
 
-            instance.clearFieldError(field);
-
-            var fieldNode = isString(field) ? instance.getField(field) : field;
+            this.clearFieldError(field);
+            fieldNode = isString(field) ? this.getField(field) : field;
 
             if (isNode(fieldNode)) {
-                var stackContainer = instance.getFieldStackErrorContainer(fieldNode);
-
+                stackContainer = this.getFieldStackErrorContainer(fieldNode);
                 stackContainer.remove();
-
-                instance.resetFieldCss(fieldNode);
+                this.resetFieldCss(fieldNode);
             }
         },
 
@@ -990,17 +986,17 @@ var FormValidator = A.Component.create({
          * @param field
          */
         validateField: function(field) {
-            var instance = this;
+            var fieldNode,
+                validatable;
 
-            instance.resetField(field);
-
-            var fieldNode = isString(field) ? instance.getField(field) : field;
+            this.resetField(field);
+            fieldNode = isString(field) ? this.getField(field) : field;
 
             if (isNode(fieldNode)) {
-                var validatable = instance.validatable(fieldNode);
+                validatable = this.validatable(fieldNode);
 
                 if (validatable) {
-                    instance.fire('validateField', {
+                    this.fire('validateField', {
                         validator: {
                             field: fieldNode
                         }
