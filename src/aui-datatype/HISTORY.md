@@ -6,6 +6,10 @@
 
 No registries yet.
 
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
+No changes.
+
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
 
 * [AUI-1864](https://issues.liferay.com/browse/AUI-1864) Method "countDays()" created to get the whole number of days between two dates.

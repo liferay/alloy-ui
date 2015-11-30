@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
 * [AUI-1922](https://issues.liferay.com/browse/AUI-1922) Fixing localization issues on Form Builder
 * [AUI-1904](https://issues.liferay.com/browse/AUI-1904) Update textual content on Field Text
 * [AUI-1899](https://issues.liferay.com/browse/AUI-1899) Improve Form Builder visual interface

@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
 * [AUI-2030](https://issues.liferay.com/browse/AUI-2030) A row with one col should be automatically added on last position when the last row have at least one field
 * [AUI-2036](https://issues.liferay.com/browse/AUI-2036) AUI Form Builder Field Settings Modal should not overwrite Bootstrap 3 Modal css rules so that the layout keeps as similar as possible
 * [AUI-2031](https://issues.liferay.com/browse/AUI-2031) JavaScript error thrown when trying to split a row into two columns

@@ -4,9 +4,11 @@
 
 ## @VERSION@
 
-* [AUI-2034](https://issues.liferay.com/browse/AUI-2034) Allow users to request buttons to not have the .btn and .btn-default classes from Bootstrap 3
-
 No registries yet.
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
+* [AUI-2034](https://issues.liferay.com/browse/AUI-2034) Allow users to request buttons to not have the .btn and .btn-default classes from Bootstrap 3
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
 
