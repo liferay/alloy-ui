@@ -1,0 +1,18 @@
+.form-builder-field-types-list {
+    padding-left: 0;
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.form-builder-field-types-label {
+    color: #333;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+.form-builder-modal.modal-header {
+    background-color: 0;
+}

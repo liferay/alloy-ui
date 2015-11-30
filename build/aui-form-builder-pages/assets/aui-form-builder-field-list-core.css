@@ -1,0 +1,83 @@
+.form-builder-field-list-container {
+    padding: 35px 0;
+}
+
+.form-builder-field-list-add-button {
+    font: 33px sans-serif;
+    height: 34px;
+    margin-bottom: 15px;
+    margin-top: -17px;
+    outline: none;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}
+
+.form-builder-field-list-add-button-circle {
+    cursor: pointer;
+}
+
+.form-builder-field-list-add-button-content {
+    display: none;
+}
+
+.form-builder-field-list-add-button-visible .form-builder-field-list-add-button-content {
+    display: block;
+}
+
+.form-builder-field-list-empty .form-builder-field-list-add-button {
+    position: absolute;
+    top: 50%;
+}
+
+.form-builder-field-list-add-button-content:before {
+    border-top: 2px solid #cce4ff;
+    bottom: 0;
+    content: "";
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 95%;
+    z-index: -1;
+}
+
+.form-builder-field-list-add-button .form-builder-field-list-add-button-circle {
+    background: #FFFFFF;
+    border-radius: 50%;
+    border: 1px solid #0078ff;
+    display: inline-block;
+    height: 34px;
+    width: 34px;
+}
+
+.form-builder-field-list-add-button .form-builder-field-list-add-button-icon {
+    background: #219fff;
+    height: 15px;
+    left: 50%;
+    margin-left: -0.5px;
+    margin-top: -7.5px;
+    position: absolute;
+    top: 50%;
+    width: 1px;
+}
+
+.form-builder-field-list-add-button .form-builder-field-list-add-button-icon:before {
+    background: #219fff;
+    content: "";
+    height: 1px;
+    left: 50%;
+    margin-left: -7.5px;
+    margin-top: -0.5px;
+    position: absolute;
+    top: 50%;
+    width: 15px;
+}
+
+@media (max-width: 768px) {
+    .form-builder-field-list-add-button {
+        margin-top: 0;
+    }
+}

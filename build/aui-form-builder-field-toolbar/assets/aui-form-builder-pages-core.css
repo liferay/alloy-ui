@@ -1,0 +1,14 @@
+.form-inline .form-builder-page-header-description-hide-border, .form-inline .form-builder-page-header-title-hide-border {
+	box-shadow: none;
+    border-width: 1px;
+    border-color: transparent;
+}
+
+.form-inline .form-builder-page-header-description, .form-inline .form-builder-page-header-title {
+    display: inline-block;
+    width: 95%;
+}
+
+.form-inline .form-builder-page-header-title {
+	font-size: 18px;
+}
