@@ -60,7 +60,7 @@
 }
 
 .form-builder-field-list-empty .form-builder-field-list-add-container {
-    position: initial;
+    position: static;
 }
 
 .form-builder-field + .form-builder-field-list-add-container {
