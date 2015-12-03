@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-2049](https://issues.liferay.com/browse/AUI-2049) Remove custom and requireValidation validator properties
 
 ## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
 
