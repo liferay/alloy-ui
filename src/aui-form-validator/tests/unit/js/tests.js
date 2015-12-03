@@ -48,7 +48,6 @@ YUI.add('module-tests', function(Y) {
                 required: true
             },
             'image-url': {
-                custom: true,
                 imageURL: true,
                 required: true
             },
@@ -135,7 +134,6 @@ YUI.add('module-tests', function(Y) {
                 boundingBox: form,
                 rules: {
                     gt50: {
-                        custom: true,
                         greaterThan50: true,
                         required: true
                     }
