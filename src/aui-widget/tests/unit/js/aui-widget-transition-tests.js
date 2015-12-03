@@ -81,6 +81,54 @@ YUI.add('aui-widget-transition-tests', function(Y) {
             this.wait(function() {
               Y.Mock.verify(widgetInstance.get('boundingBox'));
             }, 100);
+        },
+
+        'should wait the specified "delay" before animating widget': function() {
+            var widgetInstance = new WidgetTransition({
+              animated: true,
+              delay: 100
+            }).render();
+
+            Y.Mock.expect(widgetInstance.get('boundingBox'), {
+                callCount: 0,
+                method: 'transition'
+            });
+            this.wait(function() {
+              Y.Mock.verify(widgetInstance.get('boundingBox'));
+              Y.Mock.expect(widgetInstance.get('boundingBox'), {
+                  callCount: 1,
+                  method: 'transition',
+                  args: [Y.Mock.Value.Object, Y.Mock.Value.Function]
+              });
+              this.wait(function() {
+                  Y.Mock.verify(widgetInstance.get('boundingBox'));
+              }, 100);
+            }, 50);
+        },
+
+        'should use the most recently set "delay" value when animating the widget': function() {
+            var widgetInstance = new WidgetTransition({
+              animated: true,
+              delay: 100
+            });
+            widgetInstance.set('delay', 200);
+            widgetInstance.render();
+
+            Y.Mock.expect(widgetInstance.get('boundingBox'), {
+                callCount: 0,
+                method: 'transition'
+            });
+            this.wait(function() {
+              Y.Mock.verify(widgetInstance.get('boundingBox'));
+              Y.Mock.expect(widgetInstance.get('boundingBox'), {
+                  callCount: 1,
+                  method: 'transition',
+                  args: [Y.Mock.Value.Object, Y.Mock.Value.Function]
+              });
+              this.wait(function() {
+                  Y.Mock.verify(widgetInstance.get('boundingBox'));
+              }, 100);
+            }, 150);
         }
     }));
 

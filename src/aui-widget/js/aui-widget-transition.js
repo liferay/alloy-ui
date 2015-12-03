@@ -59,8 +59,7 @@ WidgetTransition.ATTRS = {
         value: {
             show: 0,
             hide: 0
-        },
-        writeOnce: true
+        }
     },
 
     /**
