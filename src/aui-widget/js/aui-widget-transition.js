@@ -41,8 +41,7 @@ WidgetTransition.ATTRS = {
      */
     animated: {
         validator: Lang.isBoolean,
-        value: false,
-        writeOnce: true
+        value: false
     },
 
     /**
