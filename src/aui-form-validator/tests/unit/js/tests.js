@@ -251,6 +251,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
          */
         'test passing rule values to custom rules': function() {
             var form = Y.Node.create('<form><input name="gt50" id="gt50" type="text"></form>'),
+                input = form.one('input'),
                 validator;
 
             var conditionFn = function(val, node, ruleValue) {
@@ -271,10 +272,12 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 rules: {
                     gt50: {
                         myCustomRule: 'my rule value',
-                        requireValidation: true
+                        required: true
                     }
                 }
             });
+
+            input.attr('value', 'anything');
 
             form.simulate('submit');
 
