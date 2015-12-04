@@ -4,6 +4,14 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+No changes.
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
 * [AUI-2020](https://issues.liferay.com/browse/AUI-2020) Field title and field help texts should not exceed its container’s boundaries even when there isn’t space between words.
 * [AUI-1853](https://issues.liferay.com/browse/AUI-1853) Use default checkbox/radio/dropdown for FormBuilderChoiceField
 * [AUI-1877](https://issues.liferay.com/browse/AUI-1877) Move some form builder fields to Liferay Portal

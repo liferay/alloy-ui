@@ -932,21 +932,6 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * Checks if a field is required or not.
-         *
-         * @method fieldRequired
-         * @param {Object} fieldRules
-         * @param {Node} field
-         * @return {Boolean}
-         */
-        fieldRequired: function(fieldRules, field) {
-            var instance = this;
-            return fieldRules.custom ||
-                    instance.normalizeRuleValue(fieldRules.required, field) ||
-                    instance.normalizeRuleValue(fieldRules.requireValidation, field);
-        },
-
-        /**
          * Checks if a field can be validated or not.
          *
          * @method validatable
@@ -959,7 +944,7 @@ var FormValidator = A.Component.create({
                 fieldRules = instance.get('rules')[field.get('name')];
 
             if (fieldRules) {
-                validatable = instance.fieldRequired(fieldRules, field) ||
+                validatable = instance.normalizeRuleValue(fieldRules.required, field) ||
                     defaults.RULES.hasValue.apply(instance, [field.val(), field]);
             }
 
@@ -1329,7 +1314,7 @@ var FormValidator = A.Component.create({
                 function(rule, fieldName) {
                     var field = instance.getField(fieldName);
 
-                    var required = instance.fieldRequired(rule, field);
+                    var required = instance.normalizeRuleValue(rule.required, field);
 
                     if (required) {
                         if (field && !field.attr('aria-required')) {

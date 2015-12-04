@@ -4,6 +4,14 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+No changes.
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
 * [AUI-1876](https://issues.liferay.com/browse/AUI-1876) AUI Timepicker selection should drop down to time nearest the time shown in its input field or the current local time if no time value is given
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)

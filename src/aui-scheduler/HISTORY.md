@@ -4,6 +4,14 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+No changes.
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
 * [AUI-1998](https://issues.liferay.com/browse/AUI-1998) Scheduler's month view does not display events in chronological order.
 * [AUI-1996](https://issues.liferay.com/browse/AUI-1996) Allow Scheduler to skip syncEventsUI to avoid redundant DOM manipulation.
 * [AUI-1997](https://issues.liferay.com/browse/AUI-1997) Overlay displaying extra events appears cropped or demands scrolling

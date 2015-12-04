@@ -4,6 +4,15 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+* [AUI-2052](https://issues.liferay.com/browse/AUI-2052) Allows changing the value of WidgetTransition's "delay" attribute
+* [AUI-2051](https://issues.liferay.com/browse/AUI-2051) Allows changing the value of WidgetTransition's "animated" attribute
+
+## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
+
 * [AUI-2021](https://issues.liferay.com/browse/AUI-2021) AUI-Popover should choose the best position according to its constrain element
 
 ## [3.0.1](https://github.com/liferay/alloy-ui/releases/tag/3.0.1)
