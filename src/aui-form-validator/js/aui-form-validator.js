@@ -153,6 +153,20 @@ A.mix(defaults, {
             return comparator && (trim(comparator.val()) === val);
         },
 
+        hasValue: function(val, node) {
+            var instance = this;
+
+            if (A.FormValidator.isCheckable(node)) {
+                var name = node.get(NAME),
+                    elements = A.all(instance.getFieldsByName(name));
+
+                return (elements.filter(':checked').size() > 0);
+            }
+            else {
+                return !!val;
+            }
+        },
+
         max: function(val, node, ruleValue) {
             return (Lang.toFloat(val) <= ruleValue);
         },
@@ -184,14 +198,11 @@ A.mix(defaults, {
         required: function(val, node, ruleValue) {
             var instance = this;
 
-            if (A.FormValidator.isCheckable(node)) {
-                var name = node.get(NAME),
-                    elements = A.all(instance.getFieldsByName(name));
-
-                return (elements.filter(':checked').size() > 0);
+            if (ruleValue === true) {
+                return defaults.RULES.hasValue.apply(instance, [val, node]);
             }
             else {
-                return !!val;
+                return true;
             }
         }
     }
@@ -782,11 +793,12 @@ var FormValidator = A.Component.create({
          *
          * @method normalizeRuleValue
          * @param ruleValue
+         * @param {Node} field
          */
-        normalizeRuleValue: function(ruleValue) {
+        normalizeRuleValue: function(ruleValue, field) {
             var instance = this;
 
-            return isFunction(ruleValue) ? ruleValue.apply(instance) : ruleValue;
+            return isFunction(ruleValue) ? ruleValue.apply(instance, [field]) : ruleValue;
         },
 
         /**
@@ -891,7 +903,6 @@ var FormValidator = A.Component.create({
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @method validatable
-         * @param field
          * @param {Node} field
          */
         validatable: function(field) {
@@ -902,7 +913,7 @@ var FormValidator = A.Component.create({
             if (fieldRules) {
                 validatable = fieldRules.custom ||
                     instance.normalizeRuleValue(fieldRules.required) ||
-                    defaults.RULES.required.apply(instance, [field.val(), field]);
+                    defaults.RULES.hasValue.apply(instance, [field.val(), field]);
             }
 
             return !!validatable;
@@ -1063,7 +1074,7 @@ var FormValidator = A.Component.create({
                     var rule = defaults.RULES[ruleName];
                     var fieldValue = trim(field.val());
 
-                    ruleValue = instance.normalizeRuleValue(ruleValue);
+                    ruleValue = instance.normalizeRuleValue(ruleValue, field);
 
                     if (isFunction(rule) && !rule.apply(instance, [fieldValue, field, ruleValue])) {
 
@@ -1248,9 +1259,11 @@ var FormValidator = A.Component.create({
 
             instance.eachRule(
                 function(rule, fieldName) {
-                    if (rule.required) {
-                        var field = instance.getField(fieldName);
+                    var field = instance.getField(fieldName);
 
+                    var required = instance.normalizeRuleValue(rule.required, field);
+
+                    if (required) {
                         if (field && !field.attr(ARIA_REQUIRED)) {
                             field.attr(ARIA_REQUIRED, true);
                         }
