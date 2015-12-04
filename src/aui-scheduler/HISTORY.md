@@ -6,6 +6,10 @@
 
 No registries yet.
 
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+No changes.
+
 ## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
 
 * [AUI-1998](https://issues.liferay.com/browse/AUI-1998) Scheduler's month view does not display events in chronological order.

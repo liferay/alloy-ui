@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
 * [AUI-2052](https://issues.liferay.com/browse/AUI-2052) Allows changing the value of WidgetTransition's "delay" attribute
 * [AUI-2051](https://issues.liferay.com/browse/AUI-2051) Allows changing the value of WidgetTransition's "animated" attribute
 

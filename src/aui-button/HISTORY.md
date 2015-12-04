@@ -6,6 +6,10 @@
 
 No registries yet.
 
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+No changes.
+
 ## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
 
 * [AUI-2035](https://issues.liferay.com/browse/AUI-2035) AUI Button should have an option to don't add .btn-default and also .btn default classes

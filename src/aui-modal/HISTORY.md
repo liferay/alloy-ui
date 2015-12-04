@@ -6,6 +6,10 @@
 
 No registries yet.
 
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
+No changes.
+
 ## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
 
 * [AUI-2028](https://issues.liferay.com/browse/AUI-2028) AUI Modal Component should inherit CSS rules from Bootstrap therefore the markup must be as similar as possible.

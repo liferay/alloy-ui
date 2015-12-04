@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
+
 * [AUI-2048](https://issues.liferay.com/browse/AUI-2048) Form Builder Add Field Button overlap each other on IE11
 
 ## [3.0.2](https://github.com/liferay/alloy-ui/releases/tag/3.0.2)
