@@ -249,7 +249,7 @@ var AvailableField = A.Component.create({
 
 			instance.get(NODE).attr(TITLE, val);
 
-			instance.labelNode.setContent(val);
+			instance.labelNode.setContent(A.Escape.html(val));
 		}
 	}
 });
