@@ -251,6 +251,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
          */
         'test passing rule values to custom rules': function() {
             var form = Y.Node.create('<form><input name="gt50" id="gt50" type="text"></form>'),
+                input = form.one('input'),
                 validator;
 
             var conditionFn = function(val, node, ruleValue) {
@@ -271,10 +272,12 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 rules: {
                     gt50: {
                         myCustomRule: 'my rule value',
-                        requireValidation: true
+                        required: true
                     }
                 }
             });
+
+            input.attr('value', 'anything');
 
             form.simulate('submit');
 
@@ -367,6 +370,57 @@ YUI.add('aui-form-validator-tests', function(Y) {
             Y.Assert.isTrue(validator.hasErrors(), 'Validator should have errors');
 
             input.attr('value', 'anything');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
+        },
+
+        /*
+         * Check if validator defaults to 'required' error message when showAllMessages is false
+         * @tests AUI-2043
+         */
+        'test required error message is first when showAllMessages is false': function() {
+            var form = Y.Node.create(
+                    '<form><input name="emailAddress" id="emailAddress" type="text"></form>'),
+                input = form.one('input'),
+                validator,
+                errorMessage,
+                fieldStackErrorContainer;
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                fieldStrings: {
+                    emailAddress: {
+                        email: 'Please enter a valid email address.',
+                        required: 'This field is required.'
+                    }
+                },
+                rules: {
+                    emailAddress: {
+                        email: true,
+                        required: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            fieldStackErrorContainer = validator.getFieldStackErrorContainer(input);
+
+            errorMessage = fieldStackErrorContainer.text();
+
+            Y.Assert.isTrue(errorMessage === 'This field is required.', 'errorMessage should be required');
+
+            input.attr('value', 'not an email address');
+
+            form.simulate('submit');
+
+            errorMessage = fieldStackErrorContainer.text();
+
+            Y.Assert.isTrue(errorMessage === 'Please enter a valid email address.', 'errorMessage should be email');
+
+            input.attr('value', 'email@example.com');
 
             form.simulate('submit');
 
