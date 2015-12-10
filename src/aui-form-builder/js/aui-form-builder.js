@@ -542,7 +542,9 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         }
 
         if (fieldContainer) {
-            this._fieldToolbar.addForField(fieldContainer.getData('field-instance'));
+            if (!fieldContainer.contains(this._fieldToolbar._toolbar)) {
+                this._fieldToolbar.addForField(fieldContainer.getData('field-instance'));
+            }
         }
         else {
             this._fieldToolbar.remove();

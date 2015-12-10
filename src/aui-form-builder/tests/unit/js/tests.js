@@ -637,6 +637,32 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNull(Y.one('.form-builder-field-toolbar'));
         },
 
+        'should not show toolbar settings it the element target is the its child': function() {
+            var mock,
+                node,
+                toolbar;
+
+            this.createFormBuilder();
+
+            mock = Y.Mock();
+            toolbar = this._formBuilder._fieldToolbar;
+
+            Y.Mock.expect(mock, {
+                args: [Y.Mock.Value.Object],
+                callCount: 1,
+                method: 'addForField'
+            });
+
+            Y.after(mock.addForField, toolbar, 'addForField');
+
+            node = Y.one('.form-builder-field');
+
+            this._formBuilder._onFocus({ target: node });
+            this._formBuilder._onFocus({ target: node });
+
+            Y.Mock.verify(mock);
+        },
+
         'should be able to create a layout using an object instead of an instance of Layout': function() {
             var config,
                 layout;
