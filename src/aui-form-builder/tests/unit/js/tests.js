@@ -637,7 +637,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNull(Y.one('.form-builder-field-toolbar'));
         },
 
-        'should not show toolbar settings it the element target is the its child': function() {
+        'should not show toolbar on a field if the toolbar is already already inside a child of this field': function() {
             var mock,
                 node,
                 toolbar;
