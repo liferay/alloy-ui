@@ -4,6 +4,7 @@ var L = A.Lang,
 	isString = L.isString,
 
 	AArray = A.Array,
+	AEscape = A.Escape,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
 	ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
@@ -638,7 +639,7 @@ var FormBuilderField = A.Component.create({
 			var instance = this;
 			var labelNode = instance.get(LABEL_NODE);
 
-			labelNode.setContent(A.Escape.html(val));
+			labelNode.setContent(AEscape.html(val));
 		},
 
 		_uiSetName: function(val) {
