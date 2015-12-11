@@ -5,6 +5,7 @@ var L = A.Lang,
 	isString = L.isString,
 
 	AArray = A.Array,
+	AEscape = A.Escape,
 
 	ACCEPT_CHILDREN = 'acceptChildren',
 	ALLOW_REMOVE_REQUIRED_FIELDS = 'allowRemoveRequiredFields',
@@ -298,8 +299,8 @@ var FormBuilderField = A.Component.create({
 					L.sub(
 						TPL_LABEL,
 						{
-							id: instance.get(ID),
-							label: instance.get(LABEL)
+							id: AEscape.html(instance.get(ID)),
+							label: AEscape.html(instance.get(LABEL))
 						}
 					)
 				);
@@ -639,7 +640,7 @@ var FormBuilderField = A.Component.create({
 			var instance = this;
 			var labelNode = instance.get(LABEL_NODE);
 
-			labelNode.setContent(val);
+			labelNode.setContent(AEscape.html(val));
 		},
 
 		_uiSetName: function(val) {
@@ -784,6 +785,8 @@ var L = A.Lang,
 		}
 	),
 
+	AEscape = A.Escape,
+
 	BUTTON = 'button',
 	BUTTON_TYPE = 'buttonType',
 	DOT = '.',
@@ -871,11 +874,11 @@ var FormBuilderButtonField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: instance.get(ID),
-					label: instance.get(LABEL),
-					name: instance.get(NAME),
-					type: instance.get(BUTTON_TYPE),
-					value: instance.get(PREDEFINED_VALUE)
+					id: AEscape.html(instance.get(ID)),
+					label: AEscape.html(instance.get(LABEL)),
+					name: AEscape.html(instance.get(NAME)),
+					type: AEscape.html(instance.get(BUTTON_TYPE)),
+					value: AEscape.html(instance.get(PREDEFINED_VALUE))
 				}
 			)
 		},
@@ -922,6 +925,8 @@ var L = A.Lang,
 	isBoolean = L.isBoolean,
 	isNumber = L.isNumber,
 	isString = L.isString,
+
+	AEscape = A.Escape,
 
 	BOOLEAN = 'boolean',
 	CHECKBOX = 'checkbox',
@@ -1024,10 +1029,10 @@ var FormBuilderCheckBoxField = A.Component.create({
 				instance.get(TEMPLATE),
 				{
 					checked: checked ? 'checked="checked"' : EMPTY_STR,
-					id: instance.get(ID),
-					label: instance.get(LABEL),
-					name: instance.get(NAME),
-					value: instance.get(PREDEFINED_VALUE)
+					id: AEscape.html(instance.get(ID)),
+					label: AEscape.html(instance.get(LABEL)),
+					name: AEscape.html(instance.get(NAME)),
+					value: AEscape.html(instance.get(PREDEFINED_VALUE))
 				}
 			);
 		},
@@ -1052,6 +1057,8 @@ A.FormBuilderCheckBoxField = FormBuilderCheckBoxField;
 
 A.FormBuilder.types.checkbox = A.FormBuilderCheckBoxField;
 var L = A.Lang,
+
+	AEscape = A.Escape,
 
 	BOUNDING_BOX = 'boundingBox',
 	CONTENT_BOX = 'contentBox',
@@ -1134,7 +1141,7 @@ var FormBuilderFieldsetField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: instance.get(ID)
+					id: AEscape.html(instance.get(ID))
 				}
 			);
 		},
@@ -1196,6 +1203,8 @@ A.FormBuilderFieldsetField = FormBuilderFieldsetField;
 A.FormBuilder.types['fieldset'] = A.FormBuilderFieldsetField;
 var L = A.Lang,
 
+	AEscape = A.Escape,
+
 	DOT = '.',
 	EMPTY_STR = '',
 	FIELD = 'field',
@@ -1250,10 +1259,10 @@ var FormBuilderFileUploadField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: instance.get(ID),
-					label: instance.get(LABEL),
-					name: instance.get(NAME),
-					value: instance.get(PREDEFINED_VALUE)
+					id: AEscape.html(instance.get(ID)),
+					label: AEscape.html(instance.get(LABEL)),
+					name: AEscape.html(instance.get(NAME)),
+					value: AEscape.html(instance.get(PREDEFINED_VALUE))
 				}
 			);
 		}
@@ -1268,6 +1277,8 @@ A.FormBuilder.types['fileupload'] = A.FormBuilderFileUploadField;
 var Lang = A.Lang,
 	AArray = A.Array,
 	isString = Lang.isString,
+
+	AEscape = A.Escape,
 
 	ADD_OPTION = 'addOption',
 	DATA = 'data',
@@ -1514,8 +1525,8 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 						Lang.sub(
 							instance.get(OPTION_TEMPLATE),
 							{
-								label: item.label,
-								value: item.value
+								label: AEscape.html(item.label),
+								value: AEscape.html(item.value)
 							}
 						)
 					);
@@ -1543,7 +1554,7 @@ var FormBuilderMultipleChoiceField = A.Component.create({
 			optionNodes.set(SELECTED, false);
 
 			AArray.each(val, function(item) {
-				optionNodes.filter('[value="' + item + '"]').set(SELECTED, true);
+				optionNodes.filter('[value="' + AEscape.html(item) + '"]').set(SELECTED, true);
 			});
 		}
 	}
@@ -1554,6 +1565,8 @@ A.FormBuilderMultipleChoiceField = FormBuilderMultipleChoiceField;
 
 A.FormBuilder.types['multiple-choice'] = A.FormBuilderMultipleChoiceField;
 var L = A.Lang,
+
+	AEscape = A.Escape,
 
 	CHECKED = 'checked',
 	CHOICE = 'choice',
@@ -1652,10 +1665,10 @@ var FormBuilderRadioField = A.Component.create({
 							{
 								checked: item.value === instance.get(PREDEFINED_VALUE) ? 'checked="checked"' : EMPTY_STR,
 								disabled: instance.get(DISABLED) ? 'disabled="disabled"' : EMPTY_STR,
-								id: instance.get(ID) + counter++,
-								label: item.label,
-								name: instance.get(NAME),
-								value: item.value
+								id: AEscape.html(instance.get(ID) + counter++),
+								label: AEscape.html(item.label),
+								name: AEscape.html(instance.get(NAME)),
+								value: AEscape.html(item.value)
 							}
 						)
 					)
@@ -1674,6 +1687,8 @@ var L = A.Lang,
 	isArray = L.isArray,
 	isNumber = L.isNumber,
 	isString = L.isString,
+
+	AEscape = A.Escape,
 
 	BUTTON = 'button',
 	DOT = '.',
@@ -1744,10 +1759,10 @@ var FormBuilderSelectField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: instance.get(ID),
-					label: instance.get(LABEL),
-					name: instance.get(NAME),
-					value: instance.get(PREDEFINED_VALUE)
+					id: AEscape.html(instance.get(ID)),
+					label: AEscape.html(instance.get(LABEL)),
+					name: AEscape.html(instance.get(NAME)),
+					value: AEscape.html(instance.get(PREDEFINED_VALUE))
 				}
 			);
 		},
@@ -1797,6 +1812,8 @@ A.FormBuilderSelectField = FormBuilderSelectField;
 
 A.FormBuilder.types.select = A.FormBuilderSelectField;
 var L = A.Lang,
+
+	AEscape = A.Escape,
 
 	BOUNDING_BOX = 'boundingBox',
 	CONTAINER = 'container',
@@ -1867,11 +1884,11 @@ var FormBuilderTextField = A.Component.create({
 			return L.sub(
 				instance.get(TEMPLATE),
 				{
-					id: instance.get(ID),
-					label: instance.get(LABEL),
-					name: instance.get(NAME),
-					value: instance.get(PREDEFINED_VALUE),
-					width: instance.get(WIDTH)
+					id: AEscape.html(instance.get(ID)),
+					label: AEscape.html(instance.get(LABEL)),
+					name: AEscape.html(instance.get(NAME)),
+					value: AEscape.html(instance.get(PREDEFINED_VALUE)),
+					width: AEscape.html(instance.get(WIDTH))
 				}
 			)
 		},
@@ -1985,4 +2002,4 @@ A.FormBuilderTextAreaField = FormBuilderTextAreaField;
 
 A.FormBuilder.types['textarea'] = A.FormBuilderTextAreaField;
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-datatype','aui-panel','aui-tooltip']});
+}, '@VERSION@' ,{requires:['aui-datatype','aui-panel','aui-tooltip','escape'], skinnable:true});

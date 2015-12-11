@@ -285,13 +285,15 @@ var FormBuilder = A.Component.create({
 		initializer: function() {
 			var instance = this;
 
-			instance.on({
-				cancel: instance._onCancel,
-				'drag:end': instance._onDragEnd,
-				'drag:start': instance._onDragStart,
-				'drag:mouseDown': instance._onDragMouseDown,
-				save: instance._onSave
-			});
+			instance.on(
+				{
+					cancel: instance._onCancel,
+					'drag:end': instance._onDragEnd,
+					'drag:start': instance._onDragStart,
+					'drag:mouseDown': instance._onDragMouseDown,
+					save: instance._onSave
+				}
+			);
 
 			instance.uniqueFields.after(ADD, A.bind(instance._afterUniqueFieldsAdd, instance));
 			instance.uniqueFields.after(REMOVE, A.bind(instance._afterUniqueFieldsRemove, instance));
@@ -309,6 +311,7 @@ var FormBuilder = A.Component.create({
 
 		closeEditProperties: function() {
 			var instance = this;
+
 			var field = instance.editingField;
 
 			instance.tabView.selectTab(A.FormBuilder.FIELDS_TAB);
@@ -335,6 +338,7 @@ var FormBuilder = A.Component.create({
 
 		duplicateField: function(field) {
 			var instance = this;
+
 			var index = instance._getFieldNodeIndex(field.get(BOUNDING_BOX));
 			var newField = instance._cloneField(field, true);
 
@@ -364,6 +368,7 @@ var FormBuilder = A.Component.create({
 
 		getFieldClass: function(type) {
 			var instance = this;
+
 			var clazz = A.FormBuilder.types[type];
 
 			if (clazz) {
@@ -395,6 +400,7 @@ var FormBuilder = A.Component.create({
 
 		plotField: function(field, container) {
 			var instance = this;
+
 			var boundingBox = field.get(BOUNDING_BOX);
 
 			if (!field.get(RENDERED)) {
@@ -417,9 +423,12 @@ var FormBuilder = A.Component.create({
 
 			container.setContent(EMPTY_STR);
 
-			A.each(fields, function(field) {
-				instance.plotField(field, container);
-			});
+			A.each(
+				fields,
+				function(field) {
+					instance.plotField(field, container);
+				}
+			);
 		},
 
 		select: function(field) {
@@ -432,6 +441,7 @@ var FormBuilder = A.Component.create({
 
 		unselectFields: function() {
 			var instance = this;
+
 			var selectedField = instance.selectedField;
 
 			if (selectedField) {
@@ -443,48 +453,59 @@ var FormBuilder = A.Component.create({
 
 		_afterUniqueFieldsAdd: function(event) {
 			var instance = this;
+
 			var availableField = event.attrName;
 
 			if (isAvailableField(availableField)) {
 				var node = availableField.get(NODE);
 
 				availableField.set(DRAGGABLE, false);
+
 				node.unselectable();
 			}
 		},
 
 		_afterUniqueFieldsRemove: function(event) {
 			var instance = this;
+
 			var availableField = event.attrName;
 
 			if (isAvailableField(availableField)) {
 				var node = availableField.get(NODE);
 
 				availableField.set(DRAGGABLE, true);
+
 				node.selectable();
 			}
 		},
 
 		_cloneField: function(field, deep) {
 			var instance = this;
-			var config  = {};
 
-			AArray.each(instance.getFieldProperties(field), function(property) {
-				var name = property.attributeName;
+			var config = {};
 
-				if (AArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
-					config[name] = property.value;
+			AArray.each(
+				instance.getFieldProperties(field),
+				function(property) {
+					var name = property.attributeName;
+
+					if (AArray.indexOf(INVALID_CLONE_ATTRS, name) === -1) {
+						config[name] = property.value;
+					}
 				}
-			});
+			);
 
 			if (deep) {
 				config[FIELDS] = [];
 
-				A.each(field.get(FIELDS), function(child, index) {
-					if (!child.get(UNIQUE)) {
-						config[FIELDS][index] = instance._cloneField(child, deep);
+				A.each(
+					field.get(FIELDS),
+					function(child, index) {
+						if (!child.get(UNIQUE)) {
+							config[FIELDS][index] = instance._cloneField(child, deep);
+						}
 					}
-				});
+				);
 			}
 
 			return instance.createField(config);
@@ -492,8 +513,11 @@ var FormBuilder = A.Component.create({
 
 		_dropField: function(dragNode) {
 			var instance = this;
+
 			var availableField = dragNode.getData(AVAILABLE_FIELD);
+
 			var field = A.Widget.getByNode(dragNode);
+
 			var parentNode = dragNode.get(PARENT_NODE);
 
 			if (isAvailableField(availableField)) {
@@ -537,6 +561,7 @@ var FormBuilder = A.Component.create({
 
 		_getFieldId: function(field) {
 			var instance = this;
+
 			var id = field.get(ID);
 
 			var prefix;
@@ -557,12 +582,13 @@ var FormBuilder = A.Component.create({
 			return fieldNode.get(PARENT_NODE).all(
 				// prevent the placeholder interference on the index
 				// calculation
-				'> *:not(' + _DOT+CSS_FORM_BUILDER_PLACEHOLDER + ')'
+				'> *:not(' + _DOT + CSS_FORM_BUILDER_PLACEHOLDER + ')'
 			).indexOf(fieldNode);
 		},
 
 		_onClickField: function(event) {
 			var instance = this;
+
 			var field = A.Widget.getByNode(event.currentTarget);
 
 			instance.select(field);
@@ -575,7 +601,7 @@ var FormBuilder = A.Component.create({
 
 			// Only enable editing if the double clicked node is inside the node
 			// contentBox.
-			if (!event.target.ancestor(_DOT+CSS_FORM_BUILDER_FIELD, true)) {
+			if (!event.target.ancestor(_DOT + CSS_FORM_BUILDER_FIELD, true)) {
 				return;
 			}
 
@@ -590,7 +616,9 @@ var FormBuilder = A.Component.create({
 
 		_onDragEnd: function(event) {
 			var instance = this;
+
 			var drag = event.target;
+
 			var dragNode = drag.get(NODE);
 
 			instance._dropField(dragNode);
@@ -605,7 +633,9 @@ var FormBuilder = A.Component.create({
 
 		_onDragMouseDown: function(event) {
 			var instance = this;
+
 			var dragNode = event.target.get(NODE);
+
 			var availableField = A.AvailableField.getAvailableFieldByNode(dragNode);
 
 			if (isAvailableField(availableField) && !availableField.get(DRAGGABLE)) {
@@ -615,7 +645,9 @@ var FormBuilder = A.Component.create({
 
 		_onDragStart: function(event) {
 			var instance = this;
+
 			var drag = event.target;
+
 			var dragNode = drag.get(NODE);
 
 			// skip already instanciated fields
@@ -628,14 +660,17 @@ var FormBuilder = A.Component.create({
 			instance._originalDragNode = dragNode;
 
 			var clonedDragNode = dragNode.clone();
+
 			dragNode.placeBefore(clonedDragNode);
 
 			drag.set(NODE, clonedDragNode);
 
 			var availableFieldData = dragNode.getData(AVAILABLE_FIELD);
+
 			clonedDragNode.setData(AVAILABLE_FIELD, availableFieldData);
 
 			clonedDragNode.attr(ID, EMPTY_STR);
+
 			clonedDragNode.hide();
 
 			dragNode.removeClass(CSS_DD_DRAGGING);
@@ -646,16 +681,20 @@ var FormBuilder = A.Component.create({
 
 		_onSave: function(event) {
 			var instance = this;
+
 			var editingField = instance.editingField;
 
 			if (editingField) {
 				var recordset = instance.propertyList.get(RECORDSET);
 
-				AArray.each(recordset.get(RECORDS), function(record) {
-					var data = record.get(DATA);
+				AArray.each(
+					recordset.get(RECORDS),
+					function(record) {
+						var data = record.get(DATA);
 
-					editingField.set(data.attributeName, data.value);
-				});
+						editingField.set(data.attributeName, data.value);
+					}
+				);
 
 				instance._syncUniqueField(editingField);
 			}
@@ -663,19 +702,24 @@ var FormBuilder = A.Component.create({
 
 		_setAvailableFields: function(val) {
 			var instance = this;
+
 			var fields = [];
 
-			AArray.each(val, function(field, index) {
-				fields.push(
-					isAvailableField(field) ? field : new A.FormBuilderAvailableField(field)
-				);
-			});
+			AArray.each(
+				val,
+				function(field, index) {
+					fields.push(
+						isAvailableField(field) ? field : new A.FormBuilderAvailableField(field)
+					);
+				}
+			);
 
 			return fields;
 		},
 
 		_setFieldsNestedListConfig: function(val) {
 			var instance = this;
+
 			var dropContainer = instance.dropContainer;
 
 			return A.merge(
@@ -695,6 +739,7 @@ var FormBuilder = A.Component.create({
 					},
 					dropCondition: function(event) {
 						var dropNode = event.drop.get(NODE);
+
 						var field = A.Widget.getByNode(dropNode);
 
 						if (isFormBuilderField(field)) {
@@ -703,8 +748,8 @@ var FormBuilder = A.Component.create({
 
 						return false;
 					},
-					placeholder: A.Node.create(TPL_PLACEHOLDER),
 					dropOn: _DOT + CSS_FORM_BUILDER_DROP_ZONE,
+					placeholder: A.Node.create(TPL_PLACEHOLDER),
 					sortCondition: function(event) {
 						var dropNode = event.drop.get(NODE);
 
@@ -721,7 +766,7 @@ var FormBuilder = A.Component.create({
 
 			if (!instance.availableFieldsNestedList) {
 				var availableFieldsNodes = instance.fieldsContainer.all(
-					_DOT+CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
+					_DOT + CSS_DIAGRAM_BUILDER_FIELD_DRAGGABLE
 				);
 
 				instance.availableFieldsNestedList = new A.NestedList(
@@ -747,6 +792,7 @@ var FormBuilder = A.Component.create({
 
 		_syncUniqueField: function(field) {
 			var instance = this;
+
 			var uniqueFields = instance.uniqueFields;
 
 			// Get the corresponding availableField to the given field
@@ -764,9 +810,11 @@ var FormBuilder = A.Component.create({
 		_uiSetAllowRemoveRequiredFields: function(val) {
 			var instance = this;
 
-			instance.get(FIELDS).each(function(field) {
-				field._uiSetRequired(field.get(REQUIRED));
-			});
+			instance.get(FIELDS).each(
+				function(field) {
+					field._uiSetRequired(field.get(REQUIRED));
+				}
+			);
 		}
 	}
 
@@ -776,4 +824,4 @@ A.FormBuilder = FormBuilder;
 
 A.FormBuilder.types = {};
 
-}, '@VERSION@' ,{skinnable:true, requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs']});
+}, '@VERSION@' ,{requires:['aui-base','aui-button-item','aui-data-set','aui-diagram-builder-base','aui-nested-list','aui-tabs'], skinnable:true});
