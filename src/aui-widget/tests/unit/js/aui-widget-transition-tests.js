@@ -129,6 +129,23 @@ YUI.add('aui-widget-transition-tests', function(Y) {
                   Y.Mock.verify(widgetInstance.get('boundingBox'));
               }, 100);
             }, 150);
+        },
+
+        'should not override delay value when stickDuration is not set': function() {
+            var widgetInstance = new WidgetTransition({
+              delay: 100
+            });
+            Y.Assert.areEqual(100, widgetInstance.get('delay').show);
+            Y.Assert.areEqual(100, widgetInstance.get('delay').hide);
+        },
+
+        'should override delay value when stickDuration is set': function() {
+            var widgetInstance = new WidgetTransition({
+              delay: 100,
+              stickDuration: 0
+            });
+            Y.Assert.areEqual(100, widgetInstance.get('delay').show);
+            Y.Assert.areEqual(0, widgetInstance.get('delay').hide);
         }
     }));
 

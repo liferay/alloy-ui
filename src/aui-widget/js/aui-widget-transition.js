@@ -98,8 +98,7 @@ WidgetTransition.ATTRS = {
     stickDuration: {
         lazyAdd: false,
         setter: '_setStickDuration',
-        validator: Lang.isNumber,
-        value: 0
+        validator: Lang.isNumber
     }
 };
 
