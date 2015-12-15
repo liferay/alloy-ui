@@ -1467,7 +1467,7 @@ var FormBuilderField = A.Component.create({
 			var instance = this;
 			var labelNode = instance.get(LABEL_NODE);
 
-			labelNode.setContent(AEscape.html(val));
+			labelNode.setContent(val);
 		},
 
 		_uiSetName: function(val) {
