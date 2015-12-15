@@ -287,10 +287,12 @@ A.mix(CellEditorSupport.prototype, {
 		var selection = instance.selection;
 
 		if (selection) {
+			var newVal = A.Escape.html(event.newVal);
+
 			recordset.updateRecordDataByKey(
 				selection.getActiveRecord(),
 				selection.getActiveColumn().get(KEY),
-				event.newVal
+				newVal
 			);
 		}
 	},
@@ -358,7 +360,7 @@ var BaseCellEditor = A.Component.create({
 					if (instance.get(UNESCAPE_VALUE)) {
 						val = LString.unescapeEntities(val);
 					}
-
+// console.log(val);
 					val = val.replace(REGEX_BR, _NL);
 				}
 
