@@ -66,9 +66,9 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
 
         this._uiSetFields(this.get('fields'));
 
-        content.delegate('click', this._onClickAddField, '.' + CSS_FIELD_LIST_ADD_BUTTON, this),
-        content.delegate('mouseenter', this._onMouseEnterAddButton, '.' + CSS_FIELD_LIST_ADD_CONTAINER, this),
-        content.delegate('mouseleave', this._onMouseLeaveAddButton, '.' + CSS_FIELD_LIST_ADD_CONTAINER, this),
+        content.delegate('click', this._onClickAddField, '.' + CSS_FIELD_LIST_ADD_BUTTON, this);
+        content.delegate('mouseenter', this._onMouseEnterAddButton, '.' + CSS_FIELD_LIST_ADD_CONTAINER, this);
+        content.delegate('mouseleave', this._onMouseLeaveAddButton, '.' + CSS_FIELD_LIST_ADD_CONTAINER, this);
 
         this.after('fieldsChange', A.bind(this._afterFieldsChange, this));
     },
