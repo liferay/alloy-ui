@@ -1,0 +1,48 @@
+.form-field {
+    position: relative;
+}
+
+.form-field .form-builder-field-content-toolbar {
+    position: relative;
+}
+
+.form-builder-field-footer-content {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 6px 30px;
+    background-color: #ccc;
+}
+
+.form-builder-field-settings-panel .tab-pane {
+    display: none;
+}
+
+.form-builder-field-settings-panel .tab-pane.active {
+    display: block;
+    margin-top: 20px;
+}
+
+.form-builder-field-settings-panel-advanced {
+    background-color: #f4f4f4;
+    border-bottom: none;
+    color: #54aaff;
+    font-family: "Helvetica Neue";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 28px;
+    padding-top: 2px;
+    text-align: center;
+}
+
+.form-builder-field-settings-panel-advanced-button {
+    background-color: #c0c0c0;
+    border-radius: 0;
+    display: block;
+    width: 100%;
+}
+
+.form-builder-field-settings-panel-content {
+    border-bottom: none;
+}
