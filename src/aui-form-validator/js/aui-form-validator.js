@@ -1358,12 +1358,12 @@ var FormValidator = A.Component.create({
             if (val) {
                 if (!instance._inputHandlers) {
                     instance._inputHandlers = boundingBox.delegate('input', instance._onFieldInput,
-                        'input:not([type="file"]),select,textarea,button', instance);
+                        'input:not([type="file"]):not([type="checkbox"]),select,textarea,button', instance);
                 }
 
                 if (!instance._fileInputHandlers) {
                     instance._fileInputHandlers = boundingBox.delegate('change', instance._onFieldInput,
-                        'input[type="file"]', instance);
+                        'input[type="file"],input[type="checkbox"]', instance);
                 }
             }
             else {
@@ -1391,12 +1391,12 @@ var FormValidator = A.Component.create({
             if (val) {
                 if (!instance._blurHandlers) {
                     instance._blurHandlers = boundingBox.delegate('blur', instance._onFieldInput,
-                        'input:not([type="file"]),select,textarea,button', instance);
+                        'input:not([type="file"]):not([type="checkbox"]),select,textarea,button', instance);
                 }
 
                 if (!instance._fileBlurHandlers) {
                     instance._fileBlurHandlers = boundingBox.delegate('change', instance._onFieldInput,
-                        'input[type="file"]', instance);
+                        'input[type="file"],input[type="checkbox"]', instance);
                 }
             }
             else {
