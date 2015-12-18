@@ -1,0 +1,14 @@
+.scheduler-event-recorder-popover .popover-footer {
+    padding: 5px 14px;
+}
+
+.scheduler-event-recorder-form {
+    margin: 0;
+}
+
+.scheduler-event.scheduler-event-recorder {
+    filter: alpha(opacity=70);
+    opacity: .7;
+    position: relative;
+    width: 99.88%;
+}

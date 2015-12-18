@@ -1,0 +1,59 @@
+/* scheduler-base-event */
+.scheduler-event-icons {
+    display: none;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+
+.scheduler-event-icons .icon {
+    display: none;
+    float: left;
+    margin: 0 1px;
+}
+
+.scheduler-event-icons .icon {
+    background: url(scheduler-notification.png) no-repeat 0 0;
+    height: 7px;
+    width: 8px;
+}
+
+.scheduler-event-disabled {
+    -moz-opacity: .80;
+    background-image: url(scheduler-background-striped.png);
+    background-repeat: repeat;
+    filter: alpha(opacity=80);
+    opacity: .80;
+}
+
+.scheduler-event-disabled .scheduler-event-icons, .scheduler-event-disabled .scheduler-event-icon-disabled {
+    display: block;
+}
+
+.scheduler-event-disabled .scheduler-event-icons .scheduler-event-icon-disabled {
+    background-position: 0 -28px;
+}
+
+.scheduler-event-meeting .scheduler-event-icons, .scheduler-event-meeting .scheduler-event-icon-meeting {
+    display: block;
+}
+
+.scheduler-event-meeting .scheduler-event-icons .scheduler-event-icon-meeting {
+    background-position: 0 0;
+}
+
+.scheduler-event-reminder .scheduler-event-icons, .scheduler-event-reminder .scheduler-event-icon-reminder {
+    display: block;
+}
+
+.scheduler-event-reminder .scheduler-event-icons .scheduler-event-icon-reminder {
+    background-position: 0 -7px;
+}
+
+.scheduler-event-repeated .scheduler-event-icons, .scheduler-event-repeated .scheduler-event-icon-repeated {
+    display: block;
+}
+
+.scheduler-event-repeated .scheduler-event-icons .scheduler-event-icon-repeated {
+    background-position: -9px 0;
+}

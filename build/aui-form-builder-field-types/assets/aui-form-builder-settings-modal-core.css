@@ -1,0 +1,64 @@
+.form-builder-field-settings-small-screen-header {
+    background-color: #C0C0C0;
+    height: 40px;
+    left: 0;
+    position: absolute;
+    top: -40px;
+    width: 100%;
+}
+
+.form-builder-field-settings-small-screen-header p {
+    margin: 8px 50%;
+}
+
+.form-builder-field-settings-small-screen-header-check {
+    float: right;
+    margin: -30px 5px;
+}
+
+.form-builder-field-settings-small-screen-header-left {
+    float: left;
+    margin: 9px 0px 0px 5px;
+}
+
+@media only screen and (max-device-width : 1024px) and (min-device-width : 320px) {
+    .form-builder-field-settings .modal-body {
+        height: 100%;
+        overflow: auto;
+    }
+
+    .form-builder-field-settings .modal-content {
+        height: 100%;
+        padding-bottom: 121px;
+    }
+
+    .form-builder-field-settings .modal-footer {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-device-width : 736px) and (min-device-width : 320px) {
+    .form-builder-field-settings.modal-dialog {
+        height: 100%;
+        width: 100%;
+    }
+
+    .form-builder-field-settings .modal-content {
+        border-radius: 0;
+    }
+
+    .form-builder-field-settings .modal-footer {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-device-width : 1024px) and (min-device-width : 768px) {
+    .form-builder-field-settings.modal-dialog {
+        height: 70%;
+        width: 392px;
+    }    
+}
