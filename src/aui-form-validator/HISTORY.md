@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2060](https://issues.liferay.com/browse/AUI-2060) Change validation for checkbox input on change event.
 * [AUI-2043](https://issues.liferay.com/browse/AUI-2043) Make required rule the default error message when showAllMessages is false.
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
