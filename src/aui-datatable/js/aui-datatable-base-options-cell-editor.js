@@ -46,19 +46,6 @@ BaseOptionsCellEditor = A.Component.create({
      * @static
      */
     ATTRS: {
-
-        /**
-         * Indicates if the options Edit Container is hidden on the `save` event.
-         *
-         * @attribute hideEditContainerOnSave
-         * @default true
-         * @type Boolean
-         */
-        hideEditContainerOnSave: {
-            value: true,
-            validator: A.Lang.isBoolean
-        },
-
         /**
          * Static property of input formatter for modifying the data values
          * for showing on the UI.
@@ -70,6 +57,18 @@ BaseOptionsCellEditor = A.Component.create({
          */
         inputFormatter: {
             value: null
+        },
+
+        /**
+         * Indicates if the options Edit Container is hidden on the `save` event.
+         *
+         * @attribute hideEditContainerOnSave
+         * @default true
+         * @type Boolean
+         */
+        hideEditContainerOnSave: {
+            value: true,
+            validator: A.Lang.isBoolean
         },
 
         /**
@@ -112,7 +111,7 @@ BaseOptionsCellEditor = A.Component.create({
                                 nodelist.each(
                                     function(node){
                                         if (validateNode !== node) {
-                                            if (validateNode.val() == node.val()) {
+                                            if (validateNode.val() === node.val()) {
                                                 instance.highlight(validateNode);
                                                 instance.addFieldError(validateNode, 'uniqueValue');
 
@@ -234,14 +233,17 @@ BaseOptionsCellEditor = A.Component.create({
                 '</div>' +
                 '<div class="form-group">' +
                     '<label class="sr-only" for="{optionValueName}_name">{labelOptionName}</label>' +
-                    '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + ' form-control input-sm" size="7" id="{optionValueName}_name" placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' +
+                    '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + ' form-control input-sm" size="7" id="{optionValueName}_name"' +
+                    'placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' +
                 '</div>' +
                 '<div class="form-group">' +
                     '<label class="sr-only" for="{optionValueName}">{labelOptionValue}</label>' +
-                    '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + ' form-control input-sm" id="{optionValueName}" name="{optionValueName}" placeholder="{titleValue}" size="7" title="{titleValue}" type="text" value="{valueValue}" /> ' +
+                    '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + ' form-control input-sm" id="{optionValueName}"' +
+                    ' name="{optionValueName}" placeholder="{titleValue}" size="7" title="{titleValue}" type="text" value="{valueValue}" /> ' +
                 '</div>' +
                 '<div class="form-group">' +
-                    '<button aria-label="{remove}" class="close ' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(' ') + '" type="button"><span aria-hidden="true">&times;</span></button>' +
+                    '<button aria-label="{remove}" class="close ' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(' ') +
+                    '" type="button"><span aria-hidden="true">&times;</span></button>' +
                 '</div>' +
             '</div>' +
         '</div>',
@@ -283,9 +285,7 @@ BaseOptionsCellEditor = A.Component.create({
          */
         addNewOption: function(name, value) {
             var instance = this;
-
             var addOptionLink = instance.editContainer.one('.' + CSS_CELLEDITOR_EDIT_ADD_OPTION);
-
             var newRow = A.Node.create(
                 instance._createEditOption(
                     name || '',
@@ -314,7 +314,6 @@ BaseOptionsCellEditor = A.Component.create({
          */
         saveOptions: function() {
             var instance = this;
-
             var editContainer = instance.editContainer;
 
             if (editContainer && !editContainer.hasAttribute('hidden')) {
@@ -359,7 +358,6 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _createOptions: function(val) {
             var instance = this;
-
             var elements = instance.elements;
             var optionsBuffer = [];
             var wrappersBuffer = [];
@@ -409,7 +407,6 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _createEditBuffer: function() {
             var instance = this;
-
             var strings = instance.getStrings();
             var buffer = [];
 
@@ -444,7 +441,6 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _createEditOption: function(name, value) {
             var instance = this;
-
             var fieldName = A.guid() + '_value';
             var strings = instance.getStrings();
 
@@ -473,7 +469,6 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _defInitEditFn: function() {
             var instance = this;
-
             var editContainer = A.Node.create(instance.EDIT_TEMPLATE);
 
             editContainer.delegate('click', A.bind(instance._onEditLinkClickEvent, instance), '.' +
@@ -510,7 +505,6 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _getSelectedOptions: function() {
             var instance = this;
-
             var options = [];
 
             instance.options.each(function(option) {
@@ -548,7 +542,6 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _onEditLinkClickEvent: function(event) {
             var instance = this;
-
             var currentTarget = event.currentTarget;
 
             if (currentTarget.test('.' + CSS_CELLEDITOR_EDIT_ADD_OPTION)) {
@@ -576,7 +569,6 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _onEditKeyEvent: function(event) {
             var instance = this;
-
             var currentTarget = event.currentTarget;
 
             if (event.isKey('return')) {
