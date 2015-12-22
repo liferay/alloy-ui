@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2055](https://issues.liferay.com/browse/AUI-2055) aria-invalid attribute not removed from blank input fields
 * [AUI-2038](https://issues.liferay.com/browse/AUI-2038) UI should alert about non-unique value in structure field of type Select.
 * [AUI-2037](https://issues.liferay.com/browse/AUI-2037) validateField() does not reset error states for fields no longer in the DOM, preventing form submission
 * [AUI-2043](https://issues.liferay.com/browse/AUI-2043) Make required rule the default error message when showAllMessages is false.
