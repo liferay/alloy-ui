@@ -427,6 +427,131 @@ YUI.add('aui-form-validator-tests', function(Y) {
             Y.Assert.isFalse(validator.hasErrors(), 'Validator should have no errors');
         },
 
+        /*
+         * Check if validator deletes the field from the errors property object.
+         * @tests AUI-2037
+         */
+        'should delete the field from the errors property object': function() {
+            var form = Y.Node.create(
+                    '<form><input class="my-input-keep" name="my-input-keep">' +
+                    '<input class="my-input-delete" name="my-input-delete"></form>'
+                ),
+                inputKeep = form.one('.my-input-keep'),
+                inputDelete = form.one('.my-input-delete'),
+                validator;
+
+            validator = new Y.FormValidator({
+                boundingBox: form
+            });
+
+            validator.addFieldError(inputKeep, 'required');
+            Y.Assert.isTrue(validator.hasErrors());
+
+            validator.clearFieldError(inputKeep);
+            Y.Assert.isFalse(validator.hasErrors());
+
+            validator.addFieldError(inputKeep, 'required');
+            Y.Assert.isTrue(validator.hasErrors());
+
+            validator.clearFieldError('not-a-valid-field');
+            Y.Assert.isTrue(validator.hasErrors());
+
+            validator.clearFieldError('my-input-keep');
+            Y.Assert.isFalse(validator.hasErrors());
+
+            validator.addFieldError(inputDelete, 'required');
+            inputDelete.remove();
+            Y.Assert.isTrue(validator.hasErrors());
+
+            validator.clearFieldError('my-input-delete');
+            Y.Assert.isFalse(validator.hasErrors());
+        },
+
+        /*
+         * Check if validator resets the error status of a field.
+         * @tests AUI-2037
+         */
+        'should reset the error status of a field': function() {
+            var form = Y.Node.create(
+                    '<form><input class="my-input-keep" name="my-input-keep">' +
+                    '<input class="my-input-delete" name="my-input-delete"></form>'
+                ),
+                inputKeep = form.one('.my-input-keep'),
+                inputDelete = form.one('.my-input-delete'),
+                validator;
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    'my-input-keep': {
+                        required: true
+                    },
+                    'my-input-delete': {
+                        required: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(validator.hasErrors());
+
+            validator.resetField(inputKeep);
+            validator.resetField(inputDelete);
+
+            Y.Assert.isFalse(validator.hasErrors());
+
+            form.simulate('submit');
+
+            inputDelete.remove();
+
+            validator.resetField(inputKeep);
+            validator.resetField(inputDelete);
+
+            Y.Assert.isFalse(validator.hasErrors());
+        },
+
+        /*
+         * Check if validator resets the error status of all fields.
+         * @tests AUI-2037
+         */
+        'should reset the error status of all fields': function() {
+            var form = Y.Node.create(
+                    '<form><input class="my-input-keep" name="my-input-keep">' +
+                    '<input class="my-input-delete" name="my-input-delete"></form>'
+                ),
+                inputDelete = form.one('.my-input-delete'),
+                validator;
+
+            validator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    'my-input-keep': {
+                        required: true
+                    },
+                    'my-input-delete': {
+                        required: true
+                    }
+                }
+            });
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(validator.hasErrors());
+
+            validator.resetAllFields();
+
+            Y.Assert.isFalse(validator.hasErrors());
+
+            form.simulate('submit');
+
+            inputDelete.remove();
+
+            validator.resetAllFields();
+
+            Y.Assert.isFalse(validator.hasErrors());
+        },
+
         _assertValidatorNextLabel: function(input) {
             var inputNode,
                 textNode;
