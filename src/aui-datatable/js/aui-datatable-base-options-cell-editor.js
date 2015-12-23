@@ -46,7 +46,6 @@ BaseOptionsCellEditor = A.Component.create({
      * @static
      */
     ATTRS: {
-
         /**
          * Static property of input formatter for modifying the data values
          * for showing on the UI.
@@ -61,6 +60,18 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
+         * Indicates if the options Edit Container is hidden on the `save` event.
+         *
+         * @attribute hideEditContainerOnSave
+         * @default true
+         * @type Boolean
+         */
+        hideEditContainerOnSave: {
+            value: true,
+            validator: A.Lang.isBoolean
+        },
+
+        /**
          * Array or Object which defines the available options for the
          * `A.BaseOptionsCellEditor`.
          *
@@ -72,6 +83,77 @@ BaseOptionsCellEditor = A.Component.create({
             setter: '_setOptions',
             value: {},
             validator: L.isObject
+        },
+
+        /**
+         * Defines the custom rules used to validate options.
+         *
+         * @attribute optionsValidatorCustomRules
+         * @type Object
+         */
+        optionsValidatorCustomRules: {
+            validator: A.Lang.isObject,
+            valueFn: function() {
+                var instance = this;
+
+                return {
+                    'uniqueValue': {
+                        condition: function(fieldValue, fieldNode) {
+                            var instance = this;
+
+                            var editContainerNode = fieldNode.ancestor('.' + CSS_CELLEDITOR_EDIT);
+
+                            var inputValueNodelist = editContainerNode.all('.' + CSS_CELLEDITOR_EDIT_INPUT_VALUE);
+
+                            var validate = function (validateNode, nodelist, recurse) {
+                                var duplicates = false;
+
+                                nodelist.each(
+                                    function(node){
+                                        if (validateNode !== node) {
+                                            if (validateNode.val() === node.val()) {
+                                                instance.highlight(validateNode);
+                                                instance.addFieldError(validateNode, 'uniqueValue');
+
+                                                duplicates = true;
+                                            }
+
+                                            if (recurse) {
+                                                validate(node, inputValueNodelist, false);
+                                            }
+                                        }
+                                    }
+                                );
+
+                                if (!duplicates) {
+                                    instance.resetField(validateNode);
+                                    instance.highlight(validateNode, true);
+                                }
+
+                                return !duplicates;
+                            };
+
+                            return validate(fieldNode, inputValueNodelist, true);
+                        },
+                        errorMessage: instance.getStrings().valueNotUnique
+                    }
+                };
+            }
+        },
+
+        /**
+         * Defines the initial rules used to validate options.
+         *
+         * @attribute optionsValidatorInputRules
+         * @default {custom: true, uniqueValue: true}
+         * @type Object
+         */
+        optionsValidatorInputRules: {
+            validator: A.Lang.isObject,
+            value: {
+                custom: true,
+                uniqueValue: true
+            }
         },
 
         /**
@@ -108,15 +190,18 @@ BaseOptionsCellEditor = A.Component.create({
         strings: {
             value: {
                 add: 'Add',
-                cancel: 'Cancel',
                 addOption: 'Add option',
+                cancel: 'Cancel',
                 edit: 'Edit options',
                 editOptions: 'Edit option(s)',
                 name: 'Name',
+                optionName: 'Option Name',
+                optionValue: 'Option Value',
                 remove: 'Remove',
                 save: 'Save',
                 stopEditing: 'Stop editing',
-                value: 'Value'
+                value: 'Value',
+                valueNotUnique: 'Value not unique.'
             }
         }
     },
@@ -142,18 +227,29 @@ BaseOptionsCellEditor = A.Component.create({
     prototype: {
         EDIT_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT + '"></div>',
 
-        EDIT_OPTION_ROW_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT_OPTION_ROW + '">' +
-            '<span class="' + [CSS_CELLEDITOR_EDIT_DD_HANDLE,
-            CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL].join(' ') + '"></span>' +
-            '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME +
-            '" size="7" placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' +
-            '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE +
-            '" size="7" placeholder="{titleValue}" title="{titleValue}" type="text" value="{valueValue}" /> ' +
-            '<a class="' + [CSS_CELLEDITOR_EDIT_LINK,
-            CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(' ') + '" href="javascript:void(0);">{remove}</a> ' + '</div>',
+        EDIT_OPTION_ROW_TEMPLATE: '<div class="form-inline ' + CSS_CELLEDITOR_EDIT_OPTION_ROW + '">' +
+                '<div class="form-group">' +
+                    '<span class="' + [CSS_CELLEDITOR_EDIT_DD_HANDLE, CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL].join(' ') + '"></span>' +
+                '</div>' +
+                '<div class="form-group">' +
+                    '<label class="sr-only" for="{optionValueName}_name">{labelOptionName}</label>' +
+                    '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + ' form-control input-sm" size="7" id="{optionValueName}_name"' +
+                    'placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' +
+                '</div>' +
+                '<div class="form-group">' +
+                    '<label class="sr-only" for="{optionValueName}">{labelOptionValue}</label>' +
+                    '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + ' form-control input-sm" id="{optionValueName}"' +
+                    ' name="{optionValueName}" placeholder="{titleValue}" size="7" title="{titleValue}" type="text" value="{valueValue}" /> ' +
+                '</div>' +
+                '<div class="form-group">' +
+                    '<button aria-label="{remove}" class="close ' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(' ') +
+                    '" type="button"><span aria-hidden="true">&times;</span></button>' +
+                '</div>' +
+            '</div>' +
+        '</div>',
 
-        EDIT_ADD_LINK_TEMPLATE: '<a class="' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_ADD_OPTION].join(
-            ' ') + '" href="javascript:void(0);">{addOption}</a> ',
+        EDIT_ADD_LINK_TEMPLATE: '<div class="form-group"><a class="' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_ADD_OPTION].join(
+            ' ') + '" href="javascript:void(0);">{addOption}</a></div> ',
         EDIT_LABEL_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT_LABEL + '">{editOptions}</div>',
 
         editContainer: null,
@@ -173,6 +269,8 @@ BaseOptionsCellEditor = A.Component.create({
             instance.on('edit', instance._onEditEvent);
             instance.on('save', instance._onSave);
             instance.after('initToolbar', instance._afterInitToolbar);
+
+            A.FormValidator.addCustomRules(instance.get('optionsValidatorCustomRules'));
         },
 
         /**
@@ -188,7 +286,6 @@ BaseOptionsCellEditor = A.Component.create({
         addNewOption: function(name, value) {
             var instance = this;
             var addOptionLink = instance.editContainer.one('.' + CSS_CELLEDITOR_EDIT_ADD_OPTION);
-
             var newRow = A.Node.create(
                 instance._createEditOption(
                     name || '',
@@ -211,7 +308,7 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * Saves the `BaseOptionsCellEditor` options.
+         * Saves the `BaseOptionsCellEditor` `options` property.
          *
          * @method saveOptions
          */
@@ -219,7 +316,7 @@ BaseOptionsCellEditor = A.Component.create({
             var instance = this;
             var editContainer = instance.editContainer;
 
-            if (editContainer) {
+            if (editContainer && !editContainer.hasAttribute('hidden')) {
                 var names = editContainer.all('.' + CSS_CELLEDITOR_EDIT_INPUT_NAME);
                 var values = editContainer.all('.' + CSS_CELLEDITOR_EDIT_INPUT_VALUE);
                 var options = {};
@@ -233,11 +330,9 @@ BaseOptionsCellEditor = A.Component.create({
 
                 instance.set('options', options);
 
-                instance._uiSetValue(
-                    instance.get('value')
-                );
-
-                instance.toggleEdit();
+                if (instance.get('hideEditContainerOnSave')) {
+                    instance.toggleEdit();
+                }
             }
         },
 
@@ -253,7 +348,8 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * Create UI options values.
+         * Creates option elements and stores a reference to them in
+         * the `option` property.
          * TODO. Rewrite this method.
          *
          * @method _createOptions
@@ -285,21 +381,21 @@ BaseOptionsCellEditor = A.Component.create({
                 }
             });
 
-            var options = A.NodeList.create(optionsBuffer.join(''));
-            var wrappers = A.NodeList.create(wrappersBuffer.join(''));
+            var optionsNodeList = A.NodeList.create(optionsBuffer.join(''));
+            var wrappersNodeList = A.NodeList.create(wrappersBuffer.join(''));
 
-            if (wrappers.size()) {
-                wrappers.each(function(wrapper, i) {
-                    wrapper.prepend(options.item(i));
+            if (wrappersNodeList.size()) {
+                wrappersNodeList.each(function(wrapper, i) {
+                    wrapper.prepend(optionsNodeList.item(i));
                 });
 
-                elements.setContent(wrappers);
+                elements.setContent(wrappersNodeList);
             }
             else {
-                elements.setContent(options);
+                elements.setContent(optionsNodeList);
             }
 
-            instance.options = options;
+            instance.options = optionsNodeList;
         },
 
         /**
@@ -345,10 +441,16 @@ BaseOptionsCellEditor = A.Component.create({
          */
         _createEditOption: function(name, value) {
             var instance = this;
+            var fieldName = A.guid() + '_value';
             var strings = instance.getStrings();
+
+            instance.validator.get('rules')[fieldName] = instance.get('optionsValidatorInputRules');
 
             return L.sub(
                 instance.EDIT_OPTION_ROW_TEMPLATE, {
+                    labelOptionName: AEscape.html(strings.optionName),
+                    labelOptionValue: AEscape.html(strings.optionValue),
+                    optionValueName: AEscape.html(fieldName),
                     remove: strings.remove,
                     titleName: AEscape.html(strings.name),
                     titleValue: AEscape.html(strings.value),
@@ -534,7 +636,7 @@ BaseOptionsCellEditor = A.Component.create({
          * Set UI Options values.
          *
          * @method _uiSetOptions
-         * @param {Object} val
+         * @param {Array} val
          * @protected
          */
         _uiSetOptions: function(val) {
@@ -546,19 +648,21 @@ BaseOptionsCellEditor = A.Component.create({
         },
 
         /**
-         * Sets the `A.BaseOptionsCellEditor` option values.
+         * Sets the `selectedAttrName` (`selected`) attribute on the option
+         * elements matching `val`.
          *
          * @method _uiSetValue
-         * @param {Array} val
+         * @param {Array|String} val
          * @protected
          * @return {Array} Resulting new values.
          */
         _uiSetValue: function(val) {
             var instance = this;
-            var options = instance.options;
 
-            if (options && options.size()) {
-                options.set(instance.get('selectedAttrName'), false);
+            var optionsNodeList = instance.options;
+
+            if (optionsNodeList && optionsNodeList.size()) {
+                optionsNodeList.set(instance.get('selectedAttrName'), false);
 
                 if (L.isValue(val)) {
                     if (!L.isArray(val)) {
@@ -566,7 +670,7 @@ BaseOptionsCellEditor = A.Component.create({
                     }
 
                     A.Array.each(val, function(value) {
-                        options.filter('[value="' + AEscape.html(L.trim(value)) + '"]').set(instance.get(
+                        optionsNodeList.filter('[value="' + AEscape.html(L.trim(value)) + '"]').set(instance.get(
                             'selectedAttrName'), true);
                     });
                 }

@@ -45,10 +45,14 @@
             {
                 editor: new Y.RadioCellEditor({
                     editable: true,
-                    options: [ 'Yes', 'No' ]
+                    options: {
+                        yes: 'Yes',
+                        no: 'No',
+                        maybe: 'Maybe'
+                    }
                 }),
                 name: 'Radio',
-                value: 'Yes'
+                value: 'no'
             },
             {
                 editor: new Y.DropDownCellEditor({
@@ -61,7 +65,7 @@
                     }
                 }),
                 name: 'Select',
-                value: 'Apple'
+                value: 'cherry'
             },
             {
                 editor: new Y.DropDownCellEditor({
@@ -75,7 +79,7 @@
                     }
                 }),
                 name: 'Select multiple',
-                value: 'apple'
+                value: 'banana,kiwi'
             },
             {
                 name: 'Text',

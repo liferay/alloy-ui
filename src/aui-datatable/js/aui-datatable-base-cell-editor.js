@@ -266,6 +266,7 @@ BaseCellEditor = A.Component.create({
         elements: null,
         validator: null,
 
+        _hDocEscKeyEv: null,
         _hDocMouseDownEv: null,
 
         /**
@@ -286,9 +287,14 @@ BaseCellEditor = A.Component.create({
          * @protected
          */
         destructor: function() {
-            var hDocMouseDown = this._hDocMouseDownEv,
+            var hDocEscKey = this._hDocEscKeyEv,
+                hDocMouseDown = this._hDocMouseDownEv,
                 toolbar = this.toolbar,
                 validator = this.validator;
+
+            if (hDocEscKey) {
+                hDocEscKey.detach();
+            }
 
             if (hDocMouseDown) {
                 hDocMouseDown.detach();
@@ -301,18 +307,6 @@ BaseCellEditor = A.Component.create({
             if (validator) {
                 validator.destroy();
             }
-        },
-
-        /**
-         * Bind the events on the `A.BaseCellEditor` UI. Lifecycle.
-         *
-         * @method bindUI
-         * @protected
-         */
-        bindUI: function() {
-            var instance = this;
-
-            instance.get('boundingBox').on('key', A.bind(instance._onEscKey, instance), 'down:27');
         },
 
         /**
@@ -427,14 +421,16 @@ BaseCellEditor = A.Component.create({
          * @protected
          */
         _defInitValidatorFn: function() {
-            this.validator = new A.FormValidator(
-                this.get('validator')
+            var instance = this;
+
+            instance.validator = new A.FormValidator(
+                instance.get('validator')
             );
         },
 
         /**
-         * Default callback for the `initToolbar` event. Initializes the `Toolbar` using
-         * the config from the `toolbar` attribute.
+         * Default callback for the `initToolbar` event. Initializes the
+         * `Toolbar` using the config from the `toolbar` attribute.
          *
          * @method _defInitToolbarFn
          * @param {EventFacade} event
@@ -442,6 +438,7 @@ BaseCellEditor = A.Component.create({
          */
         _defInitToolbarFn: function() {
             var instance = this;
+
             var editable = instance.get('editable');
 
             instance.toolbar = new A.Toolbar(
@@ -470,9 +467,10 @@ BaseCellEditor = A.Component.create({
         },
 
         /**
-         * Fires after the `visibleChange` event. Binds the `mousedown` event.
+         * Fires after the `visibleChange` event. Binds the `mousedown` event
+         * listener and `keydown` event listener for the escape key.
          *
-         * See: `_onDocMouseDownExt` for details.
+         * See: `_onDocMouseDownExt` and `_onEscKey` for details.
          *
          * @method _debounceVisibleChange
          * @param {EventFacade} event
@@ -480,17 +478,31 @@ BaseCellEditor = A.Component.create({
          */
         _debounceVisibleChange: function(event) {
             var instance = this;
+
+            var hDocEscKey = instance._hDocEscKeyEv;
             var hDocMouseDown = instance._hDocMouseDownEv;
 
             if (event.newVal) {
+                if (!hDocEscKey) {
+                    instance._hDocEscKeyEv = A.getDoc().on('key', A.bind(instance._onEscKey, instance), 'down:27');
+                }
+
                 if (!hDocMouseDown) {
-                    instance._hDocMouseDownEv = A.getDoc().on('mousedown', A.bind(instance._onDocMouseDownExt,
-                        instance));
+                    instance._hDocMouseDownEv = A.getDoc().on('mousedown', A.bind(instance._onDocMouseDownExt, instance));
                 }
             }
-            else if (hDocMouseDown) {
-                hDocMouseDown.detach();
-                instance._hDocMouseDownEv = null;
+            else {
+                if (hDocEscKey) {
+                    hDocEscKey.detach();
+
+                    instance._hDocEscKeyEv = null;
+                }
+
+                if (hDocMouseDown) {
+                    hDocMouseDown.detach();
+
+                    instance._hDocMouseDownEv = null;
+                }
             }
         },
 
@@ -571,6 +583,8 @@ BaseCellEditor = A.Component.create({
         _handleSaveEvent: function() {
             var instance = this;
 
+            instance.validator.validate();
+
             if (!instance.validator.hasErrors()) {
                 instance.fire('save', {
                     newVal: instance.getValue(),
@@ -588,10 +602,11 @@ BaseCellEditor = A.Component.create({
          */
         _onDocMouseDownExt: function(event) {
             var instance = this;
+
             var boundingBox = instance.get('boundingBox');
 
             if (!boundingBox.contains(event.target)) {
-                instance.set('visible', false);
+                instance._handleCancelEvent();
             }
         },
 
@@ -632,6 +647,7 @@ BaseCellEditor = A.Component.create({
          */
         _setToolbar: function(val) {
             var instance = this;
+
             var strings = instance.getStrings();
 
             return A.merge({
@@ -683,6 +699,7 @@ BaseCellEditor = A.Component.create({
          */
         _uiSetShowToolbar: function(val) {
             var instance = this;
+
             var footerNode = instance.footerNode;
 
             if (val) {
@@ -706,6 +723,7 @@ BaseCellEditor = A.Component.create({
          */
         getElementsValue: function() {
             var instance = this;
+
             var elements = instance.elements;
 
             if (elements) {
@@ -790,6 +808,7 @@ BaseCellEditor = A.Component.create({
          */
         _uiSetEditable: function(val) {
             var instance = this;
+
             var toolbar = instance.toolbar;
 
             if (instance.get('rendered') && toolbar) {
@@ -821,6 +840,7 @@ BaseCellEditor = A.Component.create({
          */
         _uiSetValue: function(val) {
             var instance = this;
+
             var elements = instance.elements;
 
             if (elements) {

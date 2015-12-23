@@ -13,6 +13,7 @@ var Lang = A.Lang,
     isDate = Lang.isDate,
     isEmpty = AObject.isEmpty,
     isFunction = Lang.isFunction,
+    isNode = Lang.isNode,
     isObject = Lang.isObject,
     isString = Lang.isString,
     trim = Lang.trim,
@@ -596,7 +597,7 @@ var FormValidator = A.Component.create({
          * Adds a validation error in the field.
          *
          * @method addFieldError
-         * @param field
+         * @param {Node} field
          * @param ruleName
          */
         addFieldError: function(field, ruleName) {
@@ -612,15 +613,17 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * Removes a validation error in the field.
+         * Deletes the field from the errors property object.
          *
          * @method clearFieldError
-         * @param field
+         * @param {Node|String} field
          */
         clearFieldError: function(field) {
-            var instance = this;
+            var fieldName = isNode(field) ? field.get('name') : field;
 
-            delete instance.errors[field.get('name')];
+            if (isString(fieldName)) {
+                delete this.errors[fieldName];
+            }
         },
 
         /**
@@ -646,7 +649,7 @@ var FormValidator = A.Component.create({
          * Gets the ancestor of a given field.
          *
          * @method findFieldContainer
-         * @param field
+         * @param {Node} field
          * @return {Node}
          */
         findFieldContainer: function(field) {
@@ -683,21 +686,21 @@ var FormValidator = A.Component.create({
          * Gets a field from the form.
          *
          * @method getField
-         * @param fieldOrFieldName
+         * @param {Node|String} field
          * @return {Node}
          */
-        getField: function(fieldOrFieldName) {
+        getField: function(field) {
             var instance = this;
 
-            if (isString(fieldOrFieldName)) {
-                fieldOrFieldName = instance.getFieldsByName(fieldOrFieldName);
+            if (isString(field)) {
+                field = instance.getFieldsByName(field);
 
-                if (fieldOrFieldName && fieldOrFieldName.length && !fieldOrFieldName.name) {
-                    fieldOrFieldName = fieldOrFieldName[0];
+                if (field && field.length && !field.name) {
+                    field = field[0];
                 }
             }
 
-            return A.one(fieldOrFieldName);
+            return A.one(field);
         },
 
         /**
@@ -718,7 +721,7 @@ var FormValidator = A.Component.create({
          * Gets a list of fields with errors.
          *
          * @method getFieldError
-         * @param field
+         * @param {Node} field
          * @return {String}
          */
         getFieldError: function(field) {
@@ -731,7 +734,8 @@ var FormValidator = A.Component.create({
          * Gets the stack error container of a field.
          *
          * @method getFieldStackErrorContainer
-         * @param field
+         * @param {Node} field
+         * @return {Node}
          */
         getFieldStackErrorContainer: function(field) {
             var instance = this,
@@ -749,7 +753,7 @@ var FormValidator = A.Component.create({
          * Gets the error message of a field.
          *
          * @method getFieldErrorMessage
-         * @param field
+         * @param {Node} field
          * @param rule
          * @return {String}
          */
@@ -798,7 +802,7 @@ var FormValidator = A.Component.create({
          * Highlights a field with error or success.
          *
          * @method highlight
-         * @param field
+         * @param {Node} field
          * @param valid
          */
         highlight: function(field, valid) {
@@ -837,7 +841,7 @@ var FormValidator = A.Component.create({
          * Removes the highlight of a field.
          *
          * @method unhighlight
-         * @param field
+         * @param {Node} field
          */
         unhighlight: function(field) {
             var instance = this;
@@ -849,9 +853,9 @@ var FormValidator = A.Component.create({
          * Prints the stack error messages into a container.
          *
          * @method printStackError
-         * @param field
-         * @param container
-         * @param errors
+         * @param {Node} field
+         * @param {Node} container
+         * @param {Array} errors
          */
         printStackError: function(field, container, errors) {
             var instance = this;
@@ -890,33 +894,36 @@ var FormValidator = A.Component.create({
 
             instance.eachRule(
                 function(rule, fieldName) {
-                    var field = instance.getField(fieldName);
-
-                    instance.resetField(field);
+                    instance.resetField(fieldName);
                 }
             );
         },
 
         /**
-         * Resets the CSS class and content of a field.
+         * Resets the CSS class and error status of a field.
          *
          * @method resetField
-         * @param field
+         * @param {Node|String} field
          */
         resetField: function(field) {
-            var instance = this,
-                stackContainer = instance.getFieldStackErrorContainer(field);
+            var fieldNode,
+                stackContainer;
 
-            stackContainer.remove();
-            instance.resetFieldCss(field);
-            instance.clearFieldError(field);
+            this.clearFieldError(field);
+            fieldNode = isString(field) ? this.getField(field) : field;
+
+            if (isNode(fieldNode)) {
+                stackContainer = this.getFieldStackErrorContainer(fieldNode);
+                stackContainer.remove();
+                this.resetFieldCss(fieldNode);
+            }
         },
 
         /**
          * Removes the CSS classes of a field.
          *
          * @method resetFieldCss
-         * @param field
+         * @param {Node} field
          */
         resetFieldCss: function(field) {
             var instance = this,
@@ -977,19 +984,20 @@ var FormValidator = A.Component.create({
          * Validates a single field.
          *
          * @method validateField
-         * @param field
+         * @param {Node|String} field
          */
         validateField: function(field) {
-            var instance = this,
-                fieldNode = instance.getField(field);
+            var fieldNode,
+                validatable;
 
-            if (fieldNode) {
-                var validatable = instance.validatable(fieldNode);
+            this.resetField(field);
+            fieldNode = isString(field) ? this.getField(field) : field;
 
-                instance.resetField(fieldNode);
+            if (isNode(fieldNode)) {
+                validatable = this.validatable(fieldNode);
 
                 if (validatable) {
-                    instance.fire('validateField', {
+                    this.fire('validateField', {
                         validator: {
                             field: fieldNode
                         }
@@ -1149,7 +1157,7 @@ var FormValidator = A.Component.create({
          * Finds the label text of a field if existing.
          *
          * @method _findFieldLabel
-         * @param field
+         * @param {Node} field
          * @return {String}
          */
         _findFieldLabel: function(field) {
@@ -1175,10 +1183,10 @@ var FormValidator = A.Component.create({
          * field.
          *
          * @method _highlightHelper
-         * @param field
-         * @param errorClass
-         * @param validClass
-         * @param valid
+         * @param {Node} field
+         * @param {String} errorClass
+         * @param {String} validClass
+         * @param {Boolean} valid
          * @protected
          */
         _highlightHelper: function(field, errorClass, validClass, valid) {
