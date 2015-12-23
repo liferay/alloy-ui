@@ -293,7 +293,8 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-datatable-base-cell-editor",
             "escape"
-        ]
+        ],
+        "skinnable": true
     },
     "aui-datatable-body": {
         "requires": [
@@ -1662,4 +1663,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'f0dd1410bb4817cae5387d495bb0e964';
+YUI.Env[Y.version].md5 = '0ebd18e5b0518b03ca8dcf7332a5901b';
