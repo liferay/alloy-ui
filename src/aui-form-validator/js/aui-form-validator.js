@@ -916,6 +916,7 @@ var FormValidator = A.Component.create({
                 stackContainer = this.getFieldStackErrorContainer(fieldNode);
                 stackContainer.remove();
                 this.resetFieldCss(fieldNode);
+                this.unhighlight(fieldNode);
             }
         },
 

@@ -552,6 +552,38 @@ YUI.add('aui-form-validator-tests', function(Y) {
             Y.Assert.isFalse(validator.hasErrors());
         },
 
+        /*
+         * Check if 'aria-invalid' attribute is removed from empty input field
+         * that previously had invalid input
+         * @tests AUI-2055
+         */
+        'test aria-invalid attribute is removed from empty input field': function() {
+            var form = Y.Node.create(
+                    '<form><input name="emailAddress" id="emailAddress" type="text"></form>'),
+                input = form.one('input');
+
+            new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    emailAddress: {
+                        email: true
+                    }
+                }
+            });
+
+            input.attr('value', 'anything');
+
+            form.simulate('submit');
+
+            Y.Assert.isTrue(input.hasAttribute('aria-invalid'), 'Input field with invalid input should have aria-invalid attribute');
+
+            input.attr('value', '');
+
+            form.simulate('submit');
+
+            Y.Assert.isFalse(input.hasAttribute('aria-invalid'), 'Empty input field should not have aria-invalid attribute');
+        },
+
         _assertValidatorNextLabel: function(input) {
             var inputNode,
                 textNode;
