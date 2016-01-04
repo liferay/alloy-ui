@@ -256,8 +256,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             var button;
 
             this._createFormBuilder();
-
-            button = this._formBuilder.get('contentBox').one('.layout-builder-resize-col-draggable-handle.expand-left');
+            button = this._formBuilder.get('contentBox').one('.layout-builder-add-col-handle');
             Y.Assert.isNotNull(button);
         },
 
@@ -588,7 +587,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             this._formBuilder = new Y.FormBuilder().render('#container');
 
             layout = this._formBuilder.get('layouts')[0];
-            dragHandle = layout.get('node').one('.layout-builder-resize-col-draggable-handle.expand-left');
+            dragHandle = layout.get('node').one('.layout-builder-add-col-handle');
             breakpoint = layout.get('rows')[0].get('node').all('.' + 'layout-builder-resize-col-breakpoint').item(1);
 
             Y.Assert.isNotNull(dragHandle);
