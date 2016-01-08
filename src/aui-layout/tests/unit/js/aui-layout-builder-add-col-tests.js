@@ -175,12 +175,12 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             instance._layoutBuilder.set('enableAddCols', false);
 
-            dragHandle = Y.one('.layout-builder-resize-col-draggable-handle.expand-left');
+            dragHandle = Y.one('.layout-builder-add-col-handle');
             Y.Assert.isNull(dragHandle);
 
             instance._layoutBuilder.set('enableAddCols', true);
 
-            dragHandle = Y.one('.layout-builder-resize-col-draggable-handle.expand-left');
+            dragHandle = Y.one('.layout-builder-add-col-handle');
             Y.Assert.isNotNull(dragHandle);
 
             breakpoint = col.ancestor().all('.layout-builder-resize-col-breakpoint').item(1);
@@ -216,7 +216,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             layout = this._layoutBuilder.get('layout');
             row = layout.get('rows')[0];
-            dragHandle = row.get('node').one('.layout-builder-resize-col-draggable-handle.expand-right');
+            dragHandle = row.get('node').all('.layout-builder-add-col-handle').item(1);
             breakpoint = row.get('node').all('.layout-builder-resize-col-breakpoint').item(11);
 
             Y.Mock.expect(layout, {
@@ -243,7 +243,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             layout = instance._layoutBuilder.get('layout');
             row = layout.get('rows')[0];
-            dragHandle = row.get('node').one('.layout-builder-resize-col-draggable-handle.expand-right');
+            dragHandle = row.get('node').all('.layout-builder-add-col-handle').item(1);
             breakpoint = row.get('node').all('.layout-builder-resize-col-breakpoint').item(11);
 
             for (var i = 0; i < 20; i++) {
@@ -273,7 +273,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             layout = this._layoutBuilder.get('layout');
             row = layout.get('rows')[0];
-            dragHandle = row.get('node').one('.layout-builder-resize-col-draggable-handle.expand-left');
+            dragHandle = row.get('node').one('.layout-builder-add-col-handle');
             breakpoint = row.get('node').all('.layout-builder-resize-col-breakpoint').item(1);
 
             Y.Assert.areEqual(row.get('cols').length, 2);
@@ -293,7 +293,7 @@ YUI.add('aui-layout-builder-add-col-tests', function(Y) {
 
             layout = this._layoutBuilder.get('layout');
             row = layout.get('rows')[0];
-            dragHandle = row.get('node').one('.layout-builder-resize-col-draggable-handle.expand-right');
+            dragHandle = row.get('node').all('.layout-builder-add-col-handle').item(1);
             breakpoint = row.get('node').all('.layout-builder-resize-col-breakpoint').item(11);
 
             Y.Assert.areEqual(row.get('cols').length, 2);

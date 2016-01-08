@@ -495,7 +495,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
             this._layoutBuilder.set('enableAddCols', true);
 
-            handleAddColumn = row.one('.layout-builder-resize-col-draggable-handle.expand-left');
+            handleAddColumn = row.one('.layout-builder-add-col-handle');
             breakpointToAdding = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(1);
 
             Assert.areEqual(true, cols.item(0).getData('layout-col').get('removable'));
@@ -529,7 +529,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             Assert.areEqual(true, cols.item(0).getData('layout-col').get('removable'));
             Assert.areEqual(4, cols._nodes.length);
 
-            handleAddColumn = row.one('.layout-builder-resize-col-draggable-handle.expand-right');
+            handleAddColumn = row.all('.layout-builder-add-col-handle').item(1);
             breakpointToAdding = row.all('.' + CSS_RESIZE_COL_BREAKPOINT).item(11);
 
             instance._simulateDragToBreakpoint(instance, handleAddColumn, breakpointToAdding, function() {

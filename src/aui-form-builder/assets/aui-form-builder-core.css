@@ -178,7 +178,8 @@
     opacity: 0;
 }
 
-.form-builder-layout .layout-row:hover .layout-builder-resize-col-draggable {
+.form-builder-layout .layout-row:hover .layout-builder-resize-col-draggable,
+.form-builder-layout .layout-row.layout-builder-resize-col-dragging .layout-builder-resize-col-draggable {
     opacity: 1;
 }
 
