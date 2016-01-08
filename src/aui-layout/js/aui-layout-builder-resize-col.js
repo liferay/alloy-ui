@@ -11,6 +11,7 @@ var ADD_COLUMN_ACTION = 'addColumn',
     CSS_RESIZE_COL_DRAGGABLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable'),
     CSS_RESIZE_COL_DRAGGABLE_BORDER = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'border'),
     CSS_RESIZE_COL_DRAGGABLE_HANDLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'handle'),
+    CSS_RESIZE_COL_DRAGGING = A.getClassName('layout', 'builder', 'resize', 'col', 'dragging'),
     CSS_RESIZE_COL_ENABLED = A.getClassName('layout', 'builder', 'resize', 'col', 'enabled'),
     MAX_SIZE = 12,
     SELECTOR_ROW = '.layout-row';
@@ -32,7 +33,8 @@ A.LayoutBuilderResizeCol.prototype = {
     TPL_RESIZE_COL_DRAGGABLE: '<div class="' + CSS_RESIZE_COL_DRAGGABLE + '">' +
         '<div class="' + CSS_RESIZE_COL_DRAGGABLE_BORDER + '"></div>' +
         '<div class="' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + '" tabindex="8">' +
-        '<span class="glyphicon glyphicon-resize-horizontal"></span></div></div>',
+        '<span class="glyphicon glyphicon-chevron-left"></span>' +
+        '<span class="glyphicon glyphicon-chevron-right"></span></div></div>',
 
     /**
      * Keeps a reference for dragNode for keyboard purposes only.
@@ -104,6 +106,8 @@ A.LayoutBuilderResizeCol.prototype = {
                 this.get('layout').normalizeColsHeight(new A.NodeList(row));
             }
 
+            row.removeClass(CSS_RESIZE_COL_DRAGGING);
+
             this._hideBreakpoints(row);
         }
 
@@ -174,7 +178,10 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _afterDragStart: function(event) {
-        event.target.get('node').hide();
+        var dragNode = event.target.get('node');
+        
+        dragNode.hide();
+        dragNode.ancestor(SELECTOR_ROW).addClass(CSS_RESIZE_COL_DRAGGING);
     },
 
     /**

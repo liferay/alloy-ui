@@ -7,11 +7,7 @@
 var ADD_COLUMN_ACTION = 'addColumn',
     CSS_ADD_COL_DRAGGABLE = A.getClassName('layout', 'builder', 'add', 'col', 'draggable'),
     CSS_ADD_COL_DRAGGABLE_HANDLE = A.getClassName('layout', 'builder', 'add', 'col', 'handle'),
-    CSS_RESIZE_COL_DRAGGABLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable'),
-    CSS_RESIZE_COL_DRAGGABLE_BORDER = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'border'),
     CSS_RESIZE_COL_DRAGGABLE_HANDLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'handle'),
-    CSS_RESIZE_COL_DRAGGABLE_HANDLE_EXPAND_LEFT = A.getClassName('expand', 'left'),
-    CSS_RESIZE_COL_DRAGGABLE_HANDLE_EXPAND_RIGHT = A.getClassName('expand', 'right'),
     SELECTOR_ROW = '.layout-row';
 
 /**
@@ -27,12 +23,6 @@ var ADD_COLUMN_ACTION = 'addColumn',
 A.LayoutBuilderAddCol = function() {};
 
 A.LayoutBuilderAddCol.prototype = {
-    TPL_RESIZE_ADD_COL: '<div data-layout-action="' + ADD_COLUMN_ACTION + '" class="' + 
-        CSS_RESIZE_COL_DRAGGABLE + ' ' + CSS_ADD_COL_DRAGGABLE + '">' +
-        '<div class="' + CSS_RESIZE_COL_DRAGGABLE_BORDER + '"></div>' +
-        '<div class="' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + '" tabindex="8">' +
-        '<span class="' + CSS_ADD_COL_DRAGGABLE_HANDLE + '"></span></div></div>',
-
     /**
      * Construction logic executed during `A.LayoutBuilderAddCol` instantiation.
      * Lifecycle.
@@ -134,20 +124,22 @@ A.LayoutBuilderAddCol.prototype = {
         cols = layoutRow.get('cols');
 
         if (cols.length < layoutRow.get('maximumCols')) {
-            draggableLeft = A.Node.create(this.TPL_RESIZE_ADD_COL);
-            draggableRight = A.Node.create(this.TPL_RESIZE_ADD_COL);
+            draggableLeft = A.Node.create(this.TPL_RESIZE_COL_DRAGGABLE);
+            draggableRight = A.Node.create(this.TPL_RESIZE_COL_DRAGGABLE);
 
-            draggableLeft.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).addClass(CSS_RESIZE_COL_DRAGGABLE_HANDLE_EXPAND_LEFT);
-            draggableLeft.one('.' + CSS_ADD_COL_DRAGGABLE_HANDLE).addClass(this.get('addButtonLeftClass'));
-            draggableLeft.setStyle('left', '0%');
+            draggableLeft.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).addClass(CSS_ADD_COL_DRAGGABLE_HANDLE);
+            draggableLeft.addClass(CSS_ADD_COL_DRAGGABLE);
+            draggableLeft.setData('layout-action', ADD_COLUMN_ACTION);
             draggableLeft.setData('layout-position', 0);
             draggableLeft.setData('layout-col2', cols[0]);
+            draggableLeft.setStyle('left', '0%');
             
-            draggableRight.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).addClass(CSS_RESIZE_COL_DRAGGABLE_HANDLE_EXPAND_RIGHT);
-            draggableRight.one('.' + CSS_ADD_COL_DRAGGABLE_HANDLE).addClass(this.get('addButtonRightClass'));
-            draggableRight.setStyle('left', '100%');
+            draggableRight.addClass(CSS_ADD_COL_DRAGGABLE);
+            draggableRight.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).addClass(CSS_ADD_COL_DRAGGABLE_HANDLE);
+            draggableRight.setData('layout-action', ADD_COLUMN_ACTION);
             draggableRight.setData('layout-position', layoutRow.get('maximumCols'));
             draggableRight.setData('layout-col1', cols[cols.length - 1]);
+            draggableRight.setStyle('left', '100%');
 
             row.append(draggableLeft);
             row.append(draggableRight);
@@ -219,29 +211,6 @@ A.LayoutBuilderAddCol.prototype = {
  * @static
  */
 A.LayoutBuilderAddCol.ATTRS = {
-    /**
-     * Class name to the add handler on the left side of the layout
-     *
-     * @attribute addButtonLeftClass
-     * @default "glyphicon glyphicon-hand-right"
-     * @type {String}
-     */
-    addButtonLeftClass: {
-        validator: A.Lang.isString,
-        value: 'glyphicon glyphicon-hand-right'
-    },
-
-    /**
-     * Class name to the add handler on the right side of the layout
-     *
-     * @attribute addButtonRightClass
-     * @default "glyphicon glyphicon-hand-left"
-     * @type {String}
-     */
-    addButtonRightClass: {
-        validator: A.Lang.isString,
-        value: 'glyphicon glyphicon-hand-left'
-    },
 
     /**
      * Flag indicating if the feature of adding columns to the layout is
