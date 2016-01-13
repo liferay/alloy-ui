@@ -14,6 +14,17 @@
 
 // Simple version of
 // http://perfectionkills.com/detecting-event-support-without-browser-sniffing/
+
+A.UA.edge = (function() {
+    var edgeVersion = A.UA.userAgent.match(/Edge\/(.[0-9.]+)/);
+
+    if (edgeVersion) {
+        return edgeVersion[1];
+    }
+
+    return 0;
+})();
+
 A.supportsDOMEvent = function(domNode, eventName) {
     eventName = 'on' + eventName;
 
