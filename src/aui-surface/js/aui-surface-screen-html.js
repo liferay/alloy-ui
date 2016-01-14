@@ -100,7 +100,7 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
                     params.cache = false;
                 }
 
-                instance._request = A.io.request(path, params);
+                instance._request = A.io(path, params);
             },
             function() {
                 instance.abortRequest();
