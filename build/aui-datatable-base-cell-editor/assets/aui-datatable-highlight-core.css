@@ -1,0 +1,16 @@
+.table-content {
+    position: relative;
+}
+
+.table-selection, .table-selection .table-cell  {
+    outline: 0;
+}
+
+.table-highlight-overlay {
+    position: absolute;
+    z-index: 1;
+}
+
+.table-highlight-overlay-active {
+    z-index: 2;
+}
