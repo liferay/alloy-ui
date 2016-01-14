@@ -74,7 +74,7 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
 
         promise = new A.CancellablePromise(
             function(resolve) {
-                instance._request = A.io(path, {
+                var params = {
                     headers: {
                         'X-PJAX': 'true'
                     },
@@ -92,7 +92,15 @@ A.HTMLScreen = A.Base.create('htmlScreen', A.Screen, [], {
                         }
                     },
                     timeout: instance.get('timeout')
-                });
+                };
+
+                // For Internet Explorer and MSIE don't rely on the caching mechanism
+                // http://www.greenvilleweb.us/how-to-web-design/problem-with-ie-9-caching-ajax-get-request/
+                if (A.UA.edge || A.UA.ie) {
+                    params.cache = false;
+                }
+
+                instance._request = A.io(path, params);
             },
             function() {
                 instance.abortRequest();
