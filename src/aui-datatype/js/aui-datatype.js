@@ -374,9 +374,6 @@ A.mix(A.DataType.DateMath, {
      * March 29, 2015 and the second one is April 4, 2015, then the returned
      * value should be 6.
      *
-     * This method iterates over all days between the dates so it can be slow
-     * for dates that are too much far from one another.
-     *
      * @method countDays
      * @param d1 One of the days
      * @param d2 The other day
