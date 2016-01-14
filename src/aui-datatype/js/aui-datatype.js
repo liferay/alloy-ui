@@ -378,15 +378,9 @@ A.mix(A.DataType.DateMath, {
      * @return the number of days between the two dates.
      */
     countDays: function(d1, d2) {
-        var count = 0,
-            d,
-            step = this.before(d1, d2) ? 1 : -1;
+        var diff = Math.abs(d1.getTime() - d2.getTime());
 
-        for (d = d1; this.isDayOverlap(d, d2); d = this.add(d, this.DAY, step)) {
-            count++;
-        }
-
-        return count;
+        return Math.floor(diff / this.ONE_DAY_MS);
     },
 
     /**
