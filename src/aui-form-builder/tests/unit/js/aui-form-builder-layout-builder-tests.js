@@ -238,7 +238,6 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             button = this._formBuilder.get('contentBox').one('.layout-builder-remove-row-button');
 
             Y.Assert.isNotNull(button);
-            Y.Assert.areNotEqual('none', button.getStyle('display'));
             Y.Assert.areEqual(this._formBuilder.get('layouts')[0].get('rows').length, 2);
 
             Y.one('.layout-builder-remove-row-button').simulate('click');

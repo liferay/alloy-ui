@@ -1,5 +1,6 @@
 .form-builder-content .layout-builder-layout-container {
     margin-bottom: 3px;
+    background-color: white;
 }
 
 .form-builder-field-move-button {
@@ -50,12 +51,26 @@
 
 .layout-builder-move-cut-button.layout-builder-move-cut-row-button {
     border-radius: 50%;
+    display: none;
     z-index: 1;
     position: absolute;
     right: 14px;
     top: -10px;
 }
 
-.layout-row-container-row {
+.layout-row {
+    border-width: 1px;
+    border-color: transparent;
+    border-style: dashed none;
     position: relative;
+}
+
+.layout-row:hover {
+    border-color: #bbb;
+}
+
+.layout-row-container-row:hover .layout-builder-move-cut-button.layout-builder-move-cut-row-button,
+.layout-row-container-row:focus .layout-builder-move-cut-button.layout-builder-move-cut-row-button,
+.layout-builder-move-cut-button.layout-builder-move-cut-row-button:focus {
+    display: block;
 }
