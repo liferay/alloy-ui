@@ -1,17 +1,24 @@
-.layout-builder-resize-col-enabled .layout-row {
-    position: relative;
+.layout-builder-resize-col-breakpoint {
+    display: block;
 }
 
-.layout-builder-resize-col-enabled .col:not(:last-child) {
-    border-right: none;
+.layout-builder-resize-col-breakpoint {
+    bottom: 0;
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 0;
+    z-index: 2;
 }
 
-.layout-builder-resize-col-enabled .col:not(:first-child) {
-    border-left: none;
+.layout-builder-resize-col-breakpoint-line {
+    border-right: 1px dashed #bbb;
+    height: 100%;
 }
 
-.layout-builder-resize-col-dragging.layout-row {
-    border-color: #bbb;
+.layout-builder-resize-col-breakpoint-over .layout-builder-resize-col-breakpoint-line, .layout-builder-resize-col-breakpoint-line:focus {
+    border-color: #00a3ff;
+    border-right-style: solid;
 }
 
 .layout-builder-resize-col-draggable {
@@ -35,6 +42,11 @@
     opacity: 1;
 }
 
+.layout-builder-resize-col-draggable-dragging .layout-builder-resize-col-draggable-handle,
+.layout-builder-resize-col-draggable-handle:hover {
+    background: #65b3f0;
+}
+
 .layout-builder-resize-col-draggable-handle {
     background-color: #869cad;
     border-radius: 100%;
@@ -52,36 +64,24 @@
     z-index: 2;
 }
 
-.layout-builder-resize-col-draggable-dragging .layout-builder-resize-col-draggable-handle,
-.layout-builder-resize-col-draggable-handle:hover {
-    background: #65b3f0;
-}
-
 .layout-builder-resize-col-draggable-handle span {
     color: #fff;
     display: inline-block;
     float: left;
 }
 
-.layout-builder-resize-col-breakpoint {
-    display: block;
+.layout-builder-resize-col-dragging.layout-row {
+    border-color: #bbb;
 }
 
-.layout-builder-resize-col-breakpoint {
-    bottom: 0;
-    display: none;
-    position: absolute;
-    top: 0;
-    width: 0;
-    z-index: 2;
+.layout-builder-resize-col-enabled .layout-row {
+    position: relative;
 }
 
-.layout-builder-resize-col-breakpoint-line {
-    border-right: 1px dashed #bbb;
-    height: 100%;
+.layout-builder-resize-col-enabled .col:not(:last-child) {
+    border-right: none;
 }
 
-.layout-builder-resize-col-breakpoint-over .layout-builder-resize-col-breakpoint-line, .layout-builder-resize-col-breakpoint-line:focus {
-    border-color: #00a3ff;
-    border-right-style: solid;
+.layout-builder-resize-col-enabled .col:not(:first-child) {
+    border-left: none;
 }

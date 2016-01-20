@@ -506,8 +506,8 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _onMouseEnterDraggable: function(event) {
-        var col1 = event.currentTarget.getData('layout-col1');
-        var col2 = event.currentTarget.getData('layout-col2');
+        var col1 = event.currentTarget.getData('layout-col1'),
+            col2 = event.currentTarget.getData('layout-col2');
 
         if (col1) {
             this._showColDraggableBoundaries(col1.get('node'));
@@ -661,7 +661,7 @@ A.LayoutBuilderResizeCol.prototype = {
             var col1 = draggablesList.item(i).getData('layout-col1'),
                 col2 = draggablesList.item(i).getData('layout-col2');
 
-            if ((col2 && col2.get('node') == colNode) || (col1 && col1.get('node') == colNode) ) {
+            if ((col2 && col2.get('node') === colNode) || (col1 && col1.get('node') === colNode) ) {
                 draggablesList.item(i).addClass(CSS_RESIZE_COL_DRAGGABLE_VISIBLE);
             }
         }
