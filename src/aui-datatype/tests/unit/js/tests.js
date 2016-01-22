@@ -38,6 +38,17 @@ YUI.add('aui-datatype-tests', function(Y) {
             );
         },
 
+        'should count if the first date is under DST and the second is not': function() {
+            var d1 = new Date(2016, 6, 1),
+                d2 = new Date(2017, 0, 1);
+
+            Y.Assert.areEqual(
+                31+31+30+31+30+31,
+                Y.DataType.DateMath.countDays(d2, d1),
+                'It should count 182 days between dates'
+            );
+        },
+
         'should behave even with dates very far from each other': function() {
             var d1 =  new Date(1970, 0, 1),
                 d2 = new Date(200000, 0, 1);
