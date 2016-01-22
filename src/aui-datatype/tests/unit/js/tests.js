@@ -1,9 +1,21 @@
 YUI.add('aui-datatype-tests', function(Y) {
 
+    var today = new Date();
+    var JANUARY_1 = Y.DataType.DateMath.getJan1(today.getFullYear());
+    var JULY_1 = Y.DataType.DateMath.getDate(today.getFullYear(), 6, 1);
+    var NO_DST_OFFSET = (JANUARY_1.getTimezoneOffset() === JULY_1.getTimezoneOffset());
+
     var suite = new Y.Test.Suite('aui-datatype');
 
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
+
+        _should: {
+            ignore: {
+                'should count if the first date is not under DST and the second is': NO_DST_OFFSET,
+                'should count if the first date is under DST and the second is not': NO_DST_OFFSET
+            }
+        },
 
         'should count the number of days between two dates': function() {
             var d1 = new Date(),
