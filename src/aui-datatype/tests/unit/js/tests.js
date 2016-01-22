@@ -27,9 +27,9 @@ YUI.add('module-tests', function(Y) {
             );
         },
 
-        'should count if a DST shift potentially happens': function() {
-            var d1 = new Date(2016, 0, 1, 0, 0, 1),
-                d2 = new Date(2016, 6, 1, 23, 59, 59);
+        'should count if the first date is not under DST and the second is': function() {
+            var d1 = new Date(2016, 0, 1),
+                d2 = new Date(2016, 6, 1);
 
             Y.Assert.areEqual(
                 31+29+31+30+31+30,
