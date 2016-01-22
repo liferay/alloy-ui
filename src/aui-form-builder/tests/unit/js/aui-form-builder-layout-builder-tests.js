@@ -394,8 +394,20 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             layout = new Y.Layout({
                 rows: [
-                    new Y.LayoutRow(),
-                    new Y.LayoutRow()
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 4
+                            })
+                        ]
+                    }),
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 4
+                            })
+                        ]
+                    })
                 ]
             });
 
@@ -405,7 +417,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             this._formBuilder.render('#container');
             rowNodes = this._formBuilder.get('contentBox').all('.layout-row');
-            Y.Assert.areEqual(2, rowNodes.size());
+            Y.Assert.areEqual(3, rowNodes.size());
         },
 
         'should show valid field move targets for root field': function() {
@@ -608,6 +620,119 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             layout.get('rows')[0].get('cols')[0].get('value').addField(new Y.FormBuilderFieldSentence());
             Y.Assert.areEqual(2, layout.get('rows').length);
             Y.Assert.areEqual(1, layout.get('rows')[1].get('cols').length);
+        },
+
+        'should show the large field button only in an empty column': function() {
+            var colNode,
+                field,
+                layout;
+
+            this._createFormBuilder();
+
+            layout = this._formBuilder.get('layouts')[0];
+
+            colNode = layout.get('rows')[0].get('cols')[0].get('node');
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+
+            colNode = layout.get('rows')[0].get('cols')[1].get('node');
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+
+            colNode = layout.get('rows')[0].get('cols')[2].get('node');
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+
+            colNode = layout.get('rows')[1].get('cols')[0].get('node');
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+
+            field = layout.get('rows')[0].get('cols')[0].get('value').get('fields')[0];
+            layout.get('rows')[0].get('cols')[0].get('value').removeField(field);
+            colNode = layout.get('rows')[0].get('cols')[0].get('node');
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+
+            layout.get('rows')[0].get('cols')[0].get('value').addField(field);
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+        },
+
+        'should add a large add field to all empty columns': function() {
+            var colNode,
+                field,
+                layout,
+                layouts;
+
+            layouts = [new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                movableContent: true,
+                                size: 4,
+                                value: new Y.FormBuilderFieldList({
+                                    fields: [
+                                        new Y.FormBuilderFieldSentence({
+                                            title: 'My Title2'
+                                        })
+                                    ]
+                                })
+                            }),
+                            new Y.LayoutCol({
+                                size: 8
+                            })
+                        ]
+                    })
+                ]
+            })];
+
+            this._createFormBuilder({layouts: layouts});
+
+            layout = this._formBuilder.get('layouts')[0];
+
+            colNode = layout.get('rows')[0].get('cols')[0].get('node');
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+
+            field = layout.get('rows')[0].get('cols')[0].get('value').get('fields')[0];
+            layout.get('rows')[0].get('cols')[0].get('value').removeField(field);
+            colNode = layout.get('rows')[0].get('cols')[0].get('node');
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+
+            colNode = layout.get('rows')[0].get('cols')[1].get('node');
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+
+            colNode = layout.get('rows')[1].get('cols')[0].get('node');
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+        },
+
+        'should remove the last row if the next to last row is empty': function() {
+            var colFull,
+                layout,
+                layouts;
+
+            colFull = new Y.LayoutCol({
+                size: 12
+            });
+
+            layouts = [new Y.Layout({
+                rows: [
+                    new Y.LayoutRow({
+                        cols: [
+                            new Y.LayoutCol({
+                                size: 4
+                            }),
+                            new Y.LayoutCol({
+                                size: 8
+                            })
+                        ]
+                    })
+                ]
+            })];
+
+            this._createFormBuilder({layouts: layouts});
+
+            layout = this._formBuilder.get('layouts')[0];
+
+            Y.Assert.areEqual(2, layout.get('rows').length);
+            layout.get('rows')[0].set('cols', [colFull]);
+
+            Y.Assert.areEqual(1, layout.get('rows').length);
+            layout.get('rows')[0].set('cols', [colFull]);
         }
     }));
 

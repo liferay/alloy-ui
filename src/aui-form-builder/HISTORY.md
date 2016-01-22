@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2069](https://issues.liferay.com/browse/AUI-2069) Unexpected Visual Behavior after removing a field
 * [AUI-1994](https://issues.liferay.com/browse/AUI-1994) Adds borders as separators on the Form Builder
 * [AUI-2033](https://issues.liferay.com/browse/AUI-2033) Change add/resize column icon
 * [AUI-2056](https://issues.liferay.com/browse/AUI-2056) User has to click multiple times to get Form Builder Field Toolbar active
