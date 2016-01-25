@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-2070](https://issues.liferay.com/browse/AUI-2070) Replace direct call to "filter" function with "Array.filter"
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
 
