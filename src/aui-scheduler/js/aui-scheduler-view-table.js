@@ -441,7 +441,7 @@ var SchedulerTableView = A.Component.create({
                     events = [];
                 }
 
-                events = events.filter(function(currEvent) {
+                events = A.Array.filter(events, function(currEvent) {
                     return currEvent.get('visible');
                 });
 
