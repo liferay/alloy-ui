@@ -267,8 +267,10 @@ A.LayoutBuilderResizeCol.prototype = {
             this._delegateDrag.after('drag:mouseDown', A.bind(this._afterDragMouseDown, this)),
             this._delegateDrag.after('drag:mouseup', A.bind(this._afterDragMouseup, this)),
             this._delegateDrag.after('drag:start', A.bind(this._afterDragStart, this)),
-            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColDragHandle, this), 'press:13', '.' + CSS_RESIZE_COL_DRAGGABLE),
-            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColBreakpoint, this), 'press:13', '.' + CSS_RESIZE_COL_BREAKPOINT_LINE),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColDragHandle, this), 
+                'press:13', '.' + CSS_RESIZE_COL_DRAGGABLE),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColBreakpoint, this), 
+                'press:13', '.' + CSS_RESIZE_COL_BREAKPOINT_LINE),
             this._layoutContainer.delegate('mouseenter', A.bind(this._onMouseEnterCol, this), SELECTOR_COL),
             this._layoutContainer.delegate('mouseenter', A.bind(this._onMouseEnterDraggable, this), '.' + CSS_RESIZE_COL_DRAGGABLE),
             this._layoutContainer.delegate('mouseleave', A.bind(this._onMouseLeaveCol, this), SELECTOR_ROW)
@@ -655,13 +657,15 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _showColDraggableBoundaries: function(colNode) {
-        var draggablesList = colNode.ancestor().all('.' + CSS_RESIZE_COL_DRAGGABLE);
+        var col1,
+            col2,
+            draggablesList = colNode.ancestor().all('.' + CSS_RESIZE_COL_DRAGGABLE);
 
         for (var i = draggablesList._nodes.length; i--;) {
-            var col1 = draggablesList.item(i).getData('layout-col1'),
-                col2 = draggablesList.item(i).getData('layout-col2');
+            col1 = draggablesList.item(i).getData('layout-col1');
+            col2 = draggablesList.item(i).getData('layout-col2');
 
-            if ((col2 && col2.get('node') === colNode) || (col1 && col1.get('node') === colNode) ) {
+            if ((col2 && col2.get('node') === colNode) || (col1 && col1.get('node') === colNode)) {
                 draggablesList.item(i).addClass(CSS_RESIZE_COL_DRAGGABLE_VISIBLE);
             }
         }
