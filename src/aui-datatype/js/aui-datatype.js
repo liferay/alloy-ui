@@ -380,7 +380,10 @@ A.mix(A.DataType.DateMath, {
      * @return the number of days between the two dates.
      */
     countDays: function(d1, d2) {
-        var first,
+        var checkDate,
+            count,
+            first,
+            diff,
             second;
 
         if (this.before(d1, d2)) {
@@ -392,17 +395,13 @@ A.mix(A.DataType.DateMath, {
             second = d1;
         }
 
-        var diff = second.getTime() - first.getTime(),
-            count = Math.floor(diff / this.ONE_DAY_MS),
-            checkDate = this.toMidnight(this.add(first, this.DAY, count));
-
+        diff = second.getTime() - first.getTime();
+        count = Math.floor(diff / this.ONE_DAY_MS);
+        checkDate = this.toMidnight(this.add(first, this.DAY, count));
         second = this.toMidnight(second);
 
         if (this.before(checkDate, second)) {
             count++;
-        }
-        else if (this.after(checkDate, second)) {
-            count--;
         }
 
         return count;
