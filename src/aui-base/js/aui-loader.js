@@ -1748,6 +1748,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "dd-drag",
             "dd-drop",
             "dd-proxy",
+            "dd-scroll",
             "aui-node",
             "aui-component"
         ]
@@ -2132,4 +2133,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '1c34b24f765181ed75f18a3cb3abc1e0';
+YUI.Env[Y.version].md5 = '602c5212d3d8b6e335b101d65d066c12';

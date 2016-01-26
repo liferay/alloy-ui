@@ -441,7 +441,7 @@ var SchedulerTableView = A.Component.create({
                     events = [];
                 }
 
-                events = events.filter(function(currEvent) {
+                events = A.Array.filter(events, function(currEvent) {
                     return currEvent.get('visible');
                 });
 
@@ -450,7 +450,7 @@ var SchedulerTableView = A.Component.create({
                 var evtColNode = A.Node.create(TPL_SVT_TABLE_DATA_COL);
                 var evtNodeContainer = evtColNode.one('div');
 
-                if ((evtRenderedStack.length < events.length) && displayRows && (rowDisplayIndex === (displayRows - 1))) {
+                if (evt && (evtRenderedStack.length < events.length) && displayRows && (rowDisplayIndex === (displayRows - 1))) {
                     var strings = instance.get('strings');
 
                     var showMoreEventsLink = A.Node.create(
@@ -727,11 +727,11 @@ var SchedulerTableView = A.Component.create({
          */
         loopDates: function(startDate, endDate, fn, incrementBy, factor) {
             var instance = this;
+            var countDays = DateMath.countDays(startDate, endDate) + 1;
             var curDate = DateMath.clone(startDate);
-            var endDateMs = endDate.getTime();
             var index;
 
-            for (index = 0; curDate.getTime() <= endDateMs; index++) {
+            for (index = 0; index < countDays; index++) {
                 fn.apply(instance, [curDate, index]);
 
                 curDate = DateMath.add(curDate, (incrementBy || DateMath.DAY), (factor || 1));
