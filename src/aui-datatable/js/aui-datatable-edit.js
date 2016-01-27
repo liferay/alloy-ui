@@ -600,6 +600,7 @@ var BaseCellEditor = A.Component.create({
         elements: null,
         validator: null,
 
+        _hDocEscKeyEv: null,
         _hDocMouseDownEv: null,
 
         /**
@@ -622,9 +623,14 @@ var BaseCellEditor = A.Component.create({
          */
         destructor: function() {
             var instance = this;
+            var hDocEscKey = instance._hDocEscKeyEv;
             var hDocMouseDown = instance._hDocMouseDownEv;
             var toolbar = instance.toolbar;
             var validator = instance.validator;
+
+            if (hDocEscKey) {
+                hDocEscKey.detach();
+            }
 
             if (hDocMouseDown) {
                 hDocMouseDown.detach();
@@ -637,18 +643,6 @@ var BaseCellEditor = A.Component.create({
             if (validator) {
                 validator.destroy();
             }
-        },
-
-        /**
-         * Bind the events on the BaseCellEditor UI. Lifecycle.
-         *
-         * @method bindUI
-         * @protected
-         */
-        bindUI: function() {
-            var instance = this;
-
-            instance.get(BOUNDING_BOX).on(KEY, A.bind(instance._onEscKey, instance), 'down:27');
         },
 
         /**
@@ -803,7 +797,10 @@ var BaseCellEditor = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Fires after the `visibleChange` event. Binds the `mousedown` event
+         * listener and `keydown` event listener for the escape key.
+         *
+         * See: `_onDocMouseDownExt` and `_onEscKey` for details.
          *
          * @method _debounceVisibleChange
          * @param event
@@ -811,17 +808,30 @@ var BaseCellEditor = A.Component.create({
          */
         _debounceVisibleChange: function(event) {
             var instance = this;
+            var hDocEscKey = instance._hDocEscKeyEv;
             var hDocMouseDown = instance._hDocMouseDownEv;
 
             if (event.newVal) {
+                if (!hDocEscKey) {
+                    instance._hDocEscKeyEv = A.getDoc().on('key', A.bind(instance._onEscKey, instance), 'down:27');
+                }
+
                 if (!hDocMouseDown) {
-                    instance._hDocMouseDownEv = A.getDoc().on(MOUSEDOWN, A.bind(instance._onDocMouseDownExt,
-                        instance));
+                    instance._hDocMouseDownEv = A.getDoc().on(MOUSEDOWN, A.bind(instance._onDocMouseDownExt, instance));
                 }
             }
-            else if (hDocMouseDown) {
-                hDocMouseDown.detach();
-                instance._hDocMouseDownEv = null;
+            else {
+                if (hDocEscKey) {
+                    hDocEscKey.detach();
+
+                    instance._hDocEscKeyEv = null;
+                }
+
+                if (hDocMouseDown) {
+                    hDocMouseDown.detach();
+
+                    instance._hDocMouseDownEv = null;
+                }
             }
         },
 
@@ -922,7 +932,7 @@ var BaseCellEditor = A.Component.create({
             var boundingBox = instance.get(BOUNDING_BOX);
 
             if (!boundingBox.contains(event.target)) {
-                instance.set(VISIBLE, false);
+                instance._handleCancelEvent();
             }
         },
 
