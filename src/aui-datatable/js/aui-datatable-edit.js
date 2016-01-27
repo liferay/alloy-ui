@@ -900,6 +900,8 @@ var BaseCellEditor = A.Component.create({
         _handleSaveEvent: function() {
             var instance = this;
 
+            instance.validator.validate();
+
             if (!instance.validator.hasErrors()) {
                 instance.fire(SAVE, {
                     newVal: instance.getValue(),
