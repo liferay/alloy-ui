@@ -43,7 +43,6 @@ var Lang = A.Lang,
     DD = 'dd',
     DELETE = 'delete',
     DISK = 'disk',
-    DOTTED = 'dotted',
     DROP_DOWN_CELL_EDITOR = 'dropDownCellEditor',
     EDIT = 'edit',
     EDIT_EVENT = 'editEvent',
@@ -70,6 +69,8 @@ var Lang = A.Lang,
     NAME = 'name',
     ONLY = 'only',
     OPTION = 'option',
+    OPTION_NAME = 'optionName',
+    OPTION_VALUE = 'optionValue',
     OPTIONS = 'options',
     OPTIONS_CELL_EDITOR = 'optionsCellEditor',
     OUTPUT_FORMATTER = 'outputFormatter',
@@ -80,6 +81,7 @@ var Lang = A.Lang,
     REMOVE = 'remove',
     RENDER = 'render',
     RENDERED = 'rendered',
+    RESIZE = 'resize',
     RETURN = 'return',
     ROW = 'row',
     SAVE = 'save',
@@ -121,7 +123,7 @@ var Lang = A.Lang,
     CSS_CELLEDITOR_OPTION = AgetClassName(CELLEDITOR, OPTION),
     CSS_DATATABLE_EDITABLE = AgetClassName(DATATABLE, EDITABLE),
     CSS_ICON = AgetClassName(ICON),
-    CSS_ICON_GRIP_DOTTED_VERTICAL = AgetClassName(ICON, GRIP, DOTTED, VERTICAL),
+    CSS_ICON_RESIZE_VERTICAL = AgetClassName(ICON, RESIZE, VERTICAL),
 
     TPL_BR = '<br/>';
 
@@ -1252,6 +1254,8 @@ var BaseOptionsCellEditor = A.Component.create({
                 edit: 'Edit options',
                 editOptions: 'Edit option(s)',
                 name: 'Name',
+                optionName: 'Option Name',
+                optionValue: 'Option Value',
                 remove: 'Remove',
                 save: 'Save',
                 stopEditing: 'Stop editing',
@@ -1281,15 +1285,26 @@ var BaseOptionsCellEditor = A.Component.create({
     prototype: {
         EDIT_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT + '"></div>',
 
-        EDIT_OPTION_ROW_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT_OPTION_ROW + '">' +
-            '<span class="' + [CSS_CELLEDITOR_EDIT_DD_HANDLE, CSS_ICON, CSS_ICON_GRIP_DOTTED_VERTICAL].join(' ') + '"></span>' +
-            '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + '" size="7" placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' +
-            '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + '" size="7" placeholder="{titleValue}" title="{titleValue}" type="text" value="{valueValue}" /> ' +
-            '<a class="' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(' ') + '" href="javascript:void(0);">{remove}</a> ' +
+        EDIT_OPTION_ROW_TEMPLATE: '<div class="form-inline ' + CSS_CELLEDITOR_EDIT_OPTION_ROW + '">' +
+                '<div class="control-group">' +
+                    '<span class="' + [CSS_CELLEDITOR_EDIT_DD_HANDLE, CSS_ICON, CSS_ICON_RESIZE_VERTICAL].join(_SPACE) + '"></span>' +
+                '</div>' +
+                '<div class="control-group">' +
+                    '<label class="celleditor-edit-sr-only" for="{optionValueName}_name">{labelOptionName}</label>' +
+                    '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_NAME + ' input-block-level input-small" size="7" id="{optionValueName}_name" placeholder="{titleName}" title="{titleName}" type="text" value="{valueName}" /> ' +
+                '</div>' +
+                '<div class="control-group">' +
+                    '<label class="celleditor-edit-sr-only" for="{optionValueName}">{labelOptionValue}</label>' +
+                    '<input class="' + CSS_CELLEDITOR_EDIT_INPUT_VALUE + ' input-block-level input-small" id="{optionValueName}" name="{optionValueName}" placeholder="{titleValue}" size="7" title="{titleValue}" type="text" value="{valueValue}" /> ' +
+                '</div>' +
+                '<div class="control-group">' +
+                    '<button aria-label="{remove}" class="close ' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_DELETE_OPTION].join(_SPACE) + '" type="button"><span aria-hidden="true">&times;</span></button>' +
+                '</div>' +
+            '</div>' +
         '</div>',
 
-        EDIT_ADD_LINK_TEMPLATE: '<a class="' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_ADD_OPTION].join(
-            _SPACE) + '" href="javascript:void(0);">{addOption}</a> ',
+        EDIT_ADD_LINK_TEMPLATE: '<div class="control-group"><a class="' + [CSS_CELLEDITOR_EDIT_LINK, CSS_CELLEDITOR_EDIT_ADD_OPTION].join(
+            _SPACE) + '" href="javascript:void(0);">{addOption}</a></div> ',
         EDIT_LABEL_TEMPLATE: '<div class="' + CSS_CELLEDITOR_EDIT_LABEL + '">{editOptions}</div>',
 
         editContainer: null,
@@ -1472,10 +1487,15 @@ var BaseOptionsCellEditor = A.Component.create({
          */
         _createEditOption: function(name, value) {
             var instance = this;
+
+            var optionValueName = A.guid() + '_value';
             var strings = instance.getStrings();
 
             return Lang.sub(
                 instance.EDIT_OPTION_ROW_TEMPLATE, {
+                    labelOptionName: AEscape.html(strings[OPTION_NAME]),
+                    labelOptionValue: AEscape.html(strings[OPTION_VALUE]),
+                    optionValueName: AEscape.html(optionValueName),
                     remove: strings[REMOVE],
                     titleName: AEscape.html(strings[NAME]),
                     titleValue: AEscape.html(strings[VALUE]),
