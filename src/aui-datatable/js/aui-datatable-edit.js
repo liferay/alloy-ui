@@ -1198,6 +1198,18 @@ var BaseOptionsCellEditor = A.Component.create({
     ATTRS: {
 
         /**
+         * Indicates if the options Edit Container is hidden on the `save` event.
+         *
+         * @attribute hideEditContainerOnSave
+         * @default true
+         * @type Boolean
+         */
+        hideEditContainerOnSave: {
+            value: true,
+            validator: isBoolean
+        },
+
+        /**
          * TODO. Wanna help? Please send a Pull Request.
          *
          * @attribute inputFormatter
@@ -1236,9 +1248,9 @@ var BaseOptionsCellEditor = A.Component.create({
                         condition: function(fieldValue, fieldNode) {
                             var instance = this;
 
-                            var editContainerNode = fieldNode.ancestor('.' + CSS_CELLEDITOR_EDIT);
+                            var editContainerNode = fieldNode.ancestor(_DOT + CSS_CELLEDITOR_EDIT);
 
-                            var inputValueNodelist = editContainerNode.all('.' + CSS_CELLEDITOR_EDIT_INPUT_VALUE);
+                            var inputValueNodelist = editContainerNode.all(_DOT + CSS_CELLEDITOR_EDIT_INPUT_VALUE);
 
                             var validate = function (validateNode, nodelist, recurse) {
                                 var duplicates = false;
@@ -1459,7 +1471,9 @@ var BaseOptionsCellEditor = A.Component.create({
                     instance.get(VALUE)
                 );
 
-                instance.toggleEdit();
+                if (instance.get('hideEditContainerOnSave')) {
+                    instance.toggleEdit();
+                }
             }
         },
 
