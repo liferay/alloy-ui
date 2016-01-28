@@ -10,10 +10,13 @@ var ADD_COLUMN_ACTION = 'addColumn',
     CSS_RESIZE_COL_BREAKPOINT_OVER = A.getClassName('layout', 'builder', 'resize', 'col', 'breakpoint', 'over'),
     CSS_RESIZE_COL_DRAGGABLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable'),
     CSS_RESIZE_COL_DRAGGABLE_BORDER = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'border'),
+    CSS_RESIZE_COL_DRAGGABLE_DRAGGING = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'dragging'),
     CSS_RESIZE_COL_DRAGGABLE_HANDLE = A.getClassName('layout', 'builder', 'resize', 'col', 'draggable', 'handle'),
+    CSS_RESIZE_COL_DRAGGABLE_VISIBLE= A.getClassName('layout', 'builder', 'resize', 'col', 'draggable','visible'),
     CSS_RESIZE_COL_DRAGGING = A.getClassName('layout', 'builder', 'resize', 'col', 'dragging'),
     CSS_RESIZE_COL_ENABLED = A.getClassName('layout', 'builder', 'resize', 'col', 'enabled'),
     MAX_SIZE = 12,
+    SELECTOR_COL = '.col',
     SELECTOR_ROW = '.layout-row';
 
 /**
@@ -113,6 +116,10 @@ A.LayoutBuilderResizeCol.prototype = {
 
         this._syncDragHandles();
 
+        this.dragging = false;
+
+        dragNode.removeClass(CSS_RESIZE_COL_DRAGGABLE_DRAGGING);
+
         dragNode.show();
     },
 
@@ -151,6 +158,8 @@ A.LayoutBuilderResizeCol.prototype = {
         dragNode = event.target.get('node');
         row = dragNode.ancestor(SELECTOR_ROW);
 
+        dragNode.addClass(CSS_RESIZE_COL_DRAGGABLE_DRAGGING);
+
         this._showBreakpoints(row, dragNode);
     },
 
@@ -179,9 +188,13 @@ A.LayoutBuilderResizeCol.prototype = {
      */
     _afterDragStart: function(event) {
         var dragNode = event.target.get('node');
+
+        this.dragging = true;
         
         dragNode.hide();
         dragNode.ancestor(SELECTOR_ROW).addClass(CSS_RESIZE_COL_DRAGGING);
+
+        this._hideColDraggableBoundaries();
     },
 
     /**
@@ -254,8 +267,13 @@ A.LayoutBuilderResizeCol.prototype = {
             this._delegateDrag.after('drag:mouseDown', A.bind(this._afterDragMouseDown, this)),
             this._delegateDrag.after('drag:mouseup', A.bind(this._afterDragMouseup, this)),
             this._delegateDrag.after('drag:start', A.bind(this._afterDragStart, this)),
-            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColDragHandle, this), 'press:13', '.' + CSS_RESIZE_COL_DRAGGABLE),
-            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColBreakpoint, this), 'press:13', '.' + CSS_RESIZE_COL_BREAKPOINT_LINE)
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColDragHandle, this), 
+                'press:13', '.' + CSS_RESIZE_COL_DRAGGABLE),
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColBreakpoint, this), 
+                'press:13', '.' + CSS_RESIZE_COL_BREAKPOINT_LINE),
+            this._layoutContainer.delegate('mouseenter', A.bind(this._onMouseEnterCol, this), SELECTOR_COL),
+            this._layoutContainer.delegate('mouseenter', A.bind(this._onMouseEnterDraggable, this), '.' + CSS_RESIZE_COL_DRAGGABLE),
+            this._layoutContainer.delegate('mouseleave', A.bind(this._onMouseLeaveCol, this), SELECTOR_ROW)
         ];
     },
 
@@ -399,6 +417,16 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
+     * Hides all the draggable bars.
+     *
+     * @method _hideColDraggableBoundaries
+     * @protected
+    */
+    _hideColDraggableBoundaries: function() {
+        this._layoutContainer.all('.' + CSS_RESIZE_COL_DRAGGABLE).removeClass(CSS_RESIZE_COL_DRAGGABLE_VISIBLE);
+    },
+
+    /**
      * Add new column for the given layout row after drop handler.
      *
      * @method _insertColumnAfterDropHandles
@@ -455,6 +483,54 @@ A.LayoutBuilderResizeCol.prototype = {
                 instance._gridlineNodes.push(gridLine);
             });
         });
+    },
+
+    /**
+     * Fired when the cursor is over a column.
+     *
+     * @method _onMouseEnterCol
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onMouseEnterCol: function(event) {
+        var colNode = event.currentTarget;
+
+        this._hideColDraggableBoundaries(colNode);
+
+        this._showColDraggableBoundaries(colNode);
+    },
+
+    /**
+     * Fired when the cursor is over a Draggable bar.
+     *
+     * @method _onMouseEnterDraggable
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onMouseEnterDraggable: function(event) {
+        var col1 = event.currentTarget.getData('layout-col1'),
+            col2 = event.currentTarget.getData('layout-col2');
+
+        if (col1) {
+            this._showColDraggableBoundaries(col1.get('node'));
+        }
+
+        if (col2) {
+            this._showColDraggableBoundaries(col2.get('node'));
+        }
+    },
+
+    /**
+     * Fired when the cursor is over a Draggable bar.
+     *
+     * @method _onMouseEnterDraggable
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onMouseLeaveCol: function(e) {
+        var colNode = e.currentTarget;
+
+        this._hideColDraggableBoundaries(colNode);
     },
 
     /**
@@ -571,6 +647,28 @@ A.LayoutBuilderResizeCol.prototype = {
                 dropNode.setStyle('display', 'block');
             }
         });
+    },
+
+    /**
+     * Shows draggable bars of a column.
+     *
+     * @method _showColDraggableBoundaries
+     * @param {Node} colNode
+     * @protected
+     */
+    _showColDraggableBoundaries: function(colNode) {
+        var col1,
+            col2,
+            draggablesList = colNode.ancestor().all('.' + CSS_RESIZE_COL_DRAGGABLE);
+
+        for (var i = draggablesList._nodes.length; i--;) {
+            col1 = draggablesList.item(i).getData('layout-col1');
+            col2 = draggablesList.item(i).getData('layout-col2');
+
+            if ((col2 && col2.get('node') === colNode) || (col1 && col1.get('node') === colNode)) {
+                draggablesList.item(i).addClass(CSS_RESIZE_COL_DRAGGABLE_VISIBLE);
+            }
+        }
     },
 
     /**

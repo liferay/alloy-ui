@@ -1,44 +1,7 @@
-.layout-builder-add-col {
-    background-color: #d2e9c8;
-    border: 1px solid #47ae2f;
-    border-radius: 15px;
-    color: #47ae2f;
-    cursor: pointer;
-    height: 30px;
-    line-height: 30px;
-    margin-top: -15px;
-    position: absolute;
-    text-align: center;
-    top: 50%;
-    width: 30px;
+.layout-builder-add-col-draggable .layout-builder-resize-col-draggable-border {
+    border-right-color: transparent;
 }
 
-.layout-builder-add-col-left {
-    left: -15px;
-}
-
-.layout-builder-add-col-right {
-    right: -15px;
-}
-
-.layout-builder-add-col-text {
-    display: none;
-    font-size: 11px;
-    margin-left: 5px;
-}
-
-.layout-builder-add-col:hover {
-    width: 100px;
-}
-
-.layout-builder-add-col-left:hover {
-    left: -50px;
-}
-
-.layout-builder-add-col-right:hover {
-    right: -50px;
-}
-
-.layout-builder-add-col:hover .layout-builder-add-col-text {
-    display: inline;
+.layout-builder-add-col-draggable:last-child .layout-builder-resize-col-draggable-border {
+    border-color: #bbb;
 }
