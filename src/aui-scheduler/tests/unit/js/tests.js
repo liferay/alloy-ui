@@ -845,6 +845,32 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 testText, Y.one('.scheduler-event .scheduler-event-content').text(),
                 'First event should be: ' + testText
             );
+        },
+
+        'should display all-day event in day view': function() {
+            var displayDate = new Date(2015, 9, 24),
+                startDate = new Date(2015, 9, 24),
+                endDate =  new Date(2015, 9, 24, 23, 59, 59);
+
+            var events = [
+                {
+                    allDay: true,
+                    content: 'Event 2',
+                    endDate: endDate,
+                    startDate: startDate,
+                }
+            ];
+
+            this._createScheduler({
+                date: displayDate,
+                views: [this._dayView],
+                items: events
+            });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-event').size(),
+                'The all-day event should be displayed.'
+            );
         }
     }));
 
