@@ -476,7 +476,7 @@ var SchedulerTableView = A.Component.create({
             var renderedEvents = false;
 
             instance.loopDates(rowStartDate, rowEndDate, function(celDate, index) {
-                var key = String(celDate.getTime());
+                var key = instance._getEvtRenderedStackKey(celDate);
 
                 var evtRenderedStack = instance.evtRenderedStack[key];
 
@@ -691,7 +691,7 @@ var SchedulerTableView = A.Component.create({
             var instance = this;
             var scheduler = instance.get(SCHEDULER);
 
-            var key = String(date.getTime());
+            var key = instance._getEvtRenderedStackKey(date);
 
             if (!instance.evtDateStack[key]) {
                 var events = scheduler.getIntersectEvents(date);
@@ -893,7 +893,8 @@ var SchedulerTableView = A.Component.create({
          * @protected
          */
         _addEventToAllDates: function(event, firstDate, lastDate) {
-            var currentDate = firstDate,
+            var instance = this,
+                currentDate = firstDate,
                 eventEndDate = event.getClearEndDate();
 
             if (DateMath.after(lastDate, eventEndDate)) {
@@ -902,7 +903,7 @@ var SchedulerTableView = A.Component.create({
 
             while (!DateMath.after(currentDate, lastDate)) {
                 this._addToEvtDateStack(
-                    String(currentDate.getTime()),
+                    instance._getEvtRenderedStackKey(currentDate),
                     event
                 );
 
@@ -1075,7 +1076,20 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
-         * TODO. Wanna help? Please send a Pull Request.
+         * Returns a unique string representation for a date (disregarding time).
+         *
+         * @method _getEvtRenderedStackKey
+         * @param {Date} date A date
+         * @protected
+         * @return {String} one string that uniquely represents the date.
+         */
+        _getEvtRenderedStackKey: function(date) {
+            return String(date.getTime());
+        },
+
+        /**
+         * Returns nn object containing the `colspan`, `left` and
+         * `right` values that determine a `SchedulerEvent`'s split information.
          *
          * @method _getEvtSplitInfo
          * @param evt
@@ -1112,7 +1126,7 @@ var SchedulerTableView = A.Component.create({
          */
         _getRenderableEvent: function(events, rowStartDate, rowEndDate, celDate) {
             var instance = this,
-                key = String(celDate.getTime()),
+                key = instance._getEvtRenderedStackKey(celDate),
                 i;
 
             if (!instance.evtRenderedStack[key]) {
