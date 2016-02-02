@@ -1049,7 +1049,10 @@ var SchedulerTableView = A.Component.create({
          * @return {String} one string that uniquely represents the date.
          */
         _getEvtRenderedStackKey: function(date) {
-            return String(date.getTime());
+            var day = Lang.String.padNumber(date.getDate(), 2),
+                month = Lang.String.padNumber(date.getMonth(), 2);
+
+            return [date.getFullYear(), month, day].join('');
         },
 
         /**
