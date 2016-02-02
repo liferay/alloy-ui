@@ -42,7 +42,7 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
 A.FormBuilderFieldBase = function() {};
 
 A.FormBuilderFieldBase.prototype = {
-    TPL_FIELD: '<div class="' + CSS_FIELD + ' form-field" tabindex="9">' +
+    TPL_FIELD: '<div class="' + CSS_FIELD + ' form-field">' +
         '<div class="' + CSS_FIELD_CONTENT_TOOLBAR + '">' +
         '<div class="' + CSS_FIELD_CONTENT + ' form-field-content"></div>' +
         '<div class="' + CSS_FIELD_MOVE_BUTTON + ' layout-builder-move-cut-button"></div>' +

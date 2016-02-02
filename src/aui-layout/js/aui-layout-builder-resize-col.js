@@ -32,10 +32,10 @@ A.LayoutBuilderResizeCol = function() {};
 
 A.LayoutBuilderResizeCol.prototype = {
     TPL_RESIZE_COL_BREAKPOINT: '<div class="' + CSS_RESIZE_COL_BREAKPOINT + '">' +
-        '<div class="' + CSS_RESIZE_COL_BREAKPOINT_LINE + '" tabindex="8"></div></div>',
+        '<div class="' + CSS_RESIZE_COL_BREAKPOINT_LINE + '"></div></div>',
     TPL_RESIZE_COL_DRAGGABLE: '<div class="' + CSS_RESIZE_COL_DRAGGABLE + '">' +
         '<div class="' + CSS_RESIZE_COL_DRAGGABLE_BORDER + '"></div>' +
-        '<div class="' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + '" tabindex="8">' +
+        '<div class="' + CSS_RESIZE_COL_DRAGGABLE_HANDLE + '">' +
         '<span class="glyphicon glyphicon-chevron-left"></span>' +
         '<span class="glyphicon glyphicon-chevron-right"></span></div></div>',
 

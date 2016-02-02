@@ -43,9 +43,9 @@ var CSS_FORM_BUILDER_PAGES_CONTENT =
 A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, [], {
 
     TPL_PAGE_HEADER: '<div class="' + CSS_PAGE_HEADER + ' form-inline">' +
-        '<input placeholder="{untitledPage}" tabindex="1" class="' + CSS_PAGE_HEADER_TITLE + ' ' +
+        '<input placeholder="{untitledPage}" class="' + CSS_PAGE_HEADER_TITLE + ' ' +
         CSS_PAGE_HEADER_TITLE_HIDE_BORDER + ' form-control" type="text" />' +
-        '<input placeholder="{aditionalInfo}" tabindex="2" class="' + CSS_PAGE_HEADER_DESCRIPTION +
+        '<input placeholder="{aditionalInfo}" class="' + CSS_PAGE_HEADER_DESCRIPTION +
         ' ' +
         CSS_PAGE_HEADER_DESCRIPTION_HIDE_BORDER + ' form-control" type="text" />' +
         '</div>',

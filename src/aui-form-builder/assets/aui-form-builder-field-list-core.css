@@ -35,6 +35,7 @@
 }
 
 .form-builder-field-list-add-button-visible .form-builder-field-list-add-button {
+    display: block;
     visibility: visible;
 }
 
