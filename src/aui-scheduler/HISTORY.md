@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2075](https://issues.liferay.com/browse/AUI-2075) DateMath.toMidnight() changes the value of its argument
 * [AUI-2074](https://issues.liferay.com/browse/AUI-2074) Cannot view all day events in Day view
 * [AUI-2061](https://issues.liferay.com/browse/AUI-2061) Low performance on countDays method when using huge dates.
 * [AUI-1998](https://issues.liferay.com/browse/AUI-1998) Scheduler's month view does not display events in chronological order.
