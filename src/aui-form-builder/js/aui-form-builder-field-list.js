@@ -38,15 +38,15 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
  */
 A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     TPL_ADD_FIELD: '<div class="' + CSS_FIELD_LIST_ADD_CONTAINER + '">' +
-        '<div class="' + CSS_FIELD_LIST_ADD_BUTTON + ' ' +
-        CSS_FIELD_LIST_ADD_BUTTON_VISIBLE + '" tabindex="9">' +
+        '<a class="' + CSS_FIELD_LIST_ADD_BUTTON + ' ' +
+        CSS_FIELD_LIST_ADD_BUTTON_VISIBLE + '" href="javascript:;">' +
         '<div class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + '">' +
         '<div class="' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON + '">+</div>' +
         '</div>' +
         '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_LABEL + '">' +
         '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_LABEL + '">+</label> ADD FIELD' +
         '</label>' +
-        '</div></div>',
+        '</a></div>',
     TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '">' +
         '<div class="' + CSS_FIELD_LIST_CONTAINER + '"></div>' +
         '</div>',

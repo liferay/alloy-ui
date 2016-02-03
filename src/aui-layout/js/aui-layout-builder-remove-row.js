@@ -6,7 +6,7 @@
 
 var CSS_REMOVE_ROW = A.getClassName('layout', 'builder', 'remove', 'row', 'button'),
     SELECTOR_ROW = '.layout-row',
-    TPL_REMOVE_ROW_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_REMOVE_ROW + '" tabindex="4" type="button">' +
+    TPL_REMOVE_ROW_BUTTON = '<button class="btn btn-default btn-xs ' + CSS_REMOVE_ROW + '" type="button">' +
         '<span class="glyphicon glyphicon-trash"></span></button>';
 /**
  * A base class for Layout Remove Row.
