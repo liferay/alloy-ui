@@ -1,0 +1,4 @@
+.color-palette .palette-item-selected .palette-item-inner {
+    background-image: url(sprite.png);
+    background-position: -316px -98px;
+}
