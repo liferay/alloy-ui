@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2074](https://issues.liferay.com/browse/AUI-2074) Replace direct call to "filter" function with "Array.filter"
 * [AUI-2061](https://issues.liferay.com/browse/AUI-2061) Low performance on countDays method when using huge dates.
 * [AUI-1998](https://issues.liferay.com/browse/AUI-1998) Scheduler's month view does not display events in chronological order.
 * [AUI-1996](https://issues.liferay.com/browse/AUI-1996) Allow Scheduler to skip syncEventsUI to avoid redundant DOM manipulation.
