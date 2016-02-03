@@ -853,28 +853,32 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
-     * Sets the time fields from a given date to the last possible hour.
+     * Given a date, returns a {Date} object pointing to the last moment of the
+     * day.
      *
      * @method toLastHour
-     * @param {Date} date The JavaScript Date for which the time fields will be
-     *     set to the last possible hour
-     * @return {Date} The JavaScript Date set to the last possible hour
+     * @param {Date} date The date from which it will return the last moment.
+     * @return {Date} The last moment (23:59:59:999) of the given date.
      */
     toLastHour: function(date) {
+        date = this.clone(date);
         date.setHours(23, 59, 59, 999);
+
         return date;
     },
 
     /**
-     * Sets the time fields from a given date to midnight.
+     * Given a date, returns a {Date} object pointing to the first moment of the
+     * day (i.e. the midnight of that date).
      *
      * @method toMidnight
-     * @param {Date} date The JavaScript Date for which the time fields will be
-     *     set to midnight
-     * @return {Date} The JavaScript Date set to midnight
+     * @param {Date} date The date from which it will return the midnight.
+     * @return {Date} The midnight of the given date.
      */
     toMidnight: function(date) {
+        date = this.clone(date);
         date.setHours(0, 0, 0, 0);
+
         return date;
     },
 
