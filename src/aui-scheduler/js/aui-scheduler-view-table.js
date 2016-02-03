@@ -506,7 +506,7 @@ var SchedulerTableView = A.Component.create({
                 var evtColNode = A.Node.create(TPL_SVT_TABLE_DATA_COL);
                 var evtNodeContainer = evtColNode.one(DIV);
 
-                if (evt && (evtRenderedStack.length < events.length) && displayRows && (rowDisplayIndex === (displayRows - 1))) {
+                if ((evtRenderedStack.length < events.length) && displayRows && (rowDisplayIndex === (displayRows - 1))) {
                     var strings = instance.get(STRINGS);
 
                     var showMoreEventsLink = A.Node.create(
