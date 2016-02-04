@@ -24,6 +24,8 @@ var Lang = A.Lang,
     WidgetStdMod = A.WidgetStdMod,
     AgetClassName = A.getClassName,
 
+    DOC = A.getDoc(),
+
     ACTIVE_CELL = 'activeCell',
     ADD = 'add',
     ADD_OPTION = 'addOption',
@@ -813,11 +815,11 @@ var BaseCellEditor = A.Component.create({
 
             if (event.newVal) {
                 if (!hDocEscKey) {
-                    instance._hDocEscKeyEv = A.getDoc().on('key', A.bind(instance._onEscKey, instance), 'down:27');
+                    instance._hDocEscKeyEv = DOC.on(KEY, A.bind(instance._onEscKey, instance), 'down:27');
                 }
 
                 if (!hDocMouseDown) {
-                    instance._hDocMouseDownEv = A.getDoc().on(MOUSEDOWN, A.bind(instance._onDocMouseDownExt, instance));
+                    instance._hDocMouseDownEv = DOC.on(MOUSEDOWN, A.bind(instance._onDocMouseDownExt, instance));
                 }
             }
             else {
@@ -1262,14 +1264,15 @@ var BaseOptionsCellEditor = A.Component.create({
 
                             var inputValueNodelist = editContainerNode.all(_DOT + CSS_CELLEDITOR_EDIT_INPUT_VALUE);
 
-                            var validate = function (validateNode, nodelist, recurse) {
+                            var validate = function (validateNode, nodeList, recurse) {
                                 var duplicates = false;
 
-                                nodelist.each(
+                                nodeList.each(
                                     function(node){
                                         if (validateNode !== node) {
                                             if (validateNode.val() == node.val()) {
                                                 instance.highlight(validateNode);
+
                                                 instance.addFieldError(validateNode, 'uniqueValue');
 
                                                 duplicates = true;

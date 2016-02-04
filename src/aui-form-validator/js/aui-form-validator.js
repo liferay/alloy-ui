@@ -876,16 +876,17 @@ var FormValidator = A.Component.create({
          * @param {Node|String} field
          */
         resetField: function(field) {
-            var fieldNode,
+            var instance = this,
+                fieldNode,
                 stackContainer;
 
-            this.clearFieldError(field);
-            fieldNode = isString(field) ? this.getField(field) : field;
+            instance.clearFieldError(field);
+            fieldNode = isString(field) ? instance.getField(field) : field;
 
             if (isNode(fieldNode)) {
-                stackContainer = this.getFieldStackErrorContainer(fieldNode);
+                stackContainer = instance.getFieldStackErrorContainer(fieldNode);
                 stackContainer.remove();
-                this.resetFieldCss(fieldNode);
+                instance.resetFieldCss(fieldNode);
             }
         },
 
@@ -957,17 +958,18 @@ var FormValidator = A.Component.create({
          * @param field
          */
         validateField: function(field) {
-            var fieldNode,
+            var instance = this,
+                fieldNode,
                 validatable;
 
-            this.resetField(field);
-            fieldNode = isString(field) ? this.getField(field) : field;
+            instance.resetField(field);
+            fieldNode = isString(field) ? instance.getField(field) : field;
 
             if (isNode(fieldNode)) {
-                validatable = this.validatable(fieldNode);
+                validatable = instance.validatable(fieldNode);
 
                 if (validatable) {
-                    this.fire('validateField', {
+                    instance.fire(EV_VALIDATE_FIELD, {
                         validator: {
                             field: fieldNode
                         }
