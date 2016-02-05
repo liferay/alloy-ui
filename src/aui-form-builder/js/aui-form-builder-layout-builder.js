@@ -440,7 +440,7 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _onFormBuilderToolbarFieldMouseEnter: function(event) {
-        this._toggleMoveColItem(event.colNode);
+        this._setMoveButtonData(event.colNode);
     },
 
     /**
@@ -483,15 +483,14 @@ A.FormBuilderLayoutBuilder.prototype = {
     /**
      * Show or hide move item in toolbar.
      *
-     * @method _toggleMoveColItem
+     * @method _setMoveButtonData
      * @param {Node} colNode
      * @protected
      */
-    _toggleMoveColItem: function(colNode) {
+    _setMoveButtonData: function(colNode) {
         var moveItem = this._fieldToolbar.getItem('.layout-builder-move-cut-button');
 
         moveItem.setData('layout-row', colNode.ancestor('.row').getData('layout-row'));
         moveItem.setData('node-col', colNode);
-        moveItem.removeClass('hidden');
     }
 };
