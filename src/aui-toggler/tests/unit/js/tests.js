@@ -59,6 +59,16 @@ YUI.add('aui-toggler-base-tests', function(Y) {
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-collapsed'));
         },
 
+        'should not collapse content': function() {
+            var toggler = this._toggler;
+
+            toggler.expand();
+            toggler.collapse();
+
+            Y.Assert.isTrue(toggler.get('animating'));
+            Y.Assert.isFalse(this.togglerHasClass('toggler-content-collapsed'));
+        },
+
         'should toggle content': function() {
             var toggler = this._toggler;
 
