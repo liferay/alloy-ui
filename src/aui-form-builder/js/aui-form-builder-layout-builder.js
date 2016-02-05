@@ -488,7 +488,7 @@ A.FormBuilderLayoutBuilder.prototype = {
      * @protected
      */
     _toggleMoveColItem: function(colNode) {
-        var moveItem = this._fieldToolbar.getItem('.glyphicon-move').ancestor();
+        var moveItem = this._fieldToolbar.getItem('.layout-builder-move-cut-button');
 
         moveItem.setData('layout-row', colNode.ancestor('.row').getData('layout-row'));
         moveItem.setData('node-col', colNode);
