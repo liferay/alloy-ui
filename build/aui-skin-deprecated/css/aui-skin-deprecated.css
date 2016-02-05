@@ -1,0 +1,552 @@
+/* ---------- Interaction styles ---------- */
+ .state-default, .state-active, .state-hover {
+    background: #eee;
+    border: 1px solid #ccc;
+    border-color: #bbb #999 #999 #bbb;
+}
+.state-active {
+    background: #efefef;
+    border-color: #333;
+}
+.state-hover {
+    background: #ddd;
+    border-color: #999 #bbb #bbb #999;
+    cursor: pointer;
+}
+.state-disabled {
+    cursor: default !important;
+}
+.html-template {
+    display: none;
+}
+.basecelleditor-hidden, .datecelleditor-hidden, .dropdowncelleditor-hidden, .textcelleditor-hidden, .textareacelleditor-hidden, .checkboxcelleditor-hidden, .radiocelleditor-hidden, .helper-hidden {
+    display: none !important;
+}
+.helper-hidden-accessible, .overlay-hidden, .overlaycontext-hidden, .overlaymask-hidden, .date-picker-hidden, .datepicker-hidden, .colorpicker-hidden, .tooltip-hidden {
+    clip: rect(0 0 0 0) !important;
+    position: absolute !important;
+    /*Webkit and IE7 let clipped content change the scroll height of the page*/
+    /*Scale webkit to 0*/
+    -webkit-transform: scale(0);
+    -webkit-transform-origin-x: 0px;
+    -webkit-transform-origin-y: 0px;
+    /*Change IE7 to using fixed*/
+    *position: fixed !important;
+    /*...And reset back to absolute for IE6*/
+    _position: absolute !important;
+}
+.helper-force-offset {
+    display: block !important;
+    position: absolute !important;
+    visibility: hidden !important;
+}
+.helper-reset {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    text-decoration: none;
+    font-size: 100%;
+    list-style: none;
+    border: 0;
+}
+.helper-clearfix:after {
+    clear: both;
+    content:"";
+    display: block;
+    height: 0;
+}
+.helper-clearfix {
+    /* IE7/IE6 */
+    zoom: 1;
+}
+.helper-zfix {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0;
+    /* IE8 */
+    -ms-filter: alpha(opacity=0);
+    /* IE7/IE8(quirks) */
+    filter: alpha(opacity=0);
+}
+/* unselectable */
+ .helper-unselectable, .helper-unselectable * {
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+/* scroll lock */
+ .helper-scroll-lock {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    width: 100%;
+}
+.layout {
+    width: 100%;
+}
+.ie6 .layout-content, .ie7 .layout-content {
+    display: block;
+}
+.ltr .column, .rtl .column-last {
+    float: left;
+}
+.rtl .column, .ltr .column-last {
+    float: right;
+}
+.ltr .column-last {
+    margin-left: -5px;
+}
+.rtl .column-last {
+    margin-right: -5px;
+}
+.layout-content:after {
+    clear: both;
+    content:"";
+    display: block;
+    height: 0;
+}
+.layout-content {
+    /* IE7/IE6 */
+    zoom: 1;
+}
+.w1-20, .w5 {
+    width: 5%;
+}
+.w1-16 {
+    width: 6.25%;
+}
+.w1-12 {
+    width: 8.334%;
+}
+.w1-10, .w10 {
+    width: 10%;
+}
+.w1-9 {
+    width: 11.112%;
+}
+.w1-8 {
+    width: 12.5%;
+}
+.w1-7 {
+    width: 14.286%;
+}
+.w15 {
+    width: 15%;
+}
+.w1-6 {
+    width: 16.667%;
+}
+.w3-16 {
+    width: 18.75%;
+}
+.w1-5, .w20 {
+    width: 20%;
+}
+.w2-9 {
+    width: 22.223%;
+}
+.w1-4, .w25 {
+    width: 25%;
+}
+.w2-7 {
+    width: 28.572%;
+}
+.w3-10, .w30 {
+    width: 30%;
+}
+.w5-16 {
+    width: 31.25%;
+}
+.w1-3, .w33 {
+    width: 33.334%;
+}
+.w35 {
+    width: 35%;
+}
+.w3-8 {
+    width: 37.5%;
+}
+.w38 {
+    width: 38.2%;
+}
+.w2-5, .w40 {
+    width: 40%;
+}
+.w5-12 {
+    width: 41.667%;
+}
+.w7-16 {
+    width: 43.75%;
+}
+.w4-9 {
+    width: 44.445%;
+}
+.w45 {
+    width: 45%;
+}
+.w3-7 {
+    width: 42.858%;
+}
+.w1-2, .w50 {
+    width: 50%;
+}
+.w55 {
+    width: 55%;
+}
+.w5-9 {
+    width: 55.556%;
+}
+.w9-16 {
+    width: 56.25%;
+}
+.w4-7 {
+    width: 57.143%;
+}
+.w7-12 {
+    width: 58.334%;
+}
+.w3-5, .w60 {
+    width: 60%;
+}
+.w5-8 {
+    width: 62.5%;
+}
+.w62 {
+    width: 61.8%;
+}
+.w65 {
+    width: 65%;
+}
+.w2-3, .w66 {
+    width: 66.667%;
+}
+.w11-16 {
+    width: 68.75%;
+}
+.w7-10, .w70 {
+    width: 70%;
+}
+.w5-7 {
+    width: 71.429%;
+}
+.w3-4, .w75 {
+    width: 75%;
+}
+.w7-9 {
+    width: 77.778%;
+}
+.w4-5, .w80 {
+    width: 80%;
+}
+.w13-16 {
+    width: 81.25%;
+}
+.w5-6 {
+    width: 83.334%;
+}
+.w85 {
+    width: 85%;
+}
+.w6-7 {
+    width: 85.715%;
+}
+.w7-8 {
+    width: 87.5%;
+}
+.w9-10, .w90 {
+    width: 90%;
+}
+.w11-12 {
+    width: 91.667%;
+}
+.w15-16 {
+    width: 93.75%;
+}
+.w95 {
+    width: 95%;
+}
+.w100 {
+    width: 100%;
+}
+.webkit .w1-12 {
+    width: 8.345%;
+}
+.webkit .w11-12 {
+    width: 91.675%;
+}
+.webkit .w1-6 {
+    width: 16.675%;
+}
+.webkit .w5-6 {
+    width: 83.345%;
+}
+.webkit .w5-12 {
+    width: 41.675%;
+}
+.webkit .w7-12 {
+    width: 58.345%;
+}
+.webkit .w1-3, .webkit .w33 {
+    width: 33.345%;
+}
+.webkit .w2-3, .webkit .w66 {
+    width: 66.675%;
+}
+.column-content, .column-content-center {
+    padding: 0 0.5em;
+}
+.ltr .column-content-first, .rtl .column-content-last {
+    padding-left: 0;
+}
+.rtl .column-content-first, .ltr .column-content-last {
+    padding-right: 0;
+}
+.ie6.ltr .column-first, .ie6.ltr .column-content-first, .ie6.rtl .column-last, .ie6.rtl .column-content-last {
+    display: inline;
+}
+.ie6 .layout-content .column-content-center, .ie6 .layout-content .column-content-first, .ie6 .layout-content .column-content-last {
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.floatbox {
+    overflow: hidden;
+}
+.fieldset-legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.field-labels-inline .field-label, .field-labels-inline .field-input, .field-labels-inline .field-hint {
+    float: left;
+}
+.field-labels-inline .field-label, .field-labels-inline .field-input-text {
+    width: 45%;
+}
+.field-labels-inline .field-label {
+    margin: 0.3em 2% 0 0;
+}
+.field-labels-right .field-label {
+    text-align: right;
+}
+.field-labels-inline .field-hint {
+    display: block;
+    float: none;
+    clear: both;
+    margin-left: 47%;
+}
+.field-label, .field-labels-top .field-label {
+    display: block;
+    float: none;
+    text-align: left;
+    margin: 0;
+    width: auto;
+}
+.field-input, .field-labels-top .field-input {
+    float: none;
+    width: auto;
+}
+.field-hint, .field-labels-top .field-hint {
+    line-height: 1;
+    clear: none;
+    float: right;
+    width: 45%;
+    margin: 0;
+}
+.field-hint-icon {
+    float: left;
+}
+.field-inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+.field-label-inline {
+    display: inline-block;
+    margin: 0.4em 0.4em 0 0;
+}
+.field-inline .field-content, .field-inline .field-label {
+    display: inline-block;
+}
+.field-inline .field-label {
+    vertical-align: middle;
+}
+.field-group {
+    float: left;
+    width: 53%;
+}
+.choice-label {
+    line-height: 1;
+    width: 89%;
+}
+.field-input-choice {
+    display: inline-block;
+    margin: 0 0.4em 0 0;
+    vertical-align: middle;
+}
+.field-row {
+    display: block;
+    clear: both;
+}
+.field-row:after {
+    clear: both;
+    content:"";
+    display: block;
+    height: 0;
+}
+.field-row {
+    /* IE7/IE6 */
+    zoom: 1;
+}
+.button-holder {
+    display: block;
+    clear: both;
+}
+.button-input {
+    margin: 0;
+    line-height: 1.3;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 10px 6px 7px;
+}
+/* IE7 and below */
+ .button-input {
+    *padding: 4px 10px 3px 7px;
+}
+.field-content:after, .button-holder:after {
+    clear: both;
+    content:" ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.field-content, .button-holder {
+    display: inline-block;
+}
+/* start commented backslash hack \*/
+ * html .field-content, * html .button-holder {
+    height: 1%;
+}
+.field-content, .button-holder {
+    display: block;
+}
+/* close commented backslash hack */
+ .field-label, .field-label-inline-label {
+    font-weight: bold;
+}
+.choice-label {
+    font-weight: normal;
+}
+.field-hint {
+    color: #777;
+    font-size: 0.9em;
+}
+.choice-label, .field-hint {
+    line-height: 1.2;
+}
+.field-element-left {
+    display: inline-block;
+    vertical-align: middle;
+}
+/* Fields used for form validation */
+ .field.has-error .field-content {
+    border-bottom: 1px solid #EF4A4A;
+    background-color: #FF9F9F;
+}
+.field.has-warn .field-content {
+    border-bottom: 1px solid #FFC45F;
+    background-color: #FFFABF;
+}
+.field .message-holder {
+    color: #FF0000;
+    display: block;
+    font-weight: bold;
+}
+.status-failure {
+    border: 1px solid #EF4A4A;
+}
+.autocomplete-results-content, .colorpicker-content, .overlaycontext-content {
+    background: #fff;
+}
+.overlay {
+    position: absolute;
+}
+/*
+Add your classname to the list below in order to have your element
+recieve a gracefully degrading chrome enhancement such as a drop
+shadow or rounded corners.
+*/
+
+/* ---------- CSS3 shadows ---------- */
+ .date-picker-content, .overlaycontextpanel-content, .tooltip-content, .colorpicker-content, .tree-drag-helper-content {
+    -moz-box-shadow: 4px 4px 14px #777;
+    -webkit-box-shadow: 4px 4px 14px #777;
+    box-shadow: 4px 4px 14px #777;
+}
+/* No shadow */
+ .null-selector {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+/* ---------- Rounded corners ---------- */
+
+/* All corners */
+ .state-default, .state-active, .state-hover, .colorpicker-content, .colorpicker-panel-content, .loadingmask-message, .loadingmask-message-content, .progress-bar-content, .progress-bar-status, .form-builder-field, .form-builder-default-message {
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+.carousel menu {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.carousel menu a {
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    border-radius: 9px;
+}
+/* Large corners */
+ .textboxlistentry, .textboxlistentry-close {
+    -moz-border-radius: 14px;
+    -webkit-border-radius: 14px;
+    border-radius: 14px;
+}
+/* No corners */
+ .editable-hover, .overlaycontextpanel-pointer.state-default {
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+.state-default, .state-disabled, .state-disabled:hover {
+    background: #d4d4d4 url(../images/common/state_default_bg.png) repeat-x 0 0;
+    border: 1px solid;
+    border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
+}
+.state-hover {
+    background: #b9ced9 url(../images/common/state_hover_bg.png) repeat-x 0 0;
+    border-color: #627782;
+}
+.state-active {
+    background: #ebebeb url(../images/common/state_active_bg.png) repeat-x 0 0;
+    border-color: #555;
+}
+.state-active:hover {
+    background: #f2faff url(../images/common/state_selected_hover.png) repeat-x 0 0;
+    border-color: #627782;
+}
+/* ---------- Extras ---------- */
+
+/* ---------- Drop shadows ---------- */
+
+/* ---------- Rounded corners ---------- */
+
+/* YUI CSS Detection Stamp */
+ #yui3-css-stamp.skin-deprecated {
+    display: none;
+}
