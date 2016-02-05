@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2076](https://issues.liferay.com/browse/AUI-2076) Improving the way to reference the move field button
 * [AUI-2073](https://issues.liferay.com/browse/AUI-2073) Set the tab order on Form Builder
 * [AUI-2069](https://issues.liferay.com/browse/AUI-2069) Unexpected Visual Behavior after removing a field
 * [AUI-1994](https://issues.liferay.com/browse/AUI-1994) Adds borders as separators on the Form Builder
