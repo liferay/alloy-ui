@@ -70,8 +70,59 @@ YUI.add('aui-datatype-tests', function(Y) {
                 Y.DataType.DateMath.countDays(d2, d1),
                 'It should count 72328972 days between dates'
             );
-        }
+        },
 
+        'should return the midnight time for a date': function() {
+            var date = new Date(2016, 1, 2, 15, 19),
+                midnight;
+
+            midnight = Y.DataType.DateMath.toMidnight(date);
+
+            Y.Assert.areEqual(2016, midnight.getFullYear());
+            Y.Assert.areEqual(1, midnight.getMonth());
+            Y.Assert.areEqual(2, midnight.getDate());
+            Y.Assert.areEqual(0, midnight.getHours());
+            Y.Assert.areEqual(0, midnight.getMinutes());
+        },
+
+        'should not change argument when calling toMidnight': function() {
+            var date = new Date(2016, 1, 2, 15, 35),
+                midnight;
+
+            midnight = Y.DataType.DateMath.toMidnight(date);
+
+            Y.Assert.areEqual(2016, date.getFullYear());
+            Y.Assert.areEqual(1, date.getMonth());
+            Y.Assert.areEqual(2, date.getDate());
+            Y.Assert.areEqual(15, date.getHours());
+            Y.Assert.areEqual(35, date.getMinutes());
+        },
+
+        'should return the last time for a date': function() {
+            var date = new Date(2016, 1, 2, 15, 19),
+                lastHour;
+
+            lastHour = Y.DataType.DateMath.toLastHour(date);
+
+            Y.Assert.areEqual(2016, lastHour.getFullYear());
+            Y.Assert.areEqual(1, lastHour.getMonth());
+            Y.Assert.areEqual(2, lastHour.getDate());
+            Y.Assert.areEqual(23, lastHour.getHours());
+            Y.Assert.areEqual(59, lastHour.getMinutes());
+        },
+
+        'should not change argument when calling toLastHour': function() {
+            var date = new Date(2016, 1, 2, 15, 35),
+                lastHour;
+
+            lastHour = Y.DataType.DateMath.toLastHour(date);
+
+            Y.Assert.areEqual(2016, date.getFullYear());
+            Y.Assert.areEqual(1, date.getMonth());
+            Y.Assert.areEqual(2, date.getDate());
+            Y.Assert.areEqual(15, date.getHours());
+            Y.Assert.areEqual(35, date.getMinutes());
+        }
     }));
 
     Y.Test.Runner.add(suite);

@@ -420,7 +420,7 @@ var SchedulerTableView = A.Component.create({
             var renderedEvents = false;
 
             instance.loopDates(rowStartDate, rowEndDate, function(celDate, index) {
-                var key = String(celDate.getTime());
+                var key = instance._getEvtRenderedStackKey(celDate);
 
                 var evtRenderedStack = instance.evtRenderedStack[key];
 
@@ -450,7 +450,7 @@ var SchedulerTableView = A.Component.create({
                 var evtColNode = A.Node.create(TPL_SVT_TABLE_DATA_COL);
                 var evtNodeContainer = evtColNode.one('div');
 
-                if (evt && (evtRenderedStack.length < events.length) && displayRows && (rowDisplayIndex === (displayRows - 1))) {
+                if ((evtRenderedStack.length < events.length) && displayRows && (rowDisplayIndex === (displayRows - 1))) {
                     var strings = instance.get('strings');
 
                     var showMoreEventsLink = A.Node.create(
@@ -642,7 +642,7 @@ var SchedulerTableView = A.Component.create({
             var instance = this;
             var scheduler = instance.get('scheduler');
 
-            var key = String(date.getTime());
+            var key = instance._getEvtRenderedStackKey(date);
 
             if (!instance.evtDateStack[key]) {
                 var events = scheduler.getIntersectEvents(date);
@@ -854,7 +854,8 @@ var SchedulerTableView = A.Component.create({
          * @protected
          */
         _addEventToAllDates: function(event, firstDate, lastDate) {
-            var currentDate = firstDate,
+            var instance = this,
+                currentDate = firstDate,
                 eventEndDate = event.getClearEndDate();
 
             if (DateMath.after(lastDate, eventEndDate)) {
@@ -863,7 +864,7 @@ var SchedulerTableView = A.Component.create({
 
             while (!DateMath.after(currentDate, lastDate)) {
                 this._addToEvtDateStack(
-                    String(currentDate.getTime()),
+                    instance._getEvtRenderedStackKey(currentDate),
                     event
                 );
 
@@ -1040,6 +1041,21 @@ var SchedulerTableView = A.Component.create({
         },
 
         /**
+         * Returns a unique string representation for a date (disregarding time).
+         *
+         * @method _getEvtRenderedStackKey
+         * @param {Date} date A date
+         * @protected
+         * @return {String} one string that uniquely represents the date.
+         */
+        _getEvtRenderedStackKey: function(date) {
+            var day = Lang.String.padNumber(date.getDate(), 2),
+                month = Lang.String.padNumber(date.getMonth(), 2);
+
+            return [date.getFullYear(), month, day].join('');
+        },
+
+        /**
          * Returns nn object containing the `colspan`, `left` and
          * `right` values that determine a `SchedulerEvent`'s split information.
          *
@@ -1084,7 +1100,7 @@ var SchedulerTableView = A.Component.create({
          */
         _getRenderableEvent: function(events, rowStartDate, rowEndDate, celDate) {
             var instance = this,
-                key = String(celDate.getTime()),
+                key = instance._getEvtRenderedStackKey(celDate),
                 i;
 
             if (!instance.evtRenderedStack[key]) {
