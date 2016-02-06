@@ -368,15 +368,17 @@ var Toggler = A.Component.create({
                 expand = !expanded;
             }
 
-            if (instance.get('animated') && (expand !== expanded)) {
-                if (instance.get('animating')) {
-                    return expand;
-                }
+            if ((expand !== expanded)) {
+                if (instance.get('animated')) {
+                    if (instance.get('animating')) {
+                        return expand;
+                    }
 
-                instance._animation(expand, payload);
-            }
-            else {
-                instance.set('expanded', expand, payload);
+                    instance._animation(expand, payload);
+                }
+                else {
+                    instance.set('expanded', expand, payload);
+                }
             }
 
             return expand;
