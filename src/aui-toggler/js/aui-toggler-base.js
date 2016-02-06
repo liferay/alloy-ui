@@ -282,7 +282,7 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Expand Toggler with an animation.
+         * Expand/collapse `A.Toggler` with an animation.
          *
          * @method animate
          * @param config
@@ -302,6 +302,8 @@ var Toggler = A.Component.create({
          * Hide Toggler content.
          *
          * @method collapse
+         * @param {Object} payload
+         * @return {Boolean} expand
          */
         collapse: function(payload) {
             var instance = this;
@@ -313,6 +315,8 @@ var Toggler = A.Component.create({
          * Show Toggler content.
          *
          * @method expand
+         * @param {Object} payload
+         * @return {Boolean} expand
          */
         expand: function(payload) {
             var instance = this;
@@ -358,7 +362,9 @@ var Toggler = A.Component.create({
          * Show or hide content.
          *
          * @method toggle
-         * @param expand
+         * @param {Boolean} expand
+         * @param {Object} payload
+         * @return {Boolean} expand
          */
         toggle: function(expand, payload) {
             var instance = this,
@@ -446,10 +452,10 @@ var Toggler = A.Component.create({
         },
 
         /**
-         * Set the <code>expanded</code> attribute on the UI.
+         * Set the "expanded"/"collapsed" classes on the UI.
          *
          * @method _uiSetExpanded
-         * @param val
+         * @param {Boolean} val
          * @protected
          */
         _uiSetExpanded: function(val) {
