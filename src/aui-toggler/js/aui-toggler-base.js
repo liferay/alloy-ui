@@ -418,7 +418,8 @@ var Toggler = A.Component.create({
 
             instance.set('animating', true);
 
-            instance.animate({
+            instance.animate(
+                {
                     marginTop: (expand ? gutter : -(height + gutter)) + 'px'
                 },
                 function() {
