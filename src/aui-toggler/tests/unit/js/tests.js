@@ -52,34 +52,101 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should collapse content': function() {
+            this.createToggler({
+                content: '.content',
+                header: '.accordion-heading'
+            });
+
             var toggler = this._toggler;
 
-            toggler.expand();
             toggler.collapse();
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-collapsed'));
         },
 
-        'should not collapse content': function() {
+        'should not collapse when animating in progress': function() {
+            this.createToggler({
+                animated: true,
+                content: '.content',
+                expanded: false,
+                header: '.accordion-heading'
+            });
+
             var toggler = this._toggler;
 
+            Y.Assert.isTrue(toggler.get('animated'), 'animated');
+
             toggler.expand();
+            Y.Assert.isTrue(toggler.get('animating'), 'animating');
             toggler.collapse();
 
-            Y.Assert.isTrue(toggler.get('animating'));
-            Y.Assert.isFalse(this.togglerHasClass('toggler-content-collapsed'));
+            Y.Assert.isFalse(toggler.get('expanded'), 'expanded');
+            this.wait(function() {
+                Y.Assert.isTrue(toggler.get('expanded'), 'expanded');
+            }, 500);
+        },
+
+        'should not expand when animating in progress': function() {
+            this.createToggler({
+                animated: true,
+                content: '.content',
+                header: '.accordion-heading'
+            });
+
+            var toggler = this._toggler;
+
+            Y.Assert.isTrue(toggler.get('animated'), 'animated');
+
+            toggler.collapse();
+            Y.Assert.isTrue(toggler.get('animating'), 'animating');
+            toggler.expand();
+
+            Y.Assert.isTrue(toggler.get('expanded'), 'expanded');
+            this.wait(function() {
+                Y.Assert.isFalse(toggler.get('expanded'), 'expanded');
+            }, 500);
+        },
+
+        'should not start a new animate when animating in progress': function() {
+            this.createToggler({
+                animated: true,
+                content: '.content',
+                header: '.accordion-heading'
+            });
+
+            var toggler = this._toggler;
+
+            Y.Assert.isTrue(toggler.get('animated'), 'animated');
+
+            toggler.toggle(false);
+            Y.Assert.isTrue(toggler.get('animating'), 'animating');
+            toggler.toggle(false);
+
+            Y.Assert.isTrue(toggler.get('expanded'), 'expanded');
+            this.wait(function() {
+                Y.Assert.isFalse(toggler.get('expanded'), 'expanded');
+            }, 500);
         },
 
         'should toggle content': function() {
+            this.createToggler({
+                content: '.content',
+                expanded: false,
+                header: '.accordion-heading'
+            });
+
             var toggler = this._toggler;
 
             toggler.toggle();
-            Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'));
+            Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'), 'toggle() expand');
 
-            toggler.toggle(false);
-            Y.Assert.isTrue(this.togglerHasClass('toggler-content-collapsed'));
+            toggler.toggle();
+            Y.Assert.isTrue(this.togglerHasClass('toggler-content-collapsed'), 'toggle() collapse');
 
             toggler.toggle(true);
-            Y.Assert.isTrue(this.togglerHasClass('toggler-content-collapsed'));
+            Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'), 'toggle(true) expand');
+
+            toggler.toggle(false);
+            Y.Assert.isTrue(this.togglerHasClass('toggler-content-collapsed'), 'toggle(false) collapse');
         },
 
         'should return the right content height': function() {
