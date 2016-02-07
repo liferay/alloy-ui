@@ -59,6 +59,41 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-collapsed'));
         },
 
+        'should not animate when animated is false': function() {
+            this.createToggler({
+                content: '.content',
+                expanded: false,
+                header: '.heading'
+            });
+
+            var toggler = this._toggler;
+
+            Y.Assert.isFalse(toggler.get('animated'), 'animated');
+
+            toggler.expand();
+            Y.Assert.isFalse(toggler.get('animating'), 'animating');
+        },
+
+        'should animate when animated is true': function() {
+            this.createToggler({
+                animated: true,
+                content: '.content',
+                expanded: false,
+                header: '.heading'
+            });
+
+            var toggler = this._toggler;
+
+            Y.Assert.isTrue(toggler.get('animated'), 'animated');
+
+            toggler.expand();
+            Y.Assert.isTrue(toggler.get('animating'), 'animating');
+
+            this.wait(function() {
+                Y.Assert.isFalse(toggler.get('animating'), 'animating');
+            }, 500);
+        },
+
         'should not collapse when animating in progress': function() {
             this.createToggler({
                 animated: true,
@@ -170,6 +205,111 @@ YUI.add('module-tests', function(Y) {
 
             toggler.animate();
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'));
+        },
+
+        'should toggle/expand/collapse on key presses': function() {
+            this.createToggler({
+                content: '.content',
+                header: '.heading',
+                toggleEvent: 'click'
+            });
+
+            var toggler = this._toggler;
+            var header = toggler.get('header');
+
+            // toggle()
+
+            toggler.set('expanded', true); //reset
+            header.simulate('click');
+            Y.Assert.isFalse(toggler.get('expanded'), 'tap calls toggle()');
+
+            toggler.set('expanded', true); //reset
+            header.simulate('keydown', {
+                keyCode: 13 // enter
+            });
+            Y.Assert.isFalse(toggler.get('expanded'), 'enter calls toggle()');
+
+            toggler.set('expanded', true); //reset
+            header.simulate('keydown', {
+                keyCode: 32 // space
+            });
+            Y.Assert.isFalse(toggler.get('expanded'), 'space calls toggle()');
+
+            // expand()
+
+            toggler.set('expanded', false); //reset
+            header.simulate('keydown', {
+                keyCode: 40 // down
+            });
+            Y.Assert.isTrue(toggler.get('expanded'), 'down calls expand()');
+
+            toggler.set('expanded', false); //reset
+            header.simulate('keydown', {
+                keyCode: 39 // right
+            });
+            Y.Assert.isTrue(toggler.get('expanded'), 'right calls expand()');
+
+            toggler.set('expanded', false); //reset
+            header.simulate('keydown', {
+                keyCode: 107 // num_plus
+            });
+            Y.Assert.isTrue(toggler.get('expanded'), 'num_plus calls expand()');
+
+            // collapse()
+
+            toggler.set('expanded', true); //reset
+            header.simulate('keydown', {
+                keyCode: 38 // up
+            });
+            Y.Assert.isFalse(toggler.get('expanded'), 'up calls collapse()');
+
+            toggler.set('expanded', true); //reset
+            header.simulate('keydown', {
+                keyCode: 37 // left
+            });
+            Y.Assert.isFalse(toggler.get('expanded'), 'left calls collapse()');
+
+            toggler.set('expanded', true); //reset
+            header.simulate('keydown', {
+                keyCode: 27 // esc
+            });
+            Y.Assert.isFalse(toggler.get('expanded'), 'esc calls collapse()');
+
+            toggler.set('expanded', true); //reset
+            header.simulate('keydown', {
+                keyCode: 109 // num_minus
+            });
+            Y.Assert.isFalse(toggler.get('expanded'), 'num_minus calls collapse()');
+        },
+
+        'should not toggle/expand/collapse on key presses': function() {
+            this.createToggler({
+                bindDOMEvents: false,
+                content: '.content',
+                header: '.heading'
+            });
+
+            var toggler = this._toggler;
+            var header = toggler.get('header');
+
+            header.simulate('keydown', {
+                keyCode: 13 // enter
+            });
+            Y.Assert.isFalse(this.togglerHasClass('toggler-content-collapsed'));
+        },
+
+        'should not toggle when hidden': function() {
+            this.createToggler({
+                content: '.content',
+                header: '.heading'
+            });
+
+            var toggler = this._toggler;
+            var header = toggler.get('header');
+
+            header.setStyle('display', 'none');
+            toggler.collapse();
+            Y.Assert.isFalse(this.togglerHasClass('toggler-content-collapsed'));
         }
     }));
 
