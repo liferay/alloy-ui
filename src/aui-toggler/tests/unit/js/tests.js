@@ -149,7 +149,7 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-collapsed'), 'toggle(false) collapse');
         },
 
-        'should return the right content height': function() {
+        'should return the expanded content height': function() {
             var toggler = this._toggler;
 
             Y.Assert.areEqual(toggler.getContentHeight(), 20);
@@ -157,7 +157,7 @@ YUI.add('module-tests', function(Y) {
             Y.Assert.areEqual(toggler.getContentHeight(), 20);
         },
 
-        'should expand when call animate function': function() {
+        'should expand when calling animate function': function() {
             var toggler = this._toggler;
 
             toggler.animate({ duration: 0 });
