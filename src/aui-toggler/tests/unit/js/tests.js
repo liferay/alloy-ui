@@ -6,11 +6,11 @@ YUI.add('module-tests', function(Y) {
         name: 'Toggle Base Tests',
 
         init: function() {
-            var content = Y.Node.create('<div id="toggler" class="content toggler-content-collapsed">' +
+            var content = Y.Node.create('<div id="toggler" class="content">' +
                     'L' +
                 '</div>'),
-                header = Y.Node.create('<div id="header" class="accordion-heading">' +
-                    '<a class="accordion-toggle">' +
+                header = Y.Node.create('<div id="header" class="heading">' +
+                    '<a class="toggle">' +
                         'Collapsible' +
                     '</a>' +
                 '</div>');
@@ -24,7 +24,7 @@ YUI.add('module-tests', function(Y) {
             this.createToggler({
             animated: true,
             content: '.content',
-            header: '.accordion-heading',
+            header: '.heading',
             expanded: false,
             transition: {
                 duration: 0
@@ -56,7 +56,7 @@ YUI.add('module-tests', function(Y) {
         'should collapse content': function() {
             this.createToggler({
                 content: '.content',
-                header: '.accordion-heading'
+                header: '.heading'
             });
 
             var toggler = this._toggler;
@@ -70,7 +70,7 @@ YUI.add('module-tests', function(Y) {
                 animated: true,
                 content: '.content',
                 expanded: false,
-                header: '.accordion-heading'
+                header: '.heading'
             });
 
             var toggler = this._toggler;
@@ -91,7 +91,7 @@ YUI.add('module-tests', function(Y) {
             this.createToggler({
                 animated: true,
                 content: '.content',
-                header: '.accordion-heading'
+                header: '.heading'
             });
 
             var toggler = this._toggler;
@@ -112,7 +112,7 @@ YUI.add('module-tests', function(Y) {
             this.createToggler({
                 animated: true,
                 content: '.content',
-                header: '.accordion-heading'
+                header: '.heading'
             });
 
             var toggler = this._toggler;
@@ -133,7 +133,7 @@ YUI.add('module-tests', function(Y) {
             this.createToggler({
                 content: '.content',
                 expanded: false,
-                header: '.accordion-heading'
+                header: '.heading'
             });
 
             var toggler = this._toggler;
@@ -155,14 +155,14 @@ YUI.add('module-tests', function(Y) {
             var toggler = this._toggler;
 
             Y.Assert.areEqual(toggler.getContentHeight(), 20);
-            toggler.toggle(true);
+            toggler.toggle();
             Y.Assert.areEqual(toggler.getContentHeight(), 20);
         },
 
         'should expand when calling animate function': function() {
             var toggler = this._toggler;
 
-            toggler.animate({ duration: 0 });
+            toggler.animate();
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'));
         }
     }));
