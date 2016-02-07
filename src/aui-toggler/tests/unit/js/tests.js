@@ -20,18 +20,6 @@ YUI.add('module-tests', function(Y) {
             this._container.append(content);
         },
 
-        setUp: function() {
-            this.createToggler({
-            animated: true,
-            content: '.content',
-            header: '.heading',
-            expanded: false,
-            transition: {
-                duration: 0
-            }
-        });
-        },
-
         tearDown: function() {
             this._toggler && this._toggler.destroy();
         },
@@ -47,6 +35,12 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should expand content': function() {
+            this.createToggler({
+                content: '.content',
+                expanded: false,
+                header: '.heading'
+            });
+
             var toggler = this._toggler;
 
             toggler.expand();
@@ -152,6 +146,11 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should return the expanded content height': function() {
+            this.createToggler({
+                content: '.content',
+                header: '.heading'
+            });
+
             var toggler = this._toggler;
 
             Y.Assert.areEqual(toggler.getContentHeight(), 20);
@@ -160,6 +159,13 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should expand when calling animate function': function() {
+            this.createToggler({
+                animated: true,
+                content: '.content',
+                expanded: false,
+                header: '.heading'
+            });
+
             var toggler = this._toggler;
 
             toggler.animate();
