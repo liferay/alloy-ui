@@ -37,6 +37,8 @@ YUI.add('aui-toggler-base-tests', function(Y) {
         },
 
         createToggler: function(config) {
+            this.tearDown();
+
             this._toggler = new Y.Toggler(config);
         },
 
