@@ -482,10 +482,10 @@ shadow or rounded corners.
 */
 
 /* ---------- CSS3 shadows ---------- */
- .date-picker-content, .overlaycontextpanel-content, .tooltip-content, .colorpicker-content, .tree-drag-helper-content {
-    -moz-box-shadow: 4px 4px 14px #777;
-    -webkit-box-shadow: 4px 4px 14px #777;
-    box-shadow: 4px 4px 14px #777;
+ .date-picker-content, .overlaycontextpanel-content, .colorpicker-content, .tree-drag-helper-content {
+    -moz-box-shadow: 4px 4px 14px rgba(0.5333);
+    -webkit-box-shadow: 4px 4px 14px rgba(0.5333);
+    box-shadow: 4px 4px 14px rgba(0.5333);
 }
 /* No shadow */
  .null-selector {
