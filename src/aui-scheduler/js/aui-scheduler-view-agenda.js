@@ -7,6 +7,7 @@
 
 var Lang = A.Lang,
     isFunction = Lang.isFunction,
+    isNumber  = Lang.isNumber,
 
     AArray = A.Array,
     DateMath = A.DataType.DateMath,
@@ -124,6 +125,18 @@ var SchedulerAgendaView = A.Component.create({
          */
         bodyContent: {
             value: ''
+        },
+
+        /**
+         * The amount of days to be displayed in agenda view.
+         *
+         * @attribute daysCount
+         * @default 30
+         * @type {Number}
+         */
+        daysCount: {
+            value: 30,
+            validator: isNumber
         },
 
         /**
