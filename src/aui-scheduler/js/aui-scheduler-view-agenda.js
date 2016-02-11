@@ -519,9 +519,13 @@ var SchedulerAgendaView = A.Component.create({
         _getDayEventsMap: function() {
             var instance = this,
 
+                daysCount = instance.get('daysCount'),
+
                 scheduler = instance.get(SCHEDULER),
 
                 viewDate = DateMath.toMidnight(scheduler.get(VIEW_DATE)),
+
+                limitDate = DateMath.add(viewDate, DateMath.DAY, daysCount-1),
 
                 eventsMap = {};
 
@@ -537,6 +541,10 @@ var SchedulerAgendaView = A.Component.create({
                     }
 
                     var displayDate = startDate;
+
+                    if (DateMath.before(limitDate, endDate)) {
+                        endDate = limitDate;
+                    }
 
                     while (displayDate.getTime() <= endDate.getTime()) {
                         if (displayDate.getTime() >= viewDate.getTime()) {
