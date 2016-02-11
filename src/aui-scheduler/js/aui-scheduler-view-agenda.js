@@ -351,6 +351,8 @@ var SchedulerAgendaView = A.Component.create({
      */
     EXTENDS: A.SchedulerView,
 
+    UI_ATTRS: ['daysCount'],
+
     prototype: {
 
         /**
@@ -622,6 +624,24 @@ var SchedulerAgendaView = A.Component.create({
                 });
                 recorder.showPopover(currentTarget);
             }
+        },
+
+        /**
+         * Updated the plotted events to display the new, right amount of days.
+         *
+         * Note that the events should still be set into the scheduler. If, for
+         * example, one sets events pertaining to 30 days into the scheduler and
+         * then set `daysCount` to 60, obviously there is no way to the view to
+         * know about more events.
+         *
+         * @method _uiSetDaysCount
+         * @param {Number} daysCount number of days to be displayed.
+         * @protected
+         */
+        _uiSetDaysCount: function() {
+            var instance = this;
+
+            instance.plotEvents();
         }
     }
 });
