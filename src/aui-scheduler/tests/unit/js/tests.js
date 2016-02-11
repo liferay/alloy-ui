@@ -775,6 +775,63 @@ YUI.add('module-tests', function(Y) {
                 1, Y.all('.scheduler-event').size(),
                 'The all-day event should be displayed.'
             );
+        },
+
+        'should limit number of days in agenda view': function() {
+            var startDate = new Date(2016, 3, 1);
+            var endDate = new Date(2016, 6, 1);
+
+            var events = [
+                {
+                    content: 'Event',
+                    endDate: endDate,
+                    startDate: startDate,
+                }
+            ];
+
+            this._agendaView.set('daysCount', 10);
+
+            this._createScheduler({
+              date: startDate,
+              items: events,
+              views: [this._agendaView]
+            });
+
+            Y.Assert.areEqual(
+                10, Y.all('.scheduler-view-agenda-event').size(),
+                'Should show at most 10 events.'
+            );
+        },
+
+        'should display all instances of event in agenda view regardless of start time': function() {
+            var startDate = new Date(2016, 3, 1);
+            var endDate = new Date(2016, 6, 1);
+
+            var events = [
+                {
+                    content: 'Event 1',
+                    endDate: DateMath.add(endDate, DateMath.MONTH, 1),
+                    startDate: DateMath.subtract(startDate, DateMath.MONTH, 1),
+                },
+                {
+                    content: 'Event 2',
+                    endDate: endDate,
+                    startDate: startDate,
+                }
+            ];
+
+            this._agendaView.set('daysCount', 10);
+
+            this._createScheduler({
+              date: startDate,
+              items: events,
+              views: [this._agendaView]
+            });
+
+            Y.Assert.areEqual(
+                20, Y.all('.scheduler-view-agenda-event').size(),
+                'Should show exactly 20 events.'
+            );
         }
     }));
 
