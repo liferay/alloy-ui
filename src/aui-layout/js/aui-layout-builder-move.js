@@ -11,13 +11,14 @@ var CSS_MOVE_CANCEL = A.getClassName('layout', 'builder', 'move', 'cancel'),
     CSS_MOVE_CUT_COL_BUTTON = A.getClassName('layout', 'builder', 'move', 'cut', 'col', 'button'),
     CSS_MOVE_ROW_TARGET = A.getClassName('layout', 'builder', 'move', 'row', 'target'),
     CSS_MOVE_TARGET = A.getClassName('layout', 'builder', 'move', 'target'),
+    CSS_MOVE_TARGET_LABEL = A.getClassName('layout', 'builder', 'move', 'target', 'label'),
     CSS_ROW_CONTAINER_ROW = A.getClassName('layout', 'row', 'container', 'row'),
 
     SELECTOR_COL = '.col',
     SELECTOR_ROW = '.layout-row',
 
     TPL_MOVE_CUT = '<div class="' + CSS_MOVE_CUT_BUTTON + '" tabindex="0"></div>',
-    TPL_MOVE_TARGET = '<div class="' + CSS_MOVE_TARGET + '">Move</div>';
+    TPL_MOVE_TARGET = '<div class="' + CSS_MOVE_TARGET + '"><span class="' + CSS_MOVE_TARGET_LABEL + '">Past Here<span></div>';
 
 /**
  * A base class for Layout Move.

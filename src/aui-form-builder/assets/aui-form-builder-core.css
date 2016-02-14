@@ -2,6 +2,59 @@
     background-color: #ecedee;
 }
 
+.form-builder-content .layout-builder-add-row {
+    display: none;
+}
+
+.form-builder-edit-layout-button .form-builder-edit-layout-button-icon {
+    font-size: 12px;
+    margin-right: 5px;
+    margin-top: -3px;
+}
+
+.form-builder-edit-layout-button:hover {
+    color: #000;
+}
+
+.form-builder-content .layout-builder-move-target,
+.form-builder-field-list-add-button {
+    background-color: #ecf6fe;
+    border: none;
+    border-radius: 2px;
+    color: #66a1cc;
+    cursor: pointer;
+    font-family: "Helvetica Neue";
+    font-size: 11px;
+    font-weight: bold;
+    line-height: normal;
+    padding: 0;
+    text-align: center;
+}
+
+.form-builder-field-list-add-button {
+    visibility: hidden;
+}
+
+.form-builder-content .layout-builder-move-target-label,
+.form-builder-field-list-add-button-label,
+.form-builder-field-move-target-label {
+    color: #66a1cc;
+    cursor: pointer;
+    display: inline-block;
+    line-height: normal;
+    margin-bottom: 0;
+    opacity: .5;
+    padding: 4px 0;
+    text-transform: uppercase;
+}
+
+.form-builder-content .layout-builder-move-target:hover .form-builder-field-move-target-label,
+.form-builder-content .layout-builder-move-target:hover .layout-builder-move-target-label,
+.form-builder-field-list-add-button:hover .form-builder-field-list-add-button-icon,
+.form-builder-field-list-add-button:hover .form-builder-field-list-add-button-label {
+    opacity: 1;
+}
+
 .form-builder-header {
     background-color: #00a3ff;
     color: #fff;
@@ -65,16 +118,6 @@
 
 .form-builder-menu .form-builder-menu-content .menu-item a:hover {
     color: #fff;
-}
-
-.form-builder-edit-layout-button .form-builder-edit-layout-button-icon {
-    font-size: 12px;
-    margin-right: 5px;
-    margin-top: -3px;
-}
-
-.form-builder-edit-layout-button:hover {
-    color: #000;
 }
 
 .form-builder-menu .menu-item .form-builder-edit-layout-button a {
@@ -172,10 +215,6 @@
 
 .form-builder-layout .layout-row .col:last-child {
     border-right: none;
-}
-
-.form-builder-content .layout-builder-add-row {
-    display: none;
 }
 
 @media (max-width: 768px) {

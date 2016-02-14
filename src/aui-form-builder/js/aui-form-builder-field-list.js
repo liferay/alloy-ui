@@ -13,8 +13,6 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'label'),
         CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'plus', 'icon'),
-        CSS_FIELD_LIST_ADD_BUTTON_PLUS_LABEL =
-        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'plus', 'label'),
     CSS_FIELD_LIST_ADD_BUTTON_VISIBLE =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'visible'),
     CSS_FIELD_LIST_ADD_CONTAINER =
@@ -24,6 +22,8 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_LIST_EMPTY = A.getClassName('form', 'builder', 'field', 'list', 'empty'),
     CSS_FIELD_MOVE_TARGET =
         A.getClassName('form', 'builder', 'field', 'move', 'target'),
+    CSS_FIELD_MOVE_TARGET_LABEL =
+        A.getClassName('form', 'builder', 'field', 'move', 'target', 'label'),
     CSS_LIST_MOVE_TARGET =
         A.getClassName('form', 'builder', 'list', 'move', 'target');
 
@@ -40,19 +40,17 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     TPL_ADD_FIELD: '<div class="' + CSS_FIELD_LIST_ADD_CONTAINER + '">' +
         '<a class="' + CSS_FIELD_LIST_ADD_BUTTON + ' ' +
         CSS_FIELD_LIST_ADD_BUTTON_VISIBLE + '" href="javascript:;">' +
-        '<div class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + '">' +
-        '<div class="' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON + '">+</div>' +
-        '</div>' +
+        '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + ' ' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON + '">+</span>' +
         '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_LABEL + '">' +
-        '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_LABEL + '">+</label> ADD FIELD' +
+        'ADD FIELD' +
         '</label>' +
         '</a></div>',
     TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '">' +
         '<div class="' + CSS_FIELD_LIST_CONTAINER + '"></div>' +
         '</div>',
     TPL_FIELD_MOVE_TARGET: '<button type="button" class="' + CSS_FIELD_MOVE_TARGET + ' ' + CSS_LIST_MOVE_TARGET +
-        ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
-        '{pasteHere}</button>',
+        ' layout-builder-move-target layout-builder-move-col-target">' +
+        '<label class="' + CSS_FIELD_MOVE_TARGET_LABEL + '">{pasteHere}</label></button>',
 
     /**
      * Construction logic executed during the `A.FormBuilderFieldList`

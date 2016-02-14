@@ -1,5 +1,6 @@
 .form-field {
     position: relative;
+    border: 1px solid transparent;
 }
 
 .form-field .form-builder-field-content-toolbar {
@@ -13,6 +14,10 @@
     left: 0;
     padding: 6px 30px;
     background-color: #ccc;
+}
+
+.form-builder-field-nested .form-builder-field-move-target {
+    margin-top: 11px;
 }
 
 .form-builder-field-settings-panel .tab-pane {

@@ -16,14 +16,17 @@
 }
 
 .form-builder-field-move-target {
-    background-color: #fff;
-    border-color: #ccc;
     display: none;
-    font-size: 12px;
-    margin: 0 0 5px;
-    padding: 2px 3px;
-    position: relative;
+    margin-bottom: 0;
+    position: absolute;
+    text-transform: uppercase;
+    width: 100%;
     z-index: 1;
+}
+
+.form-builder-field-list-empty .form-builder-field-move-target {
+    padding: 39px 0;
+    position: static;
 }
 
 .form-builder-empty-col-add-button .form-builder-field-move-target {
@@ -37,7 +40,7 @@
 }
 
 .form-builder-choose-col-move-target .form-builder-field-moving {
-    border: 1px dotted;
+    border-style: dotted;
 }
 
 .form-builder-choose-col-move-target .form-builder-field-moving .form-builder-field-move-target,
