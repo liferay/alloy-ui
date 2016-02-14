@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2072](https://issues.liferay.com/browse/AUI-2072) Paste row area and paste field area should have the same add field button's style
 * [AUI-2076](https://issues.liferay.com/browse/AUI-2076) Improving the way to reference the move field button
 * [AUI-2073](https://issues.liferay.com/browse/AUI-2073) Set the tab order on Form Builder
 * [AUI-2069](https://issues.liferay.com/browse/AUI-2069) Unexpected Visual Behavior after removing a field
