@@ -1,19 +1,10 @@
-.form-field {
-    position: relative;
-    border: 1px solid transparent;
-}
-
-.form-field .form-builder-field-content-toolbar {
-    position: relative;
-}
-
 .form-builder-field-footer-content {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 6px 30px;
     background-color: #ccc;
+    bottom: 0;
+    padding: 6px 30px;
+    position: absolute;
+    left: 0;
+    width: 100%;
 }
 
 .form-builder-field-nested .form-builder-field-move-target {
@@ -50,4 +41,13 @@
 
 .form-builder-field-settings-panel-content {
     border-bottom: none;
+}
+
+.form-field {
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.form-field .form-builder-field-content-toolbar {
+    position: relative;
 }

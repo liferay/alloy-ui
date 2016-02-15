@@ -3,6 +3,23 @@
     display: none;
 }
 
+.form-builder-field + .form-builder-field-list-add-container {
+    margin-top: -25px;
+}
+
+.form-builder-field-list-add-button {
+    display: block;
+}
+
+.form-builder-field-list-add-button.form-builder-field-list-add-button-large {
+    padding: 18px 0;
+}
+
+.form-builder-field-list-add-button.form-builder-field-list-add-button-large,
+.form-builder-field-list-add-button-large .form-builder-field-list-add-button-icon {
+    text-decoration: none;
+}
+
 .form-builder-field-list-add-button-icon {
     color: #66a1cc;
     display: inline-block;
@@ -14,27 +31,6 @@
 
 .form-builder-field-list-add-button-label {
     margin-bottom: 0;
-}
-
-.form-builder-field-list-add-button-large .form-builder-field-list-add-button-plus-icon {
-    color: white;
-    line-height: 28px;
-    margin-top: 20px;
-    margin-bottom: 31px;
-}
-
-.form-builder-field-list-add-button {
-    display: block;
-}
-
-.form-builder-field-list-add-button-visible .form-builder-field-list-add-button {
-    display: block;
-    visibility: visible;
-}
-
-.form-builder-field-list-add-button.form-builder-field-list-add-button-large,
-.form-builder-field-list-add-button-large .form-builder-field-list-add-button-icon {
-    text-decoration: none;
 }
 
 .form-builder-field-list-add-button-large .form-builder-field-list-add-button-icon {
@@ -49,32 +45,33 @@
     width: 32px;
 }
 
-
 .form-builder-field-list-add-button-large .form-builder-field-list-add-button-label {
     margin-top: 9px;
-} 
-
-.form-builder-field-list-add-button.form-builder-field-list-add-button-large {
-    padding: 18px 0;
 }
 
-.form-builder-field-list-empty .form-builder-field-list-add-container {
-    position: static;
+.form-builder-field-list-add-button-large .form-builder-field-list-add-button-plus-icon {
+    color: white;
+    line-height: 28px;
 }
 
-.form-builder-field + .form-builder-field-list-add-container {
-    margin-top: -25px;
+.form-builder-field-list-add-button-visible .form-builder-field-list-add-button {
+    display: block;
+    visibility: visible;
 }
 
 .form-builder-field-list-add-container {
+    position: absolute;
     width: 100%;
     z-index: 1;
-    position: absolute;
 }
 
 .form-builder-field-list-container {
     padding: 35px 0;
     position: relative;
+}
+
+.form-builder-field-list-empty .form-builder-field-list-add-container {
+    position: static;
 }
 
 @media (max-width: 768px) {

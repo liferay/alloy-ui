@@ -3,16 +3,44 @@
     background-color: white;
 }
 
-.form-builder-field-move-button {
-    display: none;
-}
-
 .form-builder-choose-col-move .form-builder-field-move-button {
     display: block;
     left: -25px;
     position: absolute;
     top: 0;
     z-index: 1;
+}
+
+.form-builder-choose-col-move-target .form-builder-field-moving {
+    border-style: dotted;
+}
+
+.form-builder-choose-col-move-target .form-builder-field-move-target {
+    display: block;
+    visibility: visible;
+}
+
+.form-builder-choose-col-move-target .form-builder-field-move-target-invalid,
+.form-builder-choose-col-move-target .form-builder-field-moving .form-builder-field-move-target {
+    visibility: hidden;
+}
+
+.form-builder-col-moving .form-builder-list-move-target {
+    visibility: hidden;
+}
+
+.form-builder-empty-col-add-button .form-builder-field-move-target {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-builder-field-move-button {
+    display: none;
+}
+
+.form-builder-field-list-empty .form-builder-field-move-target {
+    padding: 39px 0;
+    position: static;
 }
 
 .form-builder-field-move-target {
@@ -24,47 +52,19 @@
     z-index: 1;
 }
 
-.form-builder-field-list-empty .form-builder-field-move-target {
-    padding: 39px 0;
-    position: static;
-}
-
-.form-builder-empty-col-add-button .form-builder-field-move-target {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.form-builder-choose-col-move-target .form-builder-field-move-target {
-    display: block;
-    visibility: visible;
-}
-
-.form-builder-choose-col-move-target .form-builder-field-moving {
-    border-style: dotted;
-}
-
-.form-builder-choose-col-move-target .form-builder-field-moving .form-builder-field-move-target,
-.form-builder-choose-col-move-target .form-builder-field-move-target-invalid {
-    visibility: hidden;
-}
-
-.form-builder-col-moving .form-builder-list-move-target {
-    visibility: hidden;
-}
-
 .layout-builder-move-cut-button.layout-builder-move-cut-row-button {
     border-radius: 50%;
     display: none;
-    z-index: 1;
     position: absolute;
     right: 14px;
     top: -10px;
+    z-index: 1;
 }
 
 .layout-row {
-    border-width: 1px;
     border-color: transparent;
     border-style: dashed none;
+    border-width: 1px;
     position: relative;
 }
 
