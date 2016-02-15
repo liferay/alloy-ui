@@ -632,24 +632,24 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             layout = this._formBuilder.get('layouts')[0];
 
             colNode = layout.get('rows')[0].get('cols')[0].get('node');
-            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-visible'));
 
             colNode = layout.get('rows')[0].get('cols')[1].get('node');
-            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-visible'));
 
             colNode = layout.get('rows')[0].get('cols')[2].get('node');
-            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-visible'));
 
             colNode = layout.get('rows')[1].get('cols')[0].get('node');
-            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-visible'));
 
             field = layout.get('rows')[0].get('cols')[0].get('value').get('fields')[0];
             layout.get('rows')[0].get('cols')[0].get('value').removeField(field);
             colNode = layout.get('rows')[0].get('cols')[0].get('node');
-            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-visible'));
 
             layout.get('rows')[0].get('cols')[0].get('value').addField(field);
-            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-visible'));
         },
 
         'should add a large add field to all empty columns': function() {
@@ -686,18 +686,18 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             layout = this._formBuilder.get('layouts')[0];
 
             colNode = layout.get('rows')[0].get('cols')[0].get('node');
-            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-large'));
 
             field = layout.get('rows')[0].get('cols')[0].get('value').get('fields')[0];
             layout.get('rows')[0].get('cols')[0].get('value').removeField(field);
             colNode = layout.get('rows')[0].get('cols')[0].get('node');
-            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-large'));
 
             colNode = layout.get('rows')[0].get('cols')[1].get('node');
-            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-large'));
 
             colNode = layout.get('rows')[1].get('cols')[0].get('node');
-            Y.Assert.isNull(colNode.one('.form-builder-field-list-add-button-icon.hidden'));
+            Y.Assert.isNotNull(colNode.one('.form-builder-field-list-add-button-large'));
         },
 
         'should remove the last row if the next to last row is empty': function() {

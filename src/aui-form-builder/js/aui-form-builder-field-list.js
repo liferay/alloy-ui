@@ -7,11 +7,13 @@
 var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
     CSS_FIELD_LIST_ADD_BUTTON =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button'),
-        CSS_FIELD_LIST_ADD_BUTTON_ICON =
+    CSS_FIELD_LIST_ADD_BUTTON_ICON =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'icon'),
     CSS_FIELD_LIST_ADD_BUTTON_LABEL =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'label'),
-        CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON =
+    CSS_FIELD_LIST_ADD_BUTTON_LARGE =
+        A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'large'),
+    CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'plus', 'icon'),
     CSS_FIELD_LIST_ADD_BUTTON_VISIBLE =
         A.getClassName('form', 'builder', 'field', 'list', 'add', 'button', 'visible'),
@@ -38,8 +40,7 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
  */
 A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     TPL_ADD_FIELD: '<div class="' + CSS_FIELD_LIST_ADD_CONTAINER + '">' +
-        '<a class="' + CSS_FIELD_LIST_ADD_BUTTON + ' ' +
-        CSS_FIELD_LIST_ADD_BUTTON_VISIBLE + '" href="javascript:;">' +
+        '<a class="' + CSS_FIELD_LIST_ADD_BUTTON + '" href="javascript:;">' +
         '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + ' ' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON + '">+</span>' +
         '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_LABEL + '">' +
         'ADD FIELD' +
@@ -124,10 +125,9 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
      * @method _appendAddFieldNode
      * @param {Node} container
      * @param {Number} index
-     * @param {Boolean} visible
      * @protected
      */
-    _appendAddFieldNode: function(container, index, visible) {
+    _appendAddFieldNode: function(container, index) {
         var addFieldNode,
             moveTargetNode;
 
@@ -135,10 +135,6 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         moveTargetNode = A.Node.create(A.Lang.sub(this.TPL_FIELD_MOVE_TARGET, {
             pasteHere: this.get('strings').pasteHere
         }));
-
-        if (!visible) {
-            addFieldNode.removeClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
-        }
 
         moveTargetNode.setData('field-list-index', index);
 
@@ -204,22 +200,17 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         container.empty();
 
         for (index = 0; index < fields.length; index++) {
-            this._appendAddFieldNode(container, index, false);
+            this._appendAddFieldNode(container, index);
             container.append(fields[index].get('content'));
         }
 
-        this._appendAddFieldNode(container, index, true);
+        this._appendAddFieldNode(container, index);
 
         content.toggleClass(CSS_FIELD_LIST_EMPTY, !fields.length);
 
         if (fields.length === 0) {
             content.one('.' + CSS_FIELD_LIST_ADD_CONTAINER).addClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
-            content.all('.' + CSS_FIELD_LIST_ADD_BUTTON_ICON).removeClass('hidden');
-            content.all('.' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_LABEL).addClass('hidden');
-        }
-        else {
-            content.all('.' + CSS_FIELD_LIST_ADD_BUTTON_ICON).addClass('hidden');
-            content.all('.' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_LABEL).removeClass('hidden');
+            content.one('.' + CSS_FIELD_LIST_ADD_BUTTON).addClass(CSS_FIELD_LIST_ADD_BUTTON_LARGE);
         }
     },
 

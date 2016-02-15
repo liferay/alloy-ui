@@ -16,7 +16,7 @@
     margin-bottom: 0;
 }
 
-.form-builder-field-list-empty .form-builder-field-list-add-button-plus-icon {
+.form-builder-field-list-add-button-large .form-builder-field-list-add-button-plus-icon {
     color: white;
     line-height: 28px;
     margin-top: 20px;
@@ -32,12 +32,12 @@
     visibility: visible;
 }
 
-.form-builder-field-list-empty .form-builder-field-list-add-button,
-.form-builder-field-list-empty .form-builder-field-list-add-button-icon {
+.form-builder-field-list-add-button.form-builder-field-list-add-button-large,
+.form-builder-field-list-add-button-large .form-builder-field-list-add-button-icon {
     text-decoration: none;
 }
 
-.form-builder-field-list-empty .form-builder-field-list-add-button-icon {
+.form-builder-field-list-add-button-large .form-builder-field-list-add-button-icon {
     background-color: #65b3f0;
     border-radius: 50%;
     cursor: pointer;
@@ -50,11 +50,11 @@
 }
 
 
-.form-builder-field-list-empty .form-builder-field-list-add-button-label {
+.form-builder-field-list-add-button-large .form-builder-field-list-add-button-label {
     margin-top: 9px;
 } 
 
-.form-builder-field-list-empty .form-builder-field-list-add-button {
+.form-builder-field-list-add-button.form-builder-field-list-add-button-large {
     padding: 18px 0;
 }
 
