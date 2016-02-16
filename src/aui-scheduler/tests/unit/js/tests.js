@@ -832,6 +832,39 @@ YUI.add('module-tests', function(Y) {
                 20, Y.all('.scheduler-view-agenda-event').size(),
                 'Should show exactly 20 events.'
             );
+        },
+
+        'should refresh number of displayed events if days count is updated': function() {
+            var startDate = new Date(2016, 3, 1);
+            var endDate = new Date(2016, 6, 1);
+
+            var events = [
+                {
+                    content: 'Event',
+                    endDate: endDate,
+                    startDate: startDate,
+                }
+            ];
+
+            this._agendaView.set('daysCount', 10);
+
+            this._createScheduler({
+              date: startDate,
+              items: events,
+              views: [this._agendaView]
+            });
+
+            Y.Assert.areEqual(
+                10, Y.all('.scheduler-view-agenda-event').size(),
+                'Should show at most 10 events.'
+            );
+
+            this._agendaView.set('daysCount', 20);
+
+            Y.Assert.areEqual(
+                20, Y.all('.scheduler-view-agenda-event').size(),
+                'Should show at most 20 events.'
+            );
         }
     }));
 
