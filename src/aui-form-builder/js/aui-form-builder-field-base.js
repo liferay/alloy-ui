@@ -12,6 +12,7 @@ var CSS_FIELD = A.getClassName('form', 'builder', 'field'),
     CSS_FIELD_FOOTER_CONTENT = A.getClassName('form', 'builder', 'field', 'footer', 'content'),
     CSS_FIELD_MOVE_BUTTON = A.getClassName('form', 'builder', 'field', 'move', 'button'),
     CSS_FIELD_MOVE_TARGET = A.getClassName('form', 'builder', 'field', 'move', 'target'),
+    CSS_FIELD_MOVE_TARGET_LABEL = A.getClassName('form', 'builder', 'field', 'move', 'target', 'label'),
     CSS_FIELD_NESTED = A.getClassName('form', 'builder', 'field', 'nested'),
     CSS_FIELD_OVERLAY = A.getClassName('form', 'builder', 'field', 'overlay'),
     CSS_FIELD_SETTINGS_PANEL = A.getClassName('form', 'builder', 'field', 'settings', 'panel'),
@@ -52,8 +53,8 @@ A.FormBuilderFieldBase.prototype = {
         '<div class="' + CSS_FIELD_CONTENT_FOOTER + '"></div>' +
         '</div>',
     TPL_FIELD_MOVE_TARGET: '<button type="button" class="' + CSS_FIELD_MOVE_TARGET +
-        ' layout-builder-move-target layout-builder-move-col-target btn btn-default">' +
-        '{subquestion}</button>',
+        ' layout-builder-move-target layout-builder-move-col-target">' +
+        ' <label class="' + CSS_FIELD_MOVE_TARGET_LABEL + '">{subquestion}</label></button>',
     TPL_FIELD_SETTINGS_PANEL: '<div class="' + CSS_FIELD_SETTINGS_PANEL + ' clearfix">' +
         '<div class="' + CSS_FIELD_SETTINGS_PANEL_CONTENT + '">' +
         '</div>' +

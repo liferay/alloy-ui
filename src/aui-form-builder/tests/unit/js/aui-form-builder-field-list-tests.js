@@ -70,15 +70,15 @@ YUI.add('aui-form-builder-field-list-tests', function(Y) {
             addButton.simulate('mouseout');
             Y.Assert.isFalse(addButton.hasClass('form-builder-field-list-add-button-visible'));
 
-            addButton = Y.all('.form-builder-field-list-add-button').item(2);
+            addButton = Y.all('.form-builder-field-list-add-container').item(2);
 
-            Y.Assert.isTrue(addButton.hasClass('form-builder-field-list-add-button-visible'));
+            Y.Assert.isFalse(addButton.hasClass('form-builder-field-list-add-button-visible'));
 
             addButton.simulate('mouseover');
             Y.Assert.isTrue(addButton.hasClass('form-builder-field-list-add-button-visible'));
 
             addButton.simulate('mouseout');
-            Y.Assert.isTrue(addButton.hasClass('form-builder-field-list-add-button-visible'));
+            Y.Assert.isFalse(addButton.hasClass('form-builder-field-list-add-button-visible'));
         },
 
         'should remove a field from the field list': function() {
