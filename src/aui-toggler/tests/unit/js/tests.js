@@ -25,9 +25,10 @@ YUI.add('module-tests', function(Y) {
         },
 
         createToggler: function(config) {
-            this.tearDown();
-
-            this._toggler = new Y.Toggler(config);
+            this._toggler = new Y.Toggler(Y.merge({
+                content: '.content',
+                header: '.heading'
+            }, config));
         },
 
         togglerHasClass: function(className) {
@@ -35,38 +36,37 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should expand content': function() {
+            var toggler;
+
             this.createToggler({
-                content: '.content',
-                expanded: false,
-                header: '.heading'
+                expanded: false
             });
 
-            var toggler = this._toggler;
+            toggler = this._toggler;
 
             toggler.expand();
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'));
         },
 
         'should collapse content': function() {
-            this.createToggler({
-                content: '.content',
-                header: '.heading'
-            });
+            var toggler;
 
-            var toggler = this._toggler;
+            this.createToggler();
+
+            toggler = this._toggler;
 
             toggler.collapse();
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-collapsed'));
         },
 
         'should not animate when animated is false': function() {
+            var toggler;
+
             this.createToggler({
-                content: '.content',
-                expanded: false,
-                header: '.heading'
+                expanded: false
             });
 
-            var toggler = this._toggler;
+            toggler = this._toggler;
 
             Y.Assert.isFalse(toggler.get('animated'), 'animated');
 
@@ -75,14 +75,14 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should animate when animated is true': function() {
+            var toggler;
+
             this.createToggler({
                 animated: true,
-                content: '.content',
-                expanded: false,
-                header: '.heading'
+                expanded: false
             });
 
-            var toggler = this._toggler;
+            toggler = this._toggler;
 
             Y.Assert.isTrue(toggler.get('animated'), 'animated');
 
@@ -95,14 +95,14 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should not collapse when animating in progress': function() {
+            var toggler;
+
             this.createToggler({
                 animated: true,
-                content: '.content',
-                expanded: false,
-                header: '.heading'
+                expanded: false
             });
 
-            var toggler = this._toggler;
+            toggler = this._toggler;
 
             Y.Assert.isTrue(toggler.get('animated'), 'animated');
 
@@ -117,13 +117,13 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should not expand when animating in progress': function() {
+            var toggler;
+
             this.createToggler({
-                animated: true,
-                content: '.content',
-                header: '.heading'
+                animated: true
             });
 
-            var toggler = this._toggler;
+            toggler = this._toggler;
 
             Y.Assert.isTrue(toggler.get('animated'), 'animated');
 
@@ -138,13 +138,13 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should not start a new animate when animating in progress': function() {
+            var toggler;
+
             this.createToggler({
-                animated: true,
-                content: '.content',
-                header: '.heading'
+                animated: true
             });
 
-            var toggler = this._toggler;
+            toggler = this._toggler;
 
             Y.Assert.isTrue(toggler.get('animated'), 'animated');
 
@@ -159,13 +159,13 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should toggle content': function() {
+            var toggler;
+
             this.createToggler({
-                content: '.content',
-                expanded: false,
-                header: '.heading'
+                expanded: false
             });
 
-            var toggler = this._toggler;
+            toggler = this._toggler;
 
             toggler.toggle();
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'), 'toggle() expand');
@@ -181,12 +181,11 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should return the expanded content height': function() {
-            this.createToggler({
-                content: '.content',
-                header: '.heading'
-            });
+            var toggler;
 
-            var toggler = this._toggler;
+            this.createToggler();
+
+            toggler = this._toggler;
 
             Y.Assert.areEqual(toggler.getContentHeight(), 20);
             toggler.toggle();
@@ -194,28 +193,29 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should expand when calling animate function': function() {
+            var toggler;
+
             this.createToggler({
                 animated: true,
-                content: '.content',
-                expanded: false,
-                header: '.heading'
+                expanded: false
             });
 
-            var toggler = this._toggler;
+            toggler = this._toggler;
 
             toggler.animate();
             Y.Assert.isTrue(this.togglerHasClass('toggler-content-expanded'));
         },
 
         'should toggle/expand/collapse on key presses': function() {
+            var toggler,
+                header;
+
             this.createToggler({
-                content: '.content',
-                header: '.heading',
                 toggleEvent: 'click'
             });
 
-            var toggler = this._toggler;
-            var header = toggler.get('header');
+            toggler = this._toggler;
+            header = toggler.get('header');
 
             // toggle()
 
@@ -283,14 +283,15 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should not toggle/expand/collapse on key presses': function() {
+            var toggler,
+                header;
+
             this.createToggler({
-                bindDOMEvents: false,
-                content: '.content',
-                header: '.heading'
+                bindDOMEvents: false
             });
 
-            var toggler = this._toggler;
-            var header = toggler.get('header');
+            toggler = this._toggler;
+            header = toggler.get('header');
 
             header.simulate('keydown', {
                 keyCode: 13 // enter
@@ -299,13 +300,13 @@ YUI.add('module-tests', function(Y) {
         },
 
         'should not toggle when hidden': function() {
-            this.createToggler({
-                content: '.content',
-                header: '.heading'
-            });
+            var toggler,
+                header;
 
-            var toggler = this._toggler;
-            var header = toggler.get('header');
+            this.createToggler();
+
+            toggler = this._toggler;
+            header = toggler.get('header');
 
             header.setStyle('display', 'none');
             toggler.collapse();
