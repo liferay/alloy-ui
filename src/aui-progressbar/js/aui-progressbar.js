@@ -300,19 +300,6 @@ var ProgressBar = A.Component.create({
         },
 
         /**
-         * Calculate the number of pixels to set the `contentBox` bar.
-         *
-         * @method _getPixelStep
-         * @protected
-         * @return {Number}
-         */
-        _getPixelStep: function() {
-            var instance = this;
-
-            return instance._getBoundingBoxSize() * instance.get('ratio');
-        },
-
-        /**
          * Calculate the ratio based on `max` and `min` values.
          *
          * @method _getRatio
@@ -401,21 +388,19 @@ var ProgressBar = A.Component.create({
          */
         _uiSetValue: function() {
             var instance = this;
-            var pixelStep = instance._getPixelStep();
+            var percentStep = instance._getStep();
 
             var styles = {};
 
             if (instance.get('orientation') === 'horizontal') {
                 styles = {
                     height: '100%',
-                    top: 'auto',
-                    width: pixelStep + 'px'
+                    width: percentStep + '%'
                 };
             }
             else {
                 styles = {
-                    height: pixelStep + 'px',
-                    top: toNumber(instance._getBoundingBoxSize() - pixelStep) + 'px',
+                    height: percentStep + '%',
                     width: '100%'
                 };
             }
