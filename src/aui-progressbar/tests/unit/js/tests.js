@@ -173,7 +173,7 @@ YUI.add('aui-progressbar-tests', function(Y) {
             contentBox = this.progressBar.get('contentBox');
 
             Y.Assert.areEqual(
-                '80px',
+                '80%',
                 contentBox.getStyle('width'),
                 'The width should be set appropriately on horizontal orientation'
             );
@@ -193,7 +193,7 @@ YUI.add('aui-progressbar-tests', function(Y) {
             );
 
             Y.Assert.areEqual(
-                '80px',
+                '80%',
                 contentBox.getStyle('height'),
                 'The height should be set appropriately on vertical orientation'
             );

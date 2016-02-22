@@ -7,20 +7,13 @@
  * @module aui-progressbar
  */
 
-var L = A.Lang,
-    isNumber = L.isNumber,
-    isString = L.isString,
-    isUndefined = L.isUndefined,
-
-    toNumber = function(v) {
+var toNumber = function(v) {
         return parseFloat(v) || 0;
     },
 
-    getCN = A.getClassName,
-
-    CSS_BAR = getCN('progress', 'bar'),
-    CSS_HORIZONTAL = getCN('horizontal'),
-    CSS_VERTICAL = getCN('vertical'),
+    CSS_BAR = A.getClassName('progress', 'bar'),
+    CSS_HORIZONTAL = A.getClassName('horizontal'),
+    CSS_VERTICAL = A.getClassName('vertical'),
 
     TPL_TEXT = '<p></p>';
 
@@ -65,18 +58,6 @@ var ProgressBar = A.Component.create({
     ATTRS: {
 
         /**
-         * Boolean indicating if use of the WAI-ARIA Roles and States
-         * should be enabled.
-         *
-         * @attribute useARIA
-         * @default true
-         * @type Boolean
-         */
-        useARIA: {
-            value: true
-        },
-
-        /**
          * Display height of the progressbar.
          *
          * @attribute height
@@ -111,7 +92,7 @@ var ProgressBar = A.Component.create({
          * @type Number
          */
         max: {
-            validator: isNumber,
+            validator: A.Lang.isNumber,
             value: 100
         },
 
@@ -125,7 +106,7 @@ var ProgressBar = A.Component.create({
          * @type Number
          */
         min: {
-            validator: isNumber,
+            validator: A.Lang.isNumber,
             value: 0
         },
 
@@ -140,7 +121,7 @@ var ProgressBar = A.Component.create({
         orientation: {
             value: 'horizontal',
             validator: function(val) {
-                return isString(val) && (val === 'horizontal' || val === 'vertical');
+                return A.Lang.isString(val) && (val === 'horizontal' || val === 'vertical');
             }
         },
 
@@ -195,6 +176,18 @@ var ProgressBar = A.Component.create({
         },
 
         /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            value: true
+        },
+
+        /**
          * The value for the bar. Valid values are in between the minValue
          * and maxValue attributes.
          *
@@ -205,7 +198,7 @@ var ProgressBar = A.Component.create({
         value: {
             setter: toNumber,
             validator: function(val) {
-                return isNumber(toNumber(val)) && ((val >= this.get('min')) && (val <= this.get('max')));
+                return A.Lang.isNumber(toNumber(val)) && ((val >= this.get('min')) && (val <= this.get('max')));
             },
             value: 0
         }
@@ -249,11 +242,9 @@ var ProgressBar = A.Component.create({
          * @protected
          */
         renderUI: function() {
-            var instance = this;
+            this.get('contentBox').addClass(CSS_BAR);
 
-            instance.get('contentBox').addClass(CSS_BAR);
-
-            instance._renderTextNodeIfLabelSet();
+            this._renderTextNodeIfLabelSet();
         },
 
         /**
@@ -263,10 +254,8 @@ var ProgressBar = A.Component.create({
          * @protected
          */
         syncUI: function() {
-            var instance = this;
-
-            if (instance.get('useARIA')) {
-                instance.plug(A.Plugin.Aria, {
+            if (this.get('useARIA')) {
+                this.plug(A.Plugin.Aria, {
                     attributes: {
                         value: 'valuenow',
                         max: 'valuemax',
@@ -289,27 +278,11 @@ var ProgressBar = A.Component.create({
          * @return {Number}
          */
         _getBoundingBoxSize: function() {
-            var instance = this;
-            var boundingBox = instance.get('boundingBox');
-
             return toNumber(
-                boundingBox.getStyle(
+                this.get('boundingBox').getStyle(
                     this.get('orientation') === 'horizontal' ? 'width' : 'height'
                 )
             );
-        },
-
-        /**
-         * Calculate the number of pixels to set the `contentBox` bar.
-         *
-         * @method _getPixelStep
-         * @protected
-         * @return {Number}
-         */
-        _getPixelStep: function() {
-            var instance = this;
-
-            return instance._getBoundingBoxSize() * instance.get('ratio');
         },
 
         /**
@@ -320,9 +293,8 @@ var ProgressBar = A.Component.create({
          * @return {Number}
          */
         _getRatio: function() {
-            var instance = this;
-            var min = instance.get('min');
-            var ratio = (instance.get('value') - min) / (instance.get('max') - min);
+            var min = this.get('min'),
+                ratio = (this.get('value') - min) / (this.get('max') - min);
 
             return Math.max(ratio, 0);
         },
@@ -345,10 +317,8 @@ var ProgressBar = A.Component.create({
          * @protected
          */
         _renderTextNodeIfLabelSet: function() {
-            var instance = this;
-
-            if (!isUndefined(instance.get('label'))) {
-                instance.get('contentBox').append(instance.get('textNode'));
+            if (!A.Lang.isUndefined(this.get('label'))) {
+                this.get('contentBox').append(this.get('textNode'));
             }
         },
 
@@ -361,11 +331,10 @@ var ProgressBar = A.Component.create({
          * @protected
          */
         _uiSetLabel: function(val) {
-            var instance = this,
-                textNode = instance.get('textNode');
+            var textNode = this.get('textNode');
 
             if (!textNode.inDoc()) {
-                instance._renderTextNodeIfLabelSet();
+                this._renderTextNodeIfLabelSet();
             }
 
             textNode.html(val);
@@ -380,15 +349,14 @@ var ProgressBar = A.Component.create({
          * @protected
          */
         _uiSetOrientation: function(val) {
-            var instance = this;
-            var boundingBox = instance.get('boundingBox');
-            var horizontal = (val === 'horizontal');
+            var boundingBox = this.get('boundingBox'),
+                horizontal = (val === 'horizontal');
 
             boundingBox.toggleClass(CSS_HORIZONTAL, horizontal);
             boundingBox.toggleClass(CSS_VERTICAL, !horizontal);
 
-            instance._uiSetValue(instance.get('value'));
-            instance._uiSizeTextNode();
+            this._uiSetValue(this.get('value'));
+            this._uiSizeTextNode();
         },
 
         /**
@@ -396,35 +364,30 @@ var ProgressBar = A.Component.create({
          * the `value` attribute.
          *
          * @method _uiSetValue
-         * @param {String} val Progress value
          * @protected
          */
         _uiSetValue: function() {
-            var instance = this;
-            var pixelStep = instance._getPixelStep();
+            var percentStep = this._getStep(),
+                styles;
 
-            var styles = {};
-
-            if (instance.get('orientation') === 'horizontal') {
+            if (this.get('orientation') === 'horizontal') {
                 styles = {
                     height: '100%',
-                    top: 'auto',
-                    width: pixelStep + 'px'
+                    width: percentStep + '%'
                 };
             }
             else {
                 styles = {
-                    height: pixelStep + 'px',
-                    top: toNumber(instance._getBoundingBoxSize() - pixelStep) + 'px',
+                    height: percentStep + '%',
                     width: '100%'
                 };
             }
 
-            if (instance.get('step') >= 100) {
-                instance.fire('complete');
+            if (this.get('step') >= 100) {
+                this.fire('complete');
             }
 
-            instance.get('contentBox').setStyles(styles);
+            this.get('contentBox').setStyles(styles);
         },
 
         /**
@@ -434,14 +397,7 @@ var ProgressBar = A.Component.create({
          * @protected
          */
         _uiSizeTextNode: function() {
-            var instance = this;
-            var boundingBox = instance.get('boundingBox');
-            var textNode = instance.get('textNode');
-
-            textNode.setStyle(
-                'lineHeight',
-                boundingBox.getStyle('height')
-            );
+            this.get('textNode').setStyle('lineHeight', this.get('boundingBox').getStyle('height'));
         }
     }
 });
