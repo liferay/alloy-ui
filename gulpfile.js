@@ -3,6 +3,7 @@ var requireDir = require('require-dir');
 var tasksDir = requireDir('./tasks');
 
 liferayGulpTasks.registerTasks({
+	artifactName: 'alloy-ui',
 	artifactSrc: ['**/*', '!node_modules/', '!node_modules/**', '!bower_components/', '!bower_components/**']
 });
 
