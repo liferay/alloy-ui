@@ -76,7 +76,7 @@ DatePickerNativeBase.prototype = {
     bindNativeUI: function() {
         var instance = this,
             container = instance.get('container'),
-            selector = instance.get('selector');
+            selector = instance.get('trigger');
 
         instance._eventHandles.push(
             container.delegate(
