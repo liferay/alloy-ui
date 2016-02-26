@@ -1,0 +1,24 @@
+.rating a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.rating-disabled a {
+    cursor: default;
+}
+
+.rating-off {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+.rating .glyphicon {
+    font-size: 1em;
+}
+
+@media (max-width: 767px) {
+    .rating .glyphicon {
+        font-size: 1.5em;
+    }
+}
