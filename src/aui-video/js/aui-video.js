@@ -17,6 +17,8 @@ var Lang = A.Lang,
     TPL_VIDEO = '<video id="{id}" controls="controls" class="' + CSS_VIDEO_NODE + '" {height} {width}></video>',
     TPL_VIDEO_FALLBACK = '<div class="' + CSS_VIDEO_NODE + '"></div>';
 
+    WIN = A.getWin();
+
 /**
  * A base class for Video.
  *
@@ -50,6 +52,19 @@ var Video = A.Component.create({
      */
     ATTRS: {
 
+        /**
+         * The ratio used to resize the video for various screen sizes.
+         *
+         * @attribute aspectRatio
+         * @type {Number}
+         */
+        aspectRatio: {
+            valueFn: function() {
+                var instance = this;
+
+                return instance.get('height') / instance.get('width');
+            }
+        },
         /**
          * The required Flash version for the swf player
          *
@@ -234,6 +249,8 @@ var Video = A.Component.create({
 
             instance.publish('play');
             instance.publish('pause');
+
+            WIN.on(['orientationchange', 'resize'], instance._resizeVideo, instance);
         },
 
         /**
@@ -251,6 +268,9 @@ var Video = A.Component.create({
                     roleNode: instance.get('contentBox')
                 });
             }
+
+            instance._removeBoundingBoxDimensions();
+            instance._resizeVideo();
         },
 
         /**
@@ -306,6 +326,28 @@ var Video = A.Component.create({
             sourceNode.attr('type', type);
 
             return sourceNode;
+        },
+
+        /**
+         * Removes the inline styling for the boundingBox.
+         *
+         * @method _removeBoundingBoxDimensions
+         * @protected
+         */
+        _removeBoundingBoxDimensions: function() {
+            var instance = this;
+
+            var bb = instance.get('boundingBox');
+
+            var bbStyle = bb._node.style;
+
+            if (bbStyle.removeProperty) {
+                bbStyle.removeProperty('width');
+                bbStyle.removeProperty('height');
+            } else {
+                bbStyle.removeAttribute('width');
+                bbStyle.removeAttribute('height');
+            }
         },
 
         /**
@@ -432,6 +474,31 @@ var Video = A.Component.create({
             instance.get('contentBox').append(video);
 
             instance._video = video;
+        },
+
+        /**
+         * Resizes the video at various window sizes.
+         *
+         * @method _resizeVideo
+         * @protected
+         */
+        _resizeVideo: function () {
+            var instance = this;
+
+            var video = instance._video;
+            var videoInitialWidth = instance.get('width');
+            var videoInitialHeight = instance.get('height');
+            var videoParentWidth = video.ancestor('.video-content').width();
+
+            if (WIN.width() < videoInitialWidth) {
+                var newWidth = videoParentWidth;
+
+                video.width(newWidth);
+                video.height(newWidth * instance.get('aspectRatio'));
+            } else {
+                video.width(videoInitialWidth);
+                video.height(videoInitialHeight);
+            }
         },
 
         /**
