@@ -12,9 +12,9 @@ var CSS_ADD_ROW = A.getClassName('layout', 'builder', 'add', 'row'),
     CSS_ADD_ROW_CHOOSE_ROW = A.getClassName('layout', 'builder', 'add', 'row', 'choose', 'row'),
 
     TPL_ADD_ROW_AREA = '<div class="' + [CSS_ADD_ROW_AREA, CSS_ADD_ROW_AREA_FIXED].join(' ') + '"></div>',
-    TPL_ADD_ROW_CHOOSE_ROW = '<div class="' + CSS_ADD_ROW_CHOOSE_ROW + ' ' + CSS_ADD_ROW + '"></div>',
+    TPL_ADD_ROW_CHOOSE_ROW = '<div class="' + CSS_ADD_ROW_CHOOSE_ROW + ' ' + CSS_ADD_ROW + '">{addRow}</div>',
     TPL_ADD_ROW_SMALL_SCREEN_SIZE = '<div class="' + [CSS_ADD_ROW, CSS_ADD_ROW_SMALL_SCREEN_AREA].join(' ') +
-        '"><div class="' + CSS_ADD_ROW_SMALL_SCREEN + '"></div><div>Add Row</div></div>';
+        '"><div class="' + CSS_ADD_ROW_SMALL_SCREEN + '"></div><div>{addRow}</div></div>';
 
 /**
  * A base class for Layout Add Row.
@@ -185,9 +185,10 @@ LayoutBuilderAddRow.prototype = {
         var rowArea = A.Node.create(TPL_ADD_ROW_AREA),
             rowOption;
 
-        rowOption = A.Node.create(TPL_ADD_ROW_CHOOSE_ROW);
+        rowOption = A.Node.create(A.Lang.sub(TPL_ADD_ROW_CHOOSE_ROW, {
+            addRow: this.get('strings').addRow
+        }));
         rowOption.setData('numberOfCols', 1);
-        rowOption.set('text', 'Add Row');
 
         rowArea.append(rowOption);
 
@@ -201,7 +202,9 @@ LayoutBuilderAddRow.prototype = {
      * @protected
      */
     _createAddRowAreaForSmallScreens: function() {
-        var rowArea = A.Node.create(TPL_ADD_ROW_SMALL_SCREEN_SIZE);
+        var rowArea = A.Node.create(A.Lang.sub(TPL_ADD_ROW_SMALL_SCREEN_SIZE, {
+            addRow: this.get('strings').addRow
+        }));
 
         rowArea.setData('numberOfCols', 1);
 

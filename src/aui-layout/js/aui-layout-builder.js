@@ -156,7 +156,8 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
         strings: {
             value: {
                 addColumn: 'Add Column',
-                pasteHere: 'Paste Here'
+                pasteHere: 'Paste Here',
+                addRow: 'Add Row'
             },
             writeOnce: true
         }
