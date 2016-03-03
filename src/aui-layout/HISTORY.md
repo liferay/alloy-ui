@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2090](https://issues.liferay.com/browse/AUI-2090) Create string attribute entries to those sentences which are inside templates
 * [AUI-2089](https://issues.liferay.com/browse/AUI-2089) Wrong string "Past Here" should be "Paste Here"
 * [AUI-2072](https://issues.liferay.com/browse/AUI-2072) Paste row area and paste field area should have the same add field button's style
 * [AUI-2073](https://issues.liferay.com/browse/AUI-2073) Set the tab order on Form Builder
