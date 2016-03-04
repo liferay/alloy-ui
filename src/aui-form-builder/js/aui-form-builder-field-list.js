@@ -279,8 +279,8 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
          */
         strings: {
             value: {
-                pasteHere: 'Paste here',
-                addField: 'Add Field'
+                addField: 'Add Field',
+                pasteHere: 'Paste here'
             },
             writeOnce: true
         }
