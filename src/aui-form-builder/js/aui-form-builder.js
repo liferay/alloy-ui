@@ -745,11 +745,13 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
          */
         strings: {
             value: {
+                addColumn: 'Add Column',
                 addField: 'Add Field',
                 cancelRemoveRow: 'Cancel',
                 confirmRemoveRow: 'Yes, delete',
                 formTitle: 'Build your form',
                 modalHeader: 'Remove confirmation',
+                pasteHere: 'Paste Here',
                 removeRowModal: 'You will also delete fields with this row. ' +
                     'Are you sure you want delete it?'
             },

@@ -124,7 +124,8 @@ A.FormBuilderLayoutBuilder.prototype = {
             container: this.get('contentBox').one('.' + CSS_LAYOUT),
             layout: this.getActiveLayout(),
             removeColMoveButtons: A.bind(this._removeColMoveButtons, this),
-            removeColMoveTargets: A.bind(this._removeColMoveTargets, this)
+            removeColMoveTargets: A.bind(this._removeColMoveTargets, this),
+            strings: this.get('strings')
         });
 
         originalChooseColMoveTargetFn = this._layoutBuilder.get('chooseColMoveTarget');
