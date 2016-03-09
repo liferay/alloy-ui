@@ -18,7 +18,7 @@ var CSS_MOVE_CANCEL = A.getClassName('layout', 'builder', 'move', 'cancel'),
     SELECTOR_ROW = '.layout-row',
 
     TPL_MOVE_CUT = '<div class="' + CSS_MOVE_CUT_BUTTON + '" tabindex="0"></div>',
-    TPL_MOVE_TARGET = '<div class="' + CSS_MOVE_TARGET + '"><span class="' + CSS_MOVE_TARGET_LABEL + '">Past Here<span></div>';
+    TPL_MOVE_TARGET = '<div class="' + CSS_MOVE_TARGET + '"><span class="' + CSS_MOVE_TARGET_LABEL + '">{pasteHere}<span></div>';
 
 /**
  * A base class for Layout Move.
@@ -118,7 +118,9 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _addColMoveTarget: function(col, index) {
-        var target = A.Node.create(TPL_MOVE_TARGET);
+        var target = A.Node.create(A.Lang.sub(TPL_MOVE_TARGET, {
+            pasteHere: this.get('strings').pasteHere
+        }));
 
         target.setData('col-index', index);
         target.addClass(CSS_MOVE_COL_TARGET);
@@ -388,7 +390,9 @@ LayoutBuilderMove.prototype = {
             }
 
             if (currentRow.getData('layout-row').get('movable')) {
-                target = A.Node.create(TPL_MOVE_TARGET);
+                target = A.Node.create(A.Lang.sub(TPL_MOVE_TARGET, {
+                    pasteHere: this.get('strings').pasteHere
+                }));
                 target.addClass(CSS_MOVE_ROW_TARGET);
                 target.setData('row-index', currentIndex);
                 containerRow.insert(target, direction);

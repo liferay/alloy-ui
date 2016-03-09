@@ -43,7 +43,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         '<a class="' + CSS_FIELD_LIST_ADD_BUTTON + '" href="javascript:;">' +
         '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + ' ' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON + '">+</span>' +
         '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_LABEL + '">' +
-        'ADD FIELD' +
+        '{addField}' +
         '</label>' +
         '</a></div>',
     TPL_FIELD_LIST: '<div class="' + CSS_FIELD_LIST + '">' +
@@ -131,7 +131,9 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         var addFieldNode,
             moveTargetNode;
 
-        addFieldNode = A.Node.create(this.TPL_ADD_FIELD);
+        addFieldNode = A.Node.create(A.Lang.sub(this.TPL_ADD_FIELD, {
+            addField: this.get('strings').addField
+        }));
         moveTargetNode = A.Node.create(A.Lang.sub(this.TPL_FIELD_MOVE_TARGET, {
             pasteHere: this.get('strings').pasteHere
         }));
@@ -277,6 +279,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
          */
         strings: {
             value: {
+                addField: 'Add Field',
                 pasteHere: 'Paste here'
             },
             writeOnce: true

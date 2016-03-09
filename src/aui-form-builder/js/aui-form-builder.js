@@ -91,7 +91,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
         this._eventHandles.push(
             this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
-            A.getDoc().on('key', this._onEscKey, 'esc', this),
             pages.on('add', A.bind(this._addPage, this)),
             pages.on('remove', A.bind(this._removeLayout, this)),
             pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this)),
@@ -514,16 +513,6 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Fires when the esc key is pressed.
-     *
-     * @method _onEscKey
-     * @protected
-     */
-    _onEscKey: function() {
-        this._newFieldContainer = null;
-    },
-
-    /**
      * Fired when some node is focused inside content box.
      *
      * @method _onFocus
@@ -745,11 +734,13 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
          */
         strings: {
             value: {
+                addColumn: 'Add Column',
                 addField: 'Add Field',
                 cancelRemoveRow: 'Cancel',
                 confirmRemoveRow: 'Yes, delete',
                 formTitle: 'Build your form',
                 modalHeader: 'Remove confirmation',
+                pasteHere: 'Paste Here',
                 removeRowModal: 'You will also delete fields with this row. ' +
                     'Are you sure you want delete it?'
             },
