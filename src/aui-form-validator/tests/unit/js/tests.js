@@ -584,6 +584,24 @@ YUI.add('aui-form-validator-tests', function(Y) {
             Y.Assert.isFalse(input.hasAttribute('aria-invalid'), 'Empty input field should not have aria-invalid attribute');
         },
 
+        'shouldn\'t add success-field class in a field with no rules': function() {
+            var form = Y.Node.create(
+                    '<form><input name="yes" id="yes" type="text"></form>'),
+                input = form.one('input');
+
+            var formValidator = new Y.FormValidator({
+                boundingBox: form
+            });
+
+            formValidator.highlight(input, true);
+
+            Y.Assert.isFalse(input.hasClass('success-field'));
+
+            formValidator.unhighlight(input);
+
+            Y.Assert.isFalse(input.hasClass('success-field'));
+        },
+
         _assertValidatorNextLabel: function(input) {
             var inputNode,
                 textNode;

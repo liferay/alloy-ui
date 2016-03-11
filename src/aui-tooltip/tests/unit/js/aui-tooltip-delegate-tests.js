@@ -56,6 +56,58 @@ YUI.add('aui-tooltip-delegate-tests', function(Y) {
 
                 trigger.simulate('mouseout');
             });
+        },
+
+        'should show/hide tooltip for all trigger events': function() {
+            var tooltip,
+                tooltipClass = 'tooltip-class',
+                trigger = Y.one('.tooltip-multiple-trigger-events');
+
+            this._delegate = new Y.TooltipDelegate({
+                cssClass: tooltipClass,
+                duration: 0,
+                trigger: '.tooltip-multiple-trigger-events',
+                triggerHideEvent: ['blur', 'mouseleave'],
+                triggerShowEvent: ['focus', 'mouseover']
+            });
+
+            trigger.simulate('mouseover');
+
+            tooltip = Y.one('.' + tooltipClass);
+
+            this.wait(function() {
+                Y.Assert.isTrue(tooltip.getStyle('opacity') > 0, '.tooltip is hidden.');
+
+                trigger.simulate('mouseout');
+
+                this.wait(function() {
+                    Y.Assert.isFalse(tooltip.getStyle('opacity') > 0, '.tooltip is not hidden.');
+        
+                    trigger.simulate('focus');
+
+                    this.wait(function() {
+                        Y.Assert.isTrue(tooltip.getStyle('opacity') > 0, '.tooltip is hidden.');
+
+                        trigger.simulate('blur');
+
+                        this.wait(function() {
+                            Y.Assert.isFalse(tooltip.getStyle('opacity') > 0, '.tooltip is not hidden.');
+                        }, 0);
+                    }, 0);
+                }, 0);
+            }, 0);
+        },
+
+        'should validate triggerHideEvent and triggerShowEvent': function() {
+            this._delegate = new Y.TooltipDelegate({
+                duration: 0,
+                trigger: '.tooltip-multiple-trigger-events',
+                triggerHideEvent: [1, 'mouseleave'],
+                triggerShowEvent: {}
+            });
+
+            Y.Assert.areEqual('mouseenter', this._delegate.get('triggerShowEvent'));
+            Y.Assert.areEqual('mouseleave', this._delegate.get('triggerHideEvent'));
         }
     }));
     Y.Test.Runner.add(suite);

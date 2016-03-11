@@ -65,7 +65,8 @@ LayoutBuilderMove.prototype = {
             this.after('layout-row:movableChange', A.bind(this._afterMoveMovableChange, this)),
             this.after('layout:rowsChange', A.bind(this._afterMoveRowsChange, this)),
             this.after('layout:isColumnModeChange', A.bind(this._afterMoveIsColumnModeChange, this)),
-            this.after('layoutChange', A.bind(this._afterMoveLayoutChange, this))
+            this.after('layoutChange', A.bind(this._afterMoveLayoutChange, this)),
+            A.one('doc').on('key', this._onEscKey, 'esc', this)
         );
 
         this._uiSetEnableMoveRows(this.get('enableMoveRows'));
@@ -338,7 +339,6 @@ LayoutBuilderMove.prototype = {
         this._removeAllCutButton(cutButton);
 
         if (cutButton.hasClass(CSS_MOVE_CANCEL)) {
-            cutButton.toggleClass(CSS_MOVE_CANCEL);
             this.cancelMove();
             return;
         }
@@ -508,6 +508,16 @@ LayoutBuilderMove.prototype = {
         else {
             layout.moveRow(target.getData('row-index'), this._rowToBeMoved);
         }
+    },
+
+    /**
+     * Fires when the esc key is pressed.
+     *
+     * @method _onEscKey
+     * @protected
+     */
+    _onEscKey: function () {
+        this.cancelMove();
     },
 
     /**

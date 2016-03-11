@@ -30,15 +30,15 @@
         <h2>Delegate</h2>
         <br/>
         <ul id="delegate">
-            <li title="Apricot">Apricot</li>
-            <li title="Pineapple is my favorite!">Pineapple</li>
-            <li title="Kiwi">Kiwi</li>
-            <li title="Orange">Orange</li>
-            <li title="Pomegranate">Pomegranate</li>
-            <li title="Lime">Lime</li>
-            <li title="Watermelon">Watermelon</li>
-            <li title="Apricot">Apricot</li>
-            <li title="Pineapple">Pineapple</li>
+            <li title="Apricot" tabindex="0">Apricot</li>
+            <li title="Pineapple is my favorite!" tabindex="0">Pineapple</li>
+            <li title="Kiwi" tabindex="0">Kiwi</li>
+            <li title="Orange" tabindex="0">Orange</li>
+            <li title="Pomegranate" tabindex="0">Pomegranate</li>
+            <li title="Lime" tabindex="0">Lime</li>
+            <li title="Watermelon" tabindex="0">Watermelon</li>
+            <li title="Apricot" tabindex="0">Apricot</li>
+            <li title="Pineapple" tabindex="0">Pineapple</li>
         </ul>
     </div>
     <script>
@@ -76,7 +76,10 @@
 
         new Y.TooltipDelegate({
             position: 'right',
-            trigger: '#delegate li'
+            triggerHideEvent: ['blur', 'mouseleave'],
+            triggerShowEvent: ['focus', 'mouseover'],
+            trigger: '#delegate li',
+            visible: false
         });
 
     });

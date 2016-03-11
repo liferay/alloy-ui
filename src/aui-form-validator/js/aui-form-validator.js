@@ -809,19 +809,33 @@ var FormValidator = A.Component.create({
             var instance = this,
                 fieldContainer = instance.findFieldContainer(field);
 
-            instance._highlightHelper(
-                field,
-                instance.get('errorClass'),
-                instance.get('validClass'),
-                valid
-            );
+            if (field) {
+                if (this.validatable(field)) {
+                    instance._highlightHelper(
+                        field,
+                        instance.get('errorClass'),
+                        instance.get('validClass'),
+                        valid
+                    );    
 
-            instance._highlightHelper(
-                fieldContainer,
-                instance.get('containerErrorClass'),
-                instance.get('containerValidClass'),
-                valid
-            );
+                    if (fieldContainer) {
+                        instance._highlightHelper(
+                            fieldContainer,
+                            instance.get('containerErrorClass'),
+                            instance.get('containerValidClass'),
+                            valid
+                        );
+                    }
+                }
+                else if (!field.val()) {
+                    field.removeClass('errorClass');
+                    field.removeAttribute('aria-invalid');
+                    if (fieldContainer) {
+                        fieldContainer.removeClass('containerErrorClass');
+                        fieldContainer.removeAttribute('aria-invalid');
+                    }
+                }
+            }
         },
 
         /**
@@ -1191,20 +1205,18 @@ var FormValidator = A.Component.create({
          * @protected
          */
         _highlightHelper: function(field, errorClass, validClass, valid) {
-            if (field) {
-                if (valid) {
-                    field.removeClass(errorClass).addClass(validClass);
+            if (valid) {
+                field.removeClass(errorClass).addClass(validClass);
 
-                    if (validClass === CSS_SUCCESS_FIELD) {
-                        field.removeAttribute('aria-invalid');
-                    }
+                if (validClass === CSS_SUCCESS_FIELD) {
+                    field.removeAttribute('aria-invalid');
                 }
-                else {
-                    field.removeClass(validClass).addClass(errorClass);
+            }
+            else {
+                field.removeClass(validClass).addClass(errorClass);
 
-                    if (errorClass === CSS_ERROR_FIELD) {
-                        field.set('aria-invalid', true);
-                    }
+                if (errorClass === CSS_ERROR_FIELD) {
+                    field.set('aria-invalid', true);
                 }
             }
         },

@@ -119,6 +119,25 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
         trigger = event.currentTarget;
 
         instance.getTooltip().set('trigger', trigger).render().show();
+    },
+
+    /**
+     * Validate the trigger events.
+     *
+     * @method _validateTriggerEvent
+     * @param  {String | Array} val
+     */
+    _validateTriggerEvent: function(val) {
+        if (A.Lang.isString(val)) {
+            return true;
+        }
+        else if (A.Lang.isArray(val)) {
+            return val.every(function (element) {
+                return A.Lang.isString(element);
+            });
+        }
+
+        return false;
     }
 }, {
     /**
@@ -211,7 +230,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
          * @type String
          */
         triggerHideEvent: {
-            validator: Lang.isString,
+            validator: '_validateTriggerEvent',
             value: 'mouseleave',
             writeOnce: true
         },
@@ -224,7 +243,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
          * @type String
          */
         triggerShowEvent: {
-            validator: Lang.isString,
+            validator: '_validateTriggerEvent',
             value: 'mouseenter',
             writeOnce: true
         },
