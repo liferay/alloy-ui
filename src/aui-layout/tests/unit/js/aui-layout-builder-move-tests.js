@@ -118,7 +118,27 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             Assert.areEqual(4, rows[1].get('cols').length);
         },
 
-        'should be able to cancel the move action': function() {
+        'should be able to cancel the move action on clicked in the cut button again': function() {
+            var cutButton,
+                target;
+
+            cutButton = container.one('.layout-builder-move-cut-row-button');
+            cutButton.simulate('click');
+
+            Assert.isNotNull(cutButton);
+
+            target = container.one('.layout-builder-move-row-target');
+            Assert.isNotNull(target);
+
+            Y.one('body').simulate('keydown', {
+                keyCode: 27
+            });
+
+            target = container.one('.layout-builder-move-row-target');
+            Assert.isNull(target);
+        },
+
+        'should be able to cancel the move action on escape key press': function() {
             var cutButton,
                 target;
 
