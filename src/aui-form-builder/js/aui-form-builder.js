@@ -498,7 +498,11 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      * @protected
      */
     _makeEmptyFieldList: function(col) {
-        col.set('value', new A.FormBuilderFieldList());
+        var instance = this;
+
+        col.set('value', new A.FormBuilderFieldList({
+            strings: instance.get('strings')
+        }));
     },
 
     /**
