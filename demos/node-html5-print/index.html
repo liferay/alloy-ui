@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
+    <script src="../../build/aui/aui.js"></script>
+    <style>
+        body {
+            margin: 20px;
+        }
+        iframe {
+            border: 5px solid lightblue;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Print Preview Demo</h2>
+
+    <p>
+        Note, this demo is <strong>only for Internet Explorer 8 and below</strong>.
+    </p>
+
+    <h3>Steps to Test</h3>
+
+    <ol>
+        <li>Before using the Print Preview, ensure that both <tt>&lt;iframe&gt;</tt> contents below look like the Example Image.</li>
+        <li>In the browser's application menu, click <tt>[File]</tt> &gt; <tt>[Print Preview...]</tt></li>
+        <li>In the Print Preview window, ensure that both <tt>&lt;iframe&gt;</tt> contents below look like the Example Image.</li>
+    </ol>
+
+    <div id="iFrameWrapper"></div>
+
+    <h2>Example Image</h2>
+
+    <p>
+        <img src="assets/sample.gif">
+    </p>
+
+    <script>
+        YUI({ filter:'raw' }).use('aui-node', function(Y) {
+            /*
+             * None of the below code is necessary for `aui-node-html5` to
+             * function. It's only here to avoid setting up the demo manually.
+             */
+
+            function getIFrameTemplate(frame) {
+                return Y.Lang.sub(
+                    '<iframe frameborder="0" border="0" scrolling="no" src="http://{host}/{path}/frame-{frame}"></iframe>',
+                    {
+                        frame: frame,
+                        host: window.location.hostname,
+                        path: window.location.pathname
+                    }
+                );
+            }
+
+            var iFrameWrapper = Y.one('#iFrameWrapper');
+
+            iFrameWrapper.append(
+                 Y.Node.create(
+                    getIFrameTemplate('NORMAL')
+                )
+            );
+
+            iFrameWrapper.append(
+                 Y.Node.create(
+                    getIFrameTemplate('SAMEORIGIN')
+                )
+            );
+        });
+    </script>
+</body>
+</html>
