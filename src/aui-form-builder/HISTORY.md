@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2096](https://issues.liferay.com/browse/AUI-2096) Should not able to edit column under the modal
 * [AUI-2090](https://issues.liferay.com/browse/AUI-2090) Passing strings to FormBuilderFieldList class from FromBuilder class
 * [AUI-2091](https://issues.liferay.com/browse/AUI-2091) Removing redundant code to handle modal hide
 * [AUI-2090](https://issues.liferay.com/browse/AUI-2090) Create string attribute entries to those sentences which are inside templates
