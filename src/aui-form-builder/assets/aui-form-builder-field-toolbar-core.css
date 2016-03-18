@@ -5,6 +5,10 @@
     top: 0;
 }
 
+.form-builder-field-toolbar-item {
+	display: inline-block;
+}
+
 .form-builder-field-toolbar-items {
     display: none;
 }
