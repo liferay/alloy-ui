@@ -210,10 +210,18 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         layout.normalizeColsHeight(layout.get('node').all('.row'));
 
+        this._selectFirstValidMoveTarget();
+
         this._cancelMoveFieldHandles = [
             A.one(A.config.doc).on('click', A.bind(this._onClickOutsideMoveTarget, this)),
             A.one(A.config.doc).on('key', A.bind(this._onEscKeyPressMoveTarget, this), 'down:27')
         ];
+    },
+
+    _selectFirstValidMoveTarget: function() {
+        var moveTarget = A.one('.' + CSS_FIELD_MOVE_TARGET + ':not(.' + CSS_FIELD_MOVE_TARGET_INVALID + ')');
+
+        moveTarget.focus();
     },
 
     /**
