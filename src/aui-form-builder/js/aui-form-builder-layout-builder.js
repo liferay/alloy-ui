@@ -195,6 +195,8 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         fieldNode.addClass(CSS_FIELD_MOVING);
 
+        fieldNode.all('.' + CSS_FIELD_MOVE_TARGET).addClass(CSS_FIELD_MOVE_TARGET_INVALID);
+
         targetNode = fieldNode.previous('.' + CSS_FIELD_MOVE_TARGET);
         if (targetNode) {
             targetNode.addClass(CSS_FIELD_MOVE_TARGET_INVALID);
