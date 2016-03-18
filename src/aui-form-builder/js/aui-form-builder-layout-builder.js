@@ -133,7 +133,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             originalChooseColMoveTargetFn));
 
         this._eventHandles.push(
-            this._fieldToolbar.on('onToolbarFieldMouseEnter', A.bind(this._onFormBuilderToolbarFieldMouseEnter, this))
+            this._fieldToolbar.on('onToolbarHasAddedToField', A.bind(this._onFormBuilderToolbarHasAddedToField, this))
         );
 
         this._removeLayoutCutColButtons();
@@ -446,11 +446,11 @@ A.FormBuilderLayoutBuilder.prototype = {
     /**
      * Fired when mouse enters a toolbar's field.
      *
-     * @method _onFormBuilderToolbarFieldMouseEnter
+     * @method _onFormBuilderToolbarHasAddedToField
      * @params {EventFacade} event
      * @protected
      */
-    _onFormBuilderToolbarFieldMouseEnter: function(event) {
+    _onFormBuilderToolbarHasAddedToField: function(event) {
         this._setMoveButtonData(event.colNode);
     },
 

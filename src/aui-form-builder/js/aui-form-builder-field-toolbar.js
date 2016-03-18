@@ -84,6 +84,10 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
      */
     addForField: function(field) {
         field.get('content').one('.' + CSS_TOOLBAR_CONTAINER).append(this._toolbar);
+
+        this.fire('onToolbarHasAddedToField', {
+            colNode: field.get('content').ancestor('.col')
+        });
     },
 
     /**
@@ -184,10 +188,6 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
      */
     _onFieldMouseEnter: function (event) {
         var field = this._getFieldFromEvent(event);
-
-        this.fire('onToolbarFieldMouseEnter', {
-            colNode: event.currentTarget.ancestor('.col')
-        });
 
         this.addForField(field);
     },
