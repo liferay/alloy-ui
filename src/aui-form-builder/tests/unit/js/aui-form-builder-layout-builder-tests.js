@@ -442,7 +442,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             });
             Y.Assert.areEqual(4, visibleTargets.size());
 
-            moveItem.simulate('click');
+            Y.one('body').simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('display') !== 'none';
             });
@@ -472,7 +472,7 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             });
             Y.Assert.areEqual(8, visibleTargets.size());
 
-            moveItem.simulate('click');
+            Y.one('body').simulate('click');
             visibleTargets = rowNode.all('.form-builder-field-move-target').filter(function(node) {
                 return node.getStyle('display') !== 'none';
             });
