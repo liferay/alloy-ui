@@ -220,12 +220,6 @@ A.FormBuilderLayoutBuilder.prototype = {
         ];
     },
 
-    _selectFirstValidMoveTarget: function() {
-        var moveTarget = A.one('.' + CSS_FIELD_MOVE_TARGET + ':not(.' + CSS_FIELD_MOVE_TARGET_INVALID + ')');
-
-        moveTarget.focus();
-    },
-
     /**
      * Overrides default `clickColMoveTarget` attribute.
      *
@@ -489,6 +483,18 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     _removeLayoutCutColButtons: function() {
         this._layoutBuilder.get('removeColMoveButtons')();
+    },
+
+    /**
+     * Find and focus on first valid move target.
+     *
+     * @method _selectFirstValidMoveTarget
+     * @protected
+     */
+    _selectFirstValidMoveTarget: function() {
+        var moveTarget = A.one('.' + CSS_FIELD_MOVE_TARGET + ':not(.' + CSS_FIELD_MOVE_TARGET_INVALID + ')');
+
+        moveTarget.focus();
     },
 
     /**
