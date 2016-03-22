@@ -168,6 +168,21 @@ A.mix(
             var bodyClone = instance._getBodyClone();
             var bodyEl = instance._getBodyEl();
 
+            var newNodes = bodyClone.getElementsByTagName('IFRAME');
+            var originalNodes = bodyEl.getElementsByTagName('IFRAME');
+
+            var length = originalNodes.length;
+
+            // Moving IFRAME nodes back to their original position
+            if (length === newNodes.length) {
+                while (length--) {
+                    var newNode = newNodes[length];
+                    var originalNode = originalNodes[length];
+
+                    originalNode.swapNode(newNode);
+                }
+            }
+
             bodyClone.innerHTML = '';
 
             HTML.removeChild(bodyClone);
@@ -266,7 +281,7 @@ A.mix(
                     var newNode = newNodes[length];
                     var newNodeName = newNode.nodeName;
 
-                    if (newNodeName === 'INPUT' || newNodeName === 'OPTION') {
+                    if (newNodeName === 'INPUT' || newNodeName === 'OPTION' || newNodeName === 'IFRAME') {
                         var originalNode = originalNodes[length];
                         var originalNodeName = originalNode.nodeName;
 
@@ -279,6 +294,9 @@ A.mix(
                             else if (newNodeName === 'INPUT' && (newNode.type === 'checkbox' || newNode.type ===
                                 'radio')) {
                                 prop = 'checked';
+                            }
+                            else if (newNodeName === 'IFRAME') {
+                                newNode.src = '';
                             }
 
                             if (prop !== null) {
@@ -295,6 +313,23 @@ A.mix(
                 TAG_REPLACE_FONT);
 
             bodyClone.innerHTML = bodyHTML;
+
+            // Post processing the DOM in order to move IFRAME nodes
+
+            newNodes = bodyClone.getElementsByTagName('IFRAME');
+            originalNodes = bodyEl.getElementsByTagName('IFRAME');
+
+            length = originalNodes.length;
+
+            if (length === newNodes.length) {
+                while (length--) {
+                    var newNodeIframe = newNodes[length];
+                    var originalNodeIframe = originalNodes[length];
+
+                    // According to quirksmode.org, swapNode is supported on all major IE versions
+                    originalNodeIframe.swapNode(newNodeIframe);
+                }
+            }
         },
 
         /**

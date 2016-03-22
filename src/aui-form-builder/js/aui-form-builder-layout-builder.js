@@ -357,7 +357,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             modal: true,
             resizable: false,
             visible: false,
-            zIndex: 2
+            zIndex: 4
         }).render();
 
         modal.addToolbar([
