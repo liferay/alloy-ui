@@ -93,6 +93,7 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
             tooltip = instance.tooltip = new A.Tooltip({
                 align: instance.get(ALIGN),
                 bindDOMEvents: false,
+                cssClass: instance.get('cssClass'),
                 duration: instance.get(DURATION),
                 formatter: instance.get(FORMATTER),
                 html: instance.get('html'),
@@ -162,6 +163,15 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
             setter: A.one,
             value: DOC,
             writeOnce: true
+        },
+
+        /**
+         * The CSS class applied to the tooltip.
+         *
+         * @attribute cssClass
+         */
+        cssClass: {
+            value: null
         },
 
         /**
