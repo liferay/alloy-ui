@@ -188,6 +188,22 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     },
 
     /**
+     * Append a field and its necessaries elements into a given container.
+     *
+     * @method _uiSetField
+     * @param {Node} container
+     * @param {Node} field
+     * @param {Number} index
+     * @protected
+     */
+    _uiSetField: function(container, field, index) {
+        this._appendAddFieldNode(container);
+        this._appendAddMoveTargetNode(container, index);
+
+        container.append(field.get('content'));
+    },
+
+    /**
      * Updates the ui according to the value of the `fields` attribute.
      *
      * @method _uiSetFields
@@ -202,8 +218,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         container.empty();
 
         for (index = 0; index < fields.length; index++) {
-            this._appendAddFieldNode(container, index);
-            container.append(fields[index].get('content'));
+            this._uiSetField(container, fields[index], index);
         }
 
         this._appendAddFieldNode(container, index);
