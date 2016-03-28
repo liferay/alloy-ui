@@ -136,24 +136,40 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
      *
      * @method _appendAddFieldNode
      * @param {Node} container
-     * @param {Number} index
      * @protected
      */
-    _appendAddFieldNode: function(container, index) {
-        var addFieldNode,
-            moveTargetNode;
+    _appendAddFieldNode: function(container) {
+        var addFieldNode;
 
         addFieldNode = A.Node.create(A.Lang.sub(this.TPL_ADD_FIELD, {
             addField: this.get('strings').addField
         }));
+
+        container.append(addFieldNode);
+
+        return addFieldNode;
+    },
+
+    /**
+     * Appends move target button on the given container.
+     *
+     * @method _appendAddMoveTargetNode
+     * @param {Node} container
+     * @param {Number} index
+     * @protected
+     */
+    _appendAddMoveTargetNode: function(container, index) {
+        var moveTargetNode;
+
         moveTargetNode = A.Node.create(A.Lang.sub(this.TPL_FIELD_MOVE_TARGET, {
             pasteHere: this.get('strings').pasteHere
         }));
 
         moveTargetNode.setData('field-list-index', index);
 
-        container.append(addFieldNode);
         container.append(moveTargetNode);
+
+        return moveTargetNode;
     },
 
     /**
@@ -233,7 +249,8 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
             this._uiSetField(container, fields[index], index);
         }
 
-        this._appendAddFieldNode(container, index);
+        this._appendAddFieldNode(container);
+        this._appendAddMoveTargetNode(container, index);
 
         content.toggleClass(CSS_FIELD_LIST_EMPTY, !fields.length);
 
