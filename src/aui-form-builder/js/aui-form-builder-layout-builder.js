@@ -133,7 +133,7 @@ A.FormBuilderLayoutBuilder.prototype = {
             originalChooseColMoveTargetFn));
 
         this._eventHandles.push(
-            this._fieldToolbar.on('onToolbarFieldMouseEnter', A.bind(this._onFormBuilderToolbarFieldMouseEnter, this))
+            this._fieldToolbar.on('onToolbarHasAddedToField', A.bind(this._onFormBuilderToolbarHasAddedToField, this))
         );
 
         this._removeLayoutCutColButtons();
@@ -195,6 +195,8 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         fieldNode.addClass(CSS_FIELD_MOVING);
 
+        fieldNode.all('.' + CSS_FIELD_MOVE_TARGET).addClass(CSS_FIELD_MOVE_TARGET_INVALID);
+
         targetNode = fieldNode.previous('.' + CSS_FIELD_MOVE_TARGET);
         if (targetNode) {
             targetNode.addClass(CSS_FIELD_MOVE_TARGET_INVALID);
@@ -209,6 +211,8 @@ A.FormBuilderLayoutBuilder.prototype = {
         this._addColMoveTarget(col);
 
         layout.normalizeColsHeight(layout.get('node').all('.row'));
+
+        this._selectFirstValidMoveTarget();
 
         this._cancelMoveFieldHandles = [
             A.one(A.config.doc).on('click', A.bind(this._onClickOutsideMoveTarget, this)),
@@ -436,11 +440,11 @@ A.FormBuilderLayoutBuilder.prototype = {
     /**
      * Fired when mouse enters a toolbar's field.
      *
-     * @method _onFormBuilderToolbarFieldMouseEnter
+     * @method _onFormBuilderToolbarHasAddedToField
      * @params {EventFacade} event
      * @protected
      */
-    _onFormBuilderToolbarFieldMouseEnter: function(event) {
+    _onFormBuilderToolbarHasAddedToField: function(event) {
         this._setMoveButtonData(event.colNode);
     },
 
@@ -479,6 +483,18 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     _removeLayoutCutColButtons: function() {
         this._layoutBuilder.get('removeColMoveButtons')();
+    },
+
+    /**
+     * Find and focus on first valid move target.
+     *
+     * @method _selectFirstValidMoveTarget
+     * @protected
+     */
+    _selectFirstValidMoveTarget: function() {
+        var moveTarget = A.one('.' + CSS_FIELD_MOVE_TARGET + ':not(.' + CSS_FIELD_MOVE_TARGET_INVALID + ')');
+
+        moveTarget.focus();
     },
 
     /**

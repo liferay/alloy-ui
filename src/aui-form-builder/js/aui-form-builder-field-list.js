@@ -107,6 +107,18 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     },
 
     /**
+     * Executed to the last empty column.
+     *
+     * @method _addEmptyColumnFieldClasses
+     * @param {Node} content
+     * @protected
+     */
+    _addEmptyColumnFieldClasses: function(content) {
+        content.one('.' + CSS_FIELD_LIST_ADD_CONTAINER).addClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
+        content.one('.' + CSS_FIELD_LIST_ADD_BUTTON).addClass(CSS_FIELD_LIST_ADD_BUTTON_LARGE);
+    },
+
+    /**
      * Fired after the `fields` attribute is set.
      *
      * @method _afterFieldsChange
@@ -124,24 +136,40 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
      *
      * @method _appendAddFieldNode
      * @param {Node} container
-     * @param {Number} index
      * @protected
      */
-    _appendAddFieldNode: function(container, index) {
-        var addFieldNode,
-            moveTargetNode;
+    _appendAddFieldNode: function(container) {
+        var addFieldNode;
 
         addFieldNode = A.Node.create(A.Lang.sub(this.TPL_ADD_FIELD, {
             addField: this.get('strings').addField
         }));
+
+        container.append(addFieldNode);
+
+        return addFieldNode;
+    },
+
+    /**
+     * Appends move target button on the given container.
+     *
+     * @method _appendAddMoveTargetNode
+     * @param {Node} container
+     * @param {Number} index
+     * @protected
+     */
+    _appendAddMoveTargetNode: function(container, index) {
+        var moveTargetNode;
+
         moveTargetNode = A.Node.create(A.Lang.sub(this.TPL_FIELD_MOVE_TARGET, {
             pasteHere: this.get('strings').pasteHere
         }));
 
         moveTargetNode.setData('field-list-index', index);
 
-        container.append(addFieldNode);
         container.append(moveTargetNode);
+
+        return moveTargetNode;
     },
 
     /**
@@ -188,6 +216,22 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     },
 
     /**
+     * Append a field and its necessaries elements into a given container.
+     *
+     * @method _uiSetField
+     * @param {Node} container
+     * @param {Node} field
+     * @param {Number} index
+     * @protected
+     */
+    _uiSetField: function(container, field, index) {
+        this._appendAddFieldNode(container);
+        this._appendAddMoveTargetNode(container, index);
+
+        container.append(field.get('content'));
+    },
+
+    /**
      * Updates the ui according to the value of the `fields` attribute.
      *
      * @method _uiSetFields
@@ -202,17 +246,16 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         container.empty();
 
         for (index = 0; index < fields.length; index++) {
-            this._appendAddFieldNode(container, index);
-            container.append(fields[index].get('content'));
+            this._uiSetField(container, fields[index], index);
         }
 
-        this._appendAddFieldNode(container, index);
+        this._appendAddFieldNode(container);
+        this._appendAddMoveTargetNode(container, index);
 
         content.toggleClass(CSS_FIELD_LIST_EMPTY, !fields.length);
 
         if (fields.length === 0) {
-            content.one('.' + CSS_FIELD_LIST_ADD_CONTAINER).addClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
-            content.one('.' + CSS_FIELD_LIST_ADD_BUTTON).addClass(CSS_FIELD_LIST_ADD_BUTTON_LARGE);
+            this._addEmptyColumnFieldClasses(content);
         }
     },
 

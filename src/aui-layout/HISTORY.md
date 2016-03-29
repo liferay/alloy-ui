@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2097](https://issues.liferay.com/browse/AUI-2097) Move field button doesn't appear if the user navigates pressing tab key
 * [AUI-2095](https://issues.liferay.com/browse/AUI-2095) Disable move row action on escape key press
 * [AUI-2093](https://issues.liferay.com/browse/AUI-2093) Fix arrow icons alignment of the resize column handler
 * [AUI-2090](https://issues.liferay.com/browse/AUI-2090) Create string attribute entries to those sentences which are inside templates

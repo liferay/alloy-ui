@@ -528,6 +528,7 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _onKeyPressOnMoveCutButton: function(event) {
+        event.preventDefault();
         this._clickOnCutButton(event.currentTarget);
     },
 
