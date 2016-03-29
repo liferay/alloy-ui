@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2100](https://issues.liferay.com/browse/AUI-2100) Increase font family support
 * [AUI-2099](https://issues.liferay.com/browse/AUI-2099) Refactor A.FormBuilderFieldList._uiSetFields
 * [AUI-2097](https://issues.liferay.com/browse/AUI-2097) Move field button doesn't appear if the user navigates pressing tab key
 * [AUI-2096](https://issues.liferay.com/browse/AUI-2096) Should not able to edit column under the modal
