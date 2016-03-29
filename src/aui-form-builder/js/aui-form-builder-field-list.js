@@ -109,11 +109,11 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     /**
      * Executed to the last empty column.
      *
-     * @method _afterAppendInAEmptyColumn
+     * @method _addEmptyColumnFieldClasses
      * @param {Node} content
      * @protected
      */
-    _afterAppendInAEmptyColumn: function(content) {
+    _addEmptyColumnFieldClasses: function(content) {
         content.one('.' + CSS_FIELD_LIST_ADD_CONTAINER).addClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
         content.one('.' + CSS_FIELD_LIST_ADD_BUTTON).addClass(CSS_FIELD_LIST_ADD_BUTTON_LARGE);
     },
@@ -255,7 +255,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         content.toggleClass(CSS_FIELD_LIST_EMPTY, !fields.length);
 
         if (fields.length === 0) {
-            this._afterAppendInAEmptyColumn(content);
+            this._addEmptyColumnFieldClasses(content);
         }
     },
 
