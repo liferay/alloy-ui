@@ -3,7 +3,6 @@
 }
 
 .data-editor-required-label {
-    font-family: "Helvetica Neue";
     float:right;
     font-size: 8px;
     font-weight: 300;
@@ -13,7 +12,6 @@
 
 .data-editor-label {
     color: #333;
-    font-family: "Helvetica Neue";
     font-size: 12px;
     font-weight: 300;
 }
