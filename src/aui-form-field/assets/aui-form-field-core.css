@@ -30,8 +30,10 @@
 
 .form-field-help {
     color: #708091;
-    font-family: HelveticaNeue-LightItalic;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 11pt;
+    font-style: italic;
+    font-weight: 300;
     margin-bottom: 24pt;
     word-wrap: break-word;
 }
