@@ -9,6 +9,7 @@
 
         <script src="../../../../build/aui/aui.js"></script>
         <script src="js/tests.js"></script>
+        <script src="js/aui-tooltip-delegate-tests.js"></script>
     </head>
     <body class="yui3-skin-sam">
         <div id="logger"></div>
@@ -47,7 +48,7 @@
         YUI({
             coverage: ['aui-tooltip-base'],
             filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
-        }).use('test-console', 'test', 'aui-tooltip-tests', function(Y) {
+        }).use('test-console', 'test', 'aui-tooltip-delegate-tests', 'module-tests', function(Y) {
 
             (new Y.Test.Console()).render('#logger');
 
