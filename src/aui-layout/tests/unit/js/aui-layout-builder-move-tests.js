@@ -168,6 +168,18 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             Assert.isNull(cutButton);
         },
 
+        'should hide move column button if disable enableMoveCols attribute': function() {
+            var cutButton = container.one('.layout-builder-move-cut-col-button');
+
+            Assert.isNotNull(cutButton);
+
+            this.layoutBuilder.set('enableMoveCols', false);
+
+            cutButton = container.one('.layout-builder-move-cut-col-button');
+
+            Assert.isNull(cutButton);
+        },
+
         'should not add move row button on rows that hasn\'t anything to move': function() {
             var moveButton,
                 layout = new Y.Layout({
