@@ -53,7 +53,9 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
         layout.addTarget(this);
 
         this._eventHandles = [
-            this.after('layoutChange', A.bind(this._afterLayoutChange, this))
+            this.after('layoutChange', A.bind(this._afterLayoutChange, this)),
+            this.on('moveStart', A.bind(this._afterLayoutMoveStart, this)),
+            this.on('moveEnd', A.bind(this._afterLayoutMoveEnd, this))
         ];
 
         layout.draw(this._layoutContainer);
@@ -71,6 +73,50 @@ A.LayoutBuilder = A.Base.create('layout-builder', A.Base, [
         (new A.EventHandle(this._eventHandles)).detach();
 
         this.get('container').empty();
+    },
+
+    /**
+     * Fires after layout:moveEnd event. 
+     *
+     * @method _afterLayoutMoveEnd
+     * @protected
+     */
+    _afterLayoutMoveEnd: function() {
+        if (this.isResizeColsEnabled) {
+            this.set('enableResizeCols', true);
+        }
+
+        if (this.isRemoveRowsEnabled) {
+            this.set('enableRemoveRows', true);
+        }
+
+        if (this.isAddRowsEnabled) {
+            this.set('enableAddRows', true);
+        }
+    },
+
+    /**
+     * Fires after layout:moveStart event. 
+     *
+     * @method _afterLayoutMoveStart
+     * @protected
+     */
+    _afterLayoutMoveStart: function() {
+        this.isResizeColsEnabled = this.get('enableResizeCols');
+        this.isRemoveRowsEnabled = this.get('enableRemoveRows');
+        this.isAddRowsEnabled = this.get('enableAddRows');
+
+        if (this.isResizeColsEnabled) {
+            this.set('enableResizeCols', false);
+        }
+
+        if (this.isRemoveRowsEnabled) {
+            this.set('enableRemoveRows', false);
+        }
+
+        if (this.isAddRowsEnabled) {
+            this.set('enableAddRows', false);
+        }
     },
 
     /**
