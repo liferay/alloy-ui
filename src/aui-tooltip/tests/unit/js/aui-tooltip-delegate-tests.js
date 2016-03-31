@@ -1,4 +1,4 @@
-YUI.add('aui-tooltip-delegate-tests', function(Y) {
+YUI.add('module-tests', function(Y) {
 
     //--------------------------------------------------------------------------
     // AUI Tooltip Delegate Unit Tests
