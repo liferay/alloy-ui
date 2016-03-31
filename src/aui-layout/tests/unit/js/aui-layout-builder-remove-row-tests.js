@@ -199,7 +199,7 @@ YUI.add('aui-layout-builder-remove-row-tests', function(Y) {
             Y.Assert.isNull(deleteRowButton);
         },
 
-        'should remove remove row feature on smartphones': function() {
+        'should remove row feature on smartphones': function() {
             var removeRowButton = Y.one('.layout-builder-remove-row-button');
 
             Y.Assert.isNotNull(removeRowButton);
