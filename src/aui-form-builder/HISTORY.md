@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2104](https://issues.liferay.com/browse/AUI-2104) Users should not be able to interact to some features of the form builder while it is moving a row or a column
 * [AUI-2100](https://issues.liferay.com/browse/AUI-2100) Increase font family support
 * [AUI-2099](https://issues.liferay.com/browse/AUI-2099) Refactor A.FormBuilderFieldList._uiSetFields
 * [AUI-2097](https://issues.liferay.com/browse/AUI-2097) Move field button doesn't appear if the user navigates pressing tab key
