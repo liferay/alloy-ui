@@ -534,7 +534,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             fieldContainer = target.ancestor('.' + CSS_FIELD);
         }
 
-        if (fieldContainer) {
+        if (fieldContainer && !this._fieldToolbar.get('disabled')) {
             if (!fieldContainer.contains(this._fieldToolbar._toolbar)) {
                 this._fieldToolbar.close();
                 this._fieldToolbar.addForField(fieldContainer.getData('field-instance'));

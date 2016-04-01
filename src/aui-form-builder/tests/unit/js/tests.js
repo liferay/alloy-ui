@@ -840,7 +840,6 @@ YUI.add('aui-form-builder-tests', function(Y) {
             var columnsNode;
 
             this.createFormBuilder();
-            this._openToolbar();
 
             columnsNode = this._formBuilder.get('contentBox').all('.col').get('node');
 
@@ -851,6 +850,23 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
                 Y.Assert.isFalse(fieldListInstance.get('enableAddFields'));
             });
+        },
+
+        'should disable toolbar while a user is moving rows': function() {
+            this.createFormBuilder();
+
+            Y.one('.layout-builder-move-cut-row-button').simulate('click');
+
+            Y.Assert.isTrue(this._formBuilder._fieldToolbar.get('disabled'));
+        },
+
+        'should disable toolbar while a user is moving field': function() {
+            this.createFormBuilder();
+            this._openToolbar();
+
+            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
+
+            Y.Assert.isTrue(this._formBuilder._fieldToolbar.get('disabled'));
         }
     }));
 

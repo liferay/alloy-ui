@@ -180,6 +180,18 @@ YUI.add('aui-form-builder-field-toolbar-tests', function(Y) {
 
             item = this._toolbar.getItem('.foo-bar');
             Y.Assert.isNull(item);
+        },
+
+        'should not add to a field if toolbar is disabled': function() {
+            var fieldNode = Y.one('.form-builder-field-content-toolbar');
+
+            this._toolbar.set('disabled', true);
+            fieldNode.simulate('mouseover');
+            Y.Assert.isNull(fieldNode.one('.form-builder-field-toolbar-toggle'));
+
+            this._toolbar.set('disabled', false);
+            fieldNode.simulate('mouseover');
+            Y.Assert.isNotNull(fieldNode.one('.form-builder-field-toolbar-toggle'));
         }
     }));
 
