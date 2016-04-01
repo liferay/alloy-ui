@@ -116,6 +116,7 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     _afterLayoutBuilderMoveEnd: function() {
         this._detachCancelMoveRowEvents();
+        this._enableAddFields();
     },
 
     /**
@@ -129,6 +130,8 @@ A.FormBuilderLayoutBuilder.prototype = {
         if (event.moveElement instanceof A.LayoutRow) {
             this._bindMoveRowEvents();
         }
+
+        this._disableAddFields();
     },
 
     /**
@@ -351,7 +354,7 @@ A.FormBuilderLayoutBuilder.prototype = {
     /**
      * Detaches events related to the cancel move row funcionality.
      *
-     * @method _detachCancelMoveFieldEvents
+     * @method _detachCancelMoveRowEvents
      * @protected
      */
     _detachCancelMoveRowEvents: function() {
@@ -366,6 +369,34 @@ A.FormBuilderLayoutBuilder.prototype = {
      */
     _detachCancelMoveFieldEvents: function() {
         new A.EventHandle(this._cancelMoveFieldHandles).detach();
+    },
+
+    /**
+     * Disable add fields functionality.
+     *
+     * @method _disableAddFields
+     * @protected
+     */
+    _disableAddFields: function() {
+        this.getActiveLayout().get('rows').forEach(function(row) {
+            row.get('cols').forEach(function(col) {
+                col.get('value').set('enableAddFields', false);
+            });
+        });
+    },
+
+    /**
+     * Enable add fields functionality.
+     *
+     * @method _enableAddFields
+     * @protected
+     */
+    _enableAddFields: function() {
+        this.getActiveLayout().get('rows').forEach(function(row) {
+            row.get('cols').forEach(function(col) {
+                col.get('value').set('enableAddFields', true);
+            });
+        });
     },
 
     /**

@@ -40,7 +40,7 @@ var CSS_FIELD_LIST = A.getClassName('form', 'builder', 'field', 'list'),
  */
 A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     TPL_ADD_FIELD: '<div class="' + CSS_FIELD_LIST_ADD_CONTAINER + '">' +
-        '<a class="' + CSS_FIELD_LIST_ADD_BUTTON + '" href="javascript:;">' +
+        '<a class="btn ' + CSS_FIELD_LIST_ADD_BUTTON + '" href="javascript:;">' +
         '<span class="' + CSS_FIELD_LIST_ADD_BUTTON_ICON + ' ' + CSS_FIELD_LIST_ADD_BUTTON_PLUS_ICON + '">+</span>' +
         '<label class="' + CSS_FIELD_LIST_ADD_BUTTON_LABEL + '">' +
         '{addField}' +
@@ -70,6 +70,7 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         content.delegate('mouseleave', this._onMouseLeaveAddButton, '.' + CSS_FIELD_LIST_ADD_CONTAINER, this);
 
         this.after('fieldsChange', A.bind(this._afterFieldsChange, this));
+        this.after('enableAddFieldsChange', A.bind(this._afterEnableAddFieldsChange, this));
     },
 
     /**
@@ -81,6 +82,10 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
      */
     addField: function(field, index) {
         var fields = this.get('fields');
+
+        if (!this.get('enableAddFields')) {
+            return;
+        }
 
         if (A.Lang.isNumber(index)) {
             fields.splice(index, 0, field);
@@ -116,6 +121,16 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     _addEmptyColumnFieldClasses: function(content) {
         content.one('.' + CSS_FIELD_LIST_ADD_CONTAINER).addClass(CSS_FIELD_LIST_ADD_BUTTON_VISIBLE);
         content.one('.' + CSS_FIELD_LIST_ADD_BUTTON).addClass(CSS_FIELD_LIST_ADD_BUTTON_LARGE);
+    },
+
+    /**
+     * Fired after the `enableAddFields` attribute change.
+     *
+     * @method _afterEnableAddFieldsChange
+     * @protected
+     */
+    _afterEnableAddFieldsChange: function() {
+        this._uiToggleDisableAddField();
     },
 
     /**
@@ -260,6 +275,16 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
     },
 
     /**
+     * Toggle disabled class to the add field button.
+     *
+     * @method _uiToggleDisableAddField
+     * @protected
+     */
+    _uiToggleDisableAddField: function() {
+        this.get('content').one('.' + CSS_FIELD_LIST_ADD_BUTTON).toggleClass('disabled', !this.get('enableAddFields'));
+    },
+
+    /**
      * Update removable property for layout cols.
      *
      * @method _updateRemovableLayoutColProperty
@@ -305,12 +330,24 @@ A.FormBuilderFieldList  = A.Base.create('form-builder-field-list', A.Base, [], {
         },
 
         /**
+         * Attribute responsible for enabling or disabling the feature of adding fields.
+         *
+         * @attribute enableAddFields
+         * @type {Boolean}
+         */
+        enableAddFields: {
+            validator: A.Lang.isBoolean,
+            value: true
+        },
+
+        /**
          * List of field.
          *
          * @attribute fields
          * @type {Array}
          */
         fields: {
+            validator: A.Lang.isArray,
             value: []
         },
 
