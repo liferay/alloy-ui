@@ -23,7 +23,6 @@
     border-radius: 2px;
     color: #66a1cc;
     cursor: pointer;
-    font-family: "Helvetica Neue";
     font-size: 11px;
     font-weight: bold;
     line-height: normal;
@@ -58,8 +57,9 @@
 .form-builder-header {
     background-color: #00a3ff;
     color: #fff;
-    font-family: HelveticaNeue-Light;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;;
     font-size: 20px;
+    font-weight: 300;
     height: 56pt;
     line-height: 56pt;
     text-align: center;
@@ -116,8 +116,9 @@
 
 .form-builder-menu .form-builder-menu-content {
     background-color: #34495e;
-    font-family: HelveticaNeue-Thin;
+    font-family: "HelveticaNeueThin", "HelveticaNeue-Thin", "Helvetica Neue Thin", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 20px;
+    font-weight: 200;
     letter-spacing: 4pt;
     line-height: 15px;
     margin-top: -1px;
