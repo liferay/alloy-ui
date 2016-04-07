@@ -1462,6 +1462,16 @@ var SchedulerDayView = A.Component.create({
             var recorder = scheduler.get('eventRecorder');
 
             if (recorder && !scheduler.get('disabled')) {
+                if (!instance.recorderPlotted) {
+                    var startDate = recorder.get('startDate');
+                    var duration = recorder.get('duration');
+                    var endDate = DateMath.add(startDate, DateMath.MINUTES, duration);
+
+                    recorder.set('endDate', endDate, {
+                        silent: true
+                    });
+                }
+
                 if (instance.creationStartDate) {
                     instance.plotEvent(recorder);
 
@@ -1470,6 +1480,7 @@ var SchedulerDayView = A.Component.create({
             }
 
             instance.creationStartDate = null;
+            instance.recorderPlotted = false;
             instance.resizing = false;
             instance.startXY = null;
 
@@ -1550,6 +1561,7 @@ var SchedulerDayView = A.Component.create({
 
                     instance.plotEvent(recorder);
 
+                    instance.recorderPlotted = true;
                     instance._delta = delta;
                 }
             }
