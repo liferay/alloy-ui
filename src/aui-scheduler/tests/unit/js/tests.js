@@ -1092,11 +1092,63 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 2.5*hourHeight, height,
                 'Event is not as long as expected.'
             );
+        },
+
+        'should hide header if disabled, but then display it if requested': function() {
+            this._createScheduler({
+                showHeader: false
+            });
+
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-base-controls:visible').size(),
+                'No controls should be visible.'
+            );
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-base-views:visible').size(),
+                'No view buttons should be visible.'
+            );
+
+            this._scheduler.set('showHeader', true);
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-base-controls:visible').size(),
+                'Controls should be visible.'
+            );
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-base-views:visible').size(),
+                'View buttons should be visible.'
+            );
+        },
+
+        'should display header if enabled, but then hide it if requested': function() {
+            this._createScheduler({
+                showHeader: true
+            });
+
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-base-controls:visible').size(),
+                'Controls should be visible.'
+            );
+            Y.Assert.areEqual(
+                1, Y.all('.scheduler-base-views:visible').size(),
+                'Ciew buttons should be visible.'
+            );
+
+            this._scheduler.set('showHeader', false);
+
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-base-controls:visible').size(),
+                'Controls should not be visible.'
+            );
+            Y.Assert.areEqual(
+                0, Y.all('.scheduler-base-views:visible').size(),
+                'View buttons should not be visible.'
+            );
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['node-event-simulate', 'test', 'aui-scheduler', 'aui-datatype']
+    requires: ['aui-selector', 'node-event-simulate', 'test', 'aui-scheduler', 'aui-datatype']
 });
