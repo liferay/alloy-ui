@@ -49,6 +49,37 @@ YUI.add('aui-scheduler-tests', function(Y) {
             this._monthView._onMouseUpGrid();
         },
 
+        _clickColShim: function(x, y) {
+            var colShim = Y.one('.scheduler-view-day-table-col-shim'),
+                offsetXY = colShim.getXY();
+
+            this._dayView._onGestureMoveStartTableCol({
+                pageX: offsetXY[0]+x,
+                pageY: offsetXY[1]+y,
+                currentTarget: colShim,
+                target: colShim,
+                halt: Y.Lang.emptyFn,
+                _event: {}
+            });
+        },
+
+        _dragOverColShim: function(x, y) {
+            var colShim = Y.one('.scheduler-view-day-table-col-shim'),
+                offsetXY = colShim.getXY();
+
+            this._dayView._onGestureMoveTableCol({
+                pageX: offsetXY[0]+x,
+                pageY: offsetXY[1]+y,
+                currentTarget: colShim,
+                target: colShim,
+                halt: Y.Lang.emptyFn
+            });
+        },
+
+        _releaseColShim: function() {
+            this._dayView._onGestureMoveEndTableCol();
+        },
+
         _createScheduler: function(config) {
             this._scheduler = new Y.Scheduler(Y.merge({
                 boundingBox: '#myScheduler',
