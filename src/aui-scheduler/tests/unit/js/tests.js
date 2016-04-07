@@ -1061,6 +1061,37 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 4*hourHeight, height,
                 'Event is not as long as expected.'
             );
+        },
+
+        'should create event with dragged duration in the past': function() {
+            var date = new Date(),
+                eventNode,
+                height,
+                hourHeight = this._dayView.get('hourHeight'),
+                x = 100,
+                y;
+
+            this._createScheduler({
+              date: date,
+              views: [this._dayView]
+            });
+
+            // To plot event in visible part of scheduler.
+            y = (date.getHours()+4)*hourHeight;
+
+            this._eventRecorder.set('duration', 60);
+            this._clickColShim(x, y);
+            this._dragOverColShim(0, y-2*hourHeight-1);
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height = parseInt(eventNode.getStyle('height'));
+
+            // We need half an hour more than the difference between the clicked
+            // times.
+            Y.Assert.areEqual(
+                2.5*hourHeight, height,
+                'Event is not as long as expected.'
+            );
         }
     }));
 
