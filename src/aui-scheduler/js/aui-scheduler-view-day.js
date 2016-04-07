@@ -1494,7 +1494,7 @@ var SchedulerDayView = A.Component.create({
                 recorder.hidePopover();
 
                 if (target.test('.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM)) {
-                    this._prepareEventCreation(event);
+                    this._prepareEventCreation(event, 30);
                 }
                 else if (target.test(
                             ['.' + CSS_SCHEDULER_VIEW_DAY_RESIZER,
