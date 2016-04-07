@@ -11,6 +11,7 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     DateMath = A.DataType.DateMath,
     Lang = A.Lang,
     isArray = Lang.isArray,
+    isBoolean = Lang.isBoolean,
     isDate = Lang.isDate,
     isFunction = Lang.isFunction,
     isNumber = Lang.isNumber,
@@ -774,6 +775,18 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+         * Define whether the scheduler header will be displayed.
+         *
+         * @attribute showHeader
+         * @default true
+         * @type {Boolean}
+         */
+        showHeader: {
+            validator: isBoolean,
+            value: true
+        },
+
+        /**
          * Contains the node for the select dropdown for `Scheduler`'s views.
          * This node is only visible on mobile.
          *
@@ -1092,24 +1105,31 @@ var SchedulerBase = A.Component.create({
             var instance = this;
             var views = instance.get('views');
 
-            instance.navNode.append(instance.iconPrevNode);
-            instance.navNode.append(instance.todayNode);
-            instance.navNode.append(instance.iconNextNode);
+            if (instance.get('showHeader')) {
+                instance.navNode.append(instance.iconPrevNode);
+                instance.navNode.append(instance.todayNode);
+                instance.navNode.append(instance.iconNextNode);
 
-            instance.controlsNode.append(instance.navNode);
-            instance.controlsNode.append(instance.navDateNode);
+                instance.controlsNode.append(instance.navNode);
+                instance.controlsNode.append(instance.navDateNode);
 
-            A.Array.each(views, function(view) {
-                instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
-                instance.viewsNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
-            });
+                A.Array.each(views, function(view) {
+                    instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
+                    instance.viewsNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
+                });
 
-            instance.viewsNode.append(instance.viewsSelectNode);
+                instance.viewsNode.append(instance.viewsSelectNode);
 
-            instance.header.append(instance.controlsNode);
-            instance.header.append(instance.viewsNode);
+                instance.header.append(instance.controlsNode);
+                instance.header.append(instance.viewsNode);
 
-            instance.setStdModContent(WidgetStdMod.HEADER, instance.header.getDOM());
+                instance.setStdModContent(WidgetStdMod.HEADER, instance.header.getDOM());
+
+                instance.header.show();
+            }
+            else {
+                instance.header.hide();
+            }
         },
 
         /**
