@@ -9,6 +9,7 @@
 * [AUI-2074](https://issues.liferay.com/browse/AUI-2074) Cannot view all day events in Day view
 * [AUI-2061](https://issues.liferay.com/browse/AUI-2061) Low performance on countDays method when using huge dates.
 * [AUI-2070](https://issues.liferay.com/browse/AUI-2070) Replace direct call to "filter" function with "Array.filter"
+* [AUI-2105](https://issues.liferay.com/browse/AUI-2105) In day/week view, an event created by dragging the mouse upwards has an extra half hour.
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
 
