@@ -992,8 +992,78 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 20, Y.all('.scheduler-view-agenda-event').size(),
                 'Should show at most 20 events.'
             );
+        },
+
+        'should create event with default recorder duration': function() {
+            var date = new Date(),
+                eventNode,
+                height1,
+                height2,
+                hourHeight = this._dayView.get('hourHeight'),
+                x = 100,
+                y;
+
+            this._createScheduler({
+              date: date,
+              views: [this._dayView]
+            });
+
+            // To plot event in visible part of scheduler.
+            y = (date.getHours()+2)*hourHeight;
+
+            this._eventRecorder.set('duration', 60);
+            this._clickColShim(x, y);
+            this._releaseColShim();
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height1 = parseInt(eventNode.getStyle('height'));
+
+            // To not click on already plotted recorder
+            y = (date.getHours()+5)*hourHeight;
+
+            this._eventRecorder.set('duration', 120);
+            this._clickColShim(x, y);
+            this._releaseColShim();
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height2 = parseInt(eventNode.getStyle('height'));
+
+            Y.Assert.areEqual(
+                height2, 2*height1,
+                'Some of the plotted events did not use the recorder duration.'
+            );
+        },
+
+        'should create event with dragged duration': function() {
+            var date = new Date(),
+                eventNode,
+                height,
+                hourHeight = this._dayView.get('hourHeight'),
+                x = 100,
+                y;
+
+            this._createScheduler({
+              date: date,
+              views: [this._dayView]
+            });
+
+            // To plot event in visible part of scheduler.
+            y = (date.getHours()+2)*hourHeight;
+
+            this._eventRecorder.set('duration', 60);
+            this._clickColShim(x, y);
+            this._dragOverColShim(0, y+4*hourHeight-1);
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height = parseInt(eventNode.getStyle('height'));
+
+            Y.Assert.areEqual(
+                4*hourHeight, height,
+                'Event is not as long as expected.'
+            );
         }
     }));
+
 
     Y.Test.Runner.add(suite);
 
