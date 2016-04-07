@@ -871,7 +871,7 @@ var SchedulerBase = A.Component.create({
      * @type {Array}
      * @static
      */
-    UI_ATTRS: ['date', 'activeView'],
+    UI_ATTRS: ['date', 'activeView', 'showHeader'],
 
     /**
      * Static property used to define the augmented classes.
@@ -1492,6 +1492,19 @@ var SchedulerBase = A.Component.create({
 
                 instance.syncEventsUI();
             }
+        },
+
+        /**
+         * Set the `showHeader` property - i.e., defines if the scheduler
+         * header will be displayed.
+         *
+         * @method _uiSetShowHeader
+         * @protected
+         */
+        _uiSetShowHeader: function() {
+            var instance = this;
+
+            instance.syncStdContent();
         }
     }
 });
