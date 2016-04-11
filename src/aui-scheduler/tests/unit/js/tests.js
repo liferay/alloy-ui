@@ -63,23 +63,6 @@ YUI.add('aui-scheduler-tests', function(Y) {
             });
         },
 
-        _dragOverColShim: function(x, y) {
-            var colShim = Y.one('.scheduler-view-day-table-col-shim'),
-                offsetXY = colShim.getXY();
-
-            this._dayView._onGestureMoveTableCol({
-                pageX: offsetXY[0]+x,
-                pageY: offsetXY[1]+y,
-                currentTarget: colShim,
-                target: colShim,
-                halt: Y.Lang.emptyFn
-            });
-        },
-
-        _releaseColShim: function() {
-            this._dayView._onGestureMoveEndTableCol();
-        },
-
         _createScheduler: function(config) {
             this._scheduler = new Y.Scheduler(Y.merge({
                 boundingBox: '#myScheduler',
@@ -103,6 +86,19 @@ YUI.add('aui-scheduler-tests', function(Y) {
             }, config));
 
             this._eventRecorder = this._scheduler.get('eventRecorder');
+        },
+
+        _dragOverColShim: function(x, y) {
+            var colShim = Y.one('.scheduler-view-day-table-col-shim'),
+                offsetXY = colShim.getXY();
+
+            this._dayView._onGestureMoveTableCol({
+                pageX: offsetXY[0]+x,
+                pageY: offsetXY[1]+y,
+                currentTarget: colShim,
+                target: colShim,
+                halt: Y.Lang.emptyFn
+            });
         },
 
         _getLocalTimeZoneDSTFirstDay: function() {
@@ -156,6 +152,10 @@ YUI.add('aui-scheduler-tests', function(Y) {
             );
 
             return curDate;
+        },
+
+        _releaseColShim: function() {
+            this._dayView._onGestureMoveEndTableCol();
         },
 
         'should be able to switch views': function() {
@@ -1094,7 +1094,6 @@ YUI.add('aui-scheduler-tests', function(Y) {
             );
         }
     }));
-
 
     Y.Test.Runner.add(suite);
 
