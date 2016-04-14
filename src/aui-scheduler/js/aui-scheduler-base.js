@@ -908,6 +908,8 @@ var SchedulerBase = A.Component.create({
             instance.todayNode = instance.get('todayNode');
             instance.viewsNode = instance.get('viewsNode');
 
+            instance._populateViewNodes();
+
             instance.after({
                 activeViewChange: instance._afterActiveViewChange,
                 render: instance._afterRender
@@ -1105,7 +1107,6 @@ var SchedulerBase = A.Component.create({
          */
         syncStdContent: function() {
             var instance = this;
-            var views = instance.get('views');
 
             if (instance.get('showHeader')) {
                 instance.renderButtonGroup();
@@ -1116,11 +1117,6 @@ var SchedulerBase = A.Component.create({
 
                 instance.controlsNode.append(instance.navNode);
                 instance.controlsNode.append(instance.navDateNode);
-
-                A.Array.each(views, function(view) {
-                    instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
-                    instance.viewsNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
-                });
 
                 instance.viewsNode.append(instance.viewsSelectNode);
 
@@ -1338,6 +1334,32 @@ var SchedulerBase = A.Component.create({
                 viewName = target.get('options').item(index).attr('data-view-name');
 
             instance.set('activeView', instance.getViewByName(viewName));
+        },
+
+        /**
+         * Add the content to represent each view to the corresponding view
+         * nodes.
+         *
+         * The scheduler can display its events in many views - day view, week
+         * view etc. These views are selected through a set of buttons at the
+         * top left of the scheduler (if it is being viewed in desktop mode)
+         * or from a select (if it is being viewed from a mobile device). This
+         * method checks which views the scheduler is expected to render, and
+         * adds elements both options (i.e. adds buttons to the button group and
+         * options to the select).
+         *
+         * @method _populateViewNodes
+         * @protected
+         */
+        _populateViewNodes: function() {
+            var instance = this;
+
+            var views = instance.get('views');
+
+            A.Array.each(views, function(view) {
+                instance.viewsSelectNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_LIST));
+                instance.viewsNode.append(instance._createViewTriggerNode(view, TPL_SCHEDULER_VIEW_BUTTON));
+            });
         },
 
         /**
