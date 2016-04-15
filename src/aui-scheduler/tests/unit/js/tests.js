@@ -1163,6 +1163,42 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 4, Y.all('button.scheduler-base-view').size(),
                 'There should be 4 view buttons.'
             );
+        },
+
+        'should be able to switch views after showing previously hidden header': function() {
+            this._createScheduler({
+                activeView: this._weekView,
+                showHeader: false
+            });
+
+            this._scheduler.set('showHeader', true);
+
+            Y.Assert.areSame(
+                this._weekView,
+                this._scheduler.get('activeView'),
+                'The initial view should be week view'
+            );
+
+            Y.one('button.scheduler-base-view-day').simulate('click');
+            Y.Assert.areSame(
+                this._dayView,
+                this._scheduler.get('activeView'),
+                'The day view should have become active'
+            );
+
+            Y.one('button.scheduler-base-view-month').simulate('click');
+            Y.Assert.areSame(
+                this._monthView,
+                this._scheduler.get('activeView'),
+                'The month view should have become active'
+            );
+
+            Y.one('button.scheduler-base-view-agenda').simulate('click');
+            Y.Assert.areSame(
+                this._agendaView,
+                this._scheduler.get('activeView'),
+                'The agenda view should have become active'
+            );
         }
     }));
 
