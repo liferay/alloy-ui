@@ -1077,12 +1077,14 @@ var SchedulerBase = A.Component.create({
         renderButtonGroup: function() {
             var instance = this;
 
-            instance.buttonGroup = new A.ButtonGroup({
-                boundingBox: instance.viewsNode,
-                on: {
-                    selectionChange: A.bind(instance._onButtonGroupSelectionChange, instance)
-                }
-            }).render();
+            if (!instance.buttonGroup) {
+                instance.buttonGroup = new A.ButtonGroup({
+                    boundingBox: instance.viewsNode,
+                    on: {
+                        selectionChange: A.bind(instance._onButtonGroupSelectionChange, instance)
+                    }
+                }).render();
+            }
         },
 
         /**
@@ -1106,6 +1108,8 @@ var SchedulerBase = A.Component.create({
             var views = instance.get('views');
 
             if (instance.get('showHeader')) {
+                instance.renderButtonGroup();
+
                 instance.navNode.append(instance.iconPrevNode);
                 instance.navNode.append(instance.todayNode);
                 instance.navNode.append(instance.iconNextNode);
@@ -1174,7 +1178,6 @@ var SchedulerBase = A.Component.create({
                 activeView = instance.get('activeView');
 
             instance.renderView(activeView);
-            instance.renderButtonGroup();
             instance.renderDropdownList();
 
             instance._uiSetDate(instance.get('date'));
