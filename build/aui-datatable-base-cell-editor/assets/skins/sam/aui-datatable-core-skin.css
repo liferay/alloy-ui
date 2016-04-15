@@ -1,0 +1,32 @@
+/*
+* css from datatable-scroll-skin.css
+*/
+.table-scroll-columns .table-header {
+    padding: 0;
+}
+
+.table-x-scroller, .table-y-scroller-container {
+    border: 1px solid #ddd;
+}
+
+.table-scrollable-x .table-y-scroller-container, .table-x-scroller .table-table, .table-y-scroller .table-table {
+    border: 0 none;
+}
+/*
+* custom
+*/
+.table-header {
+    background: #fff;
+    border-bottom: 1px;
+    border-bottom-color: #ddd;
+    border-bottom-style: solid;
+}
+
+.table-sort-indicator {
+    _background: url(sort-arrow-sprite-ie.png) no-repeat 0 0;
+    background: url(sort-arrow-sprite.png) no-repeat 0 0;
+}
+
+.table-sorted {
+    background: #f9f9f9;
+}
