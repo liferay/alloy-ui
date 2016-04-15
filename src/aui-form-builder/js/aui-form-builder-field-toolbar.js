@@ -189,7 +189,9 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
     _onFieldMouseEnter: function (event) {
         var field = this._getFieldFromEvent(event);
 
-        this.addForField(field);
+        if (!this.get('disabled')) {
+            this.addForField(field);
+        }
     },
 
     /**
@@ -259,6 +261,17 @@ A.FormBuilderFieldToolbar = A.Base.create('form-builder-field-toolbar', A.Base, 
      * @static
      */
     ATTRS: {
+        /**
+         * Attribute that prevents users interact with the toolbar
+         *
+         * @attribute disabled
+         * @type Boolean
+         */
+        disabled: {
+            validator: A.Lang.isBoolean,
+            value: false
+        },
+
         /**
          * The form builder instance that this toolbar will be used with.
          *

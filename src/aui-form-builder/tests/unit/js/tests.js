@@ -128,6 +128,23 @@ YUI.add('aui-form-builder-tests', function(Y) {
         },
 
         /**
+         * Open the first field's toolbar found in the DOM tree.
+         *
+         * @method _openToolbar
+         * @protected
+         */
+        _openToolbar: function() {
+            var fieldNode = Y.one('.form-builder-field-content-toolbar');
+
+            if (Y.UA.mobile) {
+                Y.one('.form-builder-field-content').simulate('click');
+            } else {
+                Y.one('.form-builder-field-content-toolbar').simulate('mouseover');
+                fieldNode.one('.form-builder-field-toolbar-toggle').simulate('click');
+            }
+        },
+
+        /**
          * Simulates a `valuechange` event for the given input.
          *
          * @method _simulateInputChange
@@ -637,7 +654,7 @@ YUI.add('aui-form-builder-tests', function(Y) {
             Y.Assert.isNull(Y.one('.form-builder-field-toolbar'));
         },
 
-        'should not show toolbar on a field if the toolbar is already already inside a child of this field': function() {
+        'should not show toolbar on a field if the toolbar is already inside a child of this field': function() {
             var mock,
                 node,
                 toolbar;
@@ -800,6 +817,56 @@ YUI.add('aui-form-builder-tests', function(Y) {
 
             formbuilder.set('layouts', [new Y.Layout(), new Y.Layout()]);
             Y.Assert.areNotEqual(markup, Y.one('#container').get('innerHTML'));
+        },
+
+        'should cancel adding fields while a user is moving fields': function() {
+            var columnsNode;
+
+            this.createFormBuilder();
+            this._openToolbar();
+
+            columnsNode = this._formBuilder.get('contentBox').all('.col').get('node');
+
+            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
+
+            Y.each(columnsNode, function(colNode) {
+                var fieldListInstance = colNode.getData('layout-col').get('value');
+
+                Y.Assert.isFalse(fieldListInstance.get('enableAddFields'));
+            });
+        },
+
+        'should cancel adding fields while a user is moving rows': function() {
+            var columnsNode;
+
+            this.createFormBuilder();
+
+            columnsNode = this._formBuilder.get('contentBox').all('.col').get('node');
+
+            Y.one('.layout-builder-move-cut-row-button').simulate('click');
+
+            Y.each(columnsNode, function(colNode) {
+                var fieldListInstance = colNode.getData('layout-col').get('value');
+
+                Y.Assert.isFalse(fieldListInstance.get('enableAddFields'));
+            });
+        },
+
+        'should disable toolbar while a user is moving rows': function() {
+            this.createFormBuilder();
+
+            Y.one('.layout-builder-move-cut-row-button').simulate('click');
+
+            Y.Assert.isTrue(this._formBuilder._fieldToolbar.get('disabled'));
+        },
+
+        'should disable toolbar while a user is moving field': function() {
+            this.createFormBuilder();
+            this._openToolbar();
+
+            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
+
+            Y.Assert.isTrue(this._formBuilder._fieldToolbar.get('disabled'));
         }
     }));
 

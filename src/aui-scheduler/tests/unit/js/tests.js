@@ -49,6 +49,20 @@ YUI.add('aui-scheduler-tests', function(Y) {
             this._monthView._onMouseUpGrid();
         },
 
+        _clickColShim: function(x, y) {
+            var colShim = Y.one('.scheduler-view-day-table-col-shim'),
+                offsetXY = colShim.getXY();
+
+            this._dayView._onGestureMoveStartTableCol({
+                pageX: offsetXY[0]+x,
+                pageY: offsetXY[1]+y,
+                currentTarget: colShim,
+                target: colShim,
+                halt: Y.Lang.emptyFn,
+                _event: {}
+            });
+        },
+
         _createScheduler: function(config) {
             this._scheduler = new Y.Scheduler(Y.merge({
                 boundingBox: '#myScheduler',
@@ -72,6 +86,19 @@ YUI.add('aui-scheduler-tests', function(Y) {
             }, config));
 
             this._eventRecorder = this._scheduler.get('eventRecorder');
+        },
+
+        _dragOverColShim: function(x, y) {
+            var colShim = Y.one('.scheduler-view-day-table-col-shim'),
+                offsetXY = colShim.getXY();
+
+            this._dayView._onGestureMoveTableCol({
+                pageX: offsetXY[0]+x,
+                pageY: offsetXY[1]+y,
+                currentTarget: colShim,
+                target: colShim,
+                halt: Y.Lang.emptyFn
+            });
         },
 
         _getLocalTimeZoneDSTFirstDay: function() {
@@ -125,6 +152,10 @@ YUI.add('aui-scheduler-tests', function(Y) {
             );
 
             return curDate;
+        },
+
+        _releaseColShim: function() {
+            this._dayView._onGestureMoveEndTableCol();
         },
 
         'should be able to switch views': function() {
@@ -960,6 +991,106 @@ YUI.add('aui-scheduler-tests', function(Y) {
             Y.Assert.areEqual(
                 20, Y.all('.scheduler-view-agenda-event').size(),
                 'Should show at most 20 events.'
+            );
+        },
+
+        'should create event with default recorder duration': function() {
+            var date = new Date(),
+                eventNode,
+                height1,
+                height2,
+                hourHeight = this._dayView.get('hourHeight'),
+                x = 100,
+                y;
+
+            this._createScheduler({
+              date: date,
+              views: [this._dayView]
+            });
+
+            // To plot event in visible part of scheduler.
+            y = (date.getHours()+2)*hourHeight;
+
+            this._eventRecorder.set('duration', 60);
+            this._clickColShim(x, y);
+            this._releaseColShim();
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height1 = parseInt(eventNode.getStyle('height'));
+
+            // To not click on already plotted recorder
+            y = (date.getHours()+5)*hourHeight;
+
+            this._eventRecorder.set('duration', 120);
+            this._clickColShim(x, y);
+            this._releaseColShim();
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height2 = parseInt(eventNode.getStyle('height'));
+
+            Y.Assert.areEqual(
+                height2, 2*height1,
+                'Some of the plotted events did not use the recorder duration.'
+            );
+        },
+
+        'should create event with dragged duration': function() {
+            var date = new Date(),
+                eventNode,
+                height,
+                hourHeight = this._dayView.get('hourHeight'),
+                x = 100,
+                y;
+
+            this._createScheduler({
+              date: date,
+              views: [this._dayView]
+            });
+
+            // To plot event in visible part of scheduler.
+            y = (date.getHours()+2)*hourHeight;
+
+            this._eventRecorder.set('duration', 60);
+            this._clickColShim(x, y);
+            this._dragOverColShim(0, y+4*hourHeight-1);
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height = parseInt(eventNode.getStyle('height'));
+
+            Y.Assert.areEqual(
+                4*hourHeight, height,
+                'Event is not as long as expected.'
+            );
+        },
+
+        'should create event with dragged duration in the past': function() {
+            var date = new Date(),
+                eventNode,
+                height,
+                hourHeight = this._dayView.get('hourHeight'),
+                x = 100,
+                y;
+
+            this._createScheduler({
+              date: date,
+              views: [this._dayView]
+            });
+
+            // To plot event in visible part of scheduler.
+            y = (date.getHours()+4)*hourHeight;
+
+            this._eventRecorder.set('duration', 60);
+            this._clickColShim(x, y);
+            this._dragOverColShim(0, y-2*hourHeight-1);
+
+            eventNode = Y.one('.scheduler-event-recorder');
+            height = parseInt(eventNode.getStyle('height'));
+
+            // We need half an hour more than the difference between the clicked
+            // times.
+            Y.Assert.areEqual(
+                2.5*hourHeight, height,
+                'Event is not as long as expected.'
             );
         }
     }));

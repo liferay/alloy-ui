@@ -1,5 +1,6 @@
 .form-builder-choose-col-move-target .form-builder-field-list-add-button,
-.form-builder-choose-col-move-target .form-builder-field-list-empty .form-builder-field-list-add-button {
+.form-builder-choose-col-move-target .form-builder-field-list-empty .form-builder-field-list-add-button,
+.layout-builder-moving .form-builder-field-list-add-button {
     display: none;
 }
 

@@ -168,6 +168,18 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
             Assert.isNull(cutButton);
         },
 
+        'should hide move column button if disable enableMoveCols attribute': function() {
+            var cutButton = container.one('.layout-builder-move-cut-col-button');
+
+            Assert.isNotNull(cutButton);
+
+            this.layoutBuilder.set('enableMoveCols', false);
+
+            cutButton = container.one('.layout-builder-move-cut-col-button');
+
+            Assert.isNull(cutButton);
+        },
+
         'should not add move row button on rows that hasn\'t anything to move': function() {
             var moveButton,
                 layout = new Y.Layout({
@@ -514,7 +526,25 @@ YUI.add('aui-layout-builder-move-tests', function(Y) {
 
             layout._set('isColumnMode', true);
             Assert.isNotNull(Y.one('.layout-builder-move-cut-col-button'));
+        },
 
+        'should add a CSS class that is indicating some item is moving': function() {
+            var cutButton;
+
+            cutButton = container.one('.layout-builder-move-cut-row-button');
+            cutButton.simulate('click');
+
+            Assert.isTrue(Y.one('.layout-builder-layout-container').hasClass('layout-builder-moving'));
+        },
+
+        'should remove a CSS class that is indicating some item is moving': function() {
+            var cutButton;
+
+            cutButton = container.one('.layout-builder-move-cut-row-button');
+            cutButton.simulate('click');
+            cutButton.simulate('click');
+
+            Assert.isFalse(Y.one('.layout-builder-layout-container').hasClass('layout-builder-moving'));
         }
     }));
 

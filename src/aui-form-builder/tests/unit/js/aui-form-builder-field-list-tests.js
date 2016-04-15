@@ -124,6 +124,17 @@ YUI.add('aui-form-builder-field-list-tests', function(Y) {
             this.wait(function() {
                 Y.Assert.isFalse(layoutCol.get('removable'));
             }, 0);
+        },
+
+        'should not be able to add fields if enableAddFields attribute is false': function() {
+            this.createFieldList();
+
+            this._fieldList.set('enableAddFields', false);
+
+            this._fieldList.addField(new Y.FormBuilderFieldSentence());
+
+            Y.Assert.isNull(Y.one('.form-builder-field'));
+
         }
     }));
 

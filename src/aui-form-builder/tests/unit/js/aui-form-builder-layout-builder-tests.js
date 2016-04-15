@@ -152,6 +152,16 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             return !!visibleTargets.size();
         },
 
+        _moveRowTargetIsVisible: function () {
+            var visibleTargets;
+
+            visibleTargets = this._formBuilder.get('contentBox').all('.layout-builder-move-row-target').filter(function(node) {
+                return node.getStyle('display') !== 'none';
+            });
+
+            return !!visibleTargets.size();
+        },
+
         _mockWindowInnerWidth: function (size) {
             Y.Mock.expect(windowNode, {
                 args: ['innerWidth'],
@@ -282,11 +292,6 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
             Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
 
             Y.Assert.isNotNull(Y.one('.form-builder-field-move-target'));
-
-            this._openToolbar();
-            Y.all('.form-builder-field-toolbar-item').item(2).simulate('click');
-
-            Y.Assert.isNull(Y.one('.form-builder-choose-col-move .form-builder-field-move-target'));
         },
 
         'should be able to move fields to a different position in a same col': function() {
@@ -733,6 +738,23 @@ YUI.add('aui-form-builder-layout-builder-tests', function(Y) {
 
             Y.Assert.areEqual(1, layout.get('rows').length);
             layout.get('rows')[0].set('cols', [colFull]);
+        },
+
+        'should cancel move row by clicking outsite the move target': function() {
+            this._createFormBuilder();
+
+            this._toolbar = new Y.FormBuilderFieldToolbar({
+                formBuilder: this._formBuilder
+            });
+
+            Y.Assert.isFalse(this._moveRowTargetIsVisible());
+
+            Y.one('.layout-builder-move-cut-row-button').simulate('click');
+            Y.Assert.isTrue(this._moveRowTargetIsVisible());
+
+            Y.one(Y.config.doc).simulate('click');
+
+            Y.Assert.isFalse(this._moveRowTargetIsVisible());
         }
     }));
 

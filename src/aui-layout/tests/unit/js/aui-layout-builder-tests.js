@@ -131,6 +131,178 @@ YUI.add('aui-layout-builder-tests', function(Y) {
 
             Assert.isNotNull(layoutBuilder.get('layout'));
             Assert.isNotNull(Y.one('.container').one('.layout-builder-layout-container'));
+        },
+
+        'should not be able to add a new row if user is moving a row': function() {
+            Y.one('.layout-builder-move-cut-row-button').simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+            Y.Assert.isNull(Y.one('.layout-builder-add-row'));
+        },
+
+        'should be able to add a new row if user stops moving a row': function() {
+            var moveRowButton = Y.one('.layout-builder-move-cut-row-button');
+
+            moveRowButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+
+            moveRowButton.simulate('click');
+            Y.Assert.isTrue(this.layoutBuilder.get('enableAddRows'));
+
+            Y.Assert.isNotNull(Y.one('.layout-builder-add-row'));
+        },
+
+        'should not be able to add a new row if user is moving a column': function() {
+            Y.one('.layout-builder-move-cut-col-button').simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+            Y.Assert.isNull(Y.one('.layout-builder-add-row'));
+        },
+
+        'should be able to add a new row if user stops moving a column': function() {
+            var moveColButton = Y.one('.layout-builder-move-cut-col-button');
+
+            moveColButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+
+            moveColButton.simulate('click');
+            Y.Assert.isTrue(this.layoutBuilder.get('enableAddRows'));
+
+            Y.Assert.isNotNull(Y.one('.layout-builder-add-row'));
+        },
+
+        'should not enable add rows feature, after user stops moving a rows, if that was disabled previously': function() {
+            var moveRowButton = Y.one('.layout-builder-move-cut-row-button');
+
+            this.layoutBuilder.set('enableAddRows', false);
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+
+            moveRowButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+
+            moveRowButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+
+            Y.Assert.isNull(Y.one('.layout-builder-add-row'));
+        },
+
+        'should not enable add rows feature, after user stops moving a column, if that was disabled previously': function() {
+            var moveColButton = Y.one('.layout-builder-move-cut-col-button');
+
+            this.layoutBuilder.set('enableAddRows', false);
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+
+            moveColButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+
+            moveColButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableAddRows'));
+
+            Y.Assert.isNull(Y.one('.layout-builder-add-row'));
+        },
+
+        'should disable remove rows feature if user is moving a row': function() {
+            Y.one('.layout-builder-move-cut-row-button').simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableRemoveRows'));
+
+            Y.Assert.isNull(Y.one('.layout-builder-remove-row-button'));
+        },
+
+        'should disable remove rows feature if user is moving a column': function() {
+            Y.one('.layout-builder-move-cut-col-button').simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableRemoveRows'));
+
+            Y.Assert.isNull(Y.one('.layout-builder-remove-row-button'));
+        },
+
+        'should enable remove rows feature if user stops moving a column': function() {
+            var moveColButton = Y.one('.layout-builder-move-cut-col-button');
+
+            moveColButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableRemoveRows'));
+
+            moveColButton.simulate('click');
+            Y.Assert.isTrue(this.layoutBuilder.get('enableRemoveRows'));
+
+            Y.Assert.isNotNull(Y.one('.layout-builder-remove-row-button'));
+        },
+
+        'should enable remove rows feature if user stops moving a row': function() {
+            var moveRowButton = Y.one('.layout-builder-move-cut-row-button');
+
+            moveRowButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableRemoveRows'));
+
+            moveRowButton.simulate('click');
+            Y.Assert.isTrue(this.layoutBuilder.get('enableRemoveRows'));
+
+            Y.Assert.isNotNull(Y.one('.layout-builder-remove-row-button'));
+        },
+
+        'should not enable remove rows feature, after user stops moving a rows, if that was disabled previously': function() {
+            var moveRowButton = Y.one('.layout-builder-move-cut-row-button');
+
+            this.layoutBuilder.set('enableRemoveRows', false);
+            Y.Assert.isFalse(this.layoutBuilder.get('enableRemoveRows'));
+
+            moveRowButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableRemoveRows'));
+
+            moveRowButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableRemoveRows'));
+
+            Y.Assert.isNull(Y.one('.layout-builder-remove-row-button'));
+        },
+
+        'should disable resize columns feature if user is moving a row': function() {
+            Y.one('.layout-builder-move-cut-row-button').simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableResizeCols'));
+
+            Y.Assert.isNull(Y.one('.layout-builder-resize-col-draggable-handle'));
+        },
+
+        'should disable resize columns feature if user is moving a column': function() {
+            Y.one('.layout-builder-move-cut-col-button').simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableResizeCols'));
+
+            Y.Assert.isNull(Y.one('.layout-builder-resize-col-draggable-handle'));
+        },
+
+        'should enable resize columns feature if user stops moving a column': function() {
+            var moveColButton = Y.one('.layout-builder-move-cut-col-button');
+
+            moveColButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableResizeCols'));
+
+            moveColButton.simulate('click');
+            Y.Assert.isTrue(this.layoutBuilder.get('enableResizeCols'));
+
+            Y.Assert.isNotNull(Y.one('.layout-builder-resize-col-draggable-handle'));
+        },
+
+        'should enable resize columns feature if user stops moving a row': function() {
+            var moveRowButton = Y.one('.layout-builder-move-cut-row-button');
+
+            moveRowButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableResizeCols'));
+
+            moveRowButton.simulate('click');
+            Y.Assert.isTrue(this.layoutBuilder.get('enableResizeCols'));
+
+            Y.Assert.isNotNull(Y.one('.layout-builder-resize-col-draggable-handle'));
+        },
+
+        'should not enable resize columns feature if user stops moving a column if that was disabled previously': function() {
+            var moveRowButton = Y.one('.layout-builder-move-cut-col-button');
+
+            this.layoutBuilder.set('enableResizeCols', false);
+            Y.Assert.isFalse(this.layoutBuilder.get('enableResizeCols'));
+
+            moveRowButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableResizeCols'));
+
+            moveRowButton.simulate('click');
+            Y.Assert.isFalse(this.layoutBuilder.get('enableResizeCols'));
+
+            Y.Assert.isNull(Y.one('.layout-builder-resize-col-draggable-handle'));
         }
     }));
 
