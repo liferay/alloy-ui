@@ -118,7 +118,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
 
         trigger = event.currentTarget;
 
-        instance.getTooltip().set('trigger', trigger).render().show();
+        instance.getTooltip().show().set('trigger', trigger).render();
     },
 
     /**
