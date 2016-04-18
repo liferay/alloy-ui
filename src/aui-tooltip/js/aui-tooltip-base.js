@@ -136,6 +136,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _afterUiSetTrigger: function(val) {
+        this._loadTooltipContentFromTitle();
         this.suggestAlignment(val);
     },
 
