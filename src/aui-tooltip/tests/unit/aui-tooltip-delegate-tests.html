@@ -7,6 +7,20 @@
         <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
         <link rel="stylesheet" href="../../assets/aui-tooltip-base-core.css">
 
+        <style>
+            .delegate-container {
+                margin-top: 50px;
+            }
+
+            .tooltip-delegate {
+                width: 150px;
+            }
+
+            .trigger {
+                margin-bottom: 25px;
+            }
+        </style>
+
         <script src="../../../../build/aui/aui.js"></script>
         <script src="js/aui-tooltip-delegate-tests.js"></script>
     </head>
@@ -18,15 +32,10 @@
 
         <button class="btn btn-primary tooltip-multiple-trigger-events" data-title="Multiple Trigger Events">Multiple Trigger Events</button>
 
-        <br>
-
-        <div id="tooltipMisaligned">
-          <ul id="delegate" style="width: 150px">
-            <li id="filetMignon" title="Biltong rump bresaola capicola andouille. Short ribs biltong tenderloin pork belly pastrami, cow meatball hamburger brisket. Beef ribs andouille ground round strip steak tail. Pork kevin turkey brisket tongue venison. Flank tri-tip porchetta meatball andouille, landjaeger leberkas biltong hamburger filet mignon pork chop kielbasa pancetta chuck. Spare ribs chuck ground round landjaeger frankfurter shoulder shank turducken shankle tongue strip steak salami turkey ham hock.">Filet Mignon</li>
-
-            <br>
-
-            <li id="bacon" title="Beef ribs andouille ground round strip steak tail. Pork kevin turkey brisket tongue venison. Flank tri-tip porchetta meatball andouille, landjaeger leberkas biltong hamburger filet mignon pork chop kielbasa pancetta chuck.">Beef ribs</li>
+        <div class="delegate-container">
+          <ul class="tooltip-delegate">
+            <li class="trigger" id="trigger1" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan tortor ac consequat consequat. Proin laoreet tortor vel velit feugiat sagittis. Aenean tincidunt quam in nisl placerat iaculis. Quisque orci odio, pulvinar eu ex vel, tempus hendrerit augue. Duis vestibulum eu metus non egestas.">Trigger 1</li>
+            <li class="trigger" id="trigger2" title="Nulla tristique egestas ligula, et dignissim nulla consequat non.">Trigger 2</li>
           </ul>
         </div>
 

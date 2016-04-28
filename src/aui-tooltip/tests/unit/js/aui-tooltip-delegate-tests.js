@@ -11,65 +11,6 @@ YUI.add('aui-tooltip-delegate-tests', function(Y) {
             this._delegate && this._delegate.destroy();
         },
 
-        'tooltips should be aligned to trigger': function() {
-            var tooltip1 = Y.one('#bacon');
-            var tooltip2 = Y.one('#filetMignon');
-
-            new Y.TooltipDelegate(
-                {
-                    position: 'right',
-                    trigger: '#delegate li',
-                    triggerHideEvent: ['blur', 'mouseleave'],
-                    triggerShowEvent: ['focus', 'mouseover'],
-                    visible: false
-                }
-            );
-
-            tooltip1.simulate('mouseover');
-            tooltip1.simulate('focus');
-
-            var tooltipMessage1 = Y.one('.tooltip');
-
-            var oldPositionContent = tooltipMessage1.text();
-            var oldPositionLeft = tooltipMessage1.get('offsetLeft');
-            var oldPositionTop = tooltipMessage1.get('offsetTop');
-
-            tooltipMessage1.get('boundingBox');
-
-            tooltip1.simulate('mouseout');
-            tooltip1.simulate('blur');
-
-            tooltip2.simulate('mouseover');
-            tooltip2.simulate('focus');
-            tooltip2.simulate('mouseout');
-            tooltip2.simulate('blur');
-
-            tooltip1.simulate('mouseover');
-            tooltip1.simulate('focus');
-
-            var newPositionContent = tooltipMessage1.text();
-            var newPositionLeft = tooltipMessage1.get('offsetLeft');
-            var newPositionTop = tooltipMessage1.get('offsetTop');
-
-            Y.Assert.areEqual(
-                oldPositionContent,
-                newPositionContent,
-                'Tooltip is utilizing the wrong content.'
-            );
-
-            Y.Assert.areEqual(
-                oldPositionTop,
-                newPositionTop,
-                'Tooltip is not aligned with trigger.'
-            );
-
-            Y.Assert.areEqual(
-                oldPositionLeft,
-                newPositionLeft,
-                'Tooltip is not aligned with trigger.'
-            );
-        },
-
         'should show tooltips for all triggers': function() {
             var tooltip,
                 tooltipClass = 'tooltip-class',
@@ -167,10 +108,64 @@ YUI.add('aui-tooltip-delegate-tests', function(Y) {
 
             Y.Assert.areEqual('mouseenter', this._delegate.get('triggerShowEvent'));
             Y.Assert.areEqual('mouseleave', this._delegate.get('triggerHideEvent'));
+        },
+
+        'tooltips should be aligned to trigger': function() {
+            var tooltip1 = Y.one('#trigger1');
+            var tooltip2 = Y.one('#trigger2');
+
+            var tooltip = new Y.TooltipDelegate(
+                {
+                    position: 'right',
+                    trigger: '.tooltip-delegate li',
+                    triggerHideEvent: ['blur', 'mouseleave'],
+                    triggerShowEvent: ['focus', 'mouseover'],
+                    visible: false
+                }
+            );
+
+            tooltip1.simulate('mouseover');
+
+            tooltip = tooltip.getTooltip();
+
+            var contentBox = tooltip.get('contentBox');
+
+            var oldTooltipContent = contentBox.text();
+            var oldOffsetLeft = contentBox.get('offsetLeft');
+            var oldOffsetTop = contentBox.get('offsetTop');
+
+            tooltip1.simulate('mouseout');
+
+            tooltip2.simulate('focus');
+            tooltip2.simulate('blur');
+
+            tooltip1.simulate('focus');
+
+            var newTooltipContent = contentBox.text();
+            var newOffsetLeft = contentBox.get('offsetLeft');
+            var newOffsetTop = contentBox.get('offsetTop');
+
+            Y.Assert.areEqual(
+                oldTooltipContent,
+                newTooltipContent,
+                'Tooltip should use the correct content.'
+            );
+
+            Y.Assert.areEqual(
+                oldOffsetTop,
+                newOffsetTop,
+                'Tooltip should be aligned with trigger\'s top position.'
+            );
+
+            Y.Assert.areEqual(
+                oldOffsetLeft,
+                newOffsetLeft,
+                'Tooltip should be aligned with trigger\'s left position.'
+            );
         }
     }));
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['aui-tooltip-delegate', 'node-event-simulate', 'test', 'node-base']
+    requires: ['aui-tooltip-delegate', 'node-base', 'node-event-simulate', 'test']
 });
