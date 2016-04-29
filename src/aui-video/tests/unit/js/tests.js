@@ -2,23 +2,15 @@ YUI.add('aui-video-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-video');
 
-    var height = 480;
-    var width = 640;
-    var video;
-
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
 
-        setUp: function(config) {
-            if (video) {
-                video.destroy();
-            }
-
-            video = new Y.Video(
+        setUp: function() {
+            this._video = new Y.Video(
                 {
                     boundingBox: '#demo',
-                    width: width,
-                    height: height,
+                    width: 640,
+                    height: 480,
                     url: 'http://videos.liferay.com/webinars/2010-08-11.mp4',
                     ogvUrl: 'http://videos.liferay.com/webinars/2010-08-11.ogv',
                     swfUrl: 'http://videos.liferay.com/common/player.swf',
@@ -30,39 +22,85 @@ YUI.add('aui-video-tests', function(Y) {
         },
 
         tearDown: function() {
-            video && video.destroy();
+            this._video && this._video.destroy();
         },
 
-        'video player bounding box should not have height or width set': function() {
-            var windowHeight = Y.one(Y.config.win).height();
-            var windowWidth = Y.one(Y.config.win).width();
+        simulateResizeWindow: function(width, height) {
+            var winNode = Y.one(Y.config.win);
 
             if (Y.UA.ie === 8) {
                 // Can't simulate a resize on IE8's window object, so
                 // calling the function directly here.
-                video._onWindowResize();
+                this._video._onWindowResize();
             }
             else {
-                Y.one(Y.config.win).simulate('resize');
+                winNode.set('innerWidth', width || winNode.get('innerWidth'));
+                winNode.set('innerHeight', height || winNode.get('innerHeight'));
+
+                winNode.simulate('resize');
             }
+        },
 
-            setTimeout(function() {
-                var contentBox = video.get('contentBox');
+        'should video tag adjust it\'s size on window height changes': function() {
+            var contentBox,
+                instance,
+                prevVideoPlayerHeight,
+                prevVideoPlayerWidth,
+                videoPlayer;
 
-                var videoPlayer = contentBox.one('.video-node');
+            instance = this;
+            contentBox = this._video.get('contentBox');
+            videoPlayer = contentBox.one('.video-node');
+            prevVideoPlayerHeight = videoPlayer.height();
+            prevVideoPlayerWidth = videoPlayer.width();
 
-                if (videoPlayer) {
-                    var aspectRatio = height / width;
+            instance.simulateResizeWindow(0, 200);
 
-                    if (windowWidth < width) {
-                        Y.Assert.areSame(windowWidth, videoPlayer.width(), 'Video node width should be the same size as the window width.');
-                    }
+            this.wait(function() {
+                Y.Assert.isTrue(prevVideoPlayerWidth > videoPlayer.width());
+                Y.Assert.isTrue(prevVideoPlayerHeight > videoPlayer.height());
 
-                    if (windowHeight < height) {
-                        Y.Assert.areSame(windowHeight, videoPlayer.height(), 'Video node height should be the same size as the window height.');
-                    }
-                }
-            }, 100);
+                prevVideoPlayerHeight = videoPlayer.height();
+                prevVideoPlayerWidth = videoPlayer.width();
+
+                instance.simulateResizeWindow(0, 2000);
+
+            this.wait(function() {
+                    Y.Assert.isTrue(prevVideoPlayerWidth < videoPlayer.width(), videoPlayer.width());
+                    Y.Assert.isTrue(prevVideoPlayerHeight < videoPlayer.height());
+                }, Y.config.windowResizeDelay || 100);
+            }, Y.config.windowResizeDelay || 100);
+        },
+
+        'should video tag adjust it\'s size on window width changes': function() {
+            var contentBox,
+                instance,
+                prevVideoPlayerHeight,
+                prevVideoPlayerWidth,
+                videoPlayer;
+
+            instance = this;
+            contentBox = this._video.get('contentBox');
+            videoPlayer = contentBox.one('.video-node');
+            prevVideoPlayerHeight = videoPlayer.height();
+            prevVideoPlayerWidth = videoPlayer.width();
+
+            instance.simulateResizeWindow(200, 0);
+
+            this.wait(function() {
+                Y.Assert.isTrue(prevVideoPlayerWidth > videoPlayer.width(), videoPlayer.width());
+                Y.Assert.isTrue(prevVideoPlayerHeight > videoPlayer.height());
+
+                prevVideoPlayerHeight = videoPlayer.height();
+                prevVideoPlayerWidth = videoPlayer.width();
+
+                instance.simulateResizeWindow(2000, 0);
+
+            this.wait(function() {
+                    Y.Assert.isTrue(prevVideoPlayerWidth < videoPlayer.width(), videoPlayer.width());
+                    Y.Assert.isTrue(prevVideoPlayerHeight < videoPlayer.height());
+                }, Y.config.windowResizeDelay || 100);
+            }, Y.config.windowResizeDelay || 100);
         }
     }));
 

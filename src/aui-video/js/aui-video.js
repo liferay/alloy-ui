@@ -14,7 +14,7 @@ var Lang = A.Lang,
 
     DOC = A.config.doc,
 
-    TPL_VIDEO = '<video id="{id}" controls="controls" class="' + CSS_VIDEO_NODE + '" {height} {width}></video>',
+    TPL_VIDEO = '<video id="{id}" controls="controls" class="' + CSS_VIDEO_NODE + '"></video>',
     TPL_VIDEO_FALLBACK = '<div class="' + CSS_VIDEO_NODE + '"></div>';
 
 /**
@@ -192,6 +192,19 @@ var Video = A.Component.create({
     prototype: {
 
         /**
+          * Destructor implementation.
+          * Lifecycle.
+          *
+          * @method destructor
+          * @protected
+          */
+        destructor: function() {
+            var instance = this;
+
+            (new A.EventHandle(instance._eventHandles)).detach();
+        },
+
+        /**
          * Render the Video component instance. Lifecycle.
          *
          * @method renderUI
@@ -215,6 +228,8 @@ var Video = A.Component.create({
                     cropType: event.type
                 });
             });
+
+            instance._setResponsiveDimensions();
         },
 
         /**
@@ -238,20 +253,9 @@ var Video = A.Component.create({
             instance._eventHandles = [
                 A.after(
                     'windowresize',
-                    A.bind('afterWindowResize', instance)
+                    A.bind('_afterWindowResize', instance)
                 )
             ];
-        },
-
-        /**
-          * Destructor implementation.
-          * Lifecycle.
-          *
-          * @method destructor
-          * @protected
-          */
-        destructor: function() {
-            (new A.EventHandle(instance._eventHandles)).detach();
         },
 
         /**
@@ -311,22 +315,16 @@ var Video = A.Component.create({
         },
 
         /**
-         * Remove the defined height and width from the bounding box.
+         * Fired after the `windowresize` event.
          *
-         * @method responsiveBoundingBox
-         * @publich
+         * @method _afterWindowResize
+         * @protected
          */
-        responsiveBoundingBox: function() {
+        _afterWindowResize: function() {
             var instance = this;
 
-            var boundingBox = instance.get('boundingBox');
-
-            boundingBox.setStyles(
-                {
-                    height: '',
-                    width: ''
-                }
-            );
+            instance._responsiveBoundingBox();
+            instance._setResponsiveDimensions();
         },
 
         /**
@@ -343,21 +341,6 @@ var Video = A.Component.create({
             sourceNode.attr('type', type);
 
             return sourceNode;
-        },
-
-        /**
-         * Fired after the `windowresize` event.
-         *
-         * @method afterWindowResize
-         * @param {EventFacade} event
-         * @public
-         */
-        afterWindowResize: function(event) {
-            var instance = this;
-
-            instance.responsiveBoundingBox();
-
-            instance._setResponsiveDimensions(event);
         },
 
         /**
@@ -440,46 +423,37 @@ var Video = A.Component.create({
          * @protected
          */
         _renderVideo: function(fallback) {
-            var instance = this,
-                attrHeight,
-                attrWidth,
+            var instance,
                 height,
                 tpl,
                 tplObj,
                 video,
                 width;
 
+            instance = this;
             tpl = TPL_VIDEO;
+
+            height = instance.get('height');
+            width = instance.get('width');
 
             if (UA.gecko && fallback) {
                 tpl = TPL_VIDEO_FALLBACK;
             }
-            else {
-                attrHeight = '';
-                attrWidth = '';
-
-                height = instance.get('height');
-
-                width = instance.get('width');
-
-                if (height) {
-                    attrHeight = 'height="' + height + '"';
-                }
-
-                if (width) {
-                    attrWidth = 'width="' + width + '"';
-                }
-            }
 
             tplObj = Lang.sub(
                 tpl, {
-                    height: attrHeight,
-                    id: A.guid(),
-                    width: attrWidth
+                    id: A.guid()
                 }
             );
 
             video = A.Node.create(tplObj);
+
+            if (width) {
+                video.width(width);
+            }
+            if (height) {
+                video.height(height);
+            }
 
             instance.get('contentBox').append(video);
 
@@ -487,43 +461,69 @@ var Video = A.Component.create({
         },
 
         /**
+         * Remove the defined height and width from the bounding box.
+         *
+         * @method _responsiveBoundingBox
+         * @protected
+         */
+        _responsiveBoundingBox: function() {
+            var instance = this,
+                boundingBox = instance.get('boundingBox');
+
+            boundingBox.setStyles(
+                {
+                    height: '',
+                    width: ''
+                }
+            );
+        },
+
+        /**
          * Set the dimensions of the video player based on the window size.
          *
          * @method _setResponsiveDimensions
-         * @param {EventFacade} event
          * @protected
          */
-        _setResponsiveDimensions: function(event) {
-            var instance = this;
+        _setResponsiveDimensions: function() {
+            var aspectRatio,
+                currentTargetHeight,
+                currentTargetWidth,
+                instance,
+                height,
+                updatedHeight,
+                updatedWidth,
+                width,
+                winNode;
 
-            var height = instance.get('height');
-            var width = instance.get('width');
+            instance = this;
 
-            var aspectRatio = height / width;
+            height = instance.get('height');
+            width = instance.get('width');
 
-            var updatedHeight = height;
-            var updatedWidth = width;
+            aspectRatio = height / width;
 
-            var currentTarget = event.currentTarget;
+            updatedHeight = height;
+            updatedWidth = width;
 
-            var currentTargetHeight = currentTarget.height();
+            winNode = A.one(window);
+
+            currentTargetHeight = winNode.get('innerHeight');
+
 
             if (currentTargetHeight < height) {
                 updatedHeight = currentTargetHeight;
                 updatedWidth = currentTargetHeight * aspectRatio;
             }
 
-            var currentTargetWidth = currentTarget.width();
+            currentTargetWidth = winNode.get('innerWidth');
 
             if (currentTargetWidth < width) {
                 updatedHeight = currentTargetWidth * aspectRatio;
                 updatedWidth = currentTargetWidth;
             }
 
-            var video = instance._video;
-
-            video.width(updatedWidth);
-            video.height(updatedHeight);
+            instance._video.width(updatedWidth);
+            instance._video.height(updatedHeight);
         },
 
         /**
