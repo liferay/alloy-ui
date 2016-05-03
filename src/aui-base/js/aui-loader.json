@@ -2031,6 +2031,7 @@
     },
     "aui-video": {
         "requires": [
+            "event-resize",
             "node-event-html5",
             "querystring-stringify-simple",
             "aui-aria",

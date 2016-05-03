@@ -7,6 +7,20 @@
         <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
         <link rel="stylesheet" href="../../assets/aui-tooltip-base-core.css">
 
+        <style>
+            .delegate-container {
+                margin-top: 50px;
+            }
+
+            .tooltip-delegate {
+                width: 150px;
+            }
+
+            .trigger {
+                margin-bottom: 25px;
+            }
+        </style>
+
         <script src="../../../../build/aui/aui.js"></script>
         <script src="js/aui-tooltip-delegate-tests.js"></script>
     </head>
@@ -17,6 +31,13 @@
         <button class="btn btn-primary tooltip-btn" data-title="tooltip2">Tooltip 2</button>
 
         <button class="btn btn-primary tooltip-multiple-trigger-events" data-title="Multiple Trigger Events">Multiple Trigger Events</button>
+
+        <div class="delegate-container">
+          <ul class="tooltip-delegate">
+            <li class="trigger" id="trigger1" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur accumsan tortor ac consequat consequat. Proin laoreet tortor vel velit feugiat sagittis. Aenean tincidunt quam in nisl placerat iaculis. Quisque orci odio, pulvinar eu ex vel, tempus hendrerit augue. Duis vestibulum eu metus non egestas.">Trigger 1</li>
+            <li class="trigger" id="trigger2" title="Nulla tristique egestas ligula, et dignissim nulla consequat non.">Trigger 2</li>
+          </ul>
+        </div>
 
         <script>
             YUI({

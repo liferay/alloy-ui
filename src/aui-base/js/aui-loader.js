@@ -2059,6 +2059,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-video": {
         "requires": [
+            "event-resize",
             "node-event-html5",
             "querystring-stringify-simple",
             "aui-aria",
@@ -2133,4 +2134,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '602c5212d3d8b6e335b101d65d066c12';
+YUI.Env[Y.version].md5 = '965cee97a15c9fcfd04b3af22bb26a63';

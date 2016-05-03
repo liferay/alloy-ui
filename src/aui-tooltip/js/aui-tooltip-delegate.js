@@ -99,6 +99,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
      *
      * @method _onUserHideInteraction
      * @param event
+     * @protected
      */
     _onUserHideInteraction: function() {
         var instance = this;
@@ -111,6 +112,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
      *
      * @method _onUserShowInteraction
      * @param event
+     * @protected
      */
     _onUserShowInteraction: function(event) {
         var instance = this,
@@ -118,7 +120,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
 
         trigger = event.currentTarget;
 
-        instance.getTooltip().set('trigger', trigger).render().show();
+        instance.getTooltip().show().set('trigger', trigger).render();
     },
 
     /**
@@ -126,6 +128,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
      *
      * @method _validateTriggerEvent
      * @param  {String | Array} val
+     * @protected
      */
     _validateTriggerEvent: function(val) {
         if (A.Lang.isString(val)) {

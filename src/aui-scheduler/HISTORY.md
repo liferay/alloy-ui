@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2106](https://issues.liferay.com/browse/AUI-2106) It should be possible to not show the scheduler's toolbar.
 * [AUI-2080](https://issues.liferay.com/browse/AUI-2080) Agenda view displays too many events if start and end dates are too far away.
 * [AUI-2075](https://issues.liferay.com/browse/AUI-2075) DateMath.toMidnight() changes the value of its argument
 * [AUI-2074](https://issues.liferay.com/browse/AUI-2074) Cannot view all day events in Day view
