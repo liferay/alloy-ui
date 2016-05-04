@@ -386,6 +386,36 @@ YUI.add('aui-form-builder-page-manager-tests', function(Y) {
 
             Y.one('.form-builder-page-manager-add-last-position').simulate('click');
             Y.Assert.areEqual('Delete current page', Y.one('.form-builder-page-manager-delete-page').text());
+        },
+
+        'should disable Pagination and TabView when `disablePaginations` is called': function() {
+            var pages = this.createFormBuilderPageManager({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 3,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            pages.disablePaginations();
+
+            Y.Assert.areEqual(Y.all('.pagination-content li.disabled').size(), 5);
+            Y.Assert.areEqual(Y.all('.tabbable-content li.disabled').size(), 3);
+        },
+
+        'should enable Pagination and TabView when `disablePaginations` is called': function() {
+            var pages = this.createFormBuilderPageManager({
+                activePageNumber: 1,
+                pageHeader: '#header',
+                pagesQuantity: 3,
+                paginationContainer: '#pages',
+                tabviewContainer: '#tabs'
+            });
+
+            pages.enablePaginations();
+
+            Y.Assert.areEqual(Y.all('.pagination-content li.disabled').size(), 0);
+            Y.Assert.areEqual(Y.all('.tabbable-content li.disabled').size(), 0);
         }
     }));
 
