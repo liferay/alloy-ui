@@ -359,7 +359,7 @@ LayoutBuilderMove.prototype = {
         cutButton.toggleClass(CSS_MOVE_CANCEL);
 
         if (cutButton.hasClass(CSS_MOVE_CUT_ROW_BUTTON)) {
-            this._createRowTargetArea();
+            this.get('chooseRowMoveTarget')();
         }
         else {
             itemToBeMoved = cutButton.getData('node-col').getData('layout-col');
@@ -371,7 +371,7 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
-     * Create target area to move the row.
+     * Default value for `chooseRowMoveTarget` attribute.
      *
      * @method _createRowTargetArea
      * @protected
@@ -794,6 +794,19 @@ LayoutBuilderMove.ATTRS = {
         validator: A.Lang.isFunction,
         valueFn: function() {
             return A.bind(this._chooseColMoveTarget, this);
+        }
+    },
+
+    /**
+     * Default function to choose target on rows.
+     *
+     * @attribute chooseRowMoveTarget
+     * @type {Function}
+     */
+    chooseRowMoveTarget: {
+        validator: A.Lang.isFunction,
+        valueFn: function() {
+            return A.bind(this._createRowTargetArea, this);
         }
     },
 
