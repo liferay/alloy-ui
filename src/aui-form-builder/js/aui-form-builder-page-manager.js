@@ -138,7 +138,6 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
      * Disable PaginationVeiw and TabView.
      *
      * @method disablePaginations
-     * @protected
      */
     disablePaginations: function() {
         this._disableTabView();
@@ -149,7 +148,6 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
      * Enable PaginationVeiw and TabView.
      *
      * @method enablePaginations
-     * @protected
      */
     enablePaginations: function() {
         this._enableTabView();
