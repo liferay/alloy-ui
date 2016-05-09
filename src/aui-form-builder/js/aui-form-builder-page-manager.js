@@ -135,6 +135,26 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
     },
 
     /**
+     * Disable PaginationVeiw and TabView.
+     *
+     * @method disablePaginations
+     */
+    disablePaginations: function() {
+        this._disableTabView();
+        this._disablePaginationView();
+    },
+
+    /**
+     * Enable PaginationVeiw and TabView.
+     *
+     * @method enablePaginations
+     */
+    enablePaginations: function() {
+        this._enableTabView();
+        this._enablePaginationView();
+    },
+
+    /**
      * Create a new page on Form Builder.
      *
      * @method _addPage
@@ -340,6 +360,54 @@ A.FormBuilderPageManager = A.Base.create('form-builder-page-manager', A.Base, []
         });
 
         return title;
+    },
+
+    /**
+     * Disable Pagination items.
+     *
+     * @method _disablePaginationView
+     * @protected
+     */
+    _disablePaginationView: function() {
+        this._getPagination().get('items').addClass('disabled');
+    },
+
+    /**
+     * Disable TabView items.
+     *
+     * @method _disableTabView
+     * @protected
+     */
+    _disableTabView: function() {
+        var tabView = this._getTabView();
+
+        A.each(this._getTabView().getTabs(), function(tab, index) {
+            tabView.disableTab(index);
+        });
+    },
+
+    /**
+     * Enable Pagination items.
+     *
+     * @method _enablePaginationView
+     * @protected
+     */
+    _enablePaginationView: function() {
+        this._getPagination().get('items').removeClass('disabled');
+    },
+
+    /**
+     * Enable TabView items.
+     *
+     * @method _enablePaginationView
+     * @protected
+     */
+    _enableTabView: function() {
+        var tabView = this._getTabView();
+
+        A.each(this._getTabView().getTabs(), function(tab, index) {
+            tabView.enableTab(index);
+        });
     },
 
     /**

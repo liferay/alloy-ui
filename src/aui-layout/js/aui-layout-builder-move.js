@@ -68,7 +68,7 @@ LayoutBuilderMove.prototype = {
             this.after('layout:isColumnModeChange', A.bind(this._afterMoveIsColumnModeChange, this)),
             this.after('layoutChange', A.bind(this._afterMoveLayoutChange, this)),
             this.after('moveStart', A.bind(this._addMovingClass, this)),
-            this.after('moveEnd', A.bind(this._removeMovingClass, this)),
+            this.after('moveEnd', A.bind(this._afterMoveEnd, this)),
             A.one('doc').on('key', this._onEscKey, 'esc', this)
         );
 
@@ -94,7 +94,6 @@ LayoutBuilderMove.prototype = {
      */
     cancelMove: function() {
         this.fire('moveEnd');
-        this._resetMoveUI();
     },
 
     /**
@@ -360,7 +359,7 @@ LayoutBuilderMove.prototype = {
         cutButton.toggleClass(CSS_MOVE_CANCEL);
 
         if (cutButton.hasClass(CSS_MOVE_CUT_ROW_BUTTON)) {
-            this._createRowTargetArea();
+            this.get('chooseRowMoveTarget')();
         }
         else {
             itemToBeMoved = cutButton.getData('node-col').getData('layout-col');
@@ -372,7 +371,7 @@ LayoutBuilderMove.prototype = {
     },
 
     /**
-     * Create target area to move the row.
+     * Default value for `chooseRowMoveTarget` attribute.
      *
      * @method _createRowTargetArea
      * @protected
@@ -526,6 +525,8 @@ LayoutBuilderMove.prototype = {
         else {
             layout.moveRow(target.getData('row-index'), this._rowToBeMoved);
         }
+
+        this.fire('moveEnd', event);
     },
 
     /**
@@ -581,7 +582,6 @@ LayoutBuilderMove.prototype = {
      * @protected
      */
     _onMouseClickOnMoveTarget: function(event) {
-        this.fire('moveEnd', event);
         this._moveToTarget(event);
     },
 
@@ -640,6 +640,17 @@ LayoutBuilderMove.prototype = {
     */
     _removeCutButtonFromRow: function(row) {
         row.one('.' + CSS_MOVE_CUT_ROW_BUTTON).remove();
+    },
+
+    /**
+    * Removes the CSS class indicating that some element has moving.
+    *
+    * @method _removeMovingClass
+    * @protected
+    */
+    _afterMoveEnd: function() {
+        this._removeMovingClass();
+        this._resetMoveUI();
     },
 
     /**
@@ -783,6 +794,19 @@ LayoutBuilderMove.ATTRS = {
         validator: A.Lang.isFunction,
         valueFn: function() {
             return A.bind(this._chooseColMoveTarget, this);
+        }
+    },
+
+    /**
+     * Default function to choose target on rows.
+     *
+     * @attribute chooseRowMoveTarget
+     * @type {Function}
+     */
+    chooseRowMoveTarget: {
+        validator: A.Lang.isFunction,
+        valueFn: function() {
+            return A.bind(this._createRowTargetArea, this);
         }
     },
 

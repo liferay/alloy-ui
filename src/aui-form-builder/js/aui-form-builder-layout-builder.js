@@ -118,6 +118,7 @@ A.FormBuilderLayoutBuilder.prototype = {
         this._detachCancelMoveRowEvents();
         this._enableAddFields();
         this._fieldToolbar.set('disabled', false);
+        this._pageManager.enablePaginations();
     },
 
     /**
@@ -134,6 +135,7 @@ A.FormBuilderLayoutBuilder.prototype = {
 
         this._disableAddFields();
         this._fieldToolbar.set('disabled', true);
+        this._pageManager.disablePaginations();
     },
 
     /**
@@ -290,6 +292,8 @@ A.FormBuilderLayoutBuilder.prototype = {
             this._fieldListBeingMoved.removeField(this._fieldBeingMoved);
         }
 
+        this._enableAddFields();
+
         if (targetNestedParent) {
             this._addNestedField(
                 targetNestedParent,
@@ -304,7 +308,6 @@ A.FormBuilderLayoutBuilder.prototype = {
             );
         }
 
-        this._layoutBuilder.cancelMove();
         this._removeLayoutCutColButtons();
 
         layout.normalizeColsHeight(new A.NodeList(this.getFieldRow(this._fieldBeingMoved)));
