@@ -39,7 +39,7 @@
     "imagemin-pngcrush": "^4.0.0",
     "istanbul": "~0.3.0",
     "jshint-stylish": "^1.0.0",
-    "liferay-gulp-tasks": "^0.3.0",
+    "liferay-gulp-tasks": "^0.4.1",
     "open": "~0.0.5",
     "require-dir": "~0.1.0",
     "run-sequence": "^1.0.1",
