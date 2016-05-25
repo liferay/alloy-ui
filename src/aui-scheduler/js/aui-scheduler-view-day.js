@@ -893,24 +893,11 @@ var SchedulerDayView = A.Component.create({
          * @method syncCurrentTimeUI
          */
         syncCurrentTimeUI: function() {
-            var currentTimeNode = this.get('currentTimeNode'),
-                currentTime,
-                instance = this,
-                scheduler = this.get('scheduler'),
-                todayColumn = this.colDaysNode.get('parentNode').one('.' + CSS_SCHEDULER_TODAY);
+            var instance = this;
+            var scheduler = instance.get('scheduler');
+            var currentTime = scheduler.get('currentTimeFn');
 
-            currentTime = scheduler.get('currentTimeFn');
-
-            currentTime(function(time) {
-                if (todayColumn) {
-                    todayColumn.one('.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM).append(currentTimeNode);
-
-                    currentTimeNode.setStyle('top', instance.calculateTop(time) + 'px');
-                }
-                else {
-                    currentTimeNode.remove();
-                }
-            });
+            currentTime(A.bind(instance._moveCurrentTimeNode, instance));
         },
 
         /**
@@ -1300,6 +1287,30 @@ var SchedulerDayView = A.Component.create({
          */
         _findActiveColumn: function(event) {
             return event.currentTarget;
+        },
+
+        /**
+         * Move the red line representing the current time to a specific point,
+         * determined by the given {Date} object.
+         *
+         * @method _moveCurrentTimeNode
+         * @param {Date} time
+         * @protected
+         */
+        _moveCurrentTimeNode: function(time) {
+            var instance = this;
+
+            var currentTimeNode = instance.get('currentTimeNode');
+            var todayColumn = instance.colDaysNode.get('parentNode').one('.' + CSS_SCHEDULER_TODAY);
+
+            if (todayColumn) {
+                todayColumn.one('.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM).append(currentTimeNode);
+
+                currentTimeNode.setStyle('top', instance.calculateTop(time) + 'px');
+            }
+            else {
+                currentTimeNode.remove();
+            }
         },
 
         /**
