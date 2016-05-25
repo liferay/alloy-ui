@@ -894,16 +894,23 @@ var SchedulerDayView = A.Component.create({
          */
         syncCurrentTimeUI: function() {
             var currentTimeNode = this.get('currentTimeNode'),
+                currentTime,
+                instance = this,
+                scheduler = this.get('scheduler'),
                 todayColumn = this.colDaysNode.get('parentNode').one('.' + CSS_SCHEDULER_TODAY);
 
-            if (todayColumn) {
-                todayColumn.one('.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM).append(currentTimeNode);
+            currentTime = scheduler.get('currentTimeFn');
 
-                currentTimeNode.setStyle('top', this.calculateTop(new Date()) + 'px');
-            }
-            else {
-                currentTimeNode.remove();
-            }
+            currentTime(function(time) {
+                if (todayColumn) {
+                    todayColumn.one('.' + CSS_SCHEDULER_VIEW_DAY_TABLE_COL_SHIM).append(currentTimeNode);
+
+                    currentTimeNode.setStyle('top', instance.calculateTop(time) + 'px');
+                }
+                else {
+                    currentTimeNode.remove();
+                }
+            });
         },
 
         /**
