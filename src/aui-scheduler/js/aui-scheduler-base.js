@@ -548,6 +548,19 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+         * Contains a function to call a callback with a date object. The date
+         * should represent the current time.
+         *
+         * @attribute currentTimeFn
+         * @type {Function}
+         */
+        currentTimeFn: {
+            value: function(callback) {
+                callback(new Date());
+            }
+        },
+
+        /**
          * Contains the date corresponding to the current date which is the
          * value of the date set on the user's computer.
          *
