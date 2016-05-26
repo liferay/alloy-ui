@@ -1220,7 +1220,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
             );
         },
 
-        'should put red line according to returned time': function() {
+        'should put red line on the date provided by currentTimeFn': function() {
             var now = new Date(2015,5,10,10,30),
                 redLine,
                 top;
