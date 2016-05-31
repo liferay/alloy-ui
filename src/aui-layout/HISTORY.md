@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2116](https://issues.liferay.com/browse/AUI-2116) Drag handlers keeps highlighted if user click on them but don't start dragging
 * [AUI-2114](https://issues.liferay.com/browse/AUI-2114) The Add field buttons aren't activated when the user swap the page while he start moving a row
 * [AUI-2104](https://issues.liferay.com/browse/AUI-2104) Users should not be able to interact to some features of the form builder while it is moving a row or a column
 * [AUI-2097](https://issues.liferay.com/browse/AUI-2097) Move field button doesn't appear if the user navigates pressing tab key

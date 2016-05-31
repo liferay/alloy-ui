@@ -177,6 +177,8 @@ A.LayoutBuilderResizeCol.prototype = {
         if (row) {
             this._hideBreakpoints(row);
         }
+
+        dragNode.removeClass(CSS_RESIZE_COL_DRAGGABLE_DRAGGING);
     },
 
     /**

@@ -723,6 +723,16 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             Assert.areEqual(false, dragHandle.item(0).hasClass('layout-builder-resize-col-draggable-visible'));
             Assert.areEqual(true, dragHandle.item(1).hasClass('layout-builder-resize-col-draggable-visible'));
             Assert.areEqual(true, dragHandle.item(2).hasClass('layout-builder-resize-col-draggable-visible'));
+        },
+
+        'should remove dragging css class after mouseup event': function() {
+            var dragHandler = Y.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
+
+            dragHandler.simulate('mousedown');
+            Assert.isTrue(dragHandler.ancestor('.' + CSS_RESIZE_COL_DRAGGABLE).hasClass('layout-builder-resize-col-draggable-dragging'));
+
+            dragHandler.simulate('mouseup');
+            Assert.isFalse(dragHandler.ancestor('.' + CSS_RESIZE_COL_DRAGGABLE).hasClass('layout-builder-resize-col-draggable-dragging'));
         }
     }));
 

@@ -1199,6 +1199,48 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 this._scheduler.get('activeView'),
                 'The agenda view should have become active'
             );
+        },
+
+        'should put red line in current local time by default': function() {
+            var now = new Date(),
+                redLine,
+                top;
+
+            this._createScheduler({
+                date: new Date(),
+                activeView: this._dayView
+            });
+
+            redLine = Y.one('.scheduler-view-day-current-time');
+            top = parseFloat(redLine.getStyle('top'), 10);
+
+            Y.Assert.isTrue(
+                Math.abs(top - this._dayView.calculateTop(now)) <= 1,
+                'Line is too far away from the expected position.'
+            );
+        },
+
+        'should put red line on the date provided by currentTimeFn': function() {
+            var now = new Date(2015,5,10,10,30),
+                redLine,
+                top;
+
+            this._createScheduler({
+                activeView: this._dayView,
+                currentTimeFn: function(callback) {
+                    callback(new Date(2015,5,10,10,30));
+                },
+                date: new Date(2015,5,10),
+                todayDate: new Date(2015,5,10)
+            });
+
+            redLine = Y.one('.scheduler-view-day-current-time');
+            top = parseFloat(redLine.getStyle('top'), 10);
+
+            Y.Assert.isTrue(
+                Math.abs(top - this._dayView.calculateTop(now)) <= 1,
+                'Line is too far away from the expected position.'
+            );
         }
     }));
 
