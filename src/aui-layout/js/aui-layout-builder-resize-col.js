@@ -436,23 +436,33 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
      _insertColumnAfterDropHandles: function(dragNode) {
-        var colLayoutPosition = this._lastDropEnter.getData('layout-position'),
-            dragPosition = dragNode.getData('layout-position'),
-            newCol = new A.LayoutCol(),
+        var colLayoutPosition,
+            dragPosition,
+            newCol,
             newColPosition,
-            newColumnSize = Math.abs(dragPosition - colLayoutPosition),
+            newColumnSize,
+            row;
+
+        if (dragNode && this._lastDropEnter) {
+            colLayoutPosition = this._lastDropEnter.getData('layout-position');
+            dragPosition = dragNode.getData('layout-position');
+            newCol = new A.LayoutCol();
+            newColumnSize = Math.abs(dragPosition - colLayoutPosition);
             row = dragNode.ancestor(SELECTOR_ROW).getData('layout-row');
 
-        if (dragPosition === 0) {
-            newColPosition = 0;
-        }
-        else {
-            newColPosition = row.get('cols').length;
-        }
+            if (dragPosition === 0) {
+                newColPosition = 0;
+            }
+            else {
+                newColPosition = row.get('cols').length;
+            }
 
-        if (colLayoutPosition > 0 && colLayoutPosition < 12) {
-            newCol.set('size', newColumnSize);
-            row.addCol(newColPosition, newCol);
+            if (colLayoutPosition > 0 && colLayoutPosition < 12) {
+                newCol.set('size', newColumnSize);
+                row.addCol(newColPosition, newCol);
+            }
+
+            this._lastDropEnter = null;
         }
     },
 
