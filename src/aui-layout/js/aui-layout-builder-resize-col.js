@@ -300,7 +300,7 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
-     * Checks if a drag node can be droppped in the given position.
+     * Checks if a drag node can be dropped in the given position.
      *
      * @method _canDrop
      * @param {Node} dragNode
