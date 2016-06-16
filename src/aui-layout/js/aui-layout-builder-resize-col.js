@@ -692,8 +692,8 @@ A.LayoutBuilderResizeCol.prototype = {
     _syncDragHandles: function() {
         var instance = this;
 
-        this._removeDragHandles();
-        A.Array.each(this.get('layout').get('rows'), function(row) {
+        instance._removeDragHandles();
+        A.Array.each(instance.get('layout').get('rows'), function(row) {
             instance._syncRowDragHandles(row);
         });
     },
