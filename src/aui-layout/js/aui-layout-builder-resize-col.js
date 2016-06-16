@@ -280,26 +280,6 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
-     * Checks if a drag node can be dragged to at least one valid position.
-     *
-     * @method _canDrag
-     * @param {Node} dragNode
-     * @protected
-     */
-    _canDrag: function(dragNode) {
-        var index;
-
-        for (index = 0; index < BREAKPOINTS.length; index++) {
-            if (BREAKPOINTS[index] !== dragNode.getData('layout-position') &&
-                this._canDrop(dragNode, BREAKPOINTS[index])) {
-                return true;
-            }
-        }
-
-        return false;
-    },
-
-    /**
      * Checks if a drag node can be dropped in the given position.
      *
      * @method _canDrop
@@ -721,10 +701,6 @@ A.LayoutBuilderResizeCol.prototype = {
             draggable.setData('layout-position', currentPos);
             draggable.setData('layout-col1', cols[index]);
             draggable.setData('layout-col2', cols[index + 1]);
-
-            if (!this._canDrag(draggable)) {
-                draggable.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).hide();
-            }
 
             rowNode.append(draggable);
         }
