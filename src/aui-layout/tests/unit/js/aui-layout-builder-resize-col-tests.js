@@ -733,6 +733,19 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
 
             dragHandler.simulate('mouseup');
             Assert.isFalse(dragHandler.ancestor('.' + CSS_RESIZE_COL_DRAGGABLE).hasClass('layout-builder-resize-col-draggable-dragging'));
+        },
+
+        'should not add a new column if the user do not drop the drag handler on a different breakpoint': function() {
+            var dragHandler = Y.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE);
+            var layout = this._layoutBuilder.get('layout');
+
+            dragHandler.simulate('mousedown');
+
+            this.wait(function(){
+                dragHandler.simulate('mouseup');
+
+                Assert.areEqual(4, layout.get('rows')[0].get('cols').length);
+            }, 4000);
         }
     }));
 

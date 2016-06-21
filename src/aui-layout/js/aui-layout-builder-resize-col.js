@@ -280,27 +280,7 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
-     * Checks if a drag node can be dragged to at least one valid position.
-     *
-     * @method _canDrag
-     * @param {Node} dragNode
-     * @protected
-     */
-    _canDrag: function(dragNode) {
-        var index;
-
-        for (index = 0; index < BREAKPOINTS.length; index++) {
-            if (BREAKPOINTS[index] !== dragNode.getData('layout-position') &&
-                this._canDrop(dragNode, BREAKPOINTS[index])) {
-                return true;
-            }
-        }
-
-        return false;
-    },
-
-    /**
-     * Checks if a drag node can be droppped in the given position.
+     * Checks if a drag node can be dropped in the given position.
      *
      * @method _canDrop
      * @param {Node} dragNode
@@ -309,29 +289,29 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _canDrop: function(dragNode, position) {
-        var col1 = dragNode.getData('layout-col1'),
-            col2 = dragNode.getData('layout-col2'),
-            col1MinSize,
-            col2MinSize,
+        var leftSideColumn = dragNode.getData('layout-col1'),
+            rightSideColumn = dragNode.getData('layout-col2'),
+            leftSideColumnMinSize,
+            rightSideColumnMinSize,
             diff1,
             diff2,
             difference = position - dragNode.getData('layout-position');
 
         if (dragNode.getData('layout-action') === ADD_COLUMN_ACTION) {
-            if ((col2 && difference < col2.get('size')) ||
-                (col1 && MAX_SIZE - col1.get('size') < position)) {
+            if ((rightSideColumn && difference < rightSideColumn.get('size')) ||
+                (leftSideColumn && MAX_SIZE - leftSideColumn.get('size') < position)) {
                 return true;
             }
 
             return false;
         }
 
-        diff1 = col1.get('size') + difference,
-        diff2 = col2.get('size') - difference,
-        col1MinSize = col1.get('minSize'),
-        col2MinSize = col2.get('minSize');
+        diff1 = leftSideColumn.get('size') + difference,
+        diff2 = rightSideColumn.get('size') - difference,
+        leftSideColumnMinSize = leftSideColumn.get('minSize'),
+        rightSideColumnMinSize = rightSideColumn.get('minSize');
 
-        if (diff1 !== 0 && diff2 !== 0 && (diff1 < col1MinSize || diff2 < col2MinSize)) {
+        if (diff1 !== 0 && diff2 !== 0 && (diff1 < leftSideColumnMinSize || diff2 < rightSideColumnMinSize)) {
             return false;
         }
 
@@ -372,34 +352,34 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _handleBreakpointDrop: function(dragNode, dropNode) {
-        var col1 = dragNode.getData('layout-col1'),
-            col2 = dragNode.getData('layout-col2'),
+        var leftSideColumn = dragNode.getData('layout-col1'),
+            rightSideColumn = dragNode.getData('layout-col2'),
             difference = dropNode.getData('layout-position') - dragNode.getData('layout-position'),
-            col1NewSize = col1.get('size') + difference,
-            col2NewSize = col2.get('size') - difference,
+            leftSideColumNewSize = leftSideColumn.get('size') + difference,
+            rightSideColumnNewSize = rightSideColumn.get('size') - difference,
             row;
 
-        if (!col1.get('removable') && col1NewSize === 0) {
-            col1.fire('removalCanceled');
+        if (!leftSideColumn.get('removable') && leftSideColumNewSize === 0) {
+            leftSideColumn.fire('removalCanceled');
             return;
         }
 
-        if (!col2.get('removable') && col2NewSize === 0) {
-            col2.fire('removalCanceled');
+        if (!rightSideColumn.get('removable') && rightSideColumnNewSize === 0) {
+            rightSideColumn.fire('removalCanceled');
             return;
         }
 
-        col1.set('size', col1NewSize);
-        col2.set('size', col2NewSize);
+        leftSideColumn.set('size', leftSideColumNewSize);
+        rightSideColumn.set('size', rightSideColumnNewSize);
 
-        if (col1NewSize === 0) {
-            row = col1.get('node').ancestor().getData('layout-row');
-            row.removeCol(col1.get('node').getData('layout-col'));
+        if (leftSideColumNewSize === 0) {
+            row = leftSideColumn.get('node').ancestor().getData('layout-row');
+            row.removeCol(leftSideColumn.get('node').getData('layout-col'));
         }
 
-        if (col2NewSize === 0) {
-            row = col2.get('node').ancestor().getData('layout-row');
-            row.removeCol(col2.get('node').getData('layout-col'));
+        if (rightSideColumnNewSize === 0) {
+            row = rightSideColumn.get('node').ancestor().getData('layout-row');
+            row.removeCol(rightSideColumn.get('node').getData('layout-col'));
         }
     },
 
@@ -436,23 +416,33 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
      _insertColumnAfterDropHandles: function(dragNode) {
-        var colLayoutPosition = this._lastDropEnter.getData('layout-position'),
-            dragPosition = dragNode.getData('layout-position'),
-            newCol = new A.LayoutCol(),
+        var colLayoutPosition,
+            dragPosition,
+            newCol,
             newColPosition,
-            newColumnSize = Math.abs(dragPosition - colLayoutPosition),
+            newColumnSize,
+            row;
+
+        if (dragNode && this._lastDropEnter) {
+            colLayoutPosition = this._lastDropEnter.getData('layout-position');
+            dragPosition = dragNode.getData('layout-position');
+            newCol = new A.LayoutCol();
+            newColumnSize = Math.abs(dragPosition - colLayoutPosition);
             row = dragNode.ancestor(SELECTOR_ROW).getData('layout-row');
 
-        if (dragPosition === 0) {
-            newColPosition = 0;
-        }
-        else {
-            newColPosition = row.get('cols').length;
-        }
+            if (dragPosition === 0) {
+                newColPosition = 0;
+            }
+            else {
+                newColPosition = row.get('cols').length;
+            }
 
-        if (colLayoutPosition > 0 && colLayoutPosition < 12) {
-            newCol.set('size', newColumnSize);
-            row.addCol(newColPosition, newCol);
+            if (colLayoutPosition > 0 && colLayoutPosition < 12) {
+                newCol.set('size', newColumnSize);
+                row.addCol(newColPosition, newCol);
+            }
+
+            this._lastDropEnter = null;
         }
     },
 
@@ -510,15 +500,15 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _onMouseEnterDraggable: function(event) {
-        var col1 = event.currentTarget.getData('layout-col1'),
-            col2 = event.currentTarget.getData('layout-col2');
+        var leftSideColumn = event.currentTarget.getData('layout-col1'),
+            rightSideColumn = event.currentTarget.getData('layout-col2');
 
-        if (col1) {
-            this._showColDraggableBoundaries(col1.get('node'));
+        if (leftSideColumn) {
+            this._showColDraggableBoundaries(leftSideColumn.get('node'));
         }
 
-        if (col2) {
-            this._showColDraggableBoundaries(col2.get('node'));
+        if (rightSideColumn) {
+            this._showColDraggableBoundaries(rightSideColumn.get('node'));
         }
     },
 
@@ -659,15 +649,15 @@ A.LayoutBuilderResizeCol.prototype = {
      * @protected
      */
     _showColDraggableBoundaries: function(colNode) {
-        var col1,
-            col2,
+        var leftSideColumn,
+            rightSideColumn,
             draggablesList = colNode.ancestor().all('.' + CSS_RESIZE_COL_DRAGGABLE);
 
         for (var i = draggablesList._nodes.length; i--;) {
-            col1 = draggablesList.item(i).getData('layout-col1');
-            col2 = draggablesList.item(i).getData('layout-col2');
+            leftSideColumn = draggablesList.item(i).getData('layout-col1');
+            rightSideColumn = draggablesList.item(i).getData('layout-col2');
 
-            if ((col2 && col2.get('node') === colNode) || (col1 && col1.get('node') === colNode)) {
+            if ((rightSideColumn && rightSideColumn.get('node') === colNode) || (leftSideColumn && leftSideColumn.get('node') === colNode)) {
                 draggablesList.item(i).addClass(CSS_RESIZE_COL_DRAGGABLE_VISIBLE);
             }
         }
@@ -682,8 +672,8 @@ A.LayoutBuilderResizeCol.prototype = {
     _syncDragHandles: function() {
         var instance = this;
 
-        this._removeDragHandles();
-        A.Array.each(this.get('layout').get('rows'), function(row) {
+        instance._removeDragHandles();
+        A.Array.each(instance.get('layout').get('rows'), function(row) {
             instance._syncRowDragHandles(row);
         });
     },
@@ -711,10 +701,6 @@ A.LayoutBuilderResizeCol.prototype = {
             draggable.setData('layout-position', currentPos);
             draggable.setData('layout-col1', cols[index]);
             draggable.setData('layout-col2', cols[index + 1]);
-
-            if (!this._canDrag(draggable)) {
-                draggable.one('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).hide();
-            }
 
             rowNode.append(draggable);
         }
