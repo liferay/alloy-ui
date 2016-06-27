@@ -229,6 +229,7 @@ var Video = A.Component.create({
                     );
                 }
             );
+
             instance._video.on(
                 'pause',
                 function (event) {
@@ -397,8 +398,8 @@ var Video = A.Component.create({
 
                 if (UA.ie) {
                     tplObj += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ' +
-                    'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=' +
-                    instance.get('flashPlayerVersion') + '" ';
+                              'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=' +
+                              instance.get('flashPlayerVersion') + '" ';
                 }
                 else {
                     tplObj += 'type="application/x-shockwave-flash" data="' + swfUrl + '" ';
@@ -440,8 +441,8 @@ var Video = A.Component.create({
          * @protected
          */
         _renderVideo: function(fallback) {
-            var height,
-                instance,
+            var instance,
+                height,
                 tpl,
                 tplObj,
                 video,
@@ -503,15 +504,15 @@ var Video = A.Component.create({
          * @protected
          */
         _setResponsiveDimensions: function() {
-            var aspectRatio,
-            currentTargetHeight,
-            currentTargetWidth,
-            height,
-            instance,
-            updateHeight,
-            updateWidth,
-            width,
-            winNode;
+            var instance,
+                aspectRatio,
+                currentTargetHeight,
+                currentTargetWidth,
+                height,
+                updateHeight,
+                updateWidth,
+                width,
+                winNode;
 
             instance = this;
 
