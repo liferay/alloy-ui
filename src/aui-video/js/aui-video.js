@@ -218,16 +218,29 @@ var Video = A.Component.create({
 
             instance._renderVideo(!instance.get('ogvUrl'));
 
-            instance._video.on('play', function (event) {
-                instance.fire('play', {
-                    cropType: event.type
-                });
-            });
-            instance._video.on('pause', function (event) {
-                instance.fire('pause', {
-                    cropType: event.type
-                });
-            });
+            instance._video.on(
+                'play',
+                function (event) {
+                    instance.fire(
+                        'play',
+                        {
+                            cropType: event.type
+                        }
+                    );
+                }
+            );
+
+            instance._video.on(
+                'pause',
+                function (event) {
+                    instance.fire(
+                        'pause',
+                        {
+                            cropType: event.type
+                        }
+                    );
+                }
+            );
 
             instance._setResponsiveDimensions();
         },
@@ -242,7 +255,8 @@ var Video = A.Component.create({
             var instance = this;
 
             instance.publish(
-                'videoReady', {
+                'videoReady',
+                {
                     fireOnce: true
                 }
             );
@@ -268,10 +282,13 @@ var Video = A.Component.create({
             var instance = this;
 
             if (instance.get('useARIA')) {
-                instance.plug(A.Plugin.Aria, {
-                    roleName: instance.get('role'),
-                    roleNode: instance.get('contentBox')
-                });
+                instance.plug(
+                    A.Plugin.Aria,
+                    {
+                        roleName: instance.get('role'),
+                        roleNode: instance.get('contentBox')
+                    }
+                );
             }
         },
 
@@ -355,15 +372,16 @@ var Video = A.Component.create({
             var swfUrl = instance.get('swfUrl');
 
             if (swfUrl) {
-                var videoUrl = instance.get('url');
-                var posterUrl = instance.get('poster');
                 var flashVars = instance.get('flashVars');
+                var posterUrl = instance.get('poster');
+                var videoUrl = instance.get('url');
 
                 A.mix(
-                    flashVars, {
+                    flashVars,
+                    {
                         controls: true,
-                        src: videoUrl,
-                        poster: posterUrl
+                        poster: posterUrl,
+                        src: videoUrl
                     }
                 );
 
@@ -380,8 +398,8 @@ var Video = A.Component.create({
 
                 if (UA.ie) {
                     tplObj += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ' +
-                        'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=' +
-                        instance.get('flashPlayerVersion') + '" ';
+                              'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=' +
+                              instance.get('flashPlayerVersion') + '" ';
                 }
                 else {
                     tplObj += 'type="application/x-shockwave-flash" data="' + swfUrl + '" ';
@@ -441,7 +459,8 @@ var Video = A.Component.create({
             }
 
             tplObj = Lang.sub(
-                tpl, {
+                tpl,
+                {
                     id: A.guid()
                 }
             );
@@ -485,10 +504,10 @@ var Video = A.Component.create({
          * @protected
          */
         _setResponsiveDimensions: function() {
-            var aspectRatio,
+            var instance,
+                aspectRatio,
                 currentTargetHeight,
                 currentTargetWidth,
-                instance,
                 height,
                 updatedHeight,
                 updatedWidth,
@@ -509,10 +528,9 @@ var Video = A.Component.create({
 
             currentTargetHeight = winNode.get('innerHeight');
 
-
             if (currentTargetHeight < height) {
                 updatedHeight = currentTargetHeight;
-                updatedWidth = currentTargetHeight * aspectRatio;
+                updatedWidth = currentTargetHeight / aspectRatio;
             }
 
             currentTargetWidth = winNode.get('innerWidth');
@@ -646,18 +664,16 @@ var Video = A.Component.create({
                     instance._sourceMp4 = null;
                 }
             }
-            else {
-                if (video || !ogvUrl) {
-                    if (!sourceMp4) {
-                        sourceMp4 = instance._createSource('video/mp4;');
+            else if (video || !ogvUrl) {
+                if (!sourceMp4) {
+                    sourceMp4 = instance._createSource('video/mp4;');
 
-                        video.append(sourceMp4);
+                    video.append(sourceMp4);
 
-                        instance._sourceMp4 = sourceMp4;
-                    }
-
-                    sourceMp4.attr('src', val);
+                    instance._sourceMp4 = sourceMp4;
                 }
+
+                sourceMp4.attr('src', val);
             }
 
             instance._renderSwfTask();

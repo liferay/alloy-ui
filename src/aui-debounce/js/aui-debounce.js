@@ -12,6 +12,7 @@ var toArray = function(arr, fallback, index, arrayLike) {
 A.debounce = function(fn, delay, context, args) {
     var id;
     var tempArgs;
+    var wrapped;
 
     if (isString(fn) && context) {
         fn = A.bind(fn, context);
@@ -69,7 +70,7 @@ A.debounce = function(fn, delay, context, args) {
         delay = delay || 0;
     };
 
-    var wrapped = function() {
+    wrapped = function() {
         var currentArgs = arguments.length ? arguments : args;
 
         return wrapped.delay(delay, currentArgs, context || this);

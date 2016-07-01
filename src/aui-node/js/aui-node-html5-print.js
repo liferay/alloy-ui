@@ -72,6 +72,8 @@ var html5shiv = A.html5shiv,
 html5shiv(DOC);
 
 var printFix = function() {
+    var destroy;
+
     var afterPrint = function() {
         if (isShivDisabled()) {
             destroy();
@@ -90,7 +92,7 @@ var printFix = function() {
         }
     };
 
-    var destroy = function() {
+    destroy = function() {
         WIN.detachEvent('onafterprint', afterPrint);
         WIN.detachEvent('onbeforeprint', beforePrint);
     };
