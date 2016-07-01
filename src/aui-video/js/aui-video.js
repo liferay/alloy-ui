@@ -509,8 +509,8 @@ var Video = A.Component.create({
                 currentTargetHeight,
                 currentTargetWidth,
                 height,
-                updateHeight,
-                updateWidth,
+                updatedHeight,
+                updatedWidth,
                 width,
                 winNode;
 
