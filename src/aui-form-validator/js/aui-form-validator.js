@@ -875,7 +875,7 @@ var FormValidator = A.Component.create({
             var instance = this;
 
             if (!instance.get('showAllMessages')) {
-                if (errors.indexOf('required') !== -1) {
+                if (A.Array.indexOf(errors, 'required') !== -1) {
                     errors = ['required'];
                 }
                 else {
