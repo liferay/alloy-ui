@@ -1,0 +1,57 @@
+{
+    "aui-form-deprecated": {
+        "use": [
+            "aui-form-base-deprecated",
+			"aui-form-combobox-deprecated",
+			"aui-form-field-deprecated",
+			"aui-form-select-deprecated",
+			"aui-form-textarea-deprecated",
+			"aui-form-textfield-deprecated"
+        ]
+    },
+
+	"aui-form-base-deprecated": {
+        "requires": [
+            "io-form",
+            "querystring-parse",
+            "aui-base-deprecated",
+            "aui-data-set-deprecated",
+            "aui-form-field-deprecated"
+        ]
+    },
+
+    "aui-form-combobox-deprecated": {
+        "requires": [
+            "aui-form-textarea-deprecated",
+            "aui-toolbar"
+        ],
+        "skinnable": true
+    },
+
+    "aui-form-field-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-component"
+        ]
+    },
+
+    "aui-form-select-deprecated": {
+        "requires": [
+            "aui-form-field-deprecated"
+        ]
+    },
+
+    "aui-form-textarea-deprecated": {
+        "requires": [
+            "node-pluginhost",
+            "aui-autosize-deprecated",
+            "aui-form-textfield-deprecated"
+        ]
+    },
+
+    "aui-form-textfield-deprecated": {
+        "requires": [
+            "aui-form-field-deprecated"
+        ]
+    }
+}

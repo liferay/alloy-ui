@@ -1,0 +1,10 @@
+{
+    "name": "aui-template-deprecated",
+    "builds": {
+        "aui-template-deprecated": {
+            "jsfiles": [
+                "js/aui-template-deprecated.js"
+            ]
+        }
+    }
+}

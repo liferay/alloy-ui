@@ -1,0 +1,10 @@
+{
+    "name": "aui-loading-mask-deprecated",
+    "builds": {
+        "aui-loading-mask-deprecated": {
+            "jsfiles": [
+                "js/aui-loading-mask-deprecated.js"
+            ]
+        }
+    }
+}

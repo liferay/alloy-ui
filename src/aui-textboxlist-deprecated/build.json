@@ -1,0 +1,10 @@
+{
+    "name": "aui-textboxlist-deprecated",
+    "builds": {
+        "aui-textboxlist-deprecated": {
+            "jsfiles": [
+                "js/aui-textboxlist-deprecated.js"
+            ]
+        }
+    }
+}

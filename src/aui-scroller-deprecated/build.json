@@ -1,0 +1,10 @@
+{
+    "name": "aui-scroller-deprecated",
+    "builds": {
+        "aui-scroller-deprecated": {
+            "jsfiles": [
+                "js/aui-scroller-deprecated.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "aui-template-deprecated": {
+        "requires": [
+            "aui-base-deprecated"
+        ]
+    }
+}

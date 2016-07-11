@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-state-interaction-deprecated",
+    "displayName": "Gallery: aui-state-interaction-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-state-interaction-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

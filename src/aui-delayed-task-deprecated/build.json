@@ -1,0 +1,10 @@
+{
+    "name": "aui-delayed-task-deprecated",
+    "builds": {
+        "aui-delayed-task-deprecated": {
+            "jsfiles": [
+                "js/aui-delayed-task-deprecated.js"
+            ]
+        }
+    }
+}

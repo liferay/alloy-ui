@@ -1,0 +1,11 @@
+{
+    "aui-editable-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-form-combobox-deprecated",
+            "escape",
+            "event-resize"
+        ],
+        "skinnable": true
+    }
+}

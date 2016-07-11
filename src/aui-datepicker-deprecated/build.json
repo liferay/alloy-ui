@@ -1,0 +1,16 @@
+{
+    "name": "aui-datepicker-deprecated",
+    "builds": {
+        "aui-datepicker-base-deprecated": {
+            "jsfiles": [
+                "js/aui-datepicker-base-deprecated.js"
+            ]
+        },
+
+        "aui-datepicker-select-deprecated": {
+            "jsfiles": [
+                "js/aui-datepicker-select-deprecated.js"
+            ]
+        }
+    }
+}

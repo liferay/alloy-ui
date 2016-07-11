@@ -1,0 +1,27 @@
+{
+    "aui-io-deprecated": {
+        "use": [
+            "aui-io-request",
+            "aui-io-plugin-deprecated"
+        ]
+    },
+
+    "aui-io-plugin-deprecated": {
+        "requires": [
+           "aui-overlay-base-deprecated",
+           "aui-parse-content",
+           "aui-io-request",
+           "aui-loading-mask-deprecated"
+        ]
+    },
+
+     "aui-io-request-deprecated": {
+        "requires": [
+           "io-base",
+           "json",
+           "plugin",
+           "querystring-stringify",
+           "aui-base-deprecated"
+        ]
+    }
+}

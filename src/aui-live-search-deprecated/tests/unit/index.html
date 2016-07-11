@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <title>aui-live-search-deprecated</title>
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/tests.js"></script>
+    <meta charset="utf-8" />
+</head>
+<body class="yui3-skin-sam">
+<div id="logger"></div>
+
+<div>
+    <input id="myInput" type="text" value="">
+
+    <ul id="myList">
+        <li>foo</li>
+        <li>bar</li>
+        <li>baz</li>
+        <li>qux</li>
+    </ul>
+</div>
+
+<script>
+YUI({
+    coverage: ['aui-live-search-deprecated'],
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+}).use('test-console', 'test', 'aui-live-search-tests', function(Y) {
+
+    (new Y.Test.Console()).render('#logger');
+
+    Y.Test.Runner.setName('aui-live-search-deprecated');
+    Y.Test.Runner.run();
+});
+</script>
+</body>
+</html>

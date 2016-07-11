@@ -1,0 +1,11 @@
+{
+    "name": "aui-skin-deprecated",
+    "builds": {
+        "aui-skin-deprecated": {
+            "copy": [
+                [ "css", "./css" ],
+                [ "images", "./images" ]
+            ]
+        }
+    }
+}

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/css/aui-skin-deprecated.css" media="screen" rel="stylesheet" type="text/css" />
+
+	<style media="screen" type="text/css">
+		body {
+			font-size: 12px;
+			padding: 30px;
+		}
+
+		div {
+			overflow: hidden;
+		}
+
+		.resize-handle-active {
+			/* background: #bbb; */
+		}
+
+		#resize1 {
+			background: lightblue;
+			margin: 10px;
+			padding: 10px;
+			width: 300px;
+		}
+
+		#resize3 {
+			background: lightblue;
+			height: 330px;
+			left: 600px;
+			position: absolute;
+			top: 300px;
+			width: 150px;
+		}
+
+		#resize4 {
+			background: lightblue;
+			left: 500px;
+			position: fixed;
+			top: 100px;
+			width: 300px;
+		}
+
+		#parent {
+			border: 1px solid #ccc;
+			border-width: 5px 10px 20px 30px;
+			height: 200px;
+			position: relative;
+			width: 500px;
+		}
+
+		.resize-proxy {
+			/* border: 5px solid #000 !important; */
+		}
+	</style>
+</head>
+
+<body>
+
+<h1>Alloy - Resize Demo</h1>
+
+<textarea id="resize6" cols="30" rows="10">Resizable textarea
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+
+<br /><br />
+
+<div id="parent">
+	<img src="../tooltip-deprecated/assets/cream.jpg" id="resize5" />
+</div>
+
+<div id="resize1">
+	<strong>Simple element - Preserving Ratio</strong><br />
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/>
+	<button class="destroy">Destroy-me!</button>
+</div>
+
+<br />
+
+<button id="resize2">Button</button>
+
+<div id="resize3">
+	<strong>Absolute positioned element - Preserving Ratio</strong><br />
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/>
+	<button class="destroy">Destroy-me!</button>
+</div>
+
+<div id="resize4">
+	<strong>Fixed positioned element - Preserving Ratio</strong><br />
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/>
+	<button class="destroy">Destroy-me!</button>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
+	'aui-resize-deprecated',
+	function(A) {
+		var resize1 = new A.Resize(
+			{
+				// handles: 'all',
+				handles: 't, tr, r, br, b, bl, l, tl',
+				node: '#resize1',
+				on: {
+					resize: function(event) {
+						// event.halt();
+					}
+				},
+				proxy: true,
+				wrap: true
+			}
+		);
+
+		resize1.plug(
+			A.Plugin.ResizeConstrained,
+			{
+				maxHeight: 170,
+				maxWidth: 400,
+				preserveRatio: true
+			}
+		);
+
+		// resize1.destroy();
+
+		var resize2 = new A.Resize(
+			{
+				// handles: 'all',
+				// handles: 't, tr, r, br, b, bl, l, tl',
+				handles: 'br',
+				node: '#resize2',
+				// proxy: true,
+				// wrap: true
+			}
+		);
+
+		var resize3 = new A.Resize(
+			{
+				autoHide: true,
+				// handles: 'all',
+				handles: 't, tr, r, br, b, bl, l, tl',
+				node: '#resize3',
+				on: {
+					resize: function(event) {
+						// event.halt();
+					}
+				},
+				proxy: true
+				// wrap: true,
+			}
+		);
+
+		resize3.plug(
+			A.Plugin.ResizeConstrained,
+			{
+				preserveRatio: true
+			}
+		);
+
+		// resize3.destroy();
+
+		var resize4 = new A.Resize(
+			{
+				node: '#resize4',
+				proxy: true
+			}
+		);
+
+		resize4.plug(
+			A.Plugin.ResizeConstrained,
+			{
+				preserveRatio: true,
+				tickX: 30,
+				tickY: 30
+			}
+		);
+
+		var resize5 = new A.Resize(
+			{
+				// autoHide: true,
+				node: '#resize5',
+				proxy: true
+			}
+		);
+
+		resize5.plug(
+			A.Plugin.ResizeConstrained,
+			{
+				// constrain: 'view',
+				// constrain: {
+				// 	'bottom': 700,
+				// 	'left': 0,
+				// 	'right': 1665,
+				// 	'top': 100
+				// },
+				constrain: '#parent',
+				minHeight: 30,
+				minWidth: 30,
+				preserveRatio: true
+			}
+		);
+
+		var resize6 = new A.Resize(
+			{
+				node: '#resize6',
+				proxy: true
+			}
+		);
+
+		// Extras
+		A.all('#resize1 .destroy').on(
+			'click',
+			function() {
+				resize1.destroy();
+			}
+		);
+
+		A.all('#resize3 .destroy').on(
+			'click',
+			function() {
+				resize3.destroy();
+			}
+		);
+
+		A.all('#resize4 .destroy').on(
+			'click',
+			function() {
+				resize4.destroy();
+			}
+		);
+	}
+);
+</script>
+
+</body>
+</html>

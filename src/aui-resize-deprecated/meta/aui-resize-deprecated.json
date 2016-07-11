@@ -1,0 +1,27 @@
+{
+    "aui-resize-deprecated": {
+        "use": [
+            "aui-resize-base-deprecated",
+            "aui-resize-constrain-deprecated"
+        ],
+        "skinnable": true
+    },
+
+    "aui-resize-base-deprecated": {
+        "requires": [
+            "dd-drag",
+            "dd-delegate",
+            "dd-drop",
+            "aui-base-deprecated"
+        ],
+        "skinnable": true
+    },
+
+    "aui-resize-constrain-deprecated": {
+        "requires": [
+        	"dd-constrain",
+        	"plugin",
+        	"aui-resize-base-deprecated"
+        ]
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-swf-deprecated",
+    "displayName": "Gallery: aui-swf-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-swf-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

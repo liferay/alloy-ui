@@ -1,0 +1,10 @@
+{
+    "name": "aui-button-item-deprecated",
+    "builds": {
+        "aui-button-item-deprecated": {
+            "jsfiles": [
+                "js/aui-button-item-deprecated.js"
+            ]
+        }
+    }
+}

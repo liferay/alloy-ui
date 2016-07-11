@@ -1,0 +1,10 @@
+{
+    "aui-autosize-deprecated": {
+        "requires": [
+            "event-valuechange",
+            "plugin",
+            "aui-base-deprecated"
+        ],
+        "skinnable": true
+    }
+}

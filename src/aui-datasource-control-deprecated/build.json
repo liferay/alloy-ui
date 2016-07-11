@@ -1,0 +1,16 @@
+{
+    "name": "aui-datasource-control-deprecated",
+    "builds": {
+        "aui-datasource-control-base-deprecated": {
+            "jsfiles": [
+                "js/aui-datasource-control-base-deprecated.js"
+            ]
+        },
+
+        "aui-input-text-control-deprecated": {
+            "jsfiles": [
+                "js/aui-input-text-control-deprecated.js"
+            ]
+        }
+    }
+}

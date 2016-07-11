@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-tooltip-deprecated",
+    "displayName": "Gallery: aui-tooltip-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-tooltip-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}
