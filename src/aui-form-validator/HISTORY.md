@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-2811](https://issues.liferay.com/browse/AUI-2811) IE8 showing error "Object doesn't support this property or method" for aui-form-validator.js file
 * [AUI-2094](https://issues.liferay.com/browse/AUI-2094) Remove feedback added by Form Validator when the field is not required and empty
 * [AUI-2055](https://issues.liferay.com/browse/AUI-2055) aria-invalid attribute not removed from blank input fields
 * [AUI-2038](https://issues.liferay.com/browse/AUI-2038) UI should alert about non-unique value in structure field of type Select.
