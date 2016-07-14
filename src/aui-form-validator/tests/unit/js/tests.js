@@ -602,6 +602,160 @@ YUI.add('aui-form-validator-tests', function(Y) {
             Y.Assert.isFalse(input.hasClass('success-field'));
         },
 
+        /*
+         * @tests AUI-2820
+         */
+        'should add success-field and aria-invalid attr on all, named Nodes and their fieldContainer': function() {
+            var form = Y.Node.create(
+                    '<form><div class="form-group"><input name="choice" id="choiceYes" type="radio" value="yes"><input name="choice" id="choiceNo" type="radio" value="no"></div></form>'),
+                input = form.one('#choiceYes');
+
+            var formValidator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    choice: {
+                        required: true
+                    }
+                }
+            });
+
+            var fieldContainer = formValidator.findFieldContainer(input);
+            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
+
+            form.simulate('submit');
+
+            namedFieldNodes.each(
+                function(node, index, nodeList) {
+                    Y.Assert.isTrue(node.hasClass('error-field'), 'All fields should have error-field');
+                    Y.Assert.isTrue(node.hasAttribute('aria-invalid'), 'All fields should have aria-invalid');
+                }
+            );
+
+            Y.Assert.isTrue(fieldContainer.hasClass('has-error'), 'fieldContainer should have has-error');
+        },
+
+        /*
+         * @tests AUI-2820
+         */
+        'should add success-field class to, and remove aria-invalid attr from all, named Nodes and their fieldContainer': function() {
+            var form = Y.Node.create(
+                    '<form><div class="form-group"><input name="choice" id="choiceYes" type="radio" value="yes"><input name="choice" id="choiceNo" type="radio" value="no"></div></form>'),
+                formRadioGroup = form.getDOMNode().elements['choice'],
+                input = form.one('#choiceYes');
+
+            var formValidator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    choice: {
+                        required: true
+                    }
+                }
+            });
+
+            var fieldContainer = formValidator.findFieldContainer(input);
+            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
+
+            formRadioGroup.value = 'no';
+            form.simulate('submit');
+
+            namedFieldNodes.each(
+                function(node, index, nodeList) {
+                    Y.Assert.isTrue(node.hasClass('success-field'), 'All fields should have success-field');
+                    Y.Assert.isFalse(node.hasAttribute('aria-invalid'), 'No fields should have aria-invalid');
+                }
+            );
+
+            Y.Assert.isTrue(fieldContainer.hasClass('has-success'), 'fieldContainer should have has-success');
+        },
+
+        /*
+         * @tests AUI-2820
+         */
+        'should add success-field class to, and remove error-field class and aria-invalid attr from all, named Nodes and their fieldContainer': function() {
+            var form = Y.Node.create(
+                    '<form><div class="form-group"><input name="choice" id="choiceYes" type="radio" value="yes"><input name="choice" id="choiceNo" type="radio" value="no"></div></form>'),
+                formRadioGroup = form.getDOMNode().elements['choice'],
+                input = form.one('#choiceYes');
+
+            var formValidator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    choice: {
+                        required: true
+                    }
+                }
+            });
+
+            var fieldContainer = formValidator.findFieldContainer(input);
+            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
+
+            form.simulate('submit');
+            formRadioGroup.value = 'no';
+            form.simulate('submit');
+
+            namedFieldNodes.each(
+                function(node, index, nodeList) {
+                    Y.Assert.isTrue(node.hasClass('success-field'), 'All fields should have success-field');
+                    Y.Assert.isFalse(node.hasClass('error-field'), 'No fields should have error-field');
+                    Y.Assert.isFalse(node.hasAttribute('aria-invalid'), 'No fields should have aria-invalid');
+                }
+            );
+
+            Y.Assert.isTrue(fieldContainer.hasClass('has-success'), 'fieldContainer should have has-success');
+            Y.Assert.isFalse(fieldContainer.hasClass('has-error'), 'fieldContainer should not have has-error');
+        },
+
+        /*
+         * @tests AUI-2820
+         */
+        'should reset classes and remove aria-invalid attr from all, named Nodes and their fieldContainer': function() {
+            var form = Y.Node.create(
+                    '<form><div class="form-group"><input name="choice" id="choiceYes" type="radio" value="yes"><input name="choice" id="choiceNo" type="radio" value="no"></div></form>'),
+                formRadioGroup = form.getDOMNode().elements['choice'],
+                input = form.one('#choiceYes');
+
+            var formValidator = new Y.FormValidator({
+                boundingBox: form,
+                rules: {
+                    choice: {
+                        required: true
+                    }
+                }
+            });
+
+            var fieldContainer = formValidator.findFieldContainer(input);
+            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
+
+            form.simulate('submit');
+            formValidator.resetField(input);
+
+            namedFieldNodes.each(
+                function(node, index, nodeList) {
+                    Y.Assert.isFalse(node.hasClass('success-field'), 'No fields should have success-field');
+                    Y.Assert.isFalse(node.hasClass('error-field'), 'No fields should have error-field');
+                    Y.Assert.isFalse(node.hasAttribute('aria-invalid'), 'No fields should have aria-invalid');
+                }
+            );
+
+            Y.Assert.isFalse(fieldContainer.hasClass('has-success'), 'fieldContainer should not have has-success');
+            Y.Assert.isFalse(fieldContainer.hasClass('has-error'), 'fieldContainer should not have has-error');
+
+            formRadioGroup.value = 'no';
+            form.simulate('submit');
+            formValidator.resetField(input);
+
+            namedFieldNodes.each(
+                function(node, index, nodeList) {
+                    Y.Assert.isFalse(node.hasClass('success-field'), 'No fields should have success-field');
+                    Y.Assert.isFalse(node.hasClass('error-field'), 'No fields should have error-field');
+                    Y.Assert.isFalse(node.hasAttribute('aria-invalid'), 'No fields should have aria-invalid');
+                }
+            );
+
+            Y.Assert.isFalse(fieldContainer.hasClass('has-success'), 'fieldContainer should not have has-success');
+            Y.Assert.isFalse(fieldContainer.hasClass('has-error'), 'fieldContainer should not have has-error');
+        },
+
         _assertValidatorNextLabel: function(input) {
             var inputNode,
                 textNode;
