@@ -952,7 +952,7 @@ var FormValidator = A.Component.create({
             namedFieldNodes.each(
                 function(node, index, nodeList) {
                     instance.resetFieldCss(node);
-                    instance.unhighlight(node);
+                    node.removeAttribute('aria-invalid');
                 }
             );
         },
