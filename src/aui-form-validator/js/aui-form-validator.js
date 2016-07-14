@@ -807,16 +807,28 @@ var FormValidator = A.Component.create({
          */
         highlight: function(field, valid) {
             var instance = this,
-                fieldContainer = instance.findFieldContainer(field);
+                fieldContainer,
+                fieldName,
+                namedFieldNodes;
 
             if (field) {
+                fieldContainer = instance.findFieldContainer(field),
+
+                fieldName = field.get('name');
+
+                namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+
                 if (this.validatable(field)) {
-                    instance._highlightHelper(
-                        field,
-                        instance.get('errorClass'),
-                        instance.get('validClass'),
-                        valid
-                    );    
+                    namedFieldNodes.each(
+                        function(node, index, nodeList) {
+                            instance._highlightHelper(
+                                node,
+                                instance.get('errorClass'),
+                                instance.get('validClass'),
+                                valid
+                            );
+                        }
+                    );
 
                     if (fieldContainer) {
                         instance._highlightHelper(
@@ -828,8 +840,13 @@ var FormValidator = A.Component.create({
                     }
                 }
                 else if (!field.val()) {
-                    field.removeClass('errorClass');
-                    field.removeAttribute('aria-invalid');
+                    namedFieldNodes.each(
+                        function(node, index, nodeList) {
+                            node.removeClass('errorClass');
+                            node.removeAttribute('aria-invalid');
+                        }
+                    );
+
                     if (fieldContainer) {
                         fieldContainer.removeClass('containerErrorClass');
                         fieldContainer.removeAttribute('aria-invalid');
@@ -920,18 +937,24 @@ var FormValidator = A.Component.create({
          * @param {Node|String} field
          */
         resetField: function(field) {
-            var fieldNode,
+            var instance = this,
+                fieldName,
+                namedFieldNodes,
                 stackContainer;
 
-            this.clearFieldError(field);
-            fieldNode = isString(field) ? this.getField(field) : field;
+            fieldName = isNode(field) ? field.get('name') : field;
+            namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+            stackContainer = instance.getFieldStackErrorContainer(fieldName);
 
-            if (isNode(fieldNode)) {
-                stackContainer = this.getFieldStackErrorContainer(fieldNode);
-                stackContainer.remove();
-                this.resetFieldCss(fieldNode);
-                this.unhighlight(fieldNode);
-            }
+            instance.clearFieldError(fieldName);
+            stackContainer.remove();
+
+            namedFieldNodes.each(
+                function(node, index, nodeList) {
+                    instance.resetFieldCss(node);
+                    instance.unhighlight(node);
+                }
+            );
         },
 
         /**
