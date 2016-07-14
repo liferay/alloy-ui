@@ -734,12 +734,12 @@ var FormValidator = A.Component.create({
          * Gets the stack error container of a field.
          *
          * @method getFieldStackErrorContainer
-         * @param {Node} field
+         * @param {Node|String} field
          * @return {Node}
          */
         getFieldStackErrorContainer: function(field) {
             var instance = this,
-                name = field.get('name'),
+                name = isNode(field) ? field.get('name') : field,
                 stackContainers = instance._stackErrorContainers;
 
             if (!stackContainers[name]) {
