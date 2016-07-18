@@ -619,7 +619,6 @@ var FormValidator = A.Component.create({
 		},
 
 		_defErrorFieldFn: function(event) {
-			console.log('_defErrorFieldFn()');
 			var instance = this,
 				ancestor,
 				field,
