@@ -227,7 +227,7 @@ var FormValidator = A.Component.create({
 
 		labelCssClass: {
 			validator: isString,
-			value: 'control-label'
+			value: 'aui-field-label'
 		},
 
 		messageContainer: {
