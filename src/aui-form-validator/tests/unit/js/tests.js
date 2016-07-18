@@ -603,6 +603,8 @@ YUI.add('aui-form-validator-tests', function(Y) {
         },
 
         /*
+         * Check if 'aria-invalid' attribute and success-field CSS class is
+         * added to all nodes and field containers
          * @tests AUI-2820
          */
         'should add success-field and aria-invalid attr on all, named Nodes and their fieldContainer': function() {
@@ -619,10 +621,9 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 }
             });
 
-            var fieldContainer = formValidator.findFieldContainer(input);
-            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
-
             form.simulate('submit');
+
+            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
 
             namedFieldNodes.each(
                 function(node, index, nodeList) {
@@ -631,10 +632,14 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 }
             );
 
+            var fieldContainer = formValidator.findFieldContainer(input);
+
             Y.Assert.isTrue(fieldContainer.hasClass('has-error'), 'fieldContainer should have has-error');
         },
 
         /*
+         * Check if 'aria-invalid' attribute is removed and 'success-field' CSS
+         * class is added to all nodes and field containers
          * @tests AUI-2820
          */
         'should add success-field class to, and remove aria-invalid attr from all, named Nodes and their fieldContainer': function() {
@@ -652,11 +657,11 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 }
             });
 
-            var fieldContainer = formValidator.findFieldContainer(input);
-            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
-
             formRadioGroup.value = 'no';
+
             form.simulate('submit');
+
+            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
 
             namedFieldNodes.each(
                 function(node, index, nodeList) {
@@ -665,10 +670,15 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 }
             );
 
+            var fieldContainer = formValidator.findFieldContainer(input);
+
             Y.Assert.isTrue(fieldContainer.hasClass('has-success'), 'fieldContainer should have has-success');
         },
 
         /*
+         * Check if 'error-field' CSS class and 'aria-invalid' attribute is
+         * removed and 'success-field' CSS class is added to nodes and field
+         * containers
          * @tests AUI-2820
          */
         'should add success-field class to, and remove error-field class and aria-invalid attr from all, named Nodes and their fieldContainer': function() {
@@ -686,12 +696,13 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 }
             });
 
-            var fieldContainer = formValidator.findFieldContainer(input);
-            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
+            form.simulate('submit');
+
+            formRadioGroup.value = 'no';
 
             form.simulate('submit');
-            formRadioGroup.value = 'no';
-            form.simulate('submit');
+
+            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
 
             namedFieldNodes.each(
                 function(node, index, nodeList) {
@@ -701,11 +712,15 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 }
             );
 
+            var fieldContainer = formValidator.findFieldContainer(input);
+
             Y.Assert.isTrue(fieldContainer.hasClass('has-success'), 'fieldContainer should have has-success');
             Y.Assert.isFalse(fieldContainer.hasClass('has-error'), 'fieldContainer should not have has-error');
         },
 
         /*
+         * Check if 'aria-invalid' attribute is removed from all nodes and field
+         * containers
          * @tests AUI-2820
          */
         'should reset classes and remove aria-invalid attr from all, named Nodes and their fieldContainer': function() {
@@ -723,11 +738,11 @@ YUI.add('aui-form-validator-tests', function(Y) {
                 }
             });
 
-            var fieldContainer = formValidator.findFieldContainer(input);
-            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
-
             form.simulate('submit');
+
             formValidator.resetField(input);
+
+            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
 
             namedFieldNodes.each(
                 function(node, index, nodeList) {
@@ -736,6 +751,8 @@ YUI.add('aui-form-validator-tests', function(Y) {
                     Y.Assert.isFalse(node.hasAttribute('aria-invalid'), 'No fields should have aria-invalid');
                 }
             );
+
+            var fieldContainer = formValidator.findFieldContainer(input);
 
             Y.Assert.isFalse(fieldContainer.hasClass('has-success'), 'fieldContainer should not have has-success');
             Y.Assert.isFalse(fieldContainer.hasClass('has-error'), 'fieldContainer should not have has-error');
