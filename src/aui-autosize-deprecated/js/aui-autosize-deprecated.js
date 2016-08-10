@@ -200,6 +200,8 @@ Autosize = A.Component.create({
 
                 instance._uiSetDim(HEIGHT, height);
             }
+
+            heightMonitor.set(INNERHTML, '');
         },
 
         _uiSetDim: function(key, newVal) {
