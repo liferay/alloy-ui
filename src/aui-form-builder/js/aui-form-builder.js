@@ -86,16 +86,21 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
      */
     bindUI: function() {
         var boundingBox = this.get('boundingBox'),
+            fieldToolbar = this._fieldToolbar,
             pages = this.get('pages');
 
         this._eventHandles.push(
-            this.get('contentBox').on('focus', A.bind(this._onFocus, this)),
             boundingBox.delegate('click', this._onClickAddField, '.' + CSS_EMPTY_COL_ADD_BUTTON, this),
+            fieldToolbar.after('destroy', A.bind(this._afterDestroyFieldToolbar, this)),
             pages.on('add', A.bind(this._addPage, this)),
             pages.on('remove', A.bind(this._removeLayout, this)),
             pages.after('activePageNumberChange', A.bind(this._afterActivePageNumberChange, this)),
             pages.after('updatePageContent', A.bind(this._afterUpdatePageContentChange, this))
         );
+
+        this._fieldToolbarHandles = [
+            this.get('contentBox').on('focus', A.bind(this._onFocus, this))
+        ];
     },
 
     /**
@@ -278,6 +283,16 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
             activeLayout = layouts[event.newVal - 1];
 
         this._updatePageContent(activeLayout);
+    },
+
+    /**
+     * Fired after the Field ToolBar be destroyed.
+     *
+     * @method _afterDestroyFieldToolbar
+     * @protected
+     */
+    _afterDestroyFieldToolbar: function() {
+        (new A.EventHandle(this._fieldToolbarHandles)).detach();
     },
 
     /**
