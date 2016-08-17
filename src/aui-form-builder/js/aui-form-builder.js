@@ -286,7 +286,7 @@ A.FormBuilder = A.Base.create('form-builder', A.Widget, [
     },
 
     /**
-     * Fired after the Field ToolBar be destroyed.
+     * Fired after the Field Toolbar be destroyed.
      *
      * @method _afterDestroyFieldToolbar
      * @protected
