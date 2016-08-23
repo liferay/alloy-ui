@@ -12,7 +12,33 @@
 <body class="yui3-skin-sam">
 <div id="logger"></div>
 
+<textarea id="textArea"></textarea>
+
 <script>
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
+	'aui-autosize-deprecated',
+	'node',
+    'node-event-simulate',
+	function(A) {
+		A.one('#textArea').plug(
+			A.Plugin.Autosize,
+			{
+				maxHeight: 200,
+				minHeight: '1em'
+			}
+		);
+
+        var node = A.one('#textArea');
+
+        node.set('value', "test");
+        node.simulate('keydown', { keycode: 13 });
+	}
+);
+
 YUI({
     coverage: ['aui-autosize-deprecated'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'

@@ -4,13 +4,18 @@ YUI.add('module-tests', function(Y) {
 
     suite.add(new Y.Test.Case({
         name: 'Automated Tests',
-        'test is empty': function() {
-            Y.Assert.pass('No Tests Provided For This Module');
+
+        'test text is removed from pre tag when resizing autosize element': function() {
+            var preElement = document.getElementsByClassName("autosize-height-monitor")[0];
+
+            Y.Assert.areEqual("", preElement.innerHTML);
         }
     }));
 
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test']
+    requires: [
+        'test'
+    ]
 });
