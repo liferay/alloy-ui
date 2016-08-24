@@ -1,14 +1,39 @@
-YUI.add('module-tests', function(Y) {
+YUI.add('aui-autosize-deprecated-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-autosize-deprecated');
 
     suite.add(new Y.Test.Case({
-        name: 'Automated Tests',
+        name: 'AUI Autosize Unit Tests',
+
+        init: function() {
+            this._container = Y.one('#textArea');
+        },
+
+        setUp: function() {
+            this._container.plug(
+                Y.Plugin.Autosize,
+                {
+                    maxHeight: 200,
+                    minHeight: '1em'
+                }
+            );
+        },
 
         'test text is removed from pre tag when resizing autosize element': function() {
-            var preElement = document.getElementsByClassName("autosize-height-monitor")[0];
+            var autosizeHeightMonitor = Y.one('.autosize-height-monitor');
 
-            Y.Assert.areEqual("", preElement.innerHTML);
+            Y.Assert.areEqual('&nbsp;\n&nbsp;', autosizeHeightMonitor.html());
+
+            this._container.val('test content');
+
+            this._container.simulate('keydown', {keycode: 13});
+
+            this._container.autosize.after(
+                'adjustSize',
+                function(event) {
+                    Y.Assert.areEqual('', autosizeHeightMonitor.html());
+                }
+            );
         }
     }));
 
@@ -16,6 +41,6 @@ YUI.add('module-tests', function(Y) {
 
 }, '', {
     requires: [
-        'test'
+        'aui-autosize-deprecated', 'node', 'node-event-simulate', 'test'
     ]
 });
