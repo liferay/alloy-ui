@@ -183,8 +183,6 @@ Autosize = A.Component.create({
 
             var content = node.val();
 
-            heightMonitor.set(INNERHTML, '');
-
             heightMonitor.appendChild(DOC.createTextNode(content));
 
             heightMonitor.setStyle(WIDTH, node.getComputedStyle(WIDTH));

@@ -28,12 +28,9 @@ YUI.add('aui-autosize-deprecated-tests', function(Y) {
 
             this._container.simulate('keydown', {keycode: 13});
 
-            this._container.autosize.after(
-                'adjustSize',
-                function(event) {
-                    Y.Assert.areEqual('', autosizeHeightMonitor.html());
-                }
-            );
+            this.wait(function() {
+                Y.Assert.areEqual('', autosizeHeightMonitor.html());
+            }, 500);
         }
     }));
 
