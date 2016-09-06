@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
+
 * [AUI-2112](https://issues.liferay.com/browse/AUI-2112) AUI video should be responsive
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)

@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
+
 * [AUI-2038](https://issues.liferay.com/browse/AUI-2038) UI should alert about non-unique value in structure field of type Select.
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
