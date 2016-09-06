@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
+
 * [AUI-2110](https://issues.liferay.com/browse/AUI-2110) Tooltip position misaligned
 * [AUI-2092](https://issues.liferay.com/browse/AUI-2092) Tooltip Delegate should accept both String and Array as a valid value to triggerHideEvent and triggerShowEvent attributes
 

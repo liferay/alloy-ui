@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
+
 * [AUI-2086](https://issues.liferay.com/browse/AUI-2086) DatePickerNative throws error when destroyed
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)

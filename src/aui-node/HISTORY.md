@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+No registries yet.
+
+## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
+
 * [AUI-2821](https://issues.liferay.com/browse/AUI-2821) Fix existing lint errors
 * [AUI-2087](https://issues.liferay.com/browse/AUI-2087) Revert changes from Import commits from private temporary alloy 2.0 repository (Git SHA ID: 1009a5c). This causes an IE printing issue.
 
