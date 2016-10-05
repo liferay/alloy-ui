@@ -1,5 +1,5 @@
 {
-  "name": "alloy",
+  "name": "alloy-ui",
   "description": "AlloyUI",
   "version": "3.1.0-deprecated.1",
   "author": {
@@ -19,6 +19,12 @@
     "external",
     "commands",
     "helpers"
+  ],
+  "scripts": {
+    "prepublish": "gulp build-publish"
+  },
+  "files": [
+    "build"
   ],
   "devDependencies": {
     "bower": "^1.3.12",
