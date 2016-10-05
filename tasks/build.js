@@ -36,6 +36,10 @@ gulp.task('build-loader', function(callback) {
     run('loader-prebuild', 'aliases', 'build-base', 'loader-postbuild', callback);
 });
 
+gulp.task('build-publish', function(callback) {
+    run('init-yui', 'build-aui', 'build-loader', callback);
+});
+
 function build(cwd, callback) {
     var args = [];
     var cmd = 'shifter';

@@ -20,6 +20,9 @@
     "commands",
     "helpers"
   ],
+  "scripts": {
+    "prepublish": "gulp build-publish"
+  },
   "files": [
     "build"
   ],
