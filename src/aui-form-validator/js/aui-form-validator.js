@@ -820,7 +820,7 @@ var FormValidator = A.Component.create({
                     namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
 
                     namedFieldNodes.each(
-                        function(node, index, nodeList) {
+                        function(node) {
                             instance._highlightHelper(
                                 node,
                                 instance.get('errorClass'),
@@ -943,7 +943,7 @@ var FormValidator = A.Component.create({
             namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
 
             namedFieldNodes.each(
-                function(node, index, nodeList) {
+                function(node) {
                     instance.resetFieldCss(node);
                     node.removeAttribute('aria-invalid');
                 }
