@@ -607,7 +607,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
          * added to all nodes and field containers
          * @tests AUI-2820
          */
-        'should add success-field and aria-invalid attr on all, named Nodes and their fieldContainer': function() {
+        'should add success-field and aria-invalid attr on, all named Nodes and their fieldContainer': function() {
             var form = Y.Node.create(
                     '<form><div class="form-group">' +
                         '<input name="choice" id="choiceYes"' +' type="radio" value="yes">' +
@@ -642,61 +642,18 @@ YUI.add('aui-form-validator-tests', function(Y) {
         },
 
         /*
-         * Check if 'aria-invalid' attribute is removed and 'success-field' CSS
-         * class is added to all nodes and field containers
-         * @tests AUI-2820
-         */
-        'should add success-field class to, and remove aria-invalid attr from all, named Nodes and their fieldContainer': function() {
-            var form = Y.Node.create(
-                    '<form><div class="form-group">' +
-                        '<input name="choice" id="choiceYes"' +' type="radio" value="yes">' +
-                        '<input name="choice" id="choiceNo"' +' type="radio" value="no">' +
-                    '</div></form>'
-                ),
-                formRadioGroup = form.getDOMNode().elements.choice,
-                input = form.one('#choiceYes');
-
-            var formValidator = new Y.FormValidator({
-                boundingBox: form,
-                rules: {
-                    choice: {
-                        required: true
-                    }
-                }
-            });
-
-            formRadioGroup.value = 'no';
-
-            form.simulate('submit');
-
-            var namedFieldNodes = Y.all(formValidator.getFieldsByName('choice'));
-
-            namedFieldNodes.each(
-                function(node) {
-                    Y.Assert.isTrue(node.hasClass('success-field'), 'All fields should have success-field');
-                    Y.Assert.isFalse(node.hasAttribute('aria-invalid'), 'No fields should have aria-invalid');
-                }
-            );
-
-            var fieldContainer = formValidator.findFieldContainer(input);
-
-            Y.Assert.isTrue(fieldContainer.hasClass('has-success'), 'fieldContainer should have has-success');
-        },
-
-        /*
          * Check if 'error-field' CSS class and 'aria-invalid' attribute is
          * removed and 'success-field' CSS class is added to nodes and field
          * containers
          * @tests AUI-2820
          */
-        'should add success-field class, and remove error-field class and aria-invalid attr, all named Nodes and their fieldContainer': function() {
+        'should add success-field class, remove error-field class and aria-invalid attr from, all named Nodes and their fieldContainer': function() {
             var form = Y.Node.create(
                     '<form><div class="form-group">' +
                         '<input name="choice" id="choiceYes"' +' type="radio" value="yes">' +
                         '<input name="choice" id="choiceNo"' +' type="radio" value="no">' +
                     '</div></form>'
                 ),
-                formRadioGroup = form.getDOMNode().elements.choice,
                 input = form.one('#choiceYes');
 
             var formValidator = new Y.FormValidator({
@@ -710,7 +667,7 @@ YUI.add('aui-form-validator-tests', function(Y) {
 
             form.simulate('submit');
 
-            formRadioGroup.value = 'no';
+            input.set('checked', true);
 
             form.simulate('submit');
 
@@ -735,14 +692,13 @@ YUI.add('aui-form-validator-tests', function(Y) {
          * containers
          * @tests AUI-2820
          */
-        'should reset classes and remove aria-invalid attr from all, named Nodes and their fieldContainer': function() {
+        'should reset classes and remove aria-invalid attr from, all named Nodes and their fieldContainer': function() {
             var form = Y.Node.create(
                     '<form><div class="form-group">' +
                         '<input name="choice" id="choiceYes"' +' type="radio" value="yes">' +
                         '<input name="choice" id="choiceNo"' +' type="radio" value="no">' +
                     '</div></form>'
                 ),
-                formRadioGroup = form.getDOMNode().elements.choice,
                 input = form.one('#choiceYes');
 
             var formValidator = new Y.FormValidator({
@@ -773,8 +729,10 @@ YUI.add('aui-form-validator-tests', function(Y) {
             Y.Assert.isFalse(fieldContainer.hasClass('has-success'), 'fieldContainer should not have has-success');
             Y.Assert.isFalse(fieldContainer.hasClass('has-error'), 'fieldContainer should not have has-error');
 
-            formRadioGroup.value = 'no';
+            input.set('checked', true);
+
             form.simulate('submit');
+
             formValidator.resetField(input);
 
             namedFieldNodes.each(
