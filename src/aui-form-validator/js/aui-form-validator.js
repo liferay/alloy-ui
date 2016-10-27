@@ -812,7 +812,7 @@ var FormValidator = A.Component.create({
                 namedFieldNodes;
 
             if (field) {
-                fieldContainer = instance.findFieldContainer(field),
+                fieldContainer = instance.findFieldContainer(field);
 
                 fieldName = field.get('name');
 
