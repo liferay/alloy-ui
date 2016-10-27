@@ -688,7 +688,8 @@ YUI.add('aui-form-validator-tests', function(Y) {
         },
 
         /*
-         * Check if 'aria-invalid' attribute is removed from all nodes and field
+         * Check if 'error-field' and 'success-field' CSS class, and
+         * 'aria-invalid' attribute is removed from, all nodes and field
          * containers
          * @tests AUI-2820
          */
