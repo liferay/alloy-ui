@@ -11,6 +11,10 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	trim = Lang.trim,
 
+	isNode = function(v) {
+		return (v instanceof A.Node);
+	},
+
 	getRegExp = A.DOM._getRegExp,
 
 	FORM_VALIDATOR = 'form-validator',
@@ -356,7 +360,11 @@ var FormValidator = A.Component.create({
 		clearFieldError: function(field) {
 			var instance = this;
 
-			delete instance.errors[field.get(NAME)];
+			var fieldName = isNode(field) ? field.get(NAME) : field;
+
+			if (isString(fieldName)) {
+				delete instance.errors[fieldName];
+			}
 		},
 
 		eachRule: function(fn) {
@@ -424,7 +432,7 @@ var FormValidator = A.Component.create({
 
 		getFieldStackErrorContainer: function(field) {
 			var instance = this,
-				name = field.get(NAME),
+				name = isNode(field) ? field.get(NAME) : field,
 				stackContainers = instance._stackErrorContainers;
 
 			if (!stackContainers[name]) {
@@ -466,21 +474,42 @@ var FormValidator = A.Component.create({
 
 		highlight: function(field, valid) {
 			var instance = this,
+					fieldContainer,
+					fieldName,
+					namedFieldNodes;
+
+			if (field) {
 				fieldContainer = instance.findFieldContainer(field);
 
-			instance._highlightHelper(
-				field,
-				instance.get(ERROR_CLASS),
-				instance.get(VALID_CLASS),
-				valid
-			);
+				fieldName = field.get(NAME);
 
-			instance._highlightHelper(
-				fieldContainer,
-				instance.get(CONTAINER_ERROR_CLASS),
-				instance.get(CONTAINER_VALID_CLASS),
-				valid
-			);
+				if (this.validatable(field)) {
+					namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+
+					namedFieldNodes.each(
+						function(node) {
+							instance._highlightHelper(
+								node,
+								instance.get(ERROR_CLASS),
+								instance.get(VALID_CLASS),
+								valid
+							);
+						}
+					);
+
+					if (fieldContainer) {
+						instance._highlightHelper(
+							fieldContainer,
+							instance.get(CONTAINER_ERROR_CLASS),
+							instance.get(CONTAINER_VALID_CLASS),
+							valid
+						);
+					}
+				}
+				else if (!field.val()) {
+					instance.resetField(fieldName);
+				}
+			}
 		},
 
 		normalizeRuleValue: function(ruleValue) {
@@ -522,20 +551,32 @@ var FormValidator = A.Component.create({
 
 			instance.eachRule(
 				function(rule, fieldName) {
-					var field = instance.getField(fieldName);
-
-					instance.resetField(field);
+					instance.resetField(fieldName);
 				}
 			);
 		},
 
 		resetField: function(field) {
 			var instance = this,
-				stackContainer = instance.getFieldStackErrorContainer(field);
+					fieldName,
+					namedFieldNodes,
+					stackContainer;
+
+			fieldName = isNode(field) ? field.get(NAME) : field;
+
+			instance.clearFieldError(fieldName);
+
+			stackContainer = instance.getFieldStackErrorContainer(fieldName);
 
 			stackContainer.remove();
-			instance.resetFieldCss(field);
-			instance.clearFieldError(field);
+
+			namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+
+			namedFieldNodes.each(
+				function(node) {
+					instance.resetFieldCss(node);
+				}
+			);
 		},
 
 		resetFieldCss: function(field) {
@@ -583,13 +624,14 @@ var FormValidator = A.Component.create({
 		},
 
 		validateField: function(field) {
-			var instance = this,
-				fieldNode = instance.getField(field);
+			var instance = this;
 
-			if (fieldNode) {
+			instance.resetField(field);
+
+			var fieldNode = isString(field) ? instance.getField(field) : field;
+
+			if (isNode(fieldNode)) {
 				var validatable = instance.validatable(fieldNode);
-
-				instance.resetField(fieldNode);
 
 				if (validatable) {
 					instance.fire(EV_VALIDATE_FIELD, {
@@ -708,13 +750,11 @@ var FormValidator = A.Component.create({
 		},
 
 		_highlightHelper: function(field, errorClass, validClass, valid) {
-			if (field) {
-				if (valid) {
-					field.removeClass(errorClass).addClass(validClass);
-				}
-				else {
-					field.removeClass(validClass).addClass(errorClass);
-				}
+			if (valid) {
+				field.removeClass(errorClass).addClass(validClass);
+			}
+			else {
+				field.removeClass(validClass).addClass(errorClass);
 			}
 		},
 
@@ -864,4 +904,4 @@ A.each(
 
 A.FormValidator = FormValidator;
 
-}, '@VERSION@' ,{requires:['aui-base','aui-event-input','escape','selector-css3'], skinnable:false});
+}, '@VERSION@' ,{skinnable:false, requires:['aui-base','aui-event-input','escape','selector-css3']});
