@@ -10,6 +10,10 @@ var Lang = A.Lang,
 	isString = Lang.isString,
 	trim = Lang.trim,
 
+	isNode = function(v) {
+		return (v instanceof A.Node);
+	},
+
 	getRegExp = A.DOM._getRegExp,
 
 	FORM_VALIDATOR = 'form-validator',
@@ -355,7 +359,11 @@ var FormValidator = A.Component.create({
 		clearFieldError: function(field) {
 			var instance = this;
 
-			delete instance.errors[field.get(NAME)];
+			var fieldName = isNode(field) ? field.get(NAME) : field;
+
+			if (isString(fieldName)) {
+				delete instance.errors[fieldName];
+			}
 		},
 
 		eachRule: function(fn) {
@@ -521,20 +529,25 @@ var FormValidator = A.Component.create({
 
 			instance.eachRule(
 				function(rule, fieldName) {
-					var field = instance.getField(fieldName);
-
-					instance.resetField(field);
+					instance.resetField(fieldName);
 				}
 			);
 		},
 
 		resetField: function(field) {
-			var instance = this,
-				stackContainer = instance.getFieldStackErrorContainer(field);
+			var instance = this;
 
-			stackContainer.remove();
-			instance.resetFieldCss(field);
 			instance.clearFieldError(field);
+
+			var fieldNode = isString(field) ? instance.getField(field) : field;
+
+			if (isNode(fieldNode)) {
+				var stackContainer = instance.getFieldStackErrorContainer(fieldNode);
+
+				stackContainer.remove();
+
+				instance.resetFieldCss(field);
+			}
 		},
 
 		resetFieldCss: function(field) {
@@ -582,13 +595,14 @@ var FormValidator = A.Component.create({
 		},
 
 		validateField: function(field) {
-			var instance = this,
-				fieldNode = instance.getField(field);
+			var instance = this;
 
-			if (fieldNode) {
+			instance.resetField(field);
+
+			var fieldNode = isString(field) ? instance.getField(field) : field;
+
+			if (isNode(fieldNode)) {
 				var validatable = instance.validatable(fieldNode);
-
-				instance.resetField(fieldNode);
 
 				if (validatable) {
 					instance.fire(EV_VALIDATE_FIELD, {
