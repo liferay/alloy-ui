@@ -475,19 +475,32 @@ var FormValidator = A.Component.create({
 			var instance = this,
 				fieldContainer = instance.findFieldContainer(field);
 
-			instance._highlightHelper(
-				field,
-				instance.get(ERROR_CLASS),
-				instance.get(VALID_CLASS),
-				valid
-			);
+			if (field) {
+				if (this.validatable(field)) {
+					instance._highlightHelper(
+						field,
+						instance.get(ERROR_CLASS),
+						instance.get(VALID_CLASS),
+						valid
+					);
 
-			instance._highlightHelper(
-				fieldContainer,
-				instance.get(CONTAINER_ERROR_CLASS),
-				instance.get(CONTAINER_VALID_CLASS),
-				valid
-			);
+					if (fieldContainer) {
+						instance._highlightHelper(
+							fieldContainer,
+							instance.get(CONTAINER_ERROR_CLASS),
+							instance.get(CONTAINER_VALID_CLASS),
+							valid
+						);
+					}
+				}
+				else if (!field.val()) {
+					field.removeClass(ERROR_CLASS);
+
+					if (fieldContainer) {
+						fieldContainer.removeClass(CONTAINER_ERROR_CLASS);
+					}
+				}
+			}
 		},
 
 		normalizeRuleValue: function(ruleValue) {
@@ -721,13 +734,11 @@ var FormValidator = A.Component.create({
 		},
 
 		_highlightHelper: function(field, errorClass, validClass, valid) {
-			if (field) {
-				if (valid) {
-					field.removeClass(errorClass).addClass(validClass);
-				}
-				else {
-					field.removeClass(validClass).addClass(errorClass);
-				}
+			if (valid) {
+				field.removeClass(errorClass).addClass(validClass);
+			}
+			else {
+				field.removeClass(validClass).addClass(errorClass);
 			}
 		},
 
