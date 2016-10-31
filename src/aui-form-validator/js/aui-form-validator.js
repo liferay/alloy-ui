@@ -787,27 +787,27 @@ var FormValidator = A.Component.create({
                 fieldName = field.get('name');
 
                 if (this.validatable(field)) {
-                	namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+                    namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
 
                     namedFieldNodes.each(
                         function(node) {
                             instance._highlightHelper(
                                 node,
-								                instance.get(ERROR_CLASS),
-								                instance.get(VALID_CLASS),
-								                valid
-								            );
+                                instance.get(ERROR_CLASS),
+                                instance.get(VALID_CLASS),
+                                valid
+                            );
                         }
                     );
 
                     if (fieldContainer) {
                         instance._highlightHelper(
-						                fieldContainer,
-						                instance.get(CONTAINER_ERROR_CLASS),
-						                instance.get(CONTAINER_VALID_CLASS),
-						                valid
-						            );
-									}
+                            fieldContainer,
+                            instance.get(CONTAINER_ERROR_CLASS),
+                            instance.get(CONTAINER_VALID_CLASS),
+                            valid
+                        );
+                    }
                 }
                 else if (!field.val()) {
                     instance.resetField(fieldName);
@@ -914,7 +914,7 @@ var FormValidator = A.Component.create({
 
             namedFieldNodes.each(
                 function(node) {
-                	instance.resetFieldCss(node);
+                    instance.resetFieldCss(node);
                 }
             );
         },
