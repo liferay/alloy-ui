@@ -734,12 +734,12 @@ var FormValidator = A.Component.create({
          * Gets the stack error container of a field.
          *
          * @method getFieldStackErrorContainer
-         * @param {Node} field
+         * @param {Node|String} field
          * @return {Node}
          */
         getFieldStackErrorContainer: function(field) {
             var instance = this,
-                name = field.get('name'),
+                name = isNode(field) ? field.get('name') : field,
                 stackContainers = instance._stackErrorContainers;
 
             if (!stackContainers[name]) {
@@ -807,16 +807,28 @@ var FormValidator = A.Component.create({
          */
         highlight: function(field, valid) {
             var instance = this,
-                fieldContainer = instance.findFieldContainer(field);
+                fieldContainer,
+                fieldName,
+                namedFieldNodes;
 
             if (field) {
+                fieldContainer = instance.findFieldContainer(field);
+
+                fieldName = field.get('name');
+
                 if (this.validatable(field)) {
-                    instance._highlightHelper(
-                        field,
-                        instance.get('errorClass'),
-                        instance.get('validClass'),
-                        valid
-                    );    
+                    namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+
+                    namedFieldNodes.each(
+                        function(node) {
+                            instance._highlightHelper(
+                                node,
+                                instance.get('errorClass'),
+                                instance.get('validClass'),
+                                valid
+                            );
+                        }
+                    );
 
                     if (fieldContainer) {
                         instance._highlightHelper(
@@ -828,12 +840,7 @@ var FormValidator = A.Component.create({
                     }
                 }
                 else if (!field.val()) {
-                    field.removeClass('errorClass');
-                    field.removeAttribute('aria-invalid');
-                    if (fieldContainer) {
-                        fieldContainer.removeClass('containerErrorClass');
-                        fieldContainer.removeAttribute('aria-invalid');
-                    }
+                    instance.resetField(fieldName);
                 }
             }
         },
@@ -920,18 +927,27 @@ var FormValidator = A.Component.create({
          * @param {Node|String} field
          */
         resetField: function(field) {
-            var fieldNode,
+            var instance = this,
+                fieldName,
+                namedFieldNodes,
                 stackContainer;
 
-            this.clearFieldError(field);
-            fieldNode = isString(field) ? this.getField(field) : field;
+            fieldName = isNode(field) ? field.get('name') : field;
 
-            if (isNode(fieldNode)) {
-                stackContainer = this.getFieldStackErrorContainer(fieldNode);
-                stackContainer.remove();
-                this.resetFieldCss(fieldNode);
-                this.unhighlight(fieldNode);
-            }
+            instance.clearFieldError(fieldName);
+
+            stackContainer = instance.getFieldStackErrorContainer(fieldName);
+
+            stackContainer.remove();
+
+            namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+
+            namedFieldNodes.each(
+                function(node) {
+                    instance.resetFieldCss(node);
+                    node.removeAttribute('aria-invalid');
+                }
+            );
         },
 
         /**
