@@ -1441,6 +1441,13 @@ NODELIST_PROTO.filter = function(value, context) {
 
 A.mix(
     ANodeList, {
+        /**
+         * Converts the passed `html` into a `NodeList` and returns the result.
+         *
+         * @method create
+         * @param {String} html
+         * @return {NodeList}
+         */
         create: function(html) {
             var docFrag = A.getDoc().invoke(CREATE_DOCUMENT_FRAGMENT);
 

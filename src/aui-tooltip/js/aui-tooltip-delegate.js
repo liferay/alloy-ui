@@ -85,6 +85,12 @@ A.TooltipDelegate = A.Base.create(_TOOLTIP_DELEGATE, A.Base, [], {
         );
     },
 
+    /**
+     * Get the current Tooltip.
+     *
+     * @method getTooltip
+     * @return {Tooltip}
+     */
     getTooltip: function() {
         var instance = this,
             tooltip = instance.tooltip;
