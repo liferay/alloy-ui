@@ -140,6 +140,12 @@ A.Modal = A.Base.create('modal', A.Widget, [
         }
     },
 
+    /**
+     * Fire after Render.
+     *
+     * @method _afterRender
+     * @protected
+     */
     _afterRender: function() {
         if (this.get('visible')) {
             A.all('body,html').addClass(CSS_MODAL_OPEN);

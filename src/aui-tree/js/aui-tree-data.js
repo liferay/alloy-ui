@@ -558,6 +558,12 @@ A.mix(TreeData.prototype, {
         return cNodes;
     },
 
+    /**
+     * Get the number of child nodes of the current TreeData.
+     *
+     * @method getChildrenLength
+     * @return {Number}
+     */
     getChildrenLength: function() {
         var instance = this;
 

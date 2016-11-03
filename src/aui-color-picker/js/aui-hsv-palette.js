@@ -1061,6 +1061,12 @@ var AColor = A.Color,
             );
         },
 
+        /**
+         * Renders the value container.
+         *
+         * @method _renderValueContainer
+         * @protected
+         */
         _renderValueContainer: function() {
             this._valueContainer = this._viewContainer.appendChild(
                 this.TPL_VALUE_CONTAINER
@@ -1072,6 +1078,12 @@ var AColor = A.Color,
             this._renderValueRightSideContainer();
         },
 
+        /**
+         * Renders the right side of the value.
+         *
+         * @method _renderValueRightSideContainer
+         * @protected
+         */
         _renderValueRightSideContainer: function() {
             var controlsWrapper,
                 hexWrapper,
