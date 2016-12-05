@@ -202,11 +202,11 @@ var IORequest = A.Component.create({
 
         // Configuration Object mapping
         // To take advantages of the Attribute listeners of A.Base
-        // See: http://developer.yahoo.com/yui/3/io/
+        // See: http://yuilibrary.com/yui/docs/io/
 
         /**
          * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * Configuration](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          *
          * @attribute arguments
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -218,7 +218,7 @@ var IORequest = A.Component.create({
 
         /**
          * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * Configuration](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          *
          * @attribute context
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -230,7 +230,7 @@ var IORequest = A.Component.create({
 
         /**
          * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * Configuration](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          *
          * @attribute data
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -242,7 +242,7 @@ var IORequest = A.Component.create({
 
         /**
          * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * Configuration](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          *
          * @attribute form
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -287,7 +287,7 @@ var IORequest = A.Component.create({
 
         /**
          * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * Configuration](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          *
          * @attribute method
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -314,7 +314,7 @@ var IORequest = A.Component.create({
 
         /**
          * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * Configuration](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          *
          * @attribute sync
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -326,7 +326,7 @@ var IORequest = A.Component.create({
 
         /**
          * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * Configuration](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          *
          * @attribute timeout
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -338,7 +338,7 @@ var IORequest = A.Component.create({
 
         /**
          * See [IO
-         * Configuration](http://developer.yahoo.com/yui/3/io/#configuration).
+         * Configuration](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          *
          * @attribute xdr
          * @default Value mapped on YUI.AUI.defaults.io.
@@ -507,7 +507,7 @@ var IORequest = A.Component.create({
          * @method _end
          * @param {Number} id ID of the IO transaction.
          * @param {Object} args Custom arguments, passed to the event handler.
-         *     See [IO](http://developer.yahoo.com/yui/3/io/#configuration).
+         *     See [IO](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          * @protected
          */
         _end: function(id, args) {
@@ -526,7 +526,7 @@ var IORequest = A.Component.create({
          * @param {Number} id ID of the IO transaction.
          * @param {Object} obj IO transaction Object.
          * @param {Object} args Custom arguments, passed to the event handler.
-         *     See [IO](http://developer.yahoo.com/yui/3/io/#configuration).
+         *     See [IO](http://yuilibrary.com/yui/docs/io/#the-configuration-object).
          * @protected
          */
         _success: function(id, obj, args) {
