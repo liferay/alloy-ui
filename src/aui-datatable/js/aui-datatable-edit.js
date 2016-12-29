@@ -286,7 +286,7 @@ A.mix(CellEditorSupport.prototype, {
         // TODO: Memorize the activeCell coordinates to set the focus on it instead
         instance.set(ACTIVE_CELL, instance.get(ACTIVE_CELL));
 
-        record.set(column.key, event.newVal);
+        record.set(column.key, editor.formatValue(editor.get(OUTPUT_FORMATTER), event.newVal));
 
         // TODO: Sync highlight frames UI instead?
         if (instance.highlight) {
