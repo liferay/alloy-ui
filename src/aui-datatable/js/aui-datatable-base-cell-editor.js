@@ -132,7 +132,7 @@ BaseCellEditor = A.Component.create({
                         val = A.Lang.String.unescapeEntities(val);
                     }
 
-                    val = val.replace(REGEX_BR, 'n');
+                    val = val.replace(REGEX_BR, '\n');
                 }
 
                 return val;
