@@ -682,7 +682,7 @@ A.mix(CellEditorSupport.prototype, {
 		var editor = event.currentTarget;
 		var recordset = instance.get(RECORDSET);
 
-		editor.set(VALUE, event.newVal);
+		editor.set(VALUE, editor.formatValue(editor.get(OUTPUT_FORMATTER), event.newVal));
 
 		var selection = instance.selection;
 
