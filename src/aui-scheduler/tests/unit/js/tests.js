@@ -1241,7 +1241,55 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 Math.abs(top - this._dayView.calculateTop(now)) <= 1,
                 'Line is too far away from the expected position.'
             );
-        }
+        },
+
+        'should change "Show X more" message based on user configuration': function() {
+            var customMonthView =  new Y.SchedulerMonthView({
+                strings: {
+                    showMore: '{count} more events'
+                }
+            });
+
+            var items = [
+                {
+                    content: 'Test Event 1'
+                },
+                {
+                    content: 'Test Event 2'
+                },
+                {
+                    content: 'Test Event 3'
+                },
+                {
+                    content: 'Test Event 4'
+                },
+                {
+                    content: 'Test Event 5'
+                }
+            ];
+
+            var views = [
+                this._agendaView,
+                this._dayView,
+                customMonthView,
+                this._weekView
+            ];
+
+            this._createScheduler({
+                views: views,
+                activeView: customMonthView,
+                items: items,
+                date: new Date(Date.now()),
+            });
+
+            var showMoreText = Y.one('.scheduler-view-table-more').getHTML();
+
+            Y.Assert.areEqual(
+                '3 more events',
+                showMoreText,
+                '"Show X more" message does not equal user input'
+            )
+        },
     }));
 
     Y.Test.Runner.add(suite);
