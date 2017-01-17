@@ -72,8 +72,6 @@ var Lang = A.Lang,
         '</tbody>' +
         '</table>',
 
-    TPL_SVT_MORE = '<a href="javascript:;" class="' + CSS_SVT_MORE + '">{labelPrefix} {count} {labelSuffix}</a>',
-
     TPL_SVT_ROW = '<div class="' + CSS_SVT_ROW + '"></div>',
 
     TPL_SVT_TABLE_DATA = '<table cellspacing="0" cellpadding="0" class="' + CSS_SVT_TABLE_DATA + '">' +
@@ -262,8 +260,7 @@ var SchedulerTableView = A.Component.create({
         strings: {
             value: {
                 close: 'Close',
-                show: 'Show',
-                more: 'more'
+                showMore: 'Show {count} more'
             }
         },
 
@@ -453,12 +450,12 @@ var SchedulerTableView = A.Component.create({
                 if ((evtRenderedStack.length < events.length) && displayRows && (rowDisplayIndex === (displayRows - 1))) {
                     var strings = instance.get('strings');
 
+                    var moreTemplate ='<a href="javascript:;" class="' + CSS_SVT_MORE + '">' + strings.showMore + '</a>';
+
                     var showMoreEventsLink = A.Node.create(
                         Lang.sub(
-                            TPL_SVT_MORE, {
+                            moreTemplate, {
                                 count: (events.length - evtRenderedStack.length),
-                                labelPrefix: strings.show,
-                                labelSuffix: strings.more
                             }
                         )
                     );
