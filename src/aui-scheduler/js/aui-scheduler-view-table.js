@@ -262,7 +262,7 @@ var SchedulerTableView = A.Component.create({
         strings: {
             value: {
                 close: 'Close',
-                showMore: 'Show {count} more'
+                showMore: 'Show {0} more'
             }
         },
 
@@ -454,9 +454,9 @@ var SchedulerTableView = A.Component.create({
 
                     var showMoreLabel = Lang.sub(
                         strings.showMore,
-                        {
-                            count: (events.length - evtRenderedStack.length)
-                        }
+                        [
+                            (events.length - evtRenderedStack.length)
+                        ]
                     );
 
                     var showMoreEventsLink = A.Node.create(

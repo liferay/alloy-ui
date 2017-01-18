@@ -1246,7 +1246,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
         'should change "Show X more" message based on user configuration': function() {
             var customMonthView =  new Y.SchedulerMonthView({
                 strings: {
-                    showMore: '{count} more events'
+                    showMore: '{0} more events'
                 }
             });
 
