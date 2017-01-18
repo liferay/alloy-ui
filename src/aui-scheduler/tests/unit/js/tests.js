@@ -1289,7 +1289,7 @@ YUI.add('aui-scheduler-tests', function(Y) {
                 showMoreText,
                 '"Show X more" message does not equal user input'
             )
-        },
+        }
     }));
 
     Y.Test.Runner.add(suite);
