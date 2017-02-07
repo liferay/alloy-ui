@@ -79,10 +79,6 @@
 /*
 * custom
 */
-.table-cell {
-    white-space: pre-wrap;
-}
-
 .table-sortable-column {
     cursor: pointer;
 }
