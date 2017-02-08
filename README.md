@@ -24,14 +24,14 @@ IE 8+ ✔ | Latest ✔ | Latest ✔ | Latest ✔ | Latest ✔ |
 
 We use [Gulp](http://gulpjs.com/), a task-runner in Node, to automate things.
 
-```
-gulp <command>
+```sh
+$ gulp <command>
 ```
 
 To discover the most commonly used tasks, run:
 
-```
-gulp help
+```sh
+$ gulp help
 ```
 
 ### Setup
@@ -40,20 +40,20 @@ gulp help
 
 2. Install global dependencies:
 
-    ```
-[sudo] npm install -g gulp
+    ```sh
+$ [sudo] npm install -g gulp
     ```
 
 3. Install local dependencies:
 
-    ```
-npm install
+    ```sh
+$ npm install
     ```
 
 4. Build AlloyUI & YUI3 using Shifter:
 
-    ```
-gulp build
+    ```sh
+$ gulp build
     ```
 
 ## Discussion
