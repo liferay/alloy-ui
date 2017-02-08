@@ -86,6 +86,27 @@ var TreeNode = A.Component.create({
      */
     ATTRS: {
 
+         /**
+          * Sets the `aria-labelledby` for the tree.
+          *
+          * @attribute ariaLabelledby
+          * @type String
+          */
+        ariaLabelledby: {
+            valueFn: function() {
+                var expanded = this.get('expanded');
+                var leaf = this.get('leaf');
+
+                if (expanded) {
+                    return 'Parent Node';
+                }
+
+                else if (leaf) {
+                    return 'Leaf Node';
+                }
+            },
+        },
+
         /**
          * The widget's outermost node, used for sizing and positioning.
          *
@@ -321,7 +342,7 @@ var TreeNode = A.Component.create({
          * @default null
          */
         tabIndex: {
-            value: null
+            value: 0
         },
 
         /**
@@ -372,6 +393,10 @@ var TreeNode = A.Component.create({
             var boundingBox = instance.get('boundingBox');
 
             boundingBox.setData('tree-node', instance);
+            boundingBox.setAttribute('tabIndex', 0);
+
+            instance._setAriaElements();
+            instance._bindKeypress();
 
             // Sync the Widget TreeNode id with the BOUNDING_BOX id
             instance._syncTreeNodeBBId();
@@ -523,6 +548,49 @@ var TreeNode = A.Component.create({
         },
 
         /**
+        * 
+        * @method _bindKeyPress
+        *
+        *
+        *
+        */
+        _bindKeypress: function() {
+            var instance = this,
+                boundingBox = instance.get('boundingBox');
+
+            instance._keyHandler = boundingBox.on('keydown', A.bind(instance._handleKeypressEvent, instance));
+        },
+
+        /**
+        *
+        * @method _handleKeyPressEvent
+        *
+        *
+        *
+        */
+        _handleKeypressEvent: function(event) {
+            var instance = this,
+                keyCode = event.keyCode,
+                targetNode = event.target,
+                next = targetNode.next(),
+                previous = targetNode.previous();
+
+            if (targetNode.hasClass('tree-node')) {
+                if (keyCode === 38) {
+                    event.preventDefault();
+                    previous.focus();
+                }
+                else if (keyCode === 40) {
+                    event.preventDefault();
+                    next.focus();
+                }
+                else if (keyCode === 13) {
+                    instance.toggle();
+                }
+            }
+        },
+
+        /**
          * Render the `contentBox` node.
          *
          * @method _renderContentBox
@@ -599,6 +667,19 @@ var TreeNode = A.Component.create({
             instance.set('container', nodeContainer);
 
             return nodeContainer;
+        },
+
+        /**
+         * Set the Aria Elements of the tree.
+         *
+         * @method _setAriaElements
+         * @protexted
+         */
+        _setAriaElements: function() {
+            var instance = this;
+
+            var contentBox = instance.get('contentBox');
+            contentBox.setAttribute('aria-labelledby', instance.get('ariaLabelledby'));
         },
 
         /**
