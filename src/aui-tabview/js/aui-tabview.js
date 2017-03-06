@@ -328,7 +328,7 @@ A.TabView = A.Component.create({
         /**
          * Get the tabs.
          *
-         * @method getActiveTab
+         * @method getTabs
          */
         getTabs: function() {
             var instance = this,
