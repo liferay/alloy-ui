@@ -1,0 +1,211 @@
+.scheduler-view-day-hidden {
+    display: none;
+}
+
+.scheduler-view-day-table {
+    border: 0;
+    clear: both;
+    height: 1251px;
+    margin-top: -1px;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.scheduler-view-day-table-col {
+    border-left: 1px solid #ddd;
+    padding: 0;
+    vertical-align: top;
+}
+
+.scheduler-view-day-table-col-shim {
+    height: 1248px;
+    margin-bottom: -1248px;
+    position: relative;
+}
+
+.scheduler-view-day-table-colblank {
+    width: 60px;
+}
+
+.view-lt480 .scheduler-view-day-table-colblank {
+    width: 32px;
+}
+
+.scheduler-view-day-table-coltime {
+    border-left: 0;
+    color: #555;
+    text-align: right;
+    width: 60px;
+}
+
+.view-lt480 .scheduler-view-day-table-coltime {
+    font-size: 8px;
+    width: 32px;
+}
+
+.scheduler-view-day-table-time {
+    border-top: 1px solid #ddd;
+    color: #aba9aa;
+    height: 52px;
+    padding-right: 4px;
+}
+
+.scheduler-view-day-table-time:first-child {
+    margin-top: -1px;
+}
+
+.scheduler-view-day-header-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.scheduler-view-day-content .yui3-widget-hd {
+    border-bottom: 5px solid #ddd;
+    color: #555;
+    padding-top: 4px;
+}
+
+.scheduler-view-day-content .yui3-widget-bd {
+    height: 600px;
+}
+
+.scheduler-view-day-current-time {
+    border-top: 2px solid #ff7f6e;
+    height: 0;
+    left: 0;
+    position: absolute;
+    margin-top: -2px;
+    overflow: hidden;
+    width: 100%;
+    z-index: 401;
+}
+
+.scheduler-view-day-resizer {
+    bottom: 0;
+    cursor: ns-resize;
+    display: none;
+    height: 6px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.scheduler-view-day .scheduler-view-day-resizer {
+    display: block;
+}
+
+.scheduler-view-day-resizer-icon {
+    bottom: -4px;
+    height: 16px;
+    left: 50%;
+    margin-left: -8px;
+    position: absolute;
+    width: 16px;
+}
+
+.scheduler-view-day-header-day-first {
+    width: 62px;
+}
+
+.view-lt480 .scheduler-view-day-header-day-first {
+    width: 32px;
+}
+
+.scheduler-view-day-header-day-pad-right {
+    width: 15px;
+}
+
+.scheduler-view-day-header-day {
+    text-align: center;
+}
+
+.view-lt480 .scheduler-view-day-header-day-weekday {
+    display: block;
+}
+
+.scheduler-view-day-header-day .scheduler-today-hd {
+    color: #009be6;
+    font-weight: bold;
+}
+
+.scheduler-view-day-header-day a {
+    color: #555;
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 2px;
+    text-decoration: none;
+}
+
+.scheduler-view-day-header-view-label {
+    color: #aba9aa;
+    margin: 0 -4px;
+    position: absolute;
+    text-align: right;
+    top: 26px;
+    width: 60px;
+}
+
+.view-lt480 .scheduler-view-day-header-view-label {
+    font-size: 8px;
+    margin: 0;
+    padding-right: 4px;
+    top: 55px;
+    width: 32px;
+}
+
+.scheduler-view-day-header-day a:hover {
+    text-decoration: underline;
+}
+
+.scheduler-view-day {
+    background: white;
+}
+
+.scheduler-view-day:not(.scheduler-view-week) .scheduler-view-day-header-day span {
+    display: none;
+}
+
+.scheduler-view-day:not(.scheduler-view-week) .scheduler-view-day-header-view-label {
+    top: 5px;
+}
+
+.view-lt480 .scheduler-view-day:not(.scheduler-view-week) .scheduler-view-day-header-view-label {
+    top: 10px;
+}
+
+.scheduler-view-day .scheduler-view-table {
+    margin: 0 0 0 62px;
+    border-left: 0;
+    border-right: 0;
+}
+
+.view-lt480 .scheduler-view-day .scheduler-view-table {
+    margin: 0 0 0 32px;
+}
+
+.scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col-title {
+    display: none;
+}
+
+.scheduler-view-day .scheduler-view-table .scheduler-view-table-grid {
+    border: 0;
+}
+
+.scheduler-view-day .scheduler-view-table .yui3-widget-hd {
+    display: none;
+}
+
+.scheduler-view-day .scheduler-view-table .scheduler-view-table-colgrid {
+    background: #f6f6f6;
+}
+
+.scheduler-view-day .scheduler-event-title {
+    padding: 0 0 0 7px;
+}
+
+.scheduler-view-day .scheduler-event-content {
+    margin-top: -2px;
+    padding: 0 7px;
+    word-wrap: break-word;
+}
