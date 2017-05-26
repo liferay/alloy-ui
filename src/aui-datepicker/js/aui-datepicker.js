@@ -314,7 +314,7 @@ A.mix(DatePickerBase.prototype, {
     _setCalendarToFirstSelectedDate: function() {
         var instance = this,
             dates = instance.getSelectedDates(),
-            firstSelectedDate = dates[0];
+            firstSelectedDate = (dates ? dates[0] : null);
 
         if (firstSelectedDate) {
             instance.getCalendar().set('date', firstSelectedDate);

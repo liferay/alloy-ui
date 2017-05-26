@@ -98,7 +98,9 @@ DatePickerNativeBase.prototype = {
         var instance = this,
             activeInput = instance.get('activeInput');
 
-        activeInput.val('');
+        if (activeInput) {
+            activeInput.val('');
+        }
     },
 
     /**
@@ -121,7 +123,9 @@ DatePickerNativeBase.prototype = {
         var instance = this,
             activeInput = instance.get('activeInput');
 
-        activeInput.blur();
+        if (activeInput) {
+            activeInput.blur();
+        }
     },
 
     /**
@@ -133,7 +137,9 @@ DatePickerNativeBase.prototype = {
         var instance = this,
             activeInput = instance.get('activeInput');
 
-        activeInput.focus();
+        if (activeInput) {
+          activeInput.focus();
+        }
     },
 
     /**
@@ -150,7 +156,7 @@ DatePickerNativeBase.prototype = {
             dates = dates[0];
         }
 
-        if (Lang.isDate(dates)) {
+        if (Lang.isDate(dates) && activeInput) {
             activeInput.val(instance._formatDate(dates));
         }
     },
@@ -220,7 +226,7 @@ DatePickerNativeBase.prototype = {
     _fireSelectionChange: function() {
         var instance = this,
             activeInput = instance.get('activeInput'),
-            parsed = instance._parseDateFromString(activeInput.val());
+            parsed = (activeInput ? instance._parseDateFromString(activeInput.val()) : null);
 
         instance.fire(
             'selectionChange', {
