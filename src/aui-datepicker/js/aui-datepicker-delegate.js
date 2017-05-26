@@ -115,13 +115,9 @@ DatePickerDelegate.prototype = {
     getSelectedDates: function(node) {
         var instance = this,
             activeInput = node || instance.get('activeInput'),
-            selectedDates = activeInput.getData('datepickerSelection');
+            selectedDates = (activeInput ? activeInput.getData('datepickerSelection') : null);
 
-        if (selectedDates) {
-            return selectedDates;
-        }
-
-        return null;
+        return selectedDates;
     },
 
     /**
@@ -202,7 +198,9 @@ DatePickerDelegate.prototype = {
 
         valueFormatter.call(instance, selection);
 
-        activeInput.setData('datepickerSelection', selection);
+        if (activeInput) {
+            activeInput.setData('datepickerSelection', selection);
+        }
     },
 
     /**
@@ -304,7 +302,7 @@ DatePickerDelegate.prototype = {
         return function(opt_value) {
             var instance = this,
                 activeInput = instance.get('activeInput'),
-                activeInputValue = Lang.trim(opt_value || activeInput.val()),
+                activeInputValue = Lang.trim(opt_value || (activeInput ? activeInput.val() : null) ),
                 dateSeparator = instance.get('dateSeparator'),
                 mask = instance.get('mask'),
                 dates;
@@ -343,7 +341,9 @@ DatePickerDelegate.prototype = {
                 values.push(instance._formatDate(date));
             });
 
-            activeInput.val(values.join(dateSeparator));
+            if (activeInput) {
+                activeInput.val(values.join(dateSeparator));
+            }
         };
     }
 };
