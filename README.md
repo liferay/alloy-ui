@@ -39,149 +39,149 @@ grunt command --option value
 
 2. Install global dependencies:
 
-    ```
+```
 [sudo] npm install -g grunt-cli shifter yogi yuidocjs phantomjs grover istanbul
-    ```
+```
 
 3. Install local dependencies:
 
-    ```
+```
 npm install
-    ```
+```
 
 4. Initialize dependencies:
 
-    ```
+```
 grunt init
-    ```
+```
 
 ### Build
 
 * Build YUI and AlloyUI:
 
-    ```
+```
 grunt build
-    ```
+```
 
 * Build only YUI:
 
-    ```
+```
 grunt build:yui
-    ```
+```
 
 * Build only AlloyUI:
 
-    ```
+```
 grunt build:aui
-    ```
+```
 
 * Build single AlloyUI module:
 
-    ```
+```
 grunt build:aui --src src/aui-module-name
-    ```
+```
 
 * Build and import Bootstrap's CSS:
 
-    ```
+```
 grunt bootstrap
-    ```
+```
 
 * Build AlloyUI and import Bootstrap's CSS:
 
-    ```
+```
 grunt all
-    ```
+```
 
 ### Watch
 
 * Watch and build for any changes:
 
-    ```
+```
 grunt watch
-    ```
+```
 
 * Watch and build for any single module changes:
 
-    ```
+```
 grunt watch --src src/aui-module-name
-    ```
+```
 
 ### Create
 
 * Create a new module under `src/` folder:
 
-    ```
+```
 grunt create --name aui-module-name
-    ```
+```
 
 ### Format/Lint
 
 * Format JavaScript source code:
 
-    ```
+```
 grunt format
-    ```
+```
 
 * Lint JavaScript source code using JSHint.
 
-    ```
+```
 grunt lint
-    ```
+```
 
 ### Release
 
 * Generate a zip file:
 
-    ```
+```
 grunt zip
-    ```
+```
 
 * Build modules and generate a release zip file:
 
-    ```
+```
 grunt release
-    ```
+```
 
 * Build modules optimized for CDN and generate a release zip file:
 
-    ```
+```
 grunt release-cdn
-    ```
+```
 
 ### Test
 
 * Run unit tests:
 
-    ```
+```
 grunt test
-    ```
+```
 
 * Run code coverage:
 
-    ```
+```
 grunt test --coverage
-    ```
+```
 
 ### API Docs
 
 * Import code examples from alloyui.com and build docs locally:
 
-    ```
+```
 grunt api
-    ```
+```
 
 * Run docs locally and watch for any changes:
 
-    ```
+```
 grunt api-watch
-    ```
+```
 
 * Run `grunt api` and deploy it to alloyui.com:
 
-    ```
+```
 grunt api-deploy
-    ```
+```
 
 ## Discussion
 
