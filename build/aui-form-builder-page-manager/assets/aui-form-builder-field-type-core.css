@@ -1,0 +1,33 @@
+.field-type {
+    cursor: pointer;
+    float: left;
+    padding: 10px;
+    text-align: center;
+    width: 33%;
+}
+
+.field-type-disabled {
+    background-color: #fff;
+    cursor: not-allowed;
+}
+
+.field-type-icon {
+    font-size: 32px;
+    margin: 5px 0 10px;
+    color: #666;
+}
+
+.field-type-icon-mouse-over {
+    color: #09f;
+}
+
+.field-type-label {
+    color: #333;
+    font-size: 9px;
+    font-weight: 300;
+    line-height: 10px;
+}
+
+.field-type-label-mouse-over {
+    color: #09f;
+}
