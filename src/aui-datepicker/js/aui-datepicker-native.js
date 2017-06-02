@@ -156,7 +156,7 @@ DatePickerNativeBase.prototype = {
             dates = dates[0];
         }
 
-        if (Lang.isDate(dates) && activeInput) {
+        if (activeInput && Lang.isDate(dates)) {
             activeInput.val(instance._formatDate(dates));
         }
     },
@@ -226,7 +226,11 @@ DatePickerNativeBase.prototype = {
     _fireSelectionChange: function() {
         var instance = this,
             activeInput = instance.get('activeInput'),
-            parsed = (activeInput ? instance._parseDateFromString(activeInput.val()) : null);
+            parsed;
+
+        if (activeInput) {
+            parsed = instance._parseDateFromString(activeInput.val());
+        }
 
         instance.fire(
             'selectionChange', {
