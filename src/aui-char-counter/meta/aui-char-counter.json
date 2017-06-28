@@ -1,6 +1,7 @@
 {
     "aui-char-counter": {
         "requires": [
+            "aui-aria",
             "aui-node",
             "aui-event-input",
             "aui-component"
