@@ -39,7 +39,15 @@ A.Alert = A.Base.create('alert', A.Widget, [
      * @protected
      */
     renderUI: function() {
+        var boundingBox = this.get('boundingBox');
+
         this._uiSetCloseable(this.get('closeable'));
+
+        if (this.get('useARIA')) {
+            this.plug(A.Plugin.Aria);
+
+            this.aria.setAttribute('hidden', false, boundingBox);
+        }
     },
 
     /**
@@ -74,8 +82,15 @@ A.Alert = A.Base.create('alert', A.Widget, [
      * @protected
      */
     _onClickBoundingBox: function(event) {
+        var boundingBox = this.get('boundingBox'),
+            destroyOnHide = this.get('destroyOnHide');
+
         if (event.target.test('.' + CSS_CLOSE)) {
             this.hide();
+        }
+
+        if (this.get('useARIA') && !destroyOnHide) {
+            this.aria.setAttribute('hidden', true, boundingBox);
         }
     },
 
@@ -170,6 +185,19 @@ A.Alert = A.Base.create('alert', A.Widget, [
         destroyOnHide: {
             validator: A.Lang.isBoolean,
             value: false
+        },
+
+        /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
+        *
+        * @attribute useARIA
+        * @default true
+        * @type {Boolean}
+        */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         }
     },
 

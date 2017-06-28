@@ -1,12 +1,13 @@
 {
     "aui-alert": {
         "requires": [
-            "timers",
-            "widget",
-            "widget-stdmod",
+            "aui-aria",
             "aui-classnamemanager",
             "aui-widget-cssclass",
-            "aui-widget-transition"
+            "aui-widget-transition",
+            "timers",
+            "widget",
+            "widget-stdmod"
         ],
         "skinnable": true
     }

@@ -34,6 +34,30 @@ YUI.add('aui-alert-tests', function(Y) {
             Assert.isFalse(alert2.get('closeable'));
         },
 
+        'should check that alerts have role set to alert': function () {
+            var alert1Role = alert1.get('boundingBox').get('role');
+            var alert2Role = alert2.get('boundingBox').get('role');
+            var alert3Role = alert3.get('boundingBox').get('role');
+
+            if (alert1.get('useARIA') && alert2.get('useARIA') && alert3.get('useARIA')) {
+                Assert.isTrue(alert1Role == 'alert');
+                Assert.isTrue(alert2Role == 'alert');
+                Assert.isTrue(alert3Role == 'alert');
+            }
+        },
+
+        'should check that alerts have aria-hidden set to false': function () {
+            var alert1AriaHidden = alert1.get('boundingBox').get('aria-hidden');
+            var alert2AriaHidden = alert2.get('boundingBox').get('aria-hidden');
+            var alert3AriaHidden = alert3.get('boundingBox').get('aria-hidden');
+
+            if (alert1.get('useARIA') && alert2.get('useARIA') && alert3.get('useARIA')) {
+                Assert.isTrue(alert1AriaHidden == 'false');
+                Assert.isTrue(alert2AriaHidden == 'false');
+                Assert.isTrue(alert3AriaHidden == 'false');
+            }
+        },
+
         'should not be the close button when closeable is false': function() {
             alert1.set('closeable', false);
             alert3.set('closeable', false);
@@ -60,11 +84,16 @@ YUI.add('aui-alert-tests', function(Y) {
 
         'should hide when clicked on close button': function() {
             var closeNode = Y.one('#info .close');
+            var alert3AriaHidden = alert3.get('boundingBox').get('aria-hidden');
 
             closeNode.simulate('click');
 
             closeNode.on('click', function() {
                 Assert.isFalse(alert1.get('visible'));
+
+                if (alert3.get('useARIA')) {
+                    Assert.isTrue(alert3AriaHidden == 'true');
+                }
             });
         },
 
