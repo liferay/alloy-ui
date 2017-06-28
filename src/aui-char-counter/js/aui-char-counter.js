@@ -80,11 +80,14 @@ var CharCounter = A.Component.create({
         label: {
             validator: isString,
             valueFn: function() {
-                var instance = this,
-                    counter = instance.get('counter');
+                var instance = this;
+
+                if (!counter) {
+                    var counter = instance.get('counter');
+                }
 
                 if (counter) {
-                    var labelName = parent.text().match(REGEX_STR),
+                    var labelName = counter._node.nextSibling.toString().match(REGEX_STR),
                         maxLength = instance.get('maxLength');
                 }
 
@@ -92,7 +95,6 @@ var CharCounter = A.Component.create({
                     labelName = maxLength + ' ' + labelName;
                     return labelName;
                 }
-
                 return maxLength;
             }
         },
@@ -121,7 +123,8 @@ var CharCounter = A.Component.create({
         maxLength: {
             lazyAdd: false,
             setter: function(v) {
-                return this._setMaxLength(v);
+                var instance = this;
+                return instance._setMaxLength(v);
             },
             validator: isNumber,
             value: Infinity
@@ -234,7 +237,7 @@ var CharCounter = A.Component.create({
                     attributes: {
                         live: 'live',
                         label: 'label',
-                        maxLength: 'valuemax',
+                        label: 'valuenow', // Allow screen reader to read current number of characters remaining.
                     },
                     attributeNode: instance.get('input'),
                     roleName: 'textbox',
@@ -400,16 +403,24 @@ var CharCounter = A.Component.create({
          * @protected
          */
         _updateAriaLabel: function(counterValue) {
-            var instance = this;
-            input = instance.get('input'),
-            parent = instance.get('counter').get('parentNode'),
-            labelName = parent.text().match(REGEX_STR);
+            var instance = this,
+                input = instance.get('input');
 
-            if (!labelName) {
-                labelName = counterValue;
+            if (!counter) {
+                var counter = instance.get('counter');
             }
 
-            input.setAttribute('aria-label', labelName);
+            if (counter) {
+                var counterText = counter._node.nextSibling.textContent.match(REGEX_STR);
+            }
+            else {
+                var counterText = '';
+            }
+
+            var labelName = counterValue + ' ' + counterText;
+
+            input.setAttribute('aria-valuenow', labelName);
+            input.setAttribute('aria-label', input.get('role') + ' with ' + labelName);
         },
     }
 });
