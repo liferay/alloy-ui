@@ -165,9 +165,12 @@
     "aui-carousel": {
         "requires": [
             "anim",
-            "node-event-delegate",
+            "aui-aria",
+            "aui-event",
             "aui-image-viewer-base",
-            "aui-image-viewer-slideshow"
+            "aui-image-viewer-slideshow",
+            "node-event-delegate",
+            "node-focusmanager"
         ],
         "skinnable": true
     },
@@ -780,6 +783,7 @@
     "aui-image-viewer-base": {
         "requires": [
             "anim",
+            "aui-aria",
             "aui-classnamemanager",
             "aui-node",
             "aui-widget-responsive",
