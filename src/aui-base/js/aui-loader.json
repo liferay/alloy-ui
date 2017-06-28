@@ -158,8 +158,11 @@
     "aui-carousel": {
         "requires": [
             "anim",
+            "aui-aria",
+            "aui-component",
+            "aui-event",
             "node-event-delegate",
-            "aui-component"
+            "node-focusmanager"
         ],
         "skinnable": true
     },

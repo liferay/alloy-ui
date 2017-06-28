@@ -168,8 +168,11 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-carousel": {
         "requires": [
             "anim",
+            "aui-aria",
+            "aui-component",
+            "aui-event",
             "node-event-delegate",
-            "aui-component"
+            "node-focusmanager"
         ],
         "skinnable": true
     },
@@ -1480,4 +1483,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '61c8295230e4f1de4df2b86169983827';
+YUI.Env[Y.version].md5 = '3288cde9091794e9d659e0e4e85d8197';
