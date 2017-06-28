@@ -571,6 +571,10 @@ var Carousel = A.Component.create({
             }
 
             newImage.setStyle('opacity', '1');
+
+            if (instance.get('useARIA')) {
+                instance._syncAriaImageUI(newImage);
+            }
         },
 
         /**
@@ -820,6 +824,32 @@ var Carousel = A.Component.create({
         },
 
         /**
+         * Update the aria attributes for image.
+         *
+         * @method _syncAriaImageUI
+         * @param {node} activeNode The current active item
+         * @protected
+         */
+        _syncAriaImageUI: function(activeNode) {
+            var instance = this;
+
+            instance.aria.setAttributes(
+                [
+                    {
+                        name: 'hidden',
+                        node:  instance.nodeSelection,
+                        value: 'true'
+                    },
+                    {
+                        name: 'hidden',
+                        node: activeNode,
+                        value: 'false'
+                    }
+                ]
+            );
+        },
+
+        /**
          * Update the aria attributes for the pause/play button.
          *
          * @method _syncAriaPlayerUI
@@ -854,6 +884,11 @@ var Carousel = A.Component.create({
                         value: 'carousel'
                     },
                     {
+                        name: 'hidden',
+                        node: instance.nodeSelection,
+                        value: 'true'
+                    },
+                    {
                         name: 'label',
                         node: instance.get('controlNext'),
                         value: 'next'
@@ -876,7 +911,6 @@ var Carousel = A.Component.create({
                 ]
             );
         },
-
 
         /**
          * Set the <code>activeIndex</code> on the UI.
