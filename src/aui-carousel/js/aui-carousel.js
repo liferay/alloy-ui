@@ -22,8 +22,8 @@ var Lang = A.Lang,
     CSS_MENU_PLAY = getCN(CAROUSEL, 'menu', 'play'),
     CSS_MENU_PAUSE = getCN(CAROUSEL, 'menu', 'pause'),
     CSS_MENU_PREV = getCN(CAROUSEL, 'menu', 'prev'),
-    CSS_MENU_ITEM_DEFAULT = [CSS_MENU_ITEM, CSS_MENU_INDEX].join(STR_BLANK),
     CSS_MENU_ITEM_ACTIVE = [CSS_MENU_ITEM, CSS_MENU_INDEX, CSS_MENU_ACTIVE].join(STR_BLANK),
+    CSS_MENU_ITEM_DEFAULT = [CSS_MENU_ITEM, CSS_MENU_INDEX].join(STR_BLANK),
 
     DOT = '.',
 
@@ -104,6 +104,27 @@ var Carousel = A.Component.create({
         },
 
         /**
+         * Config object for `Plugin.NodeFocusManager`,
+         *
+         * @attribute focusManager
+         * @default Config object
+         * @type Object
+         */
+        focusManager: {
+            value: {
+                circular: true,
+                descendants: 'li',
+                focusClass: 'focused',
+                keys: {
+                    next: 'down:39',
+                    previous: 'down:37'
+                }
+            },
+            validator: A.Lang.isObject,
+            writeOnce: 'initOnly'
+        },
+
+        /**
          * Interval time in seconds between an item transition.
          *
          * @attribute intervalTime
@@ -159,6 +180,33 @@ var Carousel = A.Component.create({
          */
         playing: {
             value: true
+        },
+
+        /**
+         * Sets the `aria-role` for carousel.
+         *
+         * @attribute role
+         * @default 'listbox'
+         * @type String
+         */
+        role: {
+            validator: Lang.isString,
+            value: 'listbox',
+            writeOnce: 'initOnly'
+        },
+
+        /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            validator: Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         }
     },
 
@@ -182,6 +230,10 @@ var Carousel = A.Component.create({
                     opacity: 1
                 }
             });
+
+            instance.after({
+                render: instance._afterRender
+            });
         },
 
         /**
@@ -194,9 +246,20 @@ var Carousel = A.Component.create({
             var instance = this;
 
             instance._updateNodeSelection();
+
             instance.nodeMenu = instance.get('nodeMenu');
 
             instance._updateMenuNodes();
+
+            if (instance.get('useARIA')) {
+                instance.plug(
+                    A.Plugin.Aria,
+                    {
+                        roleName: instance.get('role'),
+                        roleNode: instance.get('contentBox')
+                    }
+                );
+            }
         },
 
         /**
@@ -237,6 +300,10 @@ var Carousel = A.Component.create({
             var instance = this;
 
             instance._uiSetActiveIndex(instance.get('activeIndex'));
+
+            if (instance.get('useARIA')) {
+                instance._syncAriaUI();
+            }
         },
 
         /**
@@ -383,6 +450,7 @@ var Carousel = A.Component.create({
             var instance = this;
 
             var menuPlayItem = instance.nodeMenu.one(SELECTOR_MENU_PLAY_OR_PAUSE);
+
             var playing = event.newVal;
 
             var fromClass = CSS_MENU_PAUSE;
@@ -402,6 +470,23 @@ var Carousel = A.Component.create({
             if (menuPlayItem) {
                 menuPlayItem.replaceClass(fromClass, toClass);
             }
+
+            if (instance.get('useARIA')) {
+                instance._syncAriaPlayerUI();
+            }
+        },
+
+        /**
+         * Fired after `render` event.
+         *
+         * @method _afterRender
+         * @param {EventFacade} event
+         * @protected
+         */
+        _afterRender: function() {
+            var instance = this;
+
+            instance._plugFocusManager();
         },
 
         /**
@@ -506,6 +591,10 @@ var Carousel = A.Component.create({
 
             if (newMenuItem) {
                 newMenuItem.addClass(CSS_MENU_ACTIVE);
+
+                if (instance.get('useARIA')) {
+                    instance._syncAriaControlsUI(newMenuItem);
+                }
             }
 
             if (oldImage) {
@@ -552,6 +641,46 @@ var Carousel = A.Component.create({
         },
 
         /**
+         * Fired when the user presses a key on the keyboard.
+         *
+         * @method _onKeydown
+         * @param {EventFacade} event
+         * @protected
+         */
+        _onKeydown: function(event) {
+            var instance = this;
+
+            var controlNext = instance.get('controlNext');
+            var controlPrevious = instance.get('controlPrevious');
+            var nodeMenu = instance.get('nodeMenu');
+
+            var focusedNode = nodeMenu.focusManager._focusedNode;
+
+            var focusedAnchor = focusedNode.one('a');
+
+            if (focusedAnchor && event.isKey('ENTER')) {
+                if (focusedAnchor.hasClass(CSS_MENU_NEXT)) {
+                    instance.next();
+                }
+                else if (focusedAnchor.hasClass(CSS_MENU_PREV)) {
+                    instance.prev();
+                }
+                else if (focusedAnchor.hasClass(CSS_MENU_INDEX)) {
+                    event.currentTarget = focusedAnchor;
+
+                    instance._onMenuItemClick(event);
+                }
+                else if (focusedAnchor.hasClass(CSS_MENU_PLAY) || focusedAnchor.hasClass(CSS_MENU_PAUSE)) {
+                    instance._onMenuPlayClick();
+                }
+            }
+
+            if (event.keyCode == 32) {
+                instance._onMenuPlayClick();
+            }
+        },
+
+        /**
          * Execute when delegates handle menuItem click.
          *
          * @method _onMenuItemClick
@@ -578,7 +707,25 @@ var Carousel = A.Component.create({
         _onMenuPlayClick: function(event) {
             var instance = this;
 
-            this.set('playing', !this.get('playing'));
+            instance.set('playing', !instance.get('playing'));
+        },
+
+        /**
+         * Setup the `Plugin.NodeFocusManager` that handles keyboard
+         * navigation.
+         *
+         * @method _plugFocusManager
+         * @protected
+         */
+        _plugFocusManager: function() {
+            var instance = this;
+
+            var focusManager = instance.get('focusManager');
+            var nodeMenu = instance.get('nodeMenu');
+
+            nodeMenu.plug(A.Plugin.NodeFocusManager, focusManager);
+
+            nodeMenu.on('keydown', A.bind('_onKeydown', instance));
         },
 
         /**
@@ -588,13 +735,14 @@ var Carousel = A.Component.create({
          * @protected
          */
         _renderMenu: function() {
-            var instance = this,
-                activeIndex = instance.get('activeIndex'),
-                items = [],
-                i,
-                len = instance.nodeSelection.size();
+            var instance = this;
 
-            for (i = 0; i < len; i++) {
+            var activeIndex = instance.get('activeIndex');
+            var len = instance.nodeSelection.size();
+
+            var items = [];
+
+            for (var i = 0; i < len; i++) {
                 items.push(
                     Lang.sub(TPL_ITEM, {
                         cssClasses: activeIndex === i ? CSS_MENU_ITEM_ACTIVE : CSS_MENU_ITEM_DEFAULT,
@@ -644,6 +792,91 @@ var Carousel = A.Component.create({
 
             return A.one(val) || instance._renderMenu();
         },
+
+        /**
+         * Updates the aria values for the controls adding selected true and false as necessary.
+         *
+         * @method _syncControlsAriaUI
+         * @param {node} activeNode The current active item
+         * @protected
+         */
+        _syncAriaControlsUI: function(activeNode) {
+            var instance = this;
+
+            instance.aria.setAttributes(
+                [
+                    {
+                        name: 'selected',
+                        node: instance.menuNodes,
+                        value: 'false'
+                    },
+                    {
+                        name: 'selected',
+                        node: activeNode,
+                        value: 'true'
+                    }
+                ]
+            );
+        },
+
+        /**
+         * Update the aria attributes for the pause/play button.
+         *
+         * @method _syncAriaPlayerUI
+         * @protected
+         */
+        _syncAriaPlayerUI: function() {
+            var instance = this;
+
+            var status = 'pause';
+
+            if (instance.get('playing')) {
+                status = 'play';
+            }
+
+            instance.aria.setAttribute('label', status, instance.nodeMenu.one(SELECTOR_MENU_PLAY_OR_PAUSE));
+        },
+
+        /**
+         * Update the aria attributes for the `A.Carousel` UI.
+         *
+         * @method _syncAriaUI
+         * @protected
+         */
+        _syncAriaUI: function() {
+            var instance = this;
+
+            instance.aria.setAttributes(
+                [
+                    {
+                        name: 'controls',
+                        node: instance.get('nodeMenu'),
+                        value: 'carousel'
+                    },
+                    {
+                        name: 'label',
+                        node: instance.get('controlNext'),
+                        value: 'next'
+                    },
+                    {
+                        name: 'label',
+                        node: instance.get('controlPrevious'),
+                        value: 'previous'
+                    },
+                    {
+                        name: 'label',
+                        node: instance.nodeMenu.one(SELECTOR_MENU_PLAY_OR_PAUSE),
+                        value: 'play'
+                    },
+                    {
+                        name: 'live',
+                        node: instance.get('boundingBox'),
+                        value: 'polite'
+                    }
+                ]
+            );
+        },
+
 
         /**
          * Set the <code>activeIndex</code> on the UI.
