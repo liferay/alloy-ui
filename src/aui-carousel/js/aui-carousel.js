@@ -19,12 +19,12 @@ var Lang = A.Lang,
     CSS_MENU_ACTIVE = getCN('carousel', 'menu', 'active'),
     CSS_MENU_INDEX = getCN('carousel', 'menu', 'index'),
     CSS_MENU_ITEM = getCN('carousel', 'menu', 'item'),
-    CSS_MENU_NEXT = getCN('carousel', 'menu', 'next'),
-    CSS_MENU_PLAY = getCN('carousel', 'menu', 'play'),
-    CSS_MENU_PAUSE = getCN('carousel', 'menu', 'pause'),
-    CSS_MENU_PREV = getCN('carousel', 'menu', 'prev'),
-    CSS_MENU_ITEM_DEFAULT = [CSS_MENU_ITEM, CSS_MENU_INDEX].join(' '),
     CSS_MENU_ITEM_ACTIVE = [CSS_MENU_ITEM, CSS_MENU_INDEX, CSS_MENU_ACTIVE].join(' '),
+    CSS_MENU_ITEM_DEFAULT = [CSS_MENU_ITEM, CSS_MENU_INDEX].join(' '),
+    CSS_MENU_NEXT = getCN('carousel', 'menu', 'next'),
+    CSS_MENU_PAUSE = getCN('carousel', 'menu', 'pause'),
+    CSS_MENU_PLAY = getCN('carousel', 'menu', 'play'),
+    CSS_MENU_PREV = getCN('carousel', 'menu', 'prev'),
     CSS_OUTSIDE_MENU = getCN('carousel', 'outside', 'menu'),
 
     NODE_MENU_INSIDE = 'inside',
@@ -62,6 +62,19 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
         '</menu></div>',
 
     /**
+     * Construction logic executed during `A.Carousel` instantiation.
+     * Lifecycle.
+     *
+     * @method initializer
+     * @protected
+     */
+    initializer: function() {
+        this.after({
+            render: this._afterRender
+        });
+    },
+
+    /**
      * Bind the events on the `A.Carousel` UI. Lifecycle.
      *
      * @method bindUI
@@ -74,10 +87,21 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
             nodeMenuChange: this._afterNodeMenuChange,
             nodeMenuItemSelectorChange: this._afterNodeMenuItemSelectorChange,
             nodeMenuPositionChange: this._afterNodeMenuPositionChange,
-            pauseOnHoverChange: this._afterPauseOnHoverChange
+            pauseOnHoverChange: this._afterPauseOnHoverChange,
+            playingChange: this._afterPlayingChange
         });
 
         this._bindPauseOnHover();
+    },
+
+    /**
+     * Create the DOM structure for the `A.Carousel` UI. Lifecycle.
+     *
+     * @method renderUI
+     * @protected
+     */
+    renderUI: function() {
+        A.Carousel.superclass.renderUI.apply(this, arguments);
     },
 
     /**
@@ -88,6 +112,10 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
      */
     syncUI: function() {
         this._syncNodeMenuPositionUI();
+
+        if (this.get('useARIA')) {
+            this._syncAriaMenuUI();
+        }
     },
 
     /**
@@ -154,6 +182,29 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
      */
     _afterPauseOnHoverChange: function() {
         this._bindPauseOnHover();
+    },
+
+    /**
+     * Fired after the `playing` attribute changes.
+     *
+     * @method _afterPlayingChange
+     * @protected
+     */
+    _afterPlayingChange: function() {
+        if (this.get('useARIA')) {
+            this._syncAriaPlayerUI();
+        }
+    },
+
+    /**
+     * Fired after `render` event.
+     *
+     * @method _afterRender
+     * @param {EventFacade} event
+     * @protected
+     */
+    _afterRender: function() {
+        this._plugFocusManager();
     },
 
     /**
@@ -259,7 +310,7 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
         var currentImage,
             previousImage;
 
-        if (A.Lang.isNumber(this._previousIndex)) {
+        if (Lang.isNumber(this._previousIndex)) {
             previousImage = this._getImageContainerAtIndex(this._previousIndex);
             currentImage = this._getCurrentImageContainer(this._previousIndex);
 
@@ -328,6 +379,42 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
     },
 
     /**
+     * Fired when the user presses a key on the keyboard.
+     *
+     * @method _onKeydown
+     * @param {EventFacade} event
+     * @protected
+     */
+    _onKeydown: function(event) {
+        var controlNext = this.get('controlNext'),
+            controlPrevious = this.get('controlPrevious'),
+            nodeMenu = this.get('nodeMenu');
+
+        var focusedNode = nodeMenu.focusManager._focusedNode.one('a');
+
+        if (focusedNode && event.isKey('ENTER')) {
+            if (focusedNode == controlNext) {
+                this.next();
+            }
+            else if (focusedNode == controlPrevious) {
+                this.prev();
+            }
+            else if (focusedNode.hasClass(CSS_MENU_INDEX)) {
+                event.currentTarget = focusedNode;
+
+                this._onClickControl(event);
+            }
+            else if (focusedNode.hasClass(CSS_MENU_PLAY) || focusedNode.hasClass(CSS_MENU_PAUSE)) {
+                this._onPlayerClick();
+            }
+        }
+
+        if (event.isKey('SPACE')) {
+            this._onPlayerClick();
+        }
+    },
+
+    /**
      * Fired when the mouse enters the menu. If it's coming from the carousel
      * the slideshow will be resumed.
      *
@@ -365,6 +452,7 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
     _pauseOnEnter: function() {
         if (this.get('playing')) {
             this.pause();
+
             this._pausedOnEnter = true;
         }
     },
@@ -380,8 +468,25 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
     _playOnLeave: function() {
         if (this._pausedOnEnter) {
             this.play();
+
             this._pausedOnEnter = false;
         }
+    },
+
+    /**
+     * Setup the `Plugin.NodeFocusManager` that handles keyboard
+     * navigation.
+     *
+     * @method _plugFocusManager
+     * @protected
+     */
+    _plugFocusManager: function() {
+        var focusManager = this.get('focusManager'),
+            nodeMenu = this.get('nodeMenu');
+
+        nodeMenu.plug(A.Plugin.NodeFocusManager, focusManager);
+
+        nodeMenu.on('keydown', A.bind('_onKeydown', this));
     },
 
     /**
@@ -417,7 +522,86 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
         var nodeMenu = A.one(val) || this._createMenuNode();
 
         this._menuNodes = nodeMenu.all(SELECTOR_MENU_INDEX);
+
         return nodeMenu;
+    },
+
+    /**
+     * Updates the aria values for the controls adding selected true and false as necessary.
+     *
+     * @method _syncAriaControlsUI
+     * @param {node} activeNode The current active item
+     * @protected
+     */
+    _syncAriaControlsUI: function(activeNode) {
+        this.aria.setAttributes(
+            [
+                {
+                    name: 'selected',
+                    node: this._menuNodes,
+                    value: 'false'
+                },
+                {
+                    name: 'selected',
+                    node: activeNode,
+                    value: 'true'
+                }
+            ]
+        );
+    },
+
+    /**
+     * Update the aria attributes for the `A.Carousel` UI.
+     *
+     * @method _syncAriaMenuUI
+     * @protected
+     */
+    _syncAriaMenuUI: function() {
+        this.aria.setAttributes(
+            [
+                {
+                    name: 'controls',
+                    node: this.get('nodeMenu'),
+                    value: 'carousel'
+                },
+                {
+                    name: 'label',
+                    node: this.get('controlNext'),
+                    value: 'next'
+                },
+                {
+                    name: 'label',
+                    node: this.get('controlPrevious'),
+                    value: 'previous'
+                },
+                {
+                    name: 'label',
+                    node: this._player,
+                    value: 'play'
+                },
+                {
+                    name: 'live',
+                    node: this.get('boundingBox'),
+                    value: 'polite'
+                }
+            ]
+        );
+    },
+
+    /**
+     * Update the aria attributes for the pause/play button.
+     *
+     * @method _syncAriaPlayerUI
+     * @protected
+     */
+    _syncAriaPlayerUI: function() {
+        var status = 'pause';
+
+        if (this.get('playing')) {
+            status = 'play';
+        }
+
+        this.aria.setAttribute('label', status, this._player);
     },
 
     /**
@@ -432,10 +616,15 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
 
         if (item) {
             item.addClass(CSS_MENU_ACTIVE);
+
+            if (this.get('useARIA')) {
+                this._syncAriaControlsUI(item);
+            }
         }
 
-        if (A.Lang.isNumber(this._previousIndex)) {
+        if (Lang.isNumber(this._previousIndex)) {
             item = this._menuNodes.item(this._previousIndex);
+
             if (item) {
                 item.removeClass(CSS_MENU_ACTIVE);
             }
@@ -449,16 +638,16 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
      * @protected
      */
     _syncNodeMenuPositionUI: function() {
-        var nodeMenuPosition = this.get('nodeMenuPosition');
+        var nodeMenuPosition = this.get('nodeMenuPosition'),
+            yPos = 0;
 
         this.get('boundingBox').toggleClass(CSS_OUTSIDE_MENU, nodeMenuPosition === NODE_MENU_OUTSIDE);
 
         if (nodeMenuPosition === NODE_MENU_OUTSIDE) {
-            this.set('gutter', [0, this.get('nodeMenu').get('offsetHeight')]);
+            yPos = this.get('nodeMenu').get('offsetHeight');
         }
-        else {
-            this.set('gutter', [0, 0]);
-        }
+
+        this.set('gutter', [0, yPos]);
     },
 
     /**
@@ -468,15 +657,18 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
      * @protected
      */
     _syncPlaying: function() {
-        if (!this._player) {
-            return;
-        }
+        var player = this._player;
 
-        if (this.get('playing')) {
-            this._player.replaceClass(CSS_MENU_PLAY, CSS_MENU_PAUSE);
-        }
-        else {
-            this._player.replaceClass(CSS_MENU_PAUSE, CSS_MENU_PLAY);
+        if (player) {
+            var originalCssClass = CSS_MENU_PAUSE;
+            var replaceCssClass = CSS_MENU_PLAY;
+
+            if (this.get('playing')) {
+                originalCssClass = CSS_MENU_PLAY;
+                replaceCssClass = CSS_MENU_PAUSE;
+            }
+
+            player.replaceClass(originalCssClass, replaceCssClass);
         }
     },
 
@@ -509,8 +701,8 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
          * @type Boolean
          */
         circular: {
-            value: true,
-            validator: A.Lang.isBoolean
+            validator: Lang.isBoolean,
+            value: true
         },
 
         /**
@@ -524,8 +716,8 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
             setter: function(val) {
                 return val ? val : this.get('nodeMenu').one('.' + CSS_MENU_NEXT);
             },
-            value: null,
-            validator: A.Lang.isNode
+            validator: Lang.isNode,
+            value: null
         },
 
         /**
@@ -539,8 +731,29 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
             setter: function(val) {
                 return val ? val : this.get('nodeMenu').one('.' + CSS_MENU_PREV);
             },
-            value: null,
-            validator: A.Lang.isNode
+            validator: Lang.isNode,
+            value: null
+        },
+
+        /**
+         * Config object for `Plugin.NodeFocusManager`,
+         *
+         * @attribute focusManager
+         * @default Config object
+         * @type Object
+         */
+        focusManager: {
+            value: {
+                circular: true,
+                descendants: 'li',
+                focusClass: 'focused',
+                keys: {
+                    next: 'down:39',
+                    previous: 'down:37'
+                }
+            },
+            validator: Lang.isObject,
+            writeOnce: 'initOnly'
         },
 
         /**
@@ -551,8 +764,8 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
          * @type Node | String
          */
         nodeMenu: {
-            value: null,
-            setter: '_setNodeMenu'
+            setter: '_setNodeMenu',
+            value: null
         },
 
         /**
@@ -563,8 +776,8 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
          * @type String
          */
         nodeMenuItemSelector: {
-            value: '.' + CSS_MENU_ITEM,
-            validator: A.Lang.isString
+            validator: Lang.isString,
+            value: '.' + CSS_MENU_ITEM
         },
 
         /**
@@ -575,8 +788,8 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
          * @type String
          */
         nodeMenuPosition: {
-            value: NODE_MENU_INSIDE,
-            validator: '_validateNodeMenuPosition'
+            validator: '_validateNodeMenuPosition',
+            value: NODE_MENU_INSIDE
         },
 
         /**
@@ -587,8 +800,8 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
          * @type Boolean
          */
         pauseOnHover: {
-            value: false,
-            validator: Lang.isBoolean
+            validator: Lang.isBoolean,
+            value: false
         }
     },
 

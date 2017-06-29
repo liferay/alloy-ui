@@ -211,9 +211,12 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-carousel": {
         "requires": [
             "anim",
-            "node-event-delegate",
+            "aui-aria",
+            "aui-event",
             "aui-image-viewer-base",
-            "aui-image-viewer-slideshow"
+            "aui-image-viewer-slideshow",
+            "node-event-delegate",
+            "node-focusmanager"
         ],
         "skinnable": true
     },
@@ -1075,6 +1078,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-image-viewer-base": {
         "requires": [
             "anim",
+            "aui-aria",
             "aui-classnamemanager",
             "aui-node",
             "aui-widget-responsive",
@@ -2134,4 +2138,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '965cee97a15c9fcfd04b3af22bb26a63';
+YUI.Env[Y.version].md5 = 'c2062deeb6a733f88239c20b4863600a';
