@@ -2,7 +2,6 @@
     "aui-carousel": {
         "requires": [
             "anim",
-            "aui-aria",
             "aui-event",
             "aui-image-viewer-base",
             "aui-image-viewer-slideshow",
