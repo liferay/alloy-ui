@@ -175,7 +175,6 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-carousel": {
         "requires": [
             "anim",
-            "aui-aria",
             "aui-event",
             "aui-image-viewer-base",
             "aui-image-viewer-slideshow",
@@ -1670,4 +1669,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'b6515fed72d59642422c3f9393e2c180';
+YUI.Env[Y.version].md5 = '5aaf9270503810e2aadefbe6488c453e';
