@@ -1,0 +1,45 @@
+.form-builder-page-manager-popover {
+    background-color: white;
+    border: 1px solid #bcc9d2;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(52, 73, 94, 0.26);
+}
+
+.form-builder-page-manager-popover .arrow {
+    left: 90% !important;
+}
+
+.form-builder-page-manager-popover li {
+    color: #869cad;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 16px;
+    padding: 11px 0 11px 0;
+}
+
+.form-builder-page-manager-popover ul {
+    list-style-type: none;
+    padding: initial;
+    margin: 5px 0 5px 20px;
+}
+
+.form-builder-page-manager-popover-content .popover-content {
+    width: 220px;
+    padding: 0 0 0 0;
+}
+
+.form-inline .form-builder-page-header-description-hide-border, .form-inline .form-builder-page-header-title-hide-border {
+    box-shadow: none;
+    border-width: 1px;
+    border-color: transparent;
+}
+
+.form-inline .form-builder-page-header-description, .form-inline .form-builder-page-header-title {
+    display: inline-block;
+    width: 95%;
+}
+
+.form-inline .form-builder-page-header-title {
+    font-size: 18px;
+}
