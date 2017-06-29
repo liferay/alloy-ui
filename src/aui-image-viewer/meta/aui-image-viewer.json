@@ -2,6 +2,7 @@
 	"aui-image-viewer-base": {
         "requires": [
             "anim",
+            "aui-aria",
             "aui-classnamemanager",
             "aui-node",
             "aui-widget-responsive",

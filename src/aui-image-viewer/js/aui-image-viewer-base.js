@@ -62,6 +62,16 @@ A.ImageViewerBase = A.Base.create(
                     defaultFn: this._defAnimateFn
                 }
             });
+
+            if (this.get('useARIA')) {
+                this.plug(
+                    A.Plugin.Aria,
+                    {
+                        roleName: this.get('role'),
+                        roleNode: this.get('contentBox')
+                    }
+                );
+            }
         },
 
         /**
@@ -298,6 +308,16 @@ A.ImageViewerBase = A.Base.create(
         },
 
         /**
+         * Returns the image container node.
+         *
+         * @method _getImageContainer
+         * @protected
+         */
+         _getImageContainer: function() {
+            return this.get('contentBox').all('.' + CSS_IMAGE_CONTAINER);
+        },
+
+        /**
          * Returns the container node at the requested index.
          *
          * @method _getImageContainerAtIndex
@@ -305,7 +325,7 @@ A.ImageViewerBase = A.Base.create(
          * @protected
          */
         _getImageContainerAtIndex: function(index) {
-            return this.get('contentBox').all('.' + CSS_IMAGE_CONTAINER).item(index);
+            return this._getImageContainer().item(index);
         },
 
         /**
@@ -458,7 +478,8 @@ A.ImageViewerBase = A.Base.create(
          * @protected
          */
         _renderImageContainers: function() {
-            var container,
+            var aria = this.get('useARIA'),
+                container,
                 containers = [],
                 list = this._renderImageListNode(),
                 sources = this.get('sources');
@@ -466,6 +487,11 @@ A.ImageViewerBase = A.Base.create(
             for (var i = 0; i < sources.length; i++) {
                 container = A.Node.create(this.TPL_IMAGE_CONTAINER);
                 container.addClass(CSS_LOADING);
+
+                if (aria) {
+                    this._syncAriaImageContainerUI(container);
+                }
+
                 list.append(container);
 
                 containers.push(container);
@@ -604,6 +630,38 @@ A.ImageViewerBase = A.Base.create(
         },
 
         /**
+        * Update the aria attributes for image.
+        * @method _syncAriaCurrentImageUI
+        * @protected
+        */
+        _syncAriaCurrentImageUI: function() {
+            this.aria.setAttributes(
+                [
+                    {
+                        name: 'hidden',
+                        node: this._getImageContainer(),
+                        value: 'true'
+                    },
+                    {
+                        name: 'hidden',
+                        node: this._getCurrentImageContainer(),
+                        value: 'false'
+                    }
+                ]
+            );
+        },
+
+        /**
+        * Update the aria attributes for image container.
+        * @method _syncAriaCurrentImageUI
+        * @param {node} container The container for the images
+        * @protected
+        */
+        _syncAriaImageContainerUI: function(container) {
+            this.aria.setAttribute('hidden', true, container);
+        },
+
+        /**
          * Updates the controls, showing or hiding them as necessary.
          *
          * @method _syncControlsUI
@@ -627,6 +685,10 @@ A.ImageViewerBase = A.Base.create(
                 this._getImageContainerAtIndex(this._previousIndex).removeClass(CSS_CURRENT_IMAGE);
             }
             this._getCurrentImageContainer().addClass(CSS_CURRENT_IMAGE);
+
+            if (this.get('useARIA')) {
+                this._syncAriaCurrentImageUI();
+            }
         }
     }, {
         /**
@@ -737,6 +799,19 @@ A.ImageViewerBase = A.Base.create(
             },
 
             /**
+             * Sets the `aria-role` for carousel.
+             *
+             * @attribute role
+             * @default 'listbox'
+             * @type String
+             */
+            role: {
+                validator: A.Lang.isString,
+                value: 'listbox',
+                writeOnce: 'initOnly'
+            },
+
+            /**
              * Shows the controls.
              *
              * @attribute showControls
@@ -758,6 +833,20 @@ A.ImageViewerBase = A.Base.create(
             sources: {
                 value: [],
                 validator: A.Lang.isArray
+            },
+
+            /**
+             * Boolean indicating if use of the WAI-ARIA Roles and States
+             * should be enabled.
+             *
+             * @attribute useARIA
+             * @default true
+             * @type Boolean
+             */
+            useARIA: {
+                validator: A.Lang.isBoolean,
+                value: true,
+                writeOnce: 'initOnly'
             }
         },
 
