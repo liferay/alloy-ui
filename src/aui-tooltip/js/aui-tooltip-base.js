@@ -55,6 +55,11 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
             A.on('scroll', A.debounce(instance._onScroll, 100, instance)),
             A.on('windowresize', A.bind(instance._onResize, instance))
         ];
+
+        if (instance.get('useARIA')) {
+            instance.plug(A.Plugin.Aria);
+            instance._setAriaAttributes();
+        }
     },
 
     /**
@@ -99,33 +104,15 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
             trigger.on(
                 'hover',
                 A.bind(instance._onBoundingBoxMouseenter, instance),
-                A.bind(instance._onBoundingBoxMouseleave, instance));
+                A.bind(instance._onBoundingBoxMouseleave, instance)
+            );
         }
 
         instance.get('boundingBox').on(
             'hover',
             A.bind(instance._onBoundingBoxMouseenter, instance),
-            A.bind(instance._onBoundingBoxMouseleave, instance));
-    },
-
-    /**
-     * Fire after `boundingBox` style changes.
-     *
-     * @method _afterUiSetVisible
-     * @param val
-     * @protected
-     */
-    _uiSetVisible: function(val) {
-        var instance = this,
-            boundingBox = instance.get('boundingBox');
-
-        instance._widgetUiSetVisible(val);
-
-        boundingBox.setStyle('opacity', val ? instance.get('opacity') : 0);
-
-        if (val) {
-            instance._loadTooltipContentFromTitle();
-        }
+            A.bind(instance._onBoundingBoxMouseleave, instance)
+        );
     },
 
     /**
@@ -157,29 +144,6 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     },
 
     /**
-     * Set tooltip section attribute.
-     *
-     * @method _setStdModSection
-     * @param {String | Node} val
-     * @protected
-     */
-    _setStdModSection: function(val) {
-        var formatter = this.get('formatter');
-
-        if (Lang.isString(val)) {
-            if (formatter) {
-                val = formatter.call(this, val);
-            }
-
-            if (!this.get('html')) {
-                val = A.Escape.html(val);
-            }
-        }
-
-        return val;
-    },
-
-    /**
      * Load tooltip content from trigger title attribute.
      *
      * @method _loadTooltipContentFromTitle
@@ -196,6 +160,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         this._borrowTitleAttribute();
 
         title = trigger.getAttribute('data-title');
+
         if (title) {
             this.setStdModContent(A.WidgetStdMod.BODY, title);
         }
@@ -209,7 +174,14 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseenter: function() {
+        var aria = this.get('useARIA'),
+            boundingBox = this.get('boundingBox');
+
         this.show();
+
+        if (aria) {
+            this.aria.setAttribute('hidden', false, boundingBox);
+        }
     },
 
     /**
@@ -220,7 +192,14 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseleave: function() {
+        var aria = this.get('useARIA'),
+            boundingBox = this.get('boundingBox');
+
         this.hide();
+
+        if (aria) {
+            this.aria.setAttribute('hidden', true, boundingBox);
+        }
     },
 
     /**
@@ -241,6 +220,76 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      */
     _onScroll: function() {
         this.suggestAlignment(this.get('trigger'));
+    },
+
+    /**
+     * Set aria attributes for 'A.Tooltip' if useARIA is set to true.
+     *
+     * @method _setAriaAttributes
+     * @protected
+     */
+    _setAriaAttributes: function() {
+        var boundingBox = this.get('boundingBox'),
+            trigger = this.get('trigger'),
+            visible = this.get('visible');
+
+        this.aria.setAttributes(
+            [
+                {
+                    name: 'describedby',
+                    node: boundingBox,
+                    value: trigger
+                },
+                {
+                    name: 'hidden',
+                    node: boundingBox,
+                    value: !visible
+                }
+            ]
+        );
+    },
+
+    /**
+    * Set tooltip section attribute.
+    *
+    * @method _setStdModSection
+    * @param {String | Node} val
+    * @protected
+    */
+    _setStdModSection: function(val) {
+        var formatter = this.get('formatter');
+
+        if (Lang.isString(val)) {
+            if (formatter) {
+                val = formatter.call(this, val);
+            }
+
+            if (!this.get('html')) {
+                val = A.Escape.html(val);
+            }
+        }
+
+        return val;
+    },
+
+    /**
+    * Fire after `boundingBox` style changes.
+    *
+    * @method _afterUiSetVisible
+    * @param val
+    * @protected
+    */
+    _uiSetVisible: function(val) {
+        var instance = this,
+        boundingBox = instance.get('boundingBox');
+
+        instance._widgetUiSetVisible(val);
+
+        boundingBox.setStyle('opacity', val ? instance.get('opacity') : 0);
+
+        if (val) {
+            instance._loadTooltipContentFromTitle();
+        }
     },
 
     _widgetUiSetVisible: A.Widget.prototype._uiSetVisible
@@ -354,6 +403,20 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         triggerShowEvent: {
             validator: Lang.isString,
             value: 'mouseenter'
+        },
+
+        /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States
+        * should be enabled.
+        *
+        * @attribute useARIA
+        * @default true
+        * @type Boolean
+        */
+        useARIA: {
+            validator: A.Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         },
 
         /**
