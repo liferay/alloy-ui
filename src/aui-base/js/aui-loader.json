@@ -491,11 +491,12 @@
     },
     "aui-datepicker": {
         "requires": [
-            "calendar",
+            "aui-aria",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover",
             "base",
             "base-build",
-            "aui-datepicker-delegate",
-            "aui-datepicker-popover"
+            "calendar"
         ],
         "skinnable": true
     },
@@ -509,10 +510,10 @@
     },
     "aui-datepicker-delegate": {
         "requires": [
-            "node-event-delegate",
-            "event-focus",
+            "aui-datatype-date-parse",
             "aui-event-input",
-            "aui-datatype-date-parse"
+            "event-focus",
+            "node-event-delegate"
         ]
     },
     "aui-datepicker-deprecated": {
@@ -524,10 +525,10 @@
     },
     "aui-datepicker-native": {
         "requires": [
-            "base",
-            "base-build",
+            "aui-datepicker-delegate",
             "aui-node-base",
-            "aui-datepicker-delegate"
+            "base",
+            "base-build"
         ]
     },
     "aui-datepicker-popover": {

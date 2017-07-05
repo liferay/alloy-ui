@@ -503,11 +503,12 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-datepicker": {
         "requires": [
-            "calendar",
+            "aui-aria",
+            "aui-datepicker-delegate",
+            "aui-datepicker-popover",
             "base",
             "base-build",
-            "aui-datepicker-delegate",
-            "aui-datepicker-popover"
+            "calendar"
         ],
         "skinnable": true
     },
@@ -521,10 +522,10 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-datepicker-delegate": {
         "requires": [
-            "node-event-delegate",
-            "event-focus",
+            "aui-datatype-date-parse",
             "aui-event-input",
-            "aui-datatype-date-parse"
+            "event-focus",
+            "node-event-delegate"
         ]
     },
     "aui-datepicker-deprecated": {
@@ -536,10 +537,10 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-datepicker-native": {
         "requires": [
-            "base",
-            "base-build",
+            "aui-datepicker-delegate",
             "aui-node-base",
-            "aui-datepicker-delegate"
+            "base",
+            "base-build"
         ]
     },
     "aui-datepicker-popover": {
@@ -2137,4 +2138,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '5c029525843d855e72463d1df71639e8';
+YUI.Env[Y.version].md5 = '2949f4b0d102b69873dc3d370563949c';
