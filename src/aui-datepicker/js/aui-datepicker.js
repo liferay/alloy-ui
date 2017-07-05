@@ -80,7 +80,19 @@ DatePickerBase.ATTRS = {
     },
 
     /**
-     * TODO. Wanna help? Please send a Pull Request.
+     * Sets the `aria-live` attribute for the datepicker.
+     *
+     * @attribute live
+     * @default 'assertive'
+     * @type String
+     */
+    live: {
+        validator: Lang.isString,
+        value: 'assertive'
+    },
+
+    /**
+     * Defines how many panes should be rendered.
      *
      * @attribute panes
      * @default 1
@@ -92,6 +104,21 @@ DatePickerBase.ATTRS = {
         value: 1,
         validator: Lang.isNumber,
         writeOnce: true
+    },
+
+
+    /**
+     * Boolean indicating if use of the WAI-ARIA Roles and States
+     * should be enabled.
+     *
+     * @attribute useARIA
+     * @default true
+     * @type Boolean
+     */
+    useARIA: {
+        validator: A.Lang.isBoolean,
+        value: true,
+        writeOnce: 'initOnly'
     }
 };
 
@@ -108,6 +135,10 @@ A.mix(DatePickerBase.prototype, {
         var instance = this;
 
         instance.after(SELECTION_CHANGE, instance._afterDatePickerSelectionChange);
+
+        if (instance.get('useARIA')) {
+            instance.plug(A.Plugin.Aria);
+        }
     },
 
     /**
@@ -120,6 +151,10 @@ A.mix(DatePickerBase.prototype, {
         var instance = this;
 
         instance.getCalendar()._clearSelection(silent);
+
+        if (instance.get('useARIA')) {
+            instance.aria.setAttribute('label', '', instance.get('activeInput'));
+        }
     },
 
     /**
@@ -201,7 +236,12 @@ A.mix(DatePickerBase.prototype, {
 
         instance.alignTo(node);
 
+        if (instance.get('useARIA')) {
+            instance.aria.setAttribute('live', instance.get('live'), instance.get('activeInput'));
+        }
+
         instance.clearSelection(true);
+
         instance.selectDates(instance.getParsedDatesFromInputValue());
     },
 
@@ -214,10 +254,15 @@ A.mix(DatePickerBase.prototype, {
     _afterCalendarDateClick: function() {
         var instance = this,
             calendar = instance.getCalendar(),
+            date = instance.getSelectedDates(),
             selectionMode = calendar.get(SELECTION_MODE);
 
         if (instance.get(AUTO_HIDE) && (selectionMode !== MULTIPLE)) {
             instance.hide();
+        }
+
+        if (instance.get('useARIA')) {
+            this.aria.setAttribute('label', date, instance.get('activeInput'));
         }
     },
 
@@ -243,9 +288,15 @@ A.mix(DatePickerBase.prototype, {
      * @protected
      */
     _afterDatePickerSelectionChange: function() {
-        var instance = this;
+        var instance = this,
+            calendar = instance.getCalendar(),
+            selectionMode = calendar.get('selectionMode');
 
         instance._setCalendarToFirstSelectedDate();
+
+        if (instance.get('autoHide') && (selectionMode !== 'multiple')) {
+            instance.hide();
+        }
     },
 
     /**
