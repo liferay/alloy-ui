@@ -232,9 +232,12 @@ A.mix(DatePickerBase.prototype, {
             popover = instance.getPopover();
 
         popover.set(TRIGGER, node);
-        instance.set(ACTIVE_INPUT, node);
 
-        instance.alignTo(node);
+        if (!popover.get('visible')) {
+            instance.set(ACTIVE_INPUT, node);
+
+            instance.alignTo(node);
+        }
 
         if (instance.get('useARIA')) {
             instance.aria.setAttribute('live', instance.get('live'), instance.get('activeInput'));
