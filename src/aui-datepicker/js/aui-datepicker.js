@@ -246,9 +246,10 @@ A.mix(DatePickerBase.prototype, {
             popover = instance.getPopover();
 
         popover.set('trigger', node);
-        instance.set('activeInput', node);
 
         if (!popover.get('visible')) {
+            instance.set('activeInput', node);
+
             instance.alignTo(node);
         }
 
