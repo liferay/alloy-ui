@@ -9,6 +9,7 @@ var Lang = A.Lang,
     isString = Lang.isString,
 
     EVENT_ENTER_KEY = 'enterKey',
+    EVENT_TAB_KEY = 'tabKey',
 
     _DOCUMENT = A.one(A.config.doc);
 
@@ -84,7 +85,12 @@ DatePickerDelegate.prototype = {
                 A.bind('_onceUserInteractionRelease', instance), trigger),
 
             container.delegate(
-                'key', A.bind('_handleTabKeyEvent', instance), 'tab', trigger)
+                'key',
+                A.bind('_handleTabKeyEvent', instance), 'tab', trigger),
+
+            container.delegate(
+                'key',
+                A.bind('_handleEnterKeyEvent', instance), 'enter', trigger)
 
         ];
 
@@ -95,7 +101,8 @@ DatePickerDelegate.prototype = {
         instance.publish(
             'selectionChange', {
                 defaultFn: instance._defSelectionChangeFn
-            });
+            }
+        );
     },
 
     /**
@@ -118,7 +125,7 @@ DatePickerDelegate.prototype = {
             selectedDates = null;
 
         if (activeInput) {
-            selectedDates = activeInput.getData('datepickerSelection')
+            selectedDates = activeInput.getData('datepickerSelection');
         }
 
         return selectedDates;
@@ -142,7 +149,7 @@ DatePickerDelegate.prototype = {
             });
         }
 
-        return null;
+       return null;
     },
 
     /**
@@ -207,6 +214,23 @@ DatePickerDelegate.prototype = {
         }
     },
 
+
+    /**
+     * Focus on active calendar.
+     *
+     * @method _focusActiveCalendar
+     * @protected
+     */
+    _focusActiveCalendar: function() {
+        var instance = this;
+
+        if (instance.calendar) {
+            var calendar = instance.getCalendar();
+
+            calendar.get('boundingBox').focus();
+        }
+    },
+
     /**
      * Formats a date according to a mask.
      *
@@ -219,10 +243,14 @@ DatePickerDelegate.prototype = {
         var instance = this,
             mask = instance.get('mask');
 
-        return A.Date.format(date, {
-            format: mask
-        });
+        return A.Date.format(
+            date,
+            {
+                format: mask
+            }
+        );
     },
+
 
     /**
     * Handles keydown events
@@ -237,16 +265,35 @@ DatePickerDelegate.prototype = {
         if (event.isKey('enter')) {
             instance.fire(EVENT_ENTER_KEY);
         }
+        else if (event.isKey('tab')) {
+            instance.fire(EVENT_TAB_KEY);
+        }
     },
 
     /**
-    * Handles tab key events
-    *
-    * @method _handleTabKeyEvent
-    * @protected
-    */
-    _handleTabKeyEvent: function() {
-        this.hide();
+     * Handles tab key events
+     *
+     * @method _handleTabKeyEvent
+     * @param event
+     * @protected
+     */
+    _handleTabKeyEvent: function(event) {
+        var instance = this;
+
+        instance._focusActiveCalendar();
+    },
+
+    /**
+     * Handles enter key events
+     *
+     * @method _handleEnterKeyEvent
+     * @param event
+     * @protected
+     */
+    _handleEnterKeyEvent: function(event) {
+        var instance = this;
+
+        instance.show();
     },
 
     /**
@@ -262,6 +309,8 @@ DatePickerDelegate.prototype = {
         instance.useInputNodeOnce(event.currentTarget);
 
         instance._userInteractionInProgress = true;
+
+        instance._focusActiveCalendar();
     },
 
     /**
@@ -356,7 +405,7 @@ DatePickerDelegate.prototype = {
                 activeInput.val(values.join(dateSeparator));
             }
         };
-    }
+    },
 };
 
 /**
