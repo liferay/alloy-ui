@@ -214,7 +214,6 @@ DatePickerDelegate.prototype = {
         }
     },
 
-
     /**
      * Focus on active calendar.
      *
