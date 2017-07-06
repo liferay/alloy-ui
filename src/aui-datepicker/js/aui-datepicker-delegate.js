@@ -292,6 +292,8 @@ DatePickerDelegate.prototype = {
     _handleEnterKeyEvent: function(event) {
         var instance = this;
 
+        event.preventDefault();
+
         instance.show();
     },
 
