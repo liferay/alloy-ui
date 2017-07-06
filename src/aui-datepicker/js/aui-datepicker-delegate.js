@@ -209,7 +209,6 @@ DatePickerDelegate.prototype = {
         activeInput.setData(DATEPICKER_SELECTION, selection);
     },
 
-
     /**
      * Focus on active calendar.
      *
