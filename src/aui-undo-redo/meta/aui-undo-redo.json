@@ -3,6 +3,7 @@
         "requires": [
             "base",
             "base-build",
+            "event-key",
             "promise"
         ]
     }
