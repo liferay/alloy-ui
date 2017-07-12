@@ -407,9 +407,13 @@ A.Carousel = A.Base.create('carousel', A.ImageViewerBase, [A.ImageViewerSlidesho
             else if (focusedNode.hasClass(CSS_MENU_PLAY) || focusedNode.hasClass(CSS_MENU_PAUSE)) {
                 this._onPlayerClick();
             }
+
+            event.preventDefault();
         }
 
         if (event.isKey('SPACE')) {
+            event.preventDefault();
+
             this._onPlayerClick();
         }
     },
