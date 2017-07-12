@@ -677,9 +677,13 @@ var Carousel = A.Component.create({
                 else if (focusedAnchor.hasClass(CSS_MENU_PLAY) || focusedAnchor.hasClass(CSS_MENU_PAUSE)) {
                     instance._onMenuPlayClick();
                 }
+
+                event.preventDefault();
             }
 
             if (event.keyCode == 32) {
+                event.preventDefault();
+
                 instance._onMenuPlayClick();
             }
         },
