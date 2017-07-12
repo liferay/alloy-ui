@@ -316,6 +316,20 @@ DiagramNode = A.Component.create({
         },
 
         /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            value: true,
+            validator: A.Lang.isBoolean,
+            writeOnce: 'initOnly'
+        },
+
+        /**
          * The width of the node.
          *
          * @attribute width
@@ -477,9 +491,11 @@ DiagramNode = A.Component.create({
                 boundaryMouseLeave: {}
             });
 
+            instance.boundingBox = instance.get('boundingBox');
             instance.toolbarContainer = instance.get('toolbarContainer');
 
-            instance.get('boundingBox').addClass(CSS_DIAGRAM_NODE + '-' + instance.get('type'));
+            instance.boundingBox.addClass(CSS_DIAGRAM_NODE + '-' + instance.get('type'));
+            instance.boundingBox.setAttribute('draggable', true);
         },
 
         /**
