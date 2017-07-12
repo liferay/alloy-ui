@@ -946,6 +946,7 @@ var FormValidator = A.Component.create({
                 function(node) {
                     instance.resetFieldCss(node);
                     node.removeAttribute('aria-invalid');
+                    node.removeAttribute('aria-errormessage');
                 }
             );
         },
@@ -1221,6 +1222,8 @@ var FormValidator = A.Component.create({
          * @protected
          */
         _highlightHelper: function(field, errorClass, validClass, valid) {
+            var instance = this;
+
             if (valid) {
                 field.removeClass(errorClass).addClass(validClass);
 
@@ -1232,6 +1235,7 @@ var FormValidator = A.Component.create({
                 field.removeClass(validClass).addClass(errorClass);
 
                 if (errorClass === CSS_ERROR_FIELD) {
+                    field.setAttribute('aria-errormessage', field.get('id') + 'Helper');
                     field.set('aria-invalid', true);
                 }
             }
