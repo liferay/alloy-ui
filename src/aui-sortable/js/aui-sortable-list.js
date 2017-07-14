@@ -162,6 +162,20 @@ var SortableList = A.Component.create({
                 return A.bind(v, this);
             },
             validator: isFunction
+        },
+
+        /**
+         * Boolean indicating if use of the WAI-ARIA Roles and States
+         * should be enabled.
+         *
+         * @attribute useARIA
+         * @default true
+         * @type Boolean
+         */
+        useARIA: {
+            value: true,
+            validator: A.Lang.isBoolean,
+            writeOnce: 'initOnly'
         }
     },
 
@@ -199,6 +213,13 @@ var SortableList = A.Component.create({
 
             if (nodes) {
                 instance.addAll(nodes);
+            }
+
+            if (instance.get('useARIA')) {
+                nodes._nodes.forEach(function(node) {
+                    node.setAttribute('tabindex', '0');
+                    node.setAttribute('draggable', 'true');
+                })
             }
         },
 
