@@ -316,20 +316,6 @@ DiagramNode = A.Component.create({
         },
 
         /**
-         * Boolean indicating if use of the WAI-ARIA Roles and States
-         * should be enabled.
-         *
-         * @attribute useARIA
-         * @default true
-         * @type Boolean
-         */
-        useARIA: {
-            value: true,
-            validator: A.Lang.isBoolean,
-            writeOnce: 'initOnly'
-        },
-
-        /**
          * The width of the node.
          *
          * @attribute width
