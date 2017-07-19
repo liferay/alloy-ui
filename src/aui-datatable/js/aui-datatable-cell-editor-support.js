@@ -193,13 +193,18 @@ A.mix(CellEditorSupport.prototype, {
      */
     _onEditorSave: function(event) {
         var instance = this,
+            activeCell = instance.get('activeCell'),
             editor = event.currentTarget,
+            newVal = event.newVal,
             column = instance.getActiveColumn(),
-            record = instance.getActiveRecord();
+            record = instance.getActiveRecord(),
+            formattedVal = editor.formatValue(editor.get('inputFormatter'), newVal);
 
-        editor.set('value', event.newVal);
+        editor.set('value', newVal);
 
-        record.set(column.key, editor.formatValue(editor.get('outputFormatter'), event.newVal));
+        record.set(column.key, formattedVal);
+
+        activeCell.html(formattedVal)
 
         instance._refocusActiveCell();
     },
