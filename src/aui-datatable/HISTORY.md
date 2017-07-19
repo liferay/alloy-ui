@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3112](https://issues.liferay.com/browse/AUI-3112) Event creation in DDL spreadsheet has incorrect date format
 * [AUI-3094](https://issues.liferay.com/browse/AUI-3094) Datatable handles incorrectly new line characters in textarea field.
 
 ## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
