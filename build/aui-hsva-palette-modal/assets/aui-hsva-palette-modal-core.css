@@ -1,0 +1,7 @@
+.hsv-palette-modal-hidden {
+    display: none;
+}
+
+.hsv-palette-modal .hsv-container {
+    margin-left: 0;
+}
