@@ -1,0 +1,7 @@
+.layout-builder-add-col-draggable .layout-builder-resize-col-draggable-border {
+    border-right-color: transparent;
+}
+
+.layout-builder-add-col-draggable:last-child .layout-builder-resize-col-draggable-border {
+    border-color: #bbb;
+}
