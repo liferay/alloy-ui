@@ -1,0 +1,37 @@
+.image-viewer-base.image-viewer-multiple {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.image-viewer-multiple .image-viewer-multiple-content {
+    position: relative;
+    white-space: nowrap;
+}
+
+.image-viewer-multiple .image-viewer-base-image-container,
+.image-viewer-multiple .image-viewer-base-image-container.image-viewer-base-current-image {
+    border: 3px solid transparent;
+    cursor: pointer;
+    display: inline-block;
+    height: auto;
+    margin: 0 3px;
+    width: auto;
+}
+
+.image-viewer-multiple .image-viewer-base-image-container:hover {
+    border: 3px solid #aaa;
+}
+
+.image-viewer-multiple .image-viewer-base-image-container.image-viewer-base-current-image {
+    border: 3px solid #000;
+}
+
+.image-viewer-multiple .image-viewer-base-image-container.image-viewer-base-loading {
+    vertical-align: top;
+}
+
+.image-viewer-multiple .image-viewer-base-control-right {
+    text-align: right;
+}
