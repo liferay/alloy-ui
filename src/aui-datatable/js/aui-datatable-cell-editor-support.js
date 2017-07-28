@@ -199,7 +199,7 @@ A.mix(CellEditorSupport.prototype, {
 
         editor.set('value', event.newVal);
 
-        record.set(column.key, editor.formatValue(editor.get('inputFormatter'), event.newVal));
+        record.set(column.key, editor.formatValue(editor.get('outputFormatter'), event.newVal));
 
         instance._refocusActiveCell();
     },
