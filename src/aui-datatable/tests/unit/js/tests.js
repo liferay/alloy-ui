@@ -484,8 +484,8 @@ YUI.add('aui-datatable-tests', function(Y) {
             var cell = this._dataTable.getCell([0, 0]),
                 editor,
                 editorNode,
-                formattedVal,
-                newVal = 'San Francisco\nLos Angeles',
+                expected = 'San Francisco\nLos Angeles',
+                newVal = 'San Francisco<br/>Los Angeles',
                 saveBtn,
                 textArea;
 
@@ -501,11 +501,7 @@ YUI.add('aui-datatable-tests', function(Y) {
             saveBtn.simulate('mousemove');
             saveBtn.simulate('click');
 
-            formattedVal = editor.formatValue(editor.get('inputFormatter'), newVal);
-
-            formattedVal = formattedVal.replace(/<br\s*\/?>/gi, '<br>');
-
-            Y.Assert.areEqual(cell.html(), formattedVal);
+            Y.Assert.areEqual(cell.html(), expected);
         },
 
         'open editor on double click': function() {
