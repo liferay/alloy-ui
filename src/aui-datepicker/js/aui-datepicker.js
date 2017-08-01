@@ -57,6 +57,19 @@ DatePickerBase.ATTRS = {
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
+     * @attribute autoHide
+     * @default true
+     * @type Boolean
+     */
+    autoHide: {
+        validator: Lang.isBoolean,
+        value: true
+    },
+
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
      * @attribute calendar
      * @default {}
      * @writeOnce
@@ -65,18 +78,6 @@ DatePickerBase.ATTRS = {
         setter: '_setCalendar',
         value: {},
         writeOnce: true
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @attribute autoHide
-     * @default true
-     * @type Boolean
-     */
-    autoHide: {
-        validator: Lang.isBoolean,
-        value: true
     },
 
     /**
@@ -101,8 +102,8 @@ DatePickerBase.ATTRS = {
      */
     panes: {
         setter: '_setPanes',
-        value: 1,
         validator: Lang.isNumber,
+        value: 1,
         writeOnce: true
     },
 
@@ -221,6 +222,27 @@ A.mix(DatePickerBase.prototype, {
         instance.getCalendar().selectDates(instance._normalizeDatesForCalendar(dates));
     },
 
+     /**
+     * Selects dates in the 'Calendar' while only allowing
+     * the calendar to fire 'selectionChange' once.
+     *
+     * @method selectDatesFromInputValue
+     * @param dates
+     */
+    selectDatesFromInputValue: function(dates) {
+        var instance = this,
+            calendar = instance.getCalendar();
+
+        A.Array.each(
+            dates,
+            function(date) {
+                calendar._addDateToSelection(date, true);
+            }
+        );
+
+        calendar._fireSelectionChange();
+    },
+
     /**
      * TODO. Wanna help? Please send a Pull Request.
      *
@@ -245,7 +267,7 @@ A.mix(DatePickerBase.prototype, {
 
         instance.clearSelection(true);
 
-        instance.selectDates(instance.getParsedDatesFromInputValue());
+        instance.selectDatesFromInputValue(instance.getParsedDatesFromInputValue());
     },
 
     /**
@@ -277,11 +299,19 @@ A.mix(DatePickerBase.prototype, {
      * @protected
      */
     _afterCalendarSelectionChange: function(event) {
-        var instance = this;
+        var instance = this,
+            newDates = event.newSelection,
+            prevDates = instance.getSelectedDates() || [];
 
-        instance.fire(SELECTION_CHANGE, {
-            newSelection: event.newSelection
-        });
+            newDates = newDates.concat(prevDates);
+
+            newDates = A.Array.dedupe(newDates);
+
+            if (newDates.length !== prevDates.length || event.newSelection.length < prevDates.length) {
+                instance.fire('selectionChange', {
+                    newSelection: event.newSelection
+                });
+            }
     },
 
     /**
@@ -306,62 +336,18 @@ A.mix(DatePickerBase.prototype, {
      * Checks if the given dates are referencing the same
      * day, month and year.
      *
-     * @method _setCalendarToFirstSelectedDate
+     * @method _isSameDay
+     * @param date1
+     * @param date2
      * @protected
      */
-    _setCalendarToFirstSelectedDate: function() {
-        var instance = this,
-            dates = instance.getSelectedDates(),
-            firstSelectedDate = dates[0];
-
-        if (firstSelectedDate) {
-            instance.getCalendar().set(DATE, firstSelectedDate);
-        }
+    _isSameDay: function(date1, date2) {
+        return date1.getDate() === date2.getDate() &&
+            date1.getMonth() === date2.getMonth() &&
+            date1.getFullYear() === date2.getFullYear();
     },
 
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @method _onceUserInteractionRelease
-     * @param event
-     * @protected
-     */
-    _onceUserInteractionRelease: function(event) {
-        var instance = this;
-
-        instance.useInputNodeOnce(event.currentTarget);
-
-        instance.alignTo(event.currentTarget);
-
-        instance._userInteractionInProgress = false;
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @method _setCalendar
-     * @param val
-     * @protected
-     */
-    _setCalendar: function(val) {
-        return A.merge({
-            showNextMonth: true,
-            showPrevMonth: true
-        }, val);
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @method _setPanes
-     * @param val
-     * @protected
-     */
-    _setPanes: function(val) {
-        return clamp(val, 1, 3);
-    },
-
-    /**
+   /**
      * Makes any necessary changes to dates before using them in the
      * calendar.
      *
@@ -402,18 +388,62 @@ A.mix(DatePickerBase.prototype, {
     },
 
     /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _onceUserInteractionRelease
+     * @param event
+     * @protected
+     */
+    _onceUserInteractionRelease: function(event) {
+        var instance = this;
+
+        instance.useInputNodeOnce(event.currentTarget);
+
+        instance.alignTo(event.currentTarget);
+
+        instance._userInteractionInProgress = false;
+    },
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _setCalendar
+     * @param val
+     * @protected
+     */
+    _setCalendar: function(val) {
+        return A.merge({
+            showNextMonth: true,
+            showPrevMonth: true
+        }, val);
+    },
+
+    /**
      * Checks if the given dates are referencing the same
      * day, month and year.
      *
-     * @method _isSameDay
-     * @param date1
-     * @param date2
+     * @method _setCalendarToFirstSelectedDate
      * @protected
      */
-    _isSameDay: function(date1, date2) {
-        return date1.getDate() === date2.getDate() &&
-            date1.getMonth() === date2.getMonth() &&
-            date1.getFullYear() === date2.getFullYear();
+    _setCalendarToFirstSelectedDate: function() {
+        var instance = this,
+            dates = instance.getSelectedDates(),
+            firstSelectedDate = dates[0];
+
+        if (firstSelectedDate) {
+            instance.getCalendar().set(DATE, firstSelectedDate);
+        }
+    },
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _setPanes
+     * @param val
+     * @protected
+     */
+    _setPanes: function(val) {
+        return clamp(val, 1, 3);
     }
 }, true);
 
