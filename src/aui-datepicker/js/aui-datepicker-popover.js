@@ -107,6 +107,9 @@ A.mix(DatePickerPopover.prototype, {
             popover.get(BOUNDING_BOX).on(
                 CLICKOUTSIDE, instance._onPopoverClickOutside, instance);
 
+            popover.get(BOUNDING_BOX).on(
+                'keydown', instance._handleKeyEvent, instance);
+
             instance.popover = popover;
         }
 
@@ -165,6 +168,47 @@ A.mix(DatePickerPopover.prototype, {
             instance.hide();
         }
     },
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handleKeyEvent
+     */
+    _handleKeyEvent: function(event) {
+        var instance = this;
+
+        if (event.isKey('enter')) {
+            instance._handleEnterKeyPopover();
+
+        }
+        else if (event.isKey('esc')) {
+            instance._handleEscKeyPopover();
+            event.stopPropagation();
+        }
+    },
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handleEnterKeyPopover
+     */
+    _handleEnterKeyPopover: function() {
+        var instance = this;
+
+        instance.hide();
+    },
+
+    /**
+     * TODO. Wanna help? Please send a Pull Request.
+     *
+     * @method _handleEscKeyPopover
+     */
+    _handleEscKeyPopover: function() {
+        var instance = this
+
+        instance.hide();
+    },
+
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
