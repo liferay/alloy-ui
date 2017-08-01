@@ -12,6 +12,11 @@
 <body class="yui3-skin-sam">
 <div id="logger"></div>
 
+<button id="trigger"></button>
+<button id="triggerA"></button>
+<button id="triggerB"></button>
+<textarea id="inputTrigger" type="text" >Wed, Aug 07, 2013 — Thu, Aug 08, 2013 — Sun, Aug 18, 2013</textarea>
+
 <div>
 	<input id="inputTriggerA" type="text" />
 	<input id="inputTriggerB" type="text" />
@@ -23,7 +28,7 @@ YUI({
     coverage: ['aui-datepicker'],
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
 }).use('test-console', 'test', 'module-tests', function(Y) {
-    
+
     (new Y.Test.Console()).render('#logger');
 
     Y.Test.Runner.setName('aui-datepicker');
