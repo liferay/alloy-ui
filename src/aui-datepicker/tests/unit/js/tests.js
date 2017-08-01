@@ -5,16 +5,23 @@ YUI.add('module-tests', function(Y) {
     suite.add(new Y.Test.Case({
         name: 'Datepicker Tests',
 
-        tearDown: function() {
-            this.datePicker.destroy();
-        },
-
         selectDate: function(dayIndex, options) {
             var popover = this.datePicker.getPopover(),
                 dayCells = popover.bodyNode.all('.yui3-calendar-day'),
+                os = Y.UA.os,
                 toClick = dayCells.item(dayIndex);
 
-            toClick.simulate('click', options || {});
+            var option = options || {};
+
+            if ((options && !Y.Object.isEmpty(options)) && (os === 'macintosh'))  {
+                option = { metaKey: true };
+            }
+
+            toClick.simulate('click', option);
+        },
+
+        tearDown: function() {
+            this.datePicker.destroy();
         },
 
         'selectionChange event should only fire when selection changes': function() {
