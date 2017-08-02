@@ -322,6 +322,8 @@ A.mix(DatePickerBase.prototype, {
 
         if (instance.get('autoHide') && (selectionMode !== 'multiple')) {
             instance.hide();
+
+            instance.get('activeInput').focus();
         }
     },
 
