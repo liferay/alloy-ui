@@ -97,8 +97,12 @@ A.mix(DatePickerPopover.prototype, {
 
         if (!popover) {
             popover = new A.Popover(instance.get('popover'));
+
             popover.get('boundingBox').on(
                 'clickoutside', instance._onPopoverClickOutside, instance);
+
+            popover.get('boundingBox').on(
+                'keydown', instance._handleKeyEvent, instance);
 
             instance.popover = popover;
         }
@@ -129,6 +133,21 @@ A.mix(DatePickerPopover.prototype, {
     },
 
     /**
+     * Sets the `popover` value by merging its object with another properties.
+     *
+     * @method _handleKeyEvent
+     */
+    _handleKeyEvent: function(event) {
+        var instance = this;
+
+        if (event.isKey('esc')) {
+            event.stopPropagation();
+
+            instance.hide();
+        }
+    },
+
+    /**
      * Checks if the active input is focused.
      *
      * @method _isActiveInputFocused
@@ -155,13 +174,12 @@ A.mix(DatePickerPopover.prototype, {
             activeInput = instance.get('activeInput');
 
         if (activeInput && (!instance._isActiveInputFocused() && !activeInput.contains(target))) {
-
             instance.hide();
         }
     },
 
     /**
-     * Sets the `popover` value by merging its object with another properties.
+     * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _setPopover
      * @param val
