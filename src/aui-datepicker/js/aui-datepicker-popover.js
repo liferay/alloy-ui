@@ -139,6 +139,21 @@ A.mix(DatePickerPopover.prototype, {
     },
 
     /**
+     * Sets the `popover` value by merging its object with another properties.
+     *
+     * @method _handleKeyEvent
+     */
+    _handleKeyEvent: function(event) {
+        var instance = this;
+
+        if (event.isKey('esc')) {
+            event.stopPropagation();
+
+            instance.hide();
+        }
+    },
+
+    /**
      * TODO. Wanna help? Please send a Pull Request.
      *
      * @method _isActiveInputFocused
@@ -164,51 +179,9 @@ A.mix(DatePickerPopover.prototype, {
             activeInput = instance.get(ACTIVE_INPUT);
 
         if (activeInput && (!instance._isActiveInputFocused() && !activeInput.contains(target))) {
-
             instance.hide();
         }
     },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @method _handleKeyEvent
-     */
-    _handleKeyEvent: function(event) {
-        var instance = this;
-
-        if (event.isKey('enter')) {
-            instance._handleEnterKeyPopover();
-
-        }
-        else if (event.isKey('esc')) {
-            instance._handleEscKeyPopover();
-            event.stopPropagation();
-        }
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @method _handleEnterKeyPopover
-     */
-    _handleEnterKeyPopover: function() {
-        var instance = this;
-
-        instance.hide();
-    },
-
-    /**
-     * TODO. Wanna help? Please send a Pull Request.
-     *
-     * @method _handleEscKeyPopover
-     */
-    _handleEscKeyPopover: function() {
-        var instance = this
-
-        instance.hide();
-    },
-
 
     /**
      * TODO. Wanna help? Please send a Pull Request.
