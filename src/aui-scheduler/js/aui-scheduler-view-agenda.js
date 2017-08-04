@@ -538,9 +538,7 @@ var SchedulerAgendaView = A.Component.create({
 
             var currentTarget = event.currentTarget;
 
-            var timestamp = A.Lang.toInt(currentTarget.getData('timestamp')) || Date.now() || function() {
-                return +new Date();
-            };
+            var timestamp = A.Lang.toInt(currentTarget.getData('timestamp')) || new Date().getTime();
 
             var date = new Date(timestamp);
 
