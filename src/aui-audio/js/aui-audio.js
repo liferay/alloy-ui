@@ -602,7 +602,7 @@ var AudioImpl = A.Component.create({
     }
 });
 
-AudioImpl.TPL_AUDIO = '<audio id="{0}" controls class="' + CSS_AUDIO_NODE + '"></audio>';
+AudioImpl.TPL_AUDIO = '<audio id="{0}" controls="controls" class="' + CSS_AUDIO_NODE + '"></audio>';
 
 AudioImpl.TPL_AUDIO_FALLBACK = '<div class="' + CSS_AUDIO_NODE + '"></div>';
 
