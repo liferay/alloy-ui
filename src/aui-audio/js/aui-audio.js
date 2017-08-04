@@ -241,10 +241,23 @@ var AudioImpl = A.Component.create({
                 play: {}
             });
 
-            instance._audio.on({
-                pause: instance._onPause,
-                play: instance._onPlay
-            });
+            instance._audio.getDOMNode().addEventListener(
+                'pause',
+                function (event) {
+                    instance.fire('pause', {
+                        cropType: event.type
+                    });
+                }
+            );
+
+            instance._audio.getDOMNode().addEventListener(
+                'play',
+                function (event) {
+                    instance.fire('play', {
+                        cropType: event.type
+                    });
+                }
+            );
         },
 
         /**
@@ -300,32 +313,6 @@ var AudioImpl = A.Component.create({
             if (instance._audio.hasMethod('play')) {
                 instance._audio.invoke('play');
             }
-        },
-
-        /**
-         * Fires on video pause event fires.
-         *
-         * @method _onPause
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onPause: function (event) {
-            this.fire('play', {
-                cropType: event.type
-            });
-        },
-
-        /**
-         * Fires on video play event fires.
-         *
-         * @method _onPlay
-         * @param {EventFacade} event
-         * @protected
-         */
-        _onPlay: function (event) {
-            this.fire('pause', {
-                cropType: event.type
-            });
         },
 
         /**
