@@ -35,26 +35,30 @@ YUI.add('aui-alert-tests', function(Y) {
         },
 
         'should check that alerts have role set to alert': function () {
-            var alert1Role = alert1.get('boundingBox').get('role');
-            var alert2Role = alert2.get('boundingBox').get('role');
-            var alert3Role = alert3.get('boundingBox').get('role');
+            if (alert1.get('useARIA')) {
+                Assert.isTrue(alert1.get('boundingBox').get('role') == 'alert');
+            }
 
-            if (alert1.get('useARIA') && alert2.get('useARIA') && alert3.get('useARIA')) {
-                Assert.isTrue(alert1Role == 'alert');
-                Assert.isTrue(alert2Role == 'alert');
-                Assert.isTrue(alert3Role == 'alert');
+            if (alert2.get('useARIA')) {
+                Assert.isTrue(alert2.get('boundingBox').get('role') == 'alert');
+            }
+
+            if (alert3.get('useARIA')) {
+                Assert.isTrue(alert3.get('boundingBox').get('role') == 'alert');
             }
         },
 
         'should check that alerts have aria-hidden set to false': function () {
-            var alert1AriaHidden = alert1.get('boundingBox').get('aria-hidden');
-            var alert2AriaHidden = alert2.get('boundingBox').get('aria-hidden');
-            var alert3AriaHidden = alert3.get('boundingBox').get('aria-hidden');
+            if (alert1.get('useARIA')) {
+                Assert.isTrue(alert1.get('boundingBox').get('aria-hidden') == 'false');
+            }
 
-            if (alert1.get('useARIA') && alert2.get('useARIA') && alert3.get('useARIA')) {
-                Assert.isTrue(alert1AriaHidden == 'false');
-                Assert.isTrue(alert2AriaHidden == 'false');
-                Assert.isTrue(alert3AriaHidden == 'false');
+            if (alert2.get('useARIA')) {
+                Assert.isTrue(alert2.get('boundingBox').get('aria-hidden') == 'false');
+            }
+
+            if (alert3.get('useARIA')) {
+                Assert.isTrue(alert3.get('boundingBox').get('aria-hidden') == 'false');
             }
         },
 
