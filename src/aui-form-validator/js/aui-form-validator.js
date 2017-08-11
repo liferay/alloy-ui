@@ -1107,11 +1107,9 @@ var FormValidator = A.Component.create({
                     target = field.ancestor('.' + CSS_HAS_ERROR).get('lastChild');
                 }
 
-                // Use aria-describedby to provide extra details for filling input field
                 var id = field.get('id') + 'Helper';
 
                 stackContainer.set('id', id);
-                field.set('aria-describedby', id);
 
                 target.placeAfter(stackContainer);
 
