@@ -480,30 +480,6 @@ YUI.add('aui-datatable-tests', function(Y) {
             Y.ArrayAssert.itemsAreSame(cellCoords.topLeft, activeCoords, 'Up arrow should have moved selection.');
         },
 
-        'replace line break with new line': function() {
-            var cell = this._dataTable.getCell([0, 0]),
-                editor,
-                editorNode,
-                expected = 'San Francisco\nLos Angeles',
-                newVal = 'San Francisco<br/>Los Angeles',
-                saveBtn,
-                textArea;
-
-            cell.simulate('dblclick');
-
-            editorNode = Y.one('.basecelleditor');
-            editor = Y.Widget.getByNode(editorNode);
-            saveBtn = editorNode.all('button').item(0);
-            textArea = editorNode.one('textarea');
-
-            textArea.val(newVal);
-
-            saveBtn.simulate('mousemove');
-            saveBtn.simulate('click');
-
-            Y.Assert.areEqual(cell.html(), expected);
-        },
-
         'open editor on double click': function() {
             var dataTable = this._dataTable,
                 firstCell = dataTable.getCell([0, 0]);
