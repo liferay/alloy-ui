@@ -945,8 +945,8 @@ var FormValidator = A.Component.create({
             namedFieldNodes.each(
                 function(node) {
                     instance.resetFieldCss(node);
-                    node.removeAttribute('aria-invalid');
                     node.removeAttribute('aria-errormessage');
+                    node.removeAttribute('aria-invalid');
                 }
             );
         },
@@ -1228,6 +1228,7 @@ var FormValidator = A.Component.create({
                 field.removeClass(errorClass).addClass(validClass);
 
                 if (validClass === CSS_SUCCESS_FIELD) {
+                    field.removeAttribute('aria-errormessage');
                     field.removeAttribute('aria-invalid');
                 }
             }
@@ -1235,7 +1236,7 @@ var FormValidator = A.Component.create({
                 field.removeClass(validClass).addClass(errorClass);
 
                 if (errorClass === CSS_ERROR_FIELD) {
-                    field.setAttribute('aria-errormessage', field.get('id') + 'Helper');
+                    field.set('aria-errormessage', field.get('id') + 'Helper');
                     field.set('aria-invalid', true);
                 }
             }
