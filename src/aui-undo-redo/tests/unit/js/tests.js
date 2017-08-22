@@ -83,6 +83,51 @@ YUI.add('aui-undo-redo-tests', function(Y) {
             Y.Assert.areSame(state1, this.undoRedo.redoPeek());
         },
 
+        'should call undo and redo after ctrl + z and ctrl + y are pressed respectively': function() {
+            var instance = this,
+                document = Y.one('doc');
+
+            instance.undoRedo = new Y.UndoRedo({
+                queueable: true
+            });
+
+            function undo() {
+                this.undoRedo.undo();
+            }
+
+            function redo() {
+                this.undoRedo.redo();
+            }
+
+            document.on('key', Y.bind(undo, instance), 'up:90+ctrl');
+            document.on('key', Y.bind(redo, instance), 'up:89+ctrl');
+
+            instance.undoRedo.add(instance.newWriteState('Hello', true));
+
+            Y.Assert.isTrue(instance.undoRedo.undo());
+            Y.Assert.isTrue(instance.undoRedo.redo());
+
+            document.simulate(
+                'keyup',
+                {
+                    ctrlKey: true,
+                    keyCode: 90
+                }
+            );
+
+            Y.Assert.isFalse(instance.undoRedo.undo());
+
+            document.simulate(
+                'keyup',
+                {
+                    ctrlKey: true,
+                    keyCode: 89
+                }
+            );
+
+            Y.Assert.isFalse(instance.undoRedo.redo());
+        },
+
         'should clean redo stack when new state is added': function() {
             this.undoRedo.add(this.newWriteState('Hello'));
             this.undoRedo.add(this.newWriteState(' World'));
@@ -296,5 +341,5 @@ YUI.add('aui-undo-redo-tests', function(Y) {
     Y.Test.Runner.add(suite);
 
 }, '', {
-    requires: ['test', 'aui-undo-redo', 'tests-aui-undo-redo-utils']
+    requires: ['test', 'aui-undo-redo', 'node-event-simulate', 'tests-aui-undo-redo-utils']
 });

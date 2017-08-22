@@ -1,8 +1,10 @@
 {
     "aui-undo-redo": {
         "requires": [
+            "aui-base",
             "base",
             "base-build",
+            "event-key",
             "promise"
         ]
     }

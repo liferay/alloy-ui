@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-1356](https://issues.liferay.com/browse/AUI-1356) Make aui-form-validator accessible with aria
 * [AUI-2820](https://issues.liferay.com/browse/AUI-2820) Radio button validation warnings don't disappear after input is entered
 
 ## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)

@@ -4,6 +4,7 @@
             "aui-aria",
             "aui-node",
             "aui-component",
+            "node-event-html5",
             "querystring-stringify-simple"
         ],
         "skinnable": true

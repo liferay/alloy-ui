@@ -1,4 +1,4 @@
-# Software License Agreement (BSD License)
+# Software License Agreement (BSD-3-Clause License)
 
 Copyright (c) 2014, Liferay Inc.
 All rights reserved.

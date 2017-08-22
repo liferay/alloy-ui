@@ -96,4 +96,4 @@ Each module (located under `src/`) contains a `HISTORY.md` file, check them for 
 
 ## License
 
-[BSB License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.md) (c) Liferay, Inc.
+[BSD-3-Clause License](https://github.com/liferay/alloy-ui/blob/master/LICENSE.md) (c) Liferay, Inc.

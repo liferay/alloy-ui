@@ -532,17 +532,17 @@ var SchedulerAgendaView = A.Component.create({
          * @protected
          */
         _onEventsHeaderClick: function(event) {
-            var instance = this,
+            var instance = this;
 
-                scheduler = instance.get('scheduler'),
+            var scheduler = instance.get('scheduler');
 
-                currentTarget = event.currentTarget,
+            var currentTarget = event.currentTarget;
 
-                timestamp = A.Lang.toInt(currentTarget.getData('timestamp')) || Date.now(),
+            var timestamp = A.Lang.toInt(currentTarget.getData('timestamp')) || new Date().getTime();
 
-                date = new Date(timestamp),
+            var date = new Date(timestamp);
 
-                dayView = scheduler.getViewByName('day');
+            var dayView = scheduler.getViewByName('day');
 
             if (dayView) {
                 scheduler.set('date', date);

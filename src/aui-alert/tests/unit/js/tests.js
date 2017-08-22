@@ -34,6 +34,34 @@ YUI.add('aui-alert-tests', function(Y) {
             Assert.isFalse(alert2.get('closeable'));
         },
 
+        'should check that alerts have role set to alert': function () {
+            if (alert1.get('useARIA')) {
+                Assert.isTrue(alert1.get('boundingBox').get('role') == 'alert');
+            }
+
+            if (alert2.get('useARIA')) {
+                Assert.isTrue(alert2.get('boundingBox').get('role') == 'alert');
+            }
+
+            if (alert3.get('useARIA')) {
+                Assert.isTrue(alert3.get('boundingBox').get('role') == 'alert');
+            }
+        },
+
+        'should check that alerts have aria-hidden set to false': function () {
+            if (alert1.get('useARIA')) {
+                Assert.isTrue(alert1.get('boundingBox').get('aria-hidden') == 'false');
+            }
+
+            if (alert2.get('useARIA')) {
+                Assert.isTrue(alert2.get('boundingBox').get('aria-hidden') == 'false');
+            }
+
+            if (alert3.get('useARIA')) {
+                Assert.isTrue(alert3.get('boundingBox').get('aria-hidden') == 'false');
+            }
+        },
+
         'should not be the close button when closeable is false': function() {
             alert1.set('closeable', false);
             alert3.set('closeable', false);
@@ -60,11 +88,16 @@ YUI.add('aui-alert-tests', function(Y) {
 
         'should hide when clicked on close button': function() {
             var closeNode = Y.one('#info .close');
+            var alert3AriaHidden = alert3.get('boundingBox').get('aria-hidden');
 
             closeNode.simulate('click');
 
             closeNode.on('click', function() {
                 Assert.isFalse(alert1.get('visible'));
+
+                if (alert3.get('useARIA')) {
+                    Assert.isTrue(alert3AriaHidden == 'true');
+                }
             });
         },
 

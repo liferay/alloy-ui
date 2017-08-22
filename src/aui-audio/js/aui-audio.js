@@ -222,6 +222,17 @@ var AudioImpl = A.Component.create({
             instance._renderSwfTask = A.debounce(instance._renderSwf, 1, instance);
 
             instance._renderAudio(!instance.get('oggUrl'));
+
+            instance._audio.on(
+                'play',
+                A.bind('_onPlay', instance)
+            );
+
+            instance._audio.on(
+                'pause',
+                A.bind('_onPause', instance)
+            );
+
         },
 
         /**
@@ -233,18 +244,15 @@ var AudioImpl = A.Component.create({
         bindUI: function() {
             var instance = this;
 
-            instance.publish({
-                audioReady: {
+            instance.publish(
+                'audioReady',
+                {
                     fireOnce: true
-                },
-                pause: {},
-                play: {}
-            });
+                }
+            );
 
-            instance._audio.on({
-                pause: instance._onPause,
-                play: instance._onPlay
-            });
+            instance.publish('play');
+            instance.publish('pause');
         },
 
         /**
@@ -602,7 +610,7 @@ var AudioImpl = A.Component.create({
     }
 });
 
-AudioImpl.TPL_AUDIO = '<audio id="{0}" controls class="' + CSS_AUDIO_NODE + '"></audio>';
+AudioImpl.TPL_AUDIO = '<audio id="{0}" controls="controls" class="' + CSS_AUDIO_NODE + '"></audio>';
 
 AudioImpl.TPL_AUDIO_FALLBACK = '<div class="' + CSS_AUDIO_NODE + '"></div>';
 

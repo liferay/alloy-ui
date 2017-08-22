@@ -945,6 +945,7 @@ var FormValidator = A.Component.create({
             namedFieldNodes.each(
                 function(node) {
                     instance.resetFieldCss(node);
+                    node.removeAttribute('aria-errormessage');
                     node.removeAttribute('aria-invalid');
                 }
             );
@@ -1106,11 +1107,9 @@ var FormValidator = A.Component.create({
                     target = field.ancestor('.' + CSS_HAS_ERROR).get('lastChild');
                 }
 
-                // Use aria-describedby to provide extra details for filling input field
                 var id = field.get('id') + 'Helper';
 
                 stackContainer.set('id', id);
-                field.set('aria-describedby', id);
 
                 target.placeAfter(stackContainer);
 
@@ -1221,10 +1220,13 @@ var FormValidator = A.Component.create({
          * @protected
          */
         _highlightHelper: function(field, errorClass, validClass, valid) {
+            var instance = this;
+
             if (valid) {
                 field.removeClass(errorClass).addClass(validClass);
 
                 if (validClass === CSS_SUCCESS_FIELD) {
+                    field.removeAttribute('aria-errormessage');
                     field.removeAttribute('aria-invalid');
                 }
             }
@@ -1232,6 +1234,7 @@ var FormValidator = A.Component.create({
                 field.removeClass(validClass).addClass(errorClass);
 
                 if (errorClass === CSS_ERROR_FIELD) {
+                    field.set('aria-errormessage', field.get('id') + 'Helper');
                     field.set('aria-invalid', true);
                 }
             }

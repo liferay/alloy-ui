@@ -58,12 +58,13 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-alert": {
         "requires": [
-            "timers",
-            "widget",
-            "widget-stdmod",
+            "aui-aria",
             "aui-classnamemanager",
             "aui-widget-cssclass",
-            "aui-widget-transition"
+            "aui-widget-transition",
+            "timers",
+            "widget",
+            "widget-stdmod"
         ],
         "skinnable": true
     },
@@ -88,6 +89,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-aria",
             "aui-node",
             "aui-component",
+            "node-event-html5",
             "querystring-stringify-simple"
         ],
         "skinnable": true
@@ -2049,8 +2051,10 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-undo-redo": {
         "requires": [
+            "aui-base",
             "base",
             "base-build",
+            "event-key",
             "promise"
         ]
     },
@@ -2138,4 +2142,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '2949f4b0d102b69873dc3d370563949c';
+YUI.Env[Y.version].md5 = '731f50c5bf41702efe0107efab4ac021';
