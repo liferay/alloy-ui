@@ -47,7 +47,7 @@
     "jshint-stylish": "^1.0.0",
     "liferay-gulp-tasks": "^0.5.3",
     "open": "~0.0.5",
-    "require-dir": "~0.1.0",
+    "require-dir": "^0.3.2",
     "run-sequence": "^2.0.0",
     "shifter": "~0.5.0",
     "spawn-local-bin": "~0.1.4",
