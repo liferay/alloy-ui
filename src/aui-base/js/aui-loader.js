@@ -213,6 +213,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-char-counter": {
         "requires": [
+            "aui-aria",
             "aui-node",
             "aui-event-input",
             "aui-component"
@@ -1674,4 +1675,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = 'b6c35846e71a1574b3d9f098eee0850c';
+YUI.Env[Y.version].md5 = '24739d3f3c38f8f2a156072e21a8adea';
