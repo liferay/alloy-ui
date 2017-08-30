@@ -8,8 +8,6 @@ var L = A.Lang,
     isNumber = L.isNumber,
     isString = L.isString;
 
-var REGEX_STR = /\S.+/;
-
     A.Node.DOM_EVENTS.compositionend = 1;
     A.Node.DOM_EVENTS.compositionstart = 1;
 
@@ -49,6 +47,17 @@ var CharCounter = A.Component.create({
      */
     ATTRS: {
         /**
+         * ARIA atomic attribute that describes assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute.
+         *
+         * @attribute atomic
+         * @default true
+         * @type {Boolean}
+         */
+        atomic: {
+            value: true
+        },
+
+        /**
          * Node or Selector to display the information of the counter.
          *
          * @attribute counter
@@ -57,6 +66,17 @@ var CharCounter = A.Component.create({
          */
         counter: {
             setter: A.one
+        },
+
+        /**
+         * ARIA describedby attribute that describes the current element.
+         *
+         * @attribute describedby
+         * @default ''
+         * @type {String}
+         */
+        describedby: {
+            value: ''
         },
 
         /**
@@ -71,36 +91,7 @@ var CharCounter = A.Component.create({
         },
 
         /**
-         * ARIA attribute that describes the reads.
-         *
-         * @attribute live
-         * @default 'polite'
-         * @type {String}
-         */
-        label: {
-            validator: isString,
-            valueFn: function() {
-                var instance = this;
-
-                if (!counter) {
-                    var counter = instance.get('counter');
-                }
-
-                if (counter) {
-                    var labelName = counter._node.nextSibling.toString().match(REGEX_STR),
-                        maxLength = instance.get('maxLength');
-                }
-
-                if (labelName) {
-                    labelName = maxLength + ' ' + labelName;
-                    return labelName;
-                }
-                return maxLength;
-            }
-        },
-
-        /**
-         * ARIA attribute to help assistive technology properly read updates
+         * ARIA live attribute to help assistive technology properly read updates
          * to the number of characters remaining.
          *
          * @attribute live
@@ -123,8 +114,7 @@ var CharCounter = A.Component.create({
         maxLength: {
             lazyAdd: false,
             setter: function(v) {
-                var instance = this;
-                return instance._setMaxLength(v);
+                return this._setMaxLength(v);
             },
             validator: isNumber,
             value: Infinity
@@ -222,7 +212,9 @@ var CharCounter = A.Component.create({
          */
         syncUI: function() {
             var instance = this;
+
             var counter = instance.get('counter');
+            var useAria = instance.get('useARIA');
 
             if (counter) {
                 var value = instance.get('input').val();
@@ -232,19 +224,8 @@ var CharCounter = A.Component.create({
                 counter.html(counterValue);
             }
 
-            if (instance.get('useARIA')) {
-                instance.plug(A.Plugin.Aria, {
-                    attributes: {
-                        live: 'live',
-                        label: 'label',
-                        label: 'valuenow', // Allow screen reader to read current number of characters remaining.
-                    },
-                    attributeNode: instance.get('input'),
-                    roleName: 'textbox',
-                    roleNode: instance.get('input')
-                });
-
-                instance._updateAriaLabel(counterValue);
+            if (useAria) {
+                this._syncAriaControlsUI();
             }
         },
 
@@ -395,33 +376,49 @@ var CharCounter = A.Component.create({
             return v;
         },
 
-        /**
-         * Updates the aria-label attribute with the remaining characters.
+         /**
+         * Updates the aria attribute for the component.
          *
-         * @method _onInputCompositionStart
-         * @param {EventFacade} event
+         * @method _syncAriaControlsUI
          * @protected
          */
-        _updateAriaLabel: function(counterValue) {
-            var instance = this,
-                input = instance.get('input');
+        _syncAriaControlsUI: function() {
+            var instance = this;
 
-            if (!counter) {
-                var counter = instance.get('counter');
+            instance.plug(
+                A.Plugin.Aria,
+                {
+                    attributes: {
+                        describedby: 'describedby',
+                    },
+                    attributeNode: instance.get('input')
+                }
+            );
+
+            var describedBy = instance.get('describedby');
+
+            describedBy = A.one('#' + describedBy);
+
+            if (describedBy) {
+                var atomic = instance.get('atomic');
+                var live = instance.get('live');
+
+                this.aria.setAttributes(
+                    [
+                        {
+                            name: 'atomic',
+                            node: describedBy,
+                            value: atomic
+                        },
+                        {
+                            name: 'live',
+                            node: describedBy,
+                            value: live
+                        }
+                    ]
+                );
             }
-
-            if (counter) {
-                var counterText = counter._node.nextSibling.textContent.match(REGEX_STR);
-            }
-            else {
-                var counterText = '';
-            }
-
-            var labelName = counterValue + ' ' + counterText;
-
-            input.setAttribute('aria-valuenow', labelName);
-            input.setAttribute('aria-label', input.get('role') + ' with ' + labelName);
-        },
+        }
     }
 });
 
