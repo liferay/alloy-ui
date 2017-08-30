@@ -188,6 +188,7 @@ var CharCounter = A.Component.create({
          */
         bindUI: function() {
             var instance = this;
+
             var input = instance.get('input');
 
             instance.publish('maxLength');
@@ -255,6 +256,7 @@ var CharCounter = A.Component.create({
          */
         checkLength: function() {
             var instance = this;
+
             var input = instance.get('input');
 
             var returnValue = false;
@@ -367,6 +369,7 @@ var CharCounter = A.Component.create({
          */
         _setMaxLength: function(v) {
             var instance = this;
+
             var input = instance.get('input');
 
             if (input && (v < Infinity)) {
