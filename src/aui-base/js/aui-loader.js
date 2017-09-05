@@ -1504,32 +1504,33 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-tooltip-base": {
         "requires": [
-            "escape",
+            "aui-aria",
+            "aui-classnamemanager",
+            "aui-component",
+            "aui-debounce",
+            "aui-node-base",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
+            "aui-widget-transition",
+            "aui-widget-trigger",
+            "aui-widget-position-align-suggestion",
             "event-hover",
+            "event-resize",
+            "escape",
             "widget",
             "widget-autohide",
             "widget-position",
             "widget-position-align",
             "widget-position-constrain",
             "widget-stack",
-            "widget-stdmod",
-            "aui-classnamemanager",
-            "aui-component",
-            "aui-debounce",
-            "aui-widget-cssclass",
-            "aui-widget-toggle",
-            "aui-widget-transition",
-            "aui-widget-trigger",
-            "aui-widget-position-align-suggestion",
-            "aui-node-base",
-            "event-resize"
+            "widget-stdmod"
         ],
         "skinnable": true
     },
     "aui-tooltip-delegate": {
         "requires": [
-            "node-event-delegate",
-            "aui-tooltip-base"
+            "aui-tooltip-base",
+            "node-event-delegate"
         ]
     },
     "aui-tree": {
@@ -1675,4 +1676,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '24739d3f3c38f8f2a156072e21a8adea';
+YUI.Env[Y.version].md5 = '617b071b2efb8647d6276a2e639c29a1';
