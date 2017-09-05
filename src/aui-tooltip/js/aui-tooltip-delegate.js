@@ -31,15 +31,14 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
      * @protected
      */
     initializer: function() {
-        var aria,
-            instance = this;
-
-        aria = instance.get('useARIA');
+        var instance = this,
+            useARIA = instance.get('useARIA');
 
         instance._eventHandles = [];
+
         instance.bindUI();
 
-        if (aria) {
+        if (useARIA) {
             instance.plug(A.Plugin.Aria);
         }
     },
@@ -116,16 +115,13 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
      * @protected
      */
     _onUserHideInteraction: function() {
-        var aria,
-            instance = this,
-            tooltipBoundingBox = instance.getTooltip().get('boundingBox');
-
-        aria = instance.get('useARIA'),
+        var instance = this,
+            tooltipBoundingBox = instance.getTooltip().get('boundingBox'),
+            useARIA = instance.get('useARIA');
 
         instance.getTooltip().hide();
 
-        if (aria) {
-            instance.plug(A.Plugin.Aria);
+        if (useARIA) {
             instance.aria.setAttribute('hidden', true, tooltipBoundingBox);
         }
     },
@@ -138,18 +134,14 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
      * @protected
      */
     _onUserShowInteraction: function(event) {
-        var aria,
-            instance = this,
+        var instance = this,
             tooltipBoundingBox = instance.getTooltip().get('boundingBox'),
-            trigger = event.currentTarget;
-
-        aria = instance.get('useARIA'),
+            trigger = event.currentTarget,
+            useARIA = instance.get('useARIA');
 
         instance.getTooltip().show().set('trigger', trigger).render();
 
-        if (aria) {
-            instance.plug(A.Plugin.Aria);
-            instance.aria.setAttribute('describedby', trigger, tooltipBoundingBox);
+        if (useARIA) {
             instance.aria.setAttribute('hidden', false, tooltipBoundingBox);
         }
     },
@@ -291,7 +283,7 @@ A.TooltipDelegate = A.Base.create('tooltip-delegate', A.Base, [], {
         * @type Boolean
         */
         useARIA: {
-            validator: A.Lang.isBoolean,
+            validator: Lang.isBoolean,
             value: true,
             writeOnce: 'initOnly'
         },
