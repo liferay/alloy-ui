@@ -42,7 +42,7 @@
     "gulp-replace": "^0.5.2",
     "gulp-util": "^3.0.1",
     "gulp-zip": "^2.0.1",
-    "imagemin-pngcrush": "^4.0.0",
+    "imagemin-pngcrush": "4.0.0",
     "istanbul": "~0.3.0",
     "jshint-stylish": "^1.0.0",
     "liferay-gulp-tasks": "^0.5.3",
