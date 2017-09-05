@@ -48,7 +48,8 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     initializer: function() {
-        var instance = this;
+        var instance = this,
+            useARIA = instance.get('useARIA');
 
         instance._eventHandles = [
             A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger'),
@@ -56,9 +57,8 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
             A.on('windowresize', A.bind(instance._onResize, instance))
         ];
 
-        if (instance.get('useARIA')) {
+        if (useARIA) {
             instance.plug(A.Plugin.Aria);
-            instance._setAriaAttributes();
         }
     },
 
@@ -150,19 +150,31 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _loadTooltipContentFromTitle: function() {
-        var trigger = this.get('trigger'),
-            title;
+        var instance = this,
+            describedBy = instance.get('describedby'),
+            trigger = instance.get('trigger'),
+            useARIA = instance.get('useARIA');
 
-        if (!trigger) {
-            return;
-        }
+        if (trigger) {
+            instance._borrowTitleAttribute();
 
-        this._borrowTitleAttribute();
+            var title = trigger.getAttribute('data-title');
 
-        title = trigger.getAttribute('data-title');
+            if (title) {
+                instance.setStdModContent(A.WidgetStdMod.BODY, title);
 
-        if (title) {
-            this.setStdModContent(A.WidgetStdMod.BODY, title);
+                if (useARIA) {
+                    var toolTipBodyNode = instance.getStdModNode(A.WidgetStdMod.BODY);
+
+                    if (toolTipBodyNode) {
+                        var id = A.guid() + trigger.get('id');
+
+                        toolTipBodyNode.set('id', id);
+
+                        instance.aria.setAttribute('describedby', id, trigger);
+                    }
+                }
+            }
         }
     },
 
@@ -174,13 +186,14 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseenter: function() {
-        var aria = this.get('useARIA'),
-            boundingBox = this.get('boundingBox');
+        var instance = this,
+            boundingBox = instance.get('boundingBox'),
+            useARIA = instance.get('useARIA');
 
-        this.show();
+        instance.show();
 
-        if (aria) {
-            this.aria.setAttribute('hidden', false, boundingBox);
+        if (useARIA) {
+            instance.aria.setAttribute('hidden', false, boundingBox);
         }
     },
 
@@ -192,13 +205,14 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseleave: function() {
-        var aria = this.get('useARIA'),
-            boundingBox = this.get('boundingBox');
+        var instance = this,
+            boundingBox = instance.get('boundingBox'),
+            useARIA = instance.get('useARIA');
 
-        this.hide();
+        instance.hide();
 
-        if (aria) {
-            this.aria.setAttribute('hidden', true, boundingBox);
+        if (useARIA) {
+            instance.aria.setAttribute('hidden', true, boundingBox);
         }
     },
 
@@ -220,33 +234,6 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      */
     _onScroll: function() {
         this.suggestAlignment(this.get('trigger'));
-    },
-
-    /**
-     * Set aria attributes for 'A.Tooltip' if useARIA is set to true.
-     *
-     * @method _setAriaAttributes
-     * @protected
-     */
-    _setAriaAttributes: function() {
-        var boundingBox = this.get('boundingBox'),
-            trigger = this.get('trigger'),
-            visible = this.get('visible');
-
-        this.aria.setAttributes(
-            [
-                {
-                    name: 'describedby',
-                    node: boundingBox,
-                    value: trigger
-                },
-                {
-                    name: 'hidden',
-                    node: boundingBox,
-                    value: !visible
-                }
-            ]
-        );
     },
 
     /**
@@ -414,7 +401,7 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         * @type Boolean
         */
         useARIA: {
-            validator: A.Lang.isBoolean,
+            validator: Lang.isBoolean,
             value: true,
             writeOnce: 'initOnly'
         },
