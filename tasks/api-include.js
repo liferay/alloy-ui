@@ -87,7 +87,7 @@ module.exports = function(grunt) {
 
                 tokens.forEach(function(token) {
                     // Get local path from remote url
-                    var replacedToken = token.replace(/http:\/\/alloyui.com/g,
+                    var replacedToken = token.replace(/https:\/\/alloyui.com/g,
                         path.resolve(grunt.config([TASK.name, target, 'repo']), 'src/documents'));
 
                     // Extract local path
