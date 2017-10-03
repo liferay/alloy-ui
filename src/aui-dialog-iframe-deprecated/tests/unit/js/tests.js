@@ -45,6 +45,20 @@ YUI.add('aui-dialog-iframe-tests', function(Y) {
             this.wait(function() {
                 Y.Assert.isFalse(maskNode.inDoc());
             }, 100);
+        },
+
+        /**
+         * @tests AUI-3127
+         */
+        'test dialog-iframe-modal is closed after the escape key is pressed': function() {
+            this.wait(function() {
+                modal.iframe._eventCloseOnEscapeHandle.detach();
+                modal.iframe._defaultLoadIframeFn();
+
+                modal.iframe.node.get('contentWindow').get('document').simulate('keydown', {keyCode: 27});
+
+                Y.Assert.isFalse(modal.get('visible'), 'The modal should not be visible after the escape key is pressed');
+            }, 100);
         }
     }));
 
