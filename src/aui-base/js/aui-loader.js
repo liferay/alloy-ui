@@ -565,7 +565,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-diagram-builder": {
         "requires": [
-            "overlay",
+            "aui-aria",
             "aui-map",
             "aui-property-builder",
             "aui-diagram-builder-connector",
@@ -576,7 +576,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-diagram-node-join",
             "aui-diagram-node-start",
             "aui-diagram-node-state",
-            "aui-diagram-node-task"
+            "aui-diagram-node-task",
+            "overlay"
         ],
         "skinnable": true
     },
@@ -593,6 +594,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-diagram-node": {
         "requires": [
+            "aui-aria",
             "aui-diagram-node-manager-base",
             "escape",
             "overlay"
@@ -2140,4 +2142,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '20e37a60ad24c614b660b49e8cefbfef';
+YUI.Env[Y.version].md5 = '0278dc6939f54aca2c87d500f2412422';
