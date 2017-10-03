@@ -1,7 +1,7 @@
 YUI.add('aui-dialog-iframe-tests', function(Y) {
 
-    var suite = new Y.Test.Suite('aui-dialog-iframe-deprecated'),
-        modal;
+    var modal,
+        suite = new Y.Test.Suite('aui-dialog-iframe-deprecated');
 
     suite.add(new Y.Test.Case({
         name: 'DialogIframe',
@@ -52,10 +52,18 @@ YUI.add('aui-dialog-iframe-tests', function(Y) {
          */
         'test dialog-iframe-modal is closed after the escape key is pressed': function() {
             this.wait(function() {
-                modal.iframe._eventCloseOnEscapeHandle.detach();
-                modal.iframe._defaultLoadIframeFn();
+                var iframe = modal.iframe;
 
-                modal.iframe.node.get('contentWindow').get('document').simulate('keydown', {keyCode: 27});
+                iframe._eventCloseOnEscapeHandle.detach();
+
+                iframe._defaultLoadIframeFn();
+
+                iframe.node.get('contentWindow').get('document').simulate(
+                    'keydown',
+                    {
+                        keyCode: 27
+                    }
+                );
 
                 Y.Assert.isFalse(modal.get('visible'), 'The modal should not be visible after the escape key is pressed');
             }, 100);
