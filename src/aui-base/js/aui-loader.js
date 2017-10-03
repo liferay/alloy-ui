@@ -449,7 +449,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     "aui-debounce": {},
     "aui-diagram-builder": {
         "requires": [
-            "overlay",
+            "aui-aria",
             "aui-map",
             "aui-property-builder",
             "aui-diagram-builder-connector",
@@ -460,7 +460,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-diagram-node-join",
             "aui-diagram-node-start",
             "aui-diagram-node-state",
-            "aui-diagram-node-task"
+            "aui-diagram-node-task",
+            "overlay"
         ],
         "skinnable": true
     },
@@ -477,6 +478,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-diagram-node": {
         "requires": [
+            "aui-aria",
             "aui-diagram-node-manager-base",
             "escape",
             "overlay"
@@ -1676,4 +1678,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '617b071b2efb8647d6276a2e639c29a1';
+YUI.Env[Y.version].md5 = '7d87596f3b5039325a6e2336d1245237';
