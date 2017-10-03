@@ -35,10 +35,12 @@ YUI.add('aui-dialog-iframe-tests', function(Y) {
          * @tests AUI-1422
          */
         'test loading mask is destroyed when host is destroyed': function() {
-            var maskCssClass = modal.bodyNode.loadingmask.overlayMask.get('cssClass'),
-                maskNode = Y.one('.' + maskCssClass);
+            this.wait(function() {
+                var maskCssClass = modal.bodyNode.loadingmask.overlayMask.get('cssClass'),
+                    maskNode = Y.one('.' + maskCssClass);
 
-            modal.hide();
+                modal.hide();
+            }, 100);
 
             this.wait(function() {
                 Y.Assert.isFalse(maskNode.inDoc());
