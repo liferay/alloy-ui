@@ -340,22 +340,20 @@ var DialogIframePlugin = A.Component.create({
             var instance = this;
 
             if (instance.get(CLOSE_ON_ESCAPE)) {
-                if (!instance._eventCloseOnEscapeHandle) {
-                    try {
-                        var iframeWindow = instance.node.get(CONTENT_WINDOW);
+                try {
+                    var iframeWindow = instance.node.get(CONTENT_WINDOW);
 
-                        var iframeDoc = iframeWindow.get(DOCUMENT);
+                    var iframeDoc = iframeWindow.get(DOCUMENT);
 
-                        instance._eventCloseOnEscapeHandle = A.on(
-                            KEY,
-                            function() {
-                                instance._host.hide();
-                            }, [iframeDoc],
-                            'down:27'
-                        );
-                    }
-                    catch (exception) {}
+                    instance._eventCloseOnEscapeHandle = A.on(
+                        KEY,
+                        function() {
+                            instance._host.hide();
+                        }, [iframeDoc],
+                        'down:27'
+                    );
                 }
+                catch (exception) {}
             }
             else if (instance._eventCloseOnEscapeHandle) {
                 instance._eventCloseOnEscapeHandle.detach();
