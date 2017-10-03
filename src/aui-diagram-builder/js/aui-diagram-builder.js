@@ -151,6 +151,19 @@ var DiagramBuilder = A.Component.create({
         suggestConnectorOverlay: {
             value: null,
             setter: '_setSuggestConnectorOverlay'
+        },
+
+        /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States should be enabled..
+        *
+        * @attribute useARIA
+        * @default true
+        * @type {Boolean}
+        */
+        useARIA: {
+            validator: isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         }
     },
 
@@ -281,6 +294,10 @@ var DiagramBuilder = A.Component.create({
             instance.syncConnectionsUI();
 
             instance.connector = instance.get('connector');
+
+            if (instance.get('useARIA')) {
+                instance.plug(A.Plugin.Aria);
+            }
         },
 
         /**
@@ -876,16 +893,36 @@ var DiagramBuilder = A.Component.create({
          */
         _onDrag: function(event) {
             var instance = this;
+
             var drag = event.target;
 
             if (instance.isFieldsDrag(drag)) {
                 var diagramNode = A.Widget.getByNode(drag.get('dragNode'));
 
-                diagramNode.alignTransitions();
+                if (diagramNode) {
+                    diagramNode.alignTransitions();
 
-                AArray.each(instance.getSourceNodes(diagramNode), function(sourceNode) {
-                    sourceNode.alignTransitions();
-                });
+                    AArray.each(instance.getSourceNodes(diagramNode), function(sourceNode) {
+                        sourceNode.alignTransitions();
+                    });
+
+                    if (instance.get('useARIA')) {
+                        instance.aria.setAttributes(
+                            [
+                                {
+                                    name: 'grabbed',
+                                    node: diagramNode.get('boundingBox'),
+                                    value: 'true'
+                                },
+                                {
+                                    name: 'dropeffect',
+                                    node: instance.get('canvas'),
+                                    value: 'move'
+                                }
+                            ]
+                        );
+                    }
+                }
             }
         },
 
@@ -898,11 +935,30 @@ var DiagramBuilder = A.Component.create({
          */
         _onDragEnd: function(event) {
             var instance = this;
+
             var drag = event.target;
+
             var diagramNode = A.Widget.getByNode(drag.get('dragNode'));
 
             if (diagramNode && instance.isFieldsDrag(drag)) {
                 diagramNode.set('xy', diagramNode.getNodeCoordinates());
+
+                if (instance.get('useARIA')) {
+                    instance.aria.setAttributes(
+                    [
+                        {
+                            name: 'grabbed',
+                            node: diagramNode.get('boundingBox'),
+                            value: 'false'
+                        },
+                        {
+                            name: 'dropeffect',
+                            node: instance.get('canvas'),
+                            value: 'none'
+                        }
+                    ]
+                );
+                }
             }
         },
 
@@ -915,6 +971,7 @@ var DiagramBuilder = A.Component.create({
          */
         _onDropHit: function(event) {
             var instance = this;
+
             var drag = event.drag;
 
             if (instance.isAvailableFieldsDrag(drag)) {
@@ -1208,9 +1265,23 @@ var DiagramBuilder = A.Component.create({
         _setupFieldsDrag: function() {
             var instance = this;
 
+            var fields = instance.get('fields');
+            var fieldsDragConfig = instance.get('fieldsDragConfig');
+            var useARIA = instance.get('useARIA');
+
             instance.fieldsDrag = new A.DD.Delegate(
-                instance.get('fieldsDragConfig')
+                fieldsDragConfig
             );
+
+            if (useARIA) {
+                fields.each(
+                    function(diagramNode) {
+                        var boundingBox = diagramNode.get('boundingBox');
+
+                        boundingBox.attr('draggable', true);
+                    }
+                );
+            }
         }
     }
 });
