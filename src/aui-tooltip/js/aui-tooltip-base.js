@@ -48,13 +48,18 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     initializer: function() {
-        var instance = this;
+        var instance = this,
+            useARIA = instance.get('useARIA');
 
         instance._eventHandles = [
             A.after(instance._afterUiSetTrigger, instance, '_uiSetTrigger'),
             A.on('scroll', A.debounce(instance._onScroll, 100, instance)),
             A.on('windowresize', A.bind(instance._onResize, instance))
         ];
+
+        if (useARIA) {
+            instance.plug(A.Plugin.Aria);
+        }
     },
 
     /**
@@ -99,33 +104,15 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
             trigger.on(
                 'hover',
                 A.bind(instance._onBoundingBoxMouseenter, instance),
-                A.bind(instance._onBoundingBoxMouseleave, instance));
+                A.bind(instance._onBoundingBoxMouseleave, instance)
+            );
         }
 
         instance.get('boundingBox').on(
             'hover',
             A.bind(instance._onBoundingBoxMouseenter, instance),
-            A.bind(instance._onBoundingBoxMouseleave, instance));
-    },
-
-    /**
-     * Fire after `boundingBox` style changes.
-     *
-     * @method _afterUiSetVisible
-     * @param val
-     * @protected
-     */
-    _uiSetVisible: function(val) {
-        var instance = this,
-            boundingBox = instance.get('boundingBox');
-
-        instance._widgetUiSetVisible(val);
-
-        boundingBox.setStyle('opacity', val ? instance.get('opacity') : 0);
-
-        if (val) {
-            instance._loadTooltipContentFromTitle();
-        }
+            A.bind(instance._onBoundingBoxMouseleave, instance)
+        );
     },
 
     /**
@@ -157,47 +144,37 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
     },
 
     /**
-     * Set tooltip section attribute.
-     *
-     * @method _setStdModSection
-     * @param {String | Node} val
-     * @protected
-     */
-    _setStdModSection: function(val) {
-        var formatter = this.get('formatter');
-
-        if (Lang.isString(val)) {
-            if (formatter) {
-                val = formatter.call(this, val);
-            }
-
-            if (!this.get('html')) {
-                val = A.Escape.html(val);
-            }
-        }
-
-        return val;
-    },
-
-    /**
      * Load tooltip content from trigger title attribute.
      *
      * @method _loadTooltipContentFromTitle
      * @protected
      */
     _loadTooltipContentFromTitle: function() {
-        var trigger = this.get('trigger'),
-            title;
+        var instance = this,
+            describedBy = instance.get('describedby'),
+            trigger = instance.get('trigger'),
+            useARIA = instance.get('useARIA');
 
-        if (!trigger) {
-            return;
-        }
+        if (trigger) {
+            instance._borrowTitleAttribute();
 
-        this._borrowTitleAttribute();
+            var title = trigger.getAttribute('data-title');
 
-        title = trigger.getAttribute('data-title');
-        if (title) {
-            this.setStdModContent(A.WidgetStdMod.BODY, title);
+            if (title) {
+                instance.setStdModContent(A.WidgetStdMod.BODY, title);
+
+                if (useARIA) {
+                    var toolTipBodyNode = instance.getStdModNode(A.WidgetStdMod.BODY);
+
+                    if (toolTipBodyNode) {
+                        var id = A.guid() + trigger.get('id');
+
+                        toolTipBodyNode.set('id', id);
+
+                        instance.aria.setAttribute('describedby', id, trigger);
+                    }
+                }
+            }
         }
     },
 
@@ -209,7 +186,15 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseenter: function() {
-        this.show();
+        var instance = this,
+            boundingBox = instance.get('boundingBox'),
+            useARIA = instance.get('useARIA');
+
+        instance.show();
+
+        if (useARIA) {
+            instance.aria.setAttribute('hidden', false, boundingBox);
+        }
     },
 
     /**
@@ -220,7 +205,15 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      * @protected
      */
     _onBoundingBoxMouseleave: function() {
-        this.hide();
+        var instance = this,
+            boundingBox = instance.get('boundingBox'),
+            useARIA = instance.get('useARIA');
+
+        instance.hide();
+
+        if (useARIA) {
+            instance.aria.setAttribute('hidden', true, boundingBox);
+        }
     },
 
     /**
@@ -241,6 +234,49 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
      */
     _onScroll: function() {
         this.suggestAlignment(this.get('trigger'));
+    },
+
+    /**
+    * Set tooltip section attribute.
+    *
+    * @method _setStdModSection
+    * @param {String | Node} val
+    * @protected
+    */
+    _setStdModSection: function(val) {
+        var formatter = this.get('formatter');
+
+        if (Lang.isString(val)) {
+            if (formatter) {
+                val = formatter.call(this, val);
+            }
+
+            if (!this.get('html')) {
+                val = A.Escape.html(val);
+            }
+        }
+
+        return val;
+    },
+
+    /**
+    * Fire after `boundingBox` style changes.
+    *
+    * @method _afterUiSetVisible
+    * @param val
+    * @protected
+    */
+    _uiSetVisible: function(val) {
+        var instance = this,
+        boundingBox = instance.get('boundingBox');
+
+        instance._widgetUiSetVisible(val);
+
+        boundingBox.setStyle('opacity', val ? instance.get('opacity') : 0);
+
+        if (val) {
+            instance._loadTooltipContentFromTitle();
+        }
     },
 
     _widgetUiSetVisible: A.Widget.prototype._uiSetVisible
@@ -354,6 +390,20 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
         triggerShowEvent: {
             validator: Lang.isString,
             value: 'mouseenter'
+        },
+
+        /**
+        * Boolean indicating if use of the WAI-ARIA Roles and States
+        * should be enabled.
+        *
+        * @attribute useARIA
+        * @default true
+        * @type Boolean
+        */
+        useARIA: {
+            validator: Lang.isBoolean,
+            value: true,
+            writeOnce: 'initOnly'
         },
 
         /**

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <link rel="stylesheet" href="../../build/aui-css/css/bootstrap.css">
     <script src="../../build/aui/aui.js"></script>
@@ -15,30 +14,39 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea qui sint distinctio recusandae quo ut eaque provident eius eos commodi natus labore culpa modi soluta quia repudiandae nulla ex. Reiciendis cupiditate quis voluptatum atque veniam assumenda itaque perferendis eos voluptatem dolores aut eum. Ut voluptatum amet earum delectus totam unde!
     </div>
     <h2>Toggler Delegate</h2>
-    <div class="accordion" id="accordion">
-        <div class="accordion-group">
-            <a class="accordion-heading" href="javascript:void(0)">Collapsible Group Item #1</a>
-
-            <div id="collapseOne" class="toggler-content toggler-content-collapsed">
-                <div class="accordion-inner">
+    <div class="panel-group" id="panel">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="panel-toggle" href="#collapseOne">
+                Collapsible Group Item #1
+                </a>
+            </div>
+            <div id="collapseOne" class="toggler-content">
+                <div class="panel-inner">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                 </div>
             </div>
         </div>
-        <div class="accordion-group">
-            <a class="accordion-heading toggler-header-expanded" href="javascript:void(0)">Collapsible Group Item #2</a>
-
-            <div id="collapseTwo" class="toggler-content toggler-content-expanded">
-                <div class="accordion-inner">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="panel-toggle" href="#collapseTwo">
+                Collapsible Group Item #2
+                </a>
+            </div>
+            <div id="collapseTwo" class="toggler-content">
+                <div class="panel-inner">
                 Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                 </div>
             </div>
         </div>
-        <div class="accordion-group">
-            <a class="accordion-heading toggler-header-collapsed" href="javascript:void(0)">Collapsible Group Item #3</a>
-
-            <div id="collapseThree" class="toggler-content toggler-content-collapsed">
-                <div class="accordion-inner">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a class="panel-toggle" href="#collapseThree">
+                Collapsible Group Item #3
+                </a>
+            </div>
+            <div id="collapseThree" class="toggler-content">
+                <div class="panel-inner">
                     <button class="btn" style="position: absolute;">Absolutely Positioned Button</button>
                     <p style="padding-top: 40px;">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
                 </div>
@@ -46,7 +54,7 @@
         </div>
     </div>
     <script>
-    YUI({ filter:'raw' }).use('aui-toggler', 'aui-toggler-accessibility', function(Y) {
+    YUI({ filter:'raw' }).use('aui-toggler', function(Y) {
 
         new Y.Toggler({
             animated: true,
@@ -65,10 +73,10 @@
 
         new Y.TogglerDelegate({
             animated: true,
-            container: '#accordion',
+            container: '#panel',
             content: '.toggler-content',
-            header: '.accordion-heading',
-            expanded: false,
+            header: '.panel-heading',
+            expanded: true,
             transition: {
                 duration: 0.4,
                 easing: 'cubic-bezier(0, 0.1, 0, 1.0)'

@@ -249,6 +249,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-char-counter": {
         "requires": [
+            "aui-aria",
             "aui-node",
             "aui-event-input",
             "aui-component"
@@ -566,7 +567,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-diagram-builder": {
         "requires": [
-            "overlay",
+            "aui-aria",
             "aui-map",
             "aui-property-builder",
             "aui-diagram-builder-connector",
@@ -577,7 +578,8 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-diagram-node-join",
             "aui-diagram-node-start",
             "aui-diagram-node-state",
-            "aui-diagram-node-task"
+            "aui-diagram-node-task",
+            "overlay"
         ],
         "skinnable": true
     },
@@ -594,6 +596,7 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-diagram-node": {
         "requires": [
+            "aui-aria",
             "aui-diagram-node-manager-base",
             "escape",
             "overlay"
@@ -1931,32 +1934,33 @@ Y.mix(YUI.Env[Y.version].modules, {
     },
     "aui-tooltip-base": {
         "requires": [
-            "escape",
+            "aui-aria",
+            "aui-classnamemanager",
+            "aui-component",
+            "aui-debounce",
+            "aui-node-base",
+            "aui-widget-cssclass",
+            "aui-widget-toggle",
+            "aui-widget-transition",
+            "aui-widget-trigger",
+            "aui-widget-position-align-suggestion",
             "event-hover",
+            "event-resize",
+            "escape",
             "widget",
             "widget-autohide",
             "widget-position",
             "widget-position-align",
             "widget-position-constrain",
             "widget-stack",
-            "widget-stdmod",
-            "aui-classnamemanager",
-            "aui-component",
-            "aui-debounce",
-            "aui-widget-cssclass",
-            "aui-widget-toggle",
-            "aui-widget-transition",
-            "aui-widget-trigger",
-            "aui-widget-position-align-suggestion",
-            "aui-node-base",
-            "event-resize"
+            "widget-stdmod"
         ],
         "skinnable": true
     },
     "aui-tooltip-delegate": {
         "requires": [
-            "node-event-delegate",
-            "aui-tooltip-base"
+            "aui-tooltip-base",
+            "node-event-delegate"
         ]
     },
     "aui-tooltip-deprecated": {
@@ -2142,4 +2146,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '731f50c5bf41702efe0107efab4ac021';
+YUI.Env[Y.version].md5 = 'd7c627eb00edd6b6f054d8f6e7147480';

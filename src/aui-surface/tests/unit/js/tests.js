@@ -33,6 +33,7 @@ YUI.add('aui-surface-tests', function(Y) {
                 'should not navigate to history states that are not ours': noHTML5,
                 'should navigate fail using HTMLScreen': noHTML5,
                 'should update cached surfaces and title using HTMLScreen': noHTML5,
+                'should update empty screen content': noHTML5,
                 'should update surfaces and title using HTMLScreen': noHTML5,
                 'should update surfaces using HTMLScreen': noHTML5,
                 'should navigate to clicked links': noHTML5,
@@ -49,10 +50,11 @@ YUI.add('aui-surface-tests', function(Y) {
 
             instance.queryStringRoute = /^\/querystring\?p=\w+$/;
             instance.originalPath = instance.getCurrentPath();
+            instance.originalDefaultTitle = 'default';
 
             instance.app = new Y.SurfaceApp({
                 basePath: '/base',
-                defaultTitle: 'default',
+                defaultTitle: instance.getOriginalDefaultTitle(),
                 linkSelector: 'a'
             });
 
@@ -283,10 +285,16 @@ YUI.add('aui-surface-tests', function(Y) {
             var instance = this;
 
             instance.app.navigate('/base/querystring?p=beforehash').then(function() {
-                instance.app.navigate('/base/page#hash').then(function() {
-                    instance.resume(function() {
-                        instance.assertNavigation('/base/page#hash', 'page');
-                    });
+                instance.app.navigate('/base/page#middle').then(function() {
+                    setTimeout(function() {
+                        instance.resume(function() {
+                            var pos = Y.one('#middle').getXY();
+
+                            instance.assertNavigation('/base/page#middle', 'page');
+                            Y.Assert.areEqual(Math.floor(pos[0]), Y.config.win.pageXOffset);
+                            Y.Assert.areEqual(Math.floor(pos[1]), Y.config.win.pageYOffset);
+                        });
+                    }, 500);
                 });
             });
             instance.wait();
@@ -599,6 +607,25 @@ YUI.add('aui-surface-tests', function(Y) {
                             instance.app.set('basePath', '/base');
                         });
                     });
+                });
+            });
+            instance.wait();
+        },
+
+        'should update empty screen content': function() {
+            var instance = this;
+
+            instance.app.addScreenRoutes({
+                path: '/empty',
+                screen: Y.EmptyScreen
+            });
+
+            instance.app.set('defaultTitle', '');
+
+            instance.app.navigate('/base/empty').then(function() {
+                instance.resume(function() {
+                    instance.assertNavigation('/base/empty', '');
+                    instance.app.set('defaultTitle', instance.getOriginalDefaultTitle());
                 });
             });
             instance.wait();

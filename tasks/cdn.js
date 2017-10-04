@@ -10,7 +10,7 @@ gulp.task('cdn', ['build'], function() {
         .pipe(insert.append('\n' +
             'YUI_config = {' +
                 'combine:true,' +
-                'comboBase:"http://cdn.alloyui.com/combo/combo.php?",' +
+                'comboBase:"https://cdn.alloyui.com/combo/combo.php?",' +
                 'filter:"min",' +
                 'root:"../' + alloy.version + '/"' +
             '};'))

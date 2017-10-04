@@ -477,9 +477,11 @@ DiagramNode = A.Component.create({
                 boundaryMouseLeave: {}
             });
 
+            instance.boundingBox = instance.get('boundingBox');
             instance.toolbarContainer = instance.get('toolbarContainer');
 
-            instance.get('boundingBox').addClass(CSS_DIAGRAM_NODE + '-' + instance.get('type'));
+            instance.boundingBox.addClass(CSS_DIAGRAM_NODE + '-' + instance.get('type'));
+            instance.boundingBox.setAttribute('draggable', true);
         },
 
         /**

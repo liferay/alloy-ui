@@ -1,7 +1,7 @@
 {
     "aui-diagram-builder": {
         "requires": [
-            "overlay",
+            "aui-aria",
             "aui-map",
             "aui-property-builder",
             "aui-diagram-builder-connector",
@@ -12,7 +12,8 @@
             "aui-diagram-node-join",
             "aui-diagram-node-start",
             "aui-diagram-node-state",
-            "aui-diagram-node-task"
+            "aui-diagram-node-task",
+            "overlay"
         ],
         "skinnable": true
     },
@@ -31,6 +32,7 @@
 
     "aui-diagram-node": {
         "requires": [
+            "aui-aria",
             "aui-diagram-node-manager-base",
             "escape",
             "overlay"
