@@ -1,0 +1,25 @@
+.form-builder-field-toolbar-toggle,
+.form-builder-field-toolbar {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.form-builder-field-toolbar-item {
+	display: inline-block;
+}
+
+.form-builder-field-toolbar-items {
+    display: none;
+}
+
+.form-builder-field-toolbar.open .form-builder-field-toolbar-items {
+    display: block;
+}
+
+.form-builder-field-toolbar-item.layout-builder-move-cut-button.layout-builder-move-cut-col-button {
+    background-image: url('');
+    height: auto;
+    left: 0;
+    width: auto;
+}

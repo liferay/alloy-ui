@@ -1,0 +1,18 @@
+.radio-group-data-editor-button {
+    top: 0px;
+}
+
+.radio-group-data-editor-element.radio label {
+    color: #333;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.radio-group-data-editor-inline {
+    display: inline-block;
+    padding-right: 125px;
+}
+
+.radio-group-data-editor-elements-inline {
+    display: inline-block;
+}
