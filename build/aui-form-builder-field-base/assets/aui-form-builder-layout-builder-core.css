@@ -1,0 +1,79 @@
+.form-builder-content .layout-builder-layout-container {
+    margin-bottom: 3px;
+    background-color: white;
+}
+
+.form-builder-choose-col-move .form-builder-field-move-button {
+    display: block;
+    left: -25px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.form-builder-choose-col-move-target .form-builder-field-moving {
+    border-style: dotted;
+}
+
+.form-builder-choose-col-move-target .form-builder-field-move-target {
+    display: block;
+    visibility: visible;
+}
+
+.form-builder-choose-col-move-target .form-builder-field-move-target-invalid,
+.form-builder-choose-col-move-target .form-builder-field-moving .form-builder-field-move-target {
+    visibility: hidden;
+}
+
+.form-builder-col-moving .form-builder-list-move-target {
+    visibility: hidden;
+}
+
+.form-builder-empty-col-add-button .form-builder-field-move-target {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-builder-field-move-button {
+    display: none;
+}
+
+.form-builder-field-list-empty .form-builder-field-move-target {
+    padding: 39px 0;
+    position: static;
+}
+
+.form-builder-field-move-target {
+    display: none;
+    margin-bottom: 0;
+    position: absolute;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 1;
+}
+
+.layout-builder-move-cut-button.layout-builder-move-cut-row-button {
+    border-radius: 50%;
+    display: none;
+    position: absolute;
+    right: 14px;
+    top: -10px;
+    z-index: 1;
+}
+
+.layout-row {
+    border-color: transparent;
+    border-style: dashed none;
+    border-width: 1px;
+    position: relative;
+}
+
+.layout-row:hover {
+    border-color: #bbb;
+}
+
+.layout-row-container-row:hover .layout-builder-move-cut-button.layout-builder-move-cut-row-button,
+.layout-row-container-row:focus .layout-builder-move-cut-button.layout-builder-move-cut-row-button,
+.layout-builder-move-cut-button.layout-builder-move-cut-row-button:focus {
+    display: block;
+}
