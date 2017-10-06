@@ -1,0 +1,8 @@
+.toggler-content-collapsed {
+    display: none;
+}
+
+.toggler-content-wrapper {
+    overflow: hidden;
+    position: relative;
+}
