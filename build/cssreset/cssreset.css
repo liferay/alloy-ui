@@ -18,7 +18,7 @@ html{
 */
 /*
 	TODO test putting a class on HEAD.
-		- Fails on FF. 
+		- Fails on FF.
 */
 body,
 div,
@@ -47,10 +47,6 @@ th,
 td {
 	margin:0;
 	padding:0;
-}
-table {
-	border-collapse:collapse;
-	border-spacing:0;
 }
 fieldset,
 img {
@@ -123,3 +119,5 @@ select {
 legend {
 	color:#000;
 }
+/* YUI CSS Detection Stamp */
+#yui3-css-stamp.cssreset { display: none; }

@@ -18,7 +18,7 @@ build: nightly
 */
 /*
 	TODO test putting a class on HEAD.
-		- Fails on FF. 
+		- Fails on FF.
 */
 .yui3-cssreset body,
 .yui3-cssreset div,
@@ -47,10 +47,6 @@ build: nightly
 .yui3-cssreset td {
 	margin:0;
 	padding:0;
-}
-.yui3-cssreset table {
-	border-collapse:collapse;
-	border-spacing:0;
 }
 .yui3-cssreset fieldset,
 .yui3-cssreset img {
@@ -123,3 +119,5 @@ build: nightly
 .yui3-cssreset legend {
 	color:#000;
 }
+/* YUI CSS Detection Stamp */
+#yui3-css-stamp.cssreset-context { display: none; }
