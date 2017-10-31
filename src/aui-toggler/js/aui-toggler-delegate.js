@@ -190,7 +190,9 @@ var TogglerDelegate = A.Component.create({
         renderUI: function() {
             var instance = this;
 
-            instance.createAll();
+            if (instance.get('closeAllOnExpand') || instance.get('expanded')) {
+                instance.createAll();
+            }
         },
 
         /**
@@ -248,16 +250,9 @@ var TogglerDelegate = A.Component.create({
          */
         createAll: function() {
             var instance = this;
- 
+
             instance.get('container').all(instance.get('header')).each(function(header) {
-                var markupCollapsed = header.hasClass(CSS_TOGGLER_HEADER_COLLAPSED),
-                    markupExpanded = header.hasClass(CSS_TOGGLER_HEADER_EXPANDED),
-                    expanded = instance.get('expanded'),
-                    closeAllOnExpand = instance.get('closeAllOnExpand');
- 
-                if ((closeAllOnExpand && !markupCollapsed) ||
-                    (expanded && markupCollapsed) ||
-                    (!expanded && !markupExpanded && !markupCollapsed) && !header.getData('toggler')) {
+                if (!header.getData('toggler')) {
                     instance._create(header);
                 }
             });
