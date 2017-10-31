@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-* [AUI-1196](https://issues.liferay.com/browse/AUI-1196) Start all toggle on TogglerDelegate when `expanded` attribute is true
+No registries yet.
 
 ## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
 
