@@ -4,7 +4,6 @@
 
 ## @VERSION@
 
-* [AUI-1196](https://issues.liferay.com/browse/AUI-1196) Start all toggle on TogglerDelegate when `expanded` attribute is true
 * [AUI-2071](https://issues.liferay.com/browse/AUI-2071) AUI toggler animation could be corrupted.
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
