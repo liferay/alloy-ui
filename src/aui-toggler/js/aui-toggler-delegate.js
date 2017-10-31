@@ -110,8 +110,7 @@ var TogglerDelegate = A.Component.create({
          */
         expanded: {
             validator: isBoolean,
-            value: true,
-            writeOnce: true
+            value: true
         },
 
         /**
