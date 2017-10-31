@@ -202,21 +202,12 @@ var TogglerDelegate = A.Component.create({
          */
         bindUI: function() {
             var instance = this;
-
             var container = instance.get('container');
             var header = instance.get('header');
-            var toggleEvent = instance.get('toggleEvent');
 
             instance._eventHandles = [
-                container.delegate(
-                    [toggleEvent, 'keydown'],
-                    A.bind('headerEventHandler', instance),
-                    header
-                ),
-                instance.on(
-                    'toggler:animatingChange',
-                    A.bind('_onAnimatingChange', instance)
-                )
+                container.delegate([instance.get('toggleEvent'), 'keydown'], A.bind('headerEventHandler', instance), header),
+                instance.on('toggler:animatingChange', A.bind('_onAnimatingChange', instance))
             ];
         },
 
@@ -229,12 +220,9 @@ var TogglerDelegate = A.Component.create({
         destructor: function() {
             var instance = this;
 
-            AArray.each(
-                instance.items,
-                function(item) {
-                    item.destroy();
-                }
-            );
+            AArray.each(instance.items, function(item) {
+                item.destroy();
+            });
 
             instance.items = null;
 
@@ -262,22 +250,19 @@ var TogglerDelegate = A.Component.create({
          */
         _createAll: function() {
             var instance = this;
-
-            var container = instance.get('container');
-            var closeAllOnExpand = instance.get('closeAllOnExpand');
-            var expanded = instance.get('expanded');
-            var header = instance.get('header');
-
-            container.all(header).each(
-                function(header) {
-                    var markupCollapsed = header.hasClass(CSS_TOGGLER_HEADER_COLLAPSED);
-                    var markupExpanded = header.hasClass(CSS_TOGGLER_HEADER_EXPANDED);
-
-                    if ((closeAllOnExpand && !markupCollapsed) || (expanded && markupCollapsed) || (!expanded && !markupExpanded && !markupCollapsed) && !header.getData('toggler')) {
-                        instance._create(header);
-                    }
+ 
+            instance.get('container').all(instance.get('header')).each(function(header) {
+                var markupCollapsed = header.hasClass(CSS_TOGGLER_HEADER_COLLAPSED),
+                    markupExpanded = header.hasClass(CSS_TOGGLER_HEADER_EXPANDED),
+                    expanded = instance.get('expanded'),
+                    closeAllOnExpand = instance.get('closeAllOnExpand');
+ 
+                if ((closeAllOnExpand && !markupCollapsed) ||
+                    (expanded && markupCollapsed) ||
+                    (!expanded && !markupExpanded && !markupCollapsed) && !header.getData('toggler')) {
+                    instance._create(header);
                 }
-            );
+            });
         },
 
         /**
@@ -301,7 +286,6 @@ var TogglerDelegate = A.Component.create({
          */
         findContentNode: function(header) {
             var instance = this;
-
             var content = instance.get('content');
 
             var contentNode = header.next(content) || header.one(content);
@@ -326,39 +310,32 @@ var TogglerDelegate = A.Component.create({
         headerEventHandler: function(event) {
             var instance = this;
 
-            var closeAllOnExpand = instance.get('closeAllOnExpand');
-            var content = instance.get('content');
-
             if (instance.animating) {
                 return false;
             }
 
             var target = event.currentTarget;
-
             var toggler = target.getData('toggler') || instance._create(target);
 
-            if (Toggler.headerEventHandler(event, toggler) && closeAllOnExpand) {
-                var wrappingContent = toggler.get('content').ancestor(content);
+            if (Toggler.headerEventHandler(event, toggler) && instance.get('closeAllOnExpand')) {
+                var wrappingContent = toggler.get('content').ancestor(instance.get('content'));
 
-                AArray.each(
-                    instance.items,
-                    function(item) {
-                        if ((item !== toggler) && item.get('expanded')) {
+                AArray.each(instance.items, function(item) {
+                    if ((item !== toggler) && item.get('expanded')) {
 
-                            if (wrappingContent) {
-                                var itemContent = item.get('content');
+                        if (wrappingContent) {
+                            var itemContent = item.get('content');
 
-                                if ((itemContent !== wrappingContent) && wrappingContent.contains(itemContent)) {
-                                    item.collapse();
-                                }
-                            }
-                            else {
+                            if ((itemContent !== wrappingContent) && wrappingContent.contains(itemContent)) {
                                 item.collapse();
                             }
-
                         }
+                        else {
+                            item.collapse();
+                        }
+
                     }
-                );
+                });
             }
         },
 
@@ -370,12 +347,8 @@ var TogglerDelegate = A.Component.create({
          * @protected
          */
         _create: function(header) {
-            var instance = this;
-
-            var animated = instance.get('animated');
-            var expanded = instance.get('expanded');
-            var toggleEvent = instance.get('toggleEvent');
-            var transition = instance.get('transition');
+            var instance = this,
+                expanded = instance.get('expanded');
 
             // Prioritize markup information to decide whether it's expanded or
             // not
@@ -386,18 +359,16 @@ var TogglerDelegate = A.Component.create({
                 expanded = false;
             }
 
-            var toggler = new Toggler(
-                {
-                    animated: animated,
-                    bindDOMEvents: false,
-                    bubbleTargets: [instance],
-                    content: instance.findContentNode(header),
-                    expanded: expanded,
-                    header: header,
-                    toggleEvent: toggleEvent,
-                    transition: transition
-                }
-            );
+            var toggler = new Toggler({
+                animated: instance.get('animated'),
+                bindDOMEvents: false,
+                bubbleTargets: [instance],
+                content: instance.findContentNode(header),
+                expanded: expanded,
+                header: header,
+                toggleEvent: instance.get('toggleEvent'),
+                transition: instance.get('transition')
+            });
 
             instance.items.push(toggler);
 
