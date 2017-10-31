@@ -1,0 +1,45 @@
+.table-editable {
+    cursor: pointer;
+}
+
+.basecelleditor .buttonitem-content {
+    margin: 2px 0;
+    padding: 3px 3px 1px 1px;
+}
+
+.basecelleditor .buttonitem-label-only {
+    padding-bottom: 2px;
+}
+
+.webkit .basecelleditor .buttonitem-label-only {
+    padding-bottom: 3px;
+}
+
+.celleditor-edit-dd-handle {
+    cursor: move;
+    display: inline-block;
+    margin-top: -3px;
+    vertical-align: middle;
+}
+
+.basecelleditor-hidden, .datecelleditor-hidden, .dropdowncelleditor-hidden, .textcelleditor-hidden, .textareacelleditor-hidden, .checkboxcelleditor-hidden, .radiocelleditor-hidden {
+    display: none !important;
+}
+
+.basecelleditor form {
+    margin: 0;
+}
+
+.celleditor-edit-label {
+    padding-bottom: 5px;
+}
+
+.celleditor-element {
+    margin-bottom: 5px;
+}
+
+.basecelleditor input[type="checkbox"], .basecelleditor input[type="radio"] {
+    position: inherit;
+    margin-left: 0;
+    margin-right: 5px;
+}
