@@ -321,7 +321,7 @@ var DatePicker = A.Component.create({
     }
 });
 
-A.DatePicker = DatePicker;
+A.DatePickerDeprecated = DatePicker;
 
 /**
  * A base class for DatepickerManager:
