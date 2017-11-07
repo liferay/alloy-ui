@@ -14,8 +14,6 @@ var Lang = A.Lang,
 
     CSS_AUDIO_NODE = getClassName('audio', 'node'),
 
-    DEFAULT_PLAYER_PATH = A.config.base + 'aui-audio/assets/player.swf',
-
     REGEX_FILE_EXTENSION = /\.([^\.]+)$/;
 
 /**
@@ -50,18 +48,6 @@ var AudioImpl = A.Component.create({
      * @static
      */
     ATTRS: {
-
-        /**
-         * Variables used by Flash player.
-         *
-         * @attribute flashVars
-         * @default {}
-         * @type Object
-         */
-        flashVars: {
-            value: {},
-            validator: Lang.isObject
-        },
 
         /**
          * An additional list of attributes.
@@ -112,43 +98,6 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * The width of Audio's fallback using Flash.
-         *
-         * @attribute swfWidth
-         * @default 100%
-         * @type String
-         */
-        swfWidth: {
-            value: '100%',
-            validator: Lang.isString
-        },
-
-        /**
-         * The height of Audio's fallback using Flash.
-         *
-         * @attribute swfHeight
-         * @default 30
-         * @type String
-         */
-        swfHeight: {
-            value: '30',
-            validator: Lang.isString
-        },
-
-        /**
-         * URL (on .swf format) used by Audio to create
-         * a fallback player with Flash.
-         *
-         * @attribute swfUrl
-         * @default aui-audio/assets/player.swf
-         * @type String
-         */
-        swfUrl: {
-            value: DEFAULT_PLAYER_PATH,
-            validator: Lang.isString
-        },
-
-        /**
          * The type of audio.
          *
          * @attribute type
@@ -195,7 +144,7 @@ var AudioImpl = A.Component.create({
      * @type Array
      * @static
      */
-    BIND_UI_ATTRS: ['url', 'oggUrl', 'swfUrl', 'fixedAttributes', 'flashVars'],
+    BIND_UI_ATTRS: ['url', 'oggUrl', 'fixedAttributes'],
 
     /**
      * Static property used to define the attributes
@@ -219,7 +168,6 @@ var AudioImpl = A.Component.create({
             var instance = this;
 
             instance._renderAudioTask = A.debounce(instance._renderAudio, 1, instance);
-            instance._renderSwfTask = A.debounce(instance._renderSwf, 1, instance);
 
             instance._renderAudio(!instance.get('oggUrl'));
 
@@ -353,78 +301,6 @@ var AudioImpl = A.Component.create({
         },
 
         /**
-         * Render SWF in DOM.
-         *
-         * @method _renderSwf
-         * @protected
-         */
-        _renderSwf: function() {
-            var instance = this;
-
-            var swfUrl = instance.get('swfUrl');
-
-            if (swfUrl) {
-                var flashVars = instance.get('flashVars');
-
-                instance._setMedia(flashVars);
-
-                var flashVarString = A.QueryString.stringify(flashVars);
-
-                if (instance._swfId) {
-                    instance._audio.removeChild(A.one('#' + instance._swfId));
-                }
-                else {
-                    instance._swfId = A.guid();
-                }
-
-                var applicationType = 'type="application/x-shockwave-flash" data="' + swfUrl + '"';
-
-                var movie = '';
-
-                if (UA.ie) {
-                    applicationType = 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"';
-
-                    movie = '<param name="movie" value="' + swfUrl + '"/>';
-                }
-
-                var fixedAttributes = instance.get('fixedAttributes');
-
-                var fixedAttributesParam = [];
-
-                for (var attributeName in fixedAttributes) {
-                    if (owns(fixedAttributes, attributeName)) {
-                        fixedAttributesParam.push('<param name="', attributeName, '" value="', fixedAttributes[
-                            attributeName], '" />');
-                    }
-                }
-
-                var flashVarsParam = '';
-
-                if (flashVarString) {
-                    flashVarsParam = '<param name="flashVars" value="' + flashVarString + '" />';
-                }
-
-                var height = instance.get('swfHeight');
-
-                var width = instance.get('swfWidth');
-
-                var tplObj = Lang.sub(
-                    AudioImpl.TPL_FLASH, {
-                        applicationType: applicationType,
-                        id: instance._swfId,
-                        fixedAttributes: fixedAttributesParam.join(''),
-                        flashVars: flashVarsParam,
-                        height: height,
-                        movie: movie,
-                        width: width
-                    }
-                );
-
-                instance._audio.append(tplObj);
-            }
-        },
-
-        /**
          * Render Audio in DOM.
          *
          * @method _renderAudio
@@ -436,10 +312,6 @@ var AudioImpl = A.Component.create({
 
             var tpl = AudioImpl.TPL_AUDIO;
 
-            if (UA.gecko && fallback) {
-                tpl = AudioImpl.TPL_AUDIO_FALLBACK;
-            }
-
             var tplObj = Lang.sub(tpl, [A.guid()]);
 
             var audio = A.Node.create(tplObj);
@@ -449,59 +321,6 @@ var AudioImpl = A.Component.create({
             instance._audio = audio;
 
             return audio;
-        },
-
-        /**
-         * Set media on `flashVars`.
-         *
-         * @method _setMedia
-         * @param flashVars
-         * @protected
-         */
-        _setMedia: function(flashVars) {
-            var instance = this;
-
-            if (!owns(flashVars, 'mp3') && !owns(flashVars, 'mp4') && !owns(flashVars, 'flv')) {
-                var audioUrl = instance.get('url');
-
-                var type = instance.get('type');
-
-                if (!type) {
-                    var typeMatch = REGEX_FILE_EXTENSION.exec(audioUrl);
-
-                    if (typeMatch) {
-                        type = typeMatch[1];
-                    }
-                }
-
-                flashVars[type] = audioUrl;
-            }
-        },
-
-        /**
-         * Set the `fixedAttributes` on the UI.
-         *
-         * @method _uiSetFixedAttributes
-         * @param val
-         * @protected
-         */
-        _uiSetFixedAttributes: function() {
-            var instance = this;
-
-            instance._renderSwfTask();
-        },
-
-        /**
-         * Set the `flashVars` on the UI.
-         *
-         * @method _uiSetFlashVars
-         * @param val
-         * @protected
-         */
-        _uiSetFlashVars: function() {
-            var instance = this;
-
-            instance._renderSwfTask();
         },
 
         /**
@@ -525,10 +344,7 @@ var AudioImpl = A.Component.create({
                     audio = instance._renderAudio(!val);
                 }
 
-                if (!val) {
-                    instance._renderSwfTask();
-                }
-                else {
+                if (val) {
                     var sourceOgg = instance._sourceOgg;
 
                     if (!sourceOgg) {
@@ -542,19 +358,6 @@ var AudioImpl = A.Component.create({
                     sourceOgg.attr('src', val);
                 }
             }
-        },
-
-        /**
-         * Set the `swfUrl` on the UI.
-         *
-         * @method _uiSetSwfUrl
-         * @param val
-         * @protected
-         */
-        _uiSetSwfUrl: function() {
-            var instance = this;
-
-            instance._renderSwfTask();
         },
 
         /**
@@ -592,8 +395,6 @@ var AudioImpl = A.Component.create({
                     sourceMp3.attr('src', val);
                 }
             }
-
-            instance._renderSwfTask();
         },
 
         /**
@@ -611,10 +412,5 @@ var AudioImpl = A.Component.create({
 });
 
 AudioImpl.TPL_AUDIO = '<audio id="{0}" controls="controls" class="' + CSS_AUDIO_NODE + '"></audio>';
-
-AudioImpl.TPL_AUDIO_FALLBACK = '<div class="' + CSS_AUDIO_NODE + '"></div>';
-
-AudioImpl.TPL_FLASH =
-    '<object id="{id}" {applicationType} height="{height}" width="{width}">{movie}{fixedAttributes}{flashVars}</object>';
 
 A.Audio = AudioImpl;
