@@ -4,4 +4,4 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-3133](https://issues.liferay.com/browse/AUI-3133) Conflict with aui-datepicker and aui-datepicker-deprecated
