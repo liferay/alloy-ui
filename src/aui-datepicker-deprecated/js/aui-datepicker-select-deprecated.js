@@ -847,7 +847,7 @@ var DatePickerSelect = A.Component.create({
                 trigger: instance.get(TRIGGER).item(0)
             };
 
-            var datePicker = new A.DatePicker(datePickerConfig).render();
+            var datePicker = new A.DatePickerDeprecated(datePickerConfig).render();
 
             datePicker.addTarget(instance);
 

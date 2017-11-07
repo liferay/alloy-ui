@@ -23,7 +23,7 @@ var Lang = A.Lang,
     TRIGGER = 'trigger',
     TYPE = 'type';
 
-var DatePicker = A.Component.create({
+var DatePickerDeprecated = A.Component.create({
     NAME: DATEPICKER,
 
     ATTRS: {
@@ -321,7 +321,7 @@ var DatePicker = A.Component.create({
     }
 });
 
-A.DatePickerDeprecated = DatePicker;
+A.DatePickerDeprecated = DatePickerDeprecated;
 
 /**
  * A base class for DatepickerManager:
