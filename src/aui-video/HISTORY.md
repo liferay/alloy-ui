@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-3132](https://issues.liferay.com/browse/AUI-3132) Remove video swf files
 
 ## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
 
