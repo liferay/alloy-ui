@@ -91,6 +91,27 @@ A.LayoutBuilderResizeCol.prototype = {
     },
 
     /**
+     * Fired when the `drag:align` event is triggered.
+     *
+     * @method _afterDragAlign
+     * @protected
+     */
+    _afterDragAlign: function(event) {
+        var instance = this;
+        var dragNode = event.target.get('node');
+        var row = dragNode.ancestor(SELECTOR_ROW);
+        var breakpoints = row.all('.' + CSS_RESIZE_COL_BREAKPOINT);
+        A.each(breakpoints, function(node) {
+            var breakpointRegion = node.get('region');
+            breakpointRegion.left -= 30;
+            breakpointRegion.right += 30;
+            if (event.pageX > breakpointRegion.left && event.pageX < breakpointRegion.right) {
+                instance._afterDragEnter(node);
+            }
+        });
+    },
+
+    /**
      * Fired when the `drag:end` event is triggered.
      *
      * @method _afterDragEnd
@@ -130,9 +151,7 @@ A.LayoutBuilderResizeCol.prototype = {
      * @param {EventFacade} event
      * @protected
      */
-    _afterDragEnter: function(event) {
-        var dropNode = event.drop.get('node');
-
+    _afterDragEnter: function(dropNode) {
         this._layoutContainer.all('.' + CSS_RESIZE_COL_BREAKPOINT_OVER)
             .removeClass(CSS_RESIZE_COL_BREAKPOINT_OVER);
         dropNode.addClass(CSS_RESIZE_COL_BREAKPOINT_OVER);
@@ -264,6 +283,7 @@ A.LayoutBuilderResizeCol.prototype = {
             this.after('layoutChange', this._afterResizeColLayoutChange),
             this.after('layout:rowsChange', this._afterResizeColLayoutRowsChange),
             this.after('layout-row:colsChange', this._afterResizeColLayoutColsChange),
+            this._delegateDrag.after('drag:align', A.bind(this._afterDragAlign, this)),
             this._delegateDrag.after('drag:end', A.bind(this._afterDragEnd, this)),
             this._delegateDrag.after('drag:enter', A.bind(this._afterDragEnter, this)),
             this._delegateDrag.after('drag:mouseDown', A.bind(this._afterDragMouseDown, this)),
@@ -393,9 +413,7 @@ A.LayoutBuilderResizeCol.prototype = {
     _hideBreakpoints: function(rowNode) {
         var dropNodes = rowNode.all('.' + CSS_RESIZE_COL_BREAKPOINT);
 
-        dropNodes.each(function(dropNode) {
-            dropNode.setStyle('display', 'none');
-        });
+        rowNode.removeClass('layout-builder-resize-dragging');
     },
 
     /**
@@ -403,7 +421,7 @@ A.LayoutBuilderResizeCol.prototype = {
      *
      * @method _hideColDraggableBoundaries
      * @protected
-    */
+     */
     _hideColDraggableBoundaries: function() {
         this._layoutContainer.all('.' + CSS_RESIZE_COL_DRAGGABLE).removeClass(CSS_RESIZE_COL_DRAGGABLE_VISIBLE);
     },
@@ -415,7 +433,7 @@ A.LayoutBuilderResizeCol.prototype = {
      * @param {Node} dragNode
      * @protected
      */
-     _insertColumnAfterDropHandles: function(dragNode) {
+    _insertColumnAfterDropHandles: function(dragNode) {
         var colLayoutPosition,
             dragPosition,
             newCol,
@@ -467,9 +485,6 @@ A.LayoutBuilderResizeCol.prototype = {
                 gridLine = A.Node.create(instance.TPL_RESIZE_COL_BREAKPOINT);
                 gridLine.setStyle('left', ((point * 100) / MAX_SIZE) + '%');
                 gridLine.setData('layout-position', point);
-                gridLine.plug(A.Plugin.Drop, {
-                    padding: '30px'
-                });
                 node.append(gridLine);
 
                 instance._gridlineNodes.push(gridLine);
@@ -596,7 +611,6 @@ A.LayoutBuilderResizeCol.prototype = {
     _removeGrid: function() {
         if (this._gridlineNodes.length) {
             A.Array.each(this._gridlineNodes, function(node) {
-                node.unplug(A.Plugin.Drop);
                 node.remove();
             });
 
@@ -634,11 +648,7 @@ A.LayoutBuilderResizeCol.prototype = {
         var dropNodes = row.all('.' + CSS_RESIZE_COL_BREAKPOINT),
             instance = this;
 
-        dropNodes.each(function(dropNode) {
-            if (instance._canDrop(dragNode, dropNode.getData('layout-position'))) {
-                dropNode.setStyle('display', 'block');
-            }
-        });
+        row.addClass('layout-builder-resize-dragging');
     },
 
     /**
