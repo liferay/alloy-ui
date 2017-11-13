@@ -98,13 +98,19 @@ A.LayoutBuilderResizeCol.prototype = {
      */
     _afterDragAlign: function(event) {
         var instance = this;
+
         var dragNode = event.target.get('node');
+
         var row = dragNode.ancestor(SELECTOR_ROW);
+
         var breakpoints = row.all('.' + CSS_RESIZE_COL_BREAKPOINT);
+
         A.each(breakpoints, function(node) {
             var breakpointRegion = node.get('region');
+
             breakpointRegion.left -= 30;
             breakpointRegion.right += 30;
+
             if (event.pageX > breakpointRegion.left && event.pageX < breakpointRegion.right) {
                 instance._afterDragEnter(node);
             }
@@ -211,7 +217,7 @@ A.LayoutBuilderResizeCol.prototype = {
         var dragNode = event.target.get('node');
 
         this.dragging = true;
-        
+
         dragNode.hide();
         dragNode.ancestor(SELECTOR_ROW).addClass(CSS_RESIZE_COL_DRAGGING);
 
@@ -288,9 +294,9 @@ A.LayoutBuilderResizeCol.prototype = {
             this._delegateDrag.after('drag:mouseDown', A.bind(this._afterDragMouseDown, this)),
             this._delegateDrag.after('drag:mouseup', A.bind(this._afterDragMouseup, this)),
             this._delegateDrag.after('drag:start', A.bind(this._afterDragStart, this)),
-            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColDragHandle, this), 
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColDragHandle, this),
                 'press:13', '.' + CSS_RESIZE_COL_DRAGGABLE),
-            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColBreakpoint, this), 
+            this._layoutContainer.delegate('key', A.bind(this._onKeyPressResizeColBreakpoint, this),
                 'press:13', '.' + CSS_RESIZE_COL_BREAKPOINT_LINE),
             this._layoutContainer.delegate('mouseenter', A.bind(this._onMouseEnterCol, this), SELECTOR_COL),
             this._layoutContainer.delegate('mouseenter', A.bind(this._onMouseEnterDraggable, this), '.' + CSS_RESIZE_COL_DRAGGABLE),
