@@ -140,7 +140,7 @@ var DatePickerDeprecated = A.Component.create({
         bindUI: function() {
             var instance = this;
 
-            DatePicker.superclass.bindUI.apply(this, arguments);
+            DatePickerDeprecated.superclass.bindUI.apply(this, arguments);
 
             instance.on('show', instance._onShowOverlay);
 
