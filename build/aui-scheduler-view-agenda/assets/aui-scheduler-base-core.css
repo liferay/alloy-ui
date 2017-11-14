@@ -1,0 +1,183 @@
+/* scheduler-base */
+.scheduler-base-content {
+    overflow: hidden;
+}
+
+.scheduler-base-hd {
+    position: relative;
+    padding: 5px 0;
+}
+
+.scheduler-base-controls .scheduler-base-current-date {
+    font-weight: bold;
+}
+
+.scheduler-base-controls .scheduler-base-nav-date {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.scheduler-base-content .scheduler-base-views {
+    float: right;
+    padding-top: 2px;
+    white-space: normal;
+    width: auto;
+}
+
+.scheduler-base-content .scheduler-base-views label {
+    padding-right: 5px;
+}
+
+.scheduler-base-content > .yui3-widget-bd {
+    border: 1px solid #ddd;
+}
+
+.scheduler-base-view-date {
+    font-size: 18px;
+    margin-top: 13px;
+    text-align: center;
+}
+
+.scheduler-base-views .yui3-button {
+    margin: 0 6px 0 0;
+}
+
+.scheduler-base-views {
+    line-height: 27px;
+    text-align: right;
+}
+
+.yui3-button-selected {
+    background: #f8f8f8;
+}
+
+.scheduler-base .yui3-widget-hd .yui3-button {
+    padding: 5px 10px 5px 10px;
+}
+
+.yui3-skin-sam .yui3-button-primary, .yui3-skin-sam .yui3-button-selected {
+    -moz-box-shadow: none;
+    -moz-text-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-text-shadow: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+/* scheduler-base-view */
+
+.scheduler-view-scrollable {
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+.scheduler-view-noscroll {
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.scheduler-view-content {
+    position: relative;
+}
+
+.scheduler-view-colgrid {
+    background: #dddddd;
+}
+
+.scheduler-view-colgrid td {
+    padding: 0 0 0 1px;
+}
+
+.scheduler-view-grid {
+    background: #fff;
+    position: relative;
+}
+
+.scheduler-view-markers {
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+}
+
+.scheduler-view-markercell {
+    height: 52px;
+}
+
+.scheduler-view-marker-division {
+    border-bottom: 1px dotted #ddd;
+    border-top: 1px solid #ddd;
+    height: 27px;
+}
+/* scheduler-base-event */
+.scheduler-event-hidden {
+    display: none;
+}
+
+.scheduler-event-content {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 2px 4px;
+    text-align: left;
+}
+
+.scheduler-event-content:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.scheduler-event-short .scheduler-event-content {
+    display: inline;
+    white-space: nowrap;
+}
+
+.scheduler-event-title {
+    display: inline;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 25px;
+    overflow: hidden;
+    padding: 2px 0 2px 4px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.yui3-dd-proxy .scheduler-event, .scheduler-event-past {
+    filter: alpha(opacity=70);
+    opacity: .7;
+}
+
+.scheduler-event.scheduler-event-proxy {
+    filter: alpha(opacity=70);
+    opacity: .7;
+    position: relative;
+    width: 99.88%;
+}
+
+.scheduler-event {
+    color: rgba(0, 0, 0, .5);
+    height: 70px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 95%;
+    z-index: 400;
+}
+
+.scheduler-today {
+    background: #f6f6f6;
+}
+
+.scheduler-today-hd {
+    border-bottom: 3px solid #009be6;
+    color: #333333;
+    font-weight: bold;
+}
+
+.scheduler-event {
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
