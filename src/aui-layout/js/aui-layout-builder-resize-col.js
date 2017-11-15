@@ -285,7 +285,6 @@ A.LayoutBuilderResizeCol.prototype = {
             this.after('layout-row:colsChange', this._afterResizeColLayoutColsChange),
             this._delegateDrag.after('drag:align', A.bind(this._afterDragAlign, this)),
             this._delegateDrag.after('drag:end', A.bind(this._afterDragEnd, this)),
-            this._delegateDrag.after('drag:enter', A.bind(this._afterDragEnter, this)),
             this._delegateDrag.after('drag:mouseDown', A.bind(this._afterDragMouseDown, this)),
             this._delegateDrag.after('drag:mouseup', A.bind(this._afterDragMouseup, this)),
             this._delegateDrag.after('drag:start', A.bind(this._afterDragStart, this)),

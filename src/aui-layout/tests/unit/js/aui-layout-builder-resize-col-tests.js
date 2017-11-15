@@ -149,7 +149,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
                 visible = [];
 
             nodes.each(function(node) {
-                if (node.getStyle('display') !== 'none') {
+                if (node.get('offsetParent')) {
                     visible.push(node);
                 }
             });
