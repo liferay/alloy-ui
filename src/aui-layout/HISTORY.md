@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-3134](https://issues.liferay.com/browse/AUI-3134) Fixes memory leak with multiple instances of A.DD.Drop by not using it
 
 ## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
 
