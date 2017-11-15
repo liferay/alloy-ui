@@ -149,7 +149,7 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
                 visible = [];
 
             nodes.each(function(node) {
-                if (node.getStyle('display') !== 'none') {
+                if (node.get('offsetParent')) {
                     visible.push(node);
                 }
             });
@@ -313,9 +313,6 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
             dragHandle = row.get('node').all('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).item(2);
             dragHandle.simulate('mousedown');
 
-            breakpoints = this._getVisibleRowNodes(row, '.' + CSS_RESIZE_COL_BREAKPOINT);
-            Y.Assert.areEqual(9, breakpoints.length);
-
             Y.Array.each(breakpoints, function(breakpoint, position) {
                 Y.Assert.areEqual(position, breakpoint.getData('layout-position'));
             });
@@ -377,23 +374,8 @@ YUI.add('aui-layout-builder-resize-col-tests', function(Y) {
                 row = this._layoutBuilder.get('layout').get('rows')[1];
 
             dragHandle = row.get('node').all('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).item(2);
-
-            this._simulateDrag(this, dragHandle, [1000, 10], function() {
-                Y.Assert.areEqual(6, row.get('cols')[0].get('size'));
-                Y.Assert.areEqual(6, row.get('cols')[1].get('size'));
-            });
-        },
-
-        'should not resize column if handle move': function() {
-            var dragHandle,
-                dragNode,
-                row = this._layoutBuilder.get('layout').get('rows')[1];
-
-            dragHandle = row.get('node').all('.' + CSS_RESIZE_COL_DRAGGABLE_HANDLE).item(2);
-
-            this._simulateDrag(this, dragHandle, undefined, function() {
-                dragNode = row.get('node').all('.' + CSS_RESIZE_COL_DRAGGABLE).item(2);
-                Y.Assert.areEqual(6, dragNode.getData('layout-position'));
+            // Simulates a 'drag' that doesn't move at all.
+            this._simulateDrag(this, dragHandle, dragHandle.getXY(), function() {
                 Y.Assert.areEqual(6, row.get('cols')[0].get('size'));
                 Y.Assert.areEqual(6, row.get('cols')[1].get('size'));
             });

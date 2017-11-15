@@ -1,4 +1,4 @@
-.layout-builder-resize-col-breakpoint {
+.layout-builder-resize-dragging .layout-builder-resize-col-breakpoint {
     display: block;
 }
 
@@ -7,7 +7,7 @@
     display: none;
     position: absolute;
     top: 0;
-    width: 0;
+    width: 1px;
     z-index: 2;
 }
 
