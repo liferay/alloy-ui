@@ -8,6 +8,7 @@
 var Lang = A.Lang,
     isArray = Lang.isArray,
     isBoolean = Lang.isBoolean,
+    isNumber = Lang.isNumber,
     isObject = Lang.isObject,
     isString = Lang.isString,
 
@@ -59,7 +60,7 @@ var Lang = A.Lang,
 
 A.PolygonUtil = {
     ARROW_POINTS: [
-      [-12, -6], [-8, 0], [-12, 6], [6, 0]
+        [-12, -6], [-8, 0], [-12, 6], [6, 0]
     ],
 
     drawArrow: function(shape, x1, y1, x2, y2, arrowPoints) {
@@ -204,24 +205,29 @@ A.Connector = A.Base.create('line', A.Base, [], {
             curveArgs = null,
             nQuadrantSections = 8,
             angle = toDegrees(Math.atan2(y2 - y1, x2 - x1)),
-            pseudoQuadrant = Math.round(Math.abs(angle) / (360 / nQuadrantSections));
+            pseudoQuadrant = Math.round(Math.abs(angle) / (360 / nQuadrantSections)),
+
+            // If there are two nodes that have interconnected connectors, we will change the
+            // curve based on the quadrant so that there is no overlap, so that the description
+            // of the connectors do not overlap and are always visible.
+            offset = instance.hasConnectorsInterconnected() ? instance.get('offsetConnectors') : 0;
 
         if (sign(angle) < 0) {
             curveArgs = [
-                [x1 + dx, y1, x2 - dx, y2, x2, y2], // 3,6
-                [x1 + dx, y1, x2, y1 - dy, x2, y2], // 3,5
-                [x1, y1 - dy, x2, y1 - dy, x2, y2], // 0,5
-                [x1 - dx, y1, x2, y1 - dy, x2, y2], // 2,5
-                [x1 - dx, y1, x2 + dx, y2, x2, y2] // 2,7
+                [x1 + dx, y1 + offset, x2 - dx, y2 + offset, x2, y2], // 3,6
+                [x1 + dx, y1, x2, (y1 - dy) - offset, x2, y2], // 3,5
+                [x1, y1 - dy, x2 - offset, (y1 - dy) - offset, x2, y2], // 0,5
+                [x1 - dx, y1, x2, (y1 - dy) - offset, x2, y2], // 2,5
+                [x1 - dx, y1 - offset, x2 + dx, y2 - offset, x2, y2] // 2,7
             ];
         }
         else {
             curveArgs = [
-                [x1 + dx, y1, x2 - dx, y2, x2, y2], // 3,6
-                [x1 + dx, y1, x2, y1 + dy, x2, y2], // 3,4
-                [x1, y1 + dy, x2, y1 + dy, x2, y2], // 1,4
-                [x1 - dx, y1, x2, y1 + dy, x2, y2], // 2,4
-                [x1 - dx, y1, x2 + dx, y2, x2, y2] // 2,7
+                [x1 + dx, y1 + offset, x2 - dx, y2 + offset, x2, y2], // 3,6
+                [x1 + dx, y1, x2, (y1 + dy) + offset, x2, y2], // 3,4
+                [x1, y1 + dy, x2 + offset, (y1 + dy) + offset, x2, y2], // 1,4
+                [x1 - dx, y1, x2, (y1 + dy) + offset, x2, y2], // 2,4
+                [x1 - dx, y1 - offset, x2 + dx, y2 - offset, x2, y2] // 2,7
             ];
         }
 
