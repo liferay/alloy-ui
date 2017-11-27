@@ -802,6 +802,18 @@ A.Connector = A.Base.create('line', A.Base, [], {
         },
 
         /**
+         * The offset between connectors.
+         *
+         * @attribute offsetConnectors
+         * @default 60
+         * @type Number
+         */
+        offsetConnectors: {
+            value: 60,
+            validator: isNumber
+        },
+
+        /**
          * Origin connector position.
          *
          * @attribute p1
