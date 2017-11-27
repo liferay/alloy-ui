@@ -302,6 +302,35 @@ A.Connector = A.Base.create('line', A.Base, [], {
     },
 
     /**
+     * Verifies if there is any interconnected connector.
+     *
+     * @method hasConnectorsInterconnected
+     * @return Boolean
+     */
+    hasConnectorsInterconnected: function() {
+        var instance = this;
+        var builder = instance.get('builder');
+        var isInterconnected = false;
+        var p1 = instance.get('p1');
+        var p2 = instance.get('p2');
+
+        builder.eachConnector(function(connector) {
+            if (connector) {
+                var connectorP1 = connector.get('p1');
+                var connectorP2 = connector.get('p2');
+
+                if ((connectorP1[0] === p2[0] && connectorP1[1] === p2[1] ||
+                    connectorP2[0] === p1[0] && connectorP2[1] === p1[1]) &&
+                    connector !== instance) {
+                    isInterconnected = true;
+                }
+            }
+        });
+
+        return isInterconnected;
+    },
+
+    /**
      * Sets the visibility to `false`.
      *
      * @method hide
