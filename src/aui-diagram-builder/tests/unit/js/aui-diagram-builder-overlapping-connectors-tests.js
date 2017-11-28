@@ -2,30 +2,6 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
 
     var suite = new Y.Test.Suite('aui-diagram-builder');
 
-    var rectOverlap = function(rec1, rec2) {
-        var rectangle1 = {
-            x: rec1.offsetLeft,
-            xMax: rec1.offsetLeft + rec1.clientWidth,
-            y: rec1.offsetTop,
-            yMax: rec1.offsetTop + rec1.clientHeight
-        };
-        var rectangle2 = {
-            x: rec2.offsetLeft,
-            xMax: rec2.offsetLeft + rec2.clientWidth,
-            y: rec2.offsetTop,
-            yMax: rec2.offsetTop + rec2.clientHeight
-        };
-
-        var xOverlap = Math.max(0, Math.min(rectangle1.xMax, rectangle2.xMax) - Math.max(rectangle1.x, rectangle2.x));
-        var yOverlap = Math.max(0, Math.min(rectangle1.yMax, rectangle2.yMax) - Math.max(rectangle1.y, rectangle2.y));
-
-        if (xOverlap > 0 && yOverlap > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     suite.add(new Y.Test.Case({
         name: 'DiagramBuilderConnector',
 
@@ -90,7 +66,7 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
                     {
                         name: 'End2',
                         type: 'condition',
-                        xy: [300, 300]
+                        xy: [300, 100]
                     }
                 ]
             }).render();
@@ -115,13 +91,11 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
             var hasOverlapping = false;
             var connectors = [];
 
-            diagramBuilder3.eachConnector(function(connector) {
-                var _connector = connector.get('nodeName')._node;
-
-                connectors.push(_connector);
+            diagramBuilder2.eachConnector(function(connector) {
+                connectors.push(connector.get('nodeName'));
             });
 
-            hasOverlapping = rectOverlap(connectors[0], connectors[1]);
+            hasOverlapping = connectors[0].inRegion(connectors[1]);
 
             Y.Assert.areEqual(hasOverlapping, false);
         },
@@ -165,13 +139,11 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
             var hasOverlapping = false;
             var connectors = [];
 
-            diagramBuilder4.eachConnector(function(connector) {
-                var _connector = connector.get('nodeName')._node;
-
-                connectors.push(_connector);
+            diagramBuilder3.eachConnector(function(connector) {
+                connectors.push(connector.get('nodeName'));
             });
 
-            hasOverlapping = rectOverlap(connectors[0], connectors[1]);
+            hasOverlapping = connectors[0].inRegion(connectors[1]);
 
             Y.Assert.areEqual(hasOverlapping, false);
         },
@@ -215,13 +187,11 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
             var hasOverlapping = false;
             var connectors = [];
 
-            diagramBuilder5.eachConnector(function(connector) {
-                var _connector = connector.get('nodeName')._node;
-
-                connectors.push(_connector);
+            diagramBuilder4.eachConnector(function(connector) {
+                connectors.push(connector.get('nodeName'));
             });
 
-            hasOverlapping = rectOverlap(connectors[0], connectors[1]);
+            hasOverlapping = connectors[0].inRegion(connectors[1]);
 
             Y.Assert.areEqual(hasOverlapping, false);
         },
