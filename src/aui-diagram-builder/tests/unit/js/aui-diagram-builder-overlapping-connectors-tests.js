@@ -50,12 +50,16 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
 
             diagramBuilder.connectAll([
                 {
-                    connector: { name: 'link test 1' },
+                    connector: {
+                        name: 'link test 1'
+                    },
                     source: 'Start',
                     target: 'End'
                 },
                 {
-                    connector: { name: 'link test 2' },
+                    connector: {
+                        name: 'link test 2'
+                    },
                     source: 'End',
                     target: 'Start'
                 }
@@ -74,7 +78,7 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
 
         'check if the connectors are not visually overlapping the quadrant 0 and 4': function() {
 
-            var diagramBuilder3 = new Y.DiagramBuilder({
+            var diagramBuilder2 = new Y.DiagramBuilder({
                 availableFields: [],
                 boundingBox: '#diagramBuilder',
                 fields: [
@@ -86,19 +90,23 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
                     {
                         name: 'End2',
                         type: 'condition',
-                        xy: [300, 100]
+                        xy: [300, 300]
                     }
                 ]
             }).render();
 
-            diagramBuilder3.connectAll([
+            diagramBuilder2.connectAll([
                 {
-                    connector: { name: 'Link test 1' },
+                    connector: {
+                        name: 'Link test 1'
+                    },
                     source: 'Start2',
                     target: 'End2'
                 },
                 {
-                    connector: { name: 'Link1 test 2' },
+                    connector: {
+                        name: 'Link1 test 2'
+                    },
                     source: 'End2',
                     target: 'Start2'
                 }
@@ -120,7 +128,7 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
 
         'check if the connectors are not visually overlapping the quadrant 1 and 3': function() {
 
-            var diagramBuilder4 = new Y.DiagramBuilder({
+            var diagramBuilder3 = new Y.DiagramBuilder({
                 availableFields: [],
                 boundingBox: '#diagramBuilder',
                 fields: [
@@ -132,19 +140,23 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
                     {
                         name: 'End3',
                         type: 'condition',
-                        xy: [300, 300]
+                        xy: [300, 350]
                     }
                 ]
             }).render();
 
-            diagramBuilder4.connectAll([
+            diagramBuilder3.connectAll([
                 {
-                    connector: { name: 'Link test 1' },
+                    connector: {
+                        name: 'Link test 1'
+                    },
                     source: 'Start3',
                     target: 'End3'
                 },
                 {
-                    connector: { name: 'Link1 test 2' },
+                    connector: {
+                        name: 'Link1 test 2'
+                    },
                     source: 'End3',
                     target: 'Start3'
                 }
@@ -166,7 +178,7 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
 
         'check if the connectors are not visually overlapping the quadrant 2 and 2': function() {
 
-            var diagramBuilder5 = new Y.DiagramBuilder({
+            var diagramBuilder4 = new Y.DiagramBuilder({
                 availableFields: [],
                 boundingBox: '#diagramBuilder',
                 fields: [
@@ -183,14 +195,18 @@ YUI.add('aui-diagram-builder-overlapping-connectors-tests', function(Y) {
                 ]
             }).render();
 
-            diagramBuilder5.connectAll([
+            diagramBuilder4.connectAll([
                 {
-                    connector: { name: 'Link test 1' },
+                    connector: {
+                        name: 'Link test 1'
+                    },
                     source: 'Start4',
                     target: 'End4'
                 },
                 {
-                    connector: { name: 'Link1 test 2' },
+                    connector: {
+                        name: 'Link1 test 2'
+                    },
                     source: 'End4',
                     target: 'Start4'
                 }
