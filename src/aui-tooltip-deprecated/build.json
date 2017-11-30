@@ -1,0 +1,10 @@
+{
+    "name": "aui-tooltip-deprecated",
+    "builds": {
+        "aui-tooltip-deprecated": {
+            "jsfiles": [
+                "js/aui-tooltip-deprecated.js"
+            ]
+        }
+    }
+}

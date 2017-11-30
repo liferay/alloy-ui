@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-overlay-deprecated",
+    "displayName": "Gallery: aui-overlay-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-overlay-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

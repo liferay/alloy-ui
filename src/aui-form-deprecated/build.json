@@ -1,0 +1,35 @@
+{
+    "name": "aui-form-deprecated",
+    "builds": {
+    	"aui-form-base-deprecated": {
+	        "jsfiles": [
+            	"js/aui-form-base-deprecated.js"
+        	]
+	    },
+	    "aui-form-combobox-deprecated": {
+	        "jsfiles": [
+            	"js/aui-form-combobox-deprecated.js"
+        	]
+	    },
+	    "aui-form-field-deprecated": {
+	        "jsfiles": [
+            	"js/aui-form-field-deprecated.js"
+        	]
+	    },
+	    "aui-form-select-deprecated": {
+	        "jsfiles": [
+            	"js/aui-form-select-deprecated.js"
+        	]
+	    },
+	    "aui-form-textarea-deprecated": {
+	        "jsfiles": [
+            	"js/aui-form-textarea-deprecated.js"
+        	]
+	    },
+	    "aui-form-textfield-deprecated": {
+	    	"jsfiles": [
+            	"js/aui-form-textfield-deprecated.js"
+        	]
+	    }
+    }
+}

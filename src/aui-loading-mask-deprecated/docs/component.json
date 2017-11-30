@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-loading-mask-deprecated",
+    "displayName": "Gallery: aui-loading-mask-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-loading-mask-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

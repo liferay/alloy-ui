@@ -1,0 +1,8 @@
+{
+    "aui-tooltip-deprecated": {
+        "requires": [
+            "aui-overlay-context-panel-deprecated"
+        ],
+        "skinnable": true
+    }
+}

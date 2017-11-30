@@ -1,0 +1,41 @@
+{
+    "aui-tpl-snippets-deprecated": {
+        "use": [
+            "aui-tpl-snippets-base-deprecated",
+            "aui-tpl-snippets-checkbox-deprecated",
+            "aui-tpl-snippets-input-deprecated",
+            "aui-tpl-snippets-select-deprecated",
+            "aui-tpl-snippets-textarea-deprecated"
+        ]
+    },
+
+    "aui-tpl-snippets-base-deprecated": {
+        "requires": [
+            "aui-template-deprecated"
+        ]
+    },
+
+    "aui-tpl-snippets-checkbox-deprecated": {
+        "requires": [
+            "aui-tpl-snippets-base-deprecated"
+        ]
+    },
+
+    "aui-tpl-snippets-input-deprecated": {
+        "requires": [
+            "aui-tpl-snippets-base-deprecated"
+        ]
+    },
+
+    "aui-tpl-snippets-textarea-deprecated": {
+        "requires": [
+            "aui-tpl-snippets-base-deprecated"
+        ]
+    },
+
+    "aui-tpl-snippets-select-deprecated": {
+        "requires": [
+            "aui-tpl-snippets-base-deprecated"
+        ]
+    }
+}

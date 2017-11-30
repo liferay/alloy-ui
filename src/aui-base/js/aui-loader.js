@@ -94,10 +94,28 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-autocomplete-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-overlay-base-deprecated",
+            "datasource",
+            "dataschema",
+            "aui-form-combobox-deprecated"
+        ],
+        "skinnable": true
+    },
     "aui-autosize": {
         "use": [
             "aui-autosize-iframe"
         ]
+    },
+    "aui-autosize-deprecated": {
+        "requires": [
+            "event-valuechange",
+            "plugin",
+            "aui-base-deprecated"
+        ],
+        "skinnable": true
     },
     "aui-autosize-iframe": {
         "requires": [
@@ -119,6 +137,16 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-base-core": {},
+    "aui-base-deprecated": {
+        "use": [
+            "aui-base",
+            "aui-node",
+            "aui-component",
+            "aui-delayed-task-deprecated",
+            "aui-selector",
+            "aui-event-base"
+        ]
+    },
     "aui-base-html5-shiv": {
         "condition": {
             "name": "aui-base-html5-shiv",
@@ -146,6 +174,14 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component",
             "aui-widget-cssclass",
             "aui-widget-toggle"
+        ],
+        "skinnable": true
+    },
+    "aui-button-item-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-state-interaction-deprecated",
+            "widget-child"
         ],
         "skinnable": true
     },
@@ -219,6 +255,13 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-component"
         ]
     },
+    "aui-chart-deprecated": {
+        "requires": [
+            "datasource",
+            "json",
+            "aui-swf-deprecated"
+        ]
+    },
     "aui-classnamemanager": {
         "requires": [
             "classnamemanager"
@@ -250,6 +293,31 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-color-picker-base-deprecated": {
+        "requires": [
+            "dd-drag",
+            "panel",
+            "slider",
+            "aui-button-item-deprecated",
+            "aui-color-util-deprecated",
+            "aui-form-base-deprecated",
+            "aui-overlay-context-deprecated"
+        ],
+        "skinnable": true
+    },
+    "aui-color-picker-deprecated": {
+        "use": [
+            "aui-color-picker-base-deprecated",
+            "aui-color-picker-grid-plugin-deprecated"
+        ]
+    },
+    "aui-color-picker-grid-plugin-deprecated": {
+        "requires": [
+            "plugin",
+            "aui-color-picker-base-deprecated"
+        ],
+        "skinnable": true
+    },
     "aui-color-picker-popover": {
         "requires": [
             "aui-color-picker-base",
@@ -258,6 +326,9 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-toggle"
         ],
         "skinnable": true
+    },
+    "aui-color-util-deprecated": {
+        "requires": []
     },
     "aui-component": {
         "requires": [
@@ -278,6 +349,26 @@ Y.mix(YUI.Env[Y.version].modules, {
             "node-base"
         ],
         "skinnable": true
+    },
+    "aui-data-set-deprecated": {
+        "requires": [
+            "oop",
+            "collection",
+            "base"
+        ]
+    },
+    "aui-datasource-control-base-deprecated": {
+        "requires": [
+            "datasource",
+            "dataschema",
+            "aui-base-deprecated"
+        ]
+    },
+    "aui-datasource-control-deprecated": {
+        "use": [
+            "aui-datasource-control-base-deprecated",
+            "aui-input-text-control-deprecated"
+        ]
     },
     "aui-datatable": {
         "use": [
@@ -424,12 +515,27 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-datepicker-base-deprecated": {
+        "requires": [
+            "calendar",
+            "aui-datatype",
+            "aui-overlay-context-deprecated"
+        ],
+        "skinnable": true
+    },
     "aui-datepicker-delegate": {
         "requires": [
             "aui-datatype-date-parse",
             "aui-event-input",
             "event-focus",
             "node-event-delegate"
+        ]
+    },
+    "aui-datepicker-deprecated": {
+        "skinnable": true,
+        "use": [
+            "aui-datepicker-base-deprecated",
+            "aui-datepicker-select-deprecated"
         ]
     },
     "aui-datepicker-native": {
@@ -446,7 +552,19 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-popover"
         ]
     },
+    "aui-datepicker-select-deprecated": {
+        "requires": [
+            "aui-datepicker-base-deprecated",
+            "aui-button-item-deprecated"
+        ],
+        "skinnable": true
+    },
     "aui-debounce": {},
+    "aui-delayed-task-deprecated": {
+        "requires": [
+            "yui-base"
+        ]
+    },
     "aui-diagram-builder": {
         "requires": [
             "aui-aria",
@@ -524,6 +642,15 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-diagram-node-state"
         ]
     },
+    "aui-dialog-iframe-deprecated": {
+        "requires": [
+            "plugin",
+            "array-invoke",
+            "aui-base-deprecated",
+            "aui-loading-mask-deprecated"
+        ],
+        "skinnable": true
+    },
     "aui-dropdown": {
         "requires": [
             "event-delegate",
@@ -537,6 +664,15 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-cssclass",
             "aui-widget-toggle",
             "aui-widget-trigger"
+        ],
+        "skinnable": true
+    },
+    "aui-editable-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-form-combobox-deprecated",
+            "escape",
+            "event-resize"
         ],
         "skinnable": true
     },
@@ -601,6 +737,15 @@ Y.mix(YUI.Env[Y.version].modules, {
             "timers"
         ]
     },
+    "aui-form-base-deprecated": {
+        "requires": [
+            "io-form",
+            "querystring-parse",
+            "aui-base-deprecated",
+            "aui-data-set-deprecated",
+            "aui-form-field-deprecated"
+        ]
+    },
     "aui-form-builder": {
         "requires": [
             "aui-modal",
@@ -617,6 +762,36 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-form-builder-available-field-deprecated": {
+        "requires": [
+            "aui-property-builder-available-field"
+        ]
+    },
+    "aui-form-builder-deprecated": {
+        "requires": [
+            "aui-button",
+            "aui-collection",
+            "aui-form-builder-available-field-deprecated",
+            "aui-form-builder-field-deprecated",
+            "aui-form-builder-field-button-deprecated",
+            "aui-form-builder-field-checkbox-deprecated",
+            "aui-form-builder-field-fieldset-deprecated",
+            "aui-form-builder-field-file-upload-deprecated",
+            "aui-form-builder-field-multiple-choice-deprecated",
+            "aui-form-builder-field-radio-deprecated",
+            "aui-form-builder-field-select-deprecated",
+            "aui-form-builder-field-text-deprecated",
+            "aui-form-builder-field-textarea-deprecated",
+            "aui-property-builder",
+            "aui-property-builder-settings",
+            "aui-sortable-list",
+            "aui-tabview",
+            "aui-tooltip-base",
+            "escape",
+            "transition"
+        ],
+        "skinnable": true
+    },
     "aui-form-builder-field-base": {
         "requires": [
             "aui-classnamemanager",
@@ -628,6 +803,16 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-form-builder-field-button-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-checkbox-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
     "aui-form-builder-field-choice": {
         "requires": [
             "aui-boolean-data-editor",
@@ -637,6 +822,25 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-form-field-choice"
         ]
     },
+    "aui-form-builder-field-deprecated": {
+        "requires": [
+            "panel",
+            "aui-datatype",
+            "aui-datatable-edit",
+            "aui-property-builder-field-support"
+        ],
+        "skinnable": true
+    },
+    "aui-form-builder-field-fieldset-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-file-upload-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
     "aui-form-builder-field-list": {
         "requires": [
             "aui-form-builder-field-type",
@@ -644,6 +848,21 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-form-builder-layout-builder"
         ],
         "skinnable": true
+    },
+    "aui-form-builder-field-multiple-choice-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-radio-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-select-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
     },
     "aui-form-builder-field-sentence": {
         "requires": [
@@ -657,6 +876,16 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-radio-group-data-editor",
             "aui-form-builder-field-base",
             "aui-form-field-text"
+        ]
+    },
+    "aui-form-builder-field-text-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
+        ]
+    },
+    "aui-form-builder-field-textarea-deprecated": {
+        "requires": [
+            "aui-form-builder-field-deprecated"
         ]
     },
     "aui-form-builder-field-toolbar": {
@@ -719,6 +948,23 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-form-combobox-deprecated": {
+        "requires": [
+            "aui-form-textarea-deprecated",
+            "aui-toolbar"
+        ],
+        "skinnable": true
+    },
+    "aui-form-deprecated": {
+        "use": [
+            "aui-form-base-deprecated",
+            "aui-form-combobox-deprecated",
+            "aui-form-field-deprecated",
+            "aui-form-select-deprecated",
+            "aui-form-textarea-deprecated",
+            "aui-form-textfield-deprecated"
+        ]
+    },
     "aui-form-field": {
         "requires": [
             "aui-classnamemanager",
@@ -733,6 +979,12 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-form-field-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-component"
+        ]
+    },
     "aui-form-field-required": {
         "requires": [
             "aui-form-field"
@@ -743,6 +995,23 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-form-field-required"
         ],
         "skinnable": true
+    },
+    "aui-form-select-deprecated": {
+        "requires": [
+            "aui-form-field-deprecated"
+        ]
+    },
+    "aui-form-textarea-deprecated": {
+        "requires": [
+            "node-pluginhost",
+            "aui-autosize-deprecated",
+            "aui-form-textfield-deprecated"
+        ]
+    },
+    "aui-form-textfield-deprecated": {
+        "requires": [
+            "aui-form-field-deprecated"
+        ]
     },
     "aui-form-validator": {
         "requires": [
@@ -871,9 +1140,30 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-swipe"
         ]
     },
+    "aui-input-text-control-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-datasource-control-base-deprecated",
+            "aui-form-combobox-deprecated"
+        ]
+    },
     "aui-io": {
         "use": [
             "aui-io-request"
+        ]
+    },
+    "aui-io-deprecated": {
+        "use": [
+            "aui-io-request",
+            "aui-io-plugin-deprecated"
+        ]
+    },
+    "aui-io-plugin-deprecated": {
+        "requires": [
+            "aui-overlay-base-deprecated",
+            "aui-parse-content",
+            "aui-io-request",
+            "aui-loading-mask-deprecated"
         ]
     },
     "aui-io-request": {
@@ -883,6 +1173,15 @@ Y.mix(YUI.Env[Y.version].modules, {
             "plugin",
             "querystring-stringify",
             "aui-component"
+        ]
+    },
+    "aui-io-request-deprecated": {
+        "requires": [
+            "io-base",
+            "json",
+            "plugin",
+            "querystring-stringify",
+            "aui-base-deprecated"
         ]
     },
     "aui-layout": {
@@ -971,6 +1270,18 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-set"
         ]
+    },
+    "aui-live-search-deprecated": {
+        "requires": [
+            "aui-base-deprecated"
+        ]
+    },
+    "aui-loading-mask-deprecated": {
+        "requires": [
+            "plugin",
+            "aui-overlay-mask-deprecated"
+        ],
+        "skinnable": true
     },
     "aui-map": {
         "requires": [
@@ -1083,6 +1394,55 @@ Y.mix(YUI.Env[Y.version].modules, {
             "dd-proxy",
             "event-valuechange",
             "node-event-delegate"
+        ],
+        "skinnable": true
+    },
+    "aui-overlay-base-deprecated": {
+        "requires": [
+            "widget-position",
+            "widget-stack",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stdmod",
+            "aui-component"
+        ]
+    },
+    "aui-overlay-context-deprecated": {
+        "requires": [
+            "aui-overlay-manager-deprecated",
+            "aui-delayed-task-deprecated",
+            "aui-aria"
+        ]
+    },
+    "aui-overlay-context-panel-deprecated": {
+        "requires": [
+            "anim",
+            "aui-overlay-context-deprecated"
+        ],
+        "skinnable": true
+    },
+    "aui-overlay-deprecated": {
+        "use": [
+            "aui-overlay-base-deprecated",
+            "aui-overlay-context-deprecated",
+            "aui-overlay-context-panel-deprecated",
+            "aui-overlay-manager-deprecated",
+            "aui-overlay-mask-deprecated"
+        ]
+    },
+    "aui-overlay-manager-deprecated": {
+        "requires": [
+            "overlay",
+            "plugin",
+            "aui-base-deprecated",
+            "aui-overlay-base-deprecated"
+        ]
+    },
+    "aui-overlay-mask-deprecated": {
+        "requires": [
+            "event-resize",
+            "aui-base-deprecated",
+            "aui-overlay-base-deprecated"
         ],
         "skinnable": true
     },
@@ -1207,6 +1567,29 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-rating-base"
         ]
     },
+    "aui-resize-base-deprecated": {
+        "requires": [
+            "dd-drag",
+            "dd-delegate",
+            "dd-drop",
+            "aui-base-deprecated"
+        ],
+        "skinnable": true
+    },
+    "aui-resize-constrain-deprecated": {
+        "requires": [
+            "dd-constrain",
+            "plugin",
+            "aui-resize-base-deprecated"
+        ]
+    },
+    "aui-resize-deprecated": {
+        "skinnable": true,
+        "use": [
+            "aui-resize-base-deprecated",
+            "aui-resize-constrain-deprecated"
+        ]
+    },
     "aui-scale-data-editor": {
         "requires": [
             "aui-classnamemanager",
@@ -1308,6 +1691,14 @@ Y.mix(YUI.Env[Y.version].modules, {
         ],
         "skinnable": true
     },
+    "aui-scroller-deprecated": {
+        "requires": [
+            "event-mouseenter",
+            "aui-base-deprecated",
+            "aui-simple-anim-deprecated"
+        ],
+        "skinnable": true
+    },
     "aui-scrollspy": {
         "requires": [
             "base-build",
@@ -1336,6 +1727,14 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-map"
         ]
     },
+    "aui-simple-anim-deprecated": {
+        "requires": [
+            "aui-base-deprecated"
+        ]
+    },
+    "aui-skin-deprecated": {
+        "type": "css"
+    },
     "aui-sortable": {
         "use": [
             "aui-sortable-layout",
@@ -1361,6 +1760,12 @@ Y.mix(YUI.Env[Y.version].modules, {
             "dd-scroll",
             "aui-node",
             "aui-component"
+        ]
+    },
+    "aui-state-interaction-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "plugin"
         ]
     },
     "aui-surface": {
@@ -1407,6 +1812,13 @@ Y.mix(YUI.Env[Y.version].modules, {
             "base-build"
         ]
     },
+    "aui-swf-deprecated": {
+        "requires": [
+            "querystring-parse-simple",
+            "querystring-stringify-simple",
+            "aui-base-deprecated"
+        ]
+    },
     "aui-tabs-data-editor": {
         "requires": [
             "aui-data-editor",
@@ -1421,6 +1833,11 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-widget-css"
         ],
         "skinnable": true
+    },
+    "aui-template-deprecated": {
+        "requires": [
+            "aui-base-deprecated"
+        ]
     },
     "aui-text-data-editor": {
         "requires": [
@@ -1438,6 +1855,17 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-text-data-unicode"
         ]
+    },
+    "aui-textboxlist-deprecated": {
+        "requires": [
+            "anim-node-plugin",
+            "aui-autocomplete-deprecated",
+            "aui-button-item-deprecated",
+            "aui-data-set-deprecated",
+            "escape",
+            "node-focusmanager"
+        ],
+        "skinnable": true
     },
     "aui-timepicker": {
         "requires": [
@@ -1533,6 +1961,46 @@ Y.mix(YUI.Env[Y.version].modules, {
         "requires": [
             "aui-tooltip-base",
             "node-event-delegate"
+        ]
+    },
+    "aui-tooltip-deprecated": {
+        "requires": [
+            "aui-overlay-context-panel-deprecated"
+        ],
+        "skinnable": true
+    },
+    "aui-tpl-snippets-base-deprecated": {
+        "requires": [
+            "aui-template-deprecated"
+        ]
+    },
+    "aui-tpl-snippets-checkbox-deprecated": {
+        "requires": [
+            "aui-tpl-snippets-base-deprecated"
+        ]
+    },
+    "aui-tpl-snippets-deprecated": {
+        "use": [
+            "aui-tpl-snippets-base-deprecated",
+            "aui-tpl-snippets-checkbox-deprecated",
+            "aui-tpl-snippets-input-deprecated",
+            "aui-tpl-snippets-select-deprecated",
+            "aui-tpl-snippets-textarea-deprecated"
+        ]
+    },
+    "aui-tpl-snippets-input-deprecated": {
+        "requires": [
+            "aui-tpl-snippets-base-deprecated"
+        ]
+    },
+    "aui-tpl-snippets-select-deprecated": {
+        "requires": [
+            "aui-tpl-snippets-base-deprecated"
+        ]
+    },
+    "aui-tpl-snippets-textarea-deprecated": {
+        "requires": [
+            "aui-tpl-snippets-base-deprecated"
         ]
     },
     "aui-tree": {
@@ -1678,4 +2146,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '7d87596f3b5039325a6e2336d1245237';
+YUI.Env[Y.version].md5 = 'd7c627eb00edd6b6f054d8f6e7147480';

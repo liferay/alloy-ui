@@ -1,0 +1,10 @@
+{
+    "name": "aui-dialog-iframe-deprecated",
+    "builds": {
+        "aui-dialog-iframe-deprecated": {
+            "jsfiles": [
+                "js/aui-dialog-iframe-deprecated.js"
+            ]
+        }
+    }
+}

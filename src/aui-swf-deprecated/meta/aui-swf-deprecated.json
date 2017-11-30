@@ -1,0 +1,9 @@
+{
+    "aui-swf-deprecated": {
+        "requires": [
+            "querystring-parse-simple",
+            "querystring-stringify-simple",
+            "aui-base-deprecated"
+        ]
+    }
+}

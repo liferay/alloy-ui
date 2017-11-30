@@ -1,0 +1,7 @@
+{
+    "aui-live-search-deprecated": {
+        "requires": [
+            "aui-base-deprecated"
+        ]
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "name": "aui-color-util-deprecated",
+    "builds": {
+        "aui-color-util-deprecated": {
+            "jsfiles": [
+                "js/aui-color-util-deprecated.js"
+            ]
+        }
+    }
+}

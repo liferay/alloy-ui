@@ -1,0 +1,10 @@
+{
+    "name": "aui-state-interaction-deprecated",
+    "builds": {
+        "aui-state-interaction-deprecated": {
+            "jsfiles": [
+                "js/aui-state-interaction-deprecated.js"
+            ]
+        }
+    }
+}

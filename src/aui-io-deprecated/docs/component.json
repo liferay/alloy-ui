@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-io-deprecated",
+    "displayName": "Gallery: aui-io-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-io-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

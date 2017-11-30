@@ -1,0 +1,10 @@
+{
+    "aui-button-item-deprecated": {
+        "requires": [
+            "aui-base-deprecated",
+            "aui-state-interaction-deprecated",
+            "widget-child"
+        ],
+        "skinnable": true
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "aui-color-picker-deprecated": {
+        "use": [
+            "aui-color-picker-base-deprecated",
+            "aui-color-picker-grid-plugin-deprecated"
+        ]
+    },
+
+    "aui-color-picker-base-deprecated": {
+    	"requires": [
+    		"dd-drag",
+    		"panel",
+    		"slider",
+    		"aui-button-item-deprecated",
+    		"aui-color-util-deprecated",
+    		"aui-form-base-deprecated",
+    		"aui-overlay-context-deprecated"
+    	],
+    	"skinnable": true
+    },
+
+    "aui-color-picker-grid-plugin-deprecated": {
+    	"requires": [
+    		"plugin",
+    		"aui-color-picker-base-deprecated"
+    	],
+    	"skinnable": true
+    }
+}

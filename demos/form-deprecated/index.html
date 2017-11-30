@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<script src="../../build/aui/aui.js" type="text/javascript"></script>
+
+	<link href="../../build/aui-css/css/bootstrap.css" rel="stylesheet" />
+	<link href="../../build/aui-skin-deprecated/css/aui-skin-deprecated.css" media="screen" rel="stylesheet" type="text/css" />
+
+	<style media="screen" type="text/css">
+		body {
+			font-size: 12px;
+		}
+
+		#wrapper {
+			margin: 20px auto;
+			width: 960px;
+		}
+
+		/* ---------- Custom form css ---------- */
+		.field-content {
+			border-bottom: 1px solid #dfdfdf;
+			clear: both;
+			display: block;
+			padding: 7px 0;
+		}
+
+		.field-last .field-content {
+			border-bottom-width: 0;
+			clear: both;
+			display: block;
+			padding: 7px 0;
+		}
+
+		.field-choice .field-content {
+			border-bottom-width: 0;
+			padding: 0 0 10px;
+		}
+
+		.fieldset-legend {
+			padding-bottom: 1em;
+		}
+
+		.button-row {
+			background: #eee;
+			border-top: 1px solid #ccc;
+			padding: 5px;
+		}
+
+		.button-input {
+			background-color: #f5f5f5;
+			border: 1px solid #dedede;
+			border-left-color: #eee;
+			border-top-color: #eee;
+			color: #565656;
+		}
+
+		.button-input:hover {
+			background-color: #dff4ff;
+			border: 1px solid #c2e1ef;
+			color: #369;
+		}
+
+		.button-input:active {
+			background-color: #6299c5;
+			border: 1px solid #6299c5;
+			color: #fff;
+		}
+
+		.state-positive .button-input {
+			color: #529214;
+		}
+
+		.state-positive .button-input:hover {
+			background-color: #e6efc2;
+			border-color: #c6d880;
+		}
+
+		.state-positive .button-input:active {
+			background-color: #529214;
+			border-color: #529214;
+			color: #fff;
+		}
+
+		.state-negative .button-input {
+			color: #d12f19;
+		}
+
+		.state-negative .button-input:hover {
+			background-color: #fbe3e4;
+			border-color: #fbc2c4;
+			color: #d12f19;
+		}
+
+		.state-negative .button-input:active {
+			background-color: #d12f19;
+			border-color: #d12f19;
+			color: #fff;
+		}
+
+/*
+	Container:
+		aui-field,
+		aui-field-(type)
+		aui-field-(element-type)
+			aui-field-content
+
+	Elements:
+		Label:
+			aui-field-label
+		Input:
+			aui-field-input,
+			aui-field-input-(type)
+			aui-field-input-(element-type)
+
+		Field hints:
+			aui-field-hint
+
+	States:
+		aui-field-focused
+		aui-field-checked
+		aui-field-primary
+		aui-field-secondary
+		aui-field-positive
+		aui-field-negative
+
+		aui-state-error
+
+	Types:
+		text
+			text
+			textarea
+			password
+		menu
+			select
+			select-multiple
+		choice
+			checkbox
+			radio
+		button
+			submit
+			reset
+			push
+			image
+		upload
+			file
+		hidden //Never styled
+
+		<span class="field field-text field-password">
+			<span class="field-content">
+				<label class="field-label"></label>
+
+				Text
+					<input class="field-input field-input-text" />
+					<input class="field-input field-input-text field-input-password" />
+					<textarea class="field-input field-input-text field-input-textarea"></textarea>
+
+				Menu
+					<select class="field-input field-input-menu field-input-select"></select>
+					<select class="field-input field-input-menu field-input-select field-input-select-multiple"></select>
+
+				Choice
+					<input class="field-input field-input-choice field-input-checkbox" />
+					<input class="field-input field-input-choice field-input-radio" />
+
+				Button
+					<input class="field-input field-input-button field-input-submit" />
+					<input class="field-input field-input-button field-input-reset" />
+					<input class="field-input field-input-button field-input-cancel" />
+					<input class="field-input field-input-button field-input-push" />
+					<input class="field-input field-input-button field-input-image" />
+					<button class="field-input field-input-button field-input-push"></button>
+
+				Upload
+				<input class="field-input field-input-upload field-input-image" />
+
+				<span class="field-hint"></span>
+			</span>
+		</span>
+*/
+
+	</style>
+</head>
+
+<body>
+<div id="wrapper">
+	<h1>Alloy - form Demo</h1>
+
+	<div id="demo">
+		<form class="layout-content form" id="myForm">
+			<div class="fieldset w33 column column-first">
+				<div class="fieldset-content column-content column-content-first">
+					<div class="fieldset-legend widget-hd">
+						Top aligned labels
+					</div>
+
+					<div class="fieldset-bd widget-bd">
+						<span class="field field-text field-first">
+							<span class="field-content">
+								<label class="field-label" for="textField">Text</label>
+								<input class="field-input field-input-text" id="textField" name="textField" type="text" />
+								<span class="field-hint">
+									<span>.field, .field-text</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-text field-password">
+							<span class="field-content">
+								<label class="field-label" for="passwordField">Password</label>
+								<input class="field-input field-input-text field-input-password" id="passwordField" name="passwordField" type="password" />
+								<span class="field-hint">
+									<span>.field, .field-text, .field-password</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-menu field-select">
+							<span class="field-content">
+								<label class="field-label" for="menuField">Select (Menu)</label>
+								<select class="field-input field-input-select" id="menuField" name="menuField">
+									<option selected="selected" value="1">Menu Selection 1</option>
+									<option value="2">Menu Selection 2</option>
+									<option value="3">Menu Selection 3</option>
+								</select>
+								<span class="field-hint">
+									<span>.field, .field-menu, .field-select</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-menu field-select field-select-multiple">
+							<span class="field-content">
+								<label class="field-label" for="multipleMenuField">Select Multiple (Menu)</label>
+								<select class="field-input field-input-select field-input-select-multiple" id="multipleMenuField" name="multipleMenuField" multiple="true">
+									<option selected="selected" value="1">Menu Selection 1</option>
+									<option value="2">Menu Selection 2</option>
+									<option value="3">Menu Selection 3</option>
+								</select>
+								<span class="field-hint">
+									<span>.field, .field-menu, .field-select, .field-select-multiple</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-text field-textarea">
+							<span class="field-content">
+								<label class="field-label" for="textareaField">Textarea</label>
+								<textarea class="field-input field-input-text field-input-textarea" id="textareaField" name="textareaField"></textarea>
+								<span class="field-hint">
+									<span>.field, .field-text, .field-textarea</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-nested field-last">
+							<span class="field-content">
+								<span class="field-label">
+									Checkboxes
+								</span>
+
+								<span class="field-group">
+									<span class="field-group-content">
+										<span class="field field-choice field-checkbox field-checked">
+											<span class="field-content">
+												<input checked="true" class="field-input field-input-choice field-input-checkbox" id="checkbox1" name="checkbox1" type="checkbox" value="1" />
+
+												<label class="choice-label" for="checkbox1">
+													Checkbox 1 (.field, .field-choice, .field-checkbox)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-checkbox">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-checkbox" id="checkbox2" name="checkbox2" type="checkbox" value="1" />
+												<label class="choice-label" for="checkbox2">
+													Checkbox 2 (.field, .field-choice, .field-checkbox)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-checkbox">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-checkbox" id="checkbox3" name="checkbox3" type="checkbox" value="1" />
+												<label class="choice-label" for="checkbox3">
+													Checkbox 3 (.field, .field-choice, .field-checkbox)
+												</label>
+											</span>
+										</span>
+									</span>
+								</span>
+
+								<span class="field-hint">
+									.field-nested, .field-group
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-nested field-last">
+							<span class="field-content">
+								<span class="field-label">
+									Radio buttons
+								</span>
+
+								<span class="field-group">
+									<span class="field-group-content">
+										<span class="field field-choice field-radio">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-radio" id="radio1" name="radio1" type="radio" value="1" />
+
+												<label class="choice-label"  for="radio1">
+													Radio 1 (.field, .field-choice, .field-radio)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-radio">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-radio" id="radio2" name="radio1" type="radio" value="2" />
+
+												<label class="choice-label" for="radio2">
+													Radio 2 (.field, .field-choice, .field-radio)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-radio">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-radio" id="radio3" name="radio1" type="radio" value="3" />
+
+												<label class="choice-label" for="radio3">
+													Radio 3 (.field, .field-choice, .field-radio)
+												</label>
+											</span>
+										</span>
+									</span>
+								</span>
+
+								<span class="field-hint">
+									.field-nested, .field-group
+								</span>
+							</span>
+						</span>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="fieldset w33 column field-labels-inline">
+				<div class="fieldset-content column-content">
+					<div class="fieldset-legend widget-hd">
+						Inline labels, left aligned
+					</div>
+
+					<div class="fieldset-bd widget-bd">
+						<span class="field field-text field-first">
+							<span class="field-content">
+								<label class="field-label" for="textField">Text</label>
+								<input class="field-input field-input-text" id="textField" name="textField" type="text" />
+								<span class="field-hint">
+									<span>.field, .field-text</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-text field-password">
+							<span class="field-content">
+								<label class="field-label" for="passwordField">Password</label>
+								<input class="field-input field-input-text field-input-password" id="passwordField" name="passwordField" type="password" />
+								<span class="field-hint">
+									<span>.field, .field-text, .field-password</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-menu field-select">
+							<span class="field-content">
+								<label class="field-label" for="menuField">Select (Menu)</label>
+								<select class="field-input field-input-select" id="menuField" name="menuField">
+									<option selected="selected" value="1">Menu Selection 1</option>
+									<option value="2">Menu Selection 2</option>
+									<option value="3">Menu Selection 3</option>
+								</select>
+								<span class="field-hint">
+									<span>.field, .field-menu, .field-select</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-menu field-select field-select-multiple">
+							<span class="field-content">
+								<label class="field-label" for="multipleMenuField">Select Multiple (Menu)</label>
+								<select class="field-input field-input-select field-input-select-multiple" id="multipleMenuField" name="multipleMenuField" multiple="true">
+									<option selected="selected" value="1">Menu Selection 1</option>
+									<option value="2">Menu Selection 2</option>
+									<option value="3">Menu Selection 3</option>
+								</select>
+								<span class="field-hint">
+									<span>.field, .field-menu, .field-select, .field-select-multiple</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-text field-textarea">
+							<span class="field-content">
+								<label class="field-label" for="textareaField">Textarea</label>
+								<textarea class="field-input field-input-text field-input-textarea" id="textareaField" name="textareaField"></textarea>
+								<span class="field-hint">
+									<span>.field, .field-text, .field-textarea</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-nested field-last">
+							<span class="field-content">
+								<span class="field-label">
+									Checkboxes
+								</span>
+
+								<span class="field-group">
+									<span class="field-group-content">
+										<span class="field field-choice field-checkbox field-checked">
+											<span class="field-content">
+												<input checked="true" class="field-input field-input-choice field-input-checkbox" id="checkbox1a" name="checkbox1a" type="checkbox" value="1" />
+
+												<label class="choice-label" for="checkbox1a">
+													Checkbox 1 (.field, .field-choice, .field-checkbox)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-checkbox">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-checkbox" id="checkbox2a" name="checkbox2a" type="checkbox" value="1" />
+												<label class="choice-label" for="checkbox2a">
+													Checkbox 2 (.field, .field-choice, .field-checkbox)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-checkbox">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-checkbox" id="checkbox3a" name="checkbox3a" type="checkbox" value="1" />
+												<label class="choice-label" for="checkbox3a">
+													Checkbox 3 (.field, .field-choice, .field-checkbox)
+												</label>
+											</span>
+										</span>
+									</span>
+								</span>
+
+								<span class="field-hint">
+									.field-nested, .field-group
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-nested field-last">
+							<span class="field-content">
+								<span class="field-label">
+									Radio buttons
+								</span>
+
+								<span class="field-group">
+									<span class="field-group-content">
+										<span class="field field-choice field-radio">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-radio" id="radio1a" name="radio1a" type="radio" value="1" />
+												<label class="choice-label" for="radio1a">
+													Radio 1 (.field, .field-choice, .field-radio)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-radio">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-radio" id="radio2a" name="radio1a" type="radio" value="2" />
+												<label class="choice-label" for="radio2a">
+													Radio 2 (.field, .field-choice, .field-radio)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-radio">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-radio" id="radio3a" name="radio1a" type="radio" value="3" />
+												<label class="choice-label" for="radio3a">
+													Radio 3 (.field, .field-choice, .field-radio)
+												</label>
+											</span>
+										</span>
+									</span>
+								</span>
+
+								<span class="field-hint">
+									.field-nested, .field-group
+								</span>
+							</span>
+						</span>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="fieldset w33 column column-last field-labels-inline field-labels-right">
+				<div class="fieldset-content column-content column-content-last">
+					<div class="fieldset-legend widget-hd">
+						Inline labels, right aligned
+					</div>
+
+					<div class="fieldset-bd widget-bd">
+						<span class="field field-text field-first">
+							<span class="field-content">
+								<label class="field-label" for="textField">Text</label>
+								<input class="field-input field-input-text" id="textField" name="textField" type="text" />
+								<span class="field-hint">
+									<span>.field, .field-text</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-text field-password">
+							<span class="field-content">
+								<label class="field-label" for="passwordField">Password</label>
+								<input class="field-input field-input-text field-input-password" id="passwordField" name="passwordField" type="password" />
+								<span class="field-hint">
+									<span>.field, .field-text, .field-password</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-menu field-select">
+							<span class="field-content">
+								<label class="field-label" for="menuField">Select (Menu)</label>
+								<select class="field-input field-input-select" id="menuField" name="menuField">
+									<option selected="selected" value="1">Menu Selection 1</option>
+									<option value="2">Menu Selection 2</option>
+									<option value="3">Menu Selection 3</option>
+								</select>
+								<span class="field-hint">
+									<span>.field, .field-menu, .field-select</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-menu field-select field-select-multiple">
+							<span class="field-content">
+								<label class="field-label" for="multipleMenuField">Select Multiple (Menu)</label>
+								<select class="field-input field-input-select field-input-select-multiple" id="multipleMenuField" name="multipleMenuField" multiple="true">
+									<option selected="selected" value="1">Menu Selection 1</option>
+									<option value="2">Menu Selection 2</option>
+									<option value="3">Menu Selection 3</option>
+								</select>
+								<span class="field-hint">
+									<span>.field, .field-menu, .field-select, .field-select-multiple</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-text field-textarea">
+							<span class="field-content">
+								<label class="field-label" for="textareaField">Textarea</label>
+								<textarea class="field-input field-input-text field-input-textarea" id="textareaField" name="textareaField"></textarea>
+								<span class="field-hint">
+									<span>.field, .field-text, .field-textarea</span>
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-nested field-last">
+							<span class="field-content">
+								<span class="field-label">
+									Checkboxes
+								</span>
+
+								<span class="field-group">
+									<span class="field-group-content">
+										<span class="field field-choice field-checkbox field-checked">
+											<span class="field-content">
+												<input checked="true" class="field-input field-input-choice field-input-checkbox" id="checkbox1b" name="checkbox1b" type="checkbox" value="1" />
+												<label class="choice-label" for="checkbox1b">
+													Checkbox 1 (.field, .field-choice, .field-checkbox)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-checkbox">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-checkbox" id="checkbox2b" name="checkbox2b" type="checkbox" value="1" />
+												<label class="choice-label" for="checkbox2b">
+													Checkbox 2 (.field, .field-choice, .field-checkbox)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-checkbox">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-checkbox" id="checkbox3b" name="checkbox3b" type="checkbox" value="1" />
+												<label class="choice-label" for="checkbox3b">
+													Checkbox 3 (.field, .field-choice, .field-checkbox)
+												</label>
+											</span>
+										</span>
+									</span>
+								</span>
+
+								<span class="field-hint">
+									.field-nested, .field-group
+								</span>
+							</span>
+						</span>
+
+						<span class="field field-nested field-last">
+							<span class="field-content">
+								<span class="field-label">
+									Radio buttons
+								</span>
+
+								<span class="field-group">
+									<span class="field-group-content">
+										<span class="field field-choice field-radio">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-radio" id="radio1b" name="radio1b" type="radio" value="1" />
+												<label class="choice-label" for="radio1b">
+													Radio 1 (.field, .field-choice, .field-radio)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-radio">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-radio" id="radio2b" name="radio1b" type="radio" value="2" />
+
+												<label class="choice-label" for="radio2b">
+													Radio 2 (.field, .field-choice, .field-radio)
+												</label>
+											</span>
+										</span>
+
+										<span class="field field-choice field-radio">
+											<span class="field-content">
+												<input class="field-input field-input-choice field-input-radio" id="radio3b" name="radio1b" type="radio" value="3" />
+
+												<label class="choice-label" for="radio3b">
+													Radio 3 (.field, .field-choice, .field-radio)
+												</label>
+											</span>
+										</span>
+									</span>
+								</span>
+
+								<span class="field-hint">
+									.field-nested, .field-group
+								</span>
+							</span>
+						</span>
+					</div>
+
+				</div>
+			</div>
+
+			<span class="button-row helper-clearfix">
+				<span class="button button-submit state-positive priority-primary">
+					<span class="button-content">
+						<input class="button-input button-input-submit" type="submit" value="Submit" />
+					</span>
+				</span>
+
+				<span class="button button-reset priority-secondary">
+					<span class="button-content">
+						<input class="button-input button-input-reset" type="reset" value="Reset" />
+					</span>
+				</span>
+
+				<span class="button button-cancel state-negative">
+					<span class="button-content">
+						<input class="button-input button-input-cancel" type="button" value="Cancel" />
+					</span>
+				</span>
+			</span>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
+	'aui-form-base-deprecated',
+	function(A) {
+		var form = new A.Form(
+			{
+				contentBox: '#myForm'
+			}
+		);
+
+		form.render();
+
+		formWidget = form;
+
+		return;
+/*
+		for (var i = 1; i <= 6; i++) {
+			var field = new A.Field(
+				{
+					node: '#username' + i,
+					labelText: 'label ' + i,
+					type: 'password'
+				}
+			)
+			.render();
+
+			form.add(field);
+		}
+*/
+
+		window.myField = new A.Textfield(
+			{
+				fieldHint: 'Please enter your username',
+				labelAlign: 'left',
+				labelText: 'label 7',
+				name: 'fieldX',
+				value: 'orgiinal'
+			}
+		).render('.fieldset-bd');
+
+		myField.get('boundingBox').prependTo('.fieldset-bd');
+
+		form.add(myField);
+
+		window.myForm = form;
+
+		if (1) {
+			taBox = A.one('.field-textarea')
+			taCBox = taBox.one('.field-content')
+
+			ta = new A.Textarea(
+				{
+					autoSize: true,
+					// boundingBox: taBox,
+					// contentBox: taCBox,
+					maxHeight: 250
+				}
+			).render();
+
+		}
+
+		ta.get('node').getComputedStyle('width')
+
+		new A.Combobox(
+			{
+				labelText: 'Combo Field'
+			}
+		).render();
+	}
+);
+</script>
+
+</body>
+</html>

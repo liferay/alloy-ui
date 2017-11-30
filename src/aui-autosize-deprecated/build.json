@@ -1,0 +1,10 @@
+{
+    "name": "aui-autosize-deprecated",
+    "builds": {
+        "aui-autosize-deprecated": {
+            "jsfiles": [
+                "js/aui-autosize-deprecated.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "name": "aui-overlay-deprecated",
+    "builds": {
+        "aui-overlay-base-deprecated": {
+            "jsfiles": [
+                "js/aui-overlay-base-deprecated.js"
+            ]
+        },
+
+        "aui-overlay-context-deprecated": {
+            "jsfiles": [
+                "js/aui-overlay-context-deprecated.js"
+            ]
+        },
+
+        "aui-overlay-context-panel-deprecated": {
+            "jsfiles": [
+                "js/aui-overlay-context-panel-deprecated.js"
+            ]
+        },
+
+        "aui-overlay-manager-deprecated": {
+            "jsfiles": [
+                "js/aui-overlay-manager-deprecated.js"
+            ]
+        },
+
+        "aui-overlay-mask-deprecated": {
+            "jsfiles": [
+                "js/aui-overlay-mask-deprecated.js"
+            ]
+        }
+    }
+}

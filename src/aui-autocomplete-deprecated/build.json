@@ -1,0 +1,10 @@
+{
+    "name": "aui-autocomplete-deprecated",
+    "builds": {
+        "aui-autocomplete-deprecated": {
+            "jsfiles": [
+                "js/aui-autocomplete-deprecated.js"
+            ]
+        }
+    }
+}

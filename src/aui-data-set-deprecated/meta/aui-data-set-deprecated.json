@@ -1,0 +1,9 @@
+{
+    "aui-data-set-deprecated": {
+        "requires": [
+            "oop",
+            "collection",
+            "base"
+        ]
+    }
+}

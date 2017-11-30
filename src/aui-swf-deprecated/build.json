@@ -1,0 +1,10 @@
+{
+    "name": "aui-swf-deprecated",
+    "builds": {
+        "aui-swf-deprecated": {
+            "jsfiles": [
+                "js/aui-swf-deprecated.js"
+            ]
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name"       : "aui-form-builder-deprecated",
+    "displayName": "Gallery: aui-form-builder-deprecated",
+    "description": "*Summary Goes Here*",
+    "author"     : [ "" ],
+    "use"        : [ "aui-form-builder-deprecated" ],
+
+    "tags": [ "gallery" ],
+
+    "examples": []
+}

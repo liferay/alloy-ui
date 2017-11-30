@@ -1,0 +1,7 @@
+{
+    "aui-delayed-task-deprecated": {
+        "requires": [
+            "yui-base"
+        ]
+    }
+}

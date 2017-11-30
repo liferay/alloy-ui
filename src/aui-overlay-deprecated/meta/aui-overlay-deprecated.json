@@ -1,0 +1,56 @@
+{
+    "aui-overlay-deprecated": {
+        "use": [
+            "aui-overlay-base-deprecated",
+			"aui-overlay-context-deprecated",
+			"aui-overlay-context-panel-deprecated",
+			"aui-overlay-manager-deprecated",
+			"aui-overlay-mask-deprecated"
+        ]
+    },
+
+    "aui-overlay-base-deprecated": {
+        "requires": [
+            "widget-position",
+            "widget-stack",
+            "widget-position-align",
+            "widget-position-constrain",
+            "widget-stdmod",
+            "aui-component"
+        ]
+    },
+
+    "aui-overlay-context-deprecated": {
+        "requires": [
+            "aui-overlay-manager-deprecated",
+            "aui-delayed-task-deprecated",
+            "aui-aria"
+        ]
+    },
+
+    "aui-overlay-context-panel-deprecated": {
+        "requires": [
+            "anim",
+            "aui-overlay-context-deprecated"
+        ],
+        "skinnable": true
+    },
+
+    "aui-overlay-manager-deprecated": {
+        "requires": [
+            "overlay",
+            "plugin",
+            "aui-base-deprecated",
+            "aui-overlay-base-deprecated"
+        ]
+    },
+
+    "aui-overlay-mask-deprecated": {
+        "requires": [
+            "event-resize",
+            "aui-base-deprecated",
+            "aui-overlay-base-deprecated"
+        ],
+        "skinnable": true
+    }
+}

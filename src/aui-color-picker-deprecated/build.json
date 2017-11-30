@@ -1,0 +1,15 @@
+{
+    "name": "aui-color-picker-deprecated",
+    "builds": {
+        "aui-color-picker-base-deprecated": {
+            "jsfiles": [
+                "js/aui-color-picker-base-deprecated.js"
+            ]
+        },
+        "aui-color-picker-grid-plugin-deprecated": {
+            "jsfiles": [
+                "js/aui-color-picker-grid-plugin-deprecated.js"
+            ]
+        }
+    }
+}
