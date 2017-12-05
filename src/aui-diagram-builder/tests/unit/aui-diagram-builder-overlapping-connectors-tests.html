@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>aui-diagram-builder</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../../../../build/aui-css/css/bootstrap.css">
+
+    <script src="../../../../build/aui/aui.js"></script>
+    <script src="js/aui-diagram-builder-overlapping-connectors-tests.js"></script>
+
+    <style>
+        .property-builder-content-container {
+            height: 500px;
+            overflow: auto;
+            padding-left: 280px;
+        }
+    </style>
+</head>
+<body class="yui3-skin-sam">
+    <div id="logger"></div>
+    <div id="diagramBuilder"></div>
+
+    <script>
+        YUI({
+            coverage: ['aui-diagram-builder-connector'],
+            filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw'
+        }).use('test-console', 'test', 'aui-diagram-builder-overlapping-connectors-tests', function(Y) {
+            (new Y.Test.Console()).render('#logger');
+            Y.Test.Runner.setName('aui-diagram-builder-connector');
+            Y.Test.Runner.run();
+        });
+    </script>
+</body>
+</html>
