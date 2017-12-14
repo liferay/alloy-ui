@@ -65,6 +65,12 @@
             "jsfiles": [
                 "js/aui-diagram-node-task.js"
             ]
+        },
+
+        "aui-diagram-node-group": {
+            "jsfiles": [
+                "js/aui-diagram-node-group.js"
+            ]
         }
     }
 }

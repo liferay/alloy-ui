@@ -461,6 +461,7 @@ Y.mix(YUI.Env[Y.version].modules, {
             "aui-diagram-node-start",
             "aui-diagram-node-state",
             "aui-diagram-node-task",
+            "aui-diagram-node-group",
             "overlay"
         ],
         "skinnable": true
@@ -495,6 +496,11 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     },
     "aui-diagram-node-fork": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+    "aui-diagram-node-group": {
         "requires": [
             "aui-diagram-node-state"
         ]
@@ -1678,4 +1684,4 @@ Y.mix(YUI.Env[Y.version].modules, {
         ]
     }
 });
-YUI.Env[Y.version].md5 = '7d87596f3b5039325a6e2336d1245237';
+YUI.Env[Y.version].md5 = '4db19860eda206fd24deca34eb45f0a4';

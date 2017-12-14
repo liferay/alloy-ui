@@ -1303,3 +1303,5 @@ A.namespace('DiagramBuilder.types').join = A.DiagramNodeJoin;
 A.namespace('DiagramBuilder.types').fork = A.DiagramNodeFork;
 
 A.namespace('DiagramBuilder.types').task = A.DiagramNodeTask;
+
+A.namespace('DiagramBuilder.types').group = A.DiagramNodeGroup;

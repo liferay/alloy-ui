@@ -449,6 +449,7 @@
             "aui-diagram-node-start",
             "aui-diagram-node-state",
             "aui-diagram-node-task",
+            "aui-diagram-node-group",
             "overlay"
         ],
         "skinnable": true
@@ -483,6 +484,11 @@
         ]
     },
     "aui-diagram-node-fork": {
+        "requires": [
+            "aui-diagram-node-state"
+        ]
+    },
+    "aui-diagram-node-group": {
         "requires": [
             "aui-diagram-node-state"
         ]
