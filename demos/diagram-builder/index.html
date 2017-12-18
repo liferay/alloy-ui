@@ -20,6 +20,11 @@
                 iconClass: 'diagram-node-task-icon'
             },
             {
+                type: 'group',
+                label: 'Group',
+                iconClass: 'diagram-node-group-icon'
+            },
+            {
                 type: 'state',
                 label: 'State',
                 iconClass: 'diagram-node-state-icon'
@@ -57,10 +62,6 @@
             boundingBox: '#diagramBuilder',
             fields: [
                 {
-                    // transitions: [
-                    //     'Task1',
-                    //     { target: 'Task0' }
-                    // ],
                     name: 'Start0',
                     type: 'start',
                     xy: [10, 10]
@@ -83,7 +84,16 @@
                 {
                     name: 'Task0',
                     type: 'task',
-                    xy: [400, 100]
+                    xy: [400, 100],
+                    allowsLinking: false
+                },
+                {
+                    name: 'Group',
+                    type: 'group',
+                    xy: [350, 50],
+                    width: 200,
+                    height: 500,
+                    allowsLinking: false
                 },
                 {
                     name: 'Fork0',

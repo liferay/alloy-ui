@@ -1,13 +1,13 @@
 /**
- * A base class for `A.DiagramNodeTask`.
+ * A base class for `A.DiagramNodeGroup`.
  *
- * @class A.DiagramNodeTask
+ * @class A.DiagramNodeGroup
  * @extends A.DiagramNodeState
  * @param {Object} config Object literal specifying widget configuration
  *     properties.
  * @constructor
  */
-var DiagramNodeTask = A.Component.create({
+var DiagramNodeGroup = A.Component.create({
 
     /**
      * Static property provides a string to identify the class.
@@ -20,7 +20,7 @@ var DiagramNodeTask = A.Component.create({
 
     /**
      * Static property used to define the default attribute
-     * configuration for the `A.DiagramNodeTask`.
+     * configuration for the `A.DiagramNodeGroup`.
      *
      * @property ATTRS
      * @type Object
@@ -36,18 +36,18 @@ var DiagramNodeTask = A.Component.create({
          * @type Number
          */
         height: {
-            value: 70
+            value: 300
         },
 
         /**
          * The type of the node.
          *
          * @attribute type
-         * @default 'task'
+         * @default 'group'
          * @type String
          */
         type: {
-            value: 'task'
+            value: 'group'
         },
 
         /**
@@ -58,7 +58,7 @@ var DiagramNodeTask = A.Component.create({
          * @type Number
          */
         width: {
-            value: 70
+            value: 300
         }
     },
 
@@ -73,7 +73,6 @@ var DiagramNodeTask = A.Component.create({
 
     prototype: {
         hotPoints: A.DiagramNode.SQUARE_POINTS,
-
         /**
          * Renders the shape boundary.
          *
@@ -100,18 +99,23 @@ var DiagramNodeTask = A.Component.create({
          */
         _valueShapeBoundary: function() {
             return {
-                height: 55,
+                height: this.getAttrs().height - 15,
+                width: this.getAttrs().width - 15,
                 type: 'rect',
                 pointerEvents: (this._getAttr('allowsLinking') === false)? 'none' : 'visiblePainted',
                 stroke: {
-                    weight: 7,
-                    color: 'transparent',
-                    opacity: 0
+                    weight: 3,
+                    opacity: 0.5,
+                    color: 'black',
+                    dashstyle: "5,10,5"
                 },
-                width: 55
+                fill: {
+                    color: '#DBEAF7',
+                    opacity: 0.35
+                }
             };
         }
     }
 });
 
-A.DiagramNodeTask = DiagramNodeTask;
+A.DiagramNodeGroup = DiagramNodeGroup;

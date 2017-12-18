@@ -27,6 +27,16 @@
     background: url(task.png) no-repeat scroll 2px 2px transparent;
 }
 
+.diagram-node-group-icon {
+    background-color: #DBEAF7;
+    border: dashed 1px black;
+    opacity: 0.35;
+}
+
+.diagram-node-group {
+    z-index: 1 !important;
+}
+
 .diagram-node-fork-icon {
     background: url(menu-fork.png) no-repeat scroll center center transparent;
 }

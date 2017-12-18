@@ -5,7 +5,7 @@
   "authors": [
     "Eduardo Lundgren <eduardo.lundgren@liferay.com>"
   ],
-  "description": "AlloyUI is a framework built on top of YUI3 (JavaScript) that uses Bootstrap (HTML/CSS) to provide a simple API for building high scalable applications",
+  "description": "AlloyUI is a framework built on top of YUI3 (JavaScript) and Bootstrap (HTML/CSS)",
   "keywords": [
     "alloy",
     "alloyui",

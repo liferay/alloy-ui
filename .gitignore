@@ -7,3 +7,5 @@ maven-dist
 node_modules
 npm-debug.log
 .sass-cache
+.idea
+**/.DS_Store

@@ -173,6 +173,11 @@ DiagramNode = A.Component.create({
             value: false
         },
 
+        allowsLinking: {
+            validator: A.Lang.isBoolean,
+            value: true
+        },
+
         /**
          * The name of the node.
          *
