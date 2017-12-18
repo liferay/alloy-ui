@@ -102,6 +102,7 @@ var DiagramNodeGroup = A.Component.create({
                 height: this.getAttrs().height - 15,
                 width: this.getAttrs().width - 15,
                 type: 'rect',
+                pointerEvents: (this._getAttr('allowsLinking') === false)? 'none' : 'visiblePainted',
                 stroke: {
                     weight: 3,
                     opacity: 0.5,

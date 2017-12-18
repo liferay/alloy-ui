@@ -102,6 +102,7 @@ var DiagramNodeTask = A.Component.create({
             return {
                 height: 55,
                 type: 'rect',
+                pointerEvents: (this._getAttr('allowsLinking') === false)? 'none' : 'visiblePainted',
                 stroke: {
                     weight: 7,
                     color: 'transparent',
