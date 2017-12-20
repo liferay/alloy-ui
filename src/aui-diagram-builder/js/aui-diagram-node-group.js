@@ -99,8 +99,8 @@ var DiagramNodeGroup = A.Component.create({
          */
         _valueShapeBoundary: function() {
             return {
-                height: this.getAttrs().height - 15,
-                width: this.getAttrs().width - 15,
+                height: this._getAttr('height') - 15,
+                width: this._getAttr('width') - 15,
                 type: 'rect',
                 pointerEvents: (this._getAttr('allowsLinking') === false)? 'none' : 'visiblePainted',
                 stroke: {

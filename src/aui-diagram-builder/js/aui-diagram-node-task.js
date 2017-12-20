@@ -100,15 +100,15 @@ var DiagramNodeTask = A.Component.create({
          */
         _valueShapeBoundary: function() {
             return {
-                height: 55,
+                height: this._getAttr('height') - 15,
+                width: this._getAttr('width') - 15,
                 type: 'rect',
                 pointerEvents: (this._getAttr('allowsLinking') === false)? 'none' : 'visiblePainted',
                 stroke: {
                     weight: 7,
                     color: 'transparent',
                     opacity: 0
-                },
-                width: 55
+                }
             };
         }
     }
