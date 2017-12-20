@@ -24,7 +24,9 @@
 }
 
 .diagram-node-task .diagram-node-content {
-    background: url(task.png) no-repeat scroll 2px 2px transparent;
+    background-color: #DBEAF7;
+    border-radius: 8px;
+    border: #b9d0e6 3px solid;
 }
 
 .diagram-node-group-icon {

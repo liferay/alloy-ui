@@ -88,6 +88,14 @@
                     allowsLinking: false
                 },
                 {
+                    name: 'Task with an extra large name',
+                    type: 'task',
+                    xy: [700, 200],
+                    width: 200,
+                    height: 200,
+                    allowsLinking: true
+                },
+                {
                     name: 'Group',
                     type: 'group',
                     xy: [350, 50],
@@ -120,6 +128,16 @@
                 target: 'State0'
             },
             {
+                connector: { name: 'Link1.1' },
+                source: 'Task0',
+                target: 'Task with an extra large name'
+            },
+            {
+                connector: { name: 'Link1.1' },
+                source: 'Task with an extra large name',
+                target: 'Task0'
+            },
+            {
                 connector: { name: 'Link2' },
                 source: 'State0',
                 target: 'Join0'
@@ -145,14 +163,6 @@
                 target: 'EndNode0'
             }
         ]);
-
-        // var task = diagramBuilder.addField({
-        //     name: 'Task2',
-        //     type: 'condition'
-        // });
-        // task.addTransition('Task1');
-        // task.connect('Task1');
-
     });
     </script>
 </body>

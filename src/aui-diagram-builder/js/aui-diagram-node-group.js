@@ -81,13 +81,11 @@ var DiagramNodeGroup = A.Component.create({
         renderShapeBoundary: function() {
             var instance = this;
 
-            var boundary = instance.boundary = instance.get('graphic').addShape(
+            instance.boundary = instance.get('graphic').addShape(
                 instance.get('shapeBoundary')
             );
 
-            boundary.translate(8, 8);
-
-            return boundary;
+            return instance.boundary;
         },
 
         /**
@@ -98,9 +96,14 @@ var DiagramNodeGroup = A.Component.create({
          * @return {Object}
          */
         _valueShapeBoundary: function() {
+            var height = this._getAttr('height');
+            var width = this._getAttr('width');
+
+            this.hotPoints = this._calculateRectangleHotPoints(width, height);
+
             return {
-                height: this._getAttr('height') - 15,
-                width: this._getAttr('width') - 15,
+                height: height,
+                width: width,
                 type: 'rect',
                 pointerEvents: (this._getAttr('allowsLinking') === false)? 'none' : 'visiblePainted',
                 stroke: {
