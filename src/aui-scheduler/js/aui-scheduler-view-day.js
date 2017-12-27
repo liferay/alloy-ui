@@ -1044,14 +1044,18 @@ var SchedulerDayView = A.Component.create({
 
                 headerView.plotEvents();
 
-                instance.headerNode.setStyle('paddingRight', getScrollbarWidth());
-
                 var headerViewBB = headerView.get('boundingBox');
 
                 var headerViewData = headerViewBB.one('.' + CSS_SVT_TABLE_DATA);
                 var height = Math.max(headerViewData.get('offsetHeight'), 40);
 
                 headerView.set('height', height);
+
+                var headerViewBodyNode = headerView.getStdModNode('body');
+
+                if (headerViewBodyNode) {
+                    headerViewBodyNode.setStyle('overflowY', 'scroll');
+                }
 
                 instance._fillHeight();
             }
