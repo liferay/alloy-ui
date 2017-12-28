@@ -25,6 +25,8 @@
 .helper-hidden-accessible, .overlay-hidden, .overlaycontext-hidden, .overlaymask-hidden, .date-picker-hidden, .datepicker-hidden, .colorpicker-hidden, .tooltip-hidden {
     clip: rect(0 0 0 0) !important;
     position: absolute !important;
+    /* IE11 */
+    -ms-transform: scale(0);
     /*Webkit and IE7 let clipped content change the scroll height of the page*/
     /*Scale webkit to 0*/
     -webkit-transform: scale(0);
