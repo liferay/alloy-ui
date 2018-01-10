@@ -14,25 +14,6 @@ var Lang = A.Lang,
     DateMath = A.DataType.DateMath,
     WidgetStdMod = A.WidgetStdMod,
 
-    getScrollbarWidth = A.cached(function() {
-        var doc = A.config.doc,
-            testNode = doc.createElement('div'),
-            body = doc.getElementsByTagName('body')[0],
-            // 0.1 because cached doesn't support falsy refetch values
-            width = 0.1;
-
-        if (body) {
-            testNode.style.cssText = 'position:absolute;visibility:hidden;overflow:scroll;width:20px;';
-            testNode.appendChild(doc.createElement('p')).style.height = '1px';
-            body.insertBefore(testNode, body.firstChild);
-            width = testNode.offsetWidth - testNode.clientWidth;
-
-            body.removeChild(testNode);
-        }
-
-        return width;
-    }, null, 0.1),
-
     getNodeListHTMLParser = function(selector, sizeCondition) {
         return function(srcNode) {
             var nodes = srcNode.all(selector);
@@ -1044,7 +1025,11 @@ var SchedulerDayView = A.Component.create({
 
                 headerView.plotEvents();
 
-                instance.headerNode.setStyle('paddingRight', getScrollbarWidth());
+                var headerNode = instance.headerNode;
+
+                if (headerNode) {
+                    headerNode.setStyle('overflowY', 'scroll');
+                }
 
                 var headerViewBB = headerView.get('boundingBox');
 

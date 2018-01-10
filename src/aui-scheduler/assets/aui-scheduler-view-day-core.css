@@ -104,7 +104,7 @@
 }
 
 .scheduler-view-day-header-day-first {
-    width: 62px;
+    width: 61px;
 }
 
 .view-lt480 .scheduler-view-day-header-day-first {
@@ -175,13 +175,13 @@
 }
 
 .scheduler-view-day .scheduler-view-table {
-    margin: 0 0 0 62px;
+    margin: 0 0 0 60px;
     border-left: 0;
     border-right: 0;
 }
 
 .view-lt480 .scheduler-view-day .scheduler-view-table {
-    margin: 0 0 0 32px;
+    margin: 0 0 0 30px;
 }
 
 .scheduler-view-day .scheduler-view-table .scheduler-view-table-data-col-title {
