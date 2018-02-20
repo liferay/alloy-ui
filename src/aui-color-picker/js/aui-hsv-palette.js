@@ -262,6 +262,7 @@ var AColor = A.Color,
 
             rgbColor = instance._calculateRGBColor(hue, saturation, value);
             rgbColorArray = AColor.toArray(rgbColor);
+
             hexColor = AColor.toHex(rgbColor);
 
             hexValue = instance._getHexValue(hexColor, rgbColorArray);
@@ -428,7 +429,7 @@ var AColor = A.Color,
             var rgbColor = 'rgb(255, 0, 0)',
                 hsvColor;
 
-            if (hue !== MAX_HUE || Lang.toInt(saturation) !== MAX_SATURATION || Lang.toInt(value) !== MAX_VALUE) {
+            if (Lang.toInt(hue) !== MAX_HUE || Lang.toInt(saturation) !== MAX_SATURATION || Lang.toInt(value) !== MAX_VALUE) {
                 hsvColor = 'hsva(' + (hue === MAX_HUE ? MAX_HUE - 1 : hue) + ', ' + saturation + '%, ' + value +
                     '%' + ')';
 
@@ -740,6 +741,7 @@ var AColor = A.Color,
 
                 rgbColor = instance._calculateRGBColor(hue, saturation, val);
                 rgbColorArray = AColor.toArray(rgbColor);
+
                 hexColor = AColor.toHex(rgbColor);
                 hexValue = instance._getHexValue(hexColor, rgbColorArray);
 
@@ -1309,6 +1311,7 @@ var AColor = A.Color,
 
             rgbColor = instance._calculateRGBColor(hue, saturation, value);
             rgbColorArray = AColor.toArray(rgbColor);
+
             hexColor = AColor.toHex(rgbColor);
             hexValue = instance._getHexValue(hexColor, rgbColorArray);
 

@@ -155,7 +155,7 @@ var Lang = A.Lang,
                 hsvColor,
                 tmp;
 
-            if (hue !== MAX_HUE || Lang.toInt(saturation) !== MAX_SATURATION || Lang.toInt(value) !== MAX_VALUE) {
+            if (Lang.toInt(hue) !== MAX_HUE || Lang.toInt(saturation) !== MAX_SATURATION || Lang.toInt(value) !== MAX_VALUE) {
                 hsvColor = 'hsva(' + (hue === MAX_HUE ? MAX_HUE - 1 : hue) + ', ' + saturation + '%, ' + value +
                     '%, ' + alpha + ')';
 
