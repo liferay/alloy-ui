@@ -404,7 +404,7 @@ var AColor = A.Color,
             if (x <= MIN_HUE) {
                 hue = MIN_HUE;
             }
-            else if (x >= instance._hsContainerWidth) {
+            else if (x >= (instance._hsContainerWidth - 1)) {
                 hue = MAX_HUE;
             }
             else {
