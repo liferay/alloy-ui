@@ -82,13 +82,11 @@ var DiagramNodeTask = A.Component.create({
         renderShapeBoundary: function() {
             var instance = this;
 
-            var boundary = instance.boundary = instance.get('graphic').addShape(
+            instance.boundary = instance.get('graphic').addShape(
                 instance.get('shapeBoundary')
             );
 
-            boundary.translate(8, 8);
-
-            return boundary;
+            return instance.boundary;
         },
 
         /**
@@ -99,16 +97,19 @@ var DiagramNodeTask = A.Component.create({
          * @return {Object}
          */
         _valueShapeBoundary: function() {
+            var height = this._getAttr('height');
+            var width = this._getAttr('width');
+
+            this.hotPoints = this._calculateRectangleHotPoints(width, height);
+
             return {
-                height: 55,
+                height: height,
+                width: width,
                 type: 'rect',
                 pointerEvents: (this._getAttr('allowsLinking') === false)? 'none' : 'visiblePainted',
                 stroke: {
-                    weight: 7,
-                    color: 'transparent',
                     opacity: 0
-                },
-                width: 55
+                }
             };
         }
     }

@@ -1582,6 +1582,31 @@ DiagramNode = A.Component.create({
                 },
                 width: 41
             };
+        },
+
+        /**
+         * Calculate the hot points, points where the link connector will point at
+         * @param width
+         * @param height
+         * @returns {*[]}
+         * @private
+         */
+        _calculateRectangleHotPoints: function(width, height) {
+            var cornerDistance = 1;
+            var margin = 1;
+            var hotPoints = [
+                [cornerDistance, cornerDistance], [width - cornerDistance, cornerDistance],
+                [cornerDistance, height - cornerDistance], [width - cornerDistance, cornerDistance - cornerDistance]
+            ];
+
+            for (var i = 2; i <= 50; i++) {
+                hotPoints.push([width / i, -margin]);
+                hotPoints.push([-margin, height / i]);
+                hotPoints.push([width / i, height + margin]);
+                hotPoints.push([width + margin, height / i]);
+            }
+
+            return hotPoints
         }
     }
 });
