@@ -799,9 +799,11 @@ var DiagramBuilder = A.Component.create({
             if (event.isKey('esc')) {
                 instance._onEscKey(event);
             }
-            else if (event.isKey('backspace') || event.isKey('delete')) {
-                instance._onDeleteKey(event);
-            }
+            // Disable delete event
+            // TODO: this mus be reverted
+            // else if (event.isKey('backspace') || event.isKey('delete')) {
+            //     instance._onDeleteKey(event);
+            // }
         },
 
         /**
