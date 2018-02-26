@@ -310,8 +310,6 @@ DatePickerDelegate.prototype = {
         instance.useInputNodeOnce(event.currentTarget);
 
         instance._userInteractionInProgress = true;
-
-        instance._focusActiveCalendar();
     },
 
     /**
