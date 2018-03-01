@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3142](https://issues.liferay.com/browse/AUI-3142) Change focus on Datepicker not working properly
 * [AUI-1353](https://issues.liferay.com/browse/AUI-1353) Make aui-datepicker accessible
 * [AUI-1851](https://issues.liferay.com/browse/AUI-1851) Datepicker - Uncaught TypeError: Cannot read property 'getData' of undefined
 * [AUI-2086](https://issues.liferay.com/browse/AUI-2086) DatePickerNative throws error when destroyed
