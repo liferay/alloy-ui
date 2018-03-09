@@ -536,7 +536,7 @@ A.Connector = A.Base.create('line', A.Base, [], {
      * @param event
      * @protected
      */
-    _onShapeMouseEnter: function() {
+    _onShapeMouseEnter: function(event) {
         var instance = this;
 
         if (!instance.get('selected')) {
@@ -551,6 +551,8 @@ A.Connector = A.Base.create('line', A.Base, [], {
                 instance._updateShape(instance.shapeArrow, shapeArrowHover, false);
             }
         }
+
+        instance._onShapeMouseMove('mouseEnter', event)
     },
 
     /**
@@ -560,13 +562,28 @@ A.Connector = A.Base.create('line', A.Base, [], {
      * @param event
      * @protected
      */
-    _onShapeMouseLeave: function() {
+    _onShapeMouseLeave: function(event) {
         var instance = this;
 
         if (!instance.get('selected')) {
             instance._updateShape(instance.shape, instance.get('shape'), false);
             instance._updateShape(instance.shapeArrow, instance.get('shapeArrow'), false);
         }
+
+        instance._onShapeMouseMove('mouseLeave', event)
+    },
+
+    _onShapeMouseMove: function(eventName, event) {
+        var instance = this;
+
+        var attrs = {
+            event: eventName,
+            clientX: event.clientX,
+            clientY: event.clientY,
+            name: instance.getAttrs().name
+        };
+
+        eval(instance.get('onMouseMove'))(attrs);
     },
 
     /**
@@ -728,6 +745,18 @@ A.Connector = A.Base.create('line', A.Base, [], {
      * @static
      */
     ATTRS: {
+
+        /**
+         * Function in string that is called when mouse enter and leaves the connector
+         *
+         * @attribute onMouseMove
+         * @default '(function() {})'
+         * @type String
+         */
+        onMouseMove: {
+            value: "(function() {})",
+            validator: isString
+        },
 
         /**
          * Arrow points from `A.PolygonUtil` instance.
