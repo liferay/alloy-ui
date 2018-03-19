@@ -124,9 +124,15 @@
             ]
         }).render();
 
+        var clickFn = function (connector) {
+            console.log(connector.get('name'));
+            console.log(connector.getAttrs().transition.source);
+            console.log(connector.getAttrs().transition.target);
+        };
+
         diagramBuilder.connectAll([
             {
-                connector: { name: 'Link0' },
+                connector: { name: 'Link0', onMouseMove: clickFn, showName: false },
                 source: 'Start0',
                 target: 'Condition0'
             },
