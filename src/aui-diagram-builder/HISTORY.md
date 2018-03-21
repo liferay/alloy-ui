@@ -4,6 +4,11 @@
 
 ## @VERSION@
 
+* New Group Node
+* Custom Mouseover function for transitions  
+* Disables deleting from key events
+* Option to set height and width of Task and Group nodes
+* Option to disable manual linking from Task to Task
 * [AUI-1354](https://issues.liferay.com/browse/AUI-1354) Make aui-diagram-builder accessible
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)

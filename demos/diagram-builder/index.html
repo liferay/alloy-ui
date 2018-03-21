@@ -124,11 +124,7 @@
             ]
         }).render();
 
-        var clickFn = function (connector) {
-            console.log(connector.get('name'));
-            console.log(connector.getAttrs().transition.source);
-            console.log(connector.getAttrs().transition.target);
-        };
+        var clickFn = '(function (data) {  console.log(data);    })';
 
         diagramBuilder.connectAll([
             {

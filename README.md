@@ -1,3 +1,59 @@
+# AlloyUI - Continuum Security Fork
+===================================
+
+## Features
+
+### New Group Node
+New node which can embed several nodes
+
+### Custom Mouseover function for transitions
+Adds custom function which is executed when hovering the transition. Two type of event can be produced: `mouseEnter` 
+and `mouseLeave`.
+
+This function is passed as `string` and then the javascript `eval` function is need to execute the custom function. 
+(No good, but only solution I could think of to be able to integrate with Vaadin Plugin diagram-builder)
+
+```javascript
+
+var mouseOverFn = '(function (data) {  console.log(data);    })';
+
+diagramBuilder.connectAll([
+    {
+        connector: { name: 'Link', onMouseMove: mouseOverFn },
+        source: 'Start',
+        target: 'Condition'
+    }
+])
+
+```
+
+### Disables deleting from key events
+Key events which delete nodes has been disabled
+
+### Option to set height and width of Task and Group nodes
+User can customize the height or width of a Task
+
+```javascript
+{
+    name: 'My Group',
+    type: 'group',
+    xy: [400, 100],
+    width: 200,
+    height: 400
+}
+```
+
+### Option to disable manual linking from Task to Task
+User can optionally disable manual linking so users cannot link two tasks through the User Interface
+```javascript
+{
+    name: 'My Task',
+    type: 'task',
+    xy: [400, 100],
+    allowsLinking: false
+}
+```
+
 # AlloyUI
 
 ![AlloyUI Robo Suit](https://cloud.githubusercontent.com/assets/398893/3529038/980b55ca-0795-11e4-9ffe-2a41953f1df8.jpg)
