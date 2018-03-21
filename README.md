@@ -1,5 +1,8 @@
 # AlloyUI - Continuum Security Fork
-===================================
+This fork starts from version 3.1.0 and is born out of the necessity to create new features to apply Threat Modeling diagraming standards.
+
+## Version
+Current version 3.2.0
 
 ## Features
 
@@ -54,7 +57,7 @@ User can optionally disable manual linking so users cannot link two tasks throug
 }
 ```
 
-# AlloyUI
+# AlloyUI - Official Repository
 
 ![AlloyUI Robo Suit](https://cloud.githubusercontent.com/assets/398893/3529038/980b55ca-0795-11e4-9ffe-2a41953f1df8.jpg)
 
