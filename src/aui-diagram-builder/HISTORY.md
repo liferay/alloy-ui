@@ -4,6 +4,8 @@
 
 ## @VERSION@
 
+## [3.1.1-continuum](https://github.com/continuumsecurity/alloy-ui/releases/tag/3.1.1-continuum)
+
 * New Group Node
 * Custom Mouseover function for transitions  
 * Disables deleting from key events
