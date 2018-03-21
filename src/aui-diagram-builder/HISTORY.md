@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-## [3.1.1-continuum](https://github.com/continuumsecurity/alloy-ui/releases/tag/3.1.1-continuum)
+## [3.2.0](https://github.com/continuumsecurity/alloy-ui/releases/tag/3.2.0)
 
 * New Group Node
 * Custom Mouseover function for transitions  
