@@ -59,6 +59,10 @@ var DiagramNodeGroup = A.Component.create({
          */
         width: {
             value: 300
+        },
+
+        children:{
+            value: []
         }
     },
 

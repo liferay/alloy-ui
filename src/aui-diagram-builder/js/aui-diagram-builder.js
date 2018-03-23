@@ -231,6 +231,7 @@ var DiagramBuilder = A.Component.create({
 
             instance.on({
                 cancel: instance._onCancel,
+                'drag:start': instance._onDragStart,
                 'drag:drag': instance._onDrag,
                 'drag:end': instance._onDragEnd,
                 'drop:hit': instance._onDropHit,
@@ -655,6 +656,37 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
+         * Return children fields for a group node.
+         *
+         * @method getChildrenFields
+         * @param field
+         */
+        getChildrenFields: function(field) {
+            var instance = this;
+
+            if(field._getAttr('type')!=='group'){
+                return [];
+            }
+
+            var fields = instance._getAttr('fields')._items;
+            var fieldX = field._getAttr('x');
+            var fieldY = field._getAttr('y');
+            var fieldH = field._getAttr('height');
+            var fieldW = field._getAttr('width');
+            var children = [];
+
+            for(var i in fields){
+                if(fieldX < fields[i]._getAttr('x') && fields[i]._getAttr('x') < (fieldX+fieldW) && fieldY < fields[i]._getAttr('y') && fields[i]._getAttr('y') < (fieldY+fieldH)){
+                    children.push(fields[i]);
+                }
+            }
+
+
+            return children;
+
+        },
+
+        /**
          * Renders a field in the `dropContainer`.
          *
          * @method plotField
@@ -887,6 +919,23 @@ var DiagramBuilder = A.Component.create({
         },
 
         /**
+         * Triggers when the drag starts.
+         *
+         * @method _onDragStart
+         * @param event
+         * @protected
+         */
+        _onDragStart: function(event) {
+            var instance = this;
+            var drag = event.target;
+            var diagramNode = A.Widget.getByNode(drag.get('dragNode'));
+
+            if (diagramNode && diagramNode._getAttr('type')==='group') {
+                diagramNode._setAttr('children',instance.getChildrenFields(diagramNode));
+            }
+        },
+
+        /**
          * Triggers when the drag occurs.
          *
          * @method _onDrag
@@ -902,6 +951,16 @@ var DiagramBuilder = A.Component.create({
                 var diagramNode = A.Widget.getByNode(drag.get('dragNode'));
 
                 if (diagramNode) {
+
+                    var children = diagramNode._getAttr('children');
+                    for(var i in children){
+                        children[i]._setAttr("x",children[i]._getAttr("x")+(diagramNode.getNodeCoordinates()[0]-diagramNode.get('x')));
+                        children[i]._setAttr("y",children[i]._getAttr("y")+(diagramNode.getNodeCoordinates()[1]-diagramNode.get('y')));
+                        children[i].alignTransitions();
+                        AArray.each(instance.getSourceNodes(children[i]), function(sourceNode) {
+                            sourceNode.alignTransitions();
+                        });
+                    }
                     diagramNode.alignTransitions();
 
                     AArray.each(instance.getSourceNodes(diagramNode), function(sourceNode) {
@@ -924,6 +983,7 @@ var DiagramBuilder = A.Component.create({
                             ]
                         );
                     }
+                    diagramNode.set('xy', diagramNode.getNodeCoordinates());
                 }
             }
         },
