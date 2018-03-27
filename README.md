@@ -1,10 +1,47 @@
 # AlloyUI - Continuum Security Fork
-===================================
+This fork starts from version 3.1.0 and is born out of the necessity to create new features to apply Threat Modeling diagraming standards.
+
+## Version
+Current version 3.2.0
 
 ## Features
 
+### Disable of deleting (by key pressing and by button)
+Optional to hide the delete button which appeared when the user click in a node and also can disable
+the delete by key pressing the DELETE key.
+````javascript
+new Y.DiagramBuilder({
+    showDeleteNodeIcon: false,
+    enableDeleteByKeyStroke: false
+});
+````
+
 ### New Group Node
-New node which can embed several nodes
+New group node which can embed several nodes as children, allowing them to drag&drop all together
+
+```javascript
+new Y.DiagramBuilder({
+    fields: [
+        {
+            name: 'Task',
+            type: 'start',
+            xy: [10, 10]
+        },
+        {
+            name: 'Task',
+            type: 'task',
+            xy: [10, 10]
+        },{
+            name: 'Group',
+            type: 'group',
+            xy: [350, 50],
+            width: 200,
+            height: 500,
+            allowsLinking: false,
+            children: ['Task', 'Start']
+        }]
+});
+```
 
 ### Custom Mouseover function for transitions
 Adds custom function which is executed when hovering the transition. Two type of event can be produced: `mouseEnter` 
@@ -54,7 +91,7 @@ User can optionally disable manual linking so users cannot link two tasks throug
 }
 ```
 
-# AlloyUI
+# AlloyUI - Official Repository
 
 ![AlloyUI Robo Suit](https://cloud.githubusercontent.com/assets/398893/3529038/980b55ca-0795-11e4-9ffe-2a41953f1df8.jpg)
 

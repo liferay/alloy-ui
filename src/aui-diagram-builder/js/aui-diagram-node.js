@@ -1107,6 +1107,10 @@ DiagramNode = A.Component.create({
         _controlsToolbarValueFn: function() {
             var instance = this;
 
+            if (instance.get('builder')._getAttr('showDeleteNodeIcon') === false) {
+                return { children: []}
+            }
+
             return {
                 children: [
                     {

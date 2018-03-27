@@ -59,6 +59,8 @@
 
         var diagramBuilder = new Y.DiagramBuilder({
             availableFields: availableFields,
+            showDeleteNodeIcon: false,
+            enableDeleteByKeyStroke: false,
             boundingBox: '#diagramBuilder',
             fields: [
                 {
@@ -109,7 +111,8 @@
                     xy: [350, 50],
                     width: 200,
                     height: 500,
-                    allowsLinking: false
+                    allowsLinking: false,
+                    children: ['Task0', 'Fork0']
                 },
                 {
                     name: 'Fork0',

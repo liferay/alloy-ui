@@ -4,6 +4,10 @@
 
 ## @VERSION@
 
+## [3.2.0](https://github.com/continuumsecurity/alloy-ui/releases/tag/3.2.0)
+
+* Group can have children attached that will be moved as the Group is moved (drag&drop)
+* Disable delete by hiding the button and by key pressing
 * New Group Node
 * Custom Mouseover function for transitions  
 * Disables deleting from key events

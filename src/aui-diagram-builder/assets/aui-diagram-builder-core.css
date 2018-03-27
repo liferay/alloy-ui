@@ -35,8 +35,19 @@
     opacity: 0.35;
 }
 
-.diagram-node-group {
-    z-index: 1 !important;
+.diagram-node-group, .diagram-node-group div.diagram-node-content, .diagram-node-group div.diagram-node-content div {
+    height: 10px !important;
+    z-index: unset !important;
+}
+
+.diagram-node-group div.diagram-node-content svg {
+    z-index: -1;
+}
+
+.diagram-node-group .diagram-node-label {
+    position:absolute;
+    width: 100%;
+    top: -20px;
 }
 
 .diagram-node-fork-icon {
