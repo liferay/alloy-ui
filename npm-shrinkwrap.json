@@ -21578,9 +21578,9 @@
       }
     },
     "liferay-gulp-tasks": {
-      "version": "0.5.3",
-      "from": "liferay-gulp-tasks@^0.5.3",
-      "resolved": "https://registry.npmjs.org/liferay-gulp-tasks/-/liferay-gulp-tasks-0.5.3.tgz",
+      "version": "0.5.5",
+      "from": "liferay-gulp-tasks@^0.5.5",
+      "resolved": "https://registry.npmjs.org/liferay-gulp-tasks/-/liferay-gulp-tasks-0.5.5.tgz",
       "dependencies": {
         "del": {
           "version": "2.2.2",
