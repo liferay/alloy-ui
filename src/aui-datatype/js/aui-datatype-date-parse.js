@@ -151,6 +151,7 @@ A.mix(DateParser.prototype, {
      *    * **%D** same as `%m/%d/%y`
      *    * **%e** day of the month as a decimal number, a single digit is preceded
      *      by a space (range `1` to `31`)
+     *    * **%E** day of the month as a decimal number (range `1` to `31`)
      *    * **%F** same as `%Y-%m-%d` (ISO 8601 date format)
      *    * **%g** like `%G`, but without the century
      *    * **%G** The 4-digit year corresponding to the ISO week number
@@ -506,6 +507,7 @@ A.mix(DateParser.prototype, {
             case 'A':
             case 'd':
             case 'e':
+            case 'E':
                 return DateParser.HINTS.DAY;
             case 'b':
             case 'B':
@@ -774,7 +776,7 @@ DateParser.HINTS = {
      * @static
      */
     DAY: {
-        numericTokens: 'de',
+        numericTokens: 'deE',
         setter: function(calendar, val) {
             val = _parseInt(val);
 
@@ -903,6 +905,7 @@ A.Date.dateparser = new A.DateParser();
  *    * **%D** same as `%m/%d/%y`
  *    * **%e** day of the month as a decimal number, a single digit is preceded
  *      by a space (range `1` to `31`)
+ *    * **%E** day of the month as a decimal number (range `1` to `31`)
  *    * **%F** same as `%Y-%m-%d` (ISO 8601 date format)
  *    * **%g** like `%G`, but without the century
  *    * **%G** The 4-digit year corresponding to the ISO week number
