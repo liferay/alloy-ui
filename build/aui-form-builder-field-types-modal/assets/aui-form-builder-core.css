@@ -1,0 +1,225 @@
+.form-builder-content {
+    background-color: #ecedee;
+}
+
+.form-builder-content .layout-builder-add-row {
+    display: none;
+}
+
+.form-builder-edit-layout-button .form-builder-edit-layout-button-icon {
+    font-size: 12px;
+    margin-right: 5px;
+    margin-top: -3px;
+}
+
+.form-builder-edit-layout-button:hover {
+    color: #000;
+}
+
+.form-builder-content .layout-builder-move-target,
+.form-builder-field-list-add-button {
+    background-color: #ecf6fe;
+    border: none;
+    border-radius: 2px;
+    color: #66a1cc;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: normal;
+    padding: 0;
+    text-align: center;
+}
+
+.form-builder-field-list-add-button {
+    visibility: hidden;
+}
+
+.form-builder-content .layout-builder-move-target-label,
+.form-builder-field-list-add-button-label,
+.form-builder-field-move-target-label {
+    color: #66a1cc;
+    cursor: pointer;
+    display: inline-block;
+    line-height: normal;
+    margin-bottom: 0;
+    opacity: .5;
+    padding: 4px 0;
+    text-transform: uppercase;
+}
+
+.form-builder-content .layout-builder-move-target:hover .form-builder-field-move-target-label,
+.form-builder-content .layout-builder-move-target:hover .layout-builder-move-target-label,
+.form-builder-field-list-add-button:hover .form-builder-field-list-add-button-icon,
+.form-builder-field-list-add-button:hover .form-builder-field-list-add-button-label {
+    opacity: 1;
+}
+
+.form-builder-header {
+    background-color: #00a3ff;
+    color: #fff;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;;
+    font-size: 20px;
+    font-weight: 300;
+    height: 56pt;
+    line-height: 56pt;
+    text-align: center;
+    vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .form-builder-header {
+        font-size: 17px;
+    }
+
+    .form-builder-header .form-builder-header-back,
+    .form-builder-header .form-builder-menu {
+        width: 44px;
+    }
+}
+
+.form-builder-header .form-builder-header-back {
+    color: #fff;
+    cursor: pointer;
+    visibility: hidden;
+    float: left;
+    width: 56pt;
+}
+
+.form-builder-header .form-builder-menu {
+    float: right;
+    width: 56pt;
+}
+
+.form-builder-layout {
+    margin: 0 80px;
+}
+
+.form-builder-layout .layout-row .col {
+    background-color: #fff;
+    padding: 0;
+}
+
+.form-builder-layout .layout-row .col:last-child {
+    border-right: none;
+}
+
+@media (max-width: 768px) {
+    .form-builder-layout {
+        margin: 24px 20px;
+    }
+}
+
+.form-builder-menu .form-builder-menu-button {
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-builder-menu .form-builder-menu-content {
+    background-color: #34495e;
+    font-family: "HelveticaNeueThin", "HelveticaNeue-Thin", "Helvetica Neue Thin", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+    letter-spacing: 4pt;
+    line-height: 15px;
+    margin-top: -1px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 320px;
+}
+
+.form-builder-menu .form-builder-menu-content .menu-item {
+    height: 50pt;
+    line-height: 50pt;
+}
+
+.form-builder-menu .form-builder-menu-content .menu-item:hover {
+    background-color: #546273;
+}
+
+.form-builder-menu .form-builder-menu-content .menu-item a:hover {
+    color: #fff;
+}
+
+.form-builder-menu .menu-item .form-builder-edit-layout-button a {
+    color: #fff;
+}
+
+.form-builder-modal {
+    width: 300px;
+}
+
+.form-builder-modal .modal-body {
+    padding: 0;
+}
+
+.form-builder-pages-header {
+    background-color: #FFFFFF;
+    margin: 2px auto;
+    text-align: center;
+}
+
+.form-builder-pages {
+    padding-bottom: 5px;
+}
+
+.form-builder-pages {
+    background-color: #FFFFFF;
+    line-height: 0;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
+.form-builder-pages .form-builder-page-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.form-builder-pages .pagination .pagination-content li a {
+    border-radius: 0;
+    border-width: 0;
+    color: #ccc;
+    padding: 14px 20px;
+    line-height: 20px;
+}
+
+.form-builder-pages .pagination .pagination-content li a:focus {
+    background-color: transparent;
+}
+
+.form-builder-pages .pagination .pagination-content li a:hover {
+    background-color: #dceeff;
+}
+
+.form-builder-pages .pagination .pagination-content li.active a {
+    background-color: transparent;
+    color: #000;
+}
+
+.form-builder-pages:hover .glyphicon {
+    color: #4fa8ff;
+}
+
+.form-builder-page-manager-add-page, .form-builder-page-manager-remove-page, .form-builder-switch-view {
+    color: #a6d3ff;
+    float: right;
+    line-height: 20px;
+    padding: 14px 20px;
+    text-decoration: none;
+    top: 0;
+}
+
+.form-builder-page-manager-add-page:hover, .form-builder-page-manager-remove-page:hover, .form-builder-switch-view:hover {
+    background-color: #dceeff;
+    text-decoration: none;
+}
+
+.form-builder-page-manager-add-page:focus, .form-builder-page-manager-remove-page:focus, .form-builder-switch-view:focus {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.form-builder-pages .pagination, .form-builder-layout .layout-row, .form-builder-pages .pagination .pagination-content {
+    margin: 0;
+}
