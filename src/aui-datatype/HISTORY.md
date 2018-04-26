@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-3147](https://issues.liferay.com/browse/AUI-3147) Add date format token %E in aui-datatype-date-parse.js(AUI)
 
 ## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
 
