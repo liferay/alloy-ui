@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3143](https://issues.liferay.com/browse/AUI-3143) Fix colorpicker responsiveness to use Bootstrap's grid system
 * [AUI-3141](https://issues.liferay.com/browse/AUI-3141) AUI color picker demo color showing incorrectly when Hue value is set to 360
 * [AUI-3136](https://issues.liferay.com/browse/AUI-3136) AUI color picker demo does not allow hut to be set to 360
 
