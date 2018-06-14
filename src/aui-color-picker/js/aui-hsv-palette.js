@@ -93,13 +93,13 @@ var AColor = A.Color,
     HSVPalette = A.Base.create('hsv-palette', A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
         CSS_VALUE_RIGHT_SIDE_CONTAINER: 'col-sm-10 col-xs-10',
 
-        TPL_CONTAINER: '<div class="row ' + CSS_CONTAINER + ' {subClass}"></div>',
+        TPL_CONTAINER: '<div class="container-fluid ' + CSS_CONTAINER + ' {subClass}"></div>',
 
-        TPL_VIEW_CONTAINER: '<div class="' + CSS_VIEW_CONTAINER + '"></div>',
+        TPL_VIEW_CONTAINER: '<div class="autofit-float autofit-row ' + CSS_VIEW_CONTAINER + '"></div>',
 
         TPL_IMAGE_BACKDROP: '<div class="' + CSS_HS_IMAGE_BACKDROP + '"></div>',
 
-        TPL_IMAGE_WRAPPER: '<div class="col-xs-6 ' +
+        TPL_IMAGE_WRAPPER: '<div class="autofit-col ' +
             CSS_HS_IMAGE_WRAPPER + '"><div class="' +
             CSS_HS_IMAGE_CONTAINER + '"></div></div>',
 
@@ -109,16 +109,16 @@ var AColor = A.Color,
 
         TPL_HS_THUMB: '<div class="' + CSS_HS_THUMB + '"></div>',
 
-        TPL_VALUE_CONTAINER: '<div class="col-xs-6 ' + CSS_VALUE_CONTAINER + '"><div class="row"></div></div>',
+        TPL_VALUE_CONTAINER: '<div class="autofit-col autofit-col-expand ' + CSS_VALUE_CONTAINER + '"><div class="autofit-row"></div></div>',
 
-        TPL_VALUE_RIGHT_SIDE_CONTAINER: '<div>' +
-            '<div class="row"><div class="col-sm-6 col-xs-6 ' +
+        TPL_VALUE_RIGHT_SIDE_CONTAINER: '<div class="autofit-col autofit-col-expand">' +
+            '<div class="autofit-padded-no-gutters autofit-row"><div class="autofit-col ' +
             CSS_RESULT_WRAPPER + '"></div>' +
-            '<div class="col-sm-6 col-xs-6 ' + CSS_HEX_WRAPPER +
-            '"></div></div><div class="row ' + CSS_CONTROLS_WRAPPER +
+            '<div class="autofit-col autofit-col-expand ' + CSS_HEX_WRAPPER +
+            '"></div></div><div class="autofit-row ' + CSS_CONTROLS_WRAPPER +
             '"></div></div>',
 
-        TPL_VALUE_SLIDER_WRAPPER: '<div class="col-sm-2 col-xs-2 ' +
+        TPL_VALUE_SLIDER_WRAPPER: '<div class="autofit-col ' +
             CSS_VALUE_SLIDER_WRAPPER + '"><div class="' +
             CSS_VALUE_SLIDER_CONTAINER + '"></div></div>',
 
@@ -137,11 +137,11 @@ var AColor = A.Color,
             '" data-type="{type}" type="text" maxlength="{maxlength}" value="{value}">' +
             '</div>',
 
-        TPL_LABEL_VALUE: '<div class="form-group input-prepend input-append">' +
-            '<label class="add-on col-sm-2 col-xs-2 control-label">{label}</label>' +
-            '<div class="col-sm-6 col-xs-6 form-control-wrapper"><input class="span2 form-control ' + CSS_VALUE +
+        TPL_LABEL_VALUE: '<div class="form-group input-group">' +
+            '<label class="add-on input-group-item input-group-item-shrink">{label}</label>' +
+            '<div class="input-group-item input-group-item-shrink"><input class="form-control ' + CSS_VALUE +
             '" data-type="{type}" type="number" max="{max}" maxlength="{maxlength}" min="{min}" value="{value}"></div>' +
-            '<label class="col-sm-2 col-xs-2 control-label ' + CSS_LABEL + '">{labelUnit}</label>' + '</div>',
+            '<label class="input-group-item input-group-item-shrink ' + CSS_LABEL + '">{labelUnit}</label>' + '</div>',
 
         _outputType: 'hex',
 
@@ -917,7 +917,7 @@ var AColor = A.Color,
                 Lang.sub(
                     instance.TPL_LABEL_VALUE_CONTAINER, {
                         subClass: CSS_LABEL_VALUE_HSV_CONTAINER +
-                            ' form-horizontal col-sm-6 col-xs-6'
+                            ' autofit-col autofit-col-expand'
                     }
                 )
             );
@@ -926,7 +926,7 @@ var AColor = A.Color,
                 Lang.sub(
                     instance.TPL_LABEL_VALUE_CONTAINER, {
                         subClass: CSS_LABEL_VALUE_RGB_CONTAINER +
-                            ' form-horizontal col-sm-6 col-xs-6'
+                            ' autofit-col autofit-col-expand'
                     }
                 )
             );
@@ -1073,7 +1073,7 @@ var AColor = A.Color,
             this._valueContainer = this._viewContainer.appendChild(
                 this.TPL_VALUE_CONTAINER
             );
-            this._valueContainer = this._valueContainer.one('.row');
+            this._valueContainer = this._valueContainer.one('.autofit-row');
 
             this._renderValueSliderContainer();
 

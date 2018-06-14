@@ -1,11 +1,15 @@
 .hsv-container {
-    padding: 5px;
     position: relative;
-    width: 510px;
+    width: 560px;
 }
 
 .hsv-container.hsv-container-alpha {
     width: 550px;
+}
+
+.hsv-view-container .hsv-value-slider-wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .hsv-view-container .form-group {
@@ -14,12 +18,6 @@
 
 .hsv-view-container .form-group:last-child {
     margin-bottom: 0;
-}
-
-.hsv-view-container .hsv-label {
-    font-weight: normal;
-    padding-left: 2px;
-    text-align: left;
 }
 
 .hsv-view-container .form-control-wrapper {
@@ -87,27 +85,36 @@
 }
 
 .hsv-result-wrapper {
-    padding-left: 7px;
+    padding-right: 1rem;
 }
 
-.hsv-result-view, .hsv-view-backdrop {
+.hsv-result-view {
     height: 65px;
     position: absolute;
     width: 65px;
 }
 
-.hsv-label {
-    display: inline;
+.hsv-view-backdrop {
+    height: 65px;
+    position: static;
+    width: 65px;
 }
 
-.hsv-label-value-hsv-container,
+.hsv-label-value-hsv-container {
+    padding-top: 1.5rem;
+}
+
 .hsv-label-value-rgb-container {
-    padding-top: 25px;
-    padding-left: 0;
+    padding-left: 2rem;
+    padding-top: 1.5rem;
 }
 
-.hsv-label-value-container .input-prepend, .hsv-label-value-container .input-append {
-    display: block;
+.hsv-label-value-container .input-group {
+    align-items: center;
+}
+
+.hsv-label-value-container .add-on, .hsv-label-value-container .hsv-label {
+    min-width: 1rem;
 }
 
 .hsv-label-value-container .form-group .hsv-label-hidden {
@@ -119,9 +126,21 @@
 }
 
 @media (max-width: 767px) {
+    .hsv-hs-container, .hsv-image-backdrop, .hsv-image-container {
+        width: 240px;
+    }
+
+    .hsv-view-container .hsv-value-slider-wrapper {
+        padding-left: 0.5rem;
+    }
+
+    .hsv-label-value-rgb-container {
+        padding-left: 1rem;
+    }
+
     .hsv-default-size.hsv-container,
     .hsv-default-size.hsv-container.hsv-container-alpha {
-        width: 270px;
+        width: 240px;
     }
 
     .hsv-default-size .hsv-value-container {
