@@ -126,12 +126,12 @@
 }
 
 @media (max-width: 767px) {
-    .hsv-hs-container, .hsv-image-backdrop, .hsv-image-container {
-        width: 240px;
+    .hsv-image-wrapper {
+        margin-bottom: 1rem;
     }
 
-    .hsv-view-container .hsv-value-slider-wrapper {
-        padding-left: 0.5rem;
+    .hsv-hs-container, .hsv-image-backdrop, .hsv-image-container {
+        width: 225px;
     }
 
     .hsv-label-value-rgb-container {
@@ -140,15 +140,6 @@
 
     .hsv-default-size.hsv-container,
     .hsv-default-size.hsv-container.hsv-container-alpha {
-        width: 240px;
-    }
-
-    .hsv-default-size .hsv-value-container {
-        margin-top: 10px;
-    }
-
-    .hsv-default-size .hsv-image-wrapper,
-    .hsv-default-size .hsv-value-container {
-        width: 100%;
+        width: 225px;
     }
 }

@@ -91,9 +91,9 @@ var AColor = A.Color,
      * @include http://alloyui.com/examples/color-picker/hsv.js
      */
     HSVPalette = A.Base.create('hsv-palette', A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
-        CSS_VALUE_RIGHT_SIDE_CONTAINER: 'col-sm-10 col-xs-10',
+        CSS_VALUE_RIGHT_SIDE_CONTAINER: '',
 
-        TPL_CONTAINER: '<div class="container-fluid ' + CSS_CONTAINER + ' {subClass}"></div>',
+        TPL_CONTAINER: '<div class="' + CSS_CONTAINER + ' {subClass}"></div>',
 
         TPL_VIEW_CONTAINER: '<div class="autofit-float autofit-row ' + CSS_VIEW_CONTAINER + '"></div>',
 
@@ -112,7 +112,7 @@ var AColor = A.Color,
         TPL_VALUE_CONTAINER: '<div class="autofit-col autofit-col-expand ' + CSS_VALUE_CONTAINER + '"><div class="autofit-row"></div></div>',
 
         TPL_VALUE_RIGHT_SIDE_CONTAINER: '<div class="autofit-col autofit-col-expand">' +
-            '<div class="autofit-padded-no-gutters autofit-row"><div class="autofit-col ' +
+            '<div class="autofit-row"><div class="autofit-col ' +
             CSS_RESULT_WRAPPER + '"></div>' +
             '<div class="autofit-col autofit-col-expand ' + CSS_HEX_WRAPPER +
             '"></div></div><div class="autofit-row ' + CSS_CONTROLS_WRAPPER +
@@ -917,7 +917,7 @@ var AColor = A.Color,
                 Lang.sub(
                     instance.TPL_LABEL_VALUE_CONTAINER, {
                         subClass: CSS_LABEL_VALUE_HSV_CONTAINER +
-                            ' autofit-col autofit-col-expand'
+                            ' autofit-col'
                     }
                 )
             );
@@ -926,7 +926,7 @@ var AColor = A.Color,
                 Lang.sub(
                     instance.TPL_LABEL_VALUE_CONTAINER, {
                         subClass: CSS_LABEL_VALUE_RGB_CONTAINER +
-                            ' autofit-col autofit-col-expand'
+                            ' autofit-col'
                     }
                 )
             );
