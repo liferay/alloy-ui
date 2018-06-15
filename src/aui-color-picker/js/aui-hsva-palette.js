@@ -40,11 +40,9 @@ var Lang = A.Lang,
      * @constructor
      */
     HSVAPalette = A.Base.create('hsva-palette', A.HSVPalette, [], {
-        CSS_VALUE_RIGHT_SIDE_CONTAINER: 'col-sm-8 col-xs-8',
-
         TPL_ALPHA_CANVAS: '<span class="' + CSS_ALPHA_CANVAS + '"></span>',
 
-        TPL_ALPHA_SLIDER_WRAPPER: '<div class="col-sm-2 col-xs-2 ' +
+        TPL_ALPHA_SLIDER_WRAPPER: '<div class="autofit-col ' +
             CSS_ALPHA_SLIDER_WRAPPER + '"><div class="' +
             CSS_ALPHA_SLIDER_CONTAINER + '"></div></div>',
 
