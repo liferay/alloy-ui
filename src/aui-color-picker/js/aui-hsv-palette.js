@@ -91,8 +91,6 @@ var AColor = A.Color,
      * @include http://alloyui.com/examples/color-picker/hsv.js
      */
     HSVPalette = A.Base.create('hsv-palette', A.Widget, [A.WidgetCssClass, A.WidgetToggle], {
-        CSS_VALUE_RIGHT_SIDE_CONTAINER: '',
-
         TPL_CONTAINER: '<div class="' + CSS_CONTAINER + ' {subClass}"></div>',
 
         TPL_VIEW_CONTAINER: '<div class="autofit-float autofit-row ' + CSS_VIEW_CONTAINER + '"></div>',
@@ -1095,7 +1093,6 @@ var AColor = A.Color,
             rightSideContainer = this._valueContainer.appendChild(
                 this.TPL_VALUE_RIGHT_SIDE_CONTAINER
             );
-            rightSideContainer.addClass(this.CSS_VALUE_RIGHT_SIDE_CONTAINER);
 
             resultWrapper = rightSideContainer.one('.' + CSS_RESULT_WRAPPER);
             this._renderResultBackdrop(resultWrapper);
