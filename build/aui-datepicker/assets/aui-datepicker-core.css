@@ -1,0 +1,9 @@
+.datepicker-popover .yui3-calendar-content {
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.datepicker-popover.popover {
+    max-width: none;
+}
