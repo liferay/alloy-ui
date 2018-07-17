@@ -368,14 +368,17 @@ DatePickerDelegate.prototype = {
 
             if (activeInputValue) {
                 dates = [];
+
                 A.Array.each(
                     activeInputValue.split(dateSeparator),
                     function(text) {
                         text = Lang.trim(text);
+
                         if (text) {
                             dates.push(A.Date.parse(mask, text));
                         }
-                    });
+                    }
+                );
             }
 
             return dates;
