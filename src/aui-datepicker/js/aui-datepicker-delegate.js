@@ -375,7 +375,13 @@ DatePickerDelegate.prototype = {
                         text = Lang.trim(text);
 
                         if (text) {
-                            dates.push(A.Date.parse(mask, text));
+                            var date = A.Date.parse(mask, text);
+
+                            if (!Lang.isDate(date)) {
+                                date = new Date();
+                            }
+
+                            dates.push(date);
                         }
                     }
                 );
