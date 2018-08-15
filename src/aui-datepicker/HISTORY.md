@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3152](https://issues.liferay.com/browse/AUI-3152) Reselecting current date in the datepicker, after deleting it from the input field, will result into a blank date
 * [AUI-3151](https://issues.liferay.com/browse/AUI-3151) Datepicker Calendar is unusable when invalid date is entered in input field
 * [AUI-3142](https://issues.liferay.com/browse/AUI-3142) Change focus on Datepicker not working properly
 * [AUI-1353](https://issues.liferay.com/browse/AUI-1353) Make aui-datepicker accessible

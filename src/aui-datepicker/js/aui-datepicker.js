@@ -139,12 +139,21 @@ A.mix(DatePickerBase.prototype, {
      * @param silent
      */
     clearSelection: function(silent) {
-        var instance = this;
+        var instance = this,
+            activeInput = instance.get('activeInput');
 
         instance.getCalendar()._clearSelection(silent);
 
+        if (activeInput.val() == '') {
+            instance._defSelectionChangeFn(
+                {
+                    newSelection: null
+                }
+            );
+        }
+
         if (instance.get('useARIA')) {
-            instance.aria.setAttribute('label', '', instance.get('activeInput'));
+            instance.aria.setAttribute('label', '', activeInput);
         }
     },
 
