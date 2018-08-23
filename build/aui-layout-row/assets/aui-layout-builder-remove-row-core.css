@@ -1,0 +1,14 @@
+.layout-builder-remove-row-button {
+    border-radius: 50%;
+    display: none;
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    z-index: 3;
+}
+
+.layout-row-container-row:hover .layout-builder-remove-row-button,
+.layout-row-container-row:focus .layout-builder-remove-row-button,
+.layout-row-container-row .layout-builder-remove-row-button:focus {
+	display: block;
+}
