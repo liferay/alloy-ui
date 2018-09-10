@@ -359,6 +359,16 @@ var FormValidator = A.Component.create({
         },
 
         /**
+         * List of CSS selectors for targets that will not get validated
+         *
+         * @attribute skipValidationTargetSelectors
+         * @default ['a[class=btn-cancel']
+         */
+        skipValidationTargetSelector: {
+            value: 'a[class~=btn-cancel]'
+        },
+
+        /**
          * Collection of strings used to label elements of the UI.
          *
          * @attribute strings
@@ -1300,7 +1310,11 @@ var FormValidator = A.Component.create({
         _onFieldInput: function(event) {
             var instance = this;
 
-            instance.validateField(event.target);
+            var skipValidationTargetSelector = instance.get('skipValidationTargetSelector');
+
+            if (!event.relatedTarget || !event.relatedTarget.getDOMNode().matches(skipValidationTargetSelector) {
+                instance.validateField(event.target);
+            }
         },
 
         /**
