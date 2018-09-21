@@ -359,18 +359,6 @@ var FormValidator = A.Component.create({
         },
 
         /**
-         * Collection of strings used to label elements of the UI.
-         *
-         * @attribute strings
-         * @type Object
-         */
-        strings: {
-            valueFn: function() {
-                return defaults.STRINGS;
-            }
-        },
-
-        /**
          * Collection of rules to validate fields.
          *
          * @attribute rules
@@ -426,6 +414,16 @@ var FormValidator = A.Component.create({
         },
 
         /**
+         * List of CSS selectors for targets that will not get validated
+         *
+         * @attribute skipValidationTargetSelectors
+         * @default 'a[class=btn-cancel'
+         */
+        skipValidationTargetSelector: {
+            value: 'a[class~=btn-cancel]'
+        },
+
+        /**
          * Defines a container for the stack errors.
          *
          * @attribute stackErrorContainer
@@ -435,6 +433,18 @@ var FormValidator = A.Component.create({
                 return A.Node.create(val).clone();
             },
             value: TPL_STACK_ERROR
+        },
+
+        /**
+         * Collection of strings used to label elements of the UI.
+         *
+         * @attribute strings
+         * @type Object
+         */
+        strings: {
+            valueFn: function() {
+                return defaults.STRINGS;
+            }
         },
 
         /**
@@ -1300,7 +1310,11 @@ var FormValidator = A.Component.create({
         _onFieldInput: function(event) {
             var instance = this;
 
-            instance.validateField(event.target);
+            var skipValidationTargetSelector = instance.get('skipValidationTargetSelector');
+
+            if (!event.relatedTarget || !event.relatedTarget.getDOMNode().matches(skipValidationTargetSelector)) {
+                instance.validateField(event.target);
+            }
         },
 
         /**
