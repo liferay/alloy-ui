@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-3156](https://issues.liferay.com/browse/AUI-3156) Sortable Layout doesn't allow dragging back to original target
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
 
