@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3153](https://issues.liferay.com/browse/AUI-3153) Validation Firing When Attempting to Follow the Cancel Link from an AUI Form
 * [AUI-1356](https://issues.liferay.com/browse/AUI-1356) Make aui-form-validator accessible with aria
 * [AUI-2820](https://issues.liferay.com/browse/AUI-2820) Radio button validation warnings don't disappear after input is entered
 
