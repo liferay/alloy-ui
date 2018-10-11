@@ -481,15 +481,18 @@ var SortableLayout = A.Component.create({
             var instance = this;
             var activeDrag = DDM.activeDrag;
             var activeDrop = instance.activeDrop;
+            var retVal = true;
 
             if (activeDrag && activeDrop) {
                 var dragNode = activeDrag.get('node');
                 var dropNode = activeDrop.get('node');
 
-                return !dragNode.contains(dropNode);
+                if (!dragNode.compareTo(dropNode) && dragNode.contains(dropNode)) {
+                    retVal = false;
+                }
             }
 
-            return true;
+            return retVal;
         },
 
         /**
