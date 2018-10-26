@@ -1,0 +1,108 @@
+.form-builder-field {
+    background: #FFF;
+    border-radius: 3px;
+    border-top: 5px solid transparent;
+    box-shadow: 0 1px 2px #C4C4C4;
+    margin: 8px 6px 0;
+    outline: none;
+    padding: 10px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 2px #C4C4C4;
+}
+
+.form-builder-field label {
+    float: left;
+    margin-right: 5px;
+}
+
+.form-builder-field .form-builder-field-node {
+    clear: both;
+    display: block;
+}
+
+.form-builder-field-hover {
+    border-color: #CCC;
+}
+
+.form-builder-field-options-container {
+    clear: left;
+}
+
+.form-builder-field-selected {
+    border-color: #76A7FA;
+}
+
+/* Field icons */
+
+.form-builder-field-icon {
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.form-builder-field-icon-button {
+    background-image: url(icon-button.png);
+}
+
+.form-builder-field-icon-checkbox {
+    background-image: url(icon-checkbox.png);
+}
+
+.form-builder-field-icon-date {
+    background-image: url(icon-date.png);
+}
+
+.form-builder-field-icon-decimal {
+    background-image: url(icon-decimal.png);
+}
+
+.form-builder-field-icon-default {
+    background-image: url(icon-default.png);
+}
+
+.form-builder-field-icon-document {
+    background-image: url(icon-document.png);
+}
+
+.form-builder-field-icon-fieldset {
+    background-image: url(icon-fieldset.png);
+}
+
+.form-builder-field-icon-fileupload {
+    background-image: url(icon-fileupload.png);
+}
+
+.form-builder-field-icon-integer {
+    background-image: url(icon-integer.png);
+}
+
+.form-builder-field-icon-number {
+    background-image: url(icon-number.png);
+}
+
+.form-builder-field-icon-paragraph {
+    background-image: url(icon-paragraph.png);
+}
+
+.form-builder-field-icon-password {
+    background-image: url(icon-password.png);
+}
+
+.form-builder-field-icon-radio {
+    background-image: url(icon-radio.png);
+}
+
+.form-builder-field-icon-select {
+    background-image: url(icon-select.png);
+}
+
+.form-builder-field-icon-separator {
+    background-image: url(icon-separator.png);
+}
+
+.form-builder-field-icon-text {
+    background-image: url(icon-text.png);
+}
+
+.form-builder-field-icon-textarea {
+    background-image: url(icon-textarea.png);
+}
