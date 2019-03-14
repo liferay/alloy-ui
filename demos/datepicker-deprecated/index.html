@@ -130,7 +130,16 @@ YUI(
 				yearRange: [ 1980, (new Date).getFullYear() ]
 			}
 		).render();
+	}
+);
 
+YUI(
+	{
+		filter: 'raw'
+	}
+).use(
+	'aui-datepicker',
+	function(A) {
 		/*
 			Simple Datepicker
 		*/
