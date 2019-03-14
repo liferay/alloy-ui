@@ -383,7 +383,7 @@ A.mix(DatePickerBase.prototype, {
             firstSelectedDate = dates[0];
         }
 
-        if (firstSelectedDate) {
+        if (firstSelectedDate && Lang.isDate(firstSelectedDate)) {
             instance.getCalendar().set('date', firstSelectedDate);
         }
     },
