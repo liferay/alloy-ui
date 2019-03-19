@@ -4,4 +4,5 @@
 
 ## @VERSION@
 
+* [AUI-3164](https://issues.liferay.com/browse/AUI-3164) DatePicker doesn't show a message informing that the date pasted in the field is invalid. Instead it sets the current date
 * [AUI-3133](https://issues.liferay.com/browse/AUI-3133) Conflict with aui-datepicker and aui-datepicker-deprecated
