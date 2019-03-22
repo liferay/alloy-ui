@@ -365,6 +365,8 @@ ToolbarRenderer.prototype = {
                     buttonInstance.get('boundingBox').setAttribute('title', value.title);
                 }
 
+                buttonInstance.get('boundingBox').setAttribute('type', type);
+
                 return buttonInstance.get('boundingBox');
             }
 
