@@ -342,12 +342,15 @@ ToolbarRenderer.prototype = {
          * @param childRenderHints
          */
         button: function(childRenderHints) {
-            var buttonInstance,
+            var boundingBox,
+                buttonInstance,
                 buttonNode,
                 cssClass,
                 iconContent,
                 type,
                 value = childRenderHints.value;
+
+            boundingBox = buttonInstance.get('boundingBox');
 
             type = value.domType || 'button';
 
@@ -362,10 +365,12 @@ ToolbarRenderer.prototype = {
 
                 // Add title support
                 if (value.title) {
-                    buttonInstance.get('boundingBox').setAttribute('title', value.title);
+                    boundingBox.setAttribute('title', value.title);
                 }
 
-                return buttonInstance.get('boundingBox');
+                boundingBox.setAttribute('type', type);
+
+                return boundingBox;
             }
 
             // Add node reference support
