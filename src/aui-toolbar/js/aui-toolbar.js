@@ -350,8 +350,6 @@ ToolbarRenderer.prototype = {
                 type,
                 value = childRenderHints.value;
 
-            boundingBox = buttonInstance.get('boundingBox');
-
             type = value.domType || 'button';
 
             if (A.instanceOf(value, A.Button) ||
@@ -362,6 +360,8 @@ ToolbarRenderer.prototype = {
 
             if (A.UA.mobile && A.UA.touchEnabled) {
                 buttonInstance = new A.Button(value).render();
+
+                boundingBox = buttonInstance.get('boundingBox');
 
                 // Add title support
                 if (value.title) {
