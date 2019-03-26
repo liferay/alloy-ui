@@ -1,0 +1,28 @@
+.scheduler-view-week-hidden {
+    display: none;
+}
+
+.scheduler-view-week .scheduler-view-table .scheduler-view-table-colgrid {
+    background: #f6f6f6;
+}
+
+.scheduler-view-week .scheduler-event-title, .scheduler-view-week .scheduler-event-content {
+    font-size: 14px;
+}
+
+.view-lt480 .scheduler-view-week .scheduler-event-title {
+    display: none;
+}
+
+.view-lt480 .scheduler-view-week .scheduler-event-content {
+    font-size: 10px;
+    padding: 0 2px;
+}
+
+.view-lt480 .scheduler-view-week .scheduler-event-all-day {
+    text-overflow: ellipsis;
+}
+
+.view-lt480 .scheduler-view-week .scheduler-event-intersecting .scheduler-event-content {
+    visibility: hidden;
+}
