@@ -1,0 +1,20 @@
+.colorpickergrid {
+    width: 340px;
+}
+.colorpickergrid .colorpicker-container {
+    height: auto;
+    line-height: 0;
+    text-align: center;
+}
+.colorpickergrid-item {
+    cursor: pointer;
+    display: inline-block;
+    height: 15px;
+    margin: 3px;
+    padding: 2px;
+    width: 15px;
+}
+.colorpickergrid-item-content {
+    display: block;
+    height: 100%;
+}

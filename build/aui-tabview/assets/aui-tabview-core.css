@@ -1,0 +1,7 @@
+.nav .tab {
+    cursor: pointer;
+}
+
+.tabbable-hidden {
+    display: none;
+}
