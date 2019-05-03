@@ -56,6 +56,27 @@ npm install
 gulp build
 ```
 
+### Development
+
+You can rebuild all AUI components at anytime:
+
+```
+gulp build-aui
+```
+
+You can also rebuild just one AUI component at a time:
+
+```
+cd cd src/aui-datatable/
+gulp build-aui
+```
+
+Watch for changes and rebuild automatically:
+
+```
+gulp watch
+```
+
 ## Discussion
 
 * [Liferay Forums](http://www.liferay.com/community/forums/-/message_boards/category/8409523)
