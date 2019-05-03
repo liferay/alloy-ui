@@ -50,7 +50,13 @@ gulp help
 npm install
 ```
 
-4. Build AlloyUI & YUI3 using Shifter:
+4. Initialize and fetch dependencies via Bower:
+
+```
+gulp init
+```
+
+5. Build AlloyUI & YUI3 using Shifter:
 
 ```
 gulp build
