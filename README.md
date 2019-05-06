@@ -64,18 +64,15 @@ gulp build
 
 ### Development
 
-You can rebuild all AUI components at anytime:
+Rebuild AUI components:
 
 ```
 gulp build-aui
 ```
 
-You can also rebuild just one AUI component at a time:
+If run at the root level, it will build all AUI components.
 
-```
-cd cd src/aui-datatable/
-gulp build-aui
-```
+If run within a component folder (ie. `cd src/aui-datatable`), it will only build that specific component.
 
 Watch for changes and rebuild automatically:
 
