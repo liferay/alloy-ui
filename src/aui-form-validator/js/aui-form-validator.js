@@ -943,26 +943,33 @@ var FormValidator = A.Component.create({
         resetField: function(field) {
             var instance = this,
                 fieldName,
+                fieldRules,
                 namedFieldNodes,
                 stackContainer;
 
             fieldName = isNode(field) ? field.get('name') : field;
 
-            instance.clearFieldError(fieldName);
+            if (fieldName) {
+                fieldRules = instance.get('rules')[fieldName];
 
-            stackContainer = instance.getFieldStackErrorContainer(fieldName);
+                if (fieldRules) {
+                    instance.clearFieldError(fieldName);
 
-            stackContainer.remove();
+                    stackContainer = instance.getFieldStackErrorContainer(fieldName);
 
-            namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+                    stackContainer.remove();
 
-            namedFieldNodes.each(
-                function(node) {
-                    instance.resetFieldCss(node);
-                    node.removeAttribute('aria-errormessage');
-                    node.removeAttribute('aria-invalid');
+                    namedFieldNodes = A.all(instance.getFieldsByName(fieldName));
+
+                    namedFieldNodes.each(
+                        function(node) {
+                            instance.resetFieldCss(node);
+                            node.removeAttribute('aria-errormessage');
+                            node.removeAttribute('aria-invalid');
+                        }
+                    );
                 }
-            );
+            }
         },
 
         /**

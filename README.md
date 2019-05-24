@@ -50,10 +50,34 @@ gulp help
 npm install
 ```
 
-4. Build AlloyUI & YUI3 using Shifter:
+4. Initialize and fetch dependencies via Bower:
+
+```
+gulp init
+```
+
+5. Build AlloyUI & YUI3 using Shifter:
 
 ```
 gulp build
+```
+
+### Development
+
+Rebuild AUI components:
+
+```
+gulp build-aui
+```
+
+If run at the root level, it will build all AUI components.
+
+If run within a component folder (ie. `cd src/aui-datatable`), it will only build that specific component.
+
+Watch for changes and rebuild automatically:
+
+```
+gulp watch
 ```
 
 ## Discussion
