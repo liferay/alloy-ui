@@ -33,7 +33,7 @@ var Lang = A.Lang,
 
     getCN = A.getClassName,
 
-    CSS_ICON = getCN('glyphicon'),
+    CSS_ICON = getCN('icon'),
     CSS_SCHEDULER_EVENT = getCN('scheduler-event'),
     CSS_SCHEDULER_EVENT_ALL_DAY = getCN('scheduler-event', 'all', 'day'),
     CSS_SCHEDULER_EVENT_CONTENT = getCN('scheduler-event', 'content'),
