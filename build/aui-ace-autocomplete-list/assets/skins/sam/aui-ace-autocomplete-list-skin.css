@@ -1,0 +1,23 @@
+.ace-autocomplete {
+    -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+    -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+    background-color: white;
+    border: 1px solid #C0C0C0;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+}
+
+.ace-autocomplete .ace-autocomplete-results .ace-autocomplete-entry-container-highlighted {
+    background-color: #e8e8e8;
+}
+
+.ace-autocomplete .ace-autocomplete-results .ace-autocomplete-entry-container.selected:aui-ace-autocomplete-entry-container-highlighted {
+    background-color: #aed0f4;
+}
+
+.ace-autocomplete .ace-autocomplete-results .ace-autocomplete-entry-container.selected {
+    background-color: #cfddeb;
+}
+
+.ace-autocomplete .ace-autocomplete-results .ace-autocomplete-entry-container .ace-autocomplete-list-entry {
+    color: #181818;
+}
