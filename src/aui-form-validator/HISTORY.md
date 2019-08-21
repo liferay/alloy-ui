@@ -12,6 +12,7 @@
 
 ## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
 
+* [AUI-3173](https://issues.liferay.com/browse/AUI-3173) Add delay for required validation fields error message display
 * [AUI-2811](https://issues.liferay.com/browse/AUI-2811) IE8 showing error "Object doesn't support this property or method" for aui-form-validator.js file
 * [AUI-2094](https://issues.liferay.com/browse/AUI-2094) Remove feedback added by Form Validator when the field is not required and empty
 * [AUI-2055](https://issues.liferay.com/browse/AUI-2055) aria-invalid attribute not removed from blank input fields
