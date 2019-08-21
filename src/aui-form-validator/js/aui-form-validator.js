@@ -424,7 +424,8 @@ var FormValidator = A.Component.create({
          * @default 'a[class=btn-cancel'
          */
         skipValidationTargetSelector: {
-            value: 'a[class~=btn-cancel]'
+            value: 'a[class~=btn-cancel]',
+            value: 'input[type~=checkbox]'
         },
 
         /**
