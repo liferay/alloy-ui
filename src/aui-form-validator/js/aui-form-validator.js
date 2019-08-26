@@ -686,6 +686,8 @@ var FormValidator = A.Component.create({
                 field = boundingBox.one('.' + CSS_ERROR_FIELD);
 
             if (field) {
+                field = field.ancestor();
+
                 if (instance.get('selectText')) {
                     field.selectText();
                 }
