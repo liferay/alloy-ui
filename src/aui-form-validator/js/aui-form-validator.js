@@ -424,8 +424,7 @@ var FormValidator = A.Component.create({
          * @default 'a[class=btn-cancel'
          */
         skipValidationTargetSelector: {
-            value: 'a[class~=btn-cancel]',
-            value: 'input[type~=checkbox]'
+            value: ['a[class~=btn-cancel]', 'input[type~=checkbox]']
         },
 
         /**
@@ -1325,7 +1324,9 @@ var FormValidator = A.Component.create({
             var skipValidationTargetSelector = instance.get('skipValidationTargetSelector');
 
             if (!event.relatedTarget || !event.relatedTarget.getDOMNode().matches(skipValidationTargetSelector)) {
-                instance.validateField(event.target);
+                skipValidationTargetSelector.forEach(function(item) {
+                    instance.validateField(event.target);
+                  });
             }
         },
 
