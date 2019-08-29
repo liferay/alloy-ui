@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3174](https://issues.liferay.com/browse/AUI-3174) Move target field to parent node to guarantee that we will be targeting a visible node for a given field
 * [AUI-3168](https://issues.liferay.com/browse/AUI-3168) Ensure Validator Reset only applies to fields with rules
 * [AUI-3153](https://issues.liferay.com/browse/AUI-3153) Validation Firing When Attempting to Follow the Cancel Link from an AUI Form
 * [AUI-1356](https://issues.liferay.com/browse/AUI-1356) Make aui-form-validator accessible with aria
