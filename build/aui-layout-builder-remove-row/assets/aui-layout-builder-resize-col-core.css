@@ -1,0 +1,98 @@
+.layout-builder-resize-dragging .layout-builder-resize-col-breakpoint {
+    display: block;
+}
+
+.layout-builder-resize-col-breakpoint {
+    bottom: 0;
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 1px;
+    z-index: 2;
+}
+
+.layout-builder-resize-col-breakpoint-line {
+    border-right: 1px dashed #bbb;
+    height: 100%;
+}
+
+.layout-builder-resize-col-breakpoint-over .layout-builder-resize-col-breakpoint-line, .layout-builder-resize-col-breakpoint-line:focus {
+    border-color: #00a3ff;
+    border-right-style: solid;
+}
+
+.layout-builder-resize-col-draggable {
+    height: 100%;
+    margin-left: -10px;
+    opacity: 0;
+    position: absolute;
+    width: 20px;
+    z-index: 2;
+}
+
+.layout-builder-resize-col-draggable-border {
+    border-right: 1px dashed #bbb;
+    height: 100%;
+    width: 10px;
+}
+
+.layout-builder-resize-col-draggable-visible,
+.layout-builder-resize-col-draggable-dragging,
+.layout-builder-resize-col-draggable:hover {
+    opacity: 1;
+}
+
+.layout-builder-resize-col-draggable-dragging .layout-builder-resize-col-draggable-handle,
+.layout-builder-resize-col-draggable-handle:hover {
+    background: #65b3f0;
+}
+
+.layout-builder-resize-col-draggable-handle {
+    background-color: #869cad;
+    border-radius: 100%;
+    color: #73bdf3;
+    cursor: col-resize;
+    font-size: 8px;
+    font-weight: 100;
+    height: 28px;
+    margin-left: -5px;
+    margin-top: -9px;
+    padding: 8px 5px;
+    position: absolute;
+    top: 50%;
+    width: 28px;
+    z-index: 2;
+}
+
+.layout-builder-resize-col-draggable-handle span {
+    color: #fff;
+    display: inline-block;
+    float: left;
+    position: absolute;
+}
+
+.layout-builder-resize-col-draggable-handle .glyphicon-chevron-left {
+    left: 4px;
+    top: 10.3px
+}
+
+.layout-builder-resize-col-draggable-handle .glyphicon-chevron-right {
+    top: 10px;
+    right: 5px;
+}
+
+.layout-builder-resize-col-dragging.layout-row {
+    border-color: #bbb;
+}
+
+.layout-builder-resize-col-enabled .layout-row {
+    position: relative;
+}
+
+.layout-builder-resize-col-enabled .col:not(:last-child) {
+    border-right: none;
+}
+
+.layout-builder-resize-col-enabled .col:not(:first-child) {
+    border-left: none;
+}
