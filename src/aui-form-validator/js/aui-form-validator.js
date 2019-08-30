@@ -1324,9 +1324,7 @@ var FormValidator = A.Component.create({
             var skipValidationTargetSelector = instance.get('skipValidationTargetSelector');
 
             if (!event.relatedTarget || !event.relatedTarget.getDOMNode().matches(skipValidationTargetSelector)) {
-                skipValidationTargetSelector.forEach(function(item) {
-                    instance.validateField(event.target);
-                  });
+                instance.validateField(event.target);
             }
         },
 
