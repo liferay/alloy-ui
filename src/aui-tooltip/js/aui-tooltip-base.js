@@ -251,6 +251,14 @@ A.Tooltip = A.Base.create('tooltip', A.Widget, [
                 val = formatter.call(this, val);
             }
 
+            if (val.includes("#39") && (val.includes("&amp"))) {
+                var apos = "&amp;#39;";
+
+                for (apos in val) {
+                   val = val.replace("&amp;#39;", "'");
+               }
+            }
+
             if (!this.get('html')) {
                 val = A.Escape.html(val);
             }
