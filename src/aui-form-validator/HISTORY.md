@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3173](https://issues.liferay.com/browse/AUI-3173) Add delay for required validation fields error message display
 * [AUI-3174](https://issues.liferay.com/browse/AUI-3174) Move target field to parent node to guarantee that we will be targeting a visible node for a given field
 * [AUI-3168](https://issues.liferay.com/browse/AUI-3168) Ensure Validator Reset only applies to fields with rules
 * [AUI-3153](https://issues.liferay.com/browse/AUI-3153) Validation Firing When Attempting to Follow the Cancel Link from an AUI Form
@@ -12,7 +13,6 @@
 
 ## [3.1.0](https://github.com/liferay/alloy-ui/releases/tag/3.1.0)
 
-* [AUI-3173](https://issues.liferay.com/browse/AUI-3173) Add delay for required validation fields error message display
 * [AUI-2811](https://issues.liferay.com/browse/AUI-2811) IE8 showing error "Object doesn't support this property or method" for aui-form-validator.js file
 * [AUI-2094](https://issues.liferay.com/browse/AUI-2094) Remove feedback added by Form Validator when the field is not required and empty
 * [AUI-2055](https://issues.liferay.com/browse/AUI-2055) aria-invalid attribute not removed from blank input fields
