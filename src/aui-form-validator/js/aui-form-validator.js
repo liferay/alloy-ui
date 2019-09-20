@@ -1314,9 +1314,12 @@ var FormValidator = A.Component.create({
             var skipValidationTargetSelector = instance.get('skipValidationTargetSelector');
 
             if (!event.relatedTarget || !event.relatedTarget.getDOMNode().matches(skipValidationTargetSelector)) {
-                setTimeout(function() {
-                    instance.validateField(event.target);
-                }, 300);
+                setTimeout(
+                    function() {
+                        instance.validateField(event.target);
+                    },
+                    300
+                );
             }
         },
 
