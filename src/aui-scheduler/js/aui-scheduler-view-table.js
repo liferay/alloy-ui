@@ -812,16 +812,16 @@ var SchedulerTableView = A.Component.create({
 
             instance.columnTableGrid.removeClass(CSS_SVT_COLGRID_TODAY);
 
-            var intervalStartDate = instance._findCurrentIntervalStart();
-            var intervalEndDate = instance._findCurrentIntervalEnd();
+            var interval = instance.getDateInterval();
 
-            if (DateMath.between(todayDate, intervalStartDate, intervalEndDate)) {
+            if (DateMath.between(todayDate, interval.startDate, interval.endDate)) {
                 var firstDayOfWeek = scheduler.get('firstDayOfWeek');
                 var firstWeekDay = instance._findFirstDayOfWeek(todayDate);
 
                 var rowIndex = DateMath.getWeekNumber(todayDate, firstDayOfWeek) - DateMath.getWeekNumber(
-                    intervalStartDate, firstDayOfWeek);
-                var colIndex = (todayDate.getDate() - firstWeekDay.getDate());
+                    interval.startDate, firstDayOfWeek);
+                var colIndex = (todayDate.getDay() - firstWeekDay.getDay() + WEEK_LENGTH) % WEEK_LENGTH;
+
                 var celIndex = instance._getCellIndex([colIndex, rowIndex]);
 
                 var todayCel = instance.columnTableGrid.item(celIndex);
