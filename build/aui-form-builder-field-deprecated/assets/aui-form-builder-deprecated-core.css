@@ -1,0 +1,36 @@
+.form-builder .property-builder-drop-container, .form-builder .tab-pane {
+    height: auto;
+    min-height: 150px;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+.form-builder .property-builder-fields-container .form-builder-placeholder {
+    display: none;
+}
+
+.form-builder .property-builder-content-container,
+.form-builder .property-builder-fields-container {
+    padding-left: 0;
+}
+
+.form-builder .property-builder-fields-container .property-builder-field {
+    margin: 0;
+}
+
+.form-builder-placeholder {
+    border: 1px dashed #CCCCCC;
+    margin: 5px;
+}
+
+.form-builder-options-editor-hidden {
+    display: none;
+}
+/* work around Y.Widget zIndex bug */
+.basecelleditor {
+    z-index: 500 !important;
+}
+
+.form-builder-field-label, .form-builder-text-field-content label, .form-builder-checkbox-field-content {
+    min-height: 33px;
+}
