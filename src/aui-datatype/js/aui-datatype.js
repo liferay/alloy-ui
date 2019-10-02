@@ -488,12 +488,7 @@ A.mix(A.DataType.DateMath, {
      * (including the two dates); false if not.
      */
     betweenInclusive: function(date, dateBegin, dateEnd) {
-        if (this.between(date, dateBegin, dateEnd) || this.compare(date, dateBegin) || this.compare(date, dateEnd)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (this.between(date, dateBegin, dateEnd) || this.compare(date, dateBegin) || this.compare(date, dateEnd));
     },
 
     /**

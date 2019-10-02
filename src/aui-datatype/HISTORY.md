@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3148](https://issues.liferay.com/browse/AUI-3148) In Calendar's monthly view, when today's date is the last week of the month, the blue border is cut out
 * [AUI-3147](https://issues.liferay.com/browse/AUI-3147) Add date format token %E in aui-datatype-date-parse.js(AUI)
 * [AUI-2061](https://issues.liferay.com/browse/AUI-2061) Low performance on countDays method when using huge dates.
 
