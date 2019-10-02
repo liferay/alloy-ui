@@ -1,0 +1,39 @@
+.scheduler-view-month-hidden {
+    display: none;
+}
+
+.scheduler-view-month .scheduler-view-table-row {
+    height: 16.666%;
+    min-height: 100px;
+}
+
+.scheduler-view-month .scheduler-view-table-colgrid-first {
+    border-left: 0 none;
+}
+
+.scheduler-view-month-table-data-col-nomonth {
+    color: #ccc;
+    font-size: 14px;
+}
+
+.scheduler-view-month .scheduler-event-title, .scheduler-view-month .scheduler-event-content {
+    font-size: 13px;
+}
+
+.scheduler-view-month .scheduler-event-title span {
+    display: none;
+}
+
+.view-lt480 .scheduler-view-month .scheduler-event-title {
+    display: none;
+}
+
+.view-lt480 .scheduler-view-month .scheduler-event-content {
+    font-size: 10px;
+    padding: 0 2px;
+    text-overflow: ellipsis;
+}
+
+.view-lt480 .scheduler-view-table-more {
+    font-size: 10px;
+}
