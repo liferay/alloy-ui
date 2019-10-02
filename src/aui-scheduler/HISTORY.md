@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3148](https://issues.liferay.com/browse/AUI-3148) In Calendar's monthly view, when today's date is the last week of the month, the blue border is cut out
 * [AUI-3170](https://issues.liferay.com/browse/AUI-3170) Event icons missing on scheduler component
 * [AUI-3139](https://issues.liferay.com/browse/AUI-3139) Calendar - Vertical lines of the Main Scheduler table are not lining up with the All Day Event Scheduler table
 * [AUI-3121](https://issues.liferay.com/browse/AUI-3121) Add a polyfill to account for IE 8 not having Date.now()

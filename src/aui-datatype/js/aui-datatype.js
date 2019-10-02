@@ -477,6 +477,21 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
+     * Determines whether a given date is inclusively between two other
+     * dates on the calendar.
+     *
+     * @method betweenInclusive
+     * @param {Date} date The date to check for
+     * @param {Date} dateBegin The start of the range
+     * @param {Date} dateEnd The end of the range
+     * @return {Boolean} true if the date occurs between the dates
+     * (including the two dates); false if not.
+     */
+    betweenInclusive: function(date, dateBegin, dateEnd) {
+        return (this.between(date, dateBegin, dateEnd) || this.compare(date, dateBegin) || this.compare(date, dateEnd));
+    },
+
+    /**
      * Retrieves a JavaScript Date object representing January 1 of any given
      * year.
      *
