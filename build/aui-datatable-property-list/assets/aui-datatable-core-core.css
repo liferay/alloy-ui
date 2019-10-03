@@ -1,0 +1,108 @@
+/*
+* css from datatable-scroll-core.css
+*/
+
+/* foundational CSS */
+.table-scrollable-x {
+    _overflow-x: hidden;
+    _position: relative;
+}
+
+.table-scrollable-y, .table-scrollable-y .table-x-scroller {
+    _overflow-y: hidden;
+    _position: relative;
+}
+
+.table-y-scroller-container {
+    overflow-x: hidden;
+    position: relative;
+}
+
+.table-scrollable-y .table-content {
+    /* To allow absolute positioning of virtual scrollbar */
+    position: relative;
+}
+
+.table-scrollable-y .table-table .table-columns {
+    /* Prevent masked headers from showing during momentum scrolling */
+    visibility: hidden;
+}
+
+.table-scroll-columns {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+
+.table-y-scroller, .table-scrollable-x .table-caption-table {
+    width: 100%;
+}
+
+.table-x-scroller {
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.table-x-scroller .table {
+    margin-bottom: 0;
+}
+
+.table-scrollable-y .table-y-scroller {
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 1;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-scrollbar {
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 2;
+}
+
+.table-scrollbar div {
+    position: absolute;
+    width: 1px;
+    visibility: hidden;
+}
+/* Removed because it prevented cmd + zoom resizing in Chrome (at least) */
+
+/*
+.table-header {
+    -webkit-text-size-adjust: none;
+}
+*/
+
+/*
+* custom
+*/
+.table-sortable-column {
+    cursor: pointer;
+}
+
+.table-sort-liner {
+    display: block;
+    height: 100%;
+    padding-right: 15px;
+    position: relative;
+}
+
+.table-sort-indicator {
+    bottom: .5ex;
+    height: 10px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    width: 7px;
+}
+
+.table-sorted .table-sort-indicator {
+    background-position: 0 -10px;
+}
+
+.table-sorted-desc .table-sort-indicator {
+    background-position: 0 -20px;
+}
