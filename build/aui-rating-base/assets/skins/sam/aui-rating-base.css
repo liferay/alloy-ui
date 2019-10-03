@@ -1,0 +1,1 @@
+.rating a{cursor:pointer;text-decoration:none}.rating-disabled a{cursor:default}.rating-off{-ms-filter:"alpha(opacity=50)";filter:alpha(opacity=50);opacity:.5}.rating .glyphicon{font-size:1em}@media(max-width:767px){.rating .glyphicon{font-size:1.5em}}#yui3-css-stamp.skin-sam-aui-rating-base{display:none}
