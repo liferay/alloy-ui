@@ -7,7 +7,7 @@
 var getClassName = A.getClassName,
     CSS_CLOSE = getClassName('close'),
     CSS_INFO = getClassName('alert', 'info'),
-    CSS_DISMISSABLE = getClassName('alert', 'dismissable');
+    CSS_DISMISSIBLE = getClassName('alert', 'dismissible');
 
 /**
  * A base class for Alert.
@@ -110,7 +110,7 @@ A.Alert = A.Base.create('alert', A.Widget, [
         var boundingBox = this.get('boundingBox'),
             closeableNode = this.get('closeableNode');
 
-        boundingBox.toggleClass(CSS_DISMISSABLE, val);
+        boundingBox.toggleClass(CSS_DISMISSIBLE, val);
 
         closeableNode.remove();
 
