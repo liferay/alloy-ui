@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-3181](https://issues.liferay.com/browse/AUI-3181) ACE Editor upgrade removed change event to no longer be wrapped in event.data object
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
 
