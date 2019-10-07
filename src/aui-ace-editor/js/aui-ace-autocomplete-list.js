@@ -62,9 +62,9 @@ var Lang = A.Lang,
             instance.on('addSuggestion', instance.hide, instance);
             instance.on('cursorChange', instance._onCursorChange, instance);
             instance.on('cursorOut', instance.hide, instance);
-            instance.on('insertText', instance._onInsertText, instance);
+            instance.on('insert', instance._onInsertText, instance);
             instance.on('match', instance._onMatch, instance);
-            instance.on('removeText', instance._onRemoveText, instance);
+            instance.on('remove', instance._onRemoveText, instance);
             instance.on('resultsChange', instance._onResultsChange, instance);
             instance.on('resultsError', instance._setEmptyResults, instance);
             instance.on('showLoadingMessage', instance._onShowLoadingMessage, instance);
