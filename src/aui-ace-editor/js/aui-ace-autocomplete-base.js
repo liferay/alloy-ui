@@ -284,31 +284,24 @@ Base.prototype = {
     _onEditorChange: function(event) {
         var instance = this,
             column,
-            data,
             dataAction,
-            dataRange,
             endRow,
             startRow;
 
-        data = event.data;
+        dataAction = event.action;
 
-        dataAction = data.action;
+        if (!instance._lockEditor && (dataAction === 'insert' || dataAction === 'remove')) {
+            column = event.start.column;
+            endRow = event.end.row;
+            startRow = event.start.row;
 
-        if (!instance._lockEditor && (dataAction === 'insertText' || dataAction === 'removeText')) {
-            dataRange = data.range;
-
-            column = dataRange.start.column;
-            endRow = dataRange.end.row;
-            startRow = dataRange.start.row;
-
-            if (dataAction === 'insertText' && startRow === endRow) {
+            if (dataAction === 'insert' && startRow === endRow) {
                 instance._processAutoComplete(startRow, column + 1);
             }
 
             instance.fire(
                 dataAction, {
                     column: column,
-                    dataRange: dataRange,
                     endRow: endRow,
                     startRow: startRow
                 }
