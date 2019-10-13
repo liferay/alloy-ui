@@ -7,10 +7,6 @@
     min-height: 100px;
 }
 
-.scheduler-view-month .scheduler-view-table-colgrid-first {
-    border-left: 0 none;
-}
-
 .scheduler-view-month-table-data-col-nomonth {
     color: #ccc;
     font-size: 14px;
