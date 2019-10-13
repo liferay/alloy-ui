@@ -1,0 +1,135 @@
+.scheduler-view-agenda {
+    font-weight: 300;
+}
+
+@media (max-width: 767px) {
+    .scheduler-view-agenda {
+        margin-top: -13px;
+    }
+}
+
+.scheduler-view-agenda-info-container {
+    border-bottom: 1px solid #e4e4e4;
+    color: #6a6a6a;
+    font-size: 1.1em;
+}
+
+.scheduler-view-agenda-info-container .scheduler-view-agenda-info {
+    color: #3085d1;
+}
+
+.scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-label, .scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-biggie {
+    float: left;
+}
+
+.scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-label {
+    padding: 10px;
+}
+
+.scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-biggie {
+    border-right: 1px solid #E4E4E4;
+    font-size: 4em;
+    padding: 0 10px;
+    text-align: center;
+    width: auto;
+}
+
+.scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-label-biggie {
+    font-size: 1.5em;
+    padding: 5px 0;
+}
+
+.scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-label-small {
+    color: #6A6A6A;
+    font-size: 1em;
+}
+
+.scheduler-view-agenda-container {
+    color: #6a6a6a;
+    font-size: 1.1em;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-no-events {
+    background: #F6F6F6;
+    border-bottom: 1px solid #E4E4E4;
+    padding: 10px;
+    text-align: center;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event {
+    border-bottom: 1px solid #e4e4e4;
+    padding: 12px 10px;
+    position: relative;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event .scheduler-view-agenda-event-content {
+    float: left;
+    padding-left: 20px;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event .scheduler-view-agenda-event-dates {
+    float: right;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event-past .scheduler-view-agenda-event-content {
+    color: #999;
+    text-decoration: line-through;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event-selected, .scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event:hover {
+    background: #fbfbfb;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event-last {
+    border-bottom: 0;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event, .scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event-last {
+    cursor: pointer;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-events .scheduler-view-agenda-event-color {
+    border: 3px solid #fff;
+    height: 10px;
+    left: 12px;
+    position: absolute;
+    top: 17px;
+    width: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    background: lightBlue;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-header {
+    background: #f6f6f6;
+    border-bottom: 1px solid #E4E4E4;
+    padding: 10px;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-header .scheduler-view-agenda-header-day {
+    float: left;
+    text-transform: uppercase;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-header .scheduler-view-agenda-header-extra {
+    color: #009be6;
+    cursor: pointer;
+    float: right;
+    text-decoration: none;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-header .scheduler-view-agenda-header-extra:hover {
+    text-decoration: underline;
+}
+
+.scheduler-view-agenda-container .scheduler-view-agenda-header-first {
+    border-top-width: 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -ms-border-radius: 4px 4px 0 0;
+    -o-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
