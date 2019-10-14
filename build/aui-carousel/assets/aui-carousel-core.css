@@ -1,0 +1,124 @@
+.carousel.image-viewer-base {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel .carousel-content {
+    position: relative;
+}
+
+.carousel .carousel-content .image-viewer-base-image-list {
+    display: block;
+}
+
+.carousel .carousel-content .image-viewer-base-image-container {
+    display: none;
+    width: 100%;
+    z-index: 1;
+}
+
+.carousel .carousel-content .image-viewer-base-image {
+    max-height: none;
+    max-width: none;
+}
+
+.carousel .carousel-content .carousel-item-transition {
+    display: block;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+.carousel .carousel-content .image-viewer-base-current-image {
+    display: block;
+    z-index: 3;
+}
+
+.carousel .carousel-content .carousel-item-active-transition {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.carousel.carousel-outside-menu .carousel-menu {
+    text-align: center;
+    height: 29px;
+}
+
+.carousel.carousel-outside-menu .carousel-menu menu {
+    background: none;
+    display: inline-block;
+    position: static;
+}
+
+.carousel menu {
+    background: #000;
+    bottom: 6px;
+    position: absolute;
+    list-style: none;
+    margin: 0;
+    padding: 3px;
+    right: 6px;
+    z-index: 4;
+}
+
+.carousel menu li, .carousel menu a {
+    float: left;
+}
+
+.carousel .carousel-menu-item {
+    background: #474A4B;
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    text-indent: -999999px;
+}
+
+.carousel.image-viewer-base .carousel-menu-next,
+.carousel.image-viewer-base .carousel-menu-play,
+.carousel.image-viewer-base .carousel-menu-pause,
+.carousel.image-viewer-base .carousel-menu-prev {
+    height: 18px;
+    width: 18px;
+    margin: 0 3px;
+}
+
+.carousel.image-viewer-base .carousel-menu-next,
+.carousel.image-viewer-base .carousel-menu-prev {
+    position: static;
+}
+
+.carousel .carousel-menu-next {
+    background-image: url(next.png);
+}
+
+.carousel .carousel-menu-play {
+    background-image: url(play.png);
+}
+
+.carousel .carousel-menu-pause {
+    background-image: url(pause.png);
+}
+
+.carousel .carousel-menu-prev {
+    background-image: url(prev.png);
+}
+
+.carousel-menu-index {
+    height: 9px;
+    margin: 4px 3px;
+    width: 9px;
+}
+
+.carousel .carousel-menu-active {
+    background: #FFF;
+}
+
+.carousel.carousel-outside-menu .carousel-menu-active {
+    background: #aaa;
+}
+
+.carousel-hidden {
+    display: none;
+}
