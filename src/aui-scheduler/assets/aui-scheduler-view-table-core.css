@@ -172,7 +172,7 @@
 }
 
 .scheduler-view-table-row:last-child .scheduler-view-table-colgrid-today {
-    border-bottom-width: 1px;
+    border-bottom-width: 2px;
 }
 
 .scheduler-view-table-data-col-title-today {
