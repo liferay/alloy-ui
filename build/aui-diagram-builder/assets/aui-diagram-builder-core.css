@@ -1,0 +1,76 @@
+.diagram-node {
+    cursor: move;
+    position: absolute;
+}
+
+.diagram-node-label {
+    text-align: center;
+}
+
+.diagram-builder-anchor-node {
+    background: url(anchor-default.png) no-repeat scroll center center transparent;
+}
+
+.diagram-builder-anchor-hover, .diagram-builder-anchor-node.yui3-dd-drop-active-valid {
+    background: url(anchor-valid.png) no-repeat scroll center center transparent;
+}
+
+.diagram-builder-anchor-node.yui3-dd-drop-over {
+    background: url(anchor-drop-active.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-task-icon {
+    background: url(menu-task.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-task .diagram-node-content {
+    background: url(task.png) no-repeat scroll 2px 2px transparent;
+}
+
+.diagram-node-fork-icon {
+    background: url(menu-fork.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-fork .diagram-node-content {
+    background: url(fork.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-join-icon {
+    background: url(menu-join.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-join .diagram-node-content {
+    background: url(join.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-state-icon {
+    background: url(menu-state.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-state .diagram-node-content {
+    background: url(state.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-end-icon {
+    background: url(menu-end.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-end .diagram-node-content {
+    background: url(end.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-start-icon {
+    background: url(menu-start.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-start .diagram-node-content {
+    background: url(start.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-condition-icon {
+    background: url(menu-condition.png) no-repeat scroll center center transparent;
+}
+
+.diagram-node-condition .diagram-node-content {
+    background: url(condition.png) no-repeat scroll center center transparent;
+}

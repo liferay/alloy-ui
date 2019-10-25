@@ -1,0 +1,69 @@
+.diagram-builder-connector-name {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    opacity: 0.8;
+    overflow: hidden;
+    padding: 0 2px;
+    position: absolute;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 500;
+}
+
+.diagram-node-suggest-connector.popover {
+    display: block;
+}
+
+.diagram-node-suggest-connector .property-builder-field:hover {
+    background-color: #F1F1F1;
+}
+
+.diagram-node-suggest-connector .property-builder-field {
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    float: left;
+    height: 63px;
+    list-style: none outside none;
+    margin: 2px;
+    text-align: center;
+    width: 79px;
+}
+
+.diagram-builder-anchor-node {
+    cursor: pointer;
+    height: 15px;
+    position: absolute;
+    width: 15px;
+}
+
+.diagram-builder-anchor-node-max-targets {
+    cursor: auto;
+}
+
+.diagram-builder-controls {
+    display: none;
+}
+
+.diagram-node-selected .diagram-builder-controls {
+    display: block;
+    padding: 3px;
+    text-align: center;
+}
+
+.diagram-node-state .diagram-builder-controls, .diagram-node-start .diagram-builder-controls, .diagram-node-end .diagram-builder-controls {
+    margin-left: -7px;
+}
+
+.diagram-node-selected {
+    border: 1px dotted #666;
+}
+
+.diagram-node-focused {
+    outline: 0;
+}
+
+.diagram-node-shape-boundary {
+    cursor: crosshair;
+}
