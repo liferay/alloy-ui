@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3174](https://issues.liferay.com/browse/AUI-3174) Form Validator Doesn't Scroll to Invalid Fields if they Contain a hidden element
 * [AUI-3173](https://issues.liferay.com/browse/AUI-3173) Add delay for required validation fields error message display
 * [AUI-3174](https://issues.liferay.com/browse/AUI-3174) Move target field to parent node to guarantee that we will be targeting a visible node for a given field
 * [AUI-3168](https://issues.liferay.com/browse/AUI-3168) Ensure Validator Reset only applies to fields with rules
