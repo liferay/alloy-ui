@@ -696,7 +696,7 @@ var FormValidator = A.Component.create({
 
                 field.scrollIntoView(false);
 
-                window.scrollBy(0,field.getDOM().scrollHeight);
+                window.scrollBy(0, field.getDOM().scrollHeight);
             }
         },
 
