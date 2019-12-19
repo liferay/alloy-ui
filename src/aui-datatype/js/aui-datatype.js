@@ -959,6 +959,29 @@ A.mix(A.DataType.DateMath, {
     },
 
     /**
+     * Gets the number of weeks in given calendar year.
+     *
+     * @method getWeeksInYear
+     * @param {Number} year The calendar year for which to retrieve number of
+     *      weeks from.
+     * @param {Number} startOfWeek The index for the first day of the week, 0 =
+     *     Sun, 1 = Mon ... 6 = Sat (defaults to 0)
+     * @return {Number} The number of weeks for the given year
+     */
+    getWeeksInYear: function(year, startOfWeek) {
+        var date = this.getDate(year, 11, 31);
+        var weekNumber = this.getWeekNumber(date, startOfWeek, this.WEEK_ONE_JAN_DATE);
+
+        if (weekNumber === 1) {
+            date = this.getDate(year, 11, 24);
+
+            weekNumber = this.getWeekNumber(date, startOfWeek, this.WEEK_ONE_JAN_DATE);
+        }
+
+        return weekNumber;
+    },
+
+    /**
      * Converts a date to US time format.
      *
      * @method toUsTimeString

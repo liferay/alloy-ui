@@ -820,6 +820,13 @@ var SchedulerTableView = A.Component.create({
 
                 var rowIndex = DateMath.getWeekNumber(todayDate, firstDayOfWeek) - DateMath.getWeekNumber(
                     interval.startDate, firstDayOfWeek);
+
+                if (rowIndex < 0) {
+                    var weeksInYear = DateMath.getWeeksInYear(firstWeekDay.getFullYear(), firstDayOfWeek);
+
+                    rowIndex += weeksInYear;
+                }
+
                 var colIndex = (todayDate.getDay() - firstWeekDay.getDay() + WEEK_LENGTH) % WEEK_LENGTH;
 
                 var celIndex = instance._getCellIndex([colIndex, rowIndex]);
