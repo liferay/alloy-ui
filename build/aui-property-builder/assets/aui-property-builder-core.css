@@ -1,0 +1,73 @@
+.property-builder {
+    margin: 0;
+}
+
+.property-builder .property-builder-field {
+    border-radius: 4px 4px 4px 4px;
+    filter: alpha(opacity=50);
+    float: left;
+    height: 63px;
+    list-style: none outside none;
+    margin: 2px;
+    opacity: .5;
+    text-align: center;
+    width: 79px;
+}
+
+.property-builder .property-builder-field-draggable {
+    cursor: pointer;
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+
+.property-builder .property-builder-field.property-builder-field-draggable:hover {
+    background-color: #f1f1f1;
+}
+
+.property-builder-field-icon {
+    display: block;
+    margin: 3px auto;
+}
+
+.property-builder-field-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.property-builder .property-builder-tabs {
+    margin-left: 10px;
+    position: absolute;
+    width: 270px;
+}
+
+.property-builder .tab-pane {
+    height: 544px;
+    overflow: auto;
+}
+
+.property-builder-canvas {
+    position: relative;
+}
+
+.property-builder-fields-container {
+    margin: 5px;
+}
+
+.property-builder-content {
+    min-height: 400px;
+}
+
+.property-builder-content-container {
+    padding-left: 280px;
+}
+
+.property-builder-drop-container {
+    height: 600px;
+    overflow: auto;
+    position: relative;
+}
+
+.table-property-list {
+    margin: 5px 0px 20px;
+}
