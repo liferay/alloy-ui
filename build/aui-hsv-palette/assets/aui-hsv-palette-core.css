@@ -1,0 +1,145 @@
+.hsv-container {
+    position: relative;
+    width: 560px;
+}
+
+.hsv-container.hsv-container-alpha {
+    width: 550px;
+}
+
+.hsv-view-container .hsv-value-slider-wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.hsv-view-container .form-group {
+    margin-bottom: 10px;
+}
+
+.hsv-view-container .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.hsv-view-container .form-control-wrapper {
+    padding: 0;
+}
+
+.hsv-view-container .form-control {
+    padding: 3px 5px;
+}
+
+.hsv-hs-container, .hsv-image-backdrop {
+    height: 256px;
+    position: absolute;
+    width: 256px;
+}
+
+.hsv-image-wrapper {
+    padding: 0;
+}
+
+.hsv-image-container {
+    height: 256px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 256px;
+}
+
+.hsv-hs-thumb {
+    height: 11px;
+    position: absolute;
+    width: 11px;
+}
+
+.hsv-value-slider-container, .hsv-alpha-slider-container {
+    height: 256px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 19px;
+}
+
+.hsv-container-alpha .hsv-value-slider-wrapper,
+.hsv-container-alpha .hsv-alpha-slider-wrapper {
+    padding: 0;
+}
+
+.hsv-value-canvas, .hsv-alpha-canvas {
+    display: inline-block;
+    position: relative;
+    width: 19px;
+}
+
+.hsv-value-thumb, .hsv-alpha-thumb {
+    cursor: default;
+    height: 7px;
+    position: absolute;
+    width: 19px;
+}
+
+.hsv-value-image, .hsv-alpha-image {
+    display: block;
+    height: 12px;
+    margin-left: -6px;
+    margin-top: -6px;
+    width: 32px;
+}
+
+.hsv-result-wrapper {
+    padding-right: 1rem;
+}
+
+.hsv-result-view {
+    height: 65px;
+    position: absolute;
+    width: 65px;
+}
+
+.hsv-view-backdrop {
+    height: 65px;
+    position: static;
+    width: 65px;
+}
+
+.hsv-label-value-hsv-container {
+    padding-top: 1.5rem;
+}
+
+.hsv-label-value-rgb-container {
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+}
+
+.hsv-label-value-container .input-group {
+    align-items: center;
+}
+
+.hsv-label-value-container .add-on, .hsv-label-value-container .hsv-label {
+    min-width: 1rem;
+}
+
+.hsv-label-value-container .form-group .hsv-label-hidden {
+    display: none;
+}
+
+.hsv-hex-wrapper {
+    padding: 0;
+}
+
+@media (max-width: 767px) {
+    .hsv-image-wrapper {
+        margin-bottom: 1rem;
+    }
+
+    .hsv-hs-container, .hsv-image-backdrop, .hsv-image-container {
+        width: 225px;
+    }
+
+    .hsv-label-value-rgb-container {
+        padding-left: 1rem;
+    }
+
+    .hsv-default-size.hsv-container,
+    .hsv-default-size.hsv-container.hsv-container-alpha {
+        width: 225px;
+    }
+}
