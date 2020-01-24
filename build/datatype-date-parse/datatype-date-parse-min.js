@@ -1,0 +1,1 @@
+YUI.add("datatype-date-parse",function(a,e){a.mix(a.namespace("Date"),{parse:function(e){var t=new Date(+e||e);return a.Lang.isDate(t)?t:null}}),a.namespace("Parsers").date=a.Date.parse,a.namespace("DataType"),a.DataType.Date=a.Date},"patched-v3.18.1");
