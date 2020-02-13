@@ -1,0 +1,1 @@
+YUI.add("series-spline",function(e,i){e.SplineSeries=e.Base.create("splineSeries",e.LineSeries,[e.CurveUtil,e.Lines],{drawSeries:function(){this.drawSpline()}},{ATTRS:{type:{value:"spline"}}})},"patched-v3.18.1",{requires:["series-line","series-curve-util"]});
