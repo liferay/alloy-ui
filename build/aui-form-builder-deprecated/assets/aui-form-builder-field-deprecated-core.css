@@ -1,0 +1,10 @@
+.form-builder-field-wrapper {
+    clear: both;
+    padding: 0;
+}
+
+.form-builder-field .btn-toolbar {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
