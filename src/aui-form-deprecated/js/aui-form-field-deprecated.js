@@ -87,14 +87,6 @@ var Field = A.Component.create({
 
         id: {
             getter: function(value) {
-                var instance = this;
-
-                var node = this.get('node');
-
-                if (node) {
-                    value = node.get('id');
-                }
-
                 if (!value) {
                     value = A.guid();
                 }
