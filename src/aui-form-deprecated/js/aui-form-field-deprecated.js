@@ -87,11 +87,7 @@ var Field = A.Component.create({
 
         id: {
             getter: function(value) {
-                if (!value) {
-                    value = A.guid();
-                }
-
-                return value;
+                return value || A.guid();
             }
         },
 
