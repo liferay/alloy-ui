@@ -670,9 +670,11 @@ var FormValidator = A.Component.create({
             var instance = this,
                 fieldContainer = instance.get('fieldContainer');
 
-            if (fieldContainer) {
+            if (fieldContainer && field.ancestor(fieldContainer)) {
                 return field.ancestor(fieldContainer);
-            }
+            } else {
+				return field.ancestor();
+			}
         },
 
         /**
