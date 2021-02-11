@@ -1005,7 +1005,9 @@ var TreeNode = A.Component.create({
             var contentBox = instance.get('contentBox');
 
             if (val) {
-                instance.get('container').remove();
+                if (instance.get('container')) {
+                    instance.get('container').remove();
+                }
                 instance.get('hitAreaEl').remove();
             }
             else {
