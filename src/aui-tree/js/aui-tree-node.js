@@ -1002,17 +1002,20 @@ var TreeNode = A.Component.create({
         _uiSetLeaf: function(val) {
             var instance = this;
 
+            var container = instance.get('container');
             var contentBox = instance.get('contentBox');
+            var hitAreaEl = instance.get('hitAreaEl');
 
             if (val) {
-                if (instance.get('container')) {
-                    instance.get('container').remove();
+                if (container) {
+                    container.remove();
                 }
-                instance.get('hitAreaEl').remove();
+
+                hitAreaEl.remove();
             }
             else {
                 // append hitarea element
-                contentBox.prepend(instance.get('hitAreaEl'));
+                contentBox.prepend(hitAreaEl);
 
                 // if has children append them to this model
                 instance._createNodeContainer();
