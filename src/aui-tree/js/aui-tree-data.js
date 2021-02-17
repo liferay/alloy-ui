@@ -782,11 +782,11 @@ A.mix(TreeData.prototype, {
         var childNodes = [];
         var container = instance.get('container');
 
-        if (!container) {
+        instance.childrenLength = v.length;
+
+        if (instance.childrenLength && !container) {
             container = instance._createNodeContainer();
         }
-
-        instance.childrenLength = v.length;
 
         // before render the node, make sure the PARENT_NODE and OWNER_TREE
         // references are updated this is required on the render phase of the

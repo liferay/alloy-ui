@@ -4,7 +4,7 @@
 
 ## @VERSION@
 
-No registries yet.
+* [AUI-3196](https://issues.liferay.com/browse/AUI-3196) An empty unordered list item (ul) is generated after each child list item (li)
 
 ## [3.0.3](https://github.com/liferay/alloy-ui/releases/tag/3.0.3)
 
