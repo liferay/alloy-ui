@@ -44,6 +44,7 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     CSS_ICON_CHEVRON_LEFT = getCN('glyphicon', 'chevron', 'left'),
     CSS_SCHEDULER_VIEWS = getCN('scheduler-base', 'views'),
 
+    TPL_SCHEDULER_CURRENT_DATE = '<span class="sr-only" role="text">"{currentDate}"</span>',
     TPL_SCHEDULER_CONTROLS = '<div class="col-xs-7 ' + CSS_SCHEDULER_CONTROLS + '"></div>',
     TPL_SCHEDULER_HD = '<div class="row ' + CSS_SCHEDULER_HD + '"></div>',
     TPL_SCHEDULER_ICON_NEXT = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_SCHEDULER_ICON_NEXT, CSS_BTN,
@@ -51,7 +52,7 @@ var CSS_SCHEDULER_VIEW_ = A.getClassName('scheduler-base', 'view', ''),
     TPL_SCHEDULER_ICON_PREV = '<button aria-label="{ariaLabel}"" role="button" type="button" class="' + [CSS_SCHEDULER_ICON_PREV, CSS_BTN,
         CSS_BTN_DEFAULT].join(' ') + '"><span class="' + [CSS_ICON, CSS_ICON_CHEVRON_LEFT].join(' ') + '"></span></button>',
     TPL_SCHEDULER_NAV = '<div class="btn-group"></div>',
-    TPL_SCHEDULER_NAV_DATE = '<div class="' + CSS_SCHEDULER_NAV_DATE + ' hidden-xs"></div>',
+    TPL_SCHEDULER_NAV_DATE = '<div class="' + CSS_SCHEDULER_NAV_DATE + ' hidden-xs" tabindex="0"></div>',
     TPL_SCHEDULER_TODAY = '<button aria-label="{ariaLabel}" role="button" type="button" class="' +
         [CSS_SCHEDULER_TODAY, CSS_BTN, CSS_BTN_DEFAULT].join(' ') + '">{today}</button>',
     TPL_SCHEDULER_VIEW_BUTTON = '<button aria-label="{ariaLabel}" aria-pressed="false" type="button" class="hidden-xs ' +
@@ -763,6 +764,19 @@ var SchedulerBase = A.Component.create({
         },
 
         /**
+         * Contains the node that displays `Scheduler`'s current date in `Scheduler`'s header.
+         * This node is only available for screen readers
+         *
+         * @attribute currentDateNode
+         * @type {Node}
+         */
+        currentDateNode: {
+            valueFn: function() {
+                return A.Node.create(TPL_SCHEDULER_CURRENT_DATE);
+            }
+        },
+
+        /**
          * Contains `Scheduler`'s header navigation node.
          *
          * @attribute navNode
@@ -867,6 +881,7 @@ var SchedulerBase = A.Component.create({
      */
     HTML_PARSER: {
         controlsNode: '.' + CSS_SCHEDULER_CONTROLS,
+        currentDateNode: '.' + CSS_SCHEDULER_NAV_DATE,
         viewDateNode: '.' + CSS_SCHEDULER_VIEW_DATE,
         headerNode: '.' + CSS_SCHEDULER_HD,
         iconNextNode: '.' + CSS_SCHEDULER_ICON_NEXT,
@@ -911,6 +926,7 @@ var SchedulerBase = A.Component.create({
             instance.viewStack = {};
 
             instance.controlsNode = instance.get('controlsNode');
+            instance.currentDateNode = instance.get('currentDateNode');
             instance.viewDateNode = instance.get('viewDateNode');
             instance.header = instance.get('headerNode');
             instance.iconNextNode = instance.get('iconNextNode');
@@ -1128,6 +1144,7 @@ var SchedulerBase = A.Component.create({
                 instance.navNode.append(instance.todayNode);
                 instance.navNode.append(instance.iconNextNode);
 
+                instance.controlsNode.append(instance.currentDateNode);
                 instance.controlsNode.append(instance.navNode);
                 instance.controlsNode.append(instance.navDateNode);
 
@@ -1490,6 +1507,8 @@ var SchedulerBase = A.Component.create({
             var formatter = instance.get('navigationDateFormatter');
             var navigationTitle = formatter.call(instance, date);
 
+            instance.currentDateNode.html(instance.getString('currentDate') + ':' + navigationTitle);
+
             if (instance.get('rendered')) {
                 var activeView = instance.get('activeView');
 
@@ -1501,6 +1520,9 @@ var SchedulerBase = A.Component.create({
                 }
 
                 instance.navDateNode.html(navigationTitle);
+
+                instance.navDateNode.append(instance.currentDateNode);
+
                 instance.viewDateNode.html(navigationTitle);
 
                 instance.syncEventsUI();
