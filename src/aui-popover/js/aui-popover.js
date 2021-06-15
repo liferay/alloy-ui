@@ -180,7 +180,7 @@ A.Popover = A.Base.create('popover', A.Widget, [
      * @static
      */
     TEMPLATES: {
-        header: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.HEADER] + ' ' + CSS_POPOVER_HD + '"></div>',
+        header: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.HEADER] + ' ' + CSS_POPOVER_HD + '" tabindex="0"></div>',
         body: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.BODY] + ' ' + CSS_POPOVER_BD + '"></div>',
         footer: '<div class="' + StdMod.SECTION_CLASS_NAMES[StdMod.FOOTER] + ' ' + CSS_POPOVER_FT + '"></div>',
         arrow: '<div class="' + CSS_ARROW + '"></div>'

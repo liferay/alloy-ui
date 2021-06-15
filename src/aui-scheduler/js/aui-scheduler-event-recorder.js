@@ -324,6 +324,10 @@ var SchedulerEventRecorder = A.Component.create({
             var instance = this;
 
             instance.popover.hide();
+
+            if (instance._selectedEvent) {
+                instance._selectedEvent.focus();
+            }
         },
 
         /**
@@ -388,6 +392,8 @@ var SchedulerEventRecorder = A.Component.create({
             });
 
             instance.popover.show();
+
+            instance.popover.headerNode.focus();
         },
 
         /**
@@ -447,8 +453,20 @@ var SchedulerEventRecorder = A.Component.create({
             var scheduler = event.newVal;
             var schedulerBB = scheduler.get('boundingBox');
 
-            schedulerBB.delegate('click', A.bind(instance._onClickSchedulerEvent, instance), '.' +
+            schedulerBB.delegate('click', A.bind(instance._onSelectSchedulerEvent, instance), '.' +
                 CSS_SCHEDULER_EVENT);
+
+            schedulerBB.delegate(
+                'keydown', 
+                function(event) {
+                    if (event.keyCode === 13) {
+                        instance._onSelectSchedulerEvent(event);
+
+                        instance._selectedEvent = event.currentTarget;
+                    }
+                }, 
+                '.' + CSS_SCHEDULER_EVENT
+            );
         },
 
         /**
@@ -651,11 +669,11 @@ var SchedulerEventRecorder = A.Component.create({
         /**
          * Handles `click` event on the scheduler.
          *
-         * @method _onClickSchedulerEvent
+         * @method _onSelectSchedulerEvent
          * @param {EventFacade} event
          * @protected
          */
-        _onClickSchedulerEvent: function(event) {
+        _onSelectSchedulerEvent: function(event) {
             var instance = this;
             var evt = event.currentTarget.getData('scheduler-event');
 
