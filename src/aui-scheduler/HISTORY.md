@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3198](https://issues.liferay.com/browse/AUI-3198) Accessibility issues in Calendar widget
 * [AUI-3186](https://issues.liferay.com/browse/AUI-3186) In Calendar portlet, when today's date is the last week of the year using monthly view, the blue border is cut out.
 * [AUI-3182](https://issues.liferay.com/browse/AUI-3182) In Calendar's monthly view, when today's date is the first day of the week, the blue border is cut out
 * [AUI-3148](https://issues.liferay.com/browse/AUI-3148) In Calendar's monthly view, when today's date is the last week of the month, the blue border is cut out
