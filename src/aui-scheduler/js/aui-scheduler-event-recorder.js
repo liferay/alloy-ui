@@ -323,10 +323,12 @@ var SchedulerEventRecorder = A.Component.create({
         hidePopover: function() {
             var instance = this;
 
+            var selectedEvent = instance._selectedEvent;
+
             instance.popover.hide();
 
-            if (instance._selectedEvent) {
-                instance._selectedEvent.focus();
+            if (selectedEvent) {
+                selectedEvent.focus();
             }
         },
 
@@ -366,9 +368,10 @@ var SchedulerEventRecorder = A.Component.create({
          */
         showPopover: function(node) {
             var instance = this,
-                event = instance.get('event');
+                event = instance.get('event'),
+                popover = instance.popover;
 
-            if (!instance.popover.get('rendered')) {
+            if (!popover.get('rendered')) {
                 instance._renderPopover();
             }
 
@@ -385,15 +388,15 @@ var SchedulerEventRecorder = A.Component.create({
                 node = node.item(0);
             }
 
-            var align = instance.popover.get('align');
-            instance.popover.set('align', {
+            var align = popover.get('align');
+            popover.set('align', {
                 node: node,
                 points: align.points
             });
 
-            instance.popover.show();
+            popover.show();
 
-            instance.popover.headerNode.focus();
+            popover.headerNode.focus();
         },
 
         /**
@@ -457,14 +460,14 @@ var SchedulerEventRecorder = A.Component.create({
                 CSS_SCHEDULER_EVENT);
 
             schedulerBB.delegate(
-                'keydown', 
+                'keydown',
                 function(event) {
-                    if (event.keyCode === 13) {
+                    if (event.keyCode === A.Event.KeyMap.ENTER) {
                         instance._onSelectSchedulerEvent(event);
 
                         instance._selectedEvent = event.currentTarget;
                     }
-                }, 
+                },
                 '.' + CSS_SCHEDULER_EVENT
             );
         },
@@ -667,7 +670,7 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handles `click` event on the scheduler.
+         * Handles `click` event and keypress of the `enter` key on the scheduler.
          *
          * @method _onSelectSchedulerEvent
          * @param {EventFacade} event

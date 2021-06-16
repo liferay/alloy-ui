@@ -1504,10 +1504,11 @@ var SchedulerBase = A.Component.create({
         _uiSetDate: function(date) {
             var instance = this;
 
+            var currentDate = instance.getString('currentDate');
             var formatter = instance.get('navigationDateFormatter');
             var navigationTitle = formatter.call(instance, date);
 
-            instance.currentDateNode.html(instance.getString('currentDate') + ':' + navigationTitle);
+            instance.currentDateNode.html(currentDate + ':' + navigationTitle);
 
             if (instance.get('rendered')) {
                 var activeView = instance.get('activeView');
