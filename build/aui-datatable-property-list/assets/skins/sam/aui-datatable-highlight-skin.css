@@ -1,0 +1,14 @@
+.table-odd.table-highlight .table-cell, .table-even.table-highlight .table-cell, .table-odd .table-cell.table-highlight, .table-even .table-cell.table-highlight {
+    background-color: #eff4fe;
+    color: #000;
+}
+
+.table-highlight-border {
+    position: absolute;
+    background-color: #89aff9;
+}
+
+.table-highlight-overlay-active .table-highlight-border {
+    position: absolute;
+    background-color: #5292F7;
+}
