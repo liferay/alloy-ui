@@ -4,6 +4,7 @@
 
 .scheduler-view-table-lasso {
     background: #000;
+    border: 1px solid transparent;
     filter: alpha(opacity=4);
     opacity: 0.04;
     position: absolute;
@@ -59,7 +60,7 @@
 }
 
 .scheduler-view-table-header-day {
-    color: #abaaab;
+    color: #666;
     text-align: center;
 }
 

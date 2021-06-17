@@ -323,7 +323,13 @@ var SchedulerEventRecorder = A.Component.create({
         hidePopover: function() {
             var instance = this;
 
+            var selectedEvent = instance._selectedEvent;
+
             instance.popover.hide();
+
+            if (selectedEvent) {
+                selectedEvent.focus();
+            }
         },
 
         /**
@@ -362,9 +368,10 @@ var SchedulerEventRecorder = A.Component.create({
          */
         showPopover: function(node) {
             var instance = this,
-                event = instance.get('event');
+                event = instance.get('event'),
+                popover = instance.popover;
 
-            if (!instance.popover.get('rendered')) {
+            if (!popover.get('rendered')) {
                 instance._renderPopover();
             }
 
@@ -381,13 +388,15 @@ var SchedulerEventRecorder = A.Component.create({
                 node = node.item(0);
             }
 
-            var align = instance.popover.get('align');
-            instance.popover.set('align', {
+            var align = popover.get('align');
+            popover.set('align', {
                 node: node,
                 points: align.points
             });
 
-            instance.popover.show();
+            popover.show();
+
+            popover.headerNode.focus();
         },
 
         /**
@@ -447,8 +456,20 @@ var SchedulerEventRecorder = A.Component.create({
             var scheduler = event.newVal;
             var schedulerBB = scheduler.get('boundingBox');
 
-            schedulerBB.delegate('click', A.bind(instance._onClickSchedulerEvent, instance), '.' +
+            schedulerBB.delegate('click', A.bind(instance._onSelectSchedulerEvent, instance), '.' +
                 CSS_SCHEDULER_EVENT);
+
+            schedulerBB.delegate(
+                'keydown',
+                function(event) {
+                    if (event.keyCode === A.Event.KeyMap.ENTER) {
+                        instance._onSelectSchedulerEvent(event);
+
+                        instance._selectedEvent = event.currentTarget;
+                    }
+                },
+                '.' + CSS_SCHEDULER_EVENT
+            );
         },
 
         /**
@@ -649,13 +670,13 @@ var SchedulerEventRecorder = A.Component.create({
         },
 
         /**
-         * Handles `click` event on the scheduler.
+         * Handles `click` event and keypress of the `enter` key on the scheduler.
          *
-         * @method _onClickSchedulerEvent
+         * @method _onSelectSchedulerEvent
          * @param {EventFacade} event
          * @protected
          */
-        _onClickSchedulerEvent: function(event) {
+        _onSelectSchedulerEvent: function(event) {
             var instance = this;
             var evt = event.currentTarget.getData('scheduler-event');
 
