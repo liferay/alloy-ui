@@ -784,7 +784,7 @@ A.mix(TreeData.prototype, {
 
         instance.childrenLength = v.length;
 
-        if (instance.childrenLength && !container) {
+        if (!container) {
             container = instance._createNodeContainer();
         }
 
