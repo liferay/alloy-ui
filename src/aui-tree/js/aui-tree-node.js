@@ -569,8 +569,13 @@ var TreeNode = A.Component.create({
 
             var nodeContainer = instance.get('container');
 
-            if (nodeContainer && instance.get('expanded')) {
-                boundingBox.append(nodeContainer);
+            if (nodeContainer) {
+                if (!instance.get('expanded')) {
+                    nodeContainer.hide();
+                }
+                if (this.childrenLength) {
+                    boundingBox.append(nodeContainer);
+                }
             }
 
             return boundingBox;
