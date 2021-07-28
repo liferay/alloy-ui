@@ -37,6 +37,7 @@
 .scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-label-biggie {
     font-size: 1.5em;
     padding: 5px 0;
+    font-weight: bold;
 }
 
 .scheduler-view-agenda-info-container .scheduler-view-agenda-info .scheduler-view-agenda-info-label-small {
