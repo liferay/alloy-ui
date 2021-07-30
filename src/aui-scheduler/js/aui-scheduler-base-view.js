@@ -452,6 +452,7 @@ var SchedulerView = A.Component.create({
             if (bodyNode) {
                 bodyNode.toggleClass(CSS_SCHEDULER_VIEW_SCROLLABLE, val);
                 bodyNode.toggleClass(CSS_SCHEDULER_VIEW_NOSCROLL, !val);
+                bodyNode.setAttribute('tabindex', 0);
             }
         }
     }
