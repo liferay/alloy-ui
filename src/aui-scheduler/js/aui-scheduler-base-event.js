@@ -27,6 +27,9 @@ var Lang = A.Lang,
         if (date.getHours() >= 12) {
             format.push('pm');
         }
+        else {
+            format.push('am');
+        }
 
         return format.join('');
     },
