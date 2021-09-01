@@ -573,7 +573,7 @@ var TreeNode = A.Component.create({
                 if (!instance.get('expanded')) {
                     nodeContainer.hide();
                 }
-                if (this.childrenLength) {
+                if (instance.hasChildNodes()) {
                     boundingBox.append(nodeContainer);
                 }
             }
