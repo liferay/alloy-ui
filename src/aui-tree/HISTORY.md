@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3205](https://issues.liferay.com/browse/AUI-3205) Pages are not displayed in the Page Tree
 * [AUI-3201](https://issues.liferay.com/browse/AUI-3201) Tree is built without children nodes when there is not expanded children node (aui-tree-view)
 * [AUI-3200](https://issues.liferay.com/browse/AUI-3200) Fix tree is built without children nodes (aui-tree-view) regression of AUI-3196 Prevent tree to create empty ul container with no children, remove previous condition and add ul element only when is expanded (has children).
 * [AUI-3196](https://issues.liferay.com/browse/AUI-3196) An empty unordered list item (ul) is generated after each child list item (li)
