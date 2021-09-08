@@ -4,6 +4,7 @@
 
 ## @VERSION@
 
+* [AUI-3204](https://issues.liferay.com/browse/AUI-3204) Time formatting for Calendar doesn't render "am" text when configured for AM/PM time format
 * [AUI-3202](https://issues.liferay.com/browse/AUI-3202) Improving accessibility in calendar widget
 * [AUI-3198](https://issues.liferay.com/browse/AUI-3198) Accessibility issues in Calendar widget
 * [AUI-3186](https://issues.liferay.com/browse/AUI-3186) In Calendar portlet, when today's date is the last week of the year using monthly view, the blue border is cut out.
