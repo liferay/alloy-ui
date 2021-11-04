@@ -1,3 +1,7 @@
+> :warning: This repo is now archived (ie. switched to read-only mode). Alloy UI is deprecated and but future critical patches will continue at [`liferay/liferay-frontend-projects` monorepo](https://github.com/liferay/liferay-frontend-projects/tree/master/third-party/projects/alloy-ui).
+
+---
+
 # AlloyUI
 
 ![AlloyUI Robo Suit](https://cloud.githubusercontent.com/assets/398893/3529038/980b55ca-0795-11e4-9ffe-2a41953f1df8.jpg)
